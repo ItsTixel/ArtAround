@@ -121,10 +121,11 @@ app.post('/info', info )
 
 /* Replace these info with the ones you were given when activating mongoDB */ 
 const mongoCredentials = {
-	user: process.env.DB_USER,
-	pwd: process.env.DB_PASS,
-	site: process.env.DB_HOST
+	user: process.env.DB_USER || "site242555",
+	pwd: process.env.DB_PASS || "Kahti2ho",
+	site: process.env.DB_HOST || "mongo_site242555"
 }  
+
 /* end */
 
 app.get('/db/create', async function (req, res) {
