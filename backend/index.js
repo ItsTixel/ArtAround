@@ -36,6 +36,8 @@ global.startDate = null;
 
 const template = require(global.rootDir + '/scripts/tpl.js');
 const mymongo = require(global.rootDir + '/scripts/mongo.js');
+
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors')
 
@@ -51,6 +53,7 @@ const cors = require('cors')
 /* ========================== */
 
 let app= express(); 
+
 app.use('/js'  , express.static(global.rootDir +'/public/js'));
 app.use('/css' , express.static(global.rootDir +'/public/css'));
 app.use('/data', express.static(global.rootDir +'/public/data'));
@@ -147,9 +150,11 @@ app.get('/db/search', async function (req, res) {
 /*                            */
 /* ========================== */
 
-app.listen(8000, function() { 
+const PORT = process.env.PORT || 8000;
+
+app.listen(PORT, function() { 
 	global.startDate = new Date() ; 
-	console.log(`App listening on port 8000 started ${global.startDate.toLocaleString()}` )
+	console.log(`App listening on port ${PORT} started ${global.startDate.toLocaleString()}` )
 })
 
 
