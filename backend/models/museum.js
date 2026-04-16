@@ -9,9 +9,16 @@ Virtual : https://mongoosejs.com/docs/populate.html
 // TODO Add more fields
 const museumSchema = new Schema({
     name : {
-        type : String,
-        required : true,
-    },
+    type: String,
+    required: true,
+    trim: true,
+  },
+  address: {
+    street: { type: String, trim: true },
+    city: { type: String, trim: true },
+    zip: { type: String, trim: true },
+    country: { type: String, trim: true, default: 'Italia' }
+  },
 
     
 }, {

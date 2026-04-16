@@ -9,7 +9,7 @@ Enum : https://www.geeksforgeeks.org/mongodb/how-to-create-and-use-enum-in-mongo
 
 const descriptionSchema = new Schema({
     duration_sec: { type: Number, required: true },
-    text: { type: String, required: true }
+    text: { type: String, required: true, trim: true }
 }, { _id: false });
 
 
@@ -17,6 +17,7 @@ const itemSchema = new Schema({
     marketplace_summary: {
         type: String,
         required: true,
+        trim: true,// Remove leading and trailing whitespace from the string at the beginning and end of the string
         maxLength: 300
     },
     artwork: {
@@ -36,8 +37,17 @@ const itemSchema = new Schema({
     tone: {
         type: String,
         enum: ['childish', 'simple', 'medium', 'technical'],
+        required: true
     },
-    descriptions: [descriptionSchema],
+
+    descriptions: {
+        type: [descriptionSchema],
+        required: true,
+        validate: {
+            validator: value => value.length > 0,
+            message: 'Un item deve avere almeno una descrizione'
+        }
+    },
 
     price: {
         type: Number,
@@ -51,8 +61,17 @@ const itemSchema = new Schema({
         }
     },
 
-    image_url: String
+    image_url: {
+        type: String,
+        required: true,
+        trim: true,
+        match: [/^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i, 'Please fill a valid URL']
+    }
+},
+    {
+        timestamps: true //for ordering items by creation date
 })
+
 
 const Item = model('Item', itemSchema)
 
