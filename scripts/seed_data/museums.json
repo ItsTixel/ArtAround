@@ -1,0 +1,22 @@
+[
+  {
+    "_id": { "$oid": "bbb000000000000000000001" },
+    "name": "Galleria degli Uffizi",
+    "address": {
+      "street": "Piazzale degli Uffizi",
+      "city": "Firenze",
+      "zip": "50122",
+      "country": "Italia"
+    }
+  },
+  {
+    "_id": { "$oid": "bbb000000000000000000002" },
+    "name": "Pinacoteca di Brera",
+    "address": {
+      "street": "Via Brera 28",
+      "city": "Milano",
+      "zip": "20121",
+      "country": "Italia"
+    }
+  }
+]

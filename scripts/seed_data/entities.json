@@ -1,0 +1,39 @@
+[
+  {
+    "_id": { "$oid": "ccc000000000000000000001" },
+    "name": "Birth of Venus",
+    "is_physical": true,
+    "museum": { "$oid": "bbb000000000000000000001" },
+    "location": { "room": "Sala 10-14", "floor": "2", "note": "North wall" },
+    "author": "Sandro Botticelli"
+  },
+  {
+    "_id": { "$oid": "ccc000000000000000000002" },
+    "name": "Annunciation",
+    "is_physical": true,
+    "museum": { "$oid": "bbb000000000000000000001" },
+    "location": { "room": "Sala 8", "floor": "2", "note": "East wing" },
+    "author": "Leonardo da Vinci"
+  },
+  {
+    "_id": { "$oid": "ccc000000000000000000003" },
+    "name": "Lamentation of Christ",
+    "is_physical": true,
+    "museum": { "$oid": "bbb000000000000000000002" },
+    "location": { "room": "Sala VI", "floor": "1", "note": "Centre" },
+    "author": "Andrea Mantegna"
+  },
+  {
+    "_id": { "$oid": "ccc000000000000000000004" },
+    "name": "Last Supper (copy)",
+    "is_physical": true,
+    "museum": { "$oid": "bbb000000000000000000002" },
+    "location": { "room": "Sala XII", "floor": "1", "note": "South wall" },
+    "author": "Giampietrino"
+  },
+  {
+    "_id": { "$oid": "ccc000000000000000000005" },
+    "name": "Renaissance Humanism",
+    "is_physical": false
+  }
+]

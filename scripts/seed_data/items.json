@@ -1,0 +1,65 @@
+[
+  {
+    "_id": { "$oid": "ddd000000000000000000001" },
+    "marketplace_summary": "A captivating audio guide to Botticelli's Birth of Venus — suitable for all ages.",
+    "artwork": { "$oid": "ccc000000000000000000001" },
+    "author": { "$oid": "aaa000000000000000000001" },
+    "license": "CC-BY",
+    "tone": "simple",
+    "descriptions": [
+      { "duration_sec": 90,  "text": "Venus rises from the sea on a shell, blown ashore by the winds Zephyr and Aura, as a Hora holds out a flowered cloak." },
+      { "duration_sec": 60,  "text": "Notice the idealized, elongated figure — Botticelli draws on classical antiquity while imbuing the scene with a dreamlike quality." }
+    ],
+    "price": 0,
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Sandro_Botticelli_046.jpg",
+    "createdAt": { "$date": "2025-01-01T00:00:00Z" },
+    "updatedAt": { "$date": "2025-01-01T00:00:00Z" }
+  },
+  {
+    "_id": { "$oid": "ddd000000000000000000002" },
+    "marketplace_summary": "In-depth technical analysis of da Vinci's Annunciation for art history enthusiasts.",
+    "artwork": { "$oid": "ccc000000000000000000002" },
+    "author": { "$oid": "aaa000000000000000000001" },
+    "license": "Copyright",
+    "tone": "technical",
+    "descriptions": [
+      { "duration_sec": 120, "text": "Leonardo employs an unusual low viewpoint and aerial perspective to create spatial depth, while the angel's wings echo those in earlier Florentine tradition." },
+      { "duration_sec": 80,  "text": "The Virgin's right hand rests on a lectern with intricate marble inlay — a showcase of Leonardo's early mastery of foreshortening." }
+    ],
+    "price": 2.99,
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Annunciation_%28Leonardo%29.jpg",
+    "createdAt": { "$date": "2025-01-01T00:00:00Z" },
+    "updatedAt": { "$date": "2025-01-01T00:00:00Z" }
+  },
+  {
+    "_id": { "$oid": "ddd000000000000000000003" },
+    "marketplace_summary": "Child-friendly story about Mantegna's Lamentation of Christ.",
+    "artwork": { "$oid": "ccc000000000000000000003" },
+    "author": { "$oid": "aaa000000000000000000002" },
+    "license": "CC-BY-NC",
+    "tone": "childish",
+    "descriptions": [
+      { "duration_sec": 60, "text": "This painting shows Jesus lying down after the crucifixion, with his friends crying around him. The painter used a special trick to make Jesus' feet look very big!" }
+    ],
+    "price": 0,
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Mantegna_dead_christ.jpg",
+    "createdAt": { "$date": "2025-01-01T00:00:00Z" },
+    "updatedAt": { "$date": "2025-01-01T00:00:00Z" }
+  },
+  {
+    "_id": { "$oid": "ddd000000000000000000004" },
+    "marketplace_summary": "Medium-level guide connecting the Last Supper copy in Brera to Leonardo's original.",
+    "artwork": { "$oid": "ccc000000000000000000004" },
+    "author": { "$oid": "aaa000000000000000000002" },
+    "license": "CC0",
+    "tone": "medium",
+    "descriptions": [
+      { "duration_sec": 100, "text": "Painted by Giampietrino around 1520, this full-scale copy preserves details — like the feet of the apostles — lost in Leonardo's deteriorated original." },
+      { "duration_sec": 70,  "text": "Comparing copies like this one is essential for restoration work: it informed the 1999 restoration of Leonardo's mural at Santa Maria delle Grazie." }
+    ],
+    "price": 0,
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Giampietrino-Last-Supper.jpg",
+    "createdAt": { "$date": "2025-01-01T00:00:00Z" },
+    "updatedAt": { "$date": "2025-01-01T00:00:00Z" }
+  }
+]

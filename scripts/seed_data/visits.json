@@ -1,0 +1,57 @@
+[
+  {
+    "_id": { "$oid": "eee000000000000000000001" },
+    "title": "Highlights of the Uffizi",
+    "description": "A curated 45-minute walk through the most iconic works of the Uffizi gallery.",
+    "museum": { "$oid": "bbb000000000000000000001" },
+    "author": { "$oid": "aaa000000000000000000001" },
+    "base_price": 0,
+    "steps": [
+      {
+        "_id": { "$oid": "fff000000000000000000001" },
+        "entity": { "$oid": "ccc000000000000000000001" },
+        "items": [{ "$oid": "ddd000000000000000000001" }],
+        "logistic_note": "Take the main staircase to floor 2.",
+        "order": 1
+      },
+      {
+        "_id": { "$oid": "fff000000000000000000002" },
+        "entity": { "$oid": "ccc000000000000000000002" },
+        "items": [{ "$oid": "ddd000000000000000000002" }],
+        "logistic_note": "Continue east along the corridor.",
+        "order": 2
+      },
+      {
+        "_id": { "$oid": "fff000000000000000000003" },
+        "entity": { "$oid": "ccc000000000000000000005" },
+        "items": [],
+        "logistic_note": "Pause at the window overlooking the Arno for context on Renaissance ideals.",
+        "order": 3
+      }
+    ]
+  },
+  {
+    "_id": { "$oid": "eee000000000000000000002" },
+    "title": "Brera Masterpieces",
+    "description": "Explore Brera's crown jewels in under an hour.",
+    "museum": { "$oid": "bbb000000000000000000002" },
+    "author": { "$oid": "aaa000000000000000000002" },
+    "base_price": 1.50,
+    "steps": [
+      {
+        "_id": { "$oid": "fff000000000000000000004" },
+        "entity": { "$oid": "ccc000000000000000000003" },
+        "items": [{ "$oid": "ddd000000000000000000003" }],
+        "logistic_note": "Sala VI is on the first floor, to the left of the entrance.",
+        "order": 1
+      },
+      {
+        "_id": { "$oid": "fff000000000000000000005" },
+        "entity": { "$oid": "ccc000000000000000000004" },
+        "items": [{ "$oid": "ddd000000000000000000004" }],
+        "logistic_note": "Head to Sala XII at the end of the corridor.",
+        "order": 2
+      }
+    ]
+  }
+]

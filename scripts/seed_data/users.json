@@ -1,0 +1,29 @@
+[
+  {
+    "_id": { "$oid": "aaa000000000000000000001" },
+    "username": "alice_author",
+    "email": "alice@example.com",
+    "password": "$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy",
+    "role": "author",
+    "createdAt": { "$date": "2025-01-01T00:00:00Z" },
+    "updatedAt": { "$date": "2025-01-01T00:00:00Z" }
+  },
+  {
+    "_id": { "$oid": "aaa000000000000000000002" },
+    "username": "bob_author",
+    "email": "bob@example.com",
+    "password": "$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy",
+    "role": "author",
+    "createdAt": { "$date": "2025-01-01T00:00:00Z" },
+    "updatedAt": { "$date": "2025-01-01T00:00:00Z" }
+  },
+  {
+    "_id": { "$oid": "aaa000000000000000000003" },
+    "username": "carol_visitor",
+    "email": "carol@example.com",
+    "password": "$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy",
+    "role": "visitor",
+    "createdAt": { "$date": "2025-01-01T00:00:00Z" },
+    "updatedAt": { "$date": "2025-01-01T00:00:00Z" }
+  }
+]
