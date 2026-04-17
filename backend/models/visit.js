@@ -55,11 +55,6 @@ const visitSchema = new Schema({
         required: true
     },
 
-    logistic_info: {
-        ticket_info: { type: String, trim: true, default: '' },
-        start_time: { type: String, trim: true, default: '' },
-    },
-
     steps: {
         type: [visitStepSchema],
         required: true,
@@ -69,24 +64,22 @@ const visitSchema = new Schema({
         }
     },
 
-    license: {
-        type: String,
-        enum: ['Copyright', 'CC-BY', 'CC-BY-NC', 'CC0'],
-    },
-
-    price: {
+    base_price: {
         type: Number,
-        default: 0,
+        default : 0,
         min: [0, 'Price must be non negative'],
-        validate: {
-            validator: function (value) {
-                return !(this.license !== 'Copyright' && value > 0);
-            },
-            message: 'Only Copyright visits can have a price greater than 0.'
-        }
     },
 
 })
+
+//TODO Check price calculation
+visitSchema.virtual('total_price').get(function () {
+    return this.steps
+        .flatMap(step => step.items)
+        .reduce((sum, item) => sum + (item.price ?? 0), this.base_price ?? 0);
+});
+
+
 const Visit = model('Visit', visitSchema)
 
 module.exports = Visit
