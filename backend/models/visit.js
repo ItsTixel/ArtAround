@@ -80,6 +80,8 @@ visitSchema.virtual('total_price').get(function () {
 });
 
 
+//visitSchema.set('toJSON', { virtuals: true });//serve per includere i campi virtuali (come total_price) quando si converte il documento in JSON 
+
 const Visit = model('Visit', visitSchema)
 
 module.exports = Visit

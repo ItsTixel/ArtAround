@@ -22,8 +22,8 @@ const museumSchema = new Schema({
 
     
 }, {
-  toJSON: { virtuals: true }, 
-  toObject: { virtuals: true }
+  //toJSON: { virtuals: true }, 
+  //toObject: { virtuals: true }
 })
 
 museumSchema.virtual('entities', {

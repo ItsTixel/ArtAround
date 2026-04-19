@@ -21,6 +21,13 @@ async function getById(req, res) {
 
 async function create(req, res) {
     try {
+        const { email, username } = req.body;
+        const existing = await User.findOne({ $or: [{ email }, { username }] });
+        if (existing) {
+            const field = existing.email === email ? 'email' : 'username';
+            return res.status(409).json({ error: `A user with this ${field} already exists` });
+        }
+
         const user = new User(req.body);
         await user.save();
         const { password: _, ...safe } = user.toObject();
