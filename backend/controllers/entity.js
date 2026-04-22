@@ -2,13 +2,22 @@ const Entity = require('../models/entity');
 
 async function getAll(req, res) {
     try {
+        const pageSize = Math.min(parseInt(req.query.pageSize) || 10, 100);
+        const page = Math.max(parseInt(req.query.page) || 0, 0);
         const filter = {};
         if (req.query.museum) filter.museum = req.query.museum;
         if (req.query.author) filter.author = req.query.author;
         if (req.query.is_physical !== undefined) filter.is_physical = req.query.is_physical === 'true';
         if (req.query.name) filter.name = { $regex: req.query.name, $options: 'i' };
-        const entities = await Entity.find(filter).populate('museum');
-        res.json(entities);
+
+        const allowedSortFields = ['name', 'author', 'is_physical'];
+        const rawSort = req.query.sort || 'name';
+        const sortField = rawSort.replace(/^-/, '');
+        const sort = allowedSortFields.includes(sortField) ? rawSort : 'name';
+
+        const totalItems = await Entity.countDocuments(filter);
+        const entities = await Entity.find(filter).populate('museum').sort(sort).skip(pageSize * page).limit(pageSize);
+        res.json({ totalItems, pageSize, page, data: entities });
     } catch (e) {
         res.status(500).json({ error: e.message });
     }

@@ -2,12 +2,21 @@ const Museum = require('../models/museum');
 
 async function getAll(req, res) {
     try {
+        const pageSize = Math.min(parseInt(req.query.pageSize) || 10, 100);
+        const page = Math.max(parseInt(req.query.page) || 0, 0);
         const filter = {};
         if (req.query.city) filter['address.city'] = req.query.city;
         if (req.query.country) filter['address.country'] = req.query.country;
         if (req.query.name) filter.name = new RegExp(req.query.name, 'i');
-        const museums = await Museum.find(filter);
-        res.json(museums);
+
+        const allowedSortFields = ['name', 'address.city', 'address.country'];
+        const rawSort = req.query.sort || 'name';
+        const sortField = rawSort.replace(/^-/, '');
+        const sort = allowedSortFields.includes(sortField) ? rawSort : 'name';
+
+        const totalItems = await Museum.countDocuments(filter);
+        const museums = await Museum.find(filter).sort(sort).skip(pageSize * page).limit(pageSize);
+        res.json({ totalItems, pageSize, page, data: museums });
     } catch (e) {
         res.status(500).json({ error: e.message });
     }

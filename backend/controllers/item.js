@@ -7,13 +7,23 @@ const itemPopulate = [
 
 async function getAll(req, res) {
     try {
+        const pageSize = Math.min(parseInt(req.query.pageSize) || 10,100);
+        const page = parseInt(req.query.page )|| 0;
         const filter = {};
         if (req.query.author) filter.author = req.query.author;
         if (req.query.artwork) filter.artwork = req.query.artwork;
-        if (req.query.license) filter.license = req.query.license; // questo in non so se è utile
+        if (req.query.license) filter.license = req.query.license;
         if (req.query.tone) filter.tone = req.query.tone;
-        const items = await Item.find(filter).populate(itemPopulate);
-        res.json(items);
+        
+
+        const allowedSortFields = ['createdAt', 'price', 'marketplace_summary', 'tone', 'license'];
+        const rawSort = req.query.sort || '-createdAt';
+        const sortField = rawSort.replace(/^-/, '');
+        const sort = allowedSortFields.includes(sortField) ? rawSort : '-createdAt';
+
+        const totalItems = await Item.countDocuments(filter);
+        const items = await Item.find(filter).populate(itemPopulate).sort(sort).skip(pageSize * page).limit(pageSize);
+        res.json({ totalItems, pageSize, page, data: items});
     } catch (e) {
         res.status(500).json({ error: e.message });
     }

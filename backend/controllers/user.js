@@ -1,9 +1,18 @@
 const User = require('../models/user');
 
-async function getAll(_req, res) {
+async function getAll(req, res) {
     try {
-        const users = await User.find().select('-password');
-        res.json(users);
+        const pageSize = Math.min(parseInt(req.query.pageSize) || 10, 100);
+        const page = Math.max(parseInt(req.query.page) || 0, 0);
+
+        const allowedSortFields = ['username', 'email', 'role', 'createdAt'];
+        const rawSort = req.query.sort || '-createdAt';
+        const sortField = rawSort.replace(/^-/, '');
+        const sort = allowedSortFields.includes(sortField) ? rawSort : '-createdAt';
+
+        const totalItems = await User.countDocuments();
+        const users = await User.find().select('-password').sort(sort).skip(pageSize * page).limit(pageSize);
+        res.json({ totalItems, pageSize, page, data: users });
     } catch (e) {
         res.status(500).json({ error: e.message });
     }

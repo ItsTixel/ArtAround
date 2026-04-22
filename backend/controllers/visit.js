@@ -15,11 +15,20 @@ const stepsPopulate = [
 
 async function getAll(req, res) {
     try {
+        const pageSize = Math.min(parseInt(req.query.pageSize) || 10, 100);
+        const page = Math.max(parseInt(req.query.page) || 0, 0);
         const filter = {};
         if (req.query.author) filter.author = req.query.author;
         if (req.query.museum) filter.museum = req.query.museum;
-        const visits = await Visit.find(filter).populate(stepsPopulate);
-        res.json(visits);
+
+        const allowedSortFields = ['title', 'base_price'];
+        const rawSort = req.query.sort || 'title';
+        const sortField = rawSort.replace(/^-/, '');
+        const sort = allowedSortFields.includes(sortField) ? rawSort : 'title';
+
+        const totalItems = await Visit.countDocuments(filter);
+        const visits = await Visit.find(filter).populate(stepsPopulate).sort(sort).skip(pageSize * page).limit(pageSize);
+        res.json({ totalItems, pageSize, page, data: visits });
     } catch (e) {
         res.status(500).json({ error: e.message });
     }
