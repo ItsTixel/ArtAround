@@ -30,28 +30,29 @@ app.enable('trust proxy');
   try {
 	dbname = "artaround"
     const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}/${dbname}?authSource=admin&writeConcern=majority`;
-    await mongoose.connect(mongouri);
+	//const mongouri = `mongodb://localhost:27017/${dbname}`;
+	console.log(`Connecting to MongoDB: ${mongouri}`);
+	await mongoose.connect(mongouri);
     console.log("Connected to MongoDB", mongouri);
 	
   } catch (e) {
     console.error("Connection failed:", e.message);
   }
+  
 })();
 
 app.get('/', async function (req, res) {
-	var text = "Hello Duluze";
+	var text = "Hello Duluzeeeee";
 	res.send(
 		`<!doctype html>
-<html>
-	<body>
-		<h1>${text}</h1>
-		<p><a href="javascript:history.back()">Go back</a></p>
-	</body>
-</html>
+		<html>
+			<body>
+				<h1>${text}</h1>
+				<p><a href="javascript:history.back()">Go back</a></p>
+			</body>
+		</html>
 			`)
 });
-
-
 
 const PORT = process.env.PORT || 8000;
 
