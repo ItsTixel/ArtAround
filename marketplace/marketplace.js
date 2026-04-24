@@ -1,5 +1,9 @@
+const API_BASE = window.location.hostname === "localhost"
+    ? "http://localhost:8000"
+    : "https://your-production-domain.com";
+
 async function getMuseums() {
-    const res = await fetch("http://localhost:8000/api/museums/");
+    const res = await fetch(`${API_BASE}/api/museums/`);
     if (!res.ok) throw new Error(res.statusText);
     return res.json();
 }
