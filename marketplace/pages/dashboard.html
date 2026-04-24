@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard autore — ArtAround</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/marketplace/styles/tokens.css">
+  <link rel="stylesheet" href="/marketplace/styles/global.css">
+
+  <script src="/marketplace/components/navbar/navbar.js" defer></script>
+  <script src="/marketplace/components/toast/toast.js"   defer></script>
+  <script src="/marketplace/components/modal/modal.js"   defer></script>
+
+  <style>
+    body { background: var(--aa-bg); }
+
+    /* ── Dashboard shell ── */
+    .dash-shell {
+      display: flex;
+      min-height: calc(100vh - var(--aa-nav-h));
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      width: var(--aa-sidebar);
+      flex-shrink: 0;
+      background: var(--aa-surface);
+      border-right: 1px solid var(--aa-border);
+      display: flex;
+      flex-direction: column;
+      padding: var(--aa-6) 0;
+      position: sticky;
+      top: var(--aa-nav-h);
+      height: calc(100vh - var(--aa-nav-h));
+      overflow-y: auto;
+      transition: width var(--aa-base-t);
+    }
+    .sidebar.collapsed { width: 64px; }
+    @media (max-width: 1024px) { .sidebar { display: none; } }
+
+    .sidebar-toggle {
+      position: absolute; top: var(--aa-4); right: -14px;
+      width: 28px; height: 28px;
+      background: var(--aa-surface);
+      border: 1px solid var(--aa-border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; z-index: 1;
+      font-size: 0;
+      transition: transform var(--aa-fast);
+    }
+    .sidebar-toggle svg { color: var(--aa-text-muted); flex-shrink: 0; }
+    .sidebar.collapsed .sidebar-toggle { transform: rotate(180deg); }
+    .sidebar-toggle:focus-visible { outline: 3px solid var(--aa-primary); outline-offset: 3px; }
+
+    .sidebar-section-title {
+      font-size: var(--aa-xs); font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--aa-text-muted);
+      padding: var(--aa-3) var(--aa-5) var(--aa-2);
+      overflow: hidden; white-space: nowrap;
+    }
+    .sidebar.collapsed .sidebar-section-title { opacity: 0; }
+
+    .sidebar-nav { list-style: none; padding: 0 var(--aa-2); }
+    .sidebar-link {
+      display: flex; align-items: center; gap: var(--aa-3);
+      padding: var(--aa-3) var(--aa-3);
+      border-radius: var(--aa-r-md);
+      font-size: var(--aa-sm); font-weight: 500;
+      color: var(--aa-text-secondary);
+      text-decoration: none;
+      cursor: pointer;
+      background: none; border: none;
+      font-family: var(--aa-font-sans);
+      width: 100%;
+      text-align: left;
+      transition: background var(--aa-fast), color var(--aa-fast);
+      min-height: 40px;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .sidebar-link:hover { background: var(--aa-border); color: var(--aa-text); }
+    .sidebar-link.active { background: var(--aa-primary-light); color: var(--aa-primary); font-weight: 600; }
+    .sidebar-link svg { flex-shrink: 0; }
+    .sidebar-link:focus-visible { outline: 3px solid var(--aa-primary); outline-offset: 3px; }
+    .sidebar.collapsed .sidebar-link span { display: none; }
+
+    .sidebar-divider { border: none; border-top: 1px solid var(--aa-border); margin: var(--aa-3) var(--aa-2); }
+
+    /* ── Main content ── */
+    .dash-main { flex: 1; padding: var(--aa-8); min-width: 0; }
+    @media (max-width: 768px) { .dash-main { padding: var(--aa-4); } }
+
+    .dash-section { display: none; }
+    .dash-section.active { display: block; }
+
+    /* ── Page header ── */
+    .page-header {
+      display: flex; align-items: baseline; justify-content: space-between;
+      margin-bottom: var(--aa-8); gap: var(--aa-4); flex-wrap: wrap;
+    }
+    .page-title { font-family: var(--aa-font-serif); font-size: var(--aa-3xl); font-weight: 700; }
+
+    /* ── KPI cards ── */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--aa-4);
+      margin-bottom: var(--aa-8);
+    }
+    @media (max-width: 1200px) { .kpi-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 640px)  { .kpi-grid { grid-template-columns: 1fr; } }
+
+    .kpi-card {
+      background: var(--aa-surface);
+      border: 1px solid var(--aa-border);
+      border-radius: var(--aa-r-lg);
+      padding: var(--aa-5);
+    }
+    .kpi-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: var(--aa-4); }
+    .kpi-icon {
+      width: 40px; height: 40px;
+      border-radius: var(--aa-r-md);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .kpi-icon.primary   { background: var(--aa-primary-light); color: var(--aa-primary); }
+    .kpi-icon.gold      { background: var(--aa-gold-bg); color: var(--aa-gold-text); }
+    .kpi-icon.success   { background: var(--aa-success-bg); color: var(--aa-success); }
+    .kpi-icon.info      { background: var(--aa-info-bg); color: var(--aa-info); }
+
+    .kpi-trend {
+      display: flex; align-items: center; gap: 3px;
+      font-size: var(--aa-xs); font-weight: 700; padding: 2px var(--aa-2);
+      border-radius: var(--aa-r-full);
+    }
+    .kpi-trend.up   { background: var(--aa-success-bg); color: var(--aa-success); }
+    .kpi-trend.down { background: var(--aa-error-bg); color: var(--aa-error); }
+
+    .kpi-n { font-family: var(--aa-font-serif); font-size: 2rem; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+    .kpi-l { font-size: var(--aa-sm); color: var(--aa-text-muted); }
+
+    /* Sparkline (simplified) */
+    .kpi-spark { margin-top: var(--aa-3); height: 32px; }
+
+    /* ── Dashboard columns ── */
+    .dash-cols { display: grid; grid-template-columns: 2fr 1fr; gap: var(--aa-6); }
+    @media (max-width: 1024px) { .dash-cols { grid-template-columns: 1fr; } }
+
+    .dash-card {
+      background: var(--aa-surface);
+      border: 1px solid var(--aa-border);
+      border-radius: var(--aa-r-lg);
+      overflow: hidden;
+    }
+    .dash-card-header {
+      padding: var(--aa-4) var(--aa-6);
+      border-bottom: 1px solid var(--aa-border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .dash-card-title { font-weight: 600; font-size: var(--aa-base); }
+    .dash-card-body { padding: var(--aa-4) var(--aa-6); }
+
+    /* Activity feed */
+    .activity-item {
+      display: flex; gap: var(--aa-3); align-items: flex-start;
+      padding: var(--aa-3) 0;
+      border-bottom: 1px solid var(--aa-border);
+    }
+    .activity-item:last-child { border-bottom: none; }
+    .activity-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%; background: var(--aa-primary);
+      margin-top: 6px; flex-shrink: 0;
+    }
+    .activity-text { font-size: var(--aa-sm); color: var(--aa-text-secondary); line-height: 1.5; }
+    .activity-time { font-size: var(--aa-xs); color: var(--aa-text-muted); margin-top: 2px; }
+
+    /* ── Table ── */
+    .table-wrap { overflow-x: auto; }
+    table {
+      width: 100%; border-collapse: collapse;
+      font-size: var(--aa-sm);
+    }
+    th {
+      padding: var(--aa-3) var(--aa-4);
+      border-bottom: 2px solid var(--aa-border);
+      text-align: left; font-size: var(--aa-xs); font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      color: var(--aa-text-muted);
+      white-space: nowrap;
+      background: var(--aa-surface);
+    }
+    th button {
+      background: none; border: none; cursor: pointer;
+      font-family: var(--aa-font-sans); font-size: var(--aa-xs); font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      color: var(--aa-text-muted); display: flex; align-items: center; gap: 4px;
+      padding: 0;
+    }
+    th button:focus-visible { outline: 2px solid var(--aa-primary); outline-offset: 2px; border-radius: 3px; }
+    td {
+      padding: var(--aa-3) var(--aa-4);
+      border-bottom: 1px solid var(--aa-border);
+      vertical-align: middle;
+      color: var(--aa-text);
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: var(--aa-bg); }
+
+    .table-check { width: 16px; height: 16px; accent-color: var(--aa-primary); cursor: pointer; }
+
+    .item-thumb {
+      width: 48px; height: 36px; object-fit: cover;
+      border-radius: var(--aa-r-sm); background: var(--aa-border);
+    }
+    .item-title { font-weight: 600; }
+    .item-sub   { font-size: var(--aa-xs); color: var(--aa-text-muted); margin-top: 2px; }
+
+    .table-actions { display: flex; gap: var(--aa-2); }
+    .table-action-btn {
+      background: none; border: none; cursor: pointer;
+      color: var(--aa-text-muted); padding: 4px; border-radius: var(--aa-r-sm);
+      display: flex; align-items: center;
+      transition: color var(--aa-fast), background var(--aa-fast);
+      min-width: 28px; min-height: 28px; justify-content: center;
+    }
+    .table-action-btn:hover { background: var(--aa-border); color: var(--aa-text); }
+    .table-action-btn.danger:hover { background: var(--aa-error-bg); color: var(--aa-error); }
+    .table-action-btn:focus-visible { outline: 3px solid var(--aa-primary); outline-offset: 3px; }
+
+    /* Bulk toolbar */
+    .bulk-toolbar {
+      display: none;
+      align-items: center; gap: var(--aa-4);
+      padding: var(--aa-3) var(--aa-4);
+      background: var(--aa-primary-light);
+      border-bottom: 1px solid var(--aa-primary);
+      font-size: var(--aa-sm); font-weight: 500; color: var(--aa-primary);
+    }
+    .bulk-toolbar.visible { display: flex; }
+
+    /* Table top bar */
+    .table-topbar {
+      display: flex; align-items: center; gap: var(--aa-4);
+      padding: var(--aa-4) var(--aa-6);
+      border-bottom: 1px solid var(--aa-border);
+      flex-wrap: wrap;
+    }
+    .table-search-input {
+      padding: var(--aa-2) var(--aa-3);
+      border: 1.5px solid var(--aa-border);
+      border-radius: var(--aa-r-md);
+      font-family: var(--aa-font-sans); font-size: var(--aa-sm);
+      min-width: 200px; min-height: 36px;
+      background: var(--aa-bg);
+    }
+    .table-search-input:focus { outline: none; border-color: var(--aa-primary); box-shadow: 0 0 0 3px var(--aa-primary-light); }
+
+    /* Mobile sidebar backdrop */
+    .sidebar-backdrop {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 199;
+    }
+    .sidebar-backdrop.visible { display: block; }
+
+    @media (max-width: 1024px) {
+      /* Sidebar as slide-in drawer */
+      .sidebar.open {
+        display: flex;
+        position: fixed;
+        top: var(--aa-nav-h);
+        left: 0;
+        height: calc(100vh - var(--aa-nav-h));
+        z-index: 200;
+        box-shadow: var(--aa-shadow-xl);
+      }
+    }
+
+    /* Chart placeholder */
+    .chart-placeholder {
+      height: 200px;
+      background: linear-gradient(to top, var(--aa-primary-light) 0%, transparent 100%);
+      border-radius: var(--aa-r-md);
+      position: relative;
+      overflow: hidden;
+    }
+    .chart-bar-group { display: flex; align-items: flex-end; gap: 8px; height: 100%; padding: var(--aa-4); }
+    .chart-bar {
+      flex: 1; border-radius: var(--aa-r-sm) var(--aa-r-sm) 0 0;
+      background: var(--aa-primary); opacity: 0.7;
+    }
+
+    /* Mobile sidebar toggle */
+    .mobile-sidebar-btn {
+      display: none;
+      position: fixed; bottom: var(--aa-4); right: var(--aa-4);
+      width: 52px; height: 52px;
+      background: var(--aa-primary); color: #fff;
+      border: none; border-radius: 50%;
+      cursor: pointer; box-shadow: var(--aa-shadow-lg);
+      align-items: center; justify-content: center; z-index: 100;
+    }
+    @media (max-width: 1024px) { .mobile-sidebar-btn { display: flex; } }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Vai al contenuto principale</a>
+  <art-navbar current-page="crea"></art-navbar>
+
+  <div class="dash-shell">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar" aria-label="Navigazione dashboard">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Chiudi menu laterale" aria-expanded="true" type="button">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+
+      <p class="sidebar-section-title">Principale</p>
+      <ul class="sidebar-nav" role="list">
+        <li>
+          <button class="sidebar-link active" data-section="overview" type="button" aria-current="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            <span>Dashboard</span>
+          </button>
+        </li>
+        <li>
+          <button class="sidebar-link" data-section="items" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            <span>I miei item</span>
+          </button>
+        </li>
+        <li>
+          <button class="sidebar-link" data-section="visits" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            <span>Le mie visite</span>
+          </button>
+        </li>
+        <li>
+          <button class="sidebar-link" data-section="stats" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            <span>Statistiche</span>
+          </button>
+        </li>
+        <li>
+          <button class="sidebar-link" data-section="earnings" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <span>Guadagni</span>
+          </button>
+        </li>
+      </ul>
+
+      <hr class="sidebar-divider" aria-hidden="true">
+      <p class="sidebar-section-title">Account</p>
+      <ul class="sidebar-nav" role="list">
+        <li>
+          <a href="/marketplace/pages/profile.html" class="sidebar-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>Impostazioni account</span>
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true"></div>
+
+    <!-- Main -->
+    <main id="main-content" class="dash-main" tabindex="-1">
+
+      <!-- ── Overview ── -->
+      <section class="dash-section active" id="section-overview">
+        <div class="page-header">
+          <h1 class="page-title">Dashboard</h1>
+          <a href="/marketplace/pages/create-item.html" class="btn btn-primary btn-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Crea nuovo item
+          </a>
+        </div>
+
+        <!-- KPIs -->
+        <div class="kpi-grid" aria-label="Indicatori chiave di performance">
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-icon primary" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+              </div>
+              <div class="kpi-trend up" aria-label="Tendenza: +8% rispetto al mese scorso">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                +8%
+              </div>
+            </div>
+            <div class="kpi-n">24</div>
+            <div class="kpi-l">Item pubblicati</div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-icon info" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <div class="kpi-trend up" aria-label="Tendenza: +2 rispetto al mese scorso">+2</div>
+            </div>
+            <div class="kpi-n">8</div>
+            <div class="kpi-l">Visite create</div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-icon success" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div class="kpi-trend up" aria-label="Tendenza: +14% rispetto al mese scorso">+14%</div>
+            </div>
+            <div class="kpi-n">342</div>
+            <div class="kpi-l">Adozioni totali</div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-icon gold" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </div>
+              <div class="kpi-trend up" aria-label="Tendenza: +23% rispetto al mese scorso">+23%</div>
+            </div>
+            <div class="kpi-n">€128,50</div>
+            <div class="kpi-l">Guadagni del mese</div>
+          </div>
+        </div>
+
+        <!-- Two columns -->
+        <div class="dash-cols">
+          <!-- Recent activity -->
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title">Attività recente</h2>
+              <a href="#" style="font-size:var(--aa-sm);color:var(--aa-primary)">Vedi tutto</a>
+            </div>
+            <div class="dash-card-body">
+              <div class="activity-item">
+                <div class="activity-dot" aria-hidden="true"></div>
+                <div>
+                  <p class="activity-text"><strong>Sofia M.</strong> ha adottato la tua visita «Rinascimento Fiorentino»</p>
+                  <p class="activity-time"><time>2 minuti fa</time></p>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-dot" aria-hidden="true"></div>
+                <div>
+                  <p class="activity-text">Il tuo item «Nascita di Venere» ha ricevuto una nuova recensione (&#11088; 5)</p>
+                  <p class="activity-time"><time>1 ora fa</time></p>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-dot" aria-hidden="true"></div>
+                <div>
+                  <p class="activity-text"><strong>Marco T.</strong> ha adottato la tua visita «Arte Greco-Romana»</p>
+                  <p class="activity-time"><time>3 ore fa</time></p>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-dot" aria-hidden="true"></div>
+                <div>
+                  <p class="activity-text">Il tuo guadagno mensile ha superato €100</p>
+                  <p class="activity-time"><time>Ieri, 15:30</time></p>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-dot" aria-hidden="true"></div>
+                <div>
+                  <p class="activity-text"><strong>Elena C.</strong> ha iniziato a seguirti</p>
+                  <p class="activity-time"><time>Ieri, 10:12</time></p>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-dot" aria-hidden="true"></div>
+                <div>
+                  <p class="activity-text">La visita «Scultura Barocca» ha raggiunto 50 adozioni</p>
+                  <p class="activity-time"><time>2 giorni fa</time></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Top items -->
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <h2 class="dash-card-title">Item più adottati</h2>
+            </div>
+            <div class="dash-card-body" style="padding:0">
+              <div style="display:flex;align-items:center;gap:var(--aa-3);padding:var(--aa-3) var(--aa-5);border-bottom:1px solid var(--aa-border)">
+                <span style="width:20px;text-align:center;font-size:var(--aa-sm);font-weight:700;color:var(--aa-text-muted)">1</span>
+                <div style="flex:1;min-width:0">
+                  <p style="font-size:var(--aa-sm);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Nascita di Venere</p>
+                  <p style="font-size:var(--aa-xs);color:var(--aa-text-muted)">87 adozioni</p>
+                </div>
+                <span style="font-size:var(--aa-sm);font-weight:600;color:var(--aa-success);white-space:nowrap">€43,50</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:var(--aa-3);padding:var(--aa-3) var(--aa-5);border-bottom:1px solid var(--aa-border)">
+                <span style="width:20px;text-align:center;font-size:var(--aa-sm);font-weight:700;color:var(--aa-text-muted)">2</span>
+                <div style="flex:1;min-width:0">
+                  <p style="font-size:var(--aa-sm);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">La Primavera</p>
+                  <p style="font-size:var(--aa-xs);color:var(--aa-text-muted)">64 adozioni</p>
+                </div>
+                <span style="font-size:var(--aa-sm);font-weight:600;color:var(--aa-success);white-space:nowrap">€0</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:var(--aa-3);padding:var(--aa-3) var(--aa-5);border-bottom:1px solid var(--aa-border)">
+                <span style="width:20px;text-align:center;font-size:var(--aa-sm);font-weight:700;color:var(--aa-text-muted)">3</span>
+                <div style="flex:1;min-width:0">
+                  <p style="font-size:var(--aa-sm);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Annunciazione (Leonardo)</p>
+                  <p style="font-size:var(--aa-xs);color:var(--aa-text-muted)">51 adozioni</p>
+                </div>
+                <span style="font-size:var(--aa-sm);font-weight:600;color:var(--aa-success);white-space:nowrap">€25,50</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:var(--aa-3);padding:var(--aa-3) var(--aa-5);border-bottom:1px solid var(--aa-border)">
+                <span style="width:20px;text-align:center;font-size:var(--aa-sm);font-weight:700;color:var(--aa-text-muted)">4</span>
+                <div style="flex:1;min-width:0">
+                  <p style="font-size:var(--aa-sm);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Ratto di Proserpina</p>
+                  <p style="font-size:var(--aa-xs);color:var(--aa-text-muted)">38 adozioni</p>
+                </div>
+                <span style="font-size:var(--aa-sm);font-weight:600;color:var(--aa-success);white-space:nowrap">€19</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:var(--aa-3);padding:var(--aa-3) var(--aa-5)">
+                <span style="width:20px;text-align:center;font-size:var(--aa-sm);font-weight:700;color:var(--aa-text-muted)">5</span>
+                <div style="flex:1;min-width:0">
+                  <p style="font-size:var(--aa-sm);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Busto di Cosimo I</p>
+                  <p style="font-size:var(--aa-xs);color:var(--aa-text-muted)">29 adozioni</p>
+                </div>
+                <span style="font-size:var(--aa-sm);font-weight:600;color:var(--aa-success);white-space:nowrap">€0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Items table ── -->
+      <section class="dash-section" id="section-items">
+        <div class="page-header">
+          <h1 class="page-title">I miei item</h1>
+          <a href="/marketplace/pages/create-item.html" class="btn btn-primary btn-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Crea nuovo item
+          </a>
+        </div>
+
+        <div class="dash-card">
+          <div class="bulk-toolbar" id="bulk-toolbar" role="toolbar" aria-label="Azioni bulk" aria-live="polite">
+            <span id="bulk-count">0 selezionati</span>
+            <button class="btn btn-ghost btn-sm" type="button">Duplica</button>
+            <button class="btn btn-danger btn-sm" type="button">Elimina selezionati</button>
+            <button class="btn btn-ghost btn-sm" type="button" style="margin-left:auto" id="bulk-cancel">Annulla</button>
+          </div>
+          <div class="table-topbar">
+            <input type="search" class="table-search-input" placeholder="Cerca item…" aria-label="Cerca nei tuoi item">
+            <select class="form-select" style="width:auto;min-height:36px;font-size:var(--aa-sm);padding:var(--aa-2) var(--aa-8) var(--aa-2) var(--aa-3)" aria-label="Filtra per stato">
+              <option>Tutti gli stati</option>
+              <option>Pubblicato</option>
+              <option>Bozza</option>
+            </select>
+          </div>
+          <div class="table-wrap">
+            <table aria-label="Tabella item">
+              <thead>
+                <tr>
+                  <th style="width:40px"><input type="checkbox" class="table-check" id="check-all" aria-label="Seleziona tutti"></th>
+                  <th aria-sort="ascending"><button type="button">Titolo <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button></th>
+                  <th>Livello</th>
+                  <th>Licenza</th>
+                  <th><button type="button">Prezzo</button></th>
+                  <th>Stato</th>
+                  <th><button type="button">Adozioni</button></th>
+                  <th>Azioni</th>
+                </tr>
+              </thead>
+              <tbody id="items-tbody">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Visits ── -->
+      <section class="dash-section" id="section-visits">
+        <div class="page-header">
+          <h1 class="page-title">Le mie visite</h1>
+          <button class="btn btn-primary btn-sm" type="button" id="btn-new-visit">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Crea nuova visita
+          </button>
+        </div>
+        <div class="dash-card">
+          <div class="table-wrap">
+            <table aria-label="Tabella visite">
+              <thead>
+                <tr>
+                  <th>Titolo</th>
+                  <th>Museo</th>
+                  <th>N. opere</th>
+                  <th>Prezzo</th>
+                  <th>Stato</th>
+                  <th>Adozioni</th>
+                  <th>Azioni</th>
+                </tr>
+              </thead>
+              <tbody id="visits-tbody">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Statistics ── -->
+      <section class="dash-section" id="section-stats">
+        <div class="page-header">
+          <h1 class="page-title">Statistiche</h1>
+          <select class="form-select" style="max-width:180px;padding:var(--aa-2) var(--aa-8) var(--aa-2) var(--aa-3);min-height:36px;font-size:var(--aa-sm)" aria-label="Periodo">
+            <option>Ultimi 30 giorni</option>
+            <option>Ultimi 90 giorni</option>
+            <option>Anno corrente</option>
+          </select>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--aa-6);margin-bottom:var(--aa-6)">
+          <div class="dash-card">
+            <div class="dash-card-header"><h2 class="dash-card-title">Adozioni nel tempo</h2></div>
+            <div class="dash-card-body">
+              <div class="chart-placeholder" role="img" aria-label="Grafico adozioni: trend crescente nelle ultime 4 settimane">
+                <div class="chart-bar-group">
+                  <div class="chart-bar" style="height:20%"></div>
+                  <div class="chart-bar" style="height:35%"></div>
+                  <div class="chart-bar" style="height:28%"></div>
+                  <div class="chart-bar" style="height:45%"></div>
+                  <div class="chart-bar" style="height:62%"></div>
+                  <div class="chart-bar" style="height:55%"></div>
+                  <div class="chart-bar" style="height:80%"></div>
+                  <div class="chart-bar" style="height:95%"></div>
+                  <div class="chart-bar" style="height:72%"></div>
+                  <div class="chart-bar" style="height:88%"></div>
+                  <div class="chart-bar" style="height:100%"></div>
+                  <div class="chart-bar" style="height:100%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="dash-card">
+            <div class="dash-card-header"><h2 class="dash-card-title">Item più adottati</h2></div>
+            <div class="dash-card-body">
+              <div class="chart-placeholder" role="img" aria-label="Grafico a barre dei 5 item più adottati">
+                <div class="chart-bar-group">
+                  <div class="chart-bar" style="height:87%;opacity:1"></div>
+                  <div class="chart-bar" style="height:64%;opacity:0.88"></div>
+                  <div class="chart-bar" style="height:51%;opacity:0.76"></div>
+                  <div class="chart-bar" style="height:38%;opacity:0.64"></div>
+                  <div class="chart-bar" style="height:29%;opacity:0.52"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Earnings ── -->
+      <section class="dash-section" id="section-earnings">
+        <div class="page-header">
+          <h1 class="page-title">Guadagni</h1>
+        </div>
+        <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr)">
+          <div class="kpi-card">
+            <div class="kpi-top"><div class="kpi-icon gold" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="kpi-trend up">+23%</div></div>
+            <div class="kpi-n">€128,50</div>
+            <div class="kpi-l">Questo mese</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-top"><div class="kpi-icon gold" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div></div>
+            <div class="kpi-n">€890,00</div>
+            <div class="kpi-l">Anno corrente</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-top"><div class="kpi-icon success" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div></div>
+            <div class="kpi-n">€250,00</div>
+            <div class="kpi-l">Disponibile per prelievo</div>
+          </div>
+        </div>
+        <div style="margin-top:var(--aa-6)">
+          <button class="btn btn-primary" type="button">Richiedi prelievo</button>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Mobile sidebar toggle -->
+  <button class="mobile-sidebar-btn" aria-label="Menu dashboard" type="button" id="mobile-dash-btn">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+
+  <art-modal id="visit-builder-modal" title="Crea nuova visita" size="lg"></art-modal>
+
+  <script>
+    const API = 'http://localhost:8000/api';
+    const TONE_MAP   = { childish:'Infantile', simple:'Elementare', medium:'Medio', technical:'Specialistico' };
+    const TONE_CLASS = { childish:'tone-childish', simple:'tone-simple', medium:'tone-medium', technical:'tone-technical' };
+
+    /* ── Section switching ── */
+    function goTo(sectionId) {
+      document.querySelectorAll('.dash-section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.sidebar-link').forEach(l => { l.classList.remove('active'); l.removeAttribute('aria-current'); });
+      const target = document.getElementById(`section-${sectionId}`);
+      if (target) target.classList.add('active');
+      const link = document.querySelector(`[data-section="${sectionId}"]`);
+      if (link) { link.classList.add('active'); link.setAttribute('aria-current','true'); }
+    }
+
+    document.querySelectorAll('.sidebar-link[data-section]').forEach(link => {
+      link.addEventListener('click', () => goTo(link.dataset.section));
+    });
+
+    /* ── Sidebar collapse (desktop) ── */
+    const sidebar  = document.getElementById('sidebar');
+    const toggle   = document.getElementById('sidebar-toggle');
+    const backdrop = document.getElementById('sidebar-backdrop');
+
+    toggle.addEventListener('click', () => {
+      sidebar.classList.toggle('collapsed');
+      const collapsed = sidebar.classList.contains('collapsed');
+      toggle.setAttribute('aria-expanded', String(!collapsed));
+      toggle.setAttribute('aria-label', collapsed ? 'Apri menu laterale' : 'Chiudi menu laterale');
+    });
+
+    /* ── Mobile sidebar drawer ── */
+    function closeMobileSidebar() {
+      sidebar.classList.remove('open');
+      backdrop.classList.remove('visible');
+      document.getElementById('mobile-dash-btn').setAttribute('aria-expanded', 'false');
+    }
+
+    document.getElementById('mobile-dash-btn').addEventListener('click', () => {
+      const isOpen = sidebar.classList.toggle('open');
+      backdrop.classList.toggle('visible', isOpen);
+      document.getElementById('mobile-dash-btn').setAttribute('aria-expanded', String(isOpen));
+    });
+
+    backdrop.addEventListener('click', closeMobileSidebar);
+
+    /* Close mobile sidebar when a nav link is clicked */
+    document.querySelectorAll('.sidebar-link[data-section]').forEach(link => {
+      link.addEventListener('click', () => { if (window.innerWidth <= 1024) closeMobileSidebar(); });
+    });
+
+    /* ── Load user items ── */
+    const user = JSON.parse(localStorage.getItem('artaround_user') || 'null');
+    if (!user) { window.location.href = '/marketplace/pages/login.html'; }
+
+    const mockItems = [
+      { _id:'i1', title:'Nascita di Venere', tone:'medium',    license:'CC-BY',    price:0.50, status:'published', adoptions:87, image:'https://picsum.photos/seed/venus/48/36' },
+      { _id:'i2', title:'La Primavera',       tone:'simple',   license:'CC0',      price:0,    status:'published', adoptions:64, image:'https://picsum.photos/seed/spring/48/36' },
+      { _id:'i3', title:'Annunciazione',      tone:'technical',license:'Copyright', price:0.50, status:'published', adoptions:51, image:'https://picsum.photos/seed/annun/48/36' },
+      { _id:'i4', title:'Ratto di Proserpina',tone:'medium',   license:'CC-BY-NC', price:0.50, status:'published', adoptions:38, image:'https://picsum.photos/seed/proserpina/48/36' },
+      { _id:'i5', title:'Bozza item nuovo',   tone:'simple',   license:'CC-BY',    price:0,    status:'draft',     adoptions:0,  image:'https://picsum.photos/seed/draft/48/36' },
+    ];
+
+    function renderItemsTable(items) {
+      const tbody = document.getElementById('items-tbody');
+      tbody.innerHTML = items.map(item => `
+        <tr>
+          <td><input type="checkbox" class="table-check row-check" aria-label="Seleziona item ${item.title}" data-id="${item._id}"></td>
+          <td>
+            <div style="display:flex;align-items:center;gap:var(--aa-3)">
+              <img class="item-thumb" src="${item.image}" alt="">
+              <div>
+                <p class="item-title">${item.title}</p>
+                <p class="item-sub">ID: ${item._id}</p>
+              </div>
+            </div>
+          </td>
+          <td><span class="badge ${TONE_CLASS[item.tone] || 'tone-medium'}" style="border:none">${TONE_MAP[item.tone] || '—'}</span></td>
+          <td>${item.license}</td>
+          <td>${item.price === 0 ? '<span style="color:var(--aa-success);font-weight:600">Gratuito</span>' : `€${item.price.toFixed(2)}`}</td>
+          <td><span class="badge ${item.status === 'published' ? 'badge-success' : 'badge-draft'}">${item.status === 'published' ? 'Pubblicato' : 'Bozza'}</span></td>
+          <td>${item.adoptions}</td>
+          <td>
+            <div class="table-actions">
+              <button class="table-action-btn" type="button" aria-label="Modifica item: ${item.title}" title="Modifica" onclick="window.location.href='/marketplace/pages/create-item.html?id=${item._id}'">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              </button>
+              <button class="table-action-btn" type="button" aria-label="Duplica item: ${item.title}" title="Duplica">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </button>
+              <button class="table-action-btn danger" type="button" aria-label="Elimina item: ${item.title}" title="Elimina">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+              </button>
+            </div>
+          </td>
+        </tr>`).join('');
+
+      /* Bulk select */
+      const checkAll = document.getElementById('check-all');
+      const bulkBar  = document.getElementById('bulk-toolbar');
+      const updateBulk = () => {
+        const checked = [...document.querySelectorAll('.row-check:checked')];
+        if (checked.length > 0) {
+          bulkBar.classList.add('visible');
+          document.getElementById('bulk-count').textContent = `${checked.length} selezionati`;
+        } else {
+          bulkBar.classList.remove('visible');
+        }
+      };
+      checkAll.addEventListener('change', () => {
+        document.querySelectorAll('.row-check').forEach(c => { c.checked = checkAll.checked; });
+        updateBulk();
+      });
+      document.querySelectorAll('.row-check').forEach(c => c.addEventListener('change', updateBulk));
+      document.getElementById('bulk-cancel').addEventListener('click', () => {
+        checkAll.checked = false;
+        document.querySelectorAll('.row-check').forEach(c => { c.checked = false; });
+        updateBulk();
+      });
+    }
+
+    /* Mock visits table */
+    function renderVisitsTable() {
+      const mockVisits = [
+        { title:'Rinascimento Fiorentino', museum:'Galleria degli Uffizi', items:12, price:0, status:'published', adoptions:142 },
+        { title:'Arte Greco-Romana', museum:'Museo Nazionale Romano', items:18, price:2.99, status:'published', adoptions:87 },
+        { title:'Scultura Barocca a Roma', museum:'Galleria Borghese', items:15, price:2.49, status:'published', adoptions:38 },
+        { title:'Visita bozza — Caravaggio', museum:'Galleria Nazionale', items:5, price:0, status:'draft', adoptions:0 },
+      ];
+      const tbody = document.getElementById('visits-tbody');
+      tbody.innerHTML = mockVisits.map(v => `
+        <tr>
+          <td><strong>${v.title}</strong></td>
+          <td style="color:var(--aa-text-muted)">${v.museum}</td>
+          <td>${v.items} opere</td>
+          <td>${v.price === 0 ? '<span style="color:var(--aa-success)">Gratuito</span>' : `€${v.price.toFixed(2)}`}</td>
+          <td><span class="badge ${v.status === 'published' ? 'badge-success' : 'badge-draft'}">${v.status === 'published' ? 'Pubblicata' : 'Bozza'}</span></td>
+          <td>${v.adoptions}</td>
+          <td>
+            <div class="table-actions">
+              <button class="table-action-btn" type="button" aria-label="Modifica sequenza: ${v.title}" title="Modifica sequenza">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              </button>
+              ${v.status === 'draft'
+                ? `<button class="table-action-btn" type="button" aria-label="Pubblica visita: ${v.title}" title="Pubblica"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></button>`
+                : `<button class="table-action-btn" type="button" aria-label="Ritira visita: ${v.title}" title="Ritira"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg></button>`}
+              <button class="table-action-btn danger" type="button" aria-label="Elimina visita: ${v.title}" title="Elimina">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+              </button>
+            </div>
+          </td>
+        </tr>`).join('');
+    }
+
+    /* New visit builder (simplified modal) */
+    document.getElementById('btn-new-visit').addEventListener('click', () => {
+      const modal = document.getElementById('visit-builder-modal');
+      modal.innerHTML = `
+        <div style="display:flex;flex-direction:column;gap:var(--aa-4)">
+          <p style="color:var(--aa-text-muted);font-size:var(--aa-sm);max-width:100%">Crea una nuova visita guidata selezionando e ordinando i tuoi item già pubblicati.</p>
+          <div class="form-group">
+            <label class="form-label" for="visit-title-new">Titolo visita <span class="required">*</span></label>
+            <input type="text" id="visit-title-new" class="form-input" placeholder="Es. Rinascimento Fiorentino">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="visit-museum-sel">Museo <span class="required">*</span></label>
+            <select id="visit-museum-sel" class="form-select"><option>Seleziona museo…</option></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="visit-price-new">Prezzo base (€)</label>
+            <input type="number" id="visit-price-new" class="form-input" min="0" step="0.01" value="0">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Item inclusi</label>
+            <p style="font-size:var(--aa-sm);color:var(--aa-text-muted);max-width:100%">Funzionalità di ordinamento drag-and-drop disponibile nella prossima versione.</p>
+          </div>
+          <div style="display:flex;justify-content:flex-end;gap:var(--aa-3);margin-top:var(--aa-2)">
+            <button class="btn btn-ghost" onclick="document.getElementById('visit-builder-modal').close()" type="button">Annulla</button>
+            <button class="btn btn-primary" type="button" onclick="ArtToast && ArtToast.show({type:'info',message:'Creazione visita non ancora collegata al backend.'});document.getElementById('visit-builder-modal').close();">Crea visita</button>
+          </div>
+        </div>`;
+      modal.open();
+      /* populate museums */
+      fetch(`${API}/museums/?pageSize=100`).then(r=>r.json()).then(d => {
+        const sel = modal.querySelector('#visit-museum-sel');
+        d.data.forEach(m => { sel.innerHTML += `<option value="${m._id}">${m.name}</option>`; });
+      }).catch(()=>{});
+    });
+
+    /* Try loading real items from API, fall back to mock */
+    (async function initItems() {
+      if (!user) return;
+      try {
+        const res = await fetch(`${API}/items/?author=${user._id}`);
+        if (!res.ok) throw new Error('API error');
+        const data = await res.json();
+        if (data.data?.length) { renderItemsTable(data.data.map(i => ({...i, status: 'published', adoptions: 0}))); return; }
+      } catch {}
+      renderItemsTable(mockItems);
+    })();
+
+    renderVisitsTable();
+  </script>
+</body>
+</html>

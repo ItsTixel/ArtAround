@@ -3,11 +3,9 @@ class MuseumCard extends HTMLElement {
         super();
     }
     connectedCallback() {
-        this.attachShadow({ mode: "open" }).innerHTML = `
-        <div>Nome museo: <slot name="museum-name"></slot></div>
-        <div>Indirizzo museo: <slot name="museum-address"></slot></div>
-
-        `;
+        const template = document.getElementById("museum-card-template");
+        this.attachShadow({ mode: "open" })
+            .appendChild(template.content.cloneNode(true));
     }
 }
 customElements.define("museum-card", MuseumCard);

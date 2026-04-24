@@ -1,14 +1,617 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-        <title>Document</title>
-        <script src="/marketplace/components/museum-card/museum-card.js"></script>
-        <script src="/marketplace/marketplace.js"></script>
-    </head>
-    <body>
-    <div id="body">
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Esplora le visite — ArtAround</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/marketplace/styles/tokens.css">
+  <link rel="stylesheet" href="/marketplace/styles/global.css">
+
+  <script src="/marketplace/components/navbar/navbar.js"         defer></script>
+  <script src="/marketplace/components/footer/footer.js"         defer></script>
+  <script src="/marketplace/components/visit-card/visit-card.js" defer></script>
+  <script src="/marketplace/components/toast/toast.js"           defer></script>
+  <script src="/marketplace/components/pagination/pagination.js" defer></script>
+
+  <style>
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, #1A0808 0%, #3D0A0A 60%, #5C1515 100%);
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?w=1600&q=80') center/cover no-repeat;
+      opacity: 0.18;
+      mix-blend-mode: luminosity;
+    }
+    .hero-inner {
+      position: relative;
+      max-width: var(--aa-max-w);
+      margin-inline: auto;
+      padding: var(--aa-16) var(--aa-8);
+      text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: var(--aa-6);
+    }
+    .hero-eyebrow {
+      font-size: var(--aa-sm);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--aa-gold);
+    }
+    .hero h1 {
+      color: #fff;
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      max-width: 720px;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+    }
+    .hero-sub { color: rgba(255,255,255,0.75); font-size: var(--aa-lg); max-width: 560px; }
+
+    /* Search bar */
+    .search-bar {
+      display: flex;
+      background: #fff;
+      border-radius: var(--aa-r-lg);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.20);
+      overflow: hidden;
+      width: 100%; max-width: 680px;
+    }
+    .search-bar label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+    .search-input {
+      flex: 1;
+      border: none;
+      padding: var(--aa-4) var(--aa-5);
+      font-family: var(--aa-font-sans);
+      font-size: var(--aa-base);
+      color: var(--aa-text);
+      background: transparent;
+      min-height: 52px;
+    }
+    .search-input:focus { outline: none; }
+    .search-sep {
+      width: 1px; background: var(--aa-border);
+      margin-block: var(--aa-3);
+    }
+    .search-museum {
+      border: none;
+      padding: var(--aa-4) var(--aa-4);
+      font-family: var(--aa-font-sans);
+      font-size: var(--aa-sm);
+      color: var(--aa-text-secondary);
+      background: transparent;
+      appearance: none;
+      min-height: 52px;
+      cursor: pointer;
+      padding-right: var(--aa-8);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236B6B6B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+    }
+    .search-museum:focus { outline: none; }
+    .btn-search {
+      background: var(--aa-primary);
+      color: #fff;
+      border: none;
+      padding: var(--aa-4) var(--aa-8);
+      font-family: var(--aa-font-sans);
+      font-size: var(--aa-base);
+      font-weight: 600;
+      cursor: pointer;
+      display: flex; align-items: center; gap: var(--aa-2);
+      min-height: 52px;
+      white-space: nowrap;
+      transition: background var(--aa-fast);
+    }
+    .btn-search:hover { background: var(--aa-primary-dark); }
+    .btn-search:focus-visible { outline: 3px solid #fff; outline-offset: -4px; }
+
+    /* ── Filter Bar ── */
+    .filter-bar-wrap {
+      background: var(--aa-surface);
+      border-bottom: 1px solid var(--aa-border);
+      position: sticky;
+      top: var(--aa-nav-h);
+      z-index: 50;
+      box-shadow: var(--aa-shadow-xs);
+    }
+    .filter-bar {
+      max-width: var(--aa-max-w);
+      margin-inline: auto;
+      padding: var(--aa-3) var(--aa-8);
+      display: flex;
+      align-items: center;
+      gap: var(--aa-4);
+      flex-wrap: wrap;
+    }
+    .filter-group { display: flex; align-items: center; gap: var(--aa-2); }
+    .filter-label { font-size: var(--aa-sm); font-weight: 500; color: var(--aa-text-muted); white-space: nowrap; }
+    .filter-select {
+      padding: var(--aa-2) var(--aa-3);
+      padding-right: 2rem;
+      border: 1.5px solid var(--aa-border);
+      border-radius: var(--aa-r-full);
+      font-size: var(--aa-sm);
+      color: var(--aa-text);
+      background: var(--aa-surface);
+      appearance: none;
+      cursor: pointer;
+      font-family: var(--aa-font-sans);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%234A4A4A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 8px center;
+      min-height: 36px;
+      transition: border-color var(--aa-fast);
+    }
+    .filter-select:focus { outline: none; border-color: var(--aa-primary); box-shadow: 0 0 0 3px var(--aa-primary-light); }
+    .filter-chips { display: flex; gap: var(--aa-2); flex-wrap: wrap; }
+    .filter-chip {
+      padding: 4px var(--aa-3);
+      border-radius: var(--aa-r-full);
+      font-size: var(--aa-xs);
+      font-weight: 600;
+      border: 1.5px solid var(--aa-border);
+      cursor: pointer;
+      transition: border-color var(--aa-fast), background var(--aa-fast), color var(--aa-fast);
+      background: var(--aa-surface);
+      min-height: 32px;
+      display: flex; align-items: center;
+      font-family: var(--aa-font-sans);
+    }
+    .filter-chip[aria-pressed="true"] { background: var(--aa-primary); border-color: var(--aa-primary); color: #fff; }
+    .filter-chip:hover:not([aria-pressed="true"]) { border-color: var(--aa-primary); color: var(--aa-primary); }
+    .filter-chip:focus-visible { outline: 3px solid var(--aa-primary); outline-offset: 3px; }
+    .filter-sep { width: 1px; height: 24px; background: var(--aa-border); align-self: center; }
+    .filter-count-badge {
+      background: var(--aa-primary);
+      color: #fff;
+      font-size: var(--aa-xs);
+      font-weight: 700;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      margin-left: 4px;
+    }
+    .filter-reset {
+      font-size: var(--aa-sm);
+      color: var(--aa-primary);
+      cursor: pointer;
+      background: none; border: none;
+      font-family: var(--aa-font-sans);
+      padding: 2px 0;
+      text-decoration: underline;
+      white-space: nowrap;
+    }
+    .filter-reset:focus-visible { outline: 3px solid var(--aa-primary); outline-offset: 3px; border-radius: 3px; }
+    .filter-ml { margin-left: auto; }
+    .sort-select { padding-right: 2rem !important; min-width: 150px; }
+
+    /* Mobile filter button */
+    .btn-filter-mobile {
+      display: none;
+      align-items: center; gap: var(--aa-2);
+      padding: var(--aa-2) var(--aa-4);
+      border: 1.5px solid var(--aa-border);
+      border-radius: var(--aa-r-full);
+      background: var(--aa-surface);
+      font-family: var(--aa-font-sans);
+      font-size: var(--aa-sm);
+      font-weight: 500;
+      cursor: pointer;
+      color: var(--aa-text);
+      min-height: 44px;
+    }
+    .btn-filter-mobile:focus-visible { outline: 3px solid var(--aa-primary); outline-offset: 3px; }
+
+    @media (max-width: 768px) {
+      .filter-bar { display: none; }
+      .filter-bar-wrap { padding: var(--aa-2) var(--aa-4); }
+      .btn-filter-mobile { display: flex; }
+      .filter-bar-mobile-row { display: flex; align-items: center; justify-content: space-between; }
+    }
+
+    /* ── Results ── */
+    .results-section { max-width: var(--aa-max-w); margin-inline: auto; padding: var(--aa-10) var(--aa-8); }
+    .results-header {
+      display: flex; align-items: baseline; justify-content: space-between; gap: var(--aa-4);
+      margin-bottom: var(--aa-8);
+    }
+    .results-count { font-size: var(--aa-sm); color: var(--aa-text-muted); }
+    .results-count strong { color: var(--aa-text); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--aa-6);
+    }
+    @media (max-width: 1024px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px)  { .grid { grid-template-columns: 1fr; } }
+
+    /* Skeleton */
+    .card-skeleton {
+      background: var(--aa-surface);
+      border: 1px solid var(--aa-border);
+      border-radius: var(--aa-r-lg);
+      overflow: hidden;
+    }
+    .sk-img   { height: 190px; }
+    .sk-body  { padding: var(--aa-5); display: flex; flex-direction: column; gap: var(--aa-3); }
+    .sk-line  { height: 14px; border-radius: 4px; }
+    .sk-title { height: 20px; border-radius: 4px; }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: var(--aa-20) var(--aa-8);
+      grid-column: 1 / -1;
+    }
+    .empty-icon {
+      width: 80px; height: 80px;
+      margin-inline: auto;
+      background: var(--aa-border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: var(--aa-5);
+      color: var(--aa-text-muted);
+    }
+    .empty-state h2 { font-size: var(--aa-2xl); margin-bottom: var(--aa-3); }
+    .empty-state p  { color: var(--aa-text-muted); margin-bottom: var(--aa-6); margin-inline: auto; }
+
+    /* Pagination area */
+    .pagination-area { display: flex; justify-content: center; padding: var(--aa-12) 0 var(--aa-4); }
+
+    @media (max-width: 768px) {
+      .hero-inner { padding: var(--aa-12) var(--aa-4); }
+      .search-sep, .search-museum { display: none; }
+      .results-section { padding: var(--aa-8) var(--aa-4); }
+      .results-header { flex-direction: column; gap: var(--aa-2); }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Vai al contenuto principale</a>
+  <art-navbar current-page="esplora"></art-navbar>
+
+  <!-- Hero -->
+  <section class="hero" aria-label="Intestazione pagina">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Marketplace culturale</p>
+      <h1>Esplora le visite disponibili</h1>
+      <p class="hero-sub">Migliaia di guide multimediali per musei di tutto il mondo, create da esperti d'arte e appassionati.</p>
+
+      <form class="search-bar" role="search" aria-label="Cerca visite nei musei" id="search-form">
+        <label for="search-q">Cerca visita</label>
+        <input type="search" id="search-q" class="search-input" placeholder="Cerca per titolo, tema, autore…" autocomplete="off">
+        <div class="search-sep" aria-hidden="true"></div>
+        <select id="search-museum" class="search-museum" aria-label="Filtra per museo">
+          <option value="">Tutti i musei</option>
+        </select>
+        <button type="submit" class="btn-search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Cerca
+        </button>
+      </form>
     </div>
-    </body>
+  </section>
+
+  <!-- Filter bar -->
+  <div class="filter-bar-wrap">
+    <div class="filter-bar-mobile-row container" style="padding-block: var(--aa-2);">
+      <button class="btn-filter-mobile" id="btn-filter-mobile" aria-expanded="false" aria-controls="filter-sheet" type="button">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+        Filtra
+        <span class="filter-count-badge" id="filter-count" style="display:none">0</span>
+      </button>
+    </div>
+    <div class="filter-bar container" id="filter-bar" role="group" aria-label="Filtri di ricerca">
+      <div class="filter-group">
+        <span class="filter-label" id="museo-label">Museo:</span>
+        <select class="filter-select" id="f-museo" aria-labelledby="museo-label">
+          <option value="">Tutti</option>
+        </select>
+      </div>
+      <div class="filter-sep" aria-hidden="true"></div>
+      <div class="filter-group">
+        <span class="filter-label">Livello:</span>
+        <div class="filter-chips" role="group" aria-label="Livello linguistico">
+          <button class="filter-chip" aria-pressed="false" data-tone="childish" type="button">Infantile</button>
+          <button class="filter-chip" aria-pressed="false" data-tone="simple"   type="button">Elementare</button>
+          <button class="filter-chip" aria-pressed="false" data-tone="medium"   type="button">Medio</button>
+          <button class="filter-chip" aria-pressed="false" data-tone="technical" type="button">Specialistico</button>
+        </div>
+      </div>
+      <div class="filter-sep" aria-hidden="true"></div>
+      <div class="filter-group">
+        <label class="filter-label" for="f-price">Prezzo:</label>
+        <select class="filter-select" id="f-price">
+          <option value="">Tutti</option>
+          <option value="free">Gratuito</option>
+          <option value="paid">A pagamento</option>
+        </select>
+      </div>
+      <div class="filter-sep" aria-hidden="true"></div>
+      <div class="filter-group filter-ml">
+        <label class="filter-label" for="f-sort">Ordina:</label>
+        <select class="filter-select sort-select" id="f-sort">
+          <option value="title">Titolo A→Z</option>
+          <option value="-title">Titolo Z→A</option>
+          <option value="base_price">Prezzo crescente</option>
+          <option value="-base_price">Prezzo decrescente</option>
+        </select>
+      </div>
+      <button class="filter-reset" id="btn-reset" type="button" aria-label="Azzera tutti i filtri">Azzera filtri</button>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <main id="main-content" tabindex="-1">
+    <section class="results-section">
+      <div class="results-header">
+        <p class="results-count" id="results-count" aria-live="polite" aria-atomic="true">
+          Caricamento visite…
+        </p>
+      </div>
+      <div class="grid" id="cards-grid" aria-label="Visite disponibili"></div>
+      <div class="pagination-area">
+        <art-pagination id="pagination" current="0" total="0" per-page="9"></art-pagination>
+      </div>
+    </section>
+  </main>
+
+  <art-footer></art-footer>
+
+  <script>
+    const API = 'http://localhost:8000/api';
+    const grid = document.getElementById('cards-grid');
+    const pagination = document.getElementById('pagination');
+    const countEl = document.getElementById('results-count');
+
+    let state = { page: 0, pageSize: 9, museum: '', tones: [], price: '', sort: 'title', search: '' };
+
+    /* Tone map */
+    const TONE_MAP = { childish: 'Infantile', simple: 'Elementare', medium: 'Medio', technical: 'Specialistico' };
+
+    /* ── Derive visit card data from API response ── */
+    function visitToCard(v) {
+      const allItems = (v.steps || []).flatMap(s => s.items || []);
+      const firstImg = allItems.find(i => i?.image_url)?.image_url || '';
+      const totalSec = allItems.reduce((s, i) => s + ((i?.descriptions?.[0]?.duration_sec) || 0), 0);
+      const tones = allItems.map(i => i?.tone).filter(Boolean);
+      const primaryTone = tones.length
+        ? Object.entries(tones.reduce((acc, t) => { acc[t] = (acc[t] || 0) + 1; return acc; }, {}))
+            .sort((a, b) => b[1] - a[1])[0][0]
+        : 'medium';
+      return {
+        id: v._id,
+        title: v.title,
+        museum: v.museum?.name || '—',
+        city: v.museum?.address?.city || '',
+        price: v.base_price || 0,
+        image: firstImg,
+        duration: totalSec,
+        tone: primaryTone,
+        itemCount: allItems.length,
+        author: v.author?.username || 'Anonimo',
+      };
+    }
+
+    /* ── Render skeleton ── */
+    function showSkeleton(n = 9) {
+      grid.innerHTML = Array.from({ length: n }, () => `
+        <div class="card-skeleton" aria-hidden="true">
+          <div class="sk-img skeleton"></div>
+          <div class="sk-body">
+            <div class="sk-title skeleton" style="width:80%"></div>
+            <div class="sk-line skeleton" style="width:55%"></div>
+            <div class="sk-line skeleton" style="width:65%"></div>
+            <div class="sk-line skeleton" style="width:40%"></div>
+          </div>
+        </div>`).join('');
+    }
+
+    /* ── Render cards ── */
+    function renderCards(visits) {
+      if (!visits.length) {
+        grid.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-icon" aria-hidden="true">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <h2>Nessuna visita trovata</h2>
+            <p>Prova a modificare i filtri o la parola chiave di ricerca.</p>
+            <button class="btn btn-secondary" onclick="resetFilters()">Azzera i filtri</button>
+          </div>`;
+        return;
+      }
+      grid.innerHTML = '';
+      visits.forEach(v => {
+        const card = document.createElement('art-visit-card');
+        card.setAttribute('visit-id',    v.id);
+        card.setAttribute('title',       v.title);
+        card.setAttribute('museum',      v.museum);
+        card.setAttribute('city',        v.city);
+        card.setAttribute('price',       String(v.price));
+        card.setAttribute('image',       v.image);
+        card.setAttribute('duration',    String(v.duration));
+        card.setAttribute('tone',        v.tone);
+        card.setAttribute('item-count',  String(v.itemCount));
+        card.setAttribute('author',      v.author);
+        /* check bookmarks in localStorage */
+        const bookmarks = JSON.parse(localStorage.getItem('artaround_bookmarks') || '[]');
+        if (bookmarks.includes(v.id)) card.setAttribute('bookmarked', '');
+        grid.appendChild(card);
+      });
+    }
+
+    /* ── Fetch visits ── */
+    async function fetchVisits() {
+      showSkeleton();
+      countEl.textContent = 'Caricamento visite…';
+
+      const params = new URLSearchParams();
+      params.set('pageSize', state.pageSize);
+      params.set('page', state.page);
+      if (state.museum) params.set('museum', state.museum);
+      if (state.sort)   params.set('sort', state.sort);
+
+      try {
+        const res = await fetch(`${API}/visits/?${params}`);
+        if (!res.ok) throw new Error(res.statusText);
+        const data = await res.json();
+        let visits = data.data.map(visitToCard);
+
+        /* client-side filters not supported by API */
+        if (state.tones.length) {
+          visits = visits.filter(v => state.tones.includes(v.tone));
+        }
+        if (state.price === 'free') {
+          visits = visits.filter(v => v.price === 0);
+        } else if (state.price === 'paid') {
+          visits = visits.filter(v => v.price > 0);
+        }
+        if (state.search) {
+          const q = state.search.toLowerCase();
+          visits = visits.filter(v =>
+            v.title.toLowerCase().includes(q) ||
+            v.museum.toLowerCase().includes(q) ||
+            v.author.toLowerCase().includes(q));
+        }
+
+        renderCards(visits);
+        const total = data.totalItems;
+        countEl.innerHTML = `<strong>${total}</strong> visite disponibili`;
+        pagination.setAttribute('total', String(total));
+        pagination.setAttribute('current', String(state.page));
+        pagination.setAttribute('per-page', String(state.pageSize));
+      } catch (err) {
+        console.warn('API non raggiungibile, uso dati demo:', err.message);
+        renderMock();
+      }
+    }
+
+    /* ── Mock data fallback ── */
+    function renderMock() {
+      const mock = [
+        { id:'m1', title:"L'Arte Greco-Romana: dai vasi alle statue", museum:'Museo Nazionale Romano', city:'Roma', price:2.99, image:'https://picsum.photos/seed/rome/600/340', duration:3600, tone:'medium', itemCount:18, author:'Prof. Marco Ferrini' },
+        { id:'m2', title:'Rinascimento Fiorentino', museum:'Galleria degli Uffizi', city:'Firenze', price:0, image:'https://picsum.photos/seed/florence/600/340', duration:2700, tone:'simple', itemCount:12, author:'Sofia Marchetti' },
+        { id:'m3', title:'Impressionismo e Post-Impressionismo', museum:'Pinacoteca di Brera', city:'Milano', price:1.99, image:'https://picsum.photos/seed/milan/600/340', duration:1800, tone:'childish', itemCount:8, author:'Dr. Elena Conti' },
+        { id:'m4', title:"Arte Contemporanea: dalla Pop Art al Digitale", museum:'MAXXI', city:'Roma', price:3.99, image:'https://picsum.photos/seed/maxxi/600/340', duration:5400, tone:'technical', itemCount:24, author:'Alessandro Russo' },
+        { id:'m5', title:"I Segreti del Louvre", museum:'Musée du Louvre', city:'Parigi', price:0, image:'https://picsum.photos/seed/louvre/600/340', duration:4500, tone:'medium', itemCount:20, author:'Marie Dubois' },
+        { id:'m6', title:'Scultura Barocca a Roma', museum:'Galleria Borghese', city:'Roma', price:2.49, image:'https://picsum.photos/seed/borghese/600/340', duration:3000, tone:'simple', itemCount:15, author:'Dr. Lucia Barbieri' },
+        { id:'m7', title:"L'Egitto Antico", museum:'Museo Egizio', city:'Torino', price:0, image:'https://picsum.photos/seed/egypt/600/340', duration:2400, tone:'childish', itemCount:10, author:'Ahmed Hassan' },
+        { id:'m8', title:'Caravaggio e i Caravaggeschi', museum:'Galleria Nazionale', city:'Napoli', price:2.99, image:'https://picsum.photos/seed/naples/600/340', duration:3300, tone:'medium', itemCount:16, author:'Prof. Andrea Napoli' },
+        { id:'m9', title:'Futurismo: velocità e modernità', museum:'GAM', city:'Milano', price:0, image:'https://picsum.photos/seed/gam/600/340', duration:2100, tone:'simple', itemCount:11, author:'Giulia Romano' },
+      ];
+      let visits = [...mock];
+      if (state.tones.length) visits = visits.filter(v => state.tones.includes(v.tone));
+      if (state.price === 'free') visits = visits.filter(v => v.price === 0);
+      else if (state.price === 'paid') visits = visits.filter(v => v.price > 0);
+      if (state.search) {
+        const q = state.search.toLowerCase();
+        visits = visits.filter(v => v.title.toLowerCase().includes(q) || v.museum.toLowerCase().includes(q));
+      }
+      renderCards(visits);
+      countEl.innerHTML = `<strong>${visits.length}</strong> visite (modalità demo)`;
+      pagination.setAttribute('total', String(visits.length));
+      pagination.setAttribute('current', '0');
+    }
+
+    /* ── Load museums for dropdowns ── */
+    async function loadMuseums() {
+      try {
+        const res = await fetch(`${API}/museums/?pageSize=100`);
+        if (!res.ok) return;
+        const data = await res.json();
+        const opts = data.data.map(m => `<option value="${m._id}">${m.name}${m.address?.city ? ` — ${m.address.city}` : ''}</option>`).join('');
+        document.getElementById('search-museum').insertAdjacentHTML('beforeend', opts);
+        document.getElementById('f-museo').insertAdjacentHTML('beforeend', opts);
+      } catch {}
+    }
+
+    /* ── Filter logic ── */
+    function updateFilterCount() {
+      const count = (state.tones.length > 0 ? 1 : 0) + (state.price ? 1 : 0) + (state.museum ? 1 : 0);
+      const badge = document.getElementById('filter-count');
+      if (count > 0) { badge.textContent = count; badge.style.display = 'inline-flex'; }
+      else badge.style.display = 'none';
+    }
+
+    function resetFilters() {
+      state = { ...state, page: 0, museum: '', tones: [], price: '', search: '' };
+      document.getElementById('f-museo').value = '';
+      document.getElementById('f-price').value = '';
+      document.getElementById('search-q').value = '';
+      document.querySelectorAll('.filter-chip').forEach(c => c.setAttribute('aria-pressed', 'false'));
+      updateFilterCount();
+      fetchVisits();
+    }
+
+    /* ── Event listeners ── */
+    document.addEventListener('DOMContentLoaded', () => {
+      loadMuseums();
+      fetchVisits();
+
+      /* Search form */
+      document.getElementById('search-form').addEventListener('submit', e => {
+        e.preventDefault();
+        state.search  = document.getElementById('search-q').value.trim();
+        state.museum  = document.getElementById('search-museum').value;
+        state.page    = 0;
+        fetchVisits();
+      });
+
+      /* Filter bar controls */
+      document.getElementById('f-museo').addEventListener('change', e => {
+        state.museum = e.target.value; state.page = 0; updateFilterCount(); fetchVisits();
+      });
+      document.getElementById('f-price').addEventListener('change', e => {
+        state.price = e.target.value; state.page = 0; updateFilterCount(); fetchVisits();
+      });
+      document.getElementById('f-sort').addEventListener('change', e => {
+        state.sort = e.target.value; state.page = 0; fetchVisits();
+      });
+      document.getElementById('btn-reset').addEventListener('click', resetFilters);
+
+      /* Tone chips */
+      document.querySelectorAll('.filter-chip[data-tone]').forEach(chip => {
+        chip.addEventListener('click', () => {
+          const tone = chip.dataset.tone;
+          const pressed = chip.getAttribute('aria-pressed') === 'true';
+          chip.setAttribute('aria-pressed', String(!pressed));
+          if (pressed) state.tones = state.tones.filter(t => t !== tone);
+          else state.tones.push(tone);
+          state.page = 0; updateFilterCount(); fetchVisits();
+        });
+      });
+
+      /* Pagination */
+      document.getElementById('pagination').addEventListener('page-change', e => {
+        state.page = e.detail.page;
+        fetchVisits();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      /* Bookmark persistence */
+      document.addEventListener('bookmark-toggle', e => {
+        const { visitId, bookmarked } = e.detail;
+        let bm = JSON.parse(localStorage.getItem('artaround_bookmarks') || '[]');
+        if (bookmarked) { if (!bm.includes(visitId)) bm.push(visitId); }
+        else bm = bm.filter(id => id !== visitId);
+        localStorage.setItem('artaround_bookmarks', JSON.stringify(bm));
+        if (window.ArtToast) {
+          window.ArtToast.show({ type: 'success', message: bookmarked ? 'Visita salvata!' : 'Visita rimossa dai salvati.' });
+        }
+      });
+    });
+  </script>
+</body>
 </html>

@@ -1,0 +1,84 @@
+/* ArtAround — Design Tokens */
+:root {
+  /* ── Color Palette ── */
+  --aa-bg:             #F7F4EF;
+  --aa-surface:        #FFFFFF;
+  --aa-primary:        #8B1A1A;
+  --aa-primary-dark:   #6B1414;
+  --aa-primary-light:  rgba(139, 26, 26, 0.08);
+  --aa-gold:           #C9A84C;
+  --aa-gold-text:      #7A6130;
+  --aa-gold-bg:        rgba(201, 168, 76, 0.12);
+  --aa-text:           #1A1A1A;
+  --aa-text-secondary: #4A4A4A;
+  --aa-text-muted:     #6B6B6B;
+  --aa-text-inverse:   #FFFFFF;
+  --aa-border:         #E0DBD3;
+  --aa-border-strong:  #C5BDB4;
+  --aa-footer-bg:      #160808;
+
+  /* ── Status Colors ── */
+  --aa-error:          #B91C1C;
+  --aa-error-bg:       #FEF2F2;
+  --aa-error-border:   rgba(185, 28, 28, 0.25);
+  --aa-success:        #166534;
+  --aa-success-bg:     #F0FDF4;
+  --aa-success-border: rgba(22, 101, 52, 0.25);
+  --aa-warning:        #92400E;
+  --aa-warning-bg:     #FFFBEB;
+  --aa-warning-border: rgba(146, 64, 14, 0.25);
+  --aa-info:           #1E40AF;
+  --aa-info-bg:        #EFF6FF;
+  --aa-info-border:    rgba(30, 64, 175, 0.25);
+
+  /* ── Typography ── */
+  --aa-font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --aa-font-sans:  'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --aa-xs:   0.75rem;   /* 12px */
+  --aa-sm:   0.875rem;  /* 14px */
+  --aa-base: 1rem;      /* 16px */
+  --aa-lg:   1.125rem;  /* 18px */
+  --aa-xl:   1.25rem;   /* 20px */
+  --aa-2xl:  1.5rem;    /* 24px */
+  --aa-3xl:  2rem;      /* 32px */
+  --aa-4xl:  3rem;      /* 48px */
+
+  /* ── Spacing — 8px grid ── */
+  --aa-1:  0.25rem;   /* 4px  */
+  --aa-2:  0.5rem;    /* 8px  */
+  --aa-3:  0.75rem;   /* 12px */
+  --aa-4:  1rem;      /* 16px */
+  --aa-5:  1.25rem;   /* 20px */
+  --aa-6:  1.5rem;    /* 24px */
+  --aa-8:  2rem;      /* 32px */
+  --aa-10: 2.5rem;    /* 40px */
+  --aa-12: 3rem;      /* 48px */
+  --aa-16: 4rem;      /* 64px */
+  --aa-20: 5rem;      /* 80px */
+  --aa-24: 6rem;      /* 96px */
+
+  /* ── Border Radius ── */
+  --aa-r-sm:   4px;
+  --aa-r-md:   6px;
+  --aa-r-lg:   8px;
+  --aa-r-xl:   12px;
+  --aa-r-full: 9999px;
+
+  /* ── Shadows ── */
+  --aa-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --aa-shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.08);
+  --aa-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --aa-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.10);
+  --aa-shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.12);
+
+  /* ── Transitions ── */
+  --aa-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --aa-base-t: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --aa-slow:   400ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ── Layout ── */
+  --aa-nav-h:  72px;
+  --aa-max-w:  1280px;
+  --aa-sidebar: 220px;
+}

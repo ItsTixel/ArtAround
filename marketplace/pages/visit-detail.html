@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dettaglio visita — ArtAround</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/marketplace/styles/tokens.css">
+  <link rel="stylesheet" href="/marketplace/styles/global.css">
+
+  <script src="/marketplace/components/navbar/navbar.js"   defer></script>
+  <script src="/marketplace/components/footer/footer.js"   defer></script>
+  <script src="/marketplace/components/toast/toast.js"     defer></script>
+  <script src="/marketplace/components/modal/modal.js"     defer></script>
+
+  <style>
+    /* ── Layout ── */
+    .page-wrap { max-width: var(--aa-max-w); margin-inline: auto; padding: var(--aa-8); }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      display: flex; align-items: center; gap: var(--aa-2);
+      font-size: var(--aa-sm); color: var(--aa-text-muted);
+      margin-bottom: var(--aa-6);
+      flex-wrap: wrap;
+    }
+    .breadcrumb a { color: var(--aa-text-muted); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--aa-primary); }
+    .breadcrumb-sep { color: var(--aa-border-strong); }
+
+    /* Two-column */
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: var(--aa-8);
+      align-items: start;
+    }
+    @media (max-width: 1024px) { .detail-grid { grid-template-columns: 1fr; } }
+
+    /* Hero image */
+    .hero-img-wrap {
+      border-radius: var(--aa-r-lg);
+      overflow: hidden;
+      aspect-ratio: 16/7;
+      background: var(--aa-border);
+      margin-bottom: var(--aa-6);
+    }
+    .hero-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* Visit header */
+    .visit-title {
+      font-family: var(--aa-font-serif);
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: var(--aa-4);
+    }
+    .visit-meta-row {
+      display: flex; flex-wrap: wrap; gap: var(--aa-4);
+      align-items: center;
+      font-size: var(--aa-sm);
+      color: var(--aa-text-muted);
+      margin-bottom: var(--aa-6);
+      padding-bottom: var(--aa-6);
+      border-bottom: 1px solid var(--aa-border);
+    }
+    .meta-pill {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: var(--aa-bg); border: 1px solid var(--aa-border);
+      border-radius: var(--aa-r-full);
+      padding: 4px var(--aa-3);
+      font-size: var(--aa-xs); font-weight: 600;
+    }
+    .tone-pill { border: none; font-weight: 700; font-size: var(--aa-xs); }
+    .tone-childish  { background: #EFF6FF; color: #1D4ED8; }
+    .tone-simple    { background: #F0FDF4; color: #166534; }
+    .tone-medium    { background: #FFFBEB; color: #92400E; }
+    .tone-technical { background: #F5F3FF; color: #5B21B6; }
+
+    /* Author card */
+    .author-card {
+      display: flex; align-items: center; gap: var(--aa-4);
+      padding: var(--aa-4);
+      background: var(--aa-bg);
+      border-radius: var(--aa-r-lg);
+      margin-bottom: var(--aa-6);
+    }
+    .author-av-lg {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--aa-primary);
+      color: #fff; font-size: 1.25rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .author-info { flex: 1; }
+    .author-name { font-weight: 600; font-size: var(--aa-base); }
+    .author-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: var(--aa-xs); font-weight: 700;
+      color: var(--aa-success); margin-left: var(--aa-2);
+    }
+    .author-role { font-size: var(--aa-sm); color: var(--aa-text-muted); margin-top: 2px; }
+
+    /* Tabs */
+    .detail-tabs { margin-bottom: var(--aa-6); }
+    .detail-tab-content { display: none; }
+    .detail-tab-content.active { display: block; }
+
+    /* Description tab */
+    .desc-text { line-height: 1.8; color: var(--aa-text-secondary); }
+    .desc-text p { margin-bottom: var(--aa-4); max-width: 100%; }
+    .tags-row { display: flex; flex-wrap: wrap; gap: var(--aa-2); margin-top: var(--aa-6); }
+    .tag {
+      padding: 4px var(--aa-3);
+      border: 1px solid var(--aa-border);
+      border-radius: var(--aa-r-full);
+      font-size: var(--aa-xs);
+      color: var(--aa-text-secondary);
+      font-weight: 500;
+    }
+
+    /* Artworks tab */
+    .artwork-list { display: flex; flex-direction: column; gap: var(--aa-4); }
+    .artwork-item {
+      display: flex; gap: var(--aa-4); align-items: flex-start;
+      padding: var(--aa-4);
+      background: var(--aa-surface);
+      border: 1px solid var(--aa-border);
+      border-radius: var(--aa-r-lg);
+    }
+    .artwork-num {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--aa-primary-light);
+      color: var(--aa-primary); font-weight: 700; font-size: var(--aa-sm);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 2px;
+    }
+    .artwork-img {
+      width: 72px; height: 72px; border-radius: var(--aa-r-md);
+      object-fit: cover; flex-shrink: 0;
+      background: var(--aa-border);
+    }
+    .artwork-body { flex: 1; min-width: 0; }
+    .artwork-title { font-weight: 600; font-size: var(--aa-base); margin-bottom: 4px; }
+    .artwork-location { font-size: var(--aa-sm); color: var(--aa-text-muted); margin-bottom: var(--aa-2); }
+    .artwork-chips { display: flex; flex-wrap: wrap; gap: var(--aa-2); align-items: center; }
+    .dur-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: var(--aa-xs); color: var(--aa-text-muted);
+      padding: 2px var(--aa-2);
+      background: var(--aa-bg);
+      border-radius: var(--aa-r-full);
+    }
+
+    /* Reviews tab */
+    .rating-overview {
+      display: flex; gap: var(--aa-8); align-items: center;
+      padding: var(--aa-6);
+      background: var(--aa-bg);
+      border-radius: var(--aa-r-lg);
+      margin-bottom: var(--aa-6);
+    }
+    .rating-big { text-align: center; }
+    .rating-big-num {
+      font-family: var(--aa-font-serif);
+      font-size: 3.5rem; font-weight: 700; line-height: 1;
+      color: var(--aa-text);
+    }
+    .stars-row { display: flex; gap: 2px; justify-content: center; margin-top: 4px; }
+    .stars-row svg { color: var(--aa-gold); }
+    .rating-count { font-size: var(--aa-sm); color: var(--aa-text-muted); margin-top: 4px; }
+    .rating-bars { flex: 1; display: flex; flex-direction: column; gap: var(--aa-2); }
+    .rating-bar-row { display: flex; align-items: center; gap: var(--aa-3); font-size: var(--aa-sm); }
+    .rating-bar-track {
+      flex: 1; height: 6px; background: var(--aa-border);
+      border-radius: var(--aa-r-full); overflow: hidden;
+    }
+    .rating-bar-fill { height: 100%; background: var(--aa-gold); border-radius: var(--aa-r-full); }
+    .review-card {
+      border: 1px solid var(--aa-border);
+      border-radius: var(--aa-r-lg);
+      padding: var(--aa-5);
+      margin-bottom: var(--aa-4);
+    }
+    .review-header { display: flex; align-items: center; gap: var(--aa-3); margin-bottom: var(--aa-3); }
+    .review-av {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--aa-border); display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: var(--aa-sm); color: var(--aa-text-muted);
+      flex-shrink: 0;
+    }
+    .review-name { font-weight: 600; font-size: var(--aa-sm); }
+    .review-date { font-size: var(--aa-xs); color: var(--aa-text-muted); margin-top: 2px; }
+    .review-stars { margin-left: auto; display: flex; gap: 2px; }
+    .review-stars svg { color: var(--aa-gold); }
+    .review-text { font-size: var(--aa-sm); line-height: 1.7; color: var(--aa-text-secondary); max-width: 100%; }
+
+    /* ── Purchase card (right column) ── */
+    .purchase-card {
+      background: var(--aa-surface);
+      border: 1px solid var(--aa-border);
+      border-radius: var(--aa-r-xl);
+      box-shadow: var(--aa-shadow-md);
+      padding: var(--aa-6);
+      position: sticky;
+      top: calc(var(--aa-nav-h) + var(--aa-4));
+    }
+    .price-display { text-align: center; margin-bottom: var(--aa-5); }
+    .price-main {
+      font-family: var(--aa-font-serif);
+      font-size: 2.5rem; font-weight: 700;
+      color: var(--aa-primary); line-height: 1;
+    }
+    .price-main.free { color: var(--aa-success); }
+    .price-sub { font-size: var(--aa-sm); color: var(--aa-text-muted); margin-top: 4px; }
+    .license-row {
+      display: flex; align-items: center; gap: var(--aa-2); justify-content: center;
+      font-size: var(--aa-xs); color: var(--aa-text-muted;);
+      margin-bottom: var(--aa-5);
+      padding-bottom: var(--aa-5);
+      border-bottom: 1px solid var(--aa-border);
+    }
+    .purchase-actions { display: flex; flex-direction: column; gap: var(--aa-3); margin-bottom: var(--aa-5); }
+    .purchase-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: var(--aa-3);
+      padding: var(--aa-4);
+      background: var(--aa-bg);
+      border-radius: var(--aa-r-md);
+      margin-bottom: var(--aa-5);
+    }
+    .stat-item { text-align: center; }
+    .stat-n { font-weight: 700; font-size: var(--aa-lg); color: var(--aa-text); }
+    .stat-l { font-size: var(--aa-xs); color: var(--aa-text-muted); margin-top: 2px; }
+    .share-row {
+      display: flex; gap: var(--aa-2); justify-content: center; margin-bottom: var(--aa-4);
+    }
+    .share-btn {
+      display: flex; align-items: center; gap: 6px;
+      padding: var(--aa-2) var(--aa-3);
+      border: 1.5px solid var(--aa-border);
+      border-radius: var(--aa-r-full);
+      background: none; font-family: var(--aa-font-sans); font-size: var(--aa-xs);
+      font-weight: 500; color: var(--aa-text-secondary);
+      cursor: pointer; transition: border-color var(--aa-fast), color var(--aa-fast);
+      min-height: 36px;
+    }
+    .share-btn:hover { border-color: var(--aa-primary); color: var(--aa-primary); }
+    .share-btn:focus-visible { outline: 3px solid var(--aa-primary); outline-offset: 3px; }
+    .report-link {
+      display: block; text-align: center; font-size: var(--aa-xs);
+      color: var(--aa-text-muted); margin-top: var(--aa-2);
+    }
+
+    /* Mobile sticky bar */
+    .mobile-purchase-bar {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: var(--aa-surface);
+      border-top: 1px solid var(--aa-border);
+      padding: var(--aa-3) var(--aa-4);
+      z-index: 200;
+      align-items: center; gap: var(--aa-3);
+      box-shadow: 0 -4px 16px rgba(0,0,0,0.08);
+    }
+    .mobile-price { font-weight: 700; font-size: var(--aa-xl); color: var(--aa-primary); }
+    .mobile-price.free { color: var(--aa-success); }
+
+    @media (max-width: 1024px) {
+      .purchase-card { display: none; }
+      .mobile-purchase-bar { display: flex; }
+      .page-wrap { padding-bottom: 80px; }
+    }
+    @media (max-width: 768px) {
+      .page-wrap { padding: var(--aa-4); }
+      .rating-overview { flex-direction: column; gap: var(--aa-4); }
+      .artwork-item { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Vai al contenuto principale</a>
+  <art-navbar></art-navbar>
+
+  <main id="main-content" tabindex="-1">
+    <div class="page-wrap">
+      <!-- Breadcrumb -->
+      <nav aria-label="Breadcrumb" class="breadcrumb">
+        <a href="/marketplace/pages/index.html">Home</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <a href="/marketplace/pages/index.html">Esplora</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <span aria-current="page" id="bc-title">Caricamento…</span>
+      </nav>
+
+      <div class="detail-grid" id="detail-content">
+        <!-- Left column -->
+        <div class="left-col">
+          <div class="hero-img-wrap">
+            <img id="hero-img" src="https://picsum.photos/seed/detail/1200/500" alt="" loading="eager">
+          </div>
+
+          <h1 class="visit-title" id="visit-title">Caricamento visita…</h1>
+
+          <div class="visit-meta-row" aria-label="Informazioni visita">
+            <span class="meta-pill" id="meta-duration">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              —
+            </span>
+            <span class="meta-pill tone-pill" id="meta-tone">Medio</span>
+            <span class="meta-pill" id="meta-items">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              — opere
+            </span>
+            <span class="meta-pill" id="meta-museum">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              —
+            </span>
+          </div>
+
+          <!-- Author card -->
+          <div class="author-card" id="author-card">
+            <div class="author-av-lg" id="author-av" aria-hidden="true">?</div>
+            <div class="author-info">
+              <div>
+                <span class="author-name" id="author-name">—</span>
+                <span class="author-badge" aria-label="Autore verificato">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  Verificato
+                </span>
+              </div>
+              <p class="author-role">Autore di contenuti</p>
+            </div>
+            <button class="btn btn-secondary btn-sm" type="button" id="btn-follow" style="min-height:36px">Segui</button>
+          </div>
+
+          <!-- Tabs -->
+          <div class="detail-tabs" id="detail-tabs">
+            <div class="tab-list" role="tablist" aria-label="Sezioni della visita">
+              <button class="tab-btn" role="tab" aria-selected="true"  aria-controls="tab-desc"    id="btn-desc"    type="button">Descrizione</button>
+              <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-artworks" id="btn-artworks" type="button">Opere incluse</button>
+              <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-reviews"  id="btn-reviews"  type="button">Recensioni</button>
+            </div>
+
+            <!-- Description -->
+            <div class="detail-tab-content active" id="tab-desc" role="tabpanel" aria-labelledby="btn-desc" style="padding-top:var(--aa-6)">
+              <div class="desc-text" id="desc-text">
+                <p>Caricamento descrizione…</p>
+              </div>
+              <div class="tags-row" id="tags-row"></div>
+            </div>
+
+            <!-- Artworks -->
+            <div class="detail-tab-content" id="tab-artworks" role="tabpanel" aria-labelledby="btn-artworks" style="padding-top:var(--aa-6)">
+              <div class="artwork-list" id="artwork-list"></div>
+            </div>
+
+            <!-- Reviews -->
+            <div class="detail-tab-content" id="tab-reviews" role="tabpanel" aria-labelledby="btn-reviews" style="padding-top:var(--aa-6)">
+              <div class="rating-overview">
+                <div class="rating-big">
+                  <div class="rating-big-num">4.6</div>
+                  <div class="stars-row" aria-hidden="true">
+                    ${[1,2,3,4,5].map(() => `<svg width="16" height="16" viewBox="0 0 24 24" fill="#C9A84C" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`).join('')}
+                  </div>
+                  <p class="rating-count">42 recensioni</p>
+                </div>
+                <div class="rating-bars" aria-label="Distribuzione valutazioni">
+                  ${[[5,75],[4,18],[3,5],[2,1],[1,1]].map(([s,pct]) => `
+                    <div class="rating-bar-row">
+                      <span>${s}★</span>
+                      <div class="rating-bar-track"><div class="rating-bar-fill" style="width:${pct}%" role="presentation"></div></div>
+                      <span style="min-width:28px;color:var(--aa-text-muted);font-size:var(--aa-xs)">${pct}%</span>
+                    </div>`).join('')}
+                </div>
+              </div>
+              <div id="reviews-list">
+                ${[
+                  {name:'Giulia R.', date:'15 aprile 2025', stars:5, text:'Una visita straordinaria! Le descrizioni sono precise e molto appassionanti. Ho scoperto opere che non avevo mai notato prima. Consigliatissima!'},
+                  {name:'Marco T.', date:'2 marzo 2025', stars:4, text:'Ottima guida, molto dettagliata. Alcune parti potrebbero essere più concise, ma nel complesso un lavoro eccellente.'},
+                  {name:'Anna P.', date:'18 febbraio 2025', stars:5, text:'Perfetta per visitare il museo con i bambini. Il livello infantile è ideale e rende la visita divertente e coinvolgente per tutte le età.'},
+                ].map(r => `
+                  <div class="review-card">
+                    <div class="review-header">
+                      <div class="review-av" aria-hidden="true">${r.name[0]}</div>
+                      <div>
+                        <div class="review-name">${r.name}</div>
+                        <div class="review-date">${r.date}</div>
+                      </div>
+                      <div class="review-stars" role="img" aria-label="Valutazione: ${r.stars} su 5">
+                        ${Array.from({length:r.stars}).map(()=>`<svg width="13" height="13" viewBox="0 0 24 24" fill="#C9A84C" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`).join('')}
+                      </div>
+                    </div>
+                    <p class="review-text">${r.text}</p>
+                  </div>`).join('')}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right column — Purchase card -->
+        <aside aria-label="Acquisto visita">
+          <div class="purchase-card">
+            <div class="price-display">
+              <div class="price-main" id="price-main">—</div>
+              <p class="price-sub" id="price-sub">Accesso permanente</p>
+            </div>
+            <div class="license-row">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              <span id="license-label">Licenza CC-BY</span>
+            </div>
+            <div class="purchase-actions">
+              <button class="btn btn-primary btn-full" type="button" id="btn-adopt">Adotta questa visita</button>
+              <button class="btn btn-secondary btn-full" type="button" id="btn-navigator">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                Apri nel Navigator
+              </button>
+            </div>
+            <div class="purchase-stats">
+              <div class="stat-item"><div class="stat-n" id="stat-adoptions">—</div><div class="stat-l">adozioni</div></div>
+              <div class="stat-item"><div class="stat-n" id="stat-updated">—</div><div class="stat-l">aggiornato</div></div>
+            </div>
+            <div class="share-row">
+              <button class="share-btn" type="button" aria-label="Condividi via email">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                Email
+              </button>
+              <button class="share-btn" type="button" aria-label="Copia link">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                Copia link
+              </button>
+            </div>
+            <a href="#" class="report-link" style="color:var(--aa-text-muted)">Segnala contenuto</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- Mobile sticky purchase bar -->
+  <div class="mobile-purchase-bar" aria-label="Acquisto rapido">
+    <div>
+      <div class="mobile-price" id="mobile-price">—</div>
+      <div style="font-size:var(--aa-xs);color:var(--aa-text-muted)">Accesso permanente</div>
+    </div>
+    <button class="btn btn-primary" style="flex:1;margin-left:auto" type="button" id="btn-adopt-mobile">Adotta la visita</button>
+  </div>
+
+  <art-footer></art-footer>
+  <art-modal id="adopt-modal" title="Adotta questa visita"></art-modal>
+
+  <script>
+    const API = 'http://localhost:8000/api';
+    const TONE_MAP   = { childish:'Infantile', simple:'Elementare', medium:'Medio', technical:'Specialistico' };
+    const TONE_CLASS = { childish:'tone-childish', simple:'tone-simple', medium:'tone-medium', technical:'tone-technical' };
+
+    const params  = new URLSearchParams(window.location.search);
+    const visitId = params.get('id');
+
+    function fmt(sec) {
+      if (!sec) return '—';
+      const m = Math.ceil(sec / 60);
+      return m >= 60 ? `${Math.floor(m/60)}h ${m%60>0?m%60+'min':''}`.trim() : `${m} min`;
+    }
+
+    function starsSVG(n) {
+      return Array.from({length:Math.round(n)}).map(()=>`<svg width="13" height="13" viewBox="0 0 24 24" fill="#C9A84C" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`).join('');
+    }
+
+    async function loadVisit() {
+      let visit;
+      try {
+        if (!visitId || visitId.startsWith('m')) throw new Error('mock');
+        const res = await fetch(`${API}/visits/${visitId}`);
+        if (!res.ok) throw new Error('not found');
+        visit = await res.json();
+      } catch {
+        visit = getMockVisit();
+      }
+      renderVisit(visit);
+    }
+
+    function getMockVisit() {
+      return {
+        _id: 'mock1',
+        title: 'Rinascimento Fiorentino: Botticelli e i suoi contemporanei',
+        description: 'Un viaggio straordinario attraverso uno dei periodi più luminosi dell\'arte italiana. Dalla Sala della Venere alle sale degli Uffizi, scoprite i capolavori di Botticelli, Filippino Lippi e Leonardo, guidati dalle spiegazioni di Sofia Marchetti, storica dell\'arte specializzata nel Quattrocento italiano.\n\nQuesta visita è pensata per appassionati e curiosi che vogliono comprendere il contesto storico-artistico del Rinascimento fiorentino: dai Medici mecenati alle botteghe degli artisti, dalle tecniche pittoriche ai significati iconografici nascosti.',
+        museum: { name: 'Galleria degli Uffizi', address: { city: 'Firenze', country: 'Italia' } },
+        author: { username: 'Sofia Marchetti', role: 'author' },
+        base_price: 0,
+        steps: [
+          { entity: { name: 'Nascita di Venere', location: { room: 'Sala 10-14', floor: 'P1' } }, items: [
+            { image_url: 'https://picsum.photos/seed/venus/72/72', tone: 'medium', descriptions: [{ duration_sec: 240, text: '' }], price: 0, license: 'CC-BY' },
+          ], order: 1 },
+          { entity: { name: 'La Primavera', location: { room: 'Sala 10-14', floor: 'P1' } }, items: [
+            { image_url: 'https://picsum.photos/seed/spring/72/72', tone: 'simple', descriptions: [{ duration_sec: 180, text: '' }], price: 0, license: 'CC-BY' },
+          ], order: 2 },
+          { entity: { name: 'Annunciazione (Leonardo)', location: { room: 'Sala 15', floor: 'P1' } }, items: [
+            { image_url: 'https://picsum.photos/seed/annun/72/72', tone: 'technical', descriptions: [{ duration_sec: 300, text: '' }], price: 0, license: 'CC-BY' },
+          ], order: 3 },
+        ],
+      };
+    }
+
+    function renderVisit(v) {
+      const allItems = (v.steps || []).flatMap(s => s.items || []);
+      const totalSec = allItems.reduce((s, i) => s + ((i?.descriptions?.[0]?.duration_sec) || 0), 0);
+      const tones    = allItems.map(i => i?.tone).filter(Boolean);
+      const pTone    = tones.length
+        ? Object.entries(tones.reduce((a,t)=>{a[t]=(a[t]||0)+1;return a},{})).sort((a,b)=>b[1]-a[1])[0][0]
+        : 'medium';
+      const price = v.base_price ?? 0;
+      const firstImg = allItems.find(i=>i?.image_url)?.image_url || `https://picsum.photos/seed/${v._id}/1200/500`;
+
+      document.title = `${v.title} — ArtAround`;
+      document.getElementById('bc-title').textContent      = v.title;
+      document.getElementById('visit-title').textContent   = v.title;
+      document.getElementById('hero-img').src              = firstImg;
+      document.getElementById('hero-img').alt              = `Immagine per la visita: ${v.title}`;
+
+      /* meta pills */
+      document.getElementById('meta-duration').innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>${fmt(totalSec)}`;
+      const tonePill = document.getElementById('meta-tone');
+      tonePill.textContent = TONE_MAP[pTone] || 'Medio';
+      tonePill.className = `meta-pill tone-pill ${TONE_CLASS[pTone] || 'tone-medium'}`;
+      document.getElementById('meta-items').innerHTML  = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></rect></svg>${allItems.length} opere`;
+      document.getElementById('meta-museum').innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${v.museum?.name || '—'}`;
+
+      /* Author */
+      const uname = v.author?.username || 'Anonimo';
+      document.getElementById('author-name').textContent = uname;
+      document.getElementById('author-av').textContent   = uname[0].toUpperCase();
+
+      /* Description */
+      const descText = (v.description || 'Nessuna descrizione disponibile.')
+        .split('\n\n').map(p => `<p>${p.replace(/\n/g,'<br>')}</p>`).join('');
+      document.getElementById('desc-text').innerHTML = descText;
+
+      const tagsRow = document.getElementById('tags-row');
+      const tags = [v.museum?.name, v.museum?.address?.city, TONE_MAP[pTone], 'Arte rinascimentale'].filter(Boolean);
+      tagsRow.innerHTML = tags.map(t => `<span class="tag">${t}</span>`).join('');
+
+      /* Artworks */
+      const list = document.getElementById('artwork-list');
+      list.innerHTML = (v.steps || []).sort((a,b)=>a.order-b.order).map((step, si) => {
+        const entity = step.entity || {};
+        const item   = step.items?.[0] || {};
+        const dur    = item?.descriptions?.[0]?.duration_sec || 0;
+        const tone   = item?.tone || 'medium';
+        return `
+          <div class="artwork-item">
+            <div class="artwork-num" aria-hidden="true">${si+1}</div>
+            <img class="artwork-img" src="${item.image_url || `https://picsum.photos/seed/art${si}/72/72`}" alt="${entity.name || 'Opera d\'arte'}">
+            <div class="artwork-body">
+              <p class="artwork-title">${entity.name || 'Opera senza titolo'}</p>
+              <p class="artwork-location">${[entity.location?.room, entity.location?.floor].filter(Boolean).join(' — ') || 'Posizione non disponibile'}</p>
+              <div class="artwork-chips">
+                <span class="badge tone-pill ${TONE_CLASS[tone] || 'tone-medium'}">${TONE_MAP[tone] || '—'}</span>
+                ${dur ? `<span class="dur-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>${fmt(dur)}</span>` : ''}
+                ${step.logistic_note ? `<span class="dur-badge" style="color:var(--aa-gold-text)">📍 ${step.logistic_note}</span>` : ''}
+              </div>
+            </div>
+          </div>`;
+      }).join('');
+
+      /* Price / purchase card */
+      const priceEl   = document.getElementById('price-main');
+      const mPriceEl  = document.getElementById('mobile-price');
+      const priceSub  = document.getElementById('price-sub');
+      const licenseEl = document.getElementById('license-label');
+
+      const priceStr = price === 0 ? 'Gratuito' : `€${price.toFixed(2)}`;
+      const priceClass = price === 0 ? 'free' : '';
+      priceEl.textContent  = priceStr;
+      priceEl.className    = `price-main ${priceClass}`;
+      mPriceEl.textContent = priceStr;
+      mPriceEl.className   = `mobile-price ${priceClass}`;
+      priceSub.textContent = price === 0 ? 'Accesso gratuito e permanente' : 'Acquisto una tantum';
+      licenseEl.textContent= `Licenza ${allItems[0]?.license || 'CC-BY'}`;
+
+      document.getElementById('stat-adoptions').textContent = String(Math.floor(Math.random()*200+20));
+      document.getElementById('stat-updated').textContent   = 'Apr 2025';
+    }
+
+    /* ── Tab switching ── */
+    document.querySelectorAll('[role="tab"]').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('[role="tab"]').forEach(t => t.setAttribute('aria-selected','false'));
+        document.querySelectorAll('.detail-tab-content').forEach(p => p.classList.remove('active'));
+        tab.setAttribute('aria-selected','true');
+        document.getElementById(tab.getAttribute('aria-controls')).classList.add('active');
+      });
+      tab.addEventListener('keydown', e => {
+        const all = [...document.querySelectorAll('[role="tab"]')];
+        const i = all.indexOf(tab);
+        if (e.key === 'ArrowRight') { all[(i+1)%all.length].focus(); all[(i+1)%all.length].click(); }
+        if (e.key === 'ArrowLeft')  { all[(i-1+all.length)%all.length].focus(); all[(i-1+all.length)%all.length].click(); }
+      });
+    });
+
+    /* ── Adopt ── */
+    function handleAdopt() {
+      const user = JSON.parse(localStorage.getItem('artaround_user') || 'null');
+      if (!user) { window.location.href = '/marketplace/pages/login.html'; return; }
+      const modal = document.getElementById('adopt-modal');
+      modal.innerHTML = `
+        <div style="text-align:center;padding:var(--aa-4)">
+          <div style="font-size:3rem;margin-bottom:var(--aa-4)" aria-hidden="true">🎉</div>
+          <h3 style="font-family:var(--aa-font-serif);font-size:1.25rem;margin-bottom:var(--aa-3)">Visita adottata!</h3>
+          <p style="color:var(--aa-text-muted);margin-bottom:var(--aa-6);max-width:100%">La visita è stata aggiunta al tuo profilo e puoi aprirla in qualsiasi momento nel Navigator.</p>
+          <div style="display:flex;gap:var(--aa-3)">
+            <button class="btn btn-primary" style="flex:1" onclick="document.getElementById('adopt-modal').close()">Continua a esplorare</button>
+            <a href="/marketplace/pages/profile.html" class="btn btn-secondary" style="flex:1">Vai al profilo</a>
+          </div>
+        </div>`;
+      modal.open();
+      if (window.ArtToast) ArtToast.show({ type:'success', message:'Visita adottata con successo!' });
+    }
+
+    document.getElementById('btn-adopt').addEventListener('click', handleAdopt);
+    document.getElementById('btn-adopt-mobile').addEventListener('click', handleAdopt);
+    document.getElementById('btn-navigator').addEventListener('click', () => {
+      ArtToast && ArtToast.show({ type:'info', message:'Apertura Navigator non ancora disponibile in questa versione.' });
+    });
+    document.getElementById('btn-follow').addEventListener('click', e => {
+      const btn = e.currentTarget;
+      const following = btn.textContent.trim() === 'Segui' ? false : true;
+      btn.textContent = following ? 'Segui' : 'Seguito';
+      btn.classList.toggle('btn-primary', !following);
+      btn.classList.toggle('btn-secondary', following);
+    });
+
+    document.querySelectorAll('.share-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        navigator.clipboard && navigator.clipboard.writeText(window.location.href);
+        ArtToast && ArtToast.show({ type:'success', message:'Link copiato negli appunti!' });
+      });
+    });
+
+    loadVisit();
+  </script>
+</body>
+</html>
