@@ -11,7 +11,7 @@ log.addEventListener('submit', async (e) => {
     feedbackMessage.textContent = "Connessione in corso...";
 
     try {
-        const response = await fetch('http://localhost:8000/api/users/login', { // Da cambiare in url sito...
+        const response = await fetch('http://localhost:8000/api/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -35,7 +35,7 @@ log.addEventListener('submit', async (e) => {
             feedbackMessage.textContent = data.message || "Credenziali non valide.";
         }
     } catch (error) {
-        console.error("Errore di rete:", error); // nessun throw?
+        console.error("Errore di rete:", error);
         feedbackMessage.style.color = "red";
         feedbackMessage.textContent = "Impossibile contattare il server.";
     }

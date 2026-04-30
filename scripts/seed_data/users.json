@@ -25,5 +25,13 @@
     "role": "visitor",
     "createdAt": { "$date": "2025-01-01T00:00:00Z" },
     "updatedAt": { "$date": "2025-01-01T00:00:00Z" }
+  },
+
+  {
+    "_id": { "$oid": "aaa000000000000000000004" },
+  "username": "admin_test",
+  "email": "admin@test.it",
+  "password": "passwordSicura123",
+  "role": "author"
   }
 ]

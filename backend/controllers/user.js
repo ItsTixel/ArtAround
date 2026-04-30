@@ -32,7 +32,6 @@ async function getById(req, res) {
     }
 }
 
-// DULE: utilizziamo bcrypt?
 async function create(req, res) {
     try {
         const { email, username } = req.body;
@@ -122,23 +121,23 @@ async function register(req, res) {
     try {
         const { username, email, password } = req.body;
 
-        // 1. Controlla se l'utente esiste già (per email o username)
+        // Controlla se l'utente esiste già (per email o username)
         const existing = await User.findOne({ $or: [{ email }, { username }] });
         if (existing) {
             const field = existing.email === email ? 'email' : 'username';
             return res.status(409).json({ message: `Un utente con questo ${field} esiste già` });
         }
 
-        // 2. Cripta la password con bcrypt prima di salvarla
+        // Cripta la password con bcrypt prima di salvarla
         // Il "10" indica il "salt rounds", ovvero quanto deve essere complessa la crittografia
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // 3. Crea e salva il nuovo utente nel database
+        // Crea e salva il nuovo utente nel database
         const user = new User({
             username: username,
             email: email,
-            password: hashedPassword, // Inseriamo la versione illeggibile!
-            role: 'visitor'           // Usiamo il default definito nel tuo modello
+            password: hashedPassword, 
+            role: 'visitor'
         });
 
         await user.save();

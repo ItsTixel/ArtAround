@@ -21,6 +21,7 @@ app.use('/api/entities', require('./routes/entities'));
 app.use('/api/items', require('./routes/items'));
 app.use('/api/visits', require('./routes/visits'));
 app.use('/api/users', require('./routes/users'));
+app.use('/api/auth', require('./routes/auth'));
 
 
 // https://stackoverflow.com/questions/40459511/in-express-js-req-protocol-is-not-picking-up-https-for-my-secure-link-it-alwa
@@ -38,7 +39,7 @@ app.enable('trust proxy');
   } catch (e) {
     console.error("Connection failed:", e.message);
   }
-  
+
 })();
 
 app.get('/', async function (req, res) {
