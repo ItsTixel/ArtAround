@@ -41,43 +41,7 @@ class ArtPagination extends HTMLElement {
     const pages = this._pages();
 
     this.shadowRoot.innerHTML = `
-      <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        :host { display: flex; justify-content: center; }
-
-        nav { display: flex; align-items: center; gap: var(--aa-1, 0.25rem); }
-
-        button {
-          min-width: 40px; min-height: 40px;
-          display: flex; align-items: center; justify-content: center;
-          background: var(--aa-surface, #fff);
-          border: 1.5px solid var(--aa-border, #E0DBD3);
-          border-radius: var(--aa-r-md, 6px);
-          font-family: var(--aa-font-sans, sans-serif);
-          font-size: var(--aa-sm, 0.875rem);
-          font-weight: 500;
-          color: var(--aa-text-secondary, #4A4A4A);
-          cursor: pointer;
-          transition: background var(--aa-fast, 150ms), border-color var(--aa-fast, 150ms), color var(--aa-fast, 150ms);
-          padding: 0 var(--aa-2, 0.5rem);
-        }
-        button:hover:not(:disabled) { border-color: var(--aa-primary, #8B1A1A); color: var(--aa-primary, #8B1A1A); }
-        button[aria-current="page"] {
-          background: var(--aa-primary, #8B1A1A);
-          border-color: var(--aa-primary, #8B1A1A);
-          color: #fff;
-          font-weight: 600;
-        }
-        button:disabled { opacity: 0.35; cursor: not-allowed; }
-        button:focus-visible { outline: 3px solid var(--aa-primary, #8B1A1A); outline-offset: 3px; }
-        .ellipsis {
-          min-width: 32px; min-height: 40px;
-          display: flex; align-items: center; justify-content: center;
-          color: var(--aa-text-muted, #6B6B6B);
-          font-size: var(--aa-sm, 0.875rem);
-          user-select: none;
-        }
-      </style>
+      <link rel="stylesheet" href="/marketplace/components/pagination/pagination.css">
       <nav aria-label="Paginazione risultati">
         <button id="prev" aria-label="Pagina precedente" ${cur === 0 ? 'disabled' : ''}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
