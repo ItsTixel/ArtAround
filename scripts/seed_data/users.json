@@ -3,8 +3,13 @@
     "_id": { "$oid": "aaa000000000000000000001" },
     "username": "alice_author",
     "email": "alice@example.com",
-    "password": "$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy",
+    "password": "12345678",
     "role": "author",
+    "display_name": "Alice Rossi",
+    "bio": "Storica dell'arte specializzata nel Rinascimento italiano.",
+    "avatar_url": "https://i.pravatar.cc/150?u=alice",
+    "adopted_visits": [],
+    "bookmarked_visits": [{ "$oid": "eee000000000000000000002" }],
     "createdAt": { "$date": "2025-01-01T00:00:00Z" },
     "updatedAt": { "$date": "2025-01-01T00:00:00Z" }
   },
@@ -12,8 +17,13 @@
     "_id": { "$oid": "aaa000000000000000000002" },
     "username": "bob_author",
     "email": "bob@example.com",
-    "password": "$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy",
+    "password": "12345678",
     "role": "author",
+    "display_name": "Bob Neri",
+    "bio": "Appassionato di arte lombarda e guide museali per bambini.",
+    "avatar_url": "https://i.pravatar.cc/150?u=bob",
+    "adopted_visits": [{ "$oid": "eee000000000000000000001" }],
+    "bookmarked_visits": [],
     "createdAt": { "$date": "2025-01-01T00:00:00Z" },
     "updatedAt": { "$date": "2025-01-01T00:00:00Z" }
   },
@@ -21,9 +31,19 @@
     "_id": { "$oid": "aaa000000000000000000003" },
     "username": "carol_visitor",
     "email": "carol@example.com",
-    "password": "$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy",
+    "password": "12345678",
     "role": "visitor",
-    "createdAt": { "$date": "2025-01-01T00:00:00Z" },
-    "updatedAt": { "$date": "2025-01-01T00:00:00Z" }
+    "display_name": "Carol Bianchi",
+    "bio": "",
+    "avatar_url": null,
+    "adopted_visits": [
+      { "$oid": "eee000000000000000000001" },
+      { "$oid": "eee000000000000000000002" }
+    ],
+    "bookmarked_visits": [
+      { "$oid": "eee000000000000000000003" }
+    ],
+    "createdAt": { "$date": "2025-01-10T00:00:00Z" },
+    "updatedAt": { "$date": "2025-01-10T00:00:00Z" }
   }
 ]

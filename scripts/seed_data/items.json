@@ -1,65 +1,138 @@
 [
   {
     "_id": { "$oid": "ddd000000000000000000001" },
-    "marketplace_summary": "A captivating audio guide to Botticelli's Birth of Venus — suitable for all ages.",
+    "marketplace_summary": "Guida semplice alla Nascita di Venere di Botticelli — adatta a tutti.",
     "artwork": { "$oid": "ccc000000000000000000001" },
     "author": { "$oid": "aaa000000000000000000001" },
     "license": "CC-BY",
     "tone": "simple",
     "descriptions": [
-      { "duration_sec": 90,  "text": "Venus rises from the sea on a shell, blown ashore by the winds Zephyr and Aura, as a Hora holds out a flowered cloak." },
-      { "duration_sec": 60,  "text": "Notice the idealized, elongated figure — Botticelli draws on classical antiquity while imbuing the scene with a dreamlike quality." }
+      {
+        "duration_sec": 90,
+        "text": "Venere emerge dal mare su una grande conchiglia, spinta a riva dai venti Zefiro e Clori, mentre una delle Ore le porge un manto fiorito. Botticelli la dipinge come un ideale di bellezza classica ispirato alle statue greche."
+      },
+      {
+        "duration_sec": 60,
+        "text": "Nota la figura allungata e il profilo delicato di Venere: Botticelli si ispira all'antichità classica ma dà alla scena un'atmosfera quasi onirica."
+      }
     ],
     "price": 0,
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Sandro_Botticelli_046.jpg",
-    "createdAt": { "$date": "2025-01-01T00:00:00Z" },
-    "updatedAt": { "$date": "2025-01-01T00:00:00Z" }
+    "alt_text": "Dettaglio del volto di Venere con capelli dorati mossi dal vento",
+    "tags": ["botticelli", "venere", "mitologia", "rinascimento"],
+    "createdAt": { "$date": "2025-01-05T00:00:00Z" },
+    "updatedAt": { "$date": "2025-01-05T00:00:00Z" }
   },
   {
     "_id": { "$oid": "ddd000000000000000000002" },
-    "marketplace_summary": "In-depth technical analysis of da Vinci's Annunciation for art history enthusiasts.",
+    "marketplace_summary": "Analisi tecnica approfondita dell'Annunciazione di Leonardo per appassionati di storia dell'arte.",
     "artwork": { "$oid": "ccc000000000000000000002" },
     "author": { "$oid": "aaa000000000000000000001" },
     "license": "Copyright",
     "tone": "technical",
     "descriptions": [
-      { "duration_sec": 120, "text": "Leonardo employs an unusual low viewpoint and aerial perspective to create spatial depth, while the angel's wings echo those in earlier Florentine tradition." },
-      { "duration_sec": 80,  "text": "The Virgin's right hand rests on a lectern with intricate marble inlay — a showcase of Leonardo's early mastery of foreshortening." }
+      {
+        "duration_sec": 120,
+        "text": "Leonardo impiega un punto di vista insolitamente basso e la prospettiva aerea per creare profondità spaziale. Le ali dell'angelo — realistiche come quelle di uno studio ornitologico — rompono la convenzione dei predecessori fiorentini."
+      },
+      {
+        "duration_sec": 80,
+        "text": "La mano destra della Vergine poggia su un leggio con intarsi marmorei: una dimostrazione precoce del dominio di Leonardo dello scorcio, con la manica che si 'schiaccia' contro il piano del libro in modo visivamente convincente."
+      }
     ],
     "price": 2.99,
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Annunciation_%28Leonardo%29.jpg",
-    "createdAt": { "$date": "2025-01-01T00:00:00Z" },
-    "updatedAt": { "$date": "2025-01-01T00:00:00Z" }
+    "alt_text": "Particolare del leggio marmoreo con la mano della Vergine",
+    "tags": ["leonardo", "annunciazione", "rinascimento", "tecnico"],
+    "createdAt": { "$date": "2025-01-05T00:00:00Z" },
+    "updatedAt": { "$date": "2025-01-05T00:00:00Z" }
   },
   {
     "_id": { "$oid": "ddd000000000000000000003" },
-    "marketplace_summary": "Child-friendly story about Mantegna's Lamentation of Christ.",
+    "marketplace_summary": "Racconto per bambini del Cristo morto di Mantegna — semplice e coinvolgente.",
     "artwork": { "$oid": "ccc000000000000000000003" },
     "author": { "$oid": "aaa000000000000000000002" },
     "license": "CC-BY-NC",
     "tone": "childish",
     "descriptions": [
-      { "duration_sec": 60, "text": "This painting shows Jesus lying down after the crucifixion, with his friends crying around him. The painter used a special trick to make Jesus' feet look very big!" }
+      {
+        "duration_sec": 60,
+        "text": "Questo quadro mostra Gesù sdraiato dopo la crocifissione, con i suoi amici che piangono intorno a lui. Il pittore ha usato un trucco speciale per far sembrare i piedi di Gesù giganteschi — è come guardare qualcuno con i piedi verso di te!"
+      }
     ],
     "price": 0,
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Mantegna_dead_christ.jpg",
-    "createdAt": { "$date": "2025-01-01T00:00:00Z" },
-    "updatedAt": { "$date": "2025-01-01T00:00:00Z" }
+    "alt_text": "Cristo disteso visto in prospettiva dai piedi, con le ferite visibili sulle mani e sui piedi",
+    "tags": ["mantegna", "bambini", "scorcio", "brera"],
+    "createdAt": { "$date": "2025-01-06T00:00:00Z" },
+    "updatedAt": { "$date": "2025-01-06T00:00:00Z" }
   },
   {
     "_id": { "$oid": "ddd000000000000000000004" },
-    "marketplace_summary": "Medium-level guide connecting the Last Supper copy in Brera to Leonardo's original.",
+    "marketplace_summary": "Guida di livello medio che collega la copia dell'Ultima Cena a Brera con l'originale di Leonardo.",
     "artwork": { "$oid": "ccc000000000000000000004" },
     "author": { "$oid": "aaa000000000000000000002" },
     "license": "CC0",
     "tone": "medium",
     "descriptions": [
-      { "duration_sec": 100, "text": "Painted by Giampietrino around 1520, this full-scale copy preserves details — like the feet of the apostles — lost in Leonardo's deteriorated original." },
-      { "duration_sec": 70,  "text": "Comparing copies like this one is essential for restoration work: it informed the 1999 restoration of Leonardo's mural at Santa Maria delle Grazie." }
+      {
+        "duration_sec": 100,
+        "text": "Dipinta da Giampietrino intorno al 1520, questa copia a grandezza naturale conserva dettagli — come i piedi degli apostoli — ormai persi nell'originale deteriorato di Leonardo a Santa Maria delle Grazie."
+      },
+      {
+        "duration_sec": 70,
+        "text": "Confrontare copie come questa è essenziale per il lavoro di restauro: ha informato il restauro del 1999 del murale di Leonardo, aiutando a ricostruire le parti più danneggiate."
+      }
     ],
     "price": 0,
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Giampietrino-Last-Supper.jpg",
-    "createdAt": { "$date": "2025-01-01T00:00:00Z" },
-    "updatedAt": { "$date": "2025-01-01T00:00:00Z" }
+    "alt_text": "La tavola dell'Ultima Cena con Gesù al centro e dodici apostoli",
+    "tags": ["leonardo", "ultima-cena", "copia", "brera", "medio"],
+    "createdAt": { "$date": "2025-01-06T00:00:00Z" },
+    "updatedAt": { "$date": "2025-01-06T00:00:00Z" }
+  },
+  {
+    "_id": { "$oid": "ddd000000000000000000005" },
+    "marketplace_summary": "Descrizione tecnica della Scuola di Atene: iconografia, prospettiva e identità dei filosofi.",
+    "artwork": { "$oid": "ccc000000000000000000006" },
+    "author": { "$oid": "aaa000000000000000000001" },
+    "license": "CC-BY",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 150,
+        "text": "Raffaello costruisce uno spazio illusionistico con un punto di fuga al centro del dipinto, tra le figure di Platone — che indica il cielo, con le fattezze di Leonardo da Vinci — e Aristotele, che indica la terra. L'affresco sintetizza la filosofia platonica e aristotelica in un'unica composizione armoniosa."
+      },
+      {
+        "duration_sec": 90,
+        "text": "In primo piano a sinistra Pitagora scrive, a destra Euclide (col volto di Bramante) spiega la geometria. Michelangelo come Eraclito, seduto pensieroso sullo scalino centrale, fu aggiunto dopo che Raffaello visitò la Sistina in costruzione."
+      }
+    ],
+    "price": 1.49,
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/49/%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg",
+    "alt_text": "Platone e Aristotele al centro dell'affresco circondati dai filosofi dell'antichità",
+    "tags": ["raffaello", "vaticano", "filosofia", "affresco", "tecnico"],
+    "createdAt": { "$date": "2025-01-07T00:00:00Z" },
+    "updatedAt": { "$date": "2025-01-07T00:00:00Z" }
+  },
+  {
+    "_id": { "$oid": "ddd000000000000000000006" },
+    "marketplace_summary": "Racconto semplice per bambini della Scuola di Atene: tanti professori in un unico grande dipinto!",
+    "artwork": { "$oid": "ccc000000000000000000006" },
+    "author": { "$oid": "aaa000000000000000000002" },
+    "license": "CC-BY-NC",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 55,
+        "text": "Immagina di riunire tutti i professori più bravi della storia in un'unica stanza enorme. Raffaello l'ha fatto in questo dipinto! Ci sono matematici, filosofi e scienziati vissuti migliaia di anni fa, tutti insieme a parlare e a studiare."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/49/%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg",
+    "alt_text": "Molte figure colorate in una grande sala con archi alti",
+    "tags": ["raffaello", "bambini", "vaticano", "filosofia"],
+    "createdAt": { "$date": "2025-01-07T00:00:00Z" },
+    "updatedAt": { "$date": "2025-01-07T00:00:00Z" }
   }
 ]

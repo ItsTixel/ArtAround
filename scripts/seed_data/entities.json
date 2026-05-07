@@ -1,39 +1,143 @@
 [
   {
     "_id": { "$oid": "ccc000000000000000000001" },
-    "name": "Birth of Venus",
+    "wikidata_id": "Q128717",
+    "name": "Nascita di Venere",
     "is_physical": true,
-    "museum": { "$oid": "bbb000000000000000000001" },
-    "location": { "room": "Sala 10-14", "floor": "2", "note": "North wall" },
-    "author": "Sandro Botticelli"
+    "artwork_author": "Sandro Botticelli",
+    "description": "Capolavoro di Sandro Botticelli (1484-1486 circa), raffigura la dea Venere che emerge dal mare adulta, soffiata verso la riva dai venti.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Sandro_Botticelli_046.jpg",
+    "alt_text": "Venere nuda emerge da una conchiglia in mare, affiancata da Zefiro e Clori a sinistra e da una delle Grazie a destra",
+    "placements": [
+      {
+        "museum": { "$oid": "bbb000000000000000000001" },
+        "location": { "room": "Sala 10-14", "floor": "2", "note": "Parete nord" }
+      }
+    ],
+    "tags": ["rinascimento", "mitologia", "tempera", "botticelli", "venere"],
+    "external_links": [
+      { "label": "Wikipedia", "url": "https://it.wikipedia.org/wiki/Nascita_di_Venere_(Botticelli)" },
+      { "label": "Scheda Uffizi", "url": "https://www.uffizi.it/opere/nascita-di-venere" }
+    ],
+    "added_by": { "$oid": "aaa000000000000000000001" },
+    "createdAt": { "$date": "2025-01-01T00:00:00Z" },
+    "updatedAt": { "$date": "2025-01-01T00:00:00Z" }
   },
   {
     "_id": { "$oid": "ccc000000000000000000002" },
-    "name": "Annunciation",
+    "wikidata_id": "Q216637",
+    "name": "Annunciazione",
     "is_physical": true,
-    "museum": { "$oid": "bbb000000000000000000001" },
-    "location": { "room": "Sala 8", "floor": "2", "note": "East wing" },
-    "author": "Leonardo da Vinci"
+    "artwork_author": "Leonardo da Vinci",
+    "description": "Dipinto a olio e tempera su tavola (1472-1475 circa). È tra le prime opere attribuite a Leonardo, realizzate durante il suo apprendistato nella bottega del Verrocchio.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Annunciation_%28Leonardo%29.jpg",
+    "alt_text": "L'angelo Gabriele genuflesso a sinistra annuncia a Maria, seduta a destra davanti a un leggio marmoreo, la sua gravidanza",
+    "placements": [
+      {
+        "museum": { "$oid": "bbb000000000000000000001" },
+        "location": { "room": "Sala 8", "floor": "2", "note": "Ala est" }
+      }
+    ],
+    "tags": ["rinascimento", "leonardo", "tavola", "sacro", "annunciazione"],
+    "external_links": [
+      { "label": "Wikipedia", "url": "https://it.wikipedia.org/wiki/Annunciazione_(Leonardo)" }
+    ],
+    "added_by": { "$oid": "aaa000000000000000000001" },
+    "createdAt": { "$date": "2025-01-01T00:00:00Z" },
+    "updatedAt": { "$date": "2025-01-01T00:00:00Z" }
   },
   {
     "_id": { "$oid": "ccc000000000000000000003" },
-    "name": "Lamentation of Christ",
+    "wikidata_id": "Q1200429",
+    "name": "Cristo morto nel sepolcro",
     "is_physical": true,
-    "museum": { "$oid": "bbb000000000000000000002" },
-    "location": { "room": "Sala VI", "floor": "1", "note": "Centre" },
-    "author": "Andrea Mantegna"
+    "artwork_author": "Andrea Mantegna",
+    "description": "Capolavoro dello scorcio prospettico (1480 circa), mostra il Cristo disteso in un impressionante scorcio dal basso che crea un effetto di drammatica vicinanza.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Mantegna_dead_christ.jpg",
+    "alt_text": "Cristo disteso su una lastra di marmo visto in scorcio prospettico dai piedi, con la Vergine e san Giovanni affranti sul lato sinistro",
+    "placements": [
+      {
+        "museum": { "$oid": "bbb000000000000000000002" },
+        "location": { "room": "Sala VI", "floor": "1", "note": "Centro sala" }
+      }
+    ],
+    "tags": ["rinascimento", "mantegna", "scorcio", "sacro", "tempera"],
+    "external_links": [
+      { "label": "Wikipedia", "url": "https://it.wikipedia.org/wiki/Cristo_morto_(Mantegna)" }
+    ],
+    "added_by": { "$oid": "aaa000000000000000000002" },
+    "createdAt": { "$date": "2025-01-01T00:00:00Z" },
+    "updatedAt": { "$date": "2025-01-01T00:00:00Z" }
   },
   {
     "_id": { "$oid": "ccc000000000000000000004" },
-    "name": "Last Supper (copy)",
+    "wikidata_id": "Q60666",
+    "name": "Ultima Cena (copia Giampietrino)",
     "is_physical": true,
-    "museum": { "$oid": "bbb000000000000000000002" },
-    "location": { "room": "Sala XII", "floor": "1", "note": "South wall" },
-    "author": "Giampietrino"
+    "artwork_author": "Giampietrino",
+    "description": "Copia a grandezza naturale dell'Ultima Cena di Leonardo (1520 circa), realizzata da uno dei suoi allievi. Conserva dettagli ormai perduti nell'originale deteriorato.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Giampietrino-Last-Supper.jpg",
+    "alt_text": "Gesù al centro della tavola con i dodici apostoli, di fronte a un fondale con tre finestre ad arco",
+    "placements": [
+      {
+        "museum": { "$oid": "bbb000000000000000000002" },
+        "location": { "room": "Sala XII", "floor": "1", "note": "Parete sud" }
+      }
+    ],
+    "tags": ["rinascimento", "leonardo", "copia", "ultima-cena", "olio"],
+    "external_links": [
+      { "label": "Wikipedia", "url": "https://it.wikipedia.org/wiki/Ultima_Cena_(Giampietrino)" }
+    ],
+    "added_by": { "$oid": "aaa000000000000000000002" },
+    "createdAt": { "$date": "2025-01-01T00:00:00Z" },
+    "updatedAt": { "$date": "2025-01-01T00:00:00Z" }
   },
   {
     "_id": { "$oid": "ccc000000000000000000005" },
-    "name": "Renaissance Humanism",
-    "is_physical": false
+    "local_id": "AA-00001",
+    "name": "Umanesimo rinascimentale",
+    "is_physical": false,
+    "description": "Movimento culturale e filosofico nato in Italia nel XIV secolo che rivalutò l'uomo e la cultura classica greco-romana come centro dell'esperienza intellettuale.",
+    "placements": [
+      {
+        "museum": { "$oid": "bbb000000000000000000001" },
+        "location": {}
+      },
+      {
+        "museum": { "$oid": "bbb000000000000000000003" },
+        "location": {}
+      }
+    ],
+    "tags": ["concetto", "rinascimento", "filosofia", "umanesimo"],
+    "external_links": [
+      { "label": "Wikipedia", "url": "https://it.wikipedia.org/wiki/Umanesimo" }
+    ],
+    "added_by": { "$oid": "aaa000000000000000000001" },
+    "createdAt": { "$date": "2025-01-01T00:00:00Z" },
+    "updatedAt": { "$date": "2025-01-01T00:00:00Z" }
+  },
+  {
+    "_id": { "$oid": "ccc000000000000000000006" },
+    "wikidata_id": "Q126599960",
+    "name": "Scuola di Atene",
+    "is_physical": true,
+    "artwork_author": "Raffaello Sanzio",
+    "description": "Affresco monumentale (1509-1511) che raffigura i maggiori filosofi e scienziati dell'antichità riuniti in un'immaginaria architettura classica.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/49/%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg",
+    "alt_text": "Ampio affresco con decine di figure in una maestosa architettura ad archi; al centro Platone e Aristotele camminano affiancati",
+    "placements": [
+      {
+        "museum": { "$oid": "bbb000000000000000000003" },
+        "location": { "room": "Stanza della Segnatura", "floor": "2", "note": "Parete ovest" }
+      }
+    ],
+    "tags": ["rinascimento", "raffaello", "affresco", "filosofia", "vaticano"],
+    "external_links": [
+      { "label": "Wikipedia", "url": "https://it.wikipedia.org/wiki/Scuola_di_Atene" },
+      { "label": "Musei Vaticani", "url": "https://www.museivaticani.va/content/museivaticani/it/collezioni/musei/stanze-di-raffaello/stanza-della-segnatura/scuola-di-atene.html" }
+    ],
+    "added_by": { "$oid": "aaa000000000000000000001" },
+    "createdAt": { "$date": "2025-01-02T00:00:00Z" },
+    "updatedAt": { "$date": "2025-01-02T00:00:00Z" }
   }
 ]

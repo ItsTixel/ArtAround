@@ -1,57 +1,178 @@
 [
   {
     "_id": { "$oid": "eee000000000000000000001" },
-    "title": "Highlights of the Uffizi",
-    "description": "A curated 45-minute walk through the most iconic works of the Uffizi gallery.",
-    "museum": { "$oid": "bbb000000000000000000001" },
+    "title": "I capolavori degli Uffizi",
+    "description": "Una passeggiata di 45 minuti tra le opere più iconiche della Galleria degli Uffizi, dalla Nascita di Venere all'Annunciazione di Leonardo.",
+    "museum": [{ "$oid": "bbb000000000000000000001" }],
     "author": { "$oid": "aaa000000000000000000001" },
     "base_price": 0,
     "steps": [
       {
         "_id": { "$oid": "fff000000000000000000001" },
         "entity": { "$oid": "ccc000000000000000000001" },
+        "museum": { "$oid": "bbb000000000000000000001" },
         "items": [{ "$oid": "ddd000000000000000000001" }],
-        "logistic_note": "Take the main staircase to floor 2.",
+        "logistic_note": "Sali la scala principale fino al piano 2, poi segui le frecce per la Sala Botticelli.",
+        "intro_note": "Fermati davanti alla Nascita di Venere e lascia che i colori parlino prima di ascoltare la guida.",
         "order": 1
       },
       {
         "_id": { "$oid": "fff000000000000000000002" },
         "entity": { "$oid": "ccc000000000000000000002" },
+        "museum": { "$oid": "bbb000000000000000000001" },
         "items": [{ "$oid": "ddd000000000000000000002" }],
-        "logistic_note": "Continue east along the corridor.",
+        "logistic_note": "Prosegui verso est lungo il corridoio principale fino alla Sala 8.",
+        "intro_note": "Nota il pavimento a scacchiera che Leonardo usa per stabilire la profondità della scena.",
         "order": 2
       },
       {
         "_id": { "$oid": "fff000000000000000000003" },
         "entity": { "$oid": "ccc000000000000000000005" },
+        "museum": { "$oid": "bbb000000000000000000001" },
         "items": [],
-        "logistic_note": "Pause at the window overlooking the Arno for context on Renaissance ideals.",
+        "logistic_note": "Fermati alla finestra panoramica sul corridoio est con vista sull'Arno.",
+        "intro_note": "Questo momento di pausa è dedicato al concetto che lega tutte le opere che hai visto: l'Umanesimo rinascimentale.",
         "order": 3
       }
-    ]
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Sandro_Botticelli_046.jpg",
+    "tags": ["uffizi", "firenze", "rinascimento", "botticelli", "leonardo"],
+    "is_public": true,
+    "estimated_duration_sec": 2700,
+    "createdAt": { "$date": "2025-01-10T00:00:00Z" },
+    "updatedAt": { "$date": "2025-01-10T00:00:00Z" }
   },
   {
     "_id": { "$oid": "eee000000000000000000002" },
-    "title": "Brera Masterpieces",
-    "description": "Explore Brera's crown jewels in under an hour.",
-    "museum": { "$oid": "bbb000000000000000000002" },
+    "title": "Capolavori di Brera",
+    "description": "Esplora i gioielli della corona della Pinacoteca di Brera in meno di un'ora, dalla drammaticità di Mantegna al mistero dell'Ultima Cena.",
+    "museum": [{ "$oid": "bbb000000000000000000002" }],
     "author": { "$oid": "aaa000000000000000000002" },
     "base_price": 1.50,
     "steps": [
       {
         "_id": { "$oid": "fff000000000000000000004" },
         "entity": { "$oid": "ccc000000000000000000003" },
+        "museum": { "$oid": "bbb000000000000000000002" },
         "items": [{ "$oid": "ddd000000000000000000003" }],
-        "logistic_note": "Sala VI is on the first floor, to the left of the entrance.",
+        "logistic_note": "La Sala VI si trova al primo piano, a sinistra dell'ingresso principale.",
+        "intro_note": "Avvicinati lentamente: lo scorcio di Mantegna cambia effetto a seconda della distanza.",
         "order": 1
       },
       {
         "_id": { "$oid": "fff000000000000000000005" },
         "entity": { "$oid": "ccc000000000000000000004" },
+        "museum": { "$oid": "bbb000000000000000000002" },
         "items": [{ "$oid": "ddd000000000000000000004" }],
-        "logistic_note": "Head to Sala XII at the end of the corridor.",
+        "logistic_note": "Raggiungi la Sala XII in fondo al corridoio principale.",
+        "intro_note": "Prima di ascoltare la guida, cerca di individuare i dettagli che differenziano questa copia dall'originale di Leonardo.",
         "order": 2
       }
-    ]
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Mantegna_dead_christ.jpg",
+    "tags": ["brera", "milano", "mantegna", "leonardo", "rinascimento"],
+    "is_public": true,
+    "estimated_duration_sec": 3000,
+    "createdAt": { "$date": "2025-01-11T00:00:00Z" },
+    "updatedAt": { "$date": "2025-01-11T00:00:00Z" }
+  },
+  {
+    "_id": { "$oid": "eee000000000000000000003" },
+    "title": "Raffaello e la filosofia antica",
+    "description": "Visita tematica alla Scuola di Atene nei Musei Vaticani, con un approfondimento sul concetto di Umanesimo rinascimentale.",
+    "museum": [{ "$oid": "bbb000000000000000000003" }],
+    "author": { "$oid": "aaa000000000000000000001" },
+    "base_price": 0,
+    "steps": [
+      {
+        "_id": { "$oid": "fff000000000000000000006" },
+        "entity": { "$oid": "ccc000000000000000000005" },
+        "museum": { "$oid": "bbb000000000000000000003" },
+        "items": [],
+        "logistic_note": "Prima di entrare nella Stanza della Segnatura, leggi questo inquadramento concettuale.",
+        "intro_note": "L'Umanesimo è il filo che lega tutti i personaggi dipinti da Raffaello: vale la pena tenerlo a mente durante la visita.",
+        "order": 1
+      },
+      {
+        "_id": { "$oid": "fff000000000000000000007" },
+        "entity": { "$oid": "ccc000000000000000000006" },
+        "museum": { "$oid": "bbb000000000000000000003" },
+        "items": [
+          { "$oid": "ddd000000000000000000005" },
+          { "$oid": "ddd000000000000000000006" }
+        ],
+        "logistic_note": "Entra nella Stanza della Segnatura: la Scuola di Atene è sulla parete ovest di fronte all'ingresso.",
+        "intro_note": "Prendi il tempo che ti serve: ci sono più di 50 figure. Inizia dal centro e allarga lo sguardo verso i lati.",
+        "order": 2
+      }
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/49/%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg",
+    "tags": ["vaticano", "raffaello", "filosofia", "umanesimo", "rinascimento"],
+    "is_public": true,
+    "estimated_duration_sec": 2400,
+    "createdAt": { "$date": "2025-01-12T00:00:00Z" },
+    "updatedAt": { "$date": "2025-01-12T00:00:00Z" }
+  },
+  {
+    "_id": { "$oid": "eee000000000000000000004" },
+    "title": "Leonardo tra Firenze e Milano",
+    "description": "Visita infra-museale che collega le opere di Leonardo agli Uffizi e la copia dell'Ultima Cena a Brera, esplorando il suo percorso artistico.",
+    "museum": [
+      { "$oid": "bbb000000000000000000001" },
+      { "$oid": "bbb000000000000000000002" }
+    ],
+    "author": { "$oid": "aaa000000000000000000001" },
+    "base_price": 0,
+    "steps": [
+      {
+        "_id": { "$oid": "fff000000000000000000008" },
+        "entity": { "$oid": "ccc000000000000000000002" },
+        "museum": { "$oid": "bbb000000000000000000001" },
+        "items": [{ "$oid": "ddd000000000000000000002" }],
+        "logistic_note": "Inizia dagli Uffizi a Firenze, Sala 8, piano 2.",
+        "intro_note": "L'Annunciazione è il punto di partenza del giovane Leonardo: osserva come stia già sperimentando le proporzioni.",
+        "order": 1
+      },
+      {
+        "_id": { "$oid": "fff000000000000000000009" },
+        "entity": { "$oid": "ccc000000000000000000004" },
+        "museum": { "$oid": "bbb000000000000000000002" },
+        "items": [{ "$oid": "ddd000000000000000000004" }],
+        "logistic_note": "Concludi a Milano alla Pinacoteca di Brera, Sala XII.",
+        "intro_note": "Questa copia dell'Ultima Cena ci mostra dove Leonardo era arrivato vent'anni dopo: confronta la padronanza compositiva con l'Annunciazione.",
+        "order": 2
+      }
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Annunciation_%28Leonardo%29.jpg",
+    "tags": ["leonardo", "firenze", "milano", "infra-museale", "rinascimento"],
+    "is_public": true,
+    "estimated_duration_sec": 5400,
+    "createdAt": { "$date": "2025-01-15T00:00:00Z" },
+    "updatedAt": { "$date": "2025-01-15T00:00:00Z" }
+  },
+  {
+    "_id": { "$oid": "eee000000000000000000005" },
+    "title": "Bozza privata: visita tematica sul sacro",
+    "description": "Percorso in lavorazione su soggetti sacri nei musei italiani.",
+    "museum": [{ "$oid": "bbb000000000000000000002" }],
+    "author": { "$oid": "aaa000000000000000000002" },
+    "base_price": 0,
+    "steps": [
+      {
+        "_id": { "$oid": "fff000000000000000000010" },
+        "entity": { "$oid": "ccc000000000000000000003" },
+        "museum": { "$oid": "bbb000000000000000000002" },
+        "logistic_note": "",
+        "intro_note": "Da completare.",
+        "items": [{ "$oid": "ddd000000000000000000003" }],
+        "order": 1
+      }
+    ],
+    "image_url": null,
+    "tags": ["sacro", "wip"],
+    "is_public": false,
+    "estimated_duration_sec": null,
+    "createdAt": { "$date": "2025-01-20T00:00:00Z" },
+    "updatedAt": { "$date": "2025-01-20T00:00:00Z" }
   }
 ]
