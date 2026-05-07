@@ -1,68 +1,48 @@
 const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
-/*
-Risorse per studiare i concetti che ho usato (pls leggeteli"):
-Validatori : https://mongoosejs.com/docs/validation.html
-Enum : https://www.geeksforgeeks.org/mongodb/how-to-create-and-use-enum-in-mongoose/
-Trim : https://stackoverflow.com/questions/20766360/whats-the-meaning-of-trim-when-use-in-mongoose
-*/
+
 const entitySchema = new Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    // Helps differentiate between actual artwork and concept 
-    is_physical: {
-        type: Boolean,
-        required: true
-    },
-    museum: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Museum",
-        validate: {
-            validator: function (value) {
-                if (!this.is_physical) { return value == null }
-                return true;
-            },
-            message: "An abstract concept can't have a museum"
-        }
-    },
-    /* TODO: Discuss about design of location field
-    Advantages of having it in here : easier navigation in navigator (e.g. check if current room and next room is different istantly)
-    */
+  wikidata_id: { type: String, trim: true },
+  local_id: { type: String, trim: true },
+
+  name: { type: String, required: true, trim: true },
+  is_physical: { type: Boolean, required: true },
+
+  artwork_author: { type: String, trim: true },
+
+  description: { type: String, trim: true, default: '' },
+  image_url: { type: String, trim: true },
+  alt_text: { type: String, trim: true },
+
+  placements: [{
+    museum:   { type: mongoose.Schema.Types.ObjectId, ref: 'Museum', required: true },
     location: {
-        type: {
-            room: {
-                type: String,
-                trim: true
-            },
-            floor: {
-                type: String,
-                trim: true
-            },
-            note: {
-                type: String,
-                trim: true
-            }
-        },
-
-        validate: {
-            validator: function (value) {
-                if (!this.is_physical) { return value == null }
-                return true;
-            },
-            message: "An abstract concept can't have a location"
-        }
-
-    },
-    author: {
-        type: String,
-        trim: true
-    },
+      room:  { type: String, trim: true },
+      floor: { type: String, trim: true },
+      note:  { type: String, trim: true }
+    }
+  }],
 
 
+  tags: { type: [String], default: [] },
 
-})
-const Entity = model('Entity', entitySchema)
+  external_links: [{
+    label: { type: String, trim: true },
+    url: { type: String, trim: true }
+  }],
 
-module.exports = Entity
+  added_by: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+
+}, { timestamps: true });
+
+entitySchema.statics.generateLocalId = async function () {
+  const last = await this.findOne({ local_id: /^AA-/ })
+    .sort({ local_id: -1 })
+    .select('local_id');
+  const n = last ? parseInt(last.local_id.replace('AA-', ''), 10) + 1 : 1;
+  return 'AA-' + String(n).padStart(5, '0');
+};
+
+const Entity = model('Entity', entitySchema);
+
+module.exports = Entity;
