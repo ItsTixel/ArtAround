@@ -3,113 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Esplora le visite — ArtAround</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="/marketplace/styles/tokens.css">
-  <link rel="stylesheet" href="/marketplace/styles/global.css">
-  <link rel="stylesheet" href="/marketplace/styles/index.css">
-
-  <script src="/marketplace/components/navbar/navbar.js"         defer></script>
-  <script src="/marketplace/components/footer/footer.js"         defer></script>
-  <script src="/marketplace/components/visit-card/visit-card.js" defer></script>
-  <script src="/marketplace/components/toast/toast.js"           defer></script>
-  <script src="/marketplace/components/pagination/pagination.js" defer></script>
-  <script src="/marketplace/pages/index.js"                      defer></script>
+  <title>ArtAround — Scegli un Museo</title>
+  <link rel="stylesheet" href="/marketplace/css/base.css">
+  <link rel="stylesheet" href="/marketplace/css/museums.css">
+  <script type="module" src="/marketplace/components/app-navbar.js"></script>
+  <script type="module" src="/marketplace/components/app-footer.js"></script>
+  <script type="module" src="/marketplace/components/museum-card.js"></script>
 </head>
 <body>
-  <a href="#main-content" class="skip-link">Vai al contenuto principale</a>
-  <art-navbar current-page="esplora"></art-navbar>
 
-  <!-- Hero -->
-  <section class="hero" aria-label="Intestazione pagina">
-    <div class="hero-inner">
-      <p class="hero-eyebrow">Marketplace culturale</p>
-      <h1>Esplora le visite disponibili</h1>
-      <p class="hero-sub">Migliaia di guide multimediali per musei di tutto il mondo, create da esperti d'arte e appassionati.</p>
+  <app-navbar></app-navbar>
 
-      <form class="search-bar" role="search" aria-label="Cerca visite nei musei" id="search-form">
-        <label for="search-q">Cerca visita</label>
-        <input type="search" id="search-q" class="search-input" placeholder="Cerca per titolo, tema, autore…" autocomplete="off">
-        <div class="search-sep" aria-hidden="true"></div>
-        <select id="search-museum" class="search-museum" aria-label="Filtra per museo">
-          <option value="">Tutti i musei</option>
-        </select>
-        <button type="submit" class="btn-search">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          Cerca
-        </button>
-      </form>
-    </div>
-  </section>
-
-  <!-- Filter bar -->
-  <div class="filter-bar-wrap">
-    <div class="filter-bar-mobile-row container" style="padding-block: var(--aa-2);">
-      <button class="btn-filter-mobile" id="btn-filter-mobile" aria-expanded="false" aria-controls="filter-sheet" type="button">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
-        Filtra
-        <span class="filter-count-badge" id="filter-count" style="display:none">0</span>
-      </button>
-    </div>
-    <div class="filter-bar container" id="filter-bar" role="group" aria-label="Filtri di ricerca">
-      <div class="filter-group">
-        <span class="filter-label" id="museo-label">Museo:</span>
-        <select class="filter-select" id="f-museo" aria-labelledby="museo-label">
-          <option value="">Tutti</option>
-        </select>
-      </div>
-      <div class="filter-sep" aria-hidden="true"></div>
-      <div class="filter-group">
-        <span class="filter-label">Livello:</span>
-        <div class="filter-chips" role="group" aria-label="Livello linguistico">
-          <button class="filter-chip" aria-pressed="false" data-tone="childish" type="button">Infantile</button>
-          <button class="filter-chip" aria-pressed="false" data-tone="simple"   type="button">Elementare</button>
-          <button class="filter-chip" aria-pressed="false" data-tone="medium"   type="button">Medio</button>
-          <button class="filter-chip" aria-pressed="false" data-tone="technical" type="button">Specialistico</button>
-        </div>
-      </div>
-      <div class="filter-sep" aria-hidden="true"></div>
-      <div class="filter-group">
-        <label class="filter-label" for="f-price">Prezzo:</label>
-        <select class="filter-select" id="f-price">
-          <option value="">Tutti</option>
-          <option value="free">Gratuito</option>
-          <option value="paid">A pagamento</option>
-        </select>
-      </div>
-      <div class="filter-sep" aria-hidden="true"></div>
-      <div class="filter-group filter-ml">
-        <label class="filter-label" for="f-sort">Ordina:</label>
-        <select class="filter-select sort-select" id="f-sort">
-          <option value="title">Titolo A→Z</option>
-          <option value="-title">Titolo Z→A</option>
-          <option value="base_price">Prezzo crescente</option>
-          <option value="-base_price">Prezzo decrescente</option>
-        </select>
-      </div>
-      <button class="filter-reset" id="btn-reset" type="button" aria-label="Azzera tutti i filtri">Azzera filtri</button>
-    </div>
-  </div>
-
-  <!-- Results -->
-  <main id="main-content" tabindex="-1">
-    <section class="results-section">
-      <div class="results-header">
-        <p class="results-count" id="results-count" aria-live="polite" aria-atomic="true">
-          Caricamento visite…
-        </p>
-      </div>
-      <div class="grid" id="cards-grid" aria-label="Visite disponibili"></div>
-      <div class="pagination-area">
-        <art-pagination id="pagination" current="0" total="0" per-page="9"></art-pagination>
-      </div>
+  <main>
+    <section class="hero">
+      <h1>Scopri i Musei</h1>
+      <p>Scegli un museo per esplorare le visite guidate disponibili</p>
     </section>
+
+    <section class="search-section" aria-label="Ricerca e filtri">
+      <div class="search-bar">
+        <input
+          type="search"
+          id="search-input"
+          placeholder="Cerca museo per nome…"
+          aria-label="Cerca museo per nome"
+          autocomplete="off"
+        >
+      </div>
+      <div class="filters">
+        <select id="city-filter" aria-label="Filtra per città">
+          <option value="">Tutte le città</option>
+        </select>
+        <select id="sort-select" aria-label="Ordina per">
+          <option value="name">Nome A→Z</option>
+          <option value="-name">Nome Z→A</option>
+          <option value="address.city">Città A→Z</option>
+        </select>
+      </div>
+      <a class="skip-link" href="/marketplace/pages/visits.html" title="Vedi tutte le visite senza selezionare un museo">
+        Salta selezione →
+      </a>
+    </section>
+
+    <div class="museums-container">
+      <div class="results-header">
+        <span class="results-count" id="results-count" aria-live="polite"></span>
+      </div>
+      <div class="museums-grid" id="museums-grid" role="list" aria-label="Lista musei"></div>
+      <div class="pagination" id="pagination" aria-label="Navigazione pagine"></div>
+    </div>
   </main>
 
-  <art-footer></art-footer>
+  <app-footer></app-footer>
+
+  <script src="/marketplace/js/museums.js"></script>
 </body>
 </html>
