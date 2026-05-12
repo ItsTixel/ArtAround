@@ -10,16 +10,18 @@ class AppFooter extends HTMLElement {
         :host { display: block; }
 
         footer {
-          background: #2d3250;
-          color: rgba(255, 255, 255, 0.6);
-          text-align: center;
-          padding: 1.5rem 2rem;
-          font-size: 0.85rem;
+          background: #2c3a4a;
+          border-top: 1px solid rgba(255, 255, 255, 0.06);
+          padding: 2rem 3rem;
+          font-family: var(--font-sans, 'Inter', system-ui, sans-serif);
+          font-size: 0.72rem;
+          letter-spacing: 0.05em;
+          color: rgba(240, 237, 232, 0.35);
           margin-top: auto;
         }
 
         .footer-inner {
-          max-width: 1280px;
+          max-width: 1360px;
           margin: 0 auto;
           display: flex;
           align-items: center;
@@ -29,13 +31,17 @@ class AppFooter extends HTMLElement {
         }
 
         .brand {
-          font-weight: 700;
-          color: #c9a227;
-          font-size: 0.95rem;
+          font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+          font-style: italic;
+          font-weight: 400;
+          font-size: 1rem;
+          letter-spacing: 0.02em;
+          color: #9e7a46;
         }
 
         @media (max-width: 480px) {
-          .footer-inner { flex-direction: column; text-align: center; }
+          footer { padding: 1.75rem 1.5rem; }
+          .footer-inner { flex-direction: column; text-align: center; gap: 0.75rem; }
         }
       </style>
       <footer>

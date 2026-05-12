@@ -12,63 +12,68 @@ class AppNavbar extends HTMLElement {
         :host { display: block; }
 
         nav {
-          background: #2d3250;
-          height: 64px;
-          padding: 0 2rem;
+          background: #2c3a4a;
+          height: 72px;
+          padding: 0 3rem;
           display: flex;
           align-items: center;
           justify-content: space-between;
           position: sticky;
           top: 0;
           z-index: 100;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
 
         .logo {
-          font-size: 1.4rem;
-          font-weight: 800;
+          font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+          font-size: 1.3rem;
+          font-weight: 400;
+          font-style: italic;
           text-decoration: none;
-          color: #c9a227;
-          letter-spacing: -0.5px;
+          color: #f0ede8;
+          letter-spacing: 0.02em;
         }
 
         .logo span {
-          color: white;
-          font-weight: 400;
+          color: #9e7a46;
+          font-style: normal;
         }
 
         ul {
           list-style: none;
           display: flex;
           gap: 0.25rem;
+          align-items: center;
         }
 
         a {
-          color: rgba(255, 255, 255, 0.75);
+          font-family: var(--font-sans, 'Inter', system-ui, sans-serif);
+          color: rgba(240, 237, 232, 0.5);
           text-decoration: none;
-          font-size: 0.9rem;
-          padding: 0.4rem 0.85rem;
-          border-radius: 6px;
-          transition: color 0.15s, background 0.15s;
+          font-size: 0.7rem;
+          font-weight: 500;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          padding: 0.4rem 0.9rem;
+          transition: color 0.4s ease;
         }
 
         a:hover {
-          color: white;
-          background: rgba(255, 255, 255, 0.08);
+          color: #f0ede8;
         }
 
         a.active {
-          color: #c9a227;
+          color: #9e7a46;
         }
 
         @media (max-width: 480px) {
-          nav { padding: 0 1rem; height: 56px; }
-          .logo { font-size: 1.2rem; }
-          a { font-size: 0.8rem; padding: 0.35rem 0.6rem; }
+          nav { padding: 0 1.5rem; height: 60px; }
+          .logo { font-size: 1.1rem; }
+          a { font-size: 0.65rem; padding: 0.35rem 0.6rem; }
         }
       </style>
       <nav>
-        <a class="logo" href="/marketplace">Art<span>Around</span></a>
+        <a class="logo" href="/marketplace"><span>Art</span>Around</a>
         <ul>
           <li><a href="/marketplace" class="${currentPath === '/marketplace' || currentPath.endsWith('index.html') ? 'active' : ''}">Musei</a></li>
           <li><a href="/marketplace/pages/visits.html" class="${currentPath.endsWith('visits.html') ? 'active' : ''}">Tutte le visite</a></li>

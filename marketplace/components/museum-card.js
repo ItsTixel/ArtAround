@@ -37,119 +37,111 @@ class MuseumCard extends HTMLElement {
         :host { display: block; height: 100%; }
 
         .card {
-          background: #fff;
-          border-radius: 12px;
-          overflow: hidden;
-          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+          background: #ffffff;
+          border: 1px solid #e8e6e1;
+          border-top: 2px solid #9e7a46;
           display: flex;
           flex-direction: column;
           height: 100%;
-          transition: transform 0.2s ease, box-shadow 0.2s ease;
           cursor: pointer;
+          transition: box-shadow 0.4s ease, transform 0.4s ease;
         }
 
         .card:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 10px 28px rgba(0, 0, 0, 0.13);
+          transform: translateY(-4px);
+          box-shadow: 0 16px 48px rgba(0, 0, 0, 0.09);
         }
 
         .card-banner {
-          height: 148px;
-          background: linear-gradient(135deg, #2d3250 0%, #424769 60%, #2d3250 100%);
+          height: 168px;
+          background: #f5f2ec;
+          border-bottom: 1px solid #e8e6e1;
           display: flex;
           align-items: center;
           justify-content: center;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .card-banner::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background: repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 20px,
-            rgba(255,255,255,0.02) 20px,
-            rgba(255,255,255,0.02) 40px
-          );
         }
 
         .museum-icon {
-          width: 56px;
-          height: 56px;
-          fill: rgba(255, 255, 255, 0.25);
-          position: relative;
-          z-index: 1;
+          width: 44px;
+          height: 44px;
+          fill: #c4b49a;
+          transition: fill 0.4s ease;
+        }
+
+        .card:hover .museum-icon {
+          fill: #9e7a46;
         }
 
         .card-body {
-          padding: 1.2rem 1.25rem 1.25rem;
+          padding: 1.5rem 1.75rem 1.75rem;
           flex: 1;
           display: flex;
           flex-direction: column;
         }
 
         h2 {
-          font-size: 1.05rem;
-          font-weight: 700;
-          color: #1a1a1a;
-          line-height: 1.35;
+          font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+          font-size: 1.1rem;
+          font-weight: 600;
+          color: #1c1917;
+          line-height: 1.4;
           margin-bottom: 0.5rem;
         }
 
         .location {
           display: flex;
           align-items: center;
-          gap: 0.3rem;
-          color: #777;
-          font-size: 0.875rem;
-          margin-bottom: 1.1rem;
+          gap: 0.35rem;
+          font-family: var(--font-sans, 'Inter', system-ui, sans-serif);
+          font-size: 0.775rem;
+          letter-spacing: 0.03em;
+          color: #78716c;
           flex: 1;
+          padding-bottom: 1.5rem;
         }
 
         .pin-icon {
-          width: 13px;
-          height: 13px;
-          fill: #c9a227;
+          width: 11px;
+          height: 11px;
+          fill: #9e7a46;
           flex-shrink: 0;
         }
 
         .btn {
-          display: block;
-          text-align: center;
-          background: #2d3250;
-          color: white;
+          align-self: flex-start;
+          font-family: var(--font-sans, 'Inter', system-ui, sans-serif);
+          font-size: 0.7rem;
+          font-weight: 500;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: #1c1917;
           text-decoration: none;
-          padding: 0.6rem 1rem;
-          border-radius: 8px;
-          font-size: 0.875rem;
-          font-weight: 600;
-          transition: background 0.2s ease, color 0.2s ease;
+          padding-bottom: 2px;
+          border-bottom: 1px solid #1c1917;
+          transition: color 0.4s ease, border-color 0.4s ease;
         }
 
         .btn:hover {
-          background: #c9a227;
-          color: #1a1a1a;
+          color: #9e7a46;
+          border-color: #9e7a46;
         }
       </style>
 
       <article class="card">
         <div class="card-banner">
-          <svg class="museum-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg class="museum-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M22 11V9L12 2 2 9v2h2v9h5v-5h6v5h5v-9h2z"/>
           </svg>
         </div>
         <div class="card-body">
           <h2>${this._escape(name)}</h2>
           <p class="location">
-            <svg class="pin-icon" viewBox="0 0 24 24">
+            <svg class="pin-icon" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/>
             </svg>
             ${this._escape(location) || '&mdash;'}
           </p>
-          <a class="btn" href="${visitsUrl}">Vedi visite &rarr;</a>
+          <a class="btn" href="${visitsUrl}">Esplora le visite</a>
         </div>
       </article>
     `;
