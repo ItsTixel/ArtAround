@@ -72,7 +72,7 @@ function renderPagination(totalItems, pageSize, page) {
 
 function updateResultsCount(total) {
   const el = document.getElementById('results-count');
-  if (el) el.textContent = `${total} museo${total !== 1 ? 'i' : ''} trovato${total !== 1 ? 'i' : ''}`;
+  if (el) el.textContent = `${total} muse${total !== 1 ? 'i' : 'o'} trovat${total !== 1 ? 'i' : 'o'}`;
 }
 
 async function load(page = 0) {
