@@ -1,88 +1,90 @@
-const API = '/api/visits';
-const PAGE_SIZE = 12;
+/* ============================================================
+ *  visits.js — lista visite con filtraggio e paginazione server-side
+ *  Stessa struttura di museums.js: ogni cambio filtro = nuova fetch.
+ * ============================================================ */
 
-const urlParams = new URLSearchParams(window.location.search);
-const museumId = urlParams.get('museum') || '';
-const museumName = urlParams.get('museumName') || '';
+const API_VISITS  = '/api/visits';
+const API_MUSEUMS = '/api/museums';
+const PAGE_SIZE   = 12;
 
 const state = {
-  page: 0,
-  tags: '',
-  sort: 'title',
-  total: 0,
+  page:        0,
+  sort:        'recommended',
+  title:       '',
+  museumIds:   [],
+  price:       'all',
+  durationMax: null,   /* null = nessun filtro; altrimenti minuti */
+  tags:        [],
+  total:       0,
 };
 
-let tagsPopulated = false;
+let allMuseums     = [];
+let maxDurationMin = 240;
+let heroStatsSet   = false;
 
-function initHero() {
-  if (!museumName) return;
-  const titleEl = document.getElementById('hero-title');
-  const subtitleEl = document.getElementById('hero-subtitle');
-  if (titleEl) titleEl.textContent = museumName;
-  if (subtitleEl) subtitleEl.textContent = 'Visite guidate disponibili in questo museo';
-  document.title = `ArtAround — ${museumName}`;
-}
-
-function initMuseumChip() {
-  if (!museumId) return;
-  const wrapper = document.getElementById('museum-chip-wrapper');
-  if (!wrapper) return;
-  const chip = document.createElement('div');
-  chip.className = 'museum-chip';
-  const label = museumName || 'Museo selezionato';
-  chip.innerHTML = `
-    <svg width="11" height="11" viewBox="0 0 24 24" fill="#9e7a46" aria-hidden="true">
-      <path d="M22 11V9L12 2 2 9v2h2v9h5v-5h6v5h5v-9h2z"/>
-    </svg>
-    <span>${label.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</span>
-    <a href="/marketplace/pages/visits.html" class="chip-remove" aria-label="Rimuovi filtro museo">✕</a>
-  `;
-  wrapper.appendChild(chip);
-}
-
+/* ---- Costruisce la query e fetcha dal backend ---- */
 async function fetchVisits() {
   const params = new URLSearchParams({
     pageSize: PAGE_SIZE,
-    page: state.page,
-    sort: state.sort,
+    page:     state.page,
+    sort:     state.sort,
   });
-  if (museumId) params.set('museum', museumId);
-  if (state.tags) params.set('tags', state.tags);
 
-  const res = await fetch(`${API}?${params}`);
+  if (state.title)            params.set('title',       state.title);
+  if (state.museumIds.length) params.set('museum',      state.museumIds.join(','));
+  if (state.price !== 'all')  params.set('price',       state.price);
+  if (state.durationMax)      params.set('durationMax', state.durationMax);
+  if (state.tags.length)      params.set('tags',        state.tags.join(','));
+
+  const res = await fetch(`${API_VISITS}?${params}`);
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return res.json();
 }
 
+/* ---- Normalizza un oggetto visita API → formato usato dalla card ---- */
+function normalizeVisit(v) {
+  const museumDetails = (v.museum || []).map(m => {
+    const obj = (typeof m === 'object' && m !== null) ? m : {};
+    return {
+      id:    obj._id  || m,
+      name:  obj.name || '',
+      short: obj.name || '',
+      city:  obj.address?.city || '',
+    };
+  });
+  return {
+    id:            v._id,
+    title:         v.title                  || '',
+    description:   v.description            || '',
+    durationSec:   v.estimated_duration_sec || 0,
+    steps:         v.steps?.length          || 0,
+    basePrice:     v.base_price             || 0,
+    tags:          v.tags                   || [],
+    museums:       museumDetails.map(m => m.id),
+    museumDetails,
+    placeholderTag: v.title || `Visita ${v._id}`,
+  };
+}
+
+/* ---- Render griglia card ---- */
 function renderGrid(visits) {
   const grid = document.getElementById('visits-grid');
   grid.innerHTML = '';
-
   if (visits.length === 0) {
-    grid.innerHTML = '<p class="no-results">Nessuna visita trovata.</p>';
+    grid.innerHTML = '<p class="empty">Nessuna visita trovata. Prova a rimuovere qualche filtro.</p>';
     return;
   }
-
-  visits.forEach((visit) => {
+  visits.forEach(v => {
     const card = document.createElement('visit-card');
-    card.setAttribute('visit-id', visit._id);
-    card.setAttribute('title', visit.title || '');
-    card.setAttribute('description', visit.description || '');
-    card.setAttribute('base-price', visit.base_price ?? 0);
-    card.setAttribute('duration', visit.estimated_duration_sec ?? 0);
-    card.setAttribute('tags', (visit.tags || []).join(','));
-    card.setAttribute('image-url', visit.image_url || '');
-    const names = (visit.museum || [])
-      .map(m => (typeof m === 'object' && m !== null ? m.name : '') || '')
-      .filter(Boolean)
-      .join(', ');
-    card.setAttribute('museum-name', names);
+    card.data = normalizeVisit(v);
     grid.appendChild(card);
   });
 }
 
+/* ---- Paginazione ---- */
 function renderPagination(totalItems, pageSize, page) {
   const container = document.getElementById('pagination');
+  if (!container) return;
   container.innerHTML = '';
   const totalPages = Math.ceil(totalItems / pageSize);
   if (totalPages <= 1) return;
@@ -107,27 +109,22 @@ function renderPagination(totalItems, pageSize, page) {
   }
 }
 
+/* ---- Contatori ---- */
 function updateResultsCount(total) {
   const el = document.getElementById('results-count');
-  if (el) el.textContent = `${total} visit${total !== 1 ? 'e' : 'a'} trovat${total !== 1 ? 'e' : 'a'}`;
+  if (!el) return;
+  const s = total === 1;
+  el.textContent = `${total} visit${s ? 'a' : 'e'} disponibil${s ? 'e' : 'i'}`;
 }
 
-function populateTagsDropdown(visits) {
-  if (tagsPopulated) return;
-  const allTags = [...new Set(visits.flatMap(v => v.tags || []))].sort();
-  if (allTags.length === 0) return;
-  const select = document.getElementById('tags-filter');
-  if (!select) return;
-  while (select.options.length > 1) select.remove(1);
-  allTags.forEach(tag => {
-    const opt = document.createElement('option');
-    opt.value = tag;
-    opt.textContent = tag;
-    select.appendChild(opt);
-  });
-  tagsPopulated = true;
+function updateHeroStats(total) {
+  if (heroStatsSet) return;
+  const el = document.getElementById('hero-total');
+  if (el) el.textContent = `${total} percorsi · ${allMuseums.length} musei`;
+  heroStatsSet = true;
 }
 
+/* ---- Caricamento pagina ---- */
 async function load(page = 0) {
   state.page = page;
   const grid = document.getElementById('visits-grid');
@@ -139,30 +136,110 @@ async function load(page = 0) {
     renderGrid(data);
     renderPagination(totalItems, pageSize, page);
     updateResultsCount(totalItems);
-    populateTagsDropdown(data);
+    updateHeroStats(totalItems);
   } catch (e) {
-    grid.innerHTML = '<p class="error-message">Errore nel caricamento delle visite. Riprova più tardi.</p>';
+    grid.innerHTML = '<p class="empty">Errore nel caricamento. Riprova più tardi.</p>';
     console.error('Failed to fetch visits:', e);
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  initHero();
-  initMuseumChip();
+/* ---- Facets per la sidebar (fetch separata, senza filtri attivi) ---- */
+async function loadFacets() {
+  const res = await fetch(`${API_VISITS}?pageSize=100`);
+  if (!res.ok) return { tags: [], maxDurationMin: 240 };
+  const { data } = await res.json();
 
-  const tagsFilter = document.getElementById('tags-filter');
-  const sortSelect = document.getElementById('sort-select');
+  const tagCounts = {};
+  data.forEach(v => {
+    (v.tags || []).forEach(t => { tagCounts[t] = (tagCounts[t] || 0) + 1; });
+  });
+  const tags = Object.entries(tagCounts)
+    .map(([value, count]) => ({ value, count }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 12);
 
-  tagsFilter.addEventListener('change', (e) => {
-    state.tags = e.target.value;
-    tagsPopulated = false;
-    load(0);
+  const durationsMin = data.map(v => (v.estimated_duration_sec || 0) / 60).filter(d => d > 0);
+  const maxRaw = durationsMin.length ? Math.max(...durationsMin) : 60;
+  maxDurationMin = Math.max(60, Math.ceil(maxRaw / 30) * 30);
+
+  return { tags, maxDurationMin };
+}
+
+/* ============================================================
+ *  Bootstrap
+ * ============================================================ */
+document.addEventListener('DOMContentLoaded', async () => {
+  const grid = document.getElementById('visits-grid');
+  if (grid) grid.innerHTML = '<p class="loading"></p>';
+
+  try {
+    const [musRes, facets] = await Promise.all([
+      fetch(`${API_MUSEUMS}?pageSize=100&sort=name`).then(r => r.json()),
+      loadFacets(),
+    ]);
+    allMuseums     = musRes.data || [];
+    maxDurationMin = facets.maxDurationMin;
+
+    const sidebar = document.querySelector('filter-sidebar');
+    sidebar.data = {
+      museums: allMuseums.map(m => ({
+        id:    m._id,
+        name:  m.name,
+        short: m.name,
+        city:  m.address?.city || '',
+      })),
+      tones:          [],
+      tags:           facets.tags,
+      maxDurationMin,
+    };
+
+    sidebar.addEventListener('filters-change', (e) => {
+      const { museumIds, price, durationMax, tags } = e.detail;
+      state.museumIds   = museumIds || [];
+      state.price       = price     || 'all';
+      state.durationMax = (durationMax && durationMax < maxDurationMin) ? durationMax : null;
+      state.tags        = tags      || [];
+      load(0);
+    });
+  } catch (e) {
+    console.error('Errore nel caricamento della sidebar:', e);
+  }
+
+  /* Ricerca testuale → param ?title= al backend */
+  let searchTimer;
+  document.getElementById('search-visit').addEventListener('input', (e) => {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => {
+      state.title = e.target.value.trim();
+      load(0);
+    }, 320);
   });
 
-  sortSelect.addEventListener('change', (e) => {
+  /* Ordinamento → param ?sort= al backend */
+  document.getElementById('sort').addEventListener('change', (e) => {
     state.sort = e.target.value;
     load(0);
   });
+
+  /* URL param ?museum=<ObjectId> → pre-seleziona il museo nella sidebar */
+  const params   = new URLSearchParams(location.search);
+  const urlMusId = params.get('museum');
+  if (urlMusId && allMuseums.length) {
+    let matchedId = allMuseums.find(m => m._id === urlMusId)?._id || null;
+    if (!matchedId) {
+      const hint = (params.get('museumName') || '').toLowerCase();
+      if (hint) {
+        const found = allMuseums.find(m =>
+          m.name.toLowerCase().includes(hint) || hint.includes(m.name.toLowerCase())
+        );
+        if (found) matchedId = found._id;
+      }
+    }
+    if (matchedId) {
+      document.querySelector('filter-sidebar').setMuseumSelection([matchedId]);
+      return;
+    }
+  }
 
   load(0);
 });
