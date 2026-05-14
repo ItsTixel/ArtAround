@@ -1,58 +1,59 @@
-/* ── Hero ── */
-.hero {
+/* ============================================================
+ *  museums.css — Pagina "Scopri i Musei"
+ *  Hero compatta + barra filtri sticky + griglia musei.
+ *  Si appoggia ai token di base.css.
+ * ============================================================ */
+
+/* ── Page hero ────────────────────────────────────────────── */
+.page-hero {
   background: #f0ebe2;
   color: var(--color-text);
-  text-align: center;
-  padding: 6.5rem 2rem 5.5rem;
+  padding: 4.25rem 3rem 3.5rem;
   position: relative;
   border-bottom: 1px solid var(--color-border);
 }
-
-.hero::before {
+.page-hero::before {
   content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  position: absolute; top: 0; left: 0; right: 0;
   height: 3px;
   background: var(--color-accent);
 }
 
-.hero::after {
-  content: '';
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 36px;
-  height: 1px;
-  background: var(--color-accent);
-  opacity: 0.6;
+.page-hero-inner {
+  max-width: 1480px;
+  margin: 0 auto;
+  text-align: center;
 }
 
-.hero h1 {
-  font-family: var(--font-serif);
-  font-size: 3.25rem;
-  font-weight: 400;
-  font-style: italic;
-  letter-spacing: 0.01em;
-  line-height: 1.15;
-  color: var(--color-text);
-  margin-bottom: 1.25rem;
-}
-
-.hero p {
+.page-hero .kicker {
   font-family: var(--font-sans);
-  font-size: 0.72rem;
-  font-weight: 400;
-  letter-spacing: 0.16em;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-text-muted);
-  max-width: 360px;
-  margin: 0 auto;
+  margin-bottom: 0.75rem;
 }
 
-/* ── Search & Filters ── */
+.page-hero h1 {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.15;
+  letter-spacing: 0.005em;
+  color: var(--color-text);
+  margin: 0 0 1rem;
+}
+
+.page-hero .hero-sub {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+}
+
+/* ── Search & Filters (sticky bar) ───────────────────────── */
 .search-section {
   background: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
@@ -74,12 +75,12 @@
 
 .search-bar input {
   width: 100%;
-  padding: 0.45rem 0.5rem 0.45rem 1.6rem;
+  padding: 0.4rem 0.5rem 0.4rem 1.6rem;
   border: none;
   border-bottom: 1px solid var(--color-border);
   background: transparent;
   font-family: var(--font-sans);
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   color: var(--color-text);
   outline: none;
   transition: border-color var(--transition);
@@ -90,19 +91,15 @@
   font-style: italic;
 }
 
-.search-bar input:focus {
-  border-bottom-color: var(--color-accent);
-}
+.search-bar input:focus { border-bottom-color: var(--color-accent); }
 
 .search-bar::before {
   content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 13px;
-  height: 13px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2378716c'%3E%3Cpath d='M21 19l-4.35-4.35A7.5 7.5 0 1 0 15 16.65L19.35 21 21 19zM10.5 16a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z'/%3E%3C/svg%3E") center/contain no-repeat;
+  position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  width: 13px; height: 13px;
+  background: var(--color-text-muted);
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M21 19l-4.35-4.35A7.5 7.5 0 1 0 15 16.65L19.35 21 21 19zM10.5 16a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z'/></svg>") center/contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M21 19l-4.35-4.35A7.5 7.5 0 1 0 15 16.65L19.35 21 21 19zM10.5 16a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z'/></svg>") center/contain no-repeat;
   pointer-events: none;
 }
 
@@ -113,12 +110,12 @@
 }
 
 .filters select {
-  padding: 0.45rem 1.5rem 0.45rem 0;
+  padding: 0.35rem 1.5rem 0.35rem 0;
   border: none;
   border-bottom: 1px solid var(--color-border);
   background: transparent;
   font-family: var(--font-sans);
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   letter-spacing: 0.02em;
   color: var(--color-text);
   cursor: pointer;
@@ -131,9 +128,7 @@
   transition: border-color var(--transition);
 }
 
-.filters select:focus {
-  border-bottom-color: var(--color-accent);
-}
+.filters select:focus { border-bottom-color: var(--color-accent); }
 
 .skip-link {
   margin-left: auto;
@@ -154,37 +149,36 @@
   border-color: var(--color-accent);
 }
 
-/* ── Grid Container ── */
+/* ── Grid Container ───────────────────────────────────────── */
 .museums-container {
-  max-width: 1360px;
+  max-width: 1480px;
   margin: 0 auto;
-  padding: 4rem 3rem 5rem;
+  padding: 2.75rem 3rem 5rem;
 }
 
 .results-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 3rem;
-  padding-bottom: 1rem;
+  margin-bottom: 2.25rem;
+  padding-bottom: 1.5rem;
   border-bottom: 1px solid var(--color-border);
 }
 
 .results-count {
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
   color: var(--color-text-muted);
 }
 
 .museums-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1.75rem;
 }
 
-/* ── States ── */
+/* ── States ───────────────────────────────────────────────── */
 .loading,
 .no-results,
 .error-message {
@@ -197,15 +191,12 @@
   color: var(--color-text-muted);
 }
 
-.error-message {
-  color: #a03020;
-}
+.error-message { color: #a03020; }
 
 .loading::before {
   content: '';
   display: block;
-  width: 24px;
-  height: 24px;
+  width: 24px; height: 24px;
   border: 1px solid var(--color-border);
   border-top-color: var(--color-accent);
   border-radius: 50%;
@@ -213,11 +204,9 @@
   margin: 0 auto 2rem;
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
+@keyframes spin { to { transform: rotate(360deg); } }
 
-/* ── Pagination ── */
+/* ── Pagination ───────────────────────────────────────────── */
 .pagination {
   display: flex;
   align-items: center;
@@ -246,10 +235,7 @@
   border-color: var(--color-primary);
 }
 
-.pagination button:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-}
+.pagination button:disabled { opacity: 0.3; cursor: not-allowed; }
 
 .pagination .page-info {
   font-size: 0.75rem;
@@ -258,12 +244,12 @@
   padding: 0 0.5rem;
 }
 
-/* ── Responsive ── */
+/* ── Responsive ───────────────────────────────────────────── */
 @media (max-width: 640px) {
-  .hero { padding: 4.5rem 1.5rem 4rem; }
-  .hero h1 { font-size: 2.2rem; }
+  .page-hero { padding: 3.25rem 1.5rem 2.5rem; }
+  .page-hero h1 { font-size: 2.2rem; }
   .search-section { top: 60px; padding: 1rem 1.5rem; gap: 1.25rem; }
   .skip-link { margin-left: 0; }
-  .museums-container { padding: 2.5rem 1.5rem 4rem; }
+  .museums-container { padding: 2rem 1.5rem 4rem; }
   .museums-grid { grid-template-columns: 1fr; gap: 1.25rem; }
 }

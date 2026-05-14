@@ -1,7 +1,7 @@
 const API = '/api/museums';
 const PAGE_SIZE = 12;
 
-let state = {
+const state = {
   page: 0,
   name: '',
   city: '',
@@ -10,6 +10,7 @@ let state = {
 };
 
 let searchTimer = null;
+let heroStatsSet = false;
 
 async function fetchMuseums() {
   const params = new URLSearchParams({
@@ -75,6 +76,17 @@ function updateResultsCount(total) {
   if (el) el.textContent = `${total} muse${total !== 1 ? 'i' : 'o'} trovat${total !== 1 ? 'i' : 'o'}`;
 }
 
+/* Aggiorna il contatore nella hero solo al primo caricamento (nessun filtro attivo) */
+function updateHeroStats(total) {
+  if (heroStatsSet) return;
+  const el = document.getElementById('hero-total');
+  if (el) {
+    const s = total === 1;
+    el.textContent = `${total} muse${s ? 'o' : 'i'} disponibil${s ? 'e' : 'i'}`;
+  }
+  heroStatsSet = true;
+}
+
 async function load(page = 0) {
   state.page = page;
   const grid = document.getElementById('museums-grid');
@@ -86,6 +98,7 @@ async function load(page = 0) {
     renderGrid(data);
     renderPagination(totalItems, pageSize, page);
     updateResultsCount(totalItems);
+    updateHeroStats(totalItems);
   } catch (e) {
     grid.innerHTML = '<p class="error-message">Errore nel caricamento dei musei. Riprova più tardi.</p>';
     console.error('Failed to fetch museums:', e);
@@ -111,8 +124,8 @@ async function populateCityDropdown() {
 
 document.addEventListener('DOMContentLoaded', () => {
   const searchInput = document.getElementById('search-input');
-  const cityFilter = document.getElementById('city-filter');
-  const sortSelect = document.getElementById('sort-select');
+  const cityFilter  = document.getElementById('city-filter');
+  const sortSelect  = document.getElementById('sort-select');
 
   searchInput.addEventListener('input', (e) => {
     clearTimeout(searchTimer);

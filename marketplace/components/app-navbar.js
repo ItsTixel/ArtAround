@@ -5,7 +5,9 @@ class AppNavbar extends HTMLElement {
   }
 
   connectedCallback() {
-    const currentPath = window.location.pathname;
+    const p = window.location.pathname;
+    const isMuseums = p === '/marketplace' || p.endsWith('/marketplace/') || p.endsWith('index.html');
+    const isVisits  = p.endsWith('visits.html');
 
     this.shadowRoot.innerHTML = `
       <style>
@@ -58,13 +60,8 @@ class AppNavbar extends HTMLElement {
           transition: color 0.4s ease;
         }
 
-        a:hover {
-          color: #f0ede8;
-        }
-
-        a.active {
-          color: #9e7a46;
-        }
+        a:hover { color: #f0ede8; }
+        a.active { color: #9e7a46; }
 
         @media (max-width: 480px) {
           nav { padding: 0 1.5rem; height: 60px; }
@@ -75,8 +72,8 @@ class AppNavbar extends HTMLElement {
       <nav>
         <a class="logo" href="/marketplace"><span>Art</span>Around</a>
         <ul>
-          <li><a href="/marketplace" class="${currentPath === '/marketplace' || currentPath.endsWith('index.html') ? 'active' : ''}">Musei</a></li>
-          <li><a href="/marketplace/pages/visits.html" class="${currentPath.endsWith('visits.html') ? 'active' : ''}">Tutte le visite</a></li>
+          <li><a href="/marketplace" class="${isMuseums ? 'active' : ''}">Musei</a></li>
+          <li><a href="/marketplace/pages/visits.html" class="${isVisits ? 'active' : ''}">Tutte le visite</a></li>
         </ul>
       </nav>
     `;
