@@ -104,6 +104,39 @@ class FilterSidebar extends HTMLElement {
       .filter(m => !q || (m.name + ' ' + (m.short || '') + ' ' + m.city).toLowerCase().includes(q));
   }
 
+  _museumListsHTML() {
+    const s = this._state;
+    const availableMuseums = this._museumList();
+    const selectedMuseums = this._selectedMuseums();
+    return `
+      <div class="selected" id="selected">
+        ${selectedMuseums.map(m => `
+          <span class="pill">
+            ${this._esc(m.short || m.name)}
+            <button type="button" class="x" data-remove="${this._esc(m.id)}" aria-label="Rimuovi ${this._esc(m.short || m.name)}">×</button>
+          </span>
+        `).join('')}
+      </div>
+      ${availableMuseums.length ? `
+        <div class="options" id="options">
+          ${availableMuseums.map(m => `
+            <button type="button" class="option" data-add="${this._esc(m.id)}">
+              <span>
+                <span class="opt-main">${this._esc(m.name)}</span>
+                <span class="opt-sub"> · ${this._esc(m.city)}</span>
+              </span>
+              <span class="plus" aria-hidden="true">+</span>
+            </button>
+          `).join('')}
+        </div>
+      ` : (s.museumQuery
+          ? `<p class="no-options">Nessun museo corrisponde a "${this._esc(s.museumQuery)}".</p>`
+          : (selectedMuseums.length === this._data.museums.length && this._data.museums.length > 0
+              ? `<p class="no-options">Hai selezionato tutti i musei.</p>`
+              : ''))}
+    `;
+  }
+
   _selectedMuseums() {
     return this._data.museums.filter(m => this._state.museumIds.has(m.id));
   }
@@ -111,8 +144,6 @@ class FilterSidebar extends HTMLElement {
   _render() {
     const { tones, tags, maxDurationMin } = this._data;
     const s = this._state;
-    const availableMuseums = this._museumList();
-    const selectedMuseums = this._selectedMuseums();
     const hasTones = tones && tones.length > 0;
 
     this.shadowRoot.innerHTML = `
@@ -379,32 +410,9 @@ class FilterSidebar extends HTMLElement {
             <input id="museum-q" type="search" placeholder="Cerca un museo…" autocomplete="off" value="${this._esc(s.museumQuery)}">
           </label>
 
-          <div class="selected" id="selected">
-            ${selectedMuseums.map(m => `
-              <span class="pill">
-                ${this._esc(m.short || m.name)}
-                <button type="button" class="x" data-remove="${this._esc(m.id)}" aria-label="Rimuovi ${this._esc(m.short || m.name)}">×</button>
-              </span>
-            `).join('')}
+          <div id="museum-lists">
+            ${this._museumListsHTML()}
           </div>
-
-          ${availableMuseums.length ? `
-            <div class="options" id="options">
-              ${availableMuseums.map(m => `
-                <button type="button" class="option" data-add="${this._esc(m.id)}">
-                  <span>
-                    <span class="opt-main">${this._esc(m.name)}</span>
-                    <span class="opt-sub"> · ${this._esc(m.city)}</span>
-                  </span>
-                  <span class="plus" aria-hidden="true">+</span>
-                </button>
-              `).join('')}
-            </div>
-          ` : (s.museumQuery
-              ? `<p class="no-options">Nessun museo corrisponde a "${this._esc(s.museumQuery)}".</p>`
-              : (selectedMuseums.length === this._data.museums.length && this._data.museums.length > 0
-                  ? `<p class="no-options">Hai selezionato tutti i musei.</p>`
-                  : ''))}
         </div>
 
         <!-- Prezzo -->
@@ -459,39 +467,36 @@ class FilterSidebar extends HTMLElement {
 
     /* Museum search */
     const museumQ = root.getElementById('museum-q');
-    let museumTimer;
+    clearTimeout(this._museumTimer);
     museumQ.addEventListener('input', (e) => {
-      clearTimeout(museumTimer);
-      museumTimer = setTimeout(() => {
-        this._state.museumQuery = e.target.value;
+      const value = e.target.value;
+      clearTimeout(this._museumTimer);
+      this._museumTimer = setTimeout(() => {
+        this._state.museumQuery = value;
         this._renderMuseumLists();
       }, 120);
     });
 
-    /* Add museum */
-    const options = root.getElementById('options');
-    if (options) {
-      options.addEventListener('click', (e) => {
-        const btn = e.target.closest('[data-add]');
-        if (!btn) return;
-        this._state.museumIds.add(btn.dataset.add);
-        this._state.museumQuery = '';
-        this._render();
-        this._emit();
-        const next = this.shadowRoot.getElementById('museum-q');
-        if (next) next.focus();
-      });
-    }
-
-    /* Remove museum */
-    const selected = root.getElementById('selected');
-    if (selected) {
-      selected.addEventListener('click', (e) => {
-        const btn = e.target.closest('[data-remove]');
-        if (!btn) return;
-        this._state.museumIds.delete(btn.dataset.remove);
-        this._render();
-        this._emit();
+    /* Add / remove museum */
+    const museumLists = root.getElementById('museum-lists');
+    if (museumLists) {
+      museumLists.addEventListener('click', (e) => {
+        const addBtn = e.target.closest('[data-add]');
+        if (addBtn) {
+          this._state.museumIds.add(addBtn.dataset.add);
+          this._state.museumQuery = '';
+          this._renderMuseumLists();
+          this._emit();
+          const input = this.shadowRoot.getElementById('museum-q');
+          if (input) { input.value = ''; input.focus(); }
+          return;
+        }
+        const removeBtn = e.target.closest('[data-remove]');
+        if (removeBtn) {
+          this._state.museumIds.delete(removeBtn.dataset.remove);
+          this._renderMuseumLists();
+          this._emit();
+        }
       });
     }
 
@@ -542,12 +547,8 @@ class FilterSidebar extends HTMLElement {
   }
 
   _renderMuseumLists() {
-    this._render();
-    const input = this.shadowRoot.getElementById('museum-q');
-    if (input) {
-      input.focus();
-      const v = input.value; input.value = ''; input.value = v;
-    }
+    const lists = this.shadowRoot.getElementById('museum-lists');
+    if (lists) lists.innerHTML = this._museumListsHTML();
   }
 }
 
