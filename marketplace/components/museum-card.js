@@ -1,6 +1,6 @@
 class MuseumCard extends HTMLElement {
   static get observedAttributes() {
-    return ['museum-id', 'name', 'city', 'country'];
+    return ['museum-id', 'name', 'city', 'country', 'image'];
   }
 
   constructor() {
@@ -22,6 +22,7 @@ class MuseumCard extends HTMLElement {
     const name    = this.getAttribute('name')      || '';
     const city    = this.getAttribute('city')      || '';
     const country = this.getAttribute('country')   || '';
+    const image   = this.getAttribute('image')     || '';
     const location = [city, country].filter(Boolean).join(' · ');
     const visitsUrl = `/marketplace/pages/visits.html?museum=${encodeURIComponent(id)}&museumName=${encodeURIComponent(name)}`;
 
@@ -66,6 +67,16 @@ class MuseumCard extends HTMLElement {
             rgba(0, 0, 0, 0.045) 11px 12px
           );
         }
+        .banner.has-image::before { display: none; }
+
+        .banner-img {
+          position: absolute; inset: 0;
+          z-index: 1;
+          width: 100%; height: 100%;
+          object-fit: cover;
+          transition: transform 0.4s ease;
+        }
+        .card:hover .banner-img { transform: scale(1.04); }
 
         .museum-icon {
           position: relative; z-index: 1;
@@ -158,10 +169,12 @@ class MuseumCard extends HTMLElement {
       </style>
 
       <a class="card" href="${visitsUrl}" aria-label="${this._escape(name)}">
-        <div class="banner">
-          <svg class="museum-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M22 11V9L12 2 2 9v2h2v9h5v-5h6v5h5v-9h2z"/>
-          </svg>
+        <div class="banner ${image ? 'has-image' : ''}">
+          ${image
+            ? `<img class="banner-img" src="${this._escape(image)}" alt="" loading="lazy">`
+            : `<svg class="museum-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                 <path d="M22 11V9L12 2 2 9v2h2v9h5v-5h6v5h5v-9h2z"/>
+               </svg>`}
           <span class="ph-label">${this._escape(city || 'Museo')}</span>
         </div>
         <div class="body">

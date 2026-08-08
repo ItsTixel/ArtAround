@@ -41,6 +41,12 @@ async function fetchVisits() {
   return res.json();
 }
 
+/* Immagine di default: quella della prima opera (per ordine di tappa) che ne ha una */
+function firstOperaImage(steps = []) {
+  const sorted = [...steps].sort((a, b) => a.order - b.order);
+  return sorted.find(s => s.entity?.image_url)?.entity?.image_url || '';
+}
+
 /* ---- Normalizza un oggetto visita API → formato usato dalla card ---- */
 function normalizeVisit(v) {
   const museumDetails = (v.museum || []).map(m => {
@@ -63,6 +69,7 @@ function normalizeVisit(v) {
     museums:       museumDetails.map(m => m.id),
     museumDetails,
     placeholderTag: v.title || `Visita ${v._id}`,
+    image:         firstOperaImage(v.steps),
   };
 }
 
@@ -171,6 +178,11 @@ async function loadFacets() {
 document.addEventListener('DOMContentLoaded', async () => {
   const grid = document.getElementById('visits-grid');
   if (grid) grid.innerHTML = '<p class="loading"></p>';
+
+  /* Le visit-card aprono il menù in sovraimpressione con i dettagli */
+  document.addEventListener('open-visit', (e) => {
+    document.querySelector('visit-modal')?.open(e.detail.id);
+  });
 
   try {
     const [musRes, facets] = await Promise.all([

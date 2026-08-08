@@ -46,7 +46,6 @@ class VisitCard extends HTMLElement {
   _render() {
     if (!this._data) return;
     const v = this._data;
-    const url = `/marketplace/pages/visit.html?id=${encodeURIComponent(v.id)}`;
     const isFree = !v.basePrice;
     const placeholderLabel = v.placeholderTag || v.title || `Visita ${v.id}`;
     const museums = v.museumDetails || [];
@@ -94,6 +93,16 @@ class VisitCard extends HTMLElement {
             rgba(0, 0, 0, 0.045) 11px 12px
           );
         }
+        .banner.has-image::before { display: none; }
+
+        .banner-img {
+          position: absolute; inset: 0;
+          z-index: 0;
+          width: 100%; height: 100%;
+          object-fit: cover;
+          transition: transform 0.4s ease;
+        }
+        .card:hover .banner-img { transform: scale(1.04); }
         .ph-label {
           position: relative; z-index: 1;
           font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
@@ -240,8 +249,9 @@ class VisitCard extends HTMLElement {
         }
       </style>
 
-      <a class="card" href="${url}" aria-label="${this._esc(v.title)}">
-        <div class="banner">
+      <div class="card" role="button" tabindex="0" aria-label="${this._esc(v.title)}">
+        <div class="banner ${v.image ? 'has-image' : ''}">
+          ${v.image ? `<img class="banner-img" src="${this._esc(v.image)}" alt="" loading="lazy">` : ''}
           ${isInfra ? '<span class="infra-badge">Inframuseale</span>' : ''}
           <span class="price-tag ${isFree ? 'free' : ''}">${this._fmtPrice(v.basePrice)}</span>
           <span class="ph-label">${this._esc(placeholderLabel)}</span>
@@ -259,8 +269,19 @@ class VisitCard extends HTMLElement {
             <span class="cta">Esplora →</span>
           </div>
         </div>
-      </a>
+      </div>
     `;
+
+    const card = this.shadowRoot.querySelector('.card');
+    const open = () => this.dispatchEvent(new CustomEvent('open-visit', {
+      detail: { id: v.id },
+      bubbles: true,
+      composed: true,
+    }));
+    card.addEventListener('click', open);
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+    });
   }
 }
 

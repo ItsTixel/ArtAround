@@ -1,10 +1,12 @@
 [
   {
-    "_id": { "$oid": "bbb000000000000000000001" },
+    "_id": {
+      "$oid": "bbb000000000000000000001"
+    },
     "name": "Galleria degli Uffizi",
     "wikidata_id": "Q51252",
     "description": "Uno dei musei d'arte più importanti al mondo, ospita la più grande raccolta di pittura medievale e rinascimentale italiana.",
-    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Uffizi_-_Corridoio_di_Levante.jpg/1280px-Uffizi_-_Corridoio_di_Levante.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Florence%2C_Italy_-_panoramio_%28125%29.jpg?width=1280",
     "website": "https://www.uffizi.it",
     "address": {
       "street": "Piazzale degli Uffizi 6",
@@ -12,16 +14,24 @@
       "zip": "50122",
       "country": "Italia"
     },
-    "added_by": { "$oid": "aaa000000000000000000001" },
-    "createdAt": { "$date": "2025-01-01T00:00:00Z" },
-    "updatedAt": { "$date": "2025-01-01T00:00:00Z" }
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2025-01-01T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-01-01T00:00:00Z"
+    }
   },
   {
-    "_id": { "$oid": "bbb000000000000000000002" },
+    "_id": {
+      "$oid": "bbb000000000000000000002"
+    },
     "name": "Pinacoteca di Brera",
     "wikidata_id": "Q58339",
     "description": "La più importante pinacoteca di Milano, con una straordinaria collezione di pittura italiana dal XIII al XX secolo.",
-    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Milano_-_Palazzo_di_Brera_%283%29.jpg/1280px-Milano_-_Palazzo_di_Brera_%283%29.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Milan_-_Pinacoth%C3%A8que_de_Brera_-_Cour_int%C3%A9rieure.jpg?width=1280",
     "website": "https://pinacotecabrera.org",
     "address": {
       "street": "Via Brera 28",
@@ -29,16 +39,24 @@
       "zip": "20121",
       "country": "Italia"
     },
-    "added_by": { "$oid": "aaa000000000000000000002" },
-    "createdAt": { "$date": "2025-01-01T00:00:00Z" },
-    "updatedAt": { "$date": "2025-01-01T00:00:00Z" }
+    "added_by": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "createdAt": {
+      "$date": "2025-01-01T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-01-01T00:00:00Z"
+    }
   },
   {
-    "_id": { "$oid": "bbb000000000000000000003" },
+    "_id": {
+      "$oid": "bbb000000000000000000003"
+    },
     "name": "Musei Vaticani",
     "wikidata_id": "Q182955",
     "description": "Tra i più grandi musei del mondo, conservano le collezioni d'arte accumulate dai papi nei secoli.",
-    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Vatican_Museums_entrance.jpg/1280px-Vatican_Museums_entrance.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vatican%20Museums%2C%20Musei%20Vaticani%20%28Ank%20Kumar%2C%20Infosys%20Limited%29%2016.jpg?width=1280",
     "website": "https://www.museivaticani.va",
     "address": {
       "street": "Viale Vaticano",
@@ -46,8 +64,14 @@
       "zip": "00120",
       "country": "Vaticano"
     },
-    "added_by": { "$oid": "aaa000000000000000000001" },
-    "createdAt": { "$date": "2025-01-02T00:00:00Z" },
-    "updatedAt": { "$date": "2025-01-02T00:00:00Z" }
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2025-01-02T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-01-02T00:00:00Z"
+    }
   }
 ]

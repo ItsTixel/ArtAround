@@ -158,7 +158,10 @@ class FilterSidebar extends HTMLElement {
           align-self: start;
           max-height: calc(100vh - 73px);
           overflow-y: auto;
-          padding: 2.5rem 2rem 2.5rem 3rem;
+          overflow-x: hidden;
+          /* !important: la reset globale "* { padding: 0 }" del documento ospitante
+             altrimenti vince sul padding di :host nonostante la specificità inferiore. */
+          padding: 3.5rem 2.75rem 2.5rem 3rem !important;
           border-right: 1px solid var(--color-border, #e8e6e1);
         }
 
@@ -397,7 +400,7 @@ class FilterSidebar extends HTMLElement {
             max-height: none;
             border-right: 0;
             border-bottom: 1px solid var(--color-border, #e8e6e1);
-            padding: 1.75rem 1.5rem;
+            padding: 2.5rem 2.25rem 1.75rem 1.5rem !important;
           }
         }
       </style>

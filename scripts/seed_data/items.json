@@ -1,9 +1,15 @@
 [
   {
-    "_id": { "$oid": "ddd000000000000000000001" },
+    "_id": {
+      "$oid": "ddd000000000000000000001"
+    },
     "marketplace_summary": "Guida semplice alla Nascita di Venere di Botticelli — adatta a tutti.",
-    "artwork": { "$oid": "ccc000000000000000000001" },
-    "author": { "$oid": "aaa000000000000000000001" },
+    "artwork": {
+      "$oid": "ccc000000000000000000001"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
     "license": "CC-BY",
     "tone": "simple",
     "descriptions": [
@@ -17,17 +23,32 @@
       }
     ],
     "price": 0,
-    "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Sandro_Botticelli_046.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/El_nacimiento_de_Venus%2C_por_Sandro_Botticelli.jpg?width=1280",
     "alt_text": "Dettaglio del volto di Venere con capelli dorati mossi dal vento",
-    "tags": ["botticelli", "venere", "mitologia", "rinascimento"],
-    "createdAt": { "$date": "2025-01-05T00:00:00Z" },
-    "updatedAt": { "$date": "2025-01-05T00:00:00Z" }
+    "tags": [
+      "botticelli",
+      "venere",
+      "mitologia",
+      "rinascimento"
+    ],
+    "createdAt": {
+      "$date": "2025-01-05T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-01-05T00:00:00Z"
+    }
   },
   {
-    "_id": { "$oid": "ddd000000000000000000002" },
+    "_id": {
+      "$oid": "ddd000000000000000000002"
+    },
     "marketplace_summary": "Analisi tecnica approfondita dell'Annunciazione di Leonardo per appassionati di storia dell'arte.",
-    "artwork": { "$oid": "ccc000000000000000000002" },
-    "author": { "$oid": "aaa000000000000000000001" },
+    "artwork": {
+      "$oid": "ccc000000000000000000002"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
     "license": "Copyright",
     "tone": "technical",
     "descriptions": [
@@ -41,17 +62,32 @@
       }
     ],
     "price": 2.99,
-    "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Annunciation_%28Leonardo%29.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Annunciation_%28Leonardo_c._1472%E2%80%931476%29.jpg?width=1280",
     "alt_text": "Particolare del leggio marmoreo con la mano della Vergine",
-    "tags": ["leonardo", "annunciazione", "rinascimento", "tecnico"],
-    "createdAt": { "$date": "2025-01-05T00:00:00Z" },
-    "updatedAt": { "$date": "2025-01-05T00:00:00Z" }
+    "tags": [
+      "leonardo",
+      "annunciazione",
+      "rinascimento",
+      "tecnico"
+    ],
+    "createdAt": {
+      "$date": "2025-01-05T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-01-05T00:00:00Z"
+    }
   },
   {
-    "_id": { "$oid": "ddd000000000000000000003" },
+    "_id": {
+      "$oid": "ddd000000000000000000003"
+    },
     "marketplace_summary": "Racconto per bambini del Cristo morto di Mantegna — semplice e coinvolgente.",
-    "artwork": { "$oid": "ccc000000000000000000003" },
-    "author": { "$oid": "aaa000000000000000000002" },
+    "artwork": {
+      "$oid": "ccc000000000000000000003"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
     "license": "CC-BY-NC",
     "tone": "childish",
     "descriptions": [
@@ -61,17 +97,32 @@
       }
     ],
     "price": 0,
-    "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Mantegna_dead_christ.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The_dead_Christ_and_three_mourners%2C_by_Andrea_Mantegna.jpg?width=1280",
     "alt_text": "Cristo disteso visto in prospettiva dai piedi, con le ferite visibili sulle mani e sui piedi",
-    "tags": ["mantegna", "bambini", "scorcio", "brera"],
-    "createdAt": { "$date": "2025-01-06T00:00:00Z" },
-    "updatedAt": { "$date": "2025-01-06T00:00:00Z" }
+    "tags": [
+      "mantegna",
+      "bambini",
+      "scorcio",
+      "brera"
+    ],
+    "createdAt": {
+      "$date": "2025-01-06T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-01-06T00:00:00Z"
+    }
   },
   {
-    "_id": { "$oid": "ddd000000000000000000004" },
+    "_id": {
+      "$oid": "ddd000000000000000000004"
+    },
     "marketplace_summary": "Guida di livello medio che collega la copia dell'Ultima Cena a Brera con l'originale di Leonardo.",
-    "artwork": { "$oid": "ccc000000000000000000004" },
-    "author": { "$oid": "aaa000000000000000000002" },
+    "artwork": {
+      "$oid": "ccc000000000000000000004"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
     "license": "CC0",
     "tone": "medium",
     "descriptions": [
@@ -85,18 +136,34 @@
       }
     ],
     "price": 0,
-    "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Giampietrino-Last-Supper.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giampietrino-Last-Supper-ca-1520.jpg?width=1280",
     "alt_text": "La tavola dell'Ultima Cena con Gesù al centro e dodici apostoli",
-    "tags": ["leonardo", "ultima-cena", "copia", "brera", "medio"],
-    "createdAt": { "$date": "2025-01-06T00:00:00Z" },
-    "updatedAt": { "$date": "2025-01-06T00:00:00Z" }
+    "tags": [
+      "leonardo",
+      "ultima-cena",
+      "copia",
+      "brera",
+      "medio"
+    ],
+    "createdAt": {
+      "$date": "2025-01-06T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-01-06T00:00:00Z"
+    }
   },
   {
-    "_id": { "$oid": "ddd000000000000000000005" },
+    "_id": {
+      "$oid": "ddd000000000000000000005"
+    },
     "marketplace_summary": "Descrizione tecnica della Scuola di Atene: iconografia, prospettiva e identità dei filosofi.",
-    "artwork": { "$oid": "ccc000000000000000000006" },
-    "author": { "$oid": "aaa000000000000000000001" },
-    "license": "CC-BY",
+    "artwork": {
+      "$oid": "ccc000000000000000000006"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Copyright",
     "tone": "technical",
     "descriptions": [
       {
@@ -109,17 +176,33 @@
       }
     ],
     "price": 1.49,
-    "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/49/%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg?width=1280",
     "alt_text": "Platone e Aristotele al centro dell'affresco circondati dai filosofi dell'antichità",
-    "tags": ["raffaello", "vaticano", "filosofia", "affresco", "tecnico"],
-    "createdAt": { "$date": "2025-01-07T00:00:00Z" },
-    "updatedAt": { "$date": "2025-01-07T00:00:00Z" }
+    "tags": [
+      "raffaello",
+      "vaticano",
+      "filosofia",
+      "affresco",
+      "tecnico"
+    ],
+    "createdAt": {
+      "$date": "2025-01-07T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-01-07T00:00:00Z"
+    }
   },
   {
-    "_id": { "$oid": "ddd000000000000000000006" },
+    "_id": {
+      "$oid": "ddd000000000000000000006"
+    },
     "marketplace_summary": "Racconto semplice per bambini della Scuola di Atene: tanti professori in un unico grande dipinto!",
-    "artwork": { "$oid": "ccc000000000000000000006" },
-    "author": { "$oid": "aaa000000000000000000002" },
+    "artwork": {
+      "$oid": "ccc000000000000000000006"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
     "license": "CC-BY-NC",
     "tone": "childish",
     "descriptions": [
@@ -129,10 +212,434 @@
       }
     ],
     "price": 0,
-    "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/49/%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg?width=1280",
     "alt_text": "Molte figure colorate in una grande sala con archi alti",
-    "tags": ["raffaello", "bambini", "vaticano", "filosofia"],
-    "createdAt": { "$date": "2025-01-07T00:00:00Z" },
-    "updatedAt": { "$date": "2025-01-07T00:00:00Z" }
+    "tags": [
+      "raffaello",
+      "bambini",
+      "vaticano",
+      "filosofia"
+    ],
+    "createdAt": {
+      "$date": "2025-01-07T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-01-07T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000007"
+    },
+    "marketplace_summary": "Guida di livello medio alla Primavera di Botticelli, tra mitologia e allegoria.",
+    "artwork": {
+      "$oid": "ccc000000000000000000007"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "CC-BY",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 110,
+        "text": "Botticelli dipinge un giardino di aranci sempre in fiore dove nove figure mitologiche si muovono in un unico istante sospeso: a destra Zefiro insegue la ninfa Clori, che si trasforma in Flora, dea della primavera; al centro Venere presiede alla scena sotto un arco di alloro; a sinistra le tre Grazie danzano mentre Mercurio disperde le nuvole con il suo bastone."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli-primavera.jpg?width=1280",
+    "alt_text": "Dettaglio delle tre Grazie che danzano a sinistra della composizione",
+    "tags": [
+      "botticelli",
+      "primavera",
+      "mitologia",
+      "rinascimento"
+    ],
+    "createdAt": {
+      "$date": "2025-02-01T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-02-01T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000008"
+    },
+    "marketplace_summary": "Analisi tecnica del Tondo Doni: l'unico dipinto autografo di Michelangelo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000008"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Copyright",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 130,
+        "text": "Michelangelo torce i corpi della Sacra Famiglia in una spirale continua, un effetto scultoreo ottenuto studiando l'anatomia più che la pittura fiamminga allora in voga. Sullo sfondo, oltre un muretto, cinque nudi maschili di ambigua interpretazione anticipano gli ignudi della volta della Cappella Sistina, dipinta pochi anni dopo."
+      }
+    ],
+    "price": 1.99,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tondo_Doni_2021.jpg?width=1280",
+    "alt_text": "Dettaglio dei cinque nudi maschili sullo sfondo, oltre il muretto",
+    "tags": [
+      "michelangelo",
+      "tondo-doni",
+      "rinascimento",
+      "tecnico"
+    ],
+    "createdAt": {
+      "$date": "2025-02-01T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-02-01T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000009"
+    },
+    "marketplace_summary": "Guida semplice al doppio ritratto dei duchi di Urbino di Piero della Francesca.",
+    "artwork": {
+      "$oid": "ccc000000000000000000009"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "CC0",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 95,
+        "text": "Federico da Montefeltro si fece ritrarre sempre di profilo sinistro per nascondere l'occhio destro, perso in un torneo. Piero della Francesca lo dipinge con un naso dal profilo spezzato — conseguenza della stessa ferita — davanti a un paesaggio che continua senza interruzioni dietro entrambi i coniugi."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Piero_della_Francesca_044.jpg?width=1280",
+    "alt_text": "Dettaglio del profilo di Federico da Montefeltro con il naso aquilino",
+    "tags": [
+      "piero-della-francesca",
+      "urbino",
+      "ritratto"
+    ],
+    "createdAt": {
+      "$date": "2025-02-01T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-02-01T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000010"
+    },
+    "marketplace_summary": "Racconto per bambini della Medusa di Caravaggio: uno scudo magico!",
+    "artwork": {
+      "$oid": "ccc000000000000000000010"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "CC-BY-NC",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 70,
+        "text": "Immagina uno specchio magico che invece di riflettere la tua faccia, mostra il momento esatto in cui un mostro con i capelli fatti di serpenti viene sconfitto! Caravaggio ha dipinto questo scudo curvo per farlo sembrare vero e spaventoso, con il sangue che si trasforma in altri serpentelli."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Medusa_by_Caravaggio.jpg?width=1280",
+    "alt_text": "Dettaglio della bocca spalancata di Medusa nell'attimo del grido",
+    "tags": [
+      "caravaggio",
+      "medusa",
+      "bambini"
+    ],
+    "createdAt": {
+      "$date": "2025-02-01T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-02-01T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000011"
+    },
+    "marketplace_summary": "Guida di livello medio allo Sposalizio della Vergine di Raffaello.",
+    "artwork": {
+      "$oid": "ccc000000000000000000011"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "CC-BY",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 100,
+        "text": "Raffaello firma e data l'opera sull'architrave del tempio sullo sfondo, costruito con una prospettiva talmente precisa da sembrare reale. Un pretendente respinto spezza il proprio bastone sul ginocchio a destra, mentre Giuseppe porge l'anello a Maria: il bastone di Giuseppe, unico a fiorire, ne segnala la scelta divina."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raffaello_-_Spozalizio_-_Web_Gallery_of_Art.jpg?width=1280",
+    "alt_text": "Dettaglio del tempio a pianta centrale sullo sfondo della scena",
+    "tags": [
+      "raffaello",
+      "sposalizio",
+      "brera",
+      "rinascimento"
+    ],
+    "createdAt": {
+      "$date": "2025-02-01T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-02-01T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000012"
+    },
+    "marketplace_summary": "Guida semplice a Il Bacio di Hayez, tra romanticismo e Risorgimento.",
+    "artwork": {
+      "$oid": "ccc000000000000000000012"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "CC-BY",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 85,
+        "text": "Un cavaliere con un piede sul gradino, pronto a partire, abbraccia e bacia la sua amata prima di lasciarla. L'ombra di una terza figura sullo sfondo suggerisce che il pericolo — o la guerra — incombe: molti lo lessero come un addio simbolico prima delle battaglie del Risorgimento."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/El_Beso_%28Pinacoteca_de_Brera%2C_Mil%C3%A1n%2C_1859%29.jpg?width=1280",
+    "alt_text": "Dettaglio dell'ombra di una terza figura sullo sfondo, dietro la scalinata",
+    "tags": [
+      "hayez",
+      "il-bacio",
+      "brera",
+      "romanticismo"
+    ],
+    "createdAt": {
+      "$date": "2025-02-01T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-02-01T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000013"
+    },
+    "marketplace_summary": "Analisi tecnica della Pala di Brera: prospettiva e simbolismo di Piero della Francesca.",
+    "artwork": {
+      "$oid": "ccc000000000000000000013"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Copyright",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 140,
+        "text": "La composizione è costruita con un rigore matematico assoluto: il punto di fuga cade esattamente dietro la testa della Vergine, e l'uovo di struzzo appeso alla conchiglia dell'abside segue lo stesso asse verticale. Il duca Federico, ritratto senza l'elmo che nascondeva la ferita all'occhio destro, è l'unico donatore ammesso nello spazio sacro insieme ai santi."
+      }
+    ],
+    "price": 2.49,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Piero_della_Francesca_046.jpg?width=1280",
+    "alt_text": "Dettaglio dell'uovo di struzzo sospeso sopra la testa della Vergine",
+    "tags": [
+      "piero-della-francesca",
+      "pala-di-brera",
+      "brera",
+      "tecnico"
+    ],
+    "createdAt": {
+      "$date": "2025-02-01T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-02-01T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000014"
+    },
+    "marketplace_summary": "Guida di livello medio alla Cena in Emmaus di Caravaggio conservata a Brera.",
+    "artwork": {
+      "$oid": "ccc000000000000000000014"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "CC0",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 105,
+        "text": "Rispetto alla versione londinese più teatrale, qui Caravaggio smorza i gesti e i colori: dipinta durante la fuga da Roma dopo l'omicidio di Ranuccio Tomassoni, questa Cena in Emmaus è più intima e silenziosa, con la luce che modella i volti dal buio quasi assoluto dello sfondo."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio_%E2%80%94_Supper_at_Emmaus.jpg?width=1280",
+    "alt_text": "Dettaglio del volto di Cristo che benedice il pane, illuminato dalla luce laterale",
+    "tags": [
+      "caravaggio",
+      "cena-in-emmaus",
+      "brera",
+      "chiaroscuro"
+    ],
+    "createdAt": {
+      "$date": "2025-02-01T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-02-01T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000015"
+    },
+    "marketplace_summary": "Racconto per bambini della Creazione di Adamo di Michelangelo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000015"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "CC-BY",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 65,
+        "text": "Guarda con attenzione: le due dita di Dio e di Adamo non si toccano davvero, manca solo un soffio! Michelangelo ha dipinto questa scena a testa in su, sdraiato su un'impalcatura per anni, per creare la vita sul soffitto della cappella."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Creaci%C3%B3n_de_Ad%C3%A1n.jpg?width=1280",
+    "alt_text": "Dettaglio delle due mani, quella di Dio e quella di Adamo, quasi a toccarsi",
+    "tags": [
+      "michelangelo",
+      "cappella-sistina",
+      "bambini"
+    ],
+    "createdAt": {
+      "$date": "2025-02-01T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-02-01T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000016"
+    },
+    "marketplace_summary": "Analisi tecnica del Giudizio Universale: composizione e autoritratto nascosto di Michelangelo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000016"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Copyright",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 135,
+        "text": "Michelangelo abbandona la simmetria rinascimentale per un vortice unico di figure che ruota attorno a Cristo giudice, dipinto senza barba, nell'atto ambiguo tra benedizione e condanna. Nella pelle scuoiata di San Bartolomeo, in basso, l'artista settantenne dipinse il proprio autoritratto deformato."
+      }
+    ],
+    "price": 1.99,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo%2C_Giudizio_Universale_02.jpg?width=1280",
+    "alt_text": "Dettaglio della pelle scuoiata di San Bartolomeo con l'autoritratto di Michelangelo",
+    "tags": [
+      "michelangelo",
+      "giudizio-universale",
+      "cappella-sistina",
+      "tecnico"
+    ],
+    "createdAt": {
+      "$date": "2025-02-01T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-02-01T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000017"
+    },
+    "marketplace_summary": "Guida semplice al Gruppo del Laocoonte, la scultura che ispirò Michelangelo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000017"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "CC-BY",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 90,
+        "text": "Laocoonte aveva avvertito i troiani di non far entrare il cavallo di legno dei greci in città: per punirlo, gli dei inviarono due serpenti marini che avvolsero lui e i suoi figli. Michelangelo, chiamato a vedere la scultura appena scoperta nel 1506, ne rimase talmente colpito da riprenderne la torsione dei muscoli in molte sue opere successive."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Laocoon_and_His_Sons.jpg?width=1280",
+    "alt_text": "Dettaglio del volto di Laocoonte contratto dal dolore mentre viene morso dai serpenti",
+    "tags": [
+      "laocoonte",
+      "scultura",
+      "vaticano"
+    ],
+    "createdAt": {
+      "$date": "2025-02-01T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-02-01T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000018"
+    },
+    "marketplace_summary": "Guida di livello medio alla Trasfigurazione, l'ultima opera di Raffaello.",
+    "artwork": {
+      "$oid": "ccc000000000000000000018"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "CC-BY",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 110,
+        "text": "Raffaello contrappone due momenti del Vangelo mai raffigurati insieme prima: la Trasfigurazione di Cristo sul monte Tabor e, subito sotto, la scena del ragazzo indemoniato che gli apostoli non riescono a guarire in sua assenza. Rimasta sul cavalletto del pittore al momento della morte, l'opera fu portata in processione al suo funerale."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Transfiguration_Raphael.jpg?width=1280",
+    "alt_text": "Dettaglio del gruppo concitato di apostoli e astanti nella parte inferiore del dipinto",
+    "tags": [
+      "raffaello",
+      "trasfigurazione",
+      "vaticano"
+    ],
+    "createdAt": {
+      "$date": "2025-02-01T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-02-01T00:00:00Z"
+    }
   }
 ]
