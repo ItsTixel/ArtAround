@@ -44,15 +44,93 @@ app.enable('trust proxy');
 })();
 
 app.get('/', async function (req, res) {
-	var text = "Hello Duluzeeeee";
 	res.send(
 		`<!doctype html>
-		<html>
-			<body>
-				<h1>${text}</h1>
-				<p><a href="javascript:history.back()">Go back</a></p>
-			</body>
-		</html>
+<html lang="it">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ArtAround</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			--color-primary: #2c3a4a;
+			--color-accent: #9e7a46;
+			--color-accent-hover: #7c5e33;
+			--color-bg: #f9f8f5;
+			--color-surface: #ffffff;
+			--color-text: #1c1917;
+			--color-text-muted: #78716c;
+			--color-border: #e8e6e1;
+			--font-serif: 'Playfair Display', Georgia, serif;
+			--font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+		}
+		* { box-sizing: border-box; margin: 0; padding: 0; }
+		body {
+			min-height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: var(--color-bg);
+			color: var(--color-text);
+			font-family: var(--font-sans);
+		}
+		main {
+			text-align: center;
+			padding: 2.5rem;
+		}
+		h1 {
+			font-family: var(--font-serif);
+			font-size: 2.5rem;
+			font-weight: 600;
+			color: var(--color-primary);
+		}
+		p {
+			margin-top: 0.75rem;
+			color: var(--color-text-muted);
+		}
+		.links {
+			margin-top: 2.5rem;
+			display: flex;
+			gap: 1rem;
+			justify-content: center;
+			flex-wrap: wrap;
+		}
+		.links a {
+			display: inline-block;
+			padding: 0.85rem 2rem;
+			text-decoration: none;
+			font-weight: 500;
+			border: 1px solid var(--color-border);
+			background: var(--color-surface);
+			color: var(--color-primary);
+			transition: 0.2s ease;
+		}
+		.links a.primary {
+			background: var(--color-accent);
+			border-color: var(--color-accent);
+			color: #fff;
+		}
+		.links a:hover {
+			background: var(--color-accent-hover);
+			border-color: var(--color-accent-hover);
+			color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<main>
+		<h1>ArtAround</h1>
+		<p>Scopri i musei o continua la tua visita.</p>
+		<div class="links">
+			<a class="primary" href="/marketplace">Marketplace</a>
+			<a href="/navigator">Navigator</a>
+		</div>
+	</main>
+</body>
+</html>
 			`)
 });
 app.use('/marketplace', express.static(path.join(__dirname, '../marketplace'), { "index": 'pages/index.html' }));
