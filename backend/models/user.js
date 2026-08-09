@@ -33,6 +33,20 @@ const userSchema = new Schema({
         default: 'visitor'
     },
 
+    display_name: { type: String, trim: true, maxLength: 60 },
+    bio:          { type: String, trim: true, maxLength: 300 },
+    avatar_url:   { type: String, trim: true },
+
+    
+adopted_visits: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Visit'
+    }],
+
+    bookmarked_visits: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Visit'
+    }]
 }, {
     timestamps: true
 })

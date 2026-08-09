@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArtAround — Scopri i Musei</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/marketplace/css/base.css">
+  <link rel="stylesheet" href="/marketplace/css/museums.css">
+  <script type="module" src="/marketplace/components/app-navbar.js"></script>
+  <script type="module" src="/marketplace/components/app-footer.js"></script>
+  <script type="module" src="/marketplace/components/museum-card.js"></script>
+</head>
+<body>
+
+  <app-navbar></app-navbar>
+
+  <main>
+    <section class="page-hero" aria-label="Musei disponibili">
+      <div class="page-hero-inner">
+        <div class="kicker">Marketplace</div>
+        <h1>Scopri i Musei</h1>
+        <p class="hero-sub" id="hero-total">— musei disponibili</p>
+      </div>
+    </section>
+
+    <section class="search-section" aria-label="Ricerca e filtri">
+      <div class="search-bar">
+        <input
+          type="search"
+          id="search-input"
+          placeholder="Cerca museo per nome…"
+          aria-label="Cerca museo per nome"
+          autocomplete="off"
+        >
+      </div>
+      <div class="filters">
+        <select id="city-filter" aria-label="Filtra per città">
+          <option value="">Tutte le città</option>
+        </select>
+        <select id="sort-select" aria-label="Ordina per">
+          <option value="name">Nome A→Z</option>
+          <option value="-name">Nome Z→A</option>
+          <option value="address.city">Città A→Z</option>
+        </select>
+      </div>
+      <a class="skip-link" href="/marketplace/pages/visits.html" title="Vedi tutte le visite senza selezionare un museo">
+        Tutte le visite →
+      </a>
+    </section>
+
+    <div class="museums-container">
+      <div class="results-header">
+        <span class="results-count" id="results-count" aria-live="polite"></span>
+      </div>
+      <div class="museums-grid" id="museums-grid" role="list" aria-label="Lista musei"></div>
+      <div class="pagination" id="pagination" aria-label="Navigazione pagine"></div>
+    </div>
+  </main>
+
+  <app-footer></app-footer>
+
+  <script src="/marketplace/js/museums.js"></script>
+</body>
+</html>

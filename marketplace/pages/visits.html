@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArtAround — Scopri le visite</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/marketplace/css/base.css">
+  <link rel="stylesheet" href="/marketplace/css/visits.css">
+
+  <script type="module" src="/marketplace/components/app-navbar.js"></script>
+  <script type="module" src="/marketplace/components/app-footer.js"></script>
+  <script type="module" src="/marketplace/components/filter-sidebar.js"></script>
+  <script type="module" src="/marketplace/components/visit-card.js"></script>
+  <script type="module" src="/marketplace/components/visit-modal.js"></script>
+</head>
+<body>
+
+  <app-navbar></app-navbar>
+
+  <main>
+    <section class="page-hero" aria-label="Visite disponibili">
+      <div class="page-hero-inner">
+        <div class="kicker">Marketplace</div>
+        <h1>Scopri le visite</h1>
+        <p class="hero-sub" id="hero-total">— percorsi · — musei</p>
+      </div>
+    </section>
+
+    <div class="visits-layout">
+      <filter-sidebar></filter-sidebar>
+
+      <section class="visits-content" aria-label="Lista visite">
+        <div class="results-bar">
+          <span class="results-count" id="results-count" aria-live="polite">— visite</span>
+
+          <div class="results-controls">
+            <label class="visit-search" aria-label="Cerca tra le visite">
+              <input id="search-visit" type="search" placeholder="Cerca una visita…" autocomplete="off">
+            </label>
+            <label for="sort">Ordina</label>
+            <select id="sort" aria-label="Ordina le visite">
+              <option value="recommended">Consigliato</option>
+              <option value="title">Titolo A→Z</option>
+              <option value="duration-asc">Durata crescente</option>
+              <option value="duration-desc">Durata decrescente</option>
+              <option value="price-asc">Prezzo crescente</option>
+              <option value="price-desc">Prezzo decrescente</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="visits-grid" id="visits-grid" role="list" aria-label="Visite disponibili"></div>
+        <div class="pagination" id="pagination" aria-label="Navigazione pagine"></div>
+      </section>
+    </div>
+  </main>
+
+  <app-footer></app-footer>
+
+  <visit-modal></visit-modal>
+
+  <script src="/marketplace/js/visits.js"></script>
+</body>
+</html>

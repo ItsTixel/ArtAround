@@ -1,6 +1,7 @@
 ﻿global.rootDir = __dirname;
 global.startDate = null;
 
+const path = require('path');
 const express = require('express');
 const cors = require('cors')
 const mongoose = require("mongoose");
@@ -16,7 +17,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(cors())
 
-app.use('/api/museums', require('./routes/museums'));
+app.use('/api/auth',     require('./routes/auth'));
+app.use('/api/museums',  require('./routes/museums'));
 app.use('/api/entities', require('./routes/entities'));
 app.use('/api/items', require('./routes/items'));
 app.use('/api/visits', require('./routes/visits'));
@@ -53,6 +55,9 @@ app.get('/', async function (req, res) {
 		</html>
 			`)
 });
+app.use('/marketplace', express.static(path.join(__dirname, '../marketplace'), { "index": 'pages/index.html' }));
+app.use('/navigator', express.static(path.join(__dirname, '../navigator/dist')));
+
 
 const PORT = process.env.PORT || 8000;
 

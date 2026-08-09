@@ -1,57 +1,845 @@
 [
   {
-    "_id": { "$oid": "eee000000000000000000001" },
-    "title": "Highlights of the Uffizi",
-    "description": "A curated 45-minute walk through the most iconic works of the Uffizi gallery.",
-    "museum": { "$oid": "bbb000000000000000000001" },
-    "author": { "$oid": "aaa000000000000000000001" },
+    "_id": {
+      "$oid": "eee000000000000000000001"
+    },
+    "title": "I capolavori degli Uffizi",
+    "description": "Una passeggiata di 45 minuti tra le opere più iconiche della Galleria degli Uffizi, dalla Nascita di Venere all'Annunciazione di Leonardo.",
+    "museum": [
+      {
+        "$oid": "bbb000000000000000000001"
+      }
+    ],
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
     "base_price": 0,
     "steps": [
       {
-        "_id": { "$oid": "fff000000000000000000001" },
-        "entity": { "$oid": "ccc000000000000000000001" },
-        "items": [{ "$oid": "ddd000000000000000000001" }],
-        "logistic_note": "Take the main staircase to floor 2.",
+        "_id": {
+          "$oid": "fff000000000000000000001"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000001"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000001"
+          }
+        ],
+        "logistic_note": "Sali la scala principale fino al piano 2, poi segui le frecce per la Sala Botticelli.",
+        "intro_note": "Fermati davanti alla Nascita di Venere e lascia che i colori parlino prima di ascoltare la guida.",
         "order": 1
       },
       {
-        "_id": { "$oid": "fff000000000000000000002" },
-        "entity": { "$oid": "ccc000000000000000000002" },
-        "items": [{ "$oid": "ddd000000000000000000002" }],
-        "logistic_note": "Continue east along the corridor.",
+        "_id": {
+          "$oid": "fff000000000000000000002"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000002"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000002"
+          }
+        ],
+        "logistic_note": "Prosegui verso est lungo il corridoio principale fino alla Sala 8.",
+        "intro_note": "Nota il pavimento a scacchiera che Leonardo usa per stabilire la profondità della scena.",
         "order": 2
       },
       {
-        "_id": { "$oid": "fff000000000000000000003" },
-        "entity": { "$oid": "ccc000000000000000000005" },
+        "_id": {
+          "$oid": "fff000000000000000000003"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000005"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
         "items": [],
-        "logistic_note": "Pause at the window overlooking the Arno for context on Renaissance ideals.",
+        "logistic_note": "Fermati alla finestra panoramica sul corridoio est con vista sull'Arno.",
+        "intro_note": "Questo momento di pausa è dedicato al concetto che lega tutte le opere che hai visto: l'Umanesimo rinascimentale.",
         "order": 3
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000011"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000007"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000007"
+          }
+        ],
+        "logistic_note": "Resta nella Sala 10-14: la Primavera è appesa poco distante dalla Venere.",
+        "intro_note": "Conta le figure: sono nove, ognuna con un ruolo preciso nell'allegoria.",
+        "order": 4
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000012"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000008"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000008"
+          }
+        ],
+        "logistic_note": "Raggiungi la Sala 41, dedicata a Michelangelo e ai pittori fiorentini.",
+        "intro_note": "È l'unico dipinto su tavola di Michelangelo giunto fino a noi: osserva come i corpi sembrano scolpiti.",
+        "order": 5
       }
-    ]
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/El_nacimiento_de_Venus%2C_por_Sandro_Botticelli.jpg?width=1280",
+    "tags": [
+      "uffizi",
+      "firenze",
+      "rinascimento",
+      "botticelli",
+      "leonardo",
+      "michelangelo"
+    ],
+    "is_public": true,
+    "estimated_duration_sec": 4500,
+    "createdAt": {
+      "$date": "2025-01-10T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-01-10T00:00:00Z"
+    }
   },
   {
-    "_id": { "$oid": "eee000000000000000000002" },
-    "title": "Brera Masterpieces",
-    "description": "Explore Brera's crown jewels in under an hour.",
-    "museum": { "$oid": "bbb000000000000000000002" },
-    "author": { "$oid": "aaa000000000000000000002" },
-    "base_price": 1.50,
+    "_id": {
+      "$oid": "eee000000000000000000002"
+    },
+    "title": "Capolavori di Brera",
+    "description": "Esplora i gioielli della corona della Pinacoteca di Brera in meno di un'ora, dalla drammaticità di Mantegna al mistero dell'Ultima Cena.",
+    "museum": [
+      {
+        "$oid": "bbb000000000000000000002"
+      }
+    ],
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "base_price": 1.5,
     "steps": [
       {
-        "_id": { "$oid": "fff000000000000000000004" },
-        "entity": { "$oid": "ccc000000000000000000003" },
-        "items": [{ "$oid": "ddd000000000000000000003" }],
-        "logistic_note": "Sala VI is on the first floor, to the left of the entrance.",
+        "_id": {
+          "$oid": "fff000000000000000000004"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000003"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000002"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000003"
+          }
+        ],
+        "logistic_note": "La Sala VI si trova al primo piano, a sinistra dell'ingresso principale.",
+        "intro_note": "Avvicinati lentamente: lo scorcio di Mantegna cambia effetto a seconda della distanza.",
         "order": 1
       },
       {
-        "_id": { "$oid": "fff000000000000000000005" },
-        "entity": { "$oid": "ccc000000000000000000004" },
-        "items": [{ "$oid": "ddd000000000000000000004" }],
-        "logistic_note": "Head to Sala XII at the end of the corridor.",
+        "_id": {
+          "$oid": "fff000000000000000000005"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000004"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000002"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000004"
+          }
+        ],
+        "logistic_note": "Raggiungi la Sala XII in fondo al corridoio principale.",
+        "intro_note": "Prima di ascoltare la guida, cerca di individuare i dettagli che differenziano questa copia dall'originale di Leonardo.",
         "order": 2
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000013"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000011"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000002"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000011"
+          }
+        ],
+        "logistic_note": "Raggiungi la Sala XXIV, dedicata a Raffaello.",
+        "intro_note": "Cerca la firma di Raffaello: l'ha nascosta sull'architrave del tempio sullo sfondo.",
+        "order": 3
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000014"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000012"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000002"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000012"
+          }
+        ],
+        "logistic_note": "Prosegui verso le sale dell'Ottocento lombardo.",
+        "intro_note": "Osserva l'ombra sullo sfondo: molti la interpretano come un presagio del pericolo imminente.",
+        "order": 4
       }
-    ]
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The_dead_Christ_and_three_mourners%2C_by_Andrea_Mantegna.jpg?width=1280",
+    "tags": [
+      "brera",
+      "milano",
+      "mantegna",
+      "leonardo",
+      "rinascimento",
+      "raffaello",
+      "hayez"
+    ],
+    "is_public": true,
+    "estimated_duration_sec": 4800,
+    "createdAt": {
+      "$date": "2025-01-11T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-01-11T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "eee000000000000000000003"
+    },
+    "title": "Raffaello e la filosofia antica",
+    "description": "Visita tematica alla Scuola di Atene nei Musei Vaticani, con un approfondimento sul concetto di Umanesimo rinascimentale.",
+    "museum": [
+      {
+        "$oid": "bbb000000000000000000003"
+      }
+    ],
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "base_price": 0,
+    "steps": [
+      {
+        "_id": {
+          "$oid": "fff000000000000000000006"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000005"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000003"
+        },
+        "items": [],
+        "logistic_note": "Prima di entrare nella Stanza della Segnatura, leggi questo inquadramento concettuale.",
+        "intro_note": "L'Umanesimo è il filo che lega tutti i personaggi dipinti da Raffaello: vale la pena tenerlo a mente durante la visita.",
+        "order": 1
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000007"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000006"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000003"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000005"
+          },
+          {
+            "$oid": "ddd000000000000000000006"
+          }
+        ],
+        "logistic_note": "Entra nella Stanza della Segnatura: la Scuola di Atene è sulla parete ovest di fronte all'ingresso.",
+        "intro_note": "Prendi il tempo che ti serve: ci sono più di 50 figure. Inizia dal centro e allarga lo sguardo verso i lati.",
+        "order": 2
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000015"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000015"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000003"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000015"
+          }
+        ],
+        "logistic_note": "Entra nella Cappella Sistina e alza lo sguardo verso il centro della volta.",
+        "intro_note": "Prenditi un momento di silenzio prima di cercare il celebre gesto delle due mani.",
+        "order": 3
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000016"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000018"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000003"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000018"
+          }
+        ],
+        "logistic_note": "Concludi nella Pinacoteca Vaticana, Sala VIII.",
+        "intro_note": "È l'ultima opera dipinta da Raffaello: nota il contrasto tra la luce in alto e il caos in basso.",
+        "order": 4
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg?width=1280",
+    "tags": [
+      "vaticano",
+      "raffaello",
+      "filosofia",
+      "umanesimo",
+      "rinascimento",
+      "michelangelo",
+      "cappella-sistina"
+    ],
+    "is_public": true,
+    "estimated_duration_sec": 4200,
+    "createdAt": {
+      "$date": "2025-01-12T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-01-12T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "eee000000000000000000004"
+    },
+    "title": "Leonardo tra Firenze e Milano",
+    "description": "Visita infra-museale che collega le opere di Leonardo agli Uffizi e la copia dell'Ultima Cena a Brera, esplorando il suo percorso artistico.",
+    "museum": [
+      {
+        "$oid": "bbb000000000000000000001"
+      },
+      {
+        "$oid": "bbb000000000000000000002"
+      }
+    ],
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "base_price": 0,
+    "steps": [
+      {
+        "_id": {
+          "$oid": "fff000000000000000000008"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000002"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000002"
+          }
+        ],
+        "logistic_note": "Inizia dagli Uffizi a Firenze, Sala 8, piano 2.",
+        "intro_note": "L'Annunciazione è il punto di partenza del giovane Leonardo: osserva come stia già sperimentando le proporzioni.",
+        "order": 1
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000009"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000004"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000002"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000004"
+          }
+        ],
+        "logistic_note": "Concludi a Milano alla Pinacoteca di Brera, Sala XII.",
+        "intro_note": "Questa copia dell'Ultima Cena ci mostra dove Leonardo era arrivato vent'anni dopo: confronta la padronanza compositiva con l'Annunciazione.",
+        "order": 2
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000017"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000007"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000007"
+          }
+        ],
+        "logistic_note": "Prima di lasciare gli Uffizi, torna nella Sala 10-14 per la Primavera.",
+        "intro_note": "Botticelli dipinge qui un mondo classico rivisitato, lo stesso linguaggio mitologico che influenzerà generazioni successive.",
+        "order": 3
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000018"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000011"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000002"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000011"
+          }
+        ],
+        "logistic_note": "A Milano, raggiungi la Sala XXIV di Brera dedicata a Raffaello.",
+        "intro_note": "Anche Raffaello, come Leonardo, sperimentò con la prospettiva architettonica: confronta questo tempio con lo sfondo dell'Annunciazione.",
+        "order": 4
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Annunciation_%28Leonardo_c._1472%E2%80%931476%29.jpg?width=1280",
+    "tags": [
+      "leonardo",
+      "firenze",
+      "milano",
+      "infra-museale",
+      "rinascimento",
+      "raffaello"
+    ],
+    "is_public": true,
+    "estimated_duration_sec": 7800,
+    "createdAt": {
+      "$date": "2025-01-15T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-01-15T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "eee000000000000000000005"
+    },
+    "title": "Bozza privata: visita tematica sul sacro",
+    "description": "Percorso in lavorazione su soggetti sacri nei musei italiani.",
+    "museum": [
+      {
+        "$oid": "bbb000000000000000000002"
+      }
+    ],
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "base_price": 0,
+    "steps": [
+      {
+        "_id": {
+          "$oid": "fff000000000000000000010"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000003"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000002"
+        },
+        "logistic_note": "",
+        "intro_note": "Da completare.",
+        "items": [
+          {
+            "$oid": "ddd000000000000000000003"
+          }
+        ],
+        "order": 1
+      }
+    ],
+    "image_url": null,
+    "tags": [
+      "sacro",
+      "wip"
+    ],
+    "is_public": false,
+    "estimated_duration_sec": null,
+    "createdAt": {
+      "$date": "2025-01-20T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-01-20T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "eee000000000000000000006"
+    },
+    "title": "Il mito, la grazia e il potere: capolavori degli Uffizi",
+    "description": "Quattro capolavori meno noti ma straordinari della Galleria degli Uffizi: dall'allegoria di Botticelli allo scudo di Caravaggio.",
+    "museum": [
+      {
+        "$oid": "bbb000000000000000000001"
+      }
+    ],
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "base_price": 2.5,
+    "steps": [
+      {
+        "_id": {
+          "$oid": "fff000000000000000000019"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000007"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000007"
+          }
+        ],
+        "logistic_note": "Inizia nella Sala 10-14, la sala di Botticelli.",
+        "intro_note": "La Primavera e la Nascita di Venere sono appese a pochi passi l'una dall'altra: confrontale.",
+        "order": 1
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000020"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000008"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000008"
+          }
+        ],
+        "logistic_note": "Prosegui verso la Sala 41, dedicata a Michelangelo.",
+        "intro_note": "Osserva la spirale dei corpi: è lo stesso principio compositivo che userà nella Cappella Sistina.",
+        "order": 2
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000021"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000009"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000009"
+          }
+        ],
+        "logistic_note": "Raggiungi la Sala 7, con i ritratti di Piero della Francesca.",
+        "intro_note": "Nota come i due coniugi siano sempre ritratti di profilo, secondo l'uso delle monete antiche.",
+        "order": 3
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000022"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000010"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000010"
+          }
+        ],
+        "logistic_note": "Concludi nella Sala 90, la sala del Caravaggio.",
+        "intro_note": "Lo scudo con la Medusa chiude il percorso: un finale a effetto, letteralmente tagliente.",
+        "order": 4
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli-primavera.jpg?width=1280",
+    "tags": [
+      "uffizi",
+      "firenze",
+      "botticelli",
+      "michelangelo",
+      "caravaggio"
+    ],
+    "is_public": true,
+    "estimated_duration_sec": 3600,
+    "createdAt": {
+      "$date": "2025-02-05T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-02-05T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "eee000000000000000000007"
+    },
+    "title": "Passioni e capolavori della Pinacoteca di Brera",
+    "description": "Un percorso gratuito tra sacro, romanticismo e chiaroscuro: Raffaello, Hayez, Piero della Francesca e Caravaggio nella Pinacoteca di Brera.",
+    "museum": [
+      {
+        "$oid": "bbb000000000000000000002"
+      }
+    ],
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "base_price": 0,
+    "steps": [
+      {
+        "_id": {
+          "$oid": "fff000000000000000000023"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000011"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000002"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000011"
+          }
+        ],
+        "logistic_note": "Inizia nella Sala XXIV, dedicata a Raffaello.",
+        "intro_note": "Prima di leggere la guida, prova a individuare da solo la firma nascosta di Raffaello.",
+        "order": 1
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000024"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000012"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000002"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000012"
+          }
+        ],
+        "logistic_note": "Raggiungi le sale dell'Ottocento lombardo per Il Bacio di Hayez.",
+        "intro_note": "È probabilmente il dipinto più fotografato di Brera: osserva i dettagli dei colori patriottici.",
+        "order": 2
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000025"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000013"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000002"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000013"
+          }
+        ],
+        "logistic_note": "Prosegui verso la Sala XXIII per la Pala di Brera.",
+        "intro_note": "Mettiti esattamente al centro della sala: la prospettiva dell'abside è pensata per essere vista da lì.",
+        "order": 3
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000026"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000014"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000002"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000014"
+          }
+        ],
+        "logistic_note": "Concludi nella Sala XXIX, dedicata a Caravaggio.",
+        "intro_note": "Confronta il silenzio di questa Cena in Emmaus con la teatralità delle altre opere viste finora.",
+        "order": 4
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/El_Beso_%28Pinacoteca_de_Brera%2C_Mil%C3%A1n%2C_1859%29.jpg?width=1280",
+    "tags": [
+      "brera",
+      "milano",
+      "raffaello",
+      "hayez",
+      "caravaggio"
+    ],
+    "is_public": true,
+    "estimated_duration_sec": 3300,
+    "createdAt": {
+      "$date": "2025-02-06T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-02-06T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "eee000000000000000000008"
+    },
+    "title": "Michelangelo e i Musei Vaticani",
+    "description": "Dalla volta della Cappella Sistina al Museo Pio-Clementino: un percorso a pagamento dedicato a Michelangelo e ai capolavori dei Musei Vaticani.",
+    "museum": [
+      {
+        "$oid": "bbb000000000000000000003"
+      }
+    ],
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "base_price": 3.0,
+    "steps": [
+      {
+        "_id": {
+          "$oid": "fff000000000000000000027"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000015"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000003"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000015"
+          }
+        ],
+        "logistic_note": "Entra nella Cappella Sistina e guarda il centro della volta.",
+        "intro_note": "Rimani in silenzio qualche istante prima di ascoltare la guida: lascia parlare l'affresco.",
+        "order": 1
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000028"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000016"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000003"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000016"
+          }
+        ],
+        "logistic_note": "Sposta lo sguardo sulla parete d'altare, dietro di te.",
+        "intro_note": "Cerca la figura scorticata in basso a destra: nasconde un autoritratto.",
+        "order": 2
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000029"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000017"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000003"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000017"
+          }
+        ],
+        "logistic_note": "Raggiungi il Museo Pio-Clementino, Cortile Ottagono.",
+        "intro_note": "Questa scultura, riscoperta nel 1506, cambiò per sempre il modo in cui Michelangelo rappresentava i corpi.",
+        "order": 3
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000030"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000018"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000003"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000018"
+          }
+        ],
+        "logistic_note": "Concludi nella Pinacoteca Vaticana, Sala VIII.",
+        "intro_note": "L'ultima opera di Raffaello, rimasta incompiuta: un finale carico di significato per il percorso.",
+        "order": 4
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo%2C_Giudizio_Universale_02.jpg?width=1280",
+    "tags": [
+      "vaticano",
+      "michelangelo",
+      "cappella-sistina",
+      "scultura",
+      "raffaello"
+    ],
+    "is_public": true,
+    "estimated_duration_sec": 3900,
+    "createdAt": {
+      "$date": "2025-02-07T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-02-07T00:00:00Z"
+    }
   }
 ]

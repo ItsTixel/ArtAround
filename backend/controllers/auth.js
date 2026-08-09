@@ -84,4 +84,23 @@ async function register(req, res) {
     }
 }
 
-module.exports = { login, register };
+async function logout(req, res) {
+  res.json({ message: 'Logout effettuato' });
+}
+
+async function me(req, res) {
+  try {
+    const authHeader = req.headers.authorization || '';
+    const userId = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null;
+    if (!userId) return res.status(401).json({ error: 'Non autenticato' });
+
+    const user = await User.findById(userId).select('-password');
+    if (!user) return res.status(401).json({ error: 'Utente non trovato' });
+
+    res.json(user);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+}
+
+module.exports = { login, register, logout, me };

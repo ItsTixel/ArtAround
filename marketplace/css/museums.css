@@ -1,0 +1,255 @@
+/* ============================================================
+ *  museums.css — Pagina "Scopri i Musei"
+ *  Hero compatta + barra filtri sticky + griglia musei.
+ *  Si appoggia ai token di base.css.
+ * ============================================================ */
+
+/* ── Page hero ────────────────────────────────────────────── */
+.page-hero {
+  background: #f0ebe2;
+  color: var(--color-text);
+  padding: 4.25rem 3rem 3.5rem;
+  position: relative;
+  border-bottom: 1px solid var(--color-border);
+}
+.page-hero::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--color-accent);
+}
+
+.page-hero-inner {
+  max-width: 1480px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.page-hero .kicker {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.page-hero h1 {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.15;
+  letter-spacing: 0.005em;
+  color: var(--color-text);
+  margin: 0 0 1rem;
+}
+
+.page-hero .hero-sub {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+}
+
+/* ── Search & Filters (sticky bar) ───────────────────────── */
+.search-section {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  padding: 1.25rem 3rem;
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 72px;
+  z-index: 10;
+}
+
+.search-bar {
+  flex: 1;
+  min-width: 200px;
+  position: relative;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 0.4rem 0.5rem 0.4rem 1.6rem;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--color-text);
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+.search-bar input::placeholder {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.search-bar input:focus { border-bottom-color: var(--color-accent); }
+
+.search-bar::before {
+  content: '';
+  position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  width: 13px; height: 13px;
+  background: var(--color-text-muted);
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M21 19l-4.35-4.35A7.5 7.5 0 1 0 15 16.65L19.35 21 21 19zM10.5 16a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z'/></svg>") center/contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M21 19l-4.35-4.35A7.5 7.5 0 1 0 15 16.65L19.35 21 21 19zM10.5 16a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z'/></svg>") center/contain no-repeat;
+  pointer-events: none;
+}
+
+.filters {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.filters select {
+  padding: 0.35rem 1.5rem 0.35rem 0;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  color: var(--color-text);
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2378716c'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0 center;
+  background-size: 18px;
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+.filters select:focus { border-bottom-color: var(--color-accent); }
+
+.skip-link {
+  margin-left: auto;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.skip-link:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* ── Grid Container ───────────────────────────────────────── */
+.museums-container {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 2.75rem 3rem 5rem;
+}
+
+.results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2.25rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.results-count {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+}
+
+.museums-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1.75rem;
+}
+
+/* ── States ───────────────────────────────────────────────── */
+.loading,
+.no-results,
+.error-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 6rem 1rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.error-message { color: #a03020; }
+
+.loading::before {
+  content: '';
+  display: block;
+  width: 24px; height: 24px;
+  border: 1px solid var(--color-border);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 1.2s linear infinite;
+  margin: 0 auto 2rem;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Pagination ───────────────────────────────────────────── */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 4rem 0 0;
+}
+
+.pagination button {
+  padding: 0.45rem 1.4rem;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+
+.pagination button:hover {
+  background: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+}
+
+.pagination button:disabled { opacity: 0.3; cursor: not-allowed; }
+
+.pagination .page-info {
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  padding: 0 0.5rem;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .page-hero { padding: 3.25rem 1.5rem 2.5rem; }
+  .page-hero h1 { font-size: 2.2rem; }
+  .search-section { top: 60px; padding: 1rem 1.5rem; gap: 1.25rem; }
+  .skip-link { margin-left: 0; }
+  .museums-container { padding: 2rem 1.5rem 4rem; }
+  .museums-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+}

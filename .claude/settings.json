@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(systemctl list-units *)",
+      "Bash(docker exec *)",
+      "Bash(docker network *)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('Containers:', list\\(d[0]['Containers'].keys\\(\\)\\) if d else 'not found'\\); print\\('DNS:', d[0].get\\('Options', {}\\)\\)\")"
+    ]
+  }
+}
