@@ -55,6 +55,7 @@ app.get('/', async function (req, res) {
 			`)
 });
 app.use('/marketplace', express.static(path.join(__dirname, '../marketplace'), { "index": 'pages/index.html' }));
+app.use('/navigator', express.static(path.join(__dirname, '../navigator/dist')));
 
 
 
