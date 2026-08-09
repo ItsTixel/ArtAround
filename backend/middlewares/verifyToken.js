@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 
 function verifyToken(req, res, next) {
-    console.log("qui tutto bene2")
     // Il frontend invia il token nell'header "Authorization"
     // Tutte le pagine in futuro dovrebbero avere questo header, 
     // così che gli utenti non possono accedere a pagine che richiedono l'accesso.

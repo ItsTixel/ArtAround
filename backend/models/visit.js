@@ -3,7 +3,6 @@ const { Schema, model } = mongoose;
 
 const visitStepSchema = new Schema({
 
-
     entity: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Entity',
@@ -69,6 +68,11 @@ const visitSchema = new Schema({
         default : 0,
         min: [0, 'Price must be non negative'],
     },
+
+    public: {
+        type: Boolean,
+        default: false
+    }
 
 })
 
