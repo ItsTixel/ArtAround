@@ -100,6 +100,25 @@ export function VolumeIcon(props) {
   )
 }
 
+export function VolumeMutedIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z" strokeLinejoin="round" />
+      <path d="M15.5 9.5 20 14" />
+      <path d="M20 9.5 15.5 14" />
+    </svg>
+  )
+}
+
+export function PauseIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <rect x="7" y="5" width="3.5" height="14" rx="1" fill="currentColor" stroke="none" />
+      <rect x="13.5" y="5" width="3.5" height="14" rx="1" fill="currentColor" stroke="none" />
+    </svg>
+  )
+}
+
 export function MicrophoneIcon(props) {
   return (
     <svg viewBox="0 0 24 24" {...strokeProps} {...props}>

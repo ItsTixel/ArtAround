@@ -1,11 +1,11 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useActiveVisit } from '../context/ActiveVisitContext'
 import NoActiveVisit from '../components/NoActiveVisit'
 import {
   PreviousIcon,
   NextIcon,
   PlayIcon,
-  VolumeIcon,
+  PauseIcon,
   MicrophoneIcon,
 } from '../components/icons'
 
@@ -22,6 +22,13 @@ function formatDurationLabel(sec) {
   return `${Math.round(sec / 60)} min`
 }
 
+// Chrome on Android has a long-standing bug where speechSynthesis.resume()
+// silently fails to continue after pause(), leaving playback stuck. There's
+// no reliable feature-detect for it, so on Android "pause" just stops the
+// utterance and "play" restarts the description from the beginning instead
+// of trying (and failing) to resume mid-sentence.
+const IS_ANDROID = /Android/i.test(navigator.userAgent)
+
 function pillClasses(active, activeClasses) {
   return `rounded-full border px-4 py-1.5 text-sm font-medium ${
     active ? activeClasses : 'border-border bg-surface text-text-muted'
@@ -32,11 +39,19 @@ function Opera() {
   const { activeVisit } = useActiveVisit()
   const [selectedTone, setSelectedTone] = useState(null)
   const [selectedDescIndex, setSelectedDescIndex] = useState(0)
+  const [stepIndex, setStepIndex] = useState(0)
+  const [playbackState, setPlaybackState] = useState('idle') // 'idle' | 'playing' | 'paused'
+  const utteranceRef = useRef(null)
 
-  const step = useMemo(() => {
-    if (!activeVisit?.steps?.length) return null
-    return [...activeVisit.steps].sort((a, b) => a.order - b.order)[0]
+  const sortedSteps = useMemo(() => {
+    if (!activeVisit?.steps?.length) return []
+    return [...activeVisit.steps].sort((a, b) => a.order - b.order)
   }, [activeVisit])
+
+  const activeStepIndex = Math.min(stepIndex, Math.max(sortedSteps.length - 1, 0))
+  const step = sortedSteps[activeStepIndex] || null
+  const canGoPrevious = activeStepIndex > 0
+  const canGoNext = activeStepIndex < sortedSteps.length - 1
 
   const entity = step?.entity
   const items = useMemo(() => step?.items || [], [step])
@@ -57,10 +72,67 @@ function Opera() {
   const activeDescIndex = Math.min(selectedDescIndex, Math.max(sortedDescriptions.length - 1, 0))
   const currentDescription = sortedDescriptions[activeDescIndex]
 
+  function stopSpeech() {
+    window.speechSynthesis.cancel()
+    setPlaybackState('idle')
+  }
+
   function handleToneSelect(tone) {
+    stopSpeech()
     setSelectedTone(tone)
     setSelectedDescIndex(0)
   }
+
+  function handleDescSelect(index) {
+    stopSpeech()
+    setSelectedDescIndex(index)
+  }
+
+  function goToPreviousStep() {
+    if (!canGoPrevious) return
+    stopSpeech()
+    setSelectedTone(null)
+    setSelectedDescIndex(0)
+    setStepIndex(activeStepIndex - 1)
+  }
+
+  function goToNextStep() {
+    if (!canGoNext) return
+    stopSpeech()
+    setSelectedTone(null)
+    setSelectedDescIndex(0)
+    setStepIndex(activeStepIndex + 1)
+  }
+
+  function handlePlayPause() {
+    if (playbackState === 'playing') {
+      if (IS_ANDROID) {
+        stopSpeech() // falls back to idle; next Play restarts from the beginning
+      } else {
+        window.speechSynthesis.pause()
+        setPlaybackState('paused')
+      }
+      return
+    }
+    if (playbackState === 'paused') {
+      window.speechSynthesis.resume()
+      setPlaybackState('playing')
+      return
+    }
+    if (!currentDescription?.text) return
+    window.speechSynthesis.cancel()
+    const utterance = new SpeechSynthesisUtterance(currentDescription.text)
+    utterance.lang = 'it-IT'
+    utterance.onend = () => setPlaybackState('idle')
+    utterance.onerror = () => setPlaybackState('idle')
+    utteranceRef.current = utterance
+    window.speechSynthesis.speak(utterance)
+    setPlaybackState('playing')
+  }
+
+  useEffect(() => {
+    return () => window.speechSynthesis.cancel()
+  }, [])
 
   if (!activeVisit) return <NoActiveVisit />
 
@@ -105,7 +177,7 @@ function Opera() {
                 <button
                   key={index}
                   type="button"
-                  onClick={() => setSelectedDescIndex(index)}
+                  onClick={() => handleDescSelect(index)}
                   className={pillClasses(index === activeDescIndex, 'border-info bg-info text-on-accent')}
                 >
                   {formatDurationLabel(desc.duration_sec)}
@@ -151,26 +223,24 @@ function Opera() {
           <button
             type="button"
             aria-label="Precedente"
-            onClick={() => console.log('Precedente')}
-            className="text-text-muted"
+            onClick={goToPreviousStep}
+            disabled={!canGoPrevious}
+            className={`text-text-muted ${!canGoPrevious ? 'opacity-30' : ''}`}
           >
             <PreviousIcon className="h-6 w-6" />
           </button>
           <button
             type="button"
-            aria-label="Volume"
-            onClick={() => console.log('Volume/Mute')}
-            className="text-text-muted"
+            aria-label={playbackState === 'playing' ? 'Pausa' : 'Play'}
+            onClick={handlePlayPause}
+            disabled={!currentDescription?.text}
+            className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent-hover text-on-accent shadow-[0_0_20px_rgba(212,168,83,0.35)] disabled:opacity-40"
           >
-            <VolumeIcon className="h-6 w-6" />
-          </button>
-          <button
-            type="button"
-            aria-label="Play/Pausa"
-            onClick={() => console.log('Play/Pause')}
-            className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent-hover text-on-accent shadow-[0_0_20px_rgba(212,168,83,0.35)]"
-          >
-            <PlayIcon className="h-6 w-6" />
+            {playbackState === 'playing' ? (
+              <PauseIcon className="h-6 w-6" />
+            ) : (
+              <PlayIcon className="h-6 w-6" />
+            )}
           </button>
           <button
             type="button"
@@ -183,8 +253,9 @@ function Opera() {
           <button
             type="button"
             aria-label="Prossimo"
-            onClick={() => console.log('Prossimo')}
-            className="text-text-muted"
+            onClick={goToNextStep}
+            disabled={!canGoNext}
+            className={`text-text-muted ${!canGoNext ? 'opacity-30' : ''}`}
           >
             <NextIcon className="h-6 w-6" />
           </button>
