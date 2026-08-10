@@ -59,3 +59,54 @@ export function QrIcon(props) {
     </svg>
   )
 }
+
+export function PreviousIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <path d="M6 6v12" />
+      <path d="M8 12l9.5-5.7a1 1 0 0 1 1.5.9v9.6a1 1 0 0 1-1.5.9L8 12Z" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+export function NextIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <path d="M18 6v12" />
+      <path d="M16 12 6.5 6.3a1 1 0 0 0-1.5.9v9.6a1 1 0 0 0 1.5.9L16 12Z" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+export function PlayIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <path
+        d="M8 5.5v13a1 1 0 0 0 1.5.87l10-6.5a1 1 0 0 0 0-1.74l-10-6.5A1 1 0 0 0 8 5.5Z"
+        fill="currentColor"
+        stroke="none"
+      />
+    </svg>
+  )
+}
+
+export function VolumeIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z" strokeLinejoin="round" />
+      <path d="M15.5 9a4 4 0 0 1 0 6" />
+      <path d="M18 6.5a7.5 7.5 0 0 1 0 11" />
+    </svg>
+  )
+}
+
+export function MicrophoneIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <rect x="9" y="3" width="6" height="11" rx="3" />
+      <path d="M6 11a6 6 0 0 0 12 0" />
+      <path d="M12 17v3" />
+      <path d="M9 20h6" />
+    </svg>
+  )
+}
