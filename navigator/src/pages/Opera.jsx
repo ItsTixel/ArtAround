@@ -22,9 +22,9 @@ function formatDurationLabel(sec) {
   return `${Math.round(sec / 60)} min`
 }
 
-function pillClasses(active, colorClass) {
+function pillClasses(active, activeClasses) {
   return `rounded-full border px-4 py-1.5 text-sm font-medium ${
-    active ? `${colorClass} text-white` : 'border-border bg-surface text-text-muted'
+    active ? activeClasses : 'border-border bg-surface text-text-muted'
   }`
 }
 
@@ -67,7 +67,7 @@ function Opera() {
   if (!step || !entity) {
     return (
       <div className="flex flex-col gap-2 p-6">
-        <h1 className="text-2xl font-semibold text-primary">Opera</h1>
+        <h1 className="font-serif text-2xl font-semibold text-text">Opera</h1>
         <p className="text-text-muted">Nessuna opera disponibile per questa visita.</p>
       </div>
     )
@@ -88,7 +88,7 @@ function Opera() {
       )}
 
       <div className="flex flex-col gap-1 px-6">
-        <h1 className="text-2xl font-semibold text-primary">{entity.name}</h1>
+        <h1 className="font-serif text-2xl font-semibold text-text">{entity.name}</h1>
         {entity.artwork_author && (
           <p className="text-sm text-text-muted">{entity.artwork_author}</p>
         )}
@@ -106,7 +106,7 @@ function Opera() {
                   key={index}
                   type="button"
                   onClick={() => setSelectedDescIndex(index)}
-                  className={pillClasses(index === activeDescIndex, 'border-primary bg-primary')}
+                  className={pillClasses(index === activeDescIndex, 'border-info bg-info text-on-accent')}
                 >
                   {formatDurationLabel(desc.duration_sec)}
                 </button>
@@ -128,7 +128,7 @@ function Opera() {
                   key={tone}
                   type="button"
                   onClick={() => handleToneSelect(tone)}
-                  className={pillClasses(tone === activeTone, 'border-accent bg-accent')}
+                  className={pillClasses(tone === activeTone, 'border-accent bg-accent text-on-accent')}
                 >
                   {TONE_LABELS[tone]}
                 </button>
@@ -168,7 +168,7 @@ function Opera() {
             type="button"
             aria-label="Play/Pausa"
             onClick={() => console.log('Play/Pause')}
-            className="flex h-14 w-14 items-center justify-center rounded-full bg-accent text-white shadow-md"
+            className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent-hover text-on-accent shadow-[0_0_20px_rgba(212,168,83,0.35)]"
           >
             <PlayIcon className="h-6 w-6" />
           </button>

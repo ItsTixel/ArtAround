@@ -6,7 +6,9 @@
 
 /* ── Page hero ────────────────────────────────────────────── */
 .page-hero {
-  background: #f0ebe2;
+  background:
+    radial-gradient(ellipse 900px 480px at 50% -15%, rgba(212, 168, 83, 0.12), transparent 65%),
+    var(--color-bg);
   color: var(--color-text);
   padding: 4.25rem 3rem 3.5rem;
   position: relative;
@@ -194,6 +196,7 @@ filter-sidebar { display: block; }
 .pagination button {
   padding: 0.45rem 1.4rem;
   border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
   background: transparent;
   font-family: var(--font-sans);
   font-size: 0.7rem;
@@ -205,9 +208,9 @@ filter-sidebar { display: block; }
   transition: background var(--transition), border-color var(--transition), color var(--transition);
 }
 .pagination button:hover {
-  background: var(--color-primary);
-  color: #ffffff;
-  border-color: var(--color-primary);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  border-color: var(--color-accent);
 }
 .pagination button:disabled { opacity: 0.3; cursor: not-allowed; }
 .pagination .page-info {

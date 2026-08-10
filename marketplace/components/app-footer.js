@@ -10,10 +10,10 @@ class AppFooter extends HTMLElement {
         :host { display: block; }
 
         footer {
-          background: #2c3a4a;
-          border-top: 1px solid rgba(255, 255, 255, 0.06);
+          background: #0a0a0a;
+          border-top: 1px solid rgba(255, 255, 255, 0.08);
           padding: 2rem 3rem;
-          font-family: var(--font-sans, 'Inter', system-ui, sans-serif);
+          font-family: var(--font-sans, 'Nunito Sans', system-ui, sans-serif);
           font-size: 0.72rem;
           letter-spacing: 0.05em;
           color: rgba(240, 237, 232, 0.35);
@@ -31,12 +31,12 @@ class AppFooter extends HTMLElement {
         }
 
         .brand {
-          font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+          font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);
           font-style: italic;
           font-weight: 400;
           font-size: 1rem;
           letter-spacing: 0.02em;
-          color: #9e7a46;
+          color: #d4a853;
         }
 
         @media (max-width: 480px) {

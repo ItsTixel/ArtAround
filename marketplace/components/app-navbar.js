@@ -14,7 +14,7 @@ class AppNavbar extends HTMLElement {
         :host { display: block; }
 
         nav {
-          background: #2c3a4a;
+          background: #0a0a0a;
           height: 72px;
           padding: 0 3rem;
           display: flex;
@@ -23,11 +23,11 @@ class AppNavbar extends HTMLElement {
           position: sticky;
           top: 0;
           z-index: 100;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .logo {
-          font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+          font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);
           font-size: 1.3rem;
           font-weight: 400;
           font-style: italic;
@@ -37,7 +37,7 @@ class AppNavbar extends HTMLElement {
         }
 
         .logo span {
-          color: #9e7a46;
+          color: #d4a853;
           font-style: normal;
         }
 
@@ -49,7 +49,7 @@ class AppNavbar extends HTMLElement {
         }
 
         a {
-          font-family: var(--font-sans, 'Inter', system-ui, sans-serif);
+          font-family: var(--font-sans, 'Nunito Sans', system-ui, sans-serif);
           color: rgba(240, 237, 232, 0.5);
           text-decoration: none;
           font-size: 0.7rem;
@@ -61,7 +61,7 @@ class AppNavbar extends HTMLElement {
         }
 
         a:hover { color: #f0ede8; }
-        a.active { color: #9e7a46; }
+        a.active { color: #d4a853; }
 
         /* Sotto i 900px l'header resta ancorato in cima allo schermo anche
            durante il rimbalzo elastico ai bordi (position: fixed invece di

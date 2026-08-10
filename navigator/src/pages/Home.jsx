@@ -43,14 +43,14 @@ function Home() {
   return (
     <div className="flex flex-col gap-4 p-4">
       <div>
-        <h1 className="text-2xl font-semibold text-primary">Home</h1>
+        <h1 className="font-serif text-2xl font-semibold text-text">Home</h1>
         <p className="text-sm text-text-muted">
           Seleziona una visita da attivare per iniziare.
         </p>
       </div>
 
       {loading && <p className="text-text-muted">Caricamento visite...</p>}
-      {error && <p className="text-red-600">{error}</p>}
+      {error && <p className="text-red-400">{error}</p>}
 
       <ul className="flex flex-col gap-3">
         {visits.map((visit) => {
@@ -61,10 +61,10 @@ function Home() {
             <li
               key={visit._id}
               className={`rounded-lg border bg-surface p-4 shadow-sm ${
-                isActive ? 'border-accent' : 'border-border'
+                isActive ? 'border-accent shadow-[0_0_20px_rgba(212,168,83,0.15)]' : 'border-border'
               }`}
             >
-              <h2 className="font-semibold text-primary">{visit.title}</h2>
+              <h2 className="font-serif font-semibold text-text">{visit.title}</h2>
               {museumNames && (
                 <p className="text-sm text-text-muted">{museumNames}</p>
               )}
@@ -80,8 +80,8 @@ function Home() {
                 onClick={() => (isActive ? clearActiveVisit() : activateVisit(visit))}
                 className={`mt-3 w-full rounded-md px-4 py-2 text-sm font-medium ${
                   isActive
-                    ? 'bg-accent text-white'
-                    : 'bg-primary text-white'
+                    ? 'bg-accent text-on-accent shadow-[0_0_16px_rgba(212,168,83,0.25)]'
+                    : 'border border-border bg-surface text-text'
                 }`}
               >
                 {isActive ? 'Visita attiva ✓' : 'Attiva'}

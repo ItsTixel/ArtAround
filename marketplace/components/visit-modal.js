@@ -284,7 +284,7 @@ class VisitModal extends HTMLElement {
 
         .backdrop {
           position: absolute; inset: 0;
-          background: rgba(28, 25, 23, 0.55);
+          background: rgba(0, 0, 0, 0.7);
           animation: fade-in 0.3s ease;
         }
 
@@ -293,10 +293,13 @@ class VisitModal extends HTMLElement {
           margin: 4vh auto;
           width: min(720px, 92vw);
           max-height: 92vh;
-          background: var(--color-surface, #fff);
+          background: var(--color-surface, #161616);
+          border: 1px solid var(--color-border, #2a2a2a);
+          border-radius: var(--radius, 8px);
+          overflow: hidden;
           display: flex;
           flex-direction: column;
-          box-shadow: 0 24px 64px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
           animation: rise-in 0.35s ease;
         }
 
@@ -309,15 +312,18 @@ class VisitModal extends HTMLElement {
           z-index: 3;
           width: 34px; height: 34px;
           display: flex; align-items: center; justify-content: center;
-          background: rgba(255, 255, 255, 0.85);
-          border: 1px solid var(--color-border, #e8e6e1);
+          background: var(--glass-bg, rgba(22, 22, 22, 0.85));
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border: 1px solid var(--color-border, #2a2a2a);
+          border-radius: var(--radius-sm, 6px);
           cursor: pointer;
           font-size: 1.1rem;
           line-height: 1;
-          color: var(--color-text, #1c1917);
+          color: var(--color-text, #f0ede8);
           transition: background 0.3s ease, color 0.3s ease;
         }
-        .close-btn:hover { background: #1c1917; color: #fff; }
+        .close-btn:hover { background: var(--color-accent, #d4a853); color: var(--color-on-accent, #0a0a0a); }
 
         .body-scroll { overflow-y: auto; flex: 1; min-height: 0; }
 
@@ -325,8 +331,8 @@ class VisitModal extends HTMLElement {
         .banner {
           position: relative;
           height: 190px;
-          background: #f5f2ec;
-          border-bottom: 1px solid var(--color-border, #e8e6e1);
+          background: #101010;
+          border-bottom: 1px solid var(--color-border, #2a2a2a);
           display: flex; align-items: center; justify-content: center;
           overflow: hidden;
           flex-shrink: 0;
@@ -334,7 +340,7 @@ class VisitModal extends HTMLElement {
         .banner::before {
           content: '';
           position: absolute; inset: 0;
-          background: repeating-linear-gradient(135deg, transparent 0 11px, rgba(0,0,0,0.045) 11px 12px);
+          background: repeating-linear-gradient(135deg, transparent 0 11px, rgba(255,255,255,0.035) 11px 12px);
         }
         .banner.has-image::before { display: none; }
         .banner-img {
@@ -349,8 +355,11 @@ class VisitModal extends HTMLElement {
           font-size: 0.68rem;
           letter-spacing: 0.14em;
           text-transform: uppercase;
-          color: #78716c;
-          background: rgba(255, 255, 255, 0.78);
+          color: var(--color-text-muted, #8a8a8a);
+          background: var(--glass-bg, rgba(22, 22, 22, 0.85));
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border-radius: var(--radius-sm, 6px);
           padding: 0.4rem 0.85rem;
           text-align: center;
           max-width: 80%;
@@ -361,10 +370,11 @@ class VisitModal extends HTMLElement {
           font-size: 0.62rem;
           letter-spacing: 0.16em;
           text-transform: uppercase;
+          border-radius: var(--radius-sm, 6px);
           padding: 0.35rem 0.7rem;
-          background: var(--color-surface, #fff);
-          color: var(--color-accent, #9e7a46);
-          border: 1px solid var(--color-accent, #9e7a46);
+          background: var(--color-surface, #161616);
+          color: var(--color-accent, #d4a853);
+          border: 1px solid var(--color-accent, #d4a853);
         }
 
         /* ── Contenuto ────────────────────────────────────── */
@@ -398,7 +408,7 @@ class VisitModal extends HTMLElement {
         .meta-row strong { color: var(--color-text, #1c1917); font-weight: 600; }
         .meta-row .sep { width: 3px; height: 3px; border-radius: 50%; background: currentColor; opacity: 0.5; }
 
-        .description { font-size: 0.9rem; line-height: 1.65; color: #57534e; margin-bottom: 1.1rem; }
+        .description { font-size: 0.9rem; line-height: 1.65; color: var(--color-text-muted, #8a8a8a); margin-bottom: 1.1rem; }
 
         .tags { margin-bottom: 1.6rem; }
         .tag {
@@ -431,14 +441,15 @@ class VisitModal extends HTMLElement {
         .opera-thumb {
           width: 56px; height: 56px;
           flex-shrink: 0;
-          background: #f5f2ec;
-          border: 1px solid var(--color-border, #e8e6e1);
+          background: #101010;
+          border: 1px solid var(--color-border, #2a2a2a);
+          border-radius: var(--radius-sm, 6px);
           overflow: hidden;
         }
         .opera-thumb img { width: 100%; height: 100%; object-fit: cover; }
         .opera-thumb-ph {
           display: block; width: 100%; height: 100%;
-          background: repeating-linear-gradient(135deg, transparent 0 6px, rgba(0,0,0,0.06) 6px 7px);
+          background: repeating-linear-gradient(135deg, transparent 0 6px, rgba(255,255,255,0.05) 6px 7px);
         }
         .opera-info { min-width: 0; flex: 1; }
         .opera-info h3 {
@@ -458,7 +469,7 @@ class VisitModal extends HTMLElement {
         .opera-desc {
           font-size: 0.8rem;
           line-height: 1.5;
-          color: #57534e;
+          color: var(--color-text-muted, #8a8a8a);
           display: -webkit-box;
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
@@ -482,30 +493,34 @@ class VisitModal extends HTMLElement {
           font-weight: 600;
           color: var(--color-text, #1c1917);
         }
-        .footer-error { font-size: 0.72rem; color: #b91c1c; }
+        .footer-error { font-size: 0.72rem; color: #f38b7f; }
 
         .btn {
-          font-family: var(--font-sans, 'Inter', sans-serif);
+          font-family: var(--font-sans, 'Nunito Sans', sans-serif);
           font-size: 0.72rem;
           font-weight: 600;
           letter-spacing: 0.08em;
           text-transform: uppercase;
           padding: 0.75rem 1.5rem;
-          border: 1px solid var(--color-text, #1c1917);
-          background: var(--color-text, #1c1917);
-          color: #fff;
+          border-radius: var(--radius-sm, 6px);
+          border: 1px solid transparent;
           cursor: pointer;
           white-space: nowrap;
-          transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+          transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
         }
-        .btn.primary:hover { background: var(--color-accent, #9e7a46); border-color: var(--color-accent, #9e7a46); }
-        .btn.primary:disabled { opacity: 0.55; cursor: default; }
-        .btn.ghost { background: transparent; color: var(--color-text, #1c1917); }
-        .btn.ghost:hover { background: var(--color-border, #e8e6e1); }
+        .btn.primary {
+          background: linear-gradient(135deg, var(--color-accent, #d4a853), var(--color-accent-hover, #c49440));
+          border-color: var(--color-accent, #d4a853);
+          color: var(--color-on-accent, #0a0a0a);
+        }
+        .btn.primary:hover { box-shadow: 0 0 20px rgba(212, 168, 83, 0.35); }
+        .btn.primary:disabled { opacity: 0.55; cursor: default; box-shadow: none; }
+        .btn.ghost { background: transparent; border-color: var(--color-border, #2a2a2a); color: var(--color-text, #f0ede8); }
+        .btn.ghost:hover { background: var(--color-border, #2a2a2a); }
         .btn.owned {
           background: transparent;
-          border-color: var(--color-border, #e8e6e1);
-          color: var(--color-text-muted, #78716c);
+          border-color: var(--color-border, #2a2a2a);
+          color: var(--color-text-muted, #8a8a8a);
           cursor: default;
         }
 
@@ -521,7 +536,7 @@ class VisitModal extends HTMLElement {
         }
 
         @media (max-width: 640px) {
-          .panel { width: 100vw; margin: 0; max-height: 100vh; height: 100vh; }
+          .panel { width: 100vw; margin: 0; max-height: 100vh; height: 100vh; border-radius: 0; }
           .content { padding: 1.5rem 1.25rem 1.75rem; }
           .footer { padding: 1rem 1.25rem; flex-wrap: wrap; }
           .confirm { flex-direction: column; align-items: flex-start; gap: 0.6rem; }

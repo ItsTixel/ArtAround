@@ -57,9 +57,11 @@ class VisitCard extends HTMLElement {
         :host { display: block; height: 100%; }
 
         .card {
-          background: var(--color-surface, #ffffff);
-          border: 1px solid var(--color-border, #e8e6e1);
-          border-top: 2px solid var(--color-accent, #9e7a46);
+          background: var(--color-surface, #161616);
+          border: 1px solid var(--color-border, #2a2a2a);
+          border-top: 2px solid var(--color-accent, #d4a853);
+          border-radius: var(--radius, 8px);
+          overflow: hidden;
           display: flex;
           flex-direction: column;
           height: 100%;
@@ -70,15 +72,15 @@ class VisitCard extends HTMLElement {
         }
         .card:hover {
           transform: translateY(-4px);
-          box-shadow: 0 16px 48px rgba(0, 0, 0, 0.09);
+          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), var(--glow-accent, 0 0 20px rgba(212, 168, 83, 0.15));
         }
 
         /* ── Banner placeholder ───────────────────────────── */
         .banner {
           position: relative;
           height: 184px;
-          background: #f5f2ec;
-          border-bottom: 1px solid var(--color-border, #e8e6e1);
+          background: #101010;
+          border-bottom: 1px solid var(--color-border, #2a2a2a);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -90,7 +92,7 @@ class VisitCard extends HTMLElement {
           background: repeating-linear-gradient(
             135deg,
             transparent 0 11px,
-            rgba(0, 0, 0, 0.045) 11px 12px
+            rgba(255, 255, 255, 0.035) 11px 12px
           );
         }
         .banner.has-image::before { display: none; }
@@ -109,26 +111,35 @@ class VisitCard extends HTMLElement {
           font-size: 0.68rem;
           letter-spacing: 0.18em;
           text-transform: uppercase;
-          color: #78716c;
-          background: rgba(255, 255, 255, 0.78);
+          color: var(--color-text-muted, #8a8a8a);
+          background: var(--glass-bg, rgba(22, 22, 22, 0.85));
+          border-radius: var(--radius-sm, 6px);
           padding: 0.4rem 0.85rem;
-          backdrop-filter: blur(2px);
-          -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
         }
         .price-tag {
           position: absolute;
           top: 0.85rem; right: 0.85rem;
           z-index: 2;
-          font-family: var(--font-sans, 'Inter', system-ui, sans-serif);
+          font-family: var(--font-sans, 'Nunito Sans', system-ui, sans-serif);
           font-size: 0.7rem;
           font-weight: 600;
           letter-spacing: 0.08em;
           text-transform: uppercase;
+          border-radius: var(--radius-sm, 6px);
           padding: 0.35rem 0.7rem;
-          background: #1c1917;
-          color: #ffffff;
+          background: var(--glass-bg, rgba(22, 22, 22, 0.85));
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          color: var(--color-text, #f0ede8);
         }
-        .price-tag.free { background: var(--color-accent, #9e7a46); }
+        .price-tag.free {
+          background: var(--color-accent, #d4a853);
+          color: var(--color-on-accent, #0a0a0a);
+          backdrop-filter: none;
+          -webkit-backdrop-filter: none;
+        }
 
         .infra-badge {
           position: absolute;
@@ -139,10 +150,11 @@ class VisitCard extends HTMLElement {
           font-weight: 500;
           letter-spacing: 0.16em;
           text-transform: uppercase;
+          border-radius: var(--radius-sm, 6px);
           padding: 0.35rem 0.7rem;
-          background: var(--color-surface, #fff);
-          color: var(--color-accent, #9e7a46);
-          border: 1px solid var(--color-accent, #9e7a46);
+          background: var(--color-surface, #161616);
+          color: var(--color-accent, #d4a853);
+          border: 1px solid var(--color-accent, #d4a853);
         }
 
         /* ── Body ─────────────────────────────────────────── */
@@ -188,10 +200,10 @@ class VisitCard extends HTMLElement {
         .card:hover h2 { color: var(--color-accent, #9e7a46); }
 
         .desc {
-          font-family: var(--font-sans, 'Inter', system-ui, sans-serif);
+          font-family: var(--font-sans, 'Nunito Sans', system-ui, sans-serif);
           font-size: 0.83rem;
           line-height: 1.55;
-          color: #57534e;
+          color: var(--color-text-muted, #8a8a8a);
           margin: 0;
           display: -webkit-box;
           -webkit-line-clamp: 2;
