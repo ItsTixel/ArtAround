@@ -22,6 +22,13 @@ function formatDurationLabel(sec) {
   return `${Math.round(sec / 60)} min`
 }
 
+function formatTime(sec) {
+  const total = Math.max(0, Math.floor(sec || 0))
+  const m = Math.floor(total / 60)
+  const s = total % 60
+  return `${m}:${String(s).padStart(2, '0')}`
+}
+
 // Chrome on Android has a long-standing bug where speechSynthesis.resume()
 // silently fails to continue after pause(), leaving playback stuck. There's
 // no reliable feature-detect for it, so on Android "pause" just stops the
@@ -41,7 +48,11 @@ function Opera() {
   const [selectedDescIndex, setSelectedDescIndex] = useState(0)
   const [stepIndex, setStepIndex] = useState(0)
   const [playbackState, setPlaybackState] = useState('idle') // 'idle' | 'playing' | 'paused'
+  const [progress, setProgress] = useState(0) // 0..1, position within currentDescription.text
+  const [seekPreview, setSeekPreview] = useState(null) // 0..1 while dragging, else null
   const utteranceRef = useRef(null)
+  const textRef = useRef('') // full text currently loaded for playback/seeking
+  const resumeCharRef = useRef(0) // char offset to resume/seek from
 
   const sortedSteps = useMemo(() => {
     if (!activeVisit?.steps?.length) return []
@@ -75,6 +86,49 @@ function Opera() {
   function stopSpeech() {
     window.speechSynthesis.cancel()
     setPlaybackState('idle')
+    setProgress(0)
+    setSeekPreview(null)
+    resumeCharRef.current = 0
+    textRef.current = ''
+  }
+
+  // Cancels any speech in progress and starts reading textRef.current from
+  // charIndex onward. Used for the initial Play, for seeking, and (on
+  // Android, where speechSynthesis.resume() doesn't reliably work) for
+  // resuming after pause too — one single restart mechanism everywhere.
+  function speakFromChar(charIndex) {
+    const text = textRef.current
+    if (!text) return
+    const clamped = Math.max(0, Math.min(charIndex, text.length))
+    window.speechSynthesis.cancel()
+    resumeCharRef.current = clamped
+    setProgress(text.length ? clamped / text.length : 0)
+
+    const remaining = text.slice(clamped)
+    if (!remaining) {
+      setPlaybackState('idle')
+      return
+    }
+
+    const utterance = new SpeechSynthesisUtterance(remaining)
+    utterance.lang = 'it-IT'
+    utterance.onboundary = (event) => {
+      const absolute = clamped + event.charIndex
+      resumeCharRef.current = absolute
+      setProgress(text.length ? Math.min(1, absolute / text.length) : 0)
+    }
+    utterance.onend = () => setPlaybackState('idle')
+    utterance.onerror = () => setPlaybackState('idle')
+    utteranceRef.current = utterance
+    window.speechSynthesis.speak(utterance)
+    setPlaybackState('playing')
+  }
+
+  function handleSeek(fraction) {
+    if (!currentDescription?.text) return
+    textRef.current = currentDescription.text
+    const clampedFraction = Math.max(0, Math.min(1, fraction))
+    speakFromChar(Math.round(clampedFraction * textRef.current.length))
   }
 
   function handleToneSelect(tone) {
@@ -107,7 +161,10 @@ function Opera() {
   function handlePlayPause() {
     if (playbackState === 'playing') {
       if (IS_ANDROID) {
-        stopSpeech() // falls back to idle; next Play restarts from the beginning
+        // resume() is unreliable on Android; cancel but keep the resume
+        // point from the last onboundary so Play restarts from there.
+        window.speechSynthesis.cancel()
+        setPlaybackState('paused')
       } else {
         window.speechSynthesis.pause()
         setPlaybackState('paused')
@@ -115,19 +172,20 @@ function Opera() {
       return
     }
     if (playbackState === 'paused') {
-      window.speechSynthesis.resume()
-      setPlaybackState('playing')
+      if (IS_ANDROID) {
+        speakFromChar(resumeCharRef.current)
+      } else {
+        window.speechSynthesis.resume()
+        setPlaybackState('playing')
+      }
       return
     }
     if (!currentDescription?.text) return
-    window.speechSynthesis.cancel()
-    const utterance = new SpeechSynthesisUtterance(currentDescription.text)
-    utterance.lang = 'it-IT'
-    utterance.onend = () => setPlaybackState('idle')
-    utterance.onerror = () => setPlaybackState('idle')
-    utteranceRef.current = utterance
-    window.speechSynthesis.speak(utterance)
-    setPlaybackState('playing')
+    if (textRef.current !== currentDescription.text) {
+      textRef.current = currentDescription.text
+      resumeCharRef.current = 0
+    }
+    speakFromChar(resumeCharRef.current)
   }
 
   useEffect(() => {
@@ -219,6 +277,27 @@ function Opera() {
       </div>
 
       <div className="fixed inset-x-0 bottom-16 z-40 border-t border-border bg-surface">
+        <div className="mx-auto max-w-md px-8 pt-3">
+          <input
+            type="range"
+            min={0}
+            max={1}
+            step={0.001}
+            value={seekPreview ?? progress}
+            disabled={!currentDescription?.text}
+            onInput={(e) => setSeekPreview(Number(e.target.value))}
+            onChange={(e) => {
+              handleSeek(Number(e.target.value))
+              setSeekPreview(null)
+            }}
+            aria-label="Posizione lettura"
+            className="w-full accent-accent disabled:opacity-30"
+          />
+          <div className="flex items-center justify-between text-xs text-text-muted">
+            <span>{formatTime((seekPreview ?? progress) * (currentDescription?.duration_sec || 0))}</span>
+            <span>{formatTime(currentDescription?.duration_sec || 0)}</span>
+          </div>
+        </div>
         <div className="mx-auto flex max-w-md items-center justify-between px-8 py-3">
           <button
             type="button"
