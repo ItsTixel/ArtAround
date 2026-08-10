@@ -28,6 +28,10 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  /* Stessa tinta di header/footer: durante il rimbalzo elastico ai bordi
+     il browser scopre lo sfondo di <html>, non quello di <body>. Se non è
+     impostato mostra bianco per un istante. */
+  background: var(--color-primary);
 }
 
 body {
@@ -41,6 +45,15 @@ body {
 
 main {
   flex: 1;
+}
+
+/* L'header diventa fixed sotto i 900px (vedi app-navbar.js): compensa lo
+   spazio che non occupa più nel flusso del documento. */
+@media (max-width: 900px) {
+  main { padding-top: 72px; }
+}
+@media (max-width: 480px) {
+  main { padding-top: 60px; }
 }
 
 img {
