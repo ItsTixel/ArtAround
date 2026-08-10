@@ -28,6 +28,7 @@ class FilterSidebar extends HTMLElement {
       tags: new Set(),
     };
     this._data = { museums: [], tones: [], tags: [], maxDurationMin: 240 };
+    this._mobileOpen = false;
   }
 
   set data(value) {
@@ -394,18 +395,52 @@ class FilterSidebar extends HTMLElement {
         }
         .reset:hover { color: var(--color-accent, #9e7a46); border-color: var(--color-accent, #9e7a46); }
 
+        /* ── Toggle mobile (menu a tendina) ───────────────── */
+        .toggle {
+          display: none;
+          width: 100%;
+          align-items: center;
+          justify-content: space-between;
+          background: transparent;
+          border: 0;
+          padding: 0;
+          font: inherit;
+          font-family: var(--font-sans, 'Inter', system-ui, sans-serif);
+          font-size: 0.78rem;
+          font-weight: 600;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: var(--color-text, #1c1917);
+          cursor: pointer;
+        }
+        .toggle .chev {
+          font-size: 0.7rem;
+          color: var(--color-accent, #9e7a46);
+          transition: transform 0.25s ease;
+        }
+        .toggle[aria-expanded="true"] .chev { transform: rotate(180deg); }
+
         @media (max-width: 900px) {
           :host {
             position: static;
             max-height: none;
             border-right: 0;
             border-bottom: 1px solid var(--color-border, #e8e6e1);
-            padding: 2.5rem 2.25rem 1.75rem 1.5rem !important;
+            padding: 1.5rem 1.5rem 1.75rem !important;
           }
+          .toggle { display: flex; }
+          .filters-body { display: none; margin-top: 1.5rem; }
+          .filters-body.open { display: block; }
         }
       </style>
 
       <aside>
+        <button type="button" class="toggle" id="filters-toggle" aria-expanded="${this._mobileOpen ? 'true' : 'false'}" aria-controls="filters-body">
+          <span>Filtri</span>
+          <span class="chev" aria-hidden="true">⌄</span>
+        </button>
+
+        <div class="filters-body ${this._mobileOpen ? 'open' : ''}" id="filters-body">
         <!-- Filtro musei (multi-select con ricerca) -->
         <div class="group">
           <h3>Musei</h3>
@@ -459,6 +494,7 @@ class FilterSidebar extends HTMLElement {
         </div>
 
         <button class="reset" id="reset" type="button">Azzera filtri</button>
+        </div>
       </aside>
     `;
 
@@ -467,6 +503,15 @@ class FilterSidebar extends HTMLElement {
 
   _wire() {
     const root = this.shadowRoot;
+
+    /* Toggle mobile (menu a tendina) */
+    root.getElementById('filters-toggle').addEventListener('click', () => {
+      this._mobileOpen = !this._mobileOpen;
+      const toggle = root.getElementById('filters-toggle');
+      const body = root.getElementById('filters-body');
+      toggle.setAttribute('aria-expanded', String(this._mobileOpen));
+      body.classList.toggle('open', this._mobileOpen);
+    });
 
     /* Museum search */
     const museumQ = root.getElementById('museum-q');
