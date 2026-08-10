@@ -1,6 +1,8 @@
 [
   {
-    "_id": { "$oid": "aaa000000000000000000001" },
+    "_id": {
+      "$oid": "aaa000000000000000000001"
+    },
     "username": "alice_author",
     "email": "alice@example.com",
     "password": "12345678",
@@ -9,12 +11,22 @@
     "bio": "Storica dell'arte specializzata nel Rinascimento italiano.",
     "avatar_url": "https://i.pravatar.cc/150?u=alice",
     "adopted_visits": [],
-    "bookmarked_visits": [{ "$oid": "eee000000000000000000002" }],
-    "createdAt": { "$date": "2025-01-01T00:00:00Z" },
-    "updatedAt": { "$date": "2025-01-01T00:00:00Z" }
+    "bookmarked_visits": [
+      {
+        "$oid": "eee000000000000000000002"
+      }
+    ],
+    "createdAt": {
+      "$date": "2025-01-01T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-01-01T00:00:00Z"
+    }
   },
   {
-    "_id": { "$oid": "aaa000000000000000000002" },
+    "_id": {
+      "$oid": "aaa000000000000000000002"
+    },
     "username": "bob_author",
     "email": "bob@example.com",
     "password": "12345678",
@@ -22,13 +34,23 @@
     "display_name": "Bob Neri",
     "bio": "Appassionato di arte lombarda e guide museali per bambini.",
     "avatar_url": "https://i.pravatar.cc/150?u=bob",
-    "adopted_visits": [{ "$oid": "eee000000000000000000001" }],
+    "adopted_visits": [
+      {
+        "$oid": "eee000000000000000000001"
+      }
+    ],
     "bookmarked_visits": [],
-    "createdAt": { "$date": "2025-01-01T00:00:00Z" },
-    "updatedAt": { "$date": "2025-01-01T00:00:00Z" }
+    "createdAt": {
+      "$date": "2025-01-01T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-01-01T00:00:00Z"
+    }
   },
   {
-    "_id": { "$oid": "aaa000000000000000000003" },
+    "_id": {
+      "$oid": "aaa000000000000000000003"
+    },
     "username": "carol_visitor",
     "email": "carol@example.com",
     "password": "12345678",
@@ -37,13 +59,121 @@
     "bio": "",
     "avatar_url": null,
     "adopted_visits": [
-      { "$oid": "eee000000000000000000001" },
-      { "$oid": "eee000000000000000000002" }
+      {
+        "$oid": "eee000000000000000000001"
+      },
+      {
+        "$oid": "eee000000000000000000002"
+      }
     ],
     "bookmarked_visits": [
-      { "$oid": "eee000000000000000000003" }
+      {
+        "$oid": "eee000000000000000000003"
+      }
     ],
-    "createdAt": { "$date": "2025-01-10T00:00:00Z" },
-    "updatedAt": { "$date": "2025-01-10T00:00:00Z" }
+    "createdAt": {
+      "$date": "2025-01-10T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-01-10T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "username": "autore1",
+    "email": "autore1@example.com",
+    "password": "12345678",
+    "role": "author",
+    "display_name": "Autore Uno",
+    "bio": "Guida museale, cataloga le collezioni della Pinacoteca Nazionale di Bologna.",
+    "avatar_url": "https://i.pravatar.cc/150?u=autore1",
+    "adopted_visits": [],
+    "bookmarked_visits": [],
+    "createdAt": {
+      "$date": "2025-03-01T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-01T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "aaa000000000000000000005"
+    },
+    "username": "autore2",
+    "email": "autore2@example.com",
+    "password": "12345678",
+    "role": "author",
+    "display_name": "Autore Due",
+    "bio": "Storico dell'arte, si occupa di percorsi tematici sul Barocco bolognese.",
+    "avatar_url": "https://i.pravatar.cc/150?u=autore2",
+    "adopted_visits": [],
+    "bookmarked_visits": [],
+    "createdAt": {
+      "$date": "2025-03-01T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-01T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "aaa000000000000000000006"
+    },
+    "username": "visitatore1",
+    "email": "visitatore1@example.com",
+    "password": "12345678",
+    "role": "visitor",
+    "display_name": "Visitatore Uno",
+    "bio": "",
+    "avatar_url": null,
+    "adopted_visits": [
+      {
+        "$oid": "eee000000000000000000009"
+      },
+      {
+        "$oid": "eee000000000000000000001"
+      }
+    ],
+    "bookmarked_visits": [
+      {
+        "$oid": "eee000000000000000000010"
+      }
+    ],
+    "createdAt": {
+      "$date": "2025-03-02T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-02T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "aaa000000000000000000007"
+    },
+    "username": "visitatore2",
+    "email": "visitatore2@example.com",
+    "password": "12345678",
+    "role": "visitor",
+    "display_name": "Visitatore Due",
+    "bio": "",
+    "avatar_url": null,
+    "adopted_visits": [],
+    "bookmarked_visits": [
+      {
+        "$oid": "eee000000000000000000011"
+      },
+      {
+        "$oid": "eee000000000000000000002"
+      }
+    ],
+    "createdAt": {
+      "$date": "2025-03-02T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-02T00:00:00Z"
+    }
   }
 ]

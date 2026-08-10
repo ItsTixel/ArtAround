@@ -760,5 +760,946 @@
     "updatedAt": {
       "$date": "2025-02-01T00:00:00Z"
     }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000019"
+    },
+    "wikidata_id": "Q3907499",
+    "name": "Polittico di Bologna",
+    "is_physical": true,
+    "artwork_author": "Giotto (e bottega)",
+    "description": "Polittico commissionato dal legato papale Bertrando del Poggetto (1330-1334 circa) per la cappella privata di papa Giovanni XXII a Porta Galliera. Smembrato durante le soppressioni napoleoniche del 1808, fu ricomposto nel 1894. Reca la firma \"OPUS MAGISTRI IOCTI DE FLORENTIA\".",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giotto._Polyptych._1330-35._91x340cm._Pinacoteca%2C_Bologna..jpg?width=1280",
+    "alt_text": "Polittico gotico con la Madonna in trono col Bambino al centro e santi nei pannelli laterali, su fondo oro",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "location": {
+          "room": "Saletta di Giotto",
+          "floor": "1",
+          "note": "Sala dedicata al polittico"
+        }
+      }
+    ],
+    "tags": [
+      "trecento",
+      "giotto",
+      "polittico",
+      "bologna",
+      "gotico"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/Polittico_di_Bologna"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000020"
+    },
+    "wikidata_id": "Q27345212",
+    "name": "San Giorgio e il drago",
+    "is_physical": true,
+    "artwork_author": "Vitale da Bologna",
+    "description": "Capolavoro di Vitale da Bologna (1330-1335 circa), inventario 6394: san Giorgio libera la principessa uccidendo il drago. È considerata l'opera fondativa della scuola pittorica trecentesca bolognese, per la sua vivacità narrativa e cromatica.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vitale%20da%20bologna%2C%20san%20giorgio%20libera%20la%20principessa%2C%201330-35%20ca.%2C%2001.jpg?width=1280",
+    "alt_text": "San Giorgio a cavallo trafigge con la lancia il drago, mentre la principessa osserva la scena in ginocchio",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "location": {
+          "room": "Sala 1",
+          "floor": "1",
+          "note": "Dal Duecento al Gotico"
+        }
+      }
+    ],
+    "tags": [
+      "trecento",
+      "vitale-da-bologna",
+      "san-giorgio",
+      "bologna",
+      "gotico"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/Vitale_da_Bologna"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000021"
+    },
+    "wikidata_id": "Q3889219",
+    "name": "Pala dei Mercanti",
+    "is_physical": true,
+    "artwork_author": "Francesco del Cossa",
+    "description": "Pala firmata e datata 1474, commissionata da Alberto de' Cattani e Domenico degli Amorini per la cappella della Mercanzia. È una delle ultime opere di Francesco del Cossa, morto di peste a Bologna nel 1478.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francesco_del_Cossa_025.jpg?width=1280",
+    "alt_text": "La Madonna in trono con il Bambino tra i santi Petronio, patrono di Bologna, e Giovanni Evangelista",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "location": {
+          "room": "Sale 10-12",
+          "floor": "1",
+          "note": "Sezione del Rinascimento"
+        }
+      }
+    ],
+    "tags": [
+      "rinascimento",
+      "francesco-del-cossa",
+      "bologna",
+      "quattrocento"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/Pala_dei_Mercanti"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000022"
+    },
+    "wikidata_id": "Q16038421",
+    "name": "Pala Bentivoglio",
+    "is_physical": true,
+    "artwork_author": "Francesco Francia",
+    "description": "Dipinta nel 1498-1499 per commemorare il pellegrinaggio in Terra Santa di Anton Galeazzo Bentivoglio, qui ritratto insieme al fratello Alessandro accanto alla Sacra Famiglia.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francesco_Francia_-_Adoration_of_the_Child_-_WGA08169.jpg?width=1280",
+    "alt_text": "La Vergine adora il Bambino deposto a terra, con i committenti Bentivoglio inginocchiati ai lati",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "location": {
+          "room": "Sala 13",
+          "floor": "1",
+          "note": "Sala dedicata a Francesco Francia"
+        }
+      }
+    ],
+    "tags": [
+      "rinascimento",
+      "francesco-francia",
+      "bentivoglio",
+      "bologna"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/Pala_Bentivoglio"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000023"
+    },
+    "wikidata_id": "Q3213771",
+    "name": "Madonna in gloria e santi",
+    "is_physical": true,
+    "artwork_author": "Pietro Perugino",
+    "description": "Dipinta intorno al 1500-1501 per la cappella Scarani in San Giovanni in Monte. La Madonna appare in gloria su un trono di nubi, in una mandorla dorata, con i santi Michele, Caterina d'Alessandria, Apollonia e Giovanni Evangelista disposti sotto di lei.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pietro_Perugino_cat59.jpg?width=1280",
+    "alt_text": "La Madonna col Bambino appare tra le nuvole dorate sopra un gruppo di quattro santi in piedi",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "location": {
+          "room": "Sale del Rinascimento",
+          "floor": "1",
+          "note": "Collocazione non documentata con precisione"
+        }
+      }
+    ],
+    "tags": [
+      "rinascimento",
+      "perugino",
+      "bologna",
+      "cinquecento"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/Madonna_in_gloria_e_santi_(Perugino)"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000024"
+    },
+    "wikidata_id": "Q1103801",
+    "name": "Estasi di Santa Cecilia",
+    "is_physical": true,
+    "artwork_author": "Raffaello Sanzio",
+    "description": "Dipinta tra il 1514 e il 1516 su commissione della nobildonna bolognese Elena Duglioli per San Giovanni in Monte. Sequestrata da Napoleone nel 1798, fu trasportata su tela al Louvre nel 1801 e restituita a Bologna nel 1815.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint_Cecilia_by_Raphael.jpg?width=1280",
+    "alt_text": "Santa Cecilia in estasi con strumenti musicali ai suoi piedi, circondata da san Paolo, san Giovanni Evangelista, sant'Agostino e Maria Maddalena",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "location": {
+          "room": "Sala 15",
+          "floor": "1",
+          "note": "Sala dedicata a Raffaello"
+        }
+      }
+    ],
+    "tags": [
+      "rinascimento",
+      "raffaello",
+      "santa-cecilia",
+      "bologna"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/Estasi_di_santa_Cecilia"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000025"
+    },
+    "wikidata_id": "Q3842737",
+    "name": "Madonna di Santa Margherita",
+    "is_physical": true,
+    "artwork_author": "Parmigianino",
+    "description": "Dipinta nel 1529-1530 per le monache del convento di Santa Margherita. Sequestrata dai francesi nel 1796 e restituita nel 1815. Vasari la elogiò, e si racconta che lo stesso Guido Reni la considerasse tra i suoi dipinti preferiti.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Parmigianino_-_Madonna_and_Child_with_Saints_Margaret%2C_Jerome%2C_Petronius_and_Michael.jpg?width=1280",
+    "alt_text": "La Madonna col Bambino in trono tra i santi Margherita, Girolamo, Petronio e Michele Arcangelo",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "location": {
+          "room": "Sala 18",
+          "floor": "1",
+          "note": "Sala del Manierismo"
+        }
+      }
+    ],
+    "tags": [
+      "manierismo",
+      "parmigianino",
+      "bologna",
+      "cinquecento"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/Madonna_di_Santa_Margherita"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000026"
+    },
+    "wikidata_id": "Q131405243",
+    "name": "Madonna dei Bargellini",
+    "is_physical": true,
+    "artwork_author": "Ludovico Carracci",
+    "description": "Firmata e datata 1588: è la prima opera firmata conosciuta di Ludovico Carracci. Commissionata dalla famiglia Bargellini per la propria cappella in Santi Filippo e Giacomo; la committente Cecilia Bargellini Boncompagni è ritratta inginocchiata come monaca carmelitana.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Carracci_Ludovico_Madonna_Bargellini.jpg?width=1280",
+    "alt_text": "La Madonna col Bambino in trono tra angeli e i santi Francesco, Domenico, Maddalena, con la committente inginocchiata in basso",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "location": {
+          "room": "Sala 23",
+          "floor": "1",
+          "note": "Sala dei Carracci"
+        }
+      }
+    ],
+    "tags": [
+      "barocco",
+      "ludovico-carracci",
+      "bargellini",
+      "bologna"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/Madonna_dei_Bargellini"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000027"
+    },
+    "wikidata_id": "Q131501612",
+    "name": "Assunzione della Vergine",
+    "is_physical": true,
+    "artwork_author": "Annibale Carracci",
+    "description": "Dipinta nel 1592 per la cappella Bonasoni nella chiesa di San Francesco a Bologna. Da non confondere con la più nota Assunzione dipinta da Annibale per la cappella Cerasi a Roma nel 1600-1601.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Annibale_carracci%2C_assunzione_della_vergine%2C_1592%2C_da_s._francesco_01.jpg?width=1280",
+    "alt_text": "La Vergine sale al cielo sollevata da angeli, mentre gli apostoli osservano stupiti dal basso attorno al sepolcro vuoto",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "location": {
+          "room": "Sala 23",
+          "floor": "1",
+          "note": "Sala dei Carracci"
+        }
+      }
+    ],
+    "tags": [
+      "barocco",
+      "annibale-carracci",
+      "assunzione",
+      "bologna"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/Assunzione_della_Vergine_(Annibale_Carracci_Bologna)"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000028"
+    },
+    "wikidata_id": "Q126127672",
+    "name": "Madonna di San Ludovico",
+    "is_physical": true,
+    "artwork_author": "Annibale Carracci",
+    "description": "Dipinta tra il 1590 e il 1592 per il convento francescano dei Santi Ludovico e Alessio. Raffigura la Madonna col Bambino tra le sante Chiara e Caterina d'Alessandria e i santi Ludovico IX, Francesco, Alessio e il piccolo san Giovanni Battista.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Annibale_Carracci_Madonna_e_Santi_-_Pinacoteca_Nazionale_Bologna.jpg?width=1280",
+    "alt_text": "La Madonna col Bambino in trono circondata da sei santi francescani, in un'ambientazione sobria e naturalistica",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "location": {
+          "room": "Sala 23",
+          "floor": "1",
+          "note": "Sala dei Carracci"
+        }
+      }
+    ],
+    "tags": [
+      "barocco",
+      "annibale-carracci",
+      "bologna",
+      "francescani"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/Madonna_di_San_Ludovico"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000029"
+    },
+    "wikidata_id": "Q2448678",
+    "name": "Strage degli Innocenti",
+    "is_physical": true,
+    "artwork_author": "Guido Reni",
+    "description": "Dipinta nel 1611 per la basilica di San Domenico (268x170 cm). Una delle composizioni più drammatiche di Guido Reni, con le madri che tentano invano di proteggere i figli dai soldati di Erode.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Guido_Reni_-_Massacre_of_the_Innocents.jpg?width=1280",
+    "alt_text": "Soldati armati di spada assalgono un gruppo di madri che stringono disperatamente i propri bambini",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "location": {
+          "room": "Sala 24",
+          "floor": "1",
+          "note": "Sala di Guido Reni"
+        }
+      }
+    ],
+    "tags": [
+      "barocco",
+      "guido-reni",
+      "strage-degli-innocenti",
+      "bologna"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/Strage_degli_Innocenti_(Reni)"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000030"
+    },
+    "wikidata_id": "Q110801258",
+    "name": "Pietà dei Mendicanti",
+    "is_physical": true,
+    "artwork_author": "Guido Reni",
+    "description": "Grande pala (341x704 cm) commissionata dal Senato di Bologna tra il 1613 e il 1616, collocata sull'altare di Santa Maria della Pietà. Sequestrata nel 1796, fu restituita grazie all'intervento di Antonio Canova nel 1815-16.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Guido_Reni%2C_Piet%C3%A0_dei_Mendicanti.jpg?width=1280",
+    "alt_text": "Il Cristo morto sorretto da angeli in alto, con sette santi patroni di Bologna disposti in fila sotto di lui",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "location": {
+          "room": "Sala 24",
+          "floor": "1",
+          "note": "Sala di Guido Reni"
+        }
+      }
+    ],
+    "tags": [
+      "barocco",
+      "guido-reni",
+      "pieta",
+      "bologna"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/Pietà_dei_Mendicanti"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000031"
+    },
+    "wikidata_id": "Q25217589",
+    "name": "Pala della Peste",
+    "is_physical": true,
+    "artwork_author": "Guido Reni",
+    "description": "Dipinta nel 1631-1632 come ex voto dopo l'epidemia di peste del 1630 (inventario 448). Veniva portata ogni anno in processione dal Palazzo Pubblico alla basilica di San Domenico in ricordo dello scampato pericolo.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Reni%20-%20Madonna%20col%20Bambino%20in%20gloria%20e%20i%20Santi%20Protettori%20di%20Bologna%20Petronio%2C%20Francesco%2C%20Ignazio%2C%20Francesco%20Saverio%2C%20Procolo%20e%20Floriano.%20%28Pala%20della%20Peste%29%2C%201630%2C%20448.jpg?width=1280",
+    "alt_text": "La Madonna col Bambino appare tra le nuvole sopra i santi patroni di Bologna, invocati contro la peste",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "location": {
+          "room": "Sale del Barocco",
+          "floor": "1",
+          "note": "Inventario 448, collocazione non documentata con precisione"
+        }
+      }
+    ],
+    "tags": [
+      "barocco",
+      "guido-reni",
+      "peste",
+      "bologna",
+      "ex-voto"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/Pala_della_Peste"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000032"
+    },
+    "wikidata_id": "Q131690596",
+    "name": "Madonna del Rosario",
+    "is_physical": true,
+    "artwork_author": "Domenichino",
+    "description": "Dipinta tra il 1617 e il 1621 per la cappella Ratta in San Giovanni in Monte. La composizione, ampiamente studiata attraverso i disegni preparatori conservati al Louvre e a Windsor, mostra la Madonna che consegna il rosario a san Domenico.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Domenico_Zampieri_detto_il_Domenichino%2C_Madonna_del_Rosario_%281617-1621%29_03.jpg?width=1280",
+    "alt_text": "La Madonna col Bambino in trono porge una corona del rosario a un santo inginocchiato, circondata da altri santi e angeli",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "location": {
+          "room": "Sala 29",
+          "floor": "1",
+          "note": "Sala dei grandi formati"
+        }
+      }
+    ],
+    "tags": [
+      "barocco",
+      "domenichino",
+      "rosario",
+      "bologna"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/Madonna_del_Rosario_(Domenichino)"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000033"
+    },
+    "wikidata_id": "Q133857694",
+    "name": "Vestizione di San Guglielmo d'Aquitania",
+    "is_physical": true,
+    "artwork_author": "Guercino",
+    "description": "Dipinta intorno al 1620 (345x231 cm), commissionata da Cristoforo Locatelli per la chiesa dei Santi Gregorio e Siro. Sequestrata nel 1796, fu restituita a Bologna nel 1816-17.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vestizione_di_san_Guglielmo_d%27Aquitania.jpg?width=1280",
+    "alt_text": "Un santo vescovo veste con l'abito monastico un cavaliere inginocchiato, alla presenza di altri religiosi",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "location": {
+          "room": "Sale del Barocco",
+          "floor": "1",
+          "note": "Collocazione non documentata con precisione"
+        }
+      }
+    ],
+    "tags": [
+      "barocco",
+      "guercino",
+      "bologna",
+      "monastico"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/Guercino"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000034"
+    },
+    "name": "Natura morta",
+    "is_physical": true,
+    "artwork_author": "Giorgio Morandi",
+    "description": "Una delle celebri nature morte di Giorgio Morandi, esponente bolognese della pittura del Novecento. Il Museo Morandi, che raccoglie oltre 250 opere donate dalla sorella dell'artista, è ospitato dal 2012 all'interno dell'edificio di MAMbo.",
+    "alt_text": "Composizione di pochi oggetti quotidiani (bottiglie, vasi, scatole) dai toni tenui e sfumati",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000005"
+        },
+        "location": {
+          "room": "Museo Morandi",
+          "floor": "2",
+          "note": "Collezione permanente"
+        }
+      }
+    ],
+    "tags": [
+      "novecento",
+      "morandi",
+      "natura-morta",
+      "mambo"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/Giorgio_Morandi"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000035"
+    },
+    "name": "Non parto non resto",
+    "is_physical": true,
+    "artwork_author": "Alighiero Boetti",
+    "description": "Opera a penna biro del 1984, commissionata dalla Galleria d'Arte Moderna di Bologna. Fa parte del nucleo di opere di Arte Povera e concettuale della collezione permanente di MAMbo.",
+    "alt_text": "Superficie ricoperta da una fitta trama regolare di segni a penna blu",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000005"
+        },
+        "location": {
+          "room": "Sale del Novecento",
+          "floor": "1",
+          "note": "Collezione permanente"
+        }
+      }
+    ],
+    "tags": [
+      "novecento",
+      "boetti",
+      "arte-povera",
+      "mambo"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/Alighiero_Boetti"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000036"
+    },
+    "name": "Concetto spaziale",
+    "is_physical": true,
+    "artwork_author": "Lucio Fontana",
+    "description": "Opera della serie \"Concetto spaziale\", il ciclo con cui Fontana taglia o fora la tela monocroma per introdurre lo spazio reale nell'opera, superando i limiti della pittura bidimensionale.",
+    "alt_text": "Tela monocroma attraversata da uno o più tagli netti",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000005"
+        },
+        "location": {
+          "room": "Sale del Novecento",
+          "floor": "1",
+          "note": "Collezione permanente"
+        }
+      }
+    ],
+    "tags": [
+      "novecento",
+      "fontana",
+      "spazialismo",
+      "mambo"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/Lucio_Fontana"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000037"
+    },
+    "name": "Statua anatomica (scorticato)",
+    "is_physical": true,
+    "artwork_author": "Ercole Lelli",
+    "description": "Una delle otto statue a grandezza naturale realizzate da Ercole Lelli tra il 1734 e il 1740 per la Sala di Anatomia dell'Istituto delle Scienze: cera dipinta applicata su scheletri veri, per mostrare i diversi strati muscolari del corpo umano a scopo didattico.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Museo_di_Palazzo_Poggi_-_Ercole_Lelli_abc1.jpg?width=1280",
+    "alt_text": "Statua di un uomo scorticato che mostra i fasci muscolari, in posizione eretta su un basamento",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000006"
+        },
+        "location": {
+          "room": "Sala di Anatomia",
+          "floor": "1",
+          "note": "Collezione delle cere anatomiche"
+        }
+      }
+    ],
+    "tags": [
+      "anatomia",
+      "cere-anatomiche",
+      "ercole-lelli",
+      "settecento",
+      "palazzo-poggi"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/Ercole_Lelli"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000038"
+    },
+    "name": "Autoritratto in cera",
+    "is_physical": true,
+    "artwork_author": "Anna Morandi Manzolini",
+    "description": "Busto in cera realizzato dalla stessa Anna Morandi Manzolini (1714-1774), che si ritrae nell'atto di dissezionare un cervello. Fu una delle prime donne anatomiste e docenti universitarie d'Europa, e succedette al marito nell'insegnamento presso l'Istituto delle Scienze.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Morandi_autoritratto.JPG?width=1280",
+    "alt_text": "Busto femminile in cera dipinta, ritratto mentre le mani sezionano un cervello posato su un tavolo",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000006"
+        },
+        "location": {
+          "room": "Sezione delle cere anatomiche",
+          "floor": "1",
+          "note": "Non documentata con precisione"
+        }
+      }
+    ],
+    "tags": [
+      "anatomia",
+      "cere-anatomiche",
+      "morandi-manzolini",
+      "settecento",
+      "palazzo-poggi"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/Anna_Morandi_Manzolini"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000039"
+    },
+    "name": "Collezione di storia naturale di Ulisse Aldrovandi",
+    "is_physical": true,
+    "artwork_author": "Collezione di Ulisse Aldrovandi",
+    "description": "Parte della raccolta naturalistica formata dal naturalista bolognese Ulisse Aldrovandi (1522-1605): erbari, animali imbalsamati e reperti naturali confluiti nel patrimonio dell'Istituto delle Scienze, tra le origini dei moderni musei di storia naturale.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bologna%2C%20Museo%20di%20Palazzo%20Poggi%2C%20Museo%20di%20Ulisse%20Aldrovandi%20%281%29.jpg?width=1280",
+    "alt_text": "Vetrine con animali imbalsamati e reperti naturali disposti secondo l'ordinamento naturalistico cinquecentesco",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000006"
+        },
+        "location": {
+          "room": "Museo di Ulisse Aldrovandi",
+          "floor": "1",
+          "note": "Collezione permanente"
+        }
+      }
+    ],
+    "tags": [
+      "storia-naturale",
+      "aldrovandi",
+      "cinquecento",
+      "palazzo-poggi"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/Ulisse_Aldrovandi"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-05T00:00:00Z"
+    }
   }
 ]
