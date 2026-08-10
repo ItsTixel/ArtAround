@@ -28,10 +28,13 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
-  /* Stessa tinta di header/footer: durante il rimbalzo elastico ai bordi
-     il browser scopre lo sfondo di <html>, non quello di <body>. Se non è
-     impostato mostra bianco per un istante. */
+  /* Stessa tinta di header/footer: se il rimbalzo dovesse comunque farsi
+     vedere per un istante (fallback su browser che ignorano
+     overscroll-behavior) non mostra bianco. */
   background: var(--color-primary);
+  /* Blocca il rimbalzo elastico sia in alto che in basso: header e footer
+     restano fermi, il contenuto scorre senza "trascinarsi" ai bordi. */
+  overscroll-behavior-y: none;
 }
 
 body {
@@ -41,6 +44,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overscroll-behavior-y: none;
 }
 
 main {
