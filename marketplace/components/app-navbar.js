@@ -20,10 +20,15 @@ class AppNavbar extends HTMLElement {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          position: sticky;
-          top: 0;
+          position: fixed;
+          top: 0; left: 0; right: 0;
           z-index: 100;
           border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+          /* Forza un compositing layer proprio: su iOS/Android evita che
+             l'header resti agganciato al rimbalzo elastico del contenuto. */
+          transform: translateZ(0);
+          -webkit-transform: translateZ(0);
+          will-change: transform;
         }
 
         .logo {
@@ -62,20 +67,6 @@ class AppNavbar extends HTMLElement {
 
         a:hover { color: #f0ede8; }
         a.active { color: #d4a853; }
-
-        /* Sotto i 900px l'header resta ancorato in cima allo schermo anche
-           durante il rimbalzo elastico ai bordi (position: fixed invece di
-           sticky, che su iOS/Android può comunque trascinarsi col bounce). */
-        @media (max-width: 900px) {
-          nav {
-            position: fixed; top: 0; left: 0; right: 0;
-            /* Forza un compositing layer proprio: su iOS/Android evita che
-               l'header resti agganciato al rimbalzo elastico del contenuto. */
-            transform: translateZ(0);
-            -webkit-transform: translateZ(0);
-            will-change: transform;
-          }
-        }
 
         @media (max-width: 480px) {
           nav { padding: 0 1.5rem; height: 60px; }
