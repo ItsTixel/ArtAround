@@ -9,7 +9,7 @@ class AppNavbar extends HTMLElement {
   connectedCallback() {
     const p = window.location.pathname;
     const isMuseums = p === '/marketplace' || p.endsWith('/marketplace/') || p.endsWith('index.html');
-    const isVisits  = p.endsWith('visits.html');
+    const isVisits  = p.endsWith('/visits.html');
     const isMyVisits = p.endsWith('my-visits.html');
     const isLogin    = p.endsWith('login.html');
     const isRegister = p.endsWith('register.html');
