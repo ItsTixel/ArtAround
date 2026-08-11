@@ -9,10 +9,17 @@ function getSafeRedirect() {
     return '/marketplace/pages/index.html';
 }
 
-// Se veniamo da un tentativo di azione che richiede il login, spieghiamolo.
-if (new URLSearchParams(window.location.search).get('redirect')) {
+// Se veniamo da un tentativo di azione che richiede il login, spieghiamolo,
+// e portiamo il redirect anche sul link "Registrati" (nel caso l'utente non
+// abbia ancora un account) così il giro registrazione -> login -> redirect
+// non perde di vista da dove si era partiti.
+const redirectParam = new URLSearchParams(window.location.search).get('redirect');
+if (redirectParam) {
     const sub = document.querySelector('.auth-sub');
     if (sub) sub.textContent = 'Accedi per continuare';
+
+    const switchLink = document.getElementById('switchLink');
+    if (switchLink) switchLink.href = `/marketplace/register.html?redirect=${encodeURIComponent(redirectParam)}`;
 }
 
 log.addEventListener('submit', async (e) => {
