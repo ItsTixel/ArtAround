@@ -1,8 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 function optionalAuth(req, res, next) {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
+    const token = req.cookies?.token;
 
     // Se c'è un token, proviamo a decodificarlo
     if (token) {

@@ -1,11 +1,9 @@
 const jwt = require('jsonwebtoken');
 
 function verifyToken(req, res, next) {
-    // Il frontend invia il token nell'header "Authorization"
-    // Tutte le pagine in futuro dovrebbero avere questo header, 
-    // così che gli utenti non possono accedere a pagine che richiedono l'accesso.
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
+    // Il token viaggia in un cookie httpOnly ("token"), impostato al login.
+    // Non è leggibile da JavaScript lato client: il browser lo allega da solo.
+    const token = req.cookies?.token;
 
     if (!token) {
         return res.status(403).json({ message: "Token mancante. Accesso negato." });

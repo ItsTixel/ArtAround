@@ -641,5 +641,742 @@
     "updatedAt": {
       "$date": "2025-02-01T00:00:00Z"
     }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000019"
+    },
+    "marketplace_summary": "Guida di livello medio al Polittico di Bologna di Giotto, tra storia e restauro.",
+    "artwork": {
+      "$oid": "ccc000000000000000000019"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "CC-BY",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 110,
+        "text": "Il polittico fu commissionato dal cardinale Bertrando del Poggetto per la cappella privata di papa Giovanni XXII a Porta Galliera. Smembrato e disperso durante le soppressioni napoleoniche del 1808, i pannelli furono ritrovati e ricomposti solo nel 1894, nell'ordine che vedi oggi."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giotto._Polyptych._1330-35._91x340cm._Pinacoteca%2C_Bologna..jpg?width=1280",
+    "alt_text": "Dettaglio della firma di Giotto sulla cornice del polittico",
+    "tags": [
+      "giotto",
+      "polittico",
+      "trecento",
+      "bologna"
+    ],
+    "createdAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000020"
+    },
+    "marketplace_summary": "Guida semplice a San Giorgio e il drago di Vitale da Bologna.",
+    "artwork": {
+      "$oid": "ccc000000000000000000020"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "CC-BY",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 80,
+        "text": "San Giorgio, a cavallo, trafigge il drago con la lancia per salvare la principessa, inginocchiata e in preghiera sulla destra. Vitale da Bologna dipinge la scena con colori vivaci e un forte senso del movimento, che la rende una delle opere più amate della Pinacoteca."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vitale%20da%20bologna%2C%20san%20giorgio%20libera%20la%20principessa%2C%201330-35%20ca.%2C%2001.jpg?width=1280",
+    "alt_text": "Dettaglio del cavaliere San Giorgio che trafigge il drago",
+    "tags": [
+      "vitale-da-bologna",
+      "san-giorgio",
+      "trecento",
+      "bologna"
+    ],
+    "createdAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000021"
+    },
+    "marketplace_summary": "Guida di livello medio alla Pala dei Mercanti di Francesco del Cossa.",
+    "artwork": {
+      "$oid": "ccc000000000000000000021"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000005"
+    },
+    "license": "CC0",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 100,
+        "text": "Firmata e datata 1474, la pala fu commissionata per la cappella della Mercanzia da due mercanti bolognesi, qui non raffigurati ma ricordati nell'iscrizione. È una delle ultime opere di Francesco del Cossa, morto di peste a Bologna appena quattro anni dopo."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francesco_del_Cossa_025.jpg?width=1280",
+    "alt_text": "Dettaglio del san Petronio con in mano il modellino della città di Bologna",
+    "tags": [
+      "francesco-del-cossa",
+      "rinascimento",
+      "bologna"
+    ],
+    "createdAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000022"
+    },
+    "marketplace_summary": "Guida di livello medio alla Pala Bentivoglio di Francesco Francia.",
+    "artwork": {
+      "$oid": "ccc000000000000000000022"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000005"
+    },
+    "license": "CC-BY",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 95,
+        "text": "Anton Galeazzo Bentivoglio commissionò questa pala per commemorare il proprio pellegrinaggio in Terra Santa: è ritratto inginocchiato accanto al fratello Alessandro, ai piedi della Sacra Famiglia, in un gesto di devozione privata reso pubblico attraverso il dipinto."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francesco_Francia_-_Adoration_of_the_Child_-_WGA08169.jpg?width=1280",
+    "alt_text": "Dettaglio dei committenti Bentivoglio inginocchiati a lato della scena",
+    "tags": [
+      "francesco-francia",
+      "bentivoglio",
+      "rinascimento",
+      "bologna"
+    ],
+    "createdAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000023"
+    },
+    "marketplace_summary": "Guida semplice alla Madonna in gloria e santi di Perugino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000023"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "CC-BY",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 75,
+        "text": "La Madonna col Bambino appare tra le nuvole dorate, sospesa sopra quattro santi che la osservano dal basso. Perugino, maestro del giovane Raffaello, dipinge figure calme ed equilibrate, care al gusto rinascimentale del primo Cinquecento."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pietro_Perugino_cat59.jpg?width=1280",
+    "alt_text": "Dettaglio della Madonna col Bambino tra le nuvole dorate",
+    "tags": [
+      "perugino",
+      "rinascimento",
+      "bologna"
+    ],
+    "createdAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000024"
+    },
+    "marketplace_summary": "Analisi tecnica dell'Estasi di Santa Cecilia di Raffaello: committenza, storia e restauri.",
+    "artwork": {
+      "$oid": "ccc000000000000000000024"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Copyright",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 140,
+        "text": "Commissionata dalla nobildonna Elena Duglioli per la propria cappella in San Giovanni in Monte, l'opera mostra santa Cecilia in estasi mistica, circondata da san Paolo, san Giovanni Evangelista, sant'Agostino e Maria Maddalena, con strumenti musicali abbandonati ai suoi piedi a simboleggiare la musica terrena superata da quella celeste."
+      },
+      {
+        "duration_sec": 100,
+        "text": "Sequestrata da Napoleone nel 1798 insieme a decine di altre opere bolognesi, fu trasferita dal supporto ligneo alla tela al Louvre nel 1801 — una delle prime grandi operazioni di trasporto pittorico della storia — prima di tornare a Bologna nel 1815 grazie alle trattative post-napoleoniche."
+      }
+    ],
+    "price": 2.99,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint_Cecilia_by_Raphael.jpg?width=1280",
+    "alt_text": "Dettaglio del volto di santa Cecilia in estasi, con gli strumenti musicali ai suoi piedi",
+    "tags": [
+      "raffaello",
+      "santa-cecilia",
+      "rinascimento",
+      "bologna",
+      "tecnico"
+    ],
+    "createdAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000025"
+    },
+    "marketplace_summary": "Guida di livello medio alla Madonna di Santa Margherita di Parmigianino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000025"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000005"
+    },
+    "license": "CC-BY",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 105,
+        "text": "Dipinta per le monache del convento di Santa Margherita, l'opera fu talmente ammirata da essere sequestrata dai francesi nel 1796 e restituita solo nel 1815. Si racconta che lo stesso Guido Reni, generazioni dopo, la considerasse tra i suoi dipinti bolognesi preferiti."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Parmigianino_-_Madonna_and_Child_with_Saints_Margaret%2C_Jerome%2C_Petronius_and_Michael.jpg?width=1280",
+    "alt_text": "Dettaglio della santa Margherita con il drago simbolo del suo martirio",
+    "tags": [
+      "parmigianino",
+      "manierismo",
+      "bologna"
+    ],
+    "createdAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000026"
+    },
+    "marketplace_summary": "Analisi tecnica della Madonna dei Bargellini: il debutto firmato di Ludovico Carracci.",
+    "artwork": {
+      "$oid": "ccc000000000000000000026"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Copyright",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 130,
+        "text": "Firmata e datata 1588, è la prima opera firmata conosciuta di Ludovico Carracci, commissionata dalla famiglia Bargellini per la propria cappella. La committente Cecilia Bargellini Boncompagni è ritratta inginocchiata in basso, vestita da monaca carmelitana: un dettaglio biografico raro per una pala d'altare del tempo."
+      }
+    ],
+    "price": 1.99,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Carracci_Ludovico_Madonna_Bargellini.jpg?width=1280",
+    "alt_text": "Dettaglio della committente Cecilia Bargellini inginocchiata in preghiera",
+    "tags": [
+      "ludovico-carracci",
+      "barocco",
+      "bargellini",
+      "bologna",
+      "tecnico"
+    ],
+    "createdAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000027"
+    },
+    "marketplace_summary": "Guida di livello medio all'Assunzione della Vergine di Annibale Carracci.",
+    "artwork": {
+      "$oid": "ccc000000000000000000027"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000005"
+    },
+    "license": "CC0",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 100,
+        "text": "Dipinta nel 1592 per la cappella Bonasoni in San Francesco, questa Assunzione precede di alcuni anni la più celebre versione che Annibale realizzerà per la cappella Cerasi a Roma: qui il naturalismo emiliano è ancora saldamente legato alla tradizione bolognese di Ludovico e dei Carracci più giovani."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Annibale_carracci%2C_assunzione_della_vergine%2C_1592%2C_da_s._francesco_01.jpg?width=1280",
+    "alt_text": "Dettaglio della Vergine sollevata al cielo dagli angeli",
+    "tags": [
+      "annibale-carracci",
+      "barocco",
+      "assunzione",
+      "bologna"
+    ],
+    "createdAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000028"
+    },
+    "marketplace_summary": "Analisi tecnica della Madonna di San Ludovico di Annibale Carracci.",
+    "artwork": {
+      "$oid": "ccc000000000000000000028"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Copyright",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 120,
+        "text": "Realizzata tra il 1590 e il 1592 per il convento francescano dei Santi Ludovico e Alessio, la pala mostra un naturalismo di luce e volumi che si discosta dal manierismo ancora dominante a Bologna: le vesti dei santi, in particolare, sono trattate con un'attenzione quasi fiamminga ai tessuti e alle pieghe."
+      }
+    ],
+    "price": 1.49,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Annibale_Carracci_Madonna_e_Santi_-_Pinacoteca_Nazionale_Bologna.jpg?width=1280",
+    "alt_text": "Dettaglio dei santi francescani disposti attorno al trono della Madonna",
+    "tags": [
+      "annibale-carracci",
+      "barocco",
+      "bologna",
+      "tecnico"
+    ],
+    "createdAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000029"
+    },
+    "marketplace_summary": "Analisi tecnica della Strage degli Innocenti di Guido Reni: composizione e patetismo barocco.",
+    "artwork": {
+      "$oid": "ccc000000000000000000029"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Copyright",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 135,
+        "text": "Dipinta nel 1611 per la basilica di San Domenico, la Strage degli Innocenti è costruita su una diagonale di corpi e gesti che guida l'occhio dall'angolo in alto a sinistra fino alle madri in primo piano: un dispositivo compositivo tipicamente barocco per amplificare il pathos della scena."
+      }
+    ],
+    "price": 2.49,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Guido_Reni_-_Massacre_of_the_Innocents.jpg?width=1280",
+    "alt_text": "Dettaglio di una madre che tenta di proteggere il proprio bambino dalla spada del soldato",
+    "tags": [
+      "guido-reni",
+      "barocco",
+      "strage-degli-innocenti",
+      "bologna",
+      "tecnico"
+    ],
+    "createdAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000030"
+    },
+    "marketplace_summary": "Guida di livello medio alla Pietà dei Mendicanti di Guido Reni.",
+    "artwork": {
+      "$oid": "ccc000000000000000000030"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000005"
+    },
+    "license": "CC-BY",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 110,
+        "text": "Commissionata dal Senato di Bologna, questa grande pala (oltre sette metri di larghezza) fu sequestrata nel 1796 e tornò in città solo grazie alle trattative dello scultore Antonio Canova nel 1815-16. I sette santi patroni di Bologna, allineati in basso, intercedono per la città sotto il Cristo morto sorretto dagli angeli."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Guido_Reni%2C_Piet%C3%A0_dei_Mendicanti.jpg?width=1280",
+    "alt_text": "Dettaglio del Cristo morto sorretto dagli angeli nella parte superiore della pala",
+    "tags": [
+      "guido-reni",
+      "barocco",
+      "pieta",
+      "bologna"
+    ],
+    "createdAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000031"
+    },
+    "marketplace_summary": "Guida di livello medio alla Pala della Peste di Guido Reni.",
+    "artwork": {
+      "$oid": "ccc000000000000000000031"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000005"
+    },
+    "license": "CC-BY-NC",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 95,
+        "text": "Dipinta come ex voto dopo la terribile epidemia di peste del 1630, che a Bologna causò decine di migliaia di morti, la pala veniva portata ogni anno in processione dal Palazzo Pubblico alla basilica di San Domenico, in memoria dello scampato pericolo."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Reni%20-%20Madonna%20col%20Bambino%20in%20gloria%20e%20i%20Santi%20Protettori%20di%20Bologna%20Petronio%2C%20Francesco%2C%20Ignazio%2C%20Francesco%20Saverio%2C%20Procolo%20e%20Floriano.%20%28Pala%20della%20Peste%29%2C%201630%2C%20448.jpg?width=1280",
+    "alt_text": "Dettaglio dei santi patroni di Bologna invocati contro la peste",
+    "tags": [
+      "guido-reni",
+      "barocco",
+      "peste",
+      "bologna"
+    ],
+    "createdAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000032"
+    },
+    "marketplace_summary": "Analisi tecnica della Madonna del Rosario di Domenichino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000032"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Copyright",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 125,
+        "text": "Realizzata tra il 1617 e il 1621 per la cappella Ratta in San Giovanni in Monte, la composizione è nota anche attraverso un ricco corpus di disegni preparatori oggi conservati al Louvre e a Windsor, che documentano il metodo di lavoro estremamente meditato di Domenichino."
+      }
+    ],
+    "price": 1.49,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Domenico_Zampieri_detto_il_Domenichino%2C_Madonna_del_Rosario_%281617-1621%29_03.jpg?width=1280",
+    "alt_text": "Dettaglio della Madonna che porge la corona del rosario a un santo inginocchiato",
+    "tags": [
+      "domenichino",
+      "barocco",
+      "rosario",
+      "bologna",
+      "tecnico"
+    ],
+    "createdAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000033"
+    },
+    "marketplace_summary": "Guida semplice alla Vestizione di San Guglielmo d'Aquitania di Guercino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000033"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "CC-BY",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 85,
+        "text": "Un vescovo veste con l'abito monastico un cavaliere inginocchiato davanti a lui: è la scena della conversione di san Guglielmo d'Aquitania, che abbandona le armi per farsi eremita. Guercino dipinge con la sua tipica luce calda e avvolgente."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vestizione_di_san_Guglielmo_d%27Aquitania.jpg?width=1280",
+    "alt_text": "Dettaglio del cavaliere inginocchiato che riceve l'abito monastico",
+    "tags": [
+      "guercino",
+      "barocco",
+      "bologna"
+    ],
+    "createdAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000034"
+    },
+    "marketplace_summary": "Guida semplice a una natura morta di Giorgio Morandi.",
+    "artwork": {
+      "$oid": "ccc000000000000000000034"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000005"
+    },
+    "license": "CC-BY-NC",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 70,
+        "text": "Poche bottiglie, vasi e scatole: con questi oggetti quotidiani, sempre gli stessi, Giorgio Morandi ha costruito per tutta la vita composizioni silenziose fatte di forme semplici e colori tenui. Il Museo Morandi, dentro MAMbo, ne raccoglie oltre 250."
+      }
+    ],
+    "price": 0,
+    "alt_text": "Composizione di bottiglie e vasi dai toni tenui su un piano neutro",
+    "tags": [
+      "morandi",
+      "novecento",
+      "mambo",
+      "bambini"
+    ],
+    "createdAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000035"
+    },
+    "marketplace_summary": "Guida di livello medio a Non parto non resto di Alighiero Boetti.",
+    "artwork": {
+      "$oid": "ccc000000000000000000035"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000005"
+    },
+    "license": "CC-BY-NC",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 90,
+        "text": "Realizzata a penna biro nel 1984, l'opera appartiene al filone concettuale di Boetti legato alla ripetizione ossessiva del gesto grafico. Il titolo, ambiguo e contraddittorio, riflette l'interesse dell'artista per gli opposti e le dualità."
+      }
+    ],
+    "price": 0,
+    "alt_text": "Superficie ricoperta da una fitta trama regolare di segni a penna blu",
+    "tags": [
+      "boetti",
+      "novecento",
+      "arte-povera",
+      "mambo"
+    ],
+    "createdAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000036"
+    },
+    "marketplace_summary": "Guida di livello medio a un Concetto spaziale di Lucio Fontana.",
+    "artwork": {
+      "$oid": "ccc000000000000000000036"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "CC-BY-NC",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 85,
+        "text": "Con la serie \"Concetto spaziale\", Fontana taglia o fora la superficie della tela monocroma: un gesto che rompe la pittura tradizionale e introduce lo spazio reale, oltre la tela, come parte dell'opera stessa."
+      }
+    ],
+    "price": 0,
+    "alt_text": "Tela monocroma attraversata da uno o più tagli netti",
+    "tags": [
+      "fontana",
+      "spazialismo",
+      "novecento",
+      "mambo"
+    ],
+    "createdAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000037"
+    },
+    "marketplace_summary": "Guida semplice alle statue anatomiche di Ercole Lelli.",
+    "artwork": {
+      "$oid": "ccc000000000000000000037"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "CC-BY",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 80,
+        "text": "Queste statue, alte quanto una persona vera, mostrano i muscoli del corpo umano come se la pelle fosse stata tolta. Ercole Lelli le realizzò in cera dipinta, applicata su veri scheletri, per insegnare l'anatomia agli studenti di medicina del Settecento."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Museo_di_Palazzo_Poggi_-_Ercole_Lelli_abc1.jpg?width=1280",
+    "alt_text": "Statua di un uomo scorticato che mostra i fasci muscolari",
+    "tags": [
+      "anatomia",
+      "lelli",
+      "settecento",
+      "palazzo-poggi",
+      "bambini"
+    ],
+    "createdAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000038"
+    },
+    "marketplace_summary": "Guida di livello medio all'autoritratto in cera di Anna Morandi Manzolini.",
+    "artwork": {
+      "$oid": "ccc000000000000000000038"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "CC-BY",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 100,
+        "text": "Anna Morandi Manzolini si ritrae mentre dissezione un cervello di cera: fu una delle prime donne in Europa a insegnare anatomia all'università, succedendo al marito Giovanni Manzolini nella cattedra bolognese dopo la sua morte nel 1755."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Morandi_autoritratto.JPG?width=1280",
+    "alt_text": "Busto femminile in cera dipinta, ritratto mentre le mani sezionano un cervello",
+    "tags": [
+      "anatomia",
+      "morandi-manzolini",
+      "settecento",
+      "palazzo-poggi"
+    ],
+    "createdAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000039"
+    },
+    "marketplace_summary": "Guida di livello medio alla collezione naturalistica di Ulisse Aldrovandi.",
+    "artwork": {
+      "$oid": "ccc000000000000000000039"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000005"
+    },
+    "license": "CC-BY",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 95,
+        "text": "Ulisse Aldrovandi, naturalista bolognese del Cinquecento, raccolse per tutta la vita animali, piante ed erbari da ogni parte del mondo conosciuto. La sua collezione, confluita nell'Istituto delle Scienze, è considerata tra le radici dei moderni musei di storia naturale."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bologna%2C%20Museo%20di%20Palazzo%20Poggi%2C%20Museo%20di%20Ulisse%20Aldrovandi%20%281%29.jpg?width=1280",
+    "alt_text": "Vetrine con animali imbalsamati e reperti naturali disposti secondo l'ordinamento cinquecentesco",
+    "tags": [
+      "storia-naturale",
+      "aldrovandi",
+      "cinquecento",
+      "palazzo-poggi"
+    ],
+    "createdAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    }
   }
 ]

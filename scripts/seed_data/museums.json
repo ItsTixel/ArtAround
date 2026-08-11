@@ -73,5 +73,79 @@
     "updatedAt": {
       "$date": "2025-01-02T00:00:00Z"
     }
+  },
+  {
+    "_id": {
+      "$oid": "bbb000000000000000000004"
+    },
+    "name": "Pinacoteca Nazionale di Bologna",
+    "wikidata_id": "Q1103550",
+    "description": "Il principale museo di pittura di Bologna, con opere dal Duecento al Barocco: dai polittici trecenteschi della scuola bolognese ai capolavori di Raffaello, Carracci e Guido Reni.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bologna_%E2%80%94_Pinacoteca_nazionale_di_Bologna_(outside).jpg?width=1280",
+    "website": "https://pinacotecabologna.beniculturali.it",
+    "address": {
+      "street": "Via delle Belle Arti 56",
+      "city": "Bologna",
+      "zip": "40126",
+      "country": "Italia"
+    },
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2025-03-01T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-01T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "bbb000000000000000000005"
+    },
+    "name": "MAMbo - Museo d'Arte Moderna di Bologna",
+    "description": "Il principale museo di arte moderna e contemporanea di Bologna, ospitato in un ex forno del pane, con al suo interno anche il Museo Morandi dedicato a Giorgio Morandi.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bologna_Mambo.jpg?width=1280",
+    "website": "https://www.mambo-bologna.org",
+    "address": {
+      "street": "Via Don Minzoni 14",
+      "city": "Bologna",
+      "zip": "40121",
+      "country": "Italia"
+    },
+    "added_by": {
+      "$oid": "aaa000000000000000000005"
+    },
+    "createdAt": {
+      "$date": "2025-03-01T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-01T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "bbb000000000000000000006"
+    },
+    "name": "Museo di Palazzo Poggi",
+    "wikidata_id": "Q3868219",
+    "description": "Museo del Sistema Museale di Ateneo dell'Università di Bologna, conserva le collezioni scientifiche del Settecento dell'Istituto delle Scienze: cere anatomiche, ostetricia, storia naturale e strumenti scientifici.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Palazzo_Poggi_-_Bologna.jpg?width=1280",
+    "website": "https://sma.unibo.it",
+    "address": {
+      "street": "Via Zamboni 33",
+      "city": "Bologna",
+      "zip": "40126",
+      "country": "Italia"
+    },
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2025-03-01T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-01T00:00:00Z"
+    }
   }
 ]

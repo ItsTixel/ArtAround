@@ -12,7 +12,7 @@ form.addEventListener('submit', async (e) => {
     feedbackMessage.textContent = "Registrazione in corso...";
 
     try {
-        const response = await fetch('http://localhost:8000/api/auth/register', {
+        const response = await fetch('/api/auth/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -26,7 +26,7 @@ form.addEventListener('submit', async (e) => {
             feedbackMessage.style.color = "green";
             feedbackMessage.textContent = data.message || "Registrazione completata! Ora puoi fare il login.";
             setTimeout(() => {
-                window.location.href = 'index.html';
+                window.location.href = '/marketplace/login.html';
             }, 2000);
         } else {
             feedbackMessage.style.color = "red";

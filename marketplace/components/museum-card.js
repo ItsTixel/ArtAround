@@ -31,9 +31,11 @@ class MuseumCard extends HTMLElement {
         :host { display: block; height: 100%; }
 
         .card {
-          background: var(--color-surface, #ffffff);
-          border: 1px solid var(--color-border, #e8e6e1);
-          border-top: 2px solid var(--color-accent, #9e7a46);
+          background: var(--color-surface, #161616);
+          border: 1px solid var(--color-border, #2a2a2a);
+          border-top: 2px solid var(--color-accent, #d4a853);
+          border-radius: var(--radius, 8px);
+          overflow: hidden;
           display: flex;
           flex-direction: column;
           height: 100%;
@@ -44,15 +46,15 @@ class MuseumCard extends HTMLElement {
         }
         .card:hover {
           transform: translateY(-4px);
-          box-shadow: 0 16px 48px rgba(0, 0, 0, 0.09);
+          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), var(--glow-accent, 0 0 20px rgba(212, 168, 83, 0.15));
         }
 
         /* ── Banner ───────────────────────────────────────── */
         .banner {
           position: relative;
           height: 184px;
-          background: #f5f2ec;
-          border-bottom: 1px solid var(--color-border, #e8e6e1);
+          background: #101010;
+          border-bottom: 1px solid var(--color-border, #2a2a2a);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -64,7 +66,7 @@ class MuseumCard extends HTMLElement {
           background: repeating-linear-gradient(
             135deg,
             transparent 0 11px,
-            rgba(0, 0, 0, 0.045) 11px 12px
+            rgba(255, 255, 255, 0.035) 11px 12px
           );
         }
         .banner.has-image::before { display: none; }
@@ -81,10 +83,10 @@ class MuseumCard extends HTMLElement {
         .museum-icon {
           position: relative; z-index: 1;
           width: 44px; height: 44px;
-          fill: #c4b49a;
+          fill: var(--color-text-muted, #8a8a8a);
           transition: fill 0.4s ease;
         }
-        .card:hover .museum-icon { fill: #9e7a46; }
+        .card:hover .museum-icon { fill: var(--color-accent, #d4a853); }
 
         .ph-label {
           position: absolute;
@@ -95,11 +97,12 @@ class MuseumCard extends HTMLElement {
           font-size: 0.68rem;
           letter-spacing: 0.18em;
           text-transform: uppercase;
-          color: #78716c;
-          background: rgba(255, 255, 255, 0.78);
+          color: var(--color-text-muted, #8a8a8a);
+          background: var(--glass-bg, rgba(22, 22, 22, 0.85));
+          border-radius: var(--radius-sm, 6px);
           padding: 0.4rem 0.85rem;
-          backdrop-filter: blur(2px);
-          -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
           white-space: nowrap;
         }
 

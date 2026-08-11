@@ -32,16 +32,25 @@ async function login(req, res) {
         // Generiamo il JWT:
         // creiamo una password segreta e facciamo il sign del token
         const secretKey = process.env.JWT_SECRET || "password";
-        const token = jwt.sign(payload, secretKey, { expiresIn: '1h' }); // Scade in 1 ore
+        const maxAgeMs = 60 * 60 * 1000; // 1 ora, stesso valore di expiresIn
+        const token = jwt.sign(payload, secretKey, { expiresIn: '1h' });
 
-        // Restituiamo l'utente (senza password)
+        // Il token viaggia in un cookie httpOnly: non leggibile da JS lato
+        // client (protegge da furto via XSS), il browser lo allega da solo
+        // alle richieste successive verso questa stessa origin.
+        res.cookie('token', token, {
+            httpOnly: true,
+            sameSite: 'lax',
+            maxAge: maxAgeMs
+        });
+
+        // Restituiamo l'utente (senza password, senza il token)
         const { password: _, ...safeUser } = user.toObject();
-        
-        res.status(200).json({ 
-            success: true, 
-            message: "Login effettuato con successo", 
-            token: token, // Json Web Token
-            user: safeUser 
+
+        res.status(200).json({
+            success: true,
+            message: "Login effettuato con successo",
+            user: safeUser
         });
 
     } catch (e) {
@@ -85,16 +94,15 @@ async function register(req, res) {
 }
 
 async function logout(req, res) {
+  res.clearCookie('token', { httpOnly: true, sameSite: 'lax' });
   res.json({ message: 'Logout effettuato' });
 }
 
 async function me(req, res) {
   try {
-    const authHeader = req.headers.authorization || '';
-    const userId = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null;
-    if (!userId) return res.status(401).json({ error: 'Non autenticato' });
-
-    const user = await User.findById(userId).select('-password');
+    // req.user viene popolato dal middleware verifyToken, che ha già
+    // verificato il cookie httpOnly a monte di questa rotta.
+    const user = await User.findById(req.user.id).select('-password');
     if (!user) return res.status(401).json({ error: 'Utente non trovato' });
 
     res.json(user);

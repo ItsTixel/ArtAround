@@ -1,5 +1,20 @@
 var log = document.getElementById('loginForm')
 
+// Se si arriva qui da un redirect (es. tentativo di aggiungere una visita
+// da non loggati), torniamo lì dopo il login invece che al marketplace.
+// Si accettano solo path relativi interni, per evitare open-redirect.
+function getSafeRedirect() {
+    const raw = new URLSearchParams(window.location.search).get('redirect');
+    if (raw && raw.startsWith('/') && !raw.startsWith('//')) return raw;
+    return '/marketplace/pages/index.html';
+}
+
+// Se veniamo da un tentativo di azione che richiede il login, spieghiamolo.
+if (new URLSearchParams(window.location.search).get('redirect')) {
+    const sub = document.querySelector('.auth-sub');
+    if (sub) sub.textContent = 'Accedi per continuare';
+}
+
 log.addEventListener('submit', async (e) => {
     e.preventDefault(); // Blocca il ricaricamento della pagina
 
@@ -11,11 +26,12 @@ log.addEventListener('submit', async (e) => {
     feedbackMessage.textContent = "Connessione in corso...";
 
     try {
-        const response = await fetch('http://localhost:8000/api/auth/login', {
+        const response = await fetch('/api/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: 'include', // riceve il cookie httpOnly di sessione
             body: JSON.stringify({ email, password })
         });
 
@@ -24,12 +40,13 @@ log.addEventListener('submit', async (e) => {
         if (response.ok) {
             feedbackMessage.style.color = "green";
             feedbackMessage.textContent = "Autenticazione riuscita! Benvenuto.";
-            
-            // SALVA IL TOKEN NEL BROWSER
-            localStorage.setItem('jwt_token', data.token);
-            
-            // Salva i dati dell'utente (in caso ci servano per altro)
-            localStorage.setItem('user_data', JSON.stringify(data.user));
+
+            // Il token vive in un cookie httpOnly gestito dal browser: non c'è
+            // nulla da salvare qui. Torniamo al marketplace (o alla pagina di
+            // provenienza), dove la navbar legge lo stato di login da /api/auth/me.
+            setTimeout(() => {
+                window.location.href = getSafeRedirect();
+            }, 600);
         } else {
             feedbackMessage.style.color = "red";
             feedbackMessage.textContent = data.message || "Credenziali non valide.";
