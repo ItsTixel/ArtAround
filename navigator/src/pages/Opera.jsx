@@ -71,10 +71,10 @@ function Opera() {
         <img
           src={entity.image_url}
           alt={entity.alt_text || entity.name}
-          className="h-64 w-full object-cover"
+          className="mx-6 mt-4 h-64 w-[calc(100%-3rem)] rounded-xl border border-border object-cover"
         />
       ) : (
-        <div className="flex h-64 w-full items-center justify-center bg-border text-sm text-text-muted">
+        <div className="mx-6 mt-4 flex h-64 w-[calc(100%-3rem)] items-center justify-center rounded-xl border border-border bg-border text-sm text-text-muted">
           Nessuna immagine disponibile
         </div>
       )}
