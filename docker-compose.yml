@@ -12,6 +12,8 @@ services:
       - "27017:27017"
     volumes:
       - mongo_data:/data/db
+    networks:
+      - app_network
 
   # 2. Node.js Container (Node 22)
   node_app:
@@ -32,6 +34,12 @@ services:
       DB_PASS: ${DB_PASS}  
     # Installa le dipendenze e avvia index.js
     command: sh -c "npm install && npm run dev"
+    networks:
+      - app_network
 
 volumes:
   mongo_data:
+
+networks:
+  app_network:
+    driver: bridge

@@ -1,0 +1,109 @@
+/* --- Reset di base --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f4f7f6; /* Grigio chiarissimo per far risaltare la card */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+}
+
+/* --- Contenitore Principale (Card di Login) --- */
+main {
+    background-color: #ffffff;
+    padding: 2.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #1a202c;
+    font-size: 1.5rem;
+}
+
+/* --- Elementi del Form --- */
+form div {
+    margin-bottom: 1.2rem; 
+}
+
+/* Nascondo i tag <br> dell'HTML per usare le spaziature CSS */
+form br {
+    display: none;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #4a5568;
+    font-size: 0.95rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #3182ce;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.2); /* Effetto alone azzurro al focus */
+}
+
+/* --- Pulsante --- */
+button {
+    width: 100%;
+    padding: 0.85rem;
+    background-color: #3182ce; /* Blu primario */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    margin-top: 0.5rem;
+}
+
+button:hover {
+    background-color: #2b6cb0;
+}
+
+button:active {
+    transform: scale(0.98); /* Piccolo effetto click */
+}
+
+/* --- Messaggio di Feedback --- */
+#feedbackMessage {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    min-height: 1.5em; /* Previene "salti" di layout quando appare il testo */
+}
+
+/* Classi di utilità da usare nel tuo file js/login.js */
+.success-text {
+    color: #38a169; /* Verde */
+}
+
+.error-text {
+    color: #e53e3e; /* Rosso */
+}

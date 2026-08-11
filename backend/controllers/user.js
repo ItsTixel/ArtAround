@@ -1,5 +1,9 @@
 const User = require('../models/user');
 
+// Per criptare le password e le info
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
 async function getAll(req, res) {
   try {
     const pageSize = Math.min(parseInt(req.query.pageSize) || 10, 100);
@@ -48,11 +52,23 @@ async function create(req, res) {
 
 async function update(req, res) {
   try {
-    const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true }).select('-password');
-    if (!user) return res.status(404).json({ error: 'User not found' });
-    res.json(user);
-  } catch (e) {
-    res.status(400).json({ error: e.message });
+    const updateData = { ...req.body };
+
+        // Criptiamo la password se è presente
+        if (updateData.password) {
+            updateData.password = await bcrypt.hash(updateData.password, 10);
+        }
+
+        const user = await User.findByIdAndUpdate(
+            req.params.id, 
+            updateData, // Usiamo i dati filtrati
+            { new: true, runValidators: true }
+        ).select('-password');
+
+        if (!user) return res.status(404).json({ error: 'User not found' });
+        res.json(user);
+    } catch (e) {
+        res.status(400).json({ error: e.message });
   }
 }
 

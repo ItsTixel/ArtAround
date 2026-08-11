@@ -10,34 +10,11 @@
  * mostra tutto in sovraimpressione sopra la pagina corrente.
  */
 
+import { getCurrentUser } from '/marketplace/js/auth-session.js';
+
 const API_VISITS = '/api/visits';
 const API_USERS  = '/api/users';
-
-/* ---- Utente "loggato" simulato (non esiste ancora un vero login) ----
- * Viene scelto un utente visitor dal backend e il suo id viene tenuto
- * in localStorage, così la libreria (adopted_visits) resta coerente
- * tra un caricamento e l'altro della pagina. */
-let _sessionUserPromise = null;
-function getSessionUserId() {
-  if (_sessionUserPromise) return _sessionUserPromise;
-  _sessionUserPromise = (async () => {
-    const stored = localStorage.getItem('artaround_user_id');
-    if (stored) return stored;
-    try {
-      const res = await fetch(`${API_USERS}?pageSize=100`);
-      const { data } = await res.json();
-      const visitor = (data || []).find(u => u.role === 'visitor') || (data || [])[0];
-      if (visitor) {
-        localStorage.setItem('artaround_user_id', visitor._id);
-        return visitor._id;
-      }
-    } catch (e) {
-      console.error('Impossibile determinare un utente di sessione:', e);
-    }
-    return null;
-  })();
-  return _sessionUserPromise;
-}
+const LOGIN_URL  = '/marketplace/login.html';
 
 class VisitModal extends HTMLElement {
   constructor() {
@@ -70,14 +47,14 @@ class VisitModal extends HTMLElement {
     this._render();
 
     try {
-      const [visitRes, userId] = await Promise.all([
+      const [visitRes, user] = await Promise.all([
         fetch(`${API_VISITS}/${visitId}`),
-        getSessionUserId(),
+        getCurrentUser(),
       ]);
       if (!visitRes.ok) throw new Error(`HTTP ${visitRes.status}`);
       this._visit = await visitRes.json();
-      this._userId = userId;
-      this._owned = await this._checkOwned(visitId, userId);
+      this._userId = user?._id || null;
+      this._owned = await this._checkOwned(visitId, this._userId);
     } catch (e) {
       console.error('Errore nel caricamento della visita:', e);
       this._error = 'Errore nel caricamento della visita. Riprova più tardi.';
@@ -112,8 +89,7 @@ class VisitModal extends HTMLElement {
   async _addToLibrary() {
     if (this._adding || this._owned) return;
     if (!this._userId) {
-      this._purchaseError = 'Impossibile determinare l\'utente. Riprova più tardi.';
-      this._renderFooter();
+      window.location.href = `${LOGIN_URL}?redirect=${encodeURIComponent(window.location.pathname + window.location.search)}`;
       return;
     }
     this._adding = true;
@@ -194,6 +170,7 @@ class VisitModal extends HTMLElement {
     const footer = this.shadowRoot.querySelector('.footer');
     if (!footer) return;
     footer.querySelector('#add-btn')?.addEventListener('click', () => {
+      if (!this._userId) { this._addToLibrary(); return; } // reindirizza al login
       const isFree = !(this._visit.base_price || 0);
       if (isFree) this._addToLibrary();
       else { this._confirm = true; this._renderFooter(); }

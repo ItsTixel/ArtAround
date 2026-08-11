@@ -29,46 +29,54 @@ async function getAll(req, res) {
   try {
     const pageSize = Math.min(parseInt(req.query.pageSize) || 10, 100);
     const page = Math.max(parseInt(req.query.page) || 0, 0);
-    const filter = {};
 
-    /* ── Visibilità ────────────────────────────────────────── */
-    if (req.query.include_private !== 'true') filter.is_public = true;
+    const conditions = [];
 
-    /* ── Autore ────────────────────────────────────────────── */
-    if (req.query.author) filter.author = req.query.author;
+    /* ── Visibilità ─────────────────────────────────────────── */
+    if (req.user) {
+      conditions.push({ $or: [{ is_public: true }, { author: req.user.id }] });
+    } else {
+      conditions.push({ is_public: true });
+    }
 
-    /* ── Musei (uno o più ID separati da virgola) ──────────── */
+    /* ── Autore ─────────────────────────────────────────────── */
+    if (req.query.author) conditions.push({ author: req.query.author });
+
+    /* ── Musei (uno o più ID separati da virgola) ────────────── */
     if (req.query.museum) {
       const ids = req.query.museum.split(',').map(s => s.trim()).filter(Boolean);
-      filter.museum = ids.length === 1 ? ids[0] : { $in: ids };
+      conditions.push({ museum: ids.length === 1 ? ids[0] : { $in: ids } });
     }
 
-    /* ── Tag ($in: almeno un tag presente) ─────────────────── */
+    /* ── Tag ($in: almeno un tag presente) ──────────────────── */
     if (req.query.tags) {
-      filter.tags = { $in: req.query.tags.split(',').map(t => t.trim()) };
+      conditions.push({ tags: { $in: req.query.tags.split(',').map(t => t.trim()) } });
     }
 
-    /* ── Ricerca testuale sul titolo ────────────────────────── */
+    /* ── Ricerca testuale sul titolo ─────────────────────────── */
     if (req.query.title) {
-      filter.title = new RegExp(req.query.title, 'i');
+      conditions.push({ title: new RegExp(req.query.title, 'i') });
     }
 
     /* ── Prezzo ─────────────────────────────────────────────── */
-    if (req.query.price === 'free') filter.base_price = 0;
-    if (req.query.price === 'paid') filter.base_price = { $gt: 0 };
+    if (req.query.price === 'free') conditions.push({ base_price: 0 });
+    if (req.query.price === 'paid') conditions.push({ base_price: { $gt: 0 } });
 
-    /* ── Durata massima (durationMax in minuti) ─────────────── */
+    /* ── Durata massima (durationMax in minuti) ──────────────── */
     if (req.query.durationMax) {
       const maxSec = parseInt(req.query.durationMax) * 60;
-      /* Include visite con durata <= maxSec e visite senza durata (null/0) */
-      filter.$or = [
-        { estimated_duration_sec: { $lte: maxSec } },
-        { estimated_duration_sec: null },
-        { estimated_duration_sec: { $exists: false } },
-      ];
+      conditions.push({
+        $or: [
+          { estimated_duration_sec: { $lte: maxSec } },
+          { estimated_duration_sec: null },
+          { estimated_duration_sec: { $exists: false } },
+        ]
+      });
     }
 
-    /* ── Ordinamento ────────────────────────────────────────── */
+    const filter = { $and: conditions };
+
+    /* ── Ordinamento ─────────────────────────────────────────── */
     const rawSort = req.query.sort || 'title';
     let sort;
     if (SORT_ALIASES[rawSort]) {
@@ -95,6 +103,13 @@ async function getById(req, res) {
   try {
     const visit = await Visit.findById(req.params.id).populate(stepsPopulate);
     if (!visit) return res.status(404).json({ error: 'Visit not found' });
+    if (!visit.is_public) {
+      const authorId = visit.author?._id?.toString() ?? visit.author?.toString();
+      const userId = req.user ? req.user.id : null;
+      if (authorId !== userId) {
+        return res.status(403).json({ error: 'This visit is private.' });
+      }
+    }
     res.json(visit);
   } catch (e) {
     res.status(500).json({ error: e.message });
@@ -103,6 +118,12 @@ async function getById(req, res) {
 
 async function create(req, res) {
   try {
+    req.body.author = req.user.id;
+
+    const existingVisit = await Visit.findOne({ title: req.body.title, museum: req.body.museum });
+    if (existingVisit) {
+      return res.status(409).json({ error: 'A visit with the same title already exists for this museum' });
+    }
     const visit = new Visit(req.body);
     await visit.save();
     const populatedVisit = await visit.populate(stepsPopulate);
@@ -116,10 +137,13 @@ async function update(req, res) {
   try {
     const visit = await Visit.findById(req.params.id);
     if (!visit) return res.status(404).json({ error: 'Visit not found' });
-    Object.assign(visit, req.body);
+    if (req.user.role !== 'admin' && visit.author.toString() !== req.user.id) {
+      return res.status(403).json({ error: 'Not authorized' });
+    }
+    visit.set(req.body);
     await visit.save();
-    await visit.populate(stepsPopulate);
-    res.json(visit);
+    const populatedVisit = await visit.populate(stepsPopulate);
+    res.json(populatedVisit);
   } catch (e) {
     res.status(400).json({ error: e.message });
   }
@@ -127,8 +151,12 @@ async function update(req, res) {
 
 async function remove(req, res) {
   try {
-    const visit = await Visit.findByIdAndDelete(req.params.id);
+    const visit = await Visit.findById(req.params.id);
     if (!visit) return res.status(404).json({ error: 'Visit not found' });
+    if (req.user.role !== 'admin' && visit.author.toString() !== req.user.id) {
+      return res.status(403).json({ error: 'Not authorized' });
+    }
+    await visit.deleteOne();
     res.status(204).send();
   } catch (e) {
     res.status(500).json({ error: e.message });

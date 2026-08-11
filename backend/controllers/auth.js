@@ -1,46 +1,108 @@
 const User = require('../models/user');
 
+// Per criptare le password e le info
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
 async function login(req, res) {
-  try {
-    const { email, password } = req.body;
-    if (!email || !password) {
-      return res.status(400).json({ error: 'Email e password obbligatori' });
+    try {
+        const { email, password } = req.body;
+
+        // Cerchiamo l'utente tramite l'email
+        const user = await User.findOne({ email });
+
+        // Verifica se l'email non esiste
+        if (!user) {
+            return res.status(401).json({ message: "Email o password errati" });
+        }
+
+        // Confronta la password inserita dell'utente e quella del database
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid) {
+            return res.status(401).json({ message: "Email o password errati" });
+        }
+
+        // Creiamo il payload del Token: 
+        // salviamo l'id e il ruolo così che in futuro sappiamo cosa fare (salviamo solo questi due dato che non ci interessa altro)
+        const payload = {
+            id: user._id,
+            role: user.role
+        };
+
+        // Generiamo il JWT:
+        // creiamo una password segreta e facciamo il sign del token
+        const secretKey = process.env.JWT_SECRET || "password";
+        const maxAgeMs = 60 * 60 * 1000; // 1 ora, stesso valore di expiresIn
+        const token = jwt.sign(payload, secretKey, { expiresIn: '1h' });
+
+        // Il token viaggia in un cookie httpOnly: non leggibile da JS lato
+        // client (protegge da furto via XSS), il browser lo allega da solo
+        // alle richieste successive verso questa stessa origin.
+        res.cookie('token', token, {
+            httpOnly: true,
+            sameSite: 'lax',
+            maxAge: maxAgeMs
+        });
+
+        // Restituiamo l'utente (senza password, senza il token)
+        const { password: _, ...safeUser } = user.toObject();
+
+        res.status(200).json({
+            success: true,
+            message: "Login effettuato con successo",
+            user: safeUser
+        });
+
+    } catch (e) {
+        res.status(500).json({ error: e.message });
     }
+}
 
-    const user = await User.findOne({ email });
-    if (!user) return res.status(401).json({ error: 'Credenziali non valide' });
+async function register(req, res) {
+    try {
+        const { username, email, password } = req.body;
 
-    // TODO: usare bcrypt in produzione
-    if (req.body.password !== user.password) {
-      return res.status(401).json({ error: 'Credenziali non valide' });
+        // Controlla se l'utente esiste già (per email o username)
+        const existing = await User.findOne({ $or: [{ email }, { username }] });
+        if (existing) {
+            const field = existing.email === email ? 'email' : 'username';
+            return res.status(409).json({ message: `Un utente con questo ${field} esiste già` });
+        }
+
+        // Cripta la password con bcrypt prima di salvarla
+        // Il "10" indica il "salt rounds", ovvero quanto deve essere complessa la crittografia
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Crea e salva il nuovo utente nel database
+        const user = new User({
+            username: username,
+            email: email,
+            password: hashedPassword, 
+            role: 'visitor'
+        });
+
+        await user.save();
+
+        res.status(201).json({ 
+            success: true, 
+            message: "Registrazione completata con successo! Ora puoi fare il login." 
+        });
+
+    } catch (e) {
+        res.status(400).json({ message: "Errore durante la registrazione", error: e.message });
     }
-
-    res.json({
-      user: {
-        _id:          user._id,
-        username:     user.username,
-        email:        user.email,
-        role:         user.role,
-        display_name: user.display_name,
-        avatar_url:   user.avatar_url
-      }
-    });
-  } catch (e) {
-    res.status(500).json({ error: e.message });
-  }
 }
 
 async function logout(req, res) {
+  res.clearCookie('token', { httpOnly: true, sameSite: 'lax' });
   res.json({ message: 'Logout effettuato' });
 }
 
 async function me(req, res) {
   try {
-    const authHeader = req.headers.authorization || '';
-    const userId = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null;
-    if (!userId) return res.status(401).json({ error: 'Non autenticato' });
-
-    const user = await User.findById(userId).select('-password');
+    // req.user viene popolato dal middleware verifyToken, che ha già
+    // verificato il cookie httpOnly a monte di questa rotta.
+    const user = await User.findById(req.user.id).select('-password');
     if (!user) return res.status(401).json({ error: 'Utente non trovato' });
 
     res.json(user);
@@ -49,4 +111,4 @@ async function me(req, res) {
   }
 }
 
-module.exports = { login, logout, me };
+module.exports = { login, register, logout, me };

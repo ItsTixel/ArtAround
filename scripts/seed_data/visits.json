@@ -1574,5 +1574,189 @@
     "updatedAt": {
       "$date": "2025-03-12T00:00:00Z"
     }
+  },
+  {
+    "_id": {
+      "$oid": "eee000000000000000000012"
+    },
+    "title": "Il Novecento a MAMbo: Morandi, Boetti, Fontana",
+    "description": "Un breve itinerario tra le sale del Novecento di MAMbo: dal taglio nello spazio di Fontana alla trama ossessiva di Boetti, fino alle nature morte di Giorgio Morandi.",
+    "museum": [
+      {
+        "$oid": "bbb000000000000000000005"
+      }
+    ],
+    "author": {
+      "$oid": "aaa000000000000000000005"
+    },
+    "base_price": 0,
+    "steps": [
+      {
+        "_id": {
+          "$oid": "fff000000000000000000061"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000036"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000005"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000036"
+          }
+        ],
+        "logistic_note": "Entra nelle Sale del Novecento al piano 1 di MAMbo.",
+        "intro_note": "Osserva da vicino il taglio nella tela: non è un gesto casuale, ma un'apertura verso lo spazio reale.",
+        "order": 1
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000062"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000035"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000005"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000035"
+          }
+        ],
+        "logistic_note": "Resta nella stessa sala: poco più avanti trovi l'opera a penna biro di Boetti.",
+        "intro_note": "Avvicinati alla trama fittissima di segni blu: fa parte del nucleo di Arte Povera e concettuale della collezione.",
+        "order": 2
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000063"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000034"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000005"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000034"
+          }
+        ],
+        "logistic_note": "Sali al piano 2, nella sezione dedicata al Museo Morandi.",
+        "intro_note": "Fermati davanti alla natura morta di Morandi: pochi oggetti quotidiani bastano a raccontare la sua ricerca sulla forma.",
+        "order": 3
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bologna_Mambo.jpg?width=1280",
+    "tags": [
+      "mambo",
+      "bologna",
+      "novecento",
+      "morandi",
+      "boetti",
+      "fontana"
+    ],
+    "is_public": true,
+    "estimated_duration_sec": 245,
+    "createdAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "eee000000000000000000013"
+    },
+    "title": "Scienza e anatomia a Palazzo Poggi",
+    "description": "Un percorso tra le cere anatomiche settecentesche e le collezioni naturalistiche dell'antico Istituto delle Scienze di Bologna, dalle statue di Ercole Lelli alla raccolta di Ulisse Aldrovandi.",
+    "museum": [
+      {
+        "$oid": "bbb000000000000000000006"
+      }
+    ],
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "base_price": 0,
+    "steps": [
+      {
+        "_id": {
+          "$oid": "fff000000000000000000064"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000037"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000006"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000037"
+          }
+        ],
+        "logistic_note": "Entra nella Sala di Anatomia al piano 1 del museo.",
+        "intro_note": "Osserva gli strati muscolari resi in cera dipinta da Ercole Lelli: un modello didattico settecentesco a grandezza naturale.",
+        "order": 1
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000065"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000038"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000006"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000038"
+          }
+        ],
+        "logistic_note": "Prosegui nella sezione delle cere anatomiche, poco distante.",
+        "intro_note": "Anna Morandi Manzolini si ritrae mentre dissezona un cervello: fu tra le prime donne anatomiste e docenti universitarie d'Europa.",
+        "order": 2
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000066"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000039"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000006"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000039"
+          }
+        ],
+        "logistic_note": "Raggiungi il Museo di Ulisse Aldrovandi, nella stessa ala del piano 1.",
+        "intro_note": "Tra erbari e animali imbalsamati, ritrovi le origini cinquecentesche dei moderni musei di storia naturale.",
+        "order": 3
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Palazzo_Poggi_-_Bologna.jpg?width=1280",
+    "tags": [
+      "palazzo-poggi",
+      "bologna",
+      "anatomia",
+      "cere-anatomiche",
+      "storia-naturale",
+      "settecento"
+    ],
+    "is_public": true,
+    "estimated_duration_sec": 275,
+    "createdAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-06T00:00:00Z"
+    }
   }
 ]

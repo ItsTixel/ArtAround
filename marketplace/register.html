@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtAround — Registrati</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Nunito+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/marketplace/css/base.css">
+    <link rel="stylesheet" href="/marketplace/css/auth.css">
+    <script type="module" src="/marketplace/components/app-navbar.js"></script>
+    <script type="module" src="/marketplace/components/app-footer.js"></script>
+</head>
+<body>
+    <app-navbar></app-navbar>
+
+    <main>
+        <section class="auth-hero">
+            <div class="auth-card">
+                <div class="kicker">Marketplace</div>
+                <h1>Crea un account</h1>
+                <p class="auth-sub">Unisciti ad ArtAround</p>
+
+                <form id="registerForm" class="auth-form">
+                    <div class="field">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" required autocomplete="username">
+                    </div>
+                    <div class="field">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required autocomplete="email">
+                    </div>
+                    <div class="field">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required autocomplete="new-password">
+                    </div>
+                    <button type="submit" class="btn-primary">Registrati</button>
+                </form>
+
+                <p id="feedbackMessage" class="feedback"></p>
+
+                <p class="auth-switch">
+                    Hai già un account? <a href="/marketplace/login.html">Accedi</a>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <app-footer></app-footer>
+
+    <script src="/marketplace/js/register.js"></script>
+</body>
+</html>

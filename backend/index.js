@@ -4,6 +4,7 @@ global.startDate = null;
 const path = require('path');
 const express = require('express');
 const cors = require('cors')
+const cookieParser = require('cookie-parser');
 const mongoose = require("mongoose");
 const credentials = {
 	user: process.env.DB_USER || "site242555",
@@ -15,6 +16,7 @@ let app = express();
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+app.use(cookieParser())
 app.use(cors())
 
 app.use('/api/auth',     require('./routes/auth'));
@@ -35,12 +37,15 @@ app.enable('trust proxy');
   try {
 	dbname = "artaround"
     const mongouri = `mongodb://${credentials.user}:${credentials.pwd}@${credentials.site}/${dbname}?authSource=admin&writeConcern=majority`;
-    await mongoose.connect(mongouri);
+	//const mongouri = `mongodb://localhost:27017/${dbname}`;
+	console.log(`Connecting to MongoDB: ${mongouri}`);
+	await mongoose.connect(mongouri);
     console.log("Connected to MongoDB", mongouri);
 	
   } catch (e) {
     console.error("Connection failed:", e.message);
   }
+
 })();
 
 app.get('/', async function (req, res) {
@@ -181,8 +186,6 @@ app.use('/navigator', express.static(path.join(__dirname, '../navigator/dist')))
 app.get('/navigator/*', (req, res) => {
 	res.sendFile(path.join(__dirname, '../navigator/dist/index.html'));
 });
-
-
 
 
 const PORT = process.env.PORT || 8000;
