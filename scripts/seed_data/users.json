@@ -33,18 +33,6 @@
     "email": "carol@example.com",
     "password": "12345678",
     "role": "visitor",
-<<<<<<< HEAD
-    "createdAt": { "$date": "2025-01-01T00:00:00Z" },
-    "updatedAt": { "$date": "2025-01-01T00:00:00Z" }
-  },
-
-  {
-    "_id": { "$oid": "aaa000000000000000000004" },
-  "username": "admin_test",
-  "email": "admin@test.it",
-  "password": "passwordSicura123",
-  "role": "author"
-=======
     "display_name": "Carol Bianchi",
     "bio": "",
     "avatar_url": null,
@@ -57,6 +45,5 @@
     ],
     "createdAt": { "$date": "2025-01-10T00:00:00Z" },
     "updatedAt": { "$date": "2025-01-10T00:00:00Z" }
->>>>>>> 2c8095968e33c69ee0815a6b3a66dd70c0eff77d
   }
 ]
