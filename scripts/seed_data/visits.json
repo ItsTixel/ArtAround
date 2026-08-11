@@ -871,6 +871,12 @@
         "items": [
           {
             "$oid": "ddd000000000000000000019"
+          },
+          {
+            "$oid": "ddd000000000000000000040"
+          },
+          {
+            "$oid": "ddd000000000000000000041"
           }
         ],
         "logistic_note": "Entra dall'ingresso principale e sali al primo piano: la Saletta di Giotto è la prima sala del percorso.",
@@ -890,6 +896,12 @@
         "items": [
           {
             "$oid": "ddd000000000000000000020"
+          },
+          {
+            "$oid": "ddd000000000000000000042"
+          },
+          {
+            "$oid": "ddd000000000000000000043"
           }
         ],
         "logistic_note": "Prosegui nella Sala 1, dedicata al Duecento e al Gotico bolognese.",
@@ -909,6 +921,12 @@
         "items": [
           {
             "$oid": "ddd000000000000000000021"
+          },
+          {
+            "$oid": "ddd000000000000000000044"
+          },
+          {
+            "$oid": "ddd000000000000000000045"
           }
         ],
         "logistic_note": "Raggiungi le sale 10-12, dedicate al primo Rinascimento bolognese.",
@@ -928,6 +946,12 @@
         "items": [
           {
             "$oid": "ddd000000000000000000022"
+          },
+          {
+            "$oid": "ddd000000000000000000046"
+          },
+          {
+            "$oid": "ddd000000000000000000047"
           }
         ],
         "logistic_note": "Resta nella stessa area, alla Sala 13.",
@@ -947,6 +971,12 @@
         "items": [
           {
             "$oid": "ddd000000000000000000024"
+          },
+          {
+            "$oid": "ddd000000000000000000048"
+          },
+          {
+            "$oid": "ddd000000000000000000049"
           }
         ],
         "logistic_note": "Raggiungi la Sala 15, il cuore rinascimentale della Pinacoteca.",
@@ -966,6 +996,12 @@
         "items": [
           {
             "$oid": "ddd000000000000000000025"
+          },
+          {
+            "$oid": "ddd000000000000000000050"
+          },
+          {
+            "$oid": "ddd000000000000000000051"
           }
         ],
         "logistic_note": "Prosegui verso la Sala 18.",
@@ -985,6 +1021,12 @@
         "items": [
           {
             "$oid": "ddd000000000000000000026"
+          },
+          {
+            "$oid": "ddd000000000000000000052"
+          },
+          {
+            "$oid": "ddd000000000000000000053"
           }
         ],
         "logistic_note": "Entra nella Sala 23, dedicata ai Carracci.",
@@ -1004,6 +1046,12 @@
         "items": [
           {
             "$oid": "ddd000000000000000000029"
+          },
+          {
+            "$oid": "ddd000000000000000000054"
+          },
+          {
+            "$oid": "ddd000000000000000000055"
           }
         ],
         "logistic_note": "Prosegui nella Sala 24, dedicata a Guido Reni.",
@@ -1023,6 +1071,12 @@
         "items": [
           {
             "$oid": "ddd000000000000000000030"
+          },
+          {
+            "$oid": "ddd000000000000000000056"
+          },
+          {
+            "$oid": "ddd000000000000000000057"
           }
         ],
         "logistic_note": "Resta nella Sala 24: la grande pala si trova sulla parete opposta.",
@@ -1042,6 +1096,12 @@
         "items": [
           {
             "$oid": "ddd000000000000000000033"
+          },
+          {
+            "$oid": "ddd000000000000000000058"
+          },
+          {
+            "$oid": "ddd000000000000000000059"
           }
         ],
         "logistic_note": "Concludi il percorso nelle sale dedicate al Seicento bolognese.",
@@ -1058,12 +1118,12 @@
       "panoramica"
     ],
     "is_public": true,
-    "estimated_duration_sec": 1070,
+    "estimated_duration_sec": 450,
     "createdAt": {
       "$date": "2025-03-10T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2025-03-10T00:00:00Z"
+      "$date": "2026-08-11T00:00:00Z"
     }
   },
   {

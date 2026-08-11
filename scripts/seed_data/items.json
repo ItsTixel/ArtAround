@@ -657,8 +657,20 @@
     "tone": "medium",
     "descriptions": [
       {
-        "duration_sec": 110,
-        "text": "Il polittico fu commissionato dal cardinale Bertrando del Poggetto per la cappella privata di papa Giovanni XXII a Porta Galliera. Smembrato e disperso durante le soppressioni napoleoniche del 1808, i pannelli furono ritrovati e ricomposti solo nel 1894, nell'ordine che vedi oggi."
+        "duration_sec": 5,
+        "text": "Questo polittico dorato è la prima vera testimonianza di Giotto a Bologna."
+      },
+      {
+        "duration_sec": 15,
+        "text": "Databile al 1330-1334 circa, fu commissionato dal cardinale legato Bertrando del Poggetto per la cappella privata di papa Giovanni XXII, nella scomparsa chiesa di San Petronio a Porta Galliera, oggi non più esistente nella sua forma originaria."
+      },
+      {
+        "duration_sec": 30,
+        "text": "Sulla cornice si legge ancora oggi la firma OPUS MAGISTRI IOCTI DE FLORENTIA: un'attestazione più unica che rara per l'epoca, che conferma il coinvolgimento diretto del maestro fiorentino, arrivato a Bologna già celebre per gli affreschi di Assisi e Padova. Al centro compare la Madonna in trono con il Bambino, mentre nei pannelli laterali si affiancano santi e angeli su un fondo oro che rappresenta lo spazio senza tempo del paradiso, secondo la convenzione pittorica dell'epoca."
+      },
+      {
+        "duration_sec": 42,
+        "text": "Durante le soppressioni napoleoniche del 1808 gli enti religiosi bolognesi furono spogliati dei loro beni e il polittico venne smembrato: i singoli pannelli finirono dispersi tra collezioni private e depositi diversi, alcuni quasi dimenticati per decenni. Solo nel 1894, grazie a un lungo lavoro di ricerca guidato dallo storico dell'arte Corrado Ricci, i pannelli furono rintracciati, confrontati con le fonti d'archivio superstiti e infine ricomposti nell'ordine che vedi oggi in questa sala. È un caso raro di ricostruzione riuscita: la maggior parte dei polittici trecenteschi smembrati dalle soppressioni non ha mai più ritrovato la propria unità originaria, e restano dispersi tra musei di tutto il mondo."
       }
     ],
     "price": 0,
@@ -674,7 +686,7 @@
       "$date": "2025-03-06T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2025-03-06T00:00:00Z"
+      "$date": "2026-08-11T00:00:00Z"
     }
   },
   {
@@ -692,8 +704,16 @@
     "tone": "simple",
     "descriptions": [
       {
-        "duration_sec": 80,
-        "text": "San Giorgio, a cavallo, trafigge il drago con la lancia per salvare la principessa, inginocchiata e in preghiera sulla destra. Vitale da Bologna dipinge la scena con colori vivaci e un forte senso del movimento, che la rende una delle opere più amate della Pinacoteca."
+        "duration_sec": 6,
+        "text": "San Giorgio, a cavallo, trafigge il drago con la lancia per salvare la principessa."
+      },
+      {
+        "duration_sec": 16,
+        "text": "La principessa è inginocchiata in preghiera sulla destra, mentre il drago si contorce colpito dalla lancia: Vitale da Bologna racconta tutto il movimento della scena in un solo istante, come se avesse fermato il tempo un attimo prima della vittoria."
+      },
+      {
+        "duration_sec": 30,
+        "text": "I colori vivaci — il rosso acceso del mantello, il verde smeraldo del drago, l'oro dello sfondo — e il ritmo quasi narrativo della composizione hanno reso questa tavola una delle opere più amate e riprodotte della Pinacoteca di Bologna. Osserva anche i piccoli dettagli: le zampe del drago artigliano il terreno, la coda si attorciglia su se stessa, e persino il cavallo sembra partecipare all'azione con le narici dilatate e gli zoccoli sollevati da terra."
       }
     ],
     "price": 0,
@@ -709,7 +729,7 @@
       "$date": "2025-03-06T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2025-03-06T00:00:00Z"
+      "$date": "2026-08-11T00:00:00Z"
     }
   },
   {
@@ -727,8 +747,20 @@
     "tone": "medium",
     "descriptions": [
       {
-        "duration_sec": 100,
-        "text": "Firmata e datata 1474, la pala fu commissionata per la cappella della Mercanzia da due mercanti bolognesi, qui non raffigurati ma ricordati nell'iscrizione. È una delle ultime opere di Francesco del Cossa, morto di peste a Bologna appena quattro anni dopo."
+        "duration_sec": 8,
+        "text": "Al centro la Madonna in trono con il Bambino, affiancata da san Petronio, patrono di Bologna, e san Giovanni Evangelista."
+      },
+      {
+        "duration_sec": 15,
+        "text": "La pala è firmata e datata 1474: fu commissionata per la cappella della Mercanzia da Alberto de' Cattani e Domenico degli Amorini, due mercanti bolognesi ricordati nell'iscrizione alla base del trono ma non raffigurati direttamente nella scena sacra."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Nota il modellino della città che san Petronio regge in mano: è una delle prime vedute dipinte di Bologna, con le sue torri e le sue mura riconoscibili ancora oggi, tanto che gli storici l'hanno usata più volte per ricostruire l'aspetto della città quattrocentesca."
+      },
+      {
+        "duration_sec": 28,
+        "text": "È una delle ultime opere firmate di Francesco del Cossa, morto di peste a Bologna appena quattro anni dopo, nel 1478, mentre lavorava a Ferrara. La sua pittura, dal disegno tagliente e dai colori quasi smaltati, deve molto alla lezione di Piero della Francesca e della scuola ferrarese di Cosmè Tura, ma qui si piega a un linguaggio più solenne e monumentale, adatto alla committenza civica della potente corporazione mercantile bolognese."
       }
     ],
     "price": 0,
@@ -743,7 +775,7 @@
       "$date": "2025-03-06T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2025-03-06T00:00:00Z"
+      "$date": "2026-08-11T00:00:00Z"
     }
   },
   {
@@ -761,8 +793,20 @@
     "tone": "medium",
     "descriptions": [
       {
-        "duration_sec": 95,
-        "text": "Anton Galeazzo Bentivoglio commissionò questa pala per commemorare il proprio pellegrinaggio in Terra Santa: è ritratto inginocchiato accanto al fratello Alessandro, ai piedi della Sacra Famiglia, in un gesto di devozione privata reso pubblico attraverso il dipinto."
+        "duration_sec": 6,
+        "text": "La Sacra Famiglia riposa in un paesaggio quieto, mentre due committenti la osservano inginocchiati ai lati."
+      },
+      {
+        "duration_sec": 14,
+        "text": "Anton Galeazzo Bentivoglio, esponente della famiglia che allora dominava Bologna, commissionò l'opera nel 1498-1499 per commemorare il proprio pellegrinaggio in Terra Santa, un viaggio lungo e pericoloso che pochi nobili del tempo intraprendevano davvero."
+      },
+      {
+        "duration_sec": 20,
+        "text": "È ritratto inginocchiato accanto al fratello Alessandro, ai piedi della Sacra Famiglia: un gesto di devozione privata reso pubblico e permanente attraverso il dipinto, secondo una consuetudine molto diffusa nel Rinascimento italiano, quando i committenti amavano apparire accanto ai soggetti sacri come garanzia della propria fede e del proprio prestigio sociale."
+      },
+      {
+        "duration_sec": 30,
+        "text": "Francesco Francia, orafo prima ancora che pittore, porta in questa pala una precisione quasi orafa nei dettagli — gioielli, tessuti, incarnati resi con pennellate minutissime — che gli varrà fama e commissioni in tutta la Bologna del suo tempo. Fu proprio questa doppia formazione, tra bottega orafa e bottega pittorica, a rendere il suo stile riconoscibile: superfici lucide, contorni netti, una luce limpida che ricorda la lavorazione dei metalli preziosi più che la pittura a olio."
       }
     ],
     "price": 0,
@@ -778,7 +822,7 @@
       "$date": "2025-03-06T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2025-03-06T00:00:00Z"
+      "$date": "2026-08-11T00:00:00Z"
     }
   },
   {
@@ -830,12 +874,20 @@
     "tone": "technical",
     "descriptions": [
       {
-        "duration_sec": 140,
-        "text": "Commissionata dalla nobildonna Elena Duglioli per la propria cappella in San Giovanni in Monte, l'opera mostra santa Cecilia in estasi mistica, circondata da san Paolo, san Giovanni Evangelista, sant'Agostino e Maria Maddalena, con strumenti musicali abbandonati ai suoi piedi a simboleggiare la musica terrena superata da quella celeste."
+        "duration_sec": 7,
+        "text": "Santa Cecilia lascia cadere gli strumenti musicali: sta ascoltando un coro di angeli che nessun altro può sentire."
       },
       {
-        "duration_sec": 100,
-        "text": "Sequestrata da Napoleone nel 1798 insieme a decine di altre opere bolognesi, fu trasferita dal supporto ligneo alla tela al Louvre nel 1801 — una delle prime grandi operazioni di trasporto pittorico della storia — prima di tornare a Bologna nel 1815 grazie alle trattative post-napoleoniche."
+        "duration_sec": 15,
+        "text": "Commissionata dalla nobildonna Elena Duglioli per la propria cappella in San Giovanni in Monte, l'opera fu dipinta da Raffaello tra il 1514 e il 1516, probabilmente con l'aiuto della sua affollata bottega romana, all'apice della sua fama."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Attorno alla santa, in estasi mistica, si dispongono san Paolo, assorto e silenzioso, san Giovanni Evangelista, sant'Agostino e Maria Maddalena, l'unica a guardare fuori dal quadro verso di noi: gli strumenti musicali abbandonati a terra simboleggiano la musica terrena, ormai superata da quella celeste che Cecilia sola può udire."
+      },
+      {
+        "duration_sec": 30,
+        "text": "L'opera ebbe una storia travagliata: sequestrata da Napoleone nel 1798 insieme a decine di altre opere bolognesi, fu trasferita dal supporto ligneo originario alla tela al Louvre nel 1801, una delle prime grandi operazioni di trasporto pittorico della storia, eseguita con una tecnica ancora sperimentale per l'epoca. Tornò a Bologna solo nel 1815, dopo le trattative post-napoleoniche guidate dallo scultore Antonio Canova, che si batté personalmente per il recupero delle opere d'arte italiane requisite dai francesi."
       }
     ],
     "price": 2.99,
@@ -852,7 +904,7 @@
       "$date": "2025-03-06T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2025-03-06T00:00:00Z"
+      "$date": "2026-08-11T00:00:00Z"
     }
   },
   {
@@ -870,8 +922,20 @@
     "tone": "medium",
     "descriptions": [
       {
-        "duration_sec": 105,
-        "text": "Dipinta per le monache del convento di Santa Margherita, l'opera fu talmente ammirata da essere sequestrata dai francesi nel 1796 e restituita solo nel 1815. Si racconta che lo stesso Guido Reni, generazioni dopo, la considerasse tra i suoi dipinti bolognesi preferiti."
+        "duration_sec": 6,
+        "text": "La Madonna, alta ed elegante, siede in trono con il Bambino tra quattro santi."
+      },
+      {
+        "duration_sec": 14,
+        "text": "Dipinta nel 1529-1530 per le monache del convento di Santa Margherita, l'opera segna l'arrivo a Bologna del linguaggio manierista di Parmigianino, appena ventiseienne ma già considerato uno dei pittori più originali della sua generazione."
+      },
+      {
+        "duration_sec": 15,
+        "text": "Le figure allungate, i colli sottili, le pose sinuose e leggermente artificiose: tutto contribuisce a un'eleganza raffinata e quasi innaturale, lontana dall'equilibrio più composto e misurato che caratterizzava fino ad allora la pittura bolognese del primo Cinquecento."
+      },
+      {
+        "duration_sec": 20,
+        "text": "L'opera fu talmente ammirata da essere sequestrata dai francesi nel 1796 e restituita solo nel 1815; si racconta che lo stesso Guido Reni, generazioni dopo, la considerasse tra i suoi dipinti bolognesi preferiti, al punto da studiarla a lungo prima di dipingere alcune delle proprie pale d'altare più celebri."
       }
     ],
     "price": 0,
@@ -886,7 +950,7 @@
       "$date": "2025-03-06T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2025-03-06T00:00:00Z"
+      "$date": "2026-08-11T00:00:00Z"
     }
   },
   {
@@ -904,8 +968,20 @@
     "tone": "technical",
     "descriptions": [
       {
-        "duration_sec": 130,
-        "text": "Firmata e datata 1588, è la prima opera firmata conosciuta di Ludovico Carracci, commissionata dalla famiglia Bargellini per la propria cappella. La committente Cecilia Bargellini Boncompagni è ritratta inginocchiata in basso, vestita da monaca carmelitana: un dettaglio biografico raro per una pala d'altare del tempo."
+        "duration_sec": 6,
+        "text": "Questa pala segna l'esordio ufficiale di Ludovico Carracci: è la prima sua opera firmata che conosciamo."
+      },
+      {
+        "duration_sec": 12,
+        "text": "Firmata e datata 1588, fu commissionata dalla famiglia Bargellini per la propria cappella nella chiesa dei Santi Filippo e Giacomo, un incarico prestigioso per un pittore ancora all'inizio della carriera."
+      },
+      {
+        "duration_sec": 20,
+        "text": "In basso, inginocchiata in preghiera, è ritratta la committente Cecilia Bargellini Boncompagni, vestita da monaca carmelitana: un dettaglio biografico raro per una pala d'altare di questo periodo, che rende la devozione privata parte integrante e visibile dell'immagine sacra, quasi un ponte tra il mondo dei fedeli e quello del divino."
+      },
+      {
+        "duration_sec": 24,
+        "text": "Lo stile di Ludovico qui è ancora vicino al manierismo tardo emiliano che aveva dominato la generazione precedente, ma la luce naturale che modella i volti e i panneggi, insieme all'attenzione ai gesti quotidiani delle figure, anticipa già la riforma naturalistica che i Carracci porteranno a piena maturità negli anni successivi, aprendo così la strada al linguaggio del Barocco bolognese."
       }
     ],
     "price": 1.99,
@@ -922,7 +998,7 @@
       "$date": "2025-03-06T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2025-03-06T00:00:00Z"
+      "$date": "2026-08-11T00:00:00Z"
     }
   },
   {
@@ -1010,8 +1086,20 @@
     "tone": "technical",
     "descriptions": [
       {
-        "duration_sec": 135,
-        "text": "Dipinta nel 1611 per la basilica di San Domenico, la Strage degli Innocenti è costruita su una diagonale di corpi e gesti che guida l'occhio dall'angolo in alto a sinistra fino alle madri in primo piano: un dispositivo compositivo tipicamente barocco per amplificare il pathos della scena."
+        "duration_sec": 5,
+        "text": "Poche scene nella pittura barocca bolognese sono drammatiche quanto questa strage di innocenti."
+      },
+      {
+        "duration_sec": 15,
+        "text": "Dipinta nel 1611 per la basilica di San Domenico, misura oltre due metri e mezzo di altezza: una dimensione monumentale pensata per dominare l'intera parete di una cappella e colpire lo spettatore con la forza fisica dell'immagine."
+      },
+      {
+        "duration_sec": 18,
+        "text": "La composizione è costruita su una diagonale di corpi e gesti che guida l'occhio dall'angolo in alto a sinistra, dove un soldato solleva la spada, fino alle madri in primo piano che stringono disperatamente i propri figli, in un crescendo di tensione studiato nei minimi dettagli."
+      },
+      {
+        "duration_sec": 27,
+        "text": "Questo dispositivo compositivo, tipicamente barocco, amplifica il pathos della scena: Reni studia i modelli classici — statue antiche, rilievi di sarcofagi romani — per dare ai corpi in torsione una monumentalità quasi scultorea, pur mantenendo intatta la violenza emotiva del soggetto. Il risultato è un equilibrio difficile tra composizione armoniosa e contenuto straziante, la cifra stilistica che renderà Reni uno dei pittori più celebrati e imitati del secolo."
       }
     ],
     "price": 2.49,
@@ -1028,7 +1116,7 @@
       "$date": "2025-03-06T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2025-03-06T00:00:00Z"
+      "$date": "2026-08-11T00:00:00Z"
     }
   },
   {
@@ -1046,8 +1134,20 @@
     "tone": "medium",
     "descriptions": [
       {
-        "duration_sec": 110,
-        "text": "Commissionata dal Senato di Bologna, questa grande pala (oltre sette metri di larghezza) fu sequestrata nel 1796 e tornò in città solo grazie alle trattative dello scultore Antonio Canova nel 1815-16. I sette santi patroni di Bologna, allineati in basso, intercedono per la città sotto il Cristo morto sorretto dagli angeli."
+        "duration_sec": 8,
+        "text": "In alto il Cristo morto, sorretto da angeli in volo; in basso, sette santi in fila guardano verso il cielo."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Commissionata dal Senato di Bologna tra il 1613 e il 1616, questa pala imponente supera i sette metri di larghezza: fu pensata per dominare l'altare di Santa Maria della Pietà con un formato quasi processionale, raro anche per l'epoca."
+      },
+      {
+        "duration_sec": 18,
+        "text": "I sette santi allineati in basso sono i patroni della città di Bologna: la loro presenza trasforma l'opera in una preghiera collettiva, un voto di protezione per l'intera comunità cittadina più che un'immagine devozionale privata, secondo un uso tipico delle grandi committenze civiche del Seicento."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Sequestrata da Napoleone nel 1796, la pala tornò a Bologna solo nel 1815-16, grazie alle trattative condotte dallo scultore Antonio Canova, incaricato dal governo pontificio di recuperare le opere d'arte italiane disperse nei musei francesi dopo la caduta dell'impero napoleonico: un'operazione diplomatica complessa che riportò in Italia centinaia di capolavori."
       }
     ],
     "price": 0,
@@ -1063,7 +1163,7 @@
       "$date": "2025-03-06T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2025-03-06T00:00:00Z"
+      "$date": "2026-08-11T00:00:00Z"
     }
   },
   {
@@ -1152,8 +1252,16 @@
     "tone": "simple",
     "descriptions": [
       {
-        "duration_sec": 85,
-        "text": "Un vescovo veste con l'abito monastico un cavaliere inginocchiato davanti a lui: è la scena della conversione di san Guglielmo d'Aquitania, che abbandona le armi per farsi eremita. Guercino dipinge con la sua tipica luce calda e avvolgente."
+        "duration_sec": 5,
+        "text": "Un vescovo veste con l'abito monastico un cavaliere inginocchiato davanti a lui."
+      },
+      {
+        "duration_sec": 16,
+        "text": "È la scena della conversione di san Guglielmo d'Aquitania: il cavaliere abbandona le armi, visibili a terra, per farsi eremita e dedicare il resto della vita alla preghiera e alla penitenza, lontano dalla corte e dai campi di battaglia."
+      },
+      {
+        "duration_sec": 22,
+        "text": "Guercino dipinge la scena con la sua luce calda e avvolgente, tipica del suo stile: pennellate morbide, colori caldi, un'atmosfera quasi dorata che accompagna il momento della conversione e rende solenne, senza essere fredda, la cerimonia religiosa raffigurata, in una delle sue prime prove per una chiesa bolognese, quando l'artista era poco più che ventenne."
       }
     ],
     "price": 0,
@@ -1168,7 +1276,7 @@
       "$date": "2025-03-06T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2025-03-06T00:00:00Z"
+      "$date": "2026-08-11T00:00:00Z"
     }
   },
   {
@@ -1377,6 +1485,899 @@
     },
     "updatedAt": {
       "$date": "2025-03-06T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000040"
+    },
+    "marketplace_summary": "Guida semplice al Polittico di Bologna di Giotto, tra oro e santi.",
+    "artwork": {
+      "$oid": "ccc000000000000000000019"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000005"
+    },
+    "license": "CC-BY",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 7,
+        "text": "Al centro la Madonna in trono con il Bambino, intorno santi e angeli su un fondo dorato."
+      },
+      {
+        "duration_sec": 19,
+        "text": "Il fondo oro non è solo decorazione: nel Trecento serviva a rappresentare la luce del paradiso, uno spazio senza tempo dove i santi vivono per sempre, lontano dal mondo reale che il pittore invece comincia a dipingere sempre più simile a quello che vediamo con i nostri occhi."
+      },
+      {
+        "duration_sec": 36,
+        "text": "Guarda i volti e le pieghe delle vesti: rispetto ai polittici gotici precedenti, tutti piatti e stilizzati, Giotto dà ai personaggi un peso e una presenza quasi reali, come se occupassero davvero lo spazio della cornice invece di galleggiare su di essa. Questo polittico arrivò a Bologna quando Giotto era già l'artista più famoso d'Italia, richiesto dalle corti e dalle chiese più importanti del suo tempo, ed è per questo che la sua firma sulla cornice era considerata un vero e proprio marchio di prestigio per chi l'aveva commissionato."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giotto._Polyptych._1330-35._91x340cm._Pinacoteca%2C_Bologna..jpg?width=1280",
+    "alt_text": "Dettaglio della firma di Giotto sulla cornice del polittico",
+    "tags": [
+      "bologna",
+      "giotto",
+      "polittico",
+      "trecento"
+    ],
+    "createdAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000041"
+    },
+    "marketplace_summary": "Analisi tecnica del Polittico di Bologna: attribuzione, bottega e ricomposizione ottocentesca.",
+    "artwork": {
+      "$oid": "ccc000000000000000000019"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Copyright",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 8,
+        "text": "Il polittico appartiene alla piena maturità di Giotto, negli stessi anni in cui l'artista lavora a Napoli per Roberto d'Angiò."
+      },
+      {
+        "duration_sec": 25,
+        "text": "La struttura a cinque scomparti, con cuspidi trilobate e fondo oro a bulino, segue ancora la tradizione tardo-duecentesca dei polittici da altare, ma l'impaginazione spaziale delle figure — il trono di Maria reso in scorcio tridimensionale, con i piedi del Bambino che sporgono oltre il gradino — segna una rottura netta con la pittura bizantineggiante ancora dominante a Bologna in quegli anni."
+      },
+      {
+        "duration_sec": 29,
+        "text": "Gli studiosi discutono da decenni il grado di autografia dell'opera: la critica più recente, sulla base di confronti stilistici con gli affreschi della Cappella Peruzzi a Santa Croce, riconosce la mano diretta di Giotto soprattutto nel pannello centrale, mentre i pannelli laterali mostrano un intervento più marcato della bottega, forse guidata da un giovane collaboratore fiorentino al seguito del maestro durante il soggiorno bolognese, documentato dalle fonti proprio in relazione a questa commissione."
+      },
+      {
+        "duration_sec": 42,
+        "text": "La ricomposizione del 1894, curata da Corrado Ricci allora soprintendente, si basò su un metodo filologico rigoroso: il confronto sistematico con le fonti d'archivio superstiti, le tracce di doratura e i fori dei perni lungo i bordi dei pannelli, che permisero di ricostruire con buona approssimazione la sequenza originaria dei santi attorno alla Madonna centrale. Prima di quella data i pannelli erano esposti separatamente, alcuni scambiati per opere autonome di scuola giottesca: solo lo studio comparato della cornice lignea, sopravvissuta in parte, e delle misure dei singoli scomparti permise di dimostrare che si trattava in origine di un unico polittico smembrato durante le soppressioni napoleoniche."
+      }
+    ],
+    "price": 2.49,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giotto._Polyptych._1330-35._91x340cm._Pinacoteca%2C_Bologna..jpg?width=1280",
+    "alt_text": "Dettaglio della firma di Giotto sulla cornice del polittico",
+    "tags": [
+      "bologna",
+      "giotto",
+      "polittico",
+      "tecnico",
+      "trecento"
+    ],
+    "createdAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000042"
+    },
+    "marketplace_summary": "Racconto per bambini di San Giorgio e il drago di Vitale da Bologna.",
+    "artwork": {
+      "$oid": "ccc000000000000000000020"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "CC-BY-NC",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 3,
+        "text": "Un cavaliere coraggioso sta per sconfiggere un drago!"
+      },
+      {
+        "duration_sec": 11,
+        "text": "San Giorgio è salito a cavallo e con la sua lunga lancia sta colpendo il drago, per salvare una principessa che aspetta, inginocchiata, che il pericolo finisca."
+      },
+      {
+        "duration_sec": 25,
+        "text": "Guarda bene i colori: il drago è verde e si contorce dal dolore, il mantello di San Giorgio è rosso acceso, e tutto intorno c'è un cielo dorato, come nelle fiabe più belle. Il pittore che l'ha dipinto, tanto tanto tempo fa, si chiamava Vitale da Bologna, e sapeva raccontare le storie con i colori meglio di chiunque altro nella sua città."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vitale%20da%20bologna%2C%20san%20giorgio%20libera%20la%20principessa%2C%201330-35%20ca.%2C%2001.jpg?width=1280",
+    "alt_text": "Dettaglio del cavaliere San Giorgio che trafigge il drago",
+    "tags": [
+      "bambini",
+      "bologna",
+      "san-giorgio",
+      "trecento"
+    ],
+    "createdAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000043"
+    },
+    "marketplace_summary": "Guida di livello medio a San Giorgio e il drago, opera fondativa della scuola bolognese.",
+    "artwork": {
+      "$oid": "ccc000000000000000000020"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000005"
+    },
+    "license": "CC0",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "Databile al 1330-1335 circa, questa tavola è considerata l'opera fondativa della scuola pittorica bolognese del Trecento."
+      },
+      {
+        "duration_sec": 13,
+        "text": "Vitale da Bologna abbandona la rigidità delle icone bizantine ancora diffuse in città e costruisce una scena dinamica, dove il cavallo si impenna e il drago si contorce in una torsione innaturale."
+      },
+      {
+        "duration_sec": 20,
+        "text": "La principessa, inginocchiata sulla destra in preghiera, osserva la scena con un distacco quasi sereno: sa già come andrà a finire, e la sua calma contrasta volutamente con la violenza fisica del combattimento tra il cavaliere e il mostro, in un gioco di opposti caro alla pittura narrativa del Trecento."
+      },
+      {
+        "duration_sec": 24,
+        "text": "Questa vivacità narrativa e cromatica farà scuola a Bologna per tutto il secolo successivo, influenzando generazioni di pittori locali che guarderanno a Vitale come punto di riferimento imprescindibile, al punto che gli storici dell'arte parlano proprio di una \"scuola vitalesca\" per indicare i suoi numerosi seguaci, attivi a Bologna e nelle città vicine per decenni dopo la sua morte."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vitale%20da%20bologna%2C%20san%20giorgio%20libera%20la%20principessa%2C%201330-35%20ca.%2C%2001.jpg?width=1280",
+    "alt_text": "Dettaglio del cavaliere San Giorgio che trafigge il drago",
+    "tags": [
+      "bologna",
+      "san-giorgio",
+      "trecento",
+      "vitale-da-bologna"
+    ],
+    "createdAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000044"
+    },
+    "marketplace_summary": "Guida semplice alla Pala dei Mercanti di Francesco del Cossa.",
+    "artwork": {
+      "$oid": "ccc000000000000000000021"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000005"
+    },
+    "license": "CC-BY",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "La Madonna col Bambino siede in trono tra due santi, in una scena solenne e ordinata."
+      },
+      {
+        "duration_sec": 8,
+        "text": "A sinistra san Petronio, patrono di Bologna, tiene in mano un piccolo modello della città: guarda bene, riconoscerai le sue torri."
+      },
+      {
+        "duration_sec": 21,
+        "text": "Il pittore, Francesco del Cossa, firmò e datò l'opera nel 1474: morì di peste a Bologna solo quattro anni più tardi, lasciando questa pala tra i suoi ultimi capolavori. La commissionarono due mercanti della città, che vollero essere ricordati nell'iscrizione alla base, anche se scelsero di non farsi ritrarre direttamente accanto ai santi."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francesco_del_Cossa_025.jpg?width=1280",
+    "alt_text": "Dettaglio del san Petronio con in mano il modellino della città di Bologna",
+    "tags": [
+      "bologna",
+      "pala-dei-mercanti",
+      "rinascimento"
+    ],
+    "createdAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000045"
+    },
+    "marketplace_summary": "Analisi tecnica della Pala dei Mercanti: prospettiva ferrarese e documentazione urbana.",
+    "artwork": {
+      "$oid": "ccc000000000000000000021"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Copyright",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 9,
+        "text": "La Pala dei Mercanti segna il momento in cui il linguaggio ferrarese di Francesco del Cossa si innesta pienamente sulla tradizione bolognese."
+      },
+      {
+        "duration_sec": 16,
+        "text": "La costruzione prospettica del trono, con la base poligonale vista di scorcio, tradisce la formazione dell'artista presso la bottega di Cosmè Tura a Ferrara, mentre la resa quasi scultorea dei panneggi rivela lo studio diretto di Piero della Francesca."
+      },
+      {
+        "duration_sec": 22,
+        "text": "L'iscrizione alla base, con la data 1474 e i nomi dei committenti Alberto de' Cattani e Domenico degli Amorini, documenta la destinazione originaria dell'opera per la cappella della Mercanzia, sede della corporazione dei mercanti bolognesi, uno degli enti più influenti e ricchi della città in quegli anni, in un momento di grande prosperità commerciale."
+      },
+      {
+        "duration_sec": 26,
+        "text": "Il modellino di Bologna retto da san Petronio è oggi una delle fonti iconografiche più preziose per ricostruire l'aspetto della città murata nel tardo Quattrocento, prima delle trasformazioni urbanistiche dei secoli successivi: gli storici lo hanno confrontato con mappe e documenti d'archivio per identificare con buona precisione le torri e le porte cittadine raffigurate, arrivando a riconoscere singoli edifici ancora oggi esistenti nel centro storico."
+      }
+    ],
+    "price": 2.49,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francesco_del_Cossa_025.jpg?width=1280",
+    "alt_text": "Dettaglio del san Petronio con in mano il modellino della città di Bologna",
+    "tags": [
+      "bologna",
+      "pala-dei-mercanti",
+      "rinascimento",
+      "tecnico"
+    ],
+    "createdAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000046"
+    },
+    "marketplace_summary": "Racconto per bambini della Pala Bentivoglio di Francesco Francia.",
+    "artwork": {
+      "$oid": "ccc000000000000000000022"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000005"
+    },
+    "license": "CC-BY-NC",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Una famiglia si riposa tranquilla in un bel prato verde."
+      },
+      {
+        "duration_sec": 8,
+        "text": "Sono Maria, Giuseppe e il piccolo Gesù bambino: due signori sono inginocchiati accanto a loro, a guardarli con rispetto e affetto."
+      },
+      {
+        "duration_sec": 19,
+        "text": "Quei due signori si chiamavano Anton Galeazzo e Alessandro: avevano fatto un lunghissimo viaggio fino in Terra Santa, un posto lontanissimo, e vollero farsi dipingere qui accanto alla Sacra Famiglia, per ricordare quel viaggio per sempre e mostrarlo a tutti quelli che sarebbero entrati in questa cappella."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francesco_Francia_-_Adoration_of_the_Child_-_WGA08169.jpg?width=1280",
+    "alt_text": "Dettaglio dei committenti Bentivoglio inginocchiati a lato della scena",
+    "tags": [
+      "bambini",
+      "bologna",
+      "pala-bentivoglio",
+      "rinascimento"
+    ],
+    "createdAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000047"
+    },
+    "marketplace_summary": "Analisi tecnica della Pala Bentivoglio: bottega, committenza e formazione orafa di Francia.",
+    "artwork": {
+      "$oid": "ccc000000000000000000022"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Copyright",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 8,
+        "text": "La Pala Bentivoglio rappresenta il vertice della produzione sacra di Francesco Francia negli anni a cavallo tra Quattro e Cinquecento."
+      },
+      {
+        "duration_sec": 16,
+        "text": "L'impianto compositivo, con la Sacra Famiglia ambientata in un paesaggio continuo che si apre sullo sfondo fino a una linea d'orizzonte lontana, deriva dalla lezione di Lorenzo Costa, con cui Francia condivideva bottega e cantieri nella Bologna dominata dai Bentivoglio."
+      },
+      {
+        "duration_sec": 19,
+        "text": "I ritratti dei due committenti, Anton Galeazzo e Alessandro Bentivoglio, sono trattati con la stessa attenzione fisiognomica riservata ai protagonisti sacri: una scelta che riflette il potere quasi signorile della famiglia Bentivoglio nella Bologna di fine Quattrocento, dove la devozione privata si intrecciava strettamente con l'autorappresentazione politica."
+      },
+      {
+        "duration_sec": 22,
+        "text": "La cura orafa dei dettagli — le vesti ricamate, i piccoli gioielli, la resa della luce sulle superfici lucide — tradisce la formazione di Francia come orafo e medaglista prima che come pittore, un percorso professionale non raro nel Rinascimento emiliano e che si riflette anche nella qualità quasi miniaturistica di molti particolari dell'opera."
+      }
+    ],
+    "price": 1.99,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francesco_Francia_-_Adoration_of_the_Child_-_WGA08169.jpg?width=1280",
+    "alt_text": "Dettaglio dei committenti Bentivoglio inginocchiati a lato della scena",
+    "tags": [
+      "bologna",
+      "pala-bentivoglio",
+      "rinascimento",
+      "tecnico"
+    ],
+    "createdAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000048"
+    },
+    "marketplace_summary": "Guida semplice all'Estasi di Santa Cecilia di Raffaello.",
+    "artwork": {
+      "$oid": "ccc000000000000000000024"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000005"
+    },
+    "license": "CC-BY",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "Santa Cecilia lascia cadere a terra gli strumenti musicali: sta ascoltando qualcosa di più bello."
+      },
+      {
+        "duration_sec": 10,
+        "text": "Intorno a lei ci sono quattro santi, ognuno immerso nei propri pensieri: la scena è dipinta da Raffaello intorno al 1515 per una chiesa di Bologna."
+      },
+      {
+        "duration_sec": 22,
+        "text": "Guarda a terra: violini, tamburelli e altri strumenti sono abbandonati, come se non servissero più — per Raffaello rappresentano la musica del mondo, superata da quella del paradiso che solo Cecilia riesce a sentire. È uno dei modi in cui i pittori del Rinascimento raccontavano concetti invisibili, come il suono, usando oggetti che tutti potevano riconoscere."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint_Cecilia_by_Raphael.jpg?width=1280",
+    "alt_text": "Dettaglio del volto di santa Cecilia in estasi, con gli strumenti musicali ai suoi piedi",
+    "tags": [
+      "bologna",
+      "raffaello",
+      "rinascimento",
+      "santa-cecilia"
+    ],
+    "createdAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000049"
+    },
+    "marketplace_summary": "Guida di livello medio all'Estasi di Santa Cecilia, tra iconografia e storia della cappella Duglioli.",
+    "artwork": {
+      "$oid": "ccc000000000000000000024"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "CC0",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "Cinque figure sacre si radunano in un paesaggio sereno, mentre santa Cecilia guarda verso il cielo."
+      },
+      {
+        "duration_sec": 14,
+        "text": "Dipinta tra il 1514 e il 1516 per la nobildonna bolognese Elena Duglioli, l'opera era destinata alla sua cappella privata nella chiesa di San Giovanni in Monte, un luogo di grande prestigio religioso in città."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Attorno alla santa si riconoscono san Paolo, assorto e silenzioso con la spada abbassata, san Giovanni Evangelista, sant'Agostino e Maria Maddalena, che sola guarda verso di noi, come per farci partecipi della visione mistica in corso davanti ai nostri occhi."
+      },
+      {
+        "duration_sec": 22,
+        "text": "Gli strumenti musicali sparsi a terra — un organo portativo, violini, un tamburello — sono trattati con un realismo quasi fiammingo, e servono a rappresentare la musica terrena che cede il passo a quella celeste, udita solo da Cecilia: un dettaglio che i contemporanei di Raffaello apprezzarono moltissimo per la sua precisione quasi scientifica."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint_Cecilia_by_Raphael.jpg?width=1280",
+    "alt_text": "Dettaglio del volto di santa Cecilia in estasi, con gli strumenti musicali ai suoi piedi",
+    "tags": [
+      "bologna",
+      "raffaello",
+      "rinascimento",
+      "santa-cecilia"
+    ],
+    "createdAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000050"
+    },
+    "marketplace_summary": "Guida semplice alla Madonna di Santa Margherita di Parmigianino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000025"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000005"
+    },
+    "license": "CC-BY",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 7,
+        "text": "La Madonna siede alta ed elegante in trono, con il Bambino e quattro santi intorno a lei."
+      },
+      {
+        "duration_sec": 8,
+        "text": "Il pittore, Parmigianino, aveva solo ventisei anni quando la dipinse per le monache di un convento bolognese, nel 1529-1530."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Guarda i colli lunghi e le pose morbide delle figure: è uno stile elegante e un po' stravagante, molto amato ai tempi, che si allontana di proposito dalle forme più equilibrate e naturali della pittura precedente, per cercare invece un'eleganza quasi da sogno."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Parmigianino_-_Madonna_and_Child_with_Saints_Margaret%2C_Jerome%2C_Petronius_and_Michael.jpg?width=1280",
+    "alt_text": "Dettaglio della santa Margherita con il drago simbolo del suo martirio",
+    "tags": [
+      "bologna",
+      "madonna-santa-margherita",
+      "manierismo"
+    ],
+    "createdAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000051"
+    },
+    "marketplace_summary": "Analisi tecnica della Madonna di Santa Margherita: il manierismo bolognese di Parmigianino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000025"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Copyright",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 8,
+        "text": "La Madonna di Santa Margherita è tra le prime prove bolognesi del manierismo di Parmigianino, dipinta nel biennio 1529-1530."
+      },
+      {
+        "duration_sec": 14,
+        "text": "L'allungamento delle proporzioni, la torsione elegante dei colli e la costruzione piramidale del gruppo sacro rivelano lo studio diretto di Parmigianino sulla grazia di Correggio, filtrata attraverso una sensibilità già pienamente manierista e personale."
+      },
+      {
+        "duration_sec": 16,
+        "text": "La luce, fredda e uniforme, appiattisce leggermente i volumi a favore del disegno di contorno, in una ricerca formale che privilegia l'eleganza della linea sulla resa plastica dei corpi, in netto contrasto con la tradizione bolognese più solida e volumetrica."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Sequestrata dai francesi nel 1796 e restituita nel 1815, l'opera fu ammirata da Vasari e, secondo la tradizione, dallo stesso Guido Reni, che ne avrebbe fatto un modello per la propria idea di grazia pittorica, dimostrando quanto l'influenza di Parmigianino restasse viva a Bologna ben oltre la sua epoca."
+      }
+    ],
+    "price": 1.99,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Parmigianino_-_Madonna_and_Child_with_Saints_Margaret%2C_Jerome%2C_Petronius_and_Michael.jpg?width=1280",
+    "alt_text": "Dettaglio della santa Margherita con il drago simbolo del suo martirio",
+    "tags": [
+      "bologna",
+      "madonna-santa-margherita",
+      "manierismo",
+      "tecnico"
+    ],
+    "createdAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000052"
+    },
+    "marketplace_summary": "Guida semplice alla Madonna dei Bargellini di Ludovico Carracci.",
+    "artwork": {
+      "$oid": "ccc000000000000000000026"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000005"
+    },
+    "license": "CC-BY",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La Madonna col Bambino siede in trono, circondata da angeli e santi."
+      },
+      {
+        "duration_sec": 9,
+        "text": "In basso, inginocchiata, c'è una donna vestita da monaca: è Cecilia Bargellini, la persona che pagò per far dipingere il quadro nel 1588."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Il pittore, Ludovico Carracci, firmò quest'opera come sua prima pala conosciuta: da qui inizierà una carriera che cambierà per sempre la pittura bolognese, insieme ai suoi cugini Agostino e Annibale, con cui fonderà una scuola destinata a diventare famosa in tutta Italia."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Carracci_Ludovico_Madonna_Bargellini.jpg?width=1280",
+    "alt_text": "Dettaglio della committente Cecilia Bargellini inginocchiata in preghiera",
+    "tags": [
+      "barocco",
+      "bologna",
+      "madonna-bargellini"
+    ],
+    "createdAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000053"
+    },
+    "marketplace_summary": "Guida di livello medio alla Madonna dei Bargellini, esordio firmato di Ludovico Carracci.",
+    "artwork": {
+      "$oid": "ccc000000000000000000026"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "CC0",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 7,
+        "text": "Al centro la Madonna in trono con il Bambino, circondata da angeli musicanti e santi in adorazione."
+      },
+      {
+        "duration_sec": 13,
+        "text": "L'opera è firmata e datata 1588: è la prima pala firmata conosciuta di Ludovico Carracci, il più anziano dei tre cugini che daranno vita alla celebre riforma pittorica bolognese di fine Cinquecento."
+      },
+      {
+        "duration_sec": 14,
+        "text": "In basso a sinistra è inginocchiata la committente, Cecilia Bargellini Boncompagni, ritratta con l'abito da monaca carmelitana: un ritratto reale inserito in una scena sacra, secondo un uso frequente nel Rinascimento e nel primo Barocco italiano."
+      },
+      {
+        "duration_sec": 18,
+        "text": "La luce calda che avvolge le figure e il naturalismo dei volti segnano già l'inizio di quella riforma verso il vero che renderà celebre la bottega dei Carracci in tutta Italia, ponendo le basi per lo stile che avrebbe dominato la pittura del secolo successivo."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Carracci_Ludovico_Madonna_Bargellini.jpg?width=1280",
+    "alt_text": "Dettaglio della committente Cecilia Bargellini inginocchiata in preghiera",
+    "tags": [
+      "barocco",
+      "bologna",
+      "madonna-bargellini"
+    ],
+    "createdAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000054"
+    },
+    "marketplace_summary": "Guida semplice alla Strage degli Innocenti di Guido Reni.",
+    "artwork": {
+      "$oid": "ccc000000000000000000029"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000005"
+    },
+    "license": "CC-BY",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Alcuni soldati armati assaltano un gruppo di madri che stringono i loro bambini."
+      },
+      {
+        "duration_sec": 9,
+        "text": "È una scena tratta dal Vangelo, dove il re Erode ordina di uccidere tutti i bambini piccoli per paura di perdere il potere."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Guido Reni la dipinse nel 1611 per una chiesa di Bologna: nonostante la violenza del racconto, i gesti delle madri sono composti e quasi eleganti, come spesso accade nella sua pittura, che cerca sempre un equilibrio anche nelle scene più dolorose."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Guido_Reni_-_Massacre_of_the_Innocents.jpg?width=1280",
+    "alt_text": "Dettaglio di una madre che tenta di proteggere il proprio bambino dalla spada del soldato",
+    "tags": [
+      "barocco",
+      "bologna",
+      "strage-degli-innocenti"
+    ],
+    "createdAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000055"
+    },
+    "marketplace_summary": "Guida di livello medio alla Strage degli Innocenti, tra Vangelo e composizione barocca.",
+    "artwork": {
+      "$oid": "ccc000000000000000000029"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "CC0",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "Soldati armati irrompono nella scena, mentre le madri cercano disperatamente di proteggere i propri figli."
+      },
+      {
+        "duration_sec": 13,
+        "text": "Il soggetto, tratto dal Vangelo di Matteo, racconta l'ordine del re Erode di uccidere tutti i bambini di Betlemme sotto i due anni, per eliminare un possibile rivale al trono appena nato."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Guido Reni dipinge la scena nel 1611 per la basilica di San Domenico: la composizione guida lo sguardo lungo una diagonale, dai soldati in alto a sinistra fino alle madri in primo piano, in un crescendo di tensione narrativa."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Nonostante la drammaticità del soggetto, i gesti restano composti e quasi danzanti: è la cifra tipica di Reni, capace di trasformare anche la violenza più estrema in un'immagine di equilibrio e grazia, senza mai scadere nel puro orrore fine a se stesso."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Guido_Reni_-_Massacre_of_the_Innocents.jpg?width=1280",
+    "alt_text": "Dettaglio di una madre che tenta di proteggere il proprio bambino dalla spada del soldato",
+    "tags": [
+      "barocco",
+      "bologna",
+      "strage-degli-innocenti"
+    ],
+    "createdAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000056"
+    },
+    "marketplace_summary": "Guida semplice alla Pietà dei Mendicanti di Guido Reni.",
+    "artwork": {
+      "$oid": "ccc000000000000000000030"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000005"
+    },
+    "license": "CC-BY",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 7,
+        "text": "In alto vola il Cristo morto, sorretto da angeli; in basso, sette santi lo guardano in fila."
+      },
+      {
+        "duration_sec": 9,
+        "text": "Questi sette santi sono i protettori di Bologna: sembrano pregare tutti insieme, in fila, per proteggere la città dai pericoli e dalle disgrazie."
+      },
+      {
+        "duration_sec": 15,
+        "text": "Il quadro, dipinto da Guido Reni, è enorme: supera i sette metri di larghezza, ed era pensato per essere visto da lontano, sopra un altare, così che anche chi stava in fondo alla chiesa potesse riconoscere ogni figura."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Guido_Reni%2C_Piet%C3%A0_dei_Mendicanti.jpg?width=1280",
+    "alt_text": "Dettaglio del Cristo morto sorretto dagli angeli nella parte superiore della pala",
+    "tags": [
+      "barocco",
+      "bologna",
+      "pieta-dei-mendicanti"
+    ],
+    "createdAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000057"
+    },
+    "marketplace_summary": "Analisi tecnica della Pietà dei Mendicanti: committenza civica e formato monumentale.",
+    "artwork": {
+      "$oid": "ccc000000000000000000030"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Copyright",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "La Pietà dei Mendicanti è una delle imprese decorative più ambiziose della Bologna barocca."
+      },
+      {
+        "duration_sec": 15,
+        "text": "Commissionata dal Senato cittadino tra il 1613 e il 1616 per l'altare maggiore di Santa Maria della Pietà, la pala supera i sette metri di larghezza, un formato quasi processionale, raro anche nel contesto delle grandi pale seicentesche."
+      },
+      {
+        "duration_sec": 20,
+        "text": "I sette santi patroni — allineati in basso secondo una disposizione quasi araldica — trasformano l'immagine sacra in un atto di devozione civica, voluto dalle istituzioni cittadine più che da un singolo committente privato, in un momento storico in cui Bologna cercava di riaffermare il proprio prestigio religioso e politico."
+      },
+      {
+        "duration_sec": 24,
+        "text": "Sequestrata da Napoleone nel 1796, l'opera fu tra i capolavori recuperati grazie alla missione diplomatica di Antonio Canova a Parigi nel 1815, che riportò in Italia centinaia di opere trattenute nei musei francesi dopo la caduta dell'impero, in una delle prime grandi restituzioni culturali della storia europea, un precedente ancora oggi citato nei dibattiti internazionali sulla restituzione dei beni culturali."
+      }
+    ],
+    "price": 2.49,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Guido_Reni%2C_Piet%C3%A0_dei_Mendicanti.jpg?width=1280",
+    "alt_text": "Dettaglio del Cristo morto sorretto dagli angeli nella parte superiore della pala",
+    "tags": [
+      "barocco",
+      "bologna",
+      "pieta-dei-mendicanti",
+      "tecnico"
+    ],
+    "createdAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000058"
+    },
+    "marketplace_summary": "Racconto per bambini della Vestizione di San Guglielmo d'Aquitania di Guercino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000033"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "CC-BY-NC",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Un cavaliere lascia la sua armatura per diventare un uomo di pace."
+      },
+      {
+        "duration_sec": 12,
+        "text": "Si chiamava Guglielmo ed era un guerriero: un giorno decise di smettere di combattere e si inginocchiò davanti a un vescovo, che gli mise addosso un abito da monaco."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Guarda a terra: si vedono ancora la spada e lo scudo, abbandonati per sempre. Il pittore Guercino usa colori caldi, quasi dorati, per raccontare questo momento speciale, come se un raggio di sole caldo stesse illuminando proprio la scena della trasformazione di Guglielmo."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vestizione_di_san_Guglielmo_d%27Aquitania.jpg?width=1280",
+    "alt_text": "Dettaglio del cavaliere inginocchiato che riceve l'abito monastico",
+    "tags": [
+      "bambini",
+      "barocco",
+      "bologna",
+      "san-guglielmo"
+    ],
+    "createdAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000059"
+    },
+    "marketplace_summary": "Guida di livello medio alla Vestizione di San Guglielmo d'Aquitania di Guercino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000033"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000005"
+    },
+    "license": "CC0",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "Un vescovo veste con l'abito monastico un cavaliere inginocchiato, mentre altri religiosi assistono alla scena."
+      },
+      {
+        "duration_sec": 8,
+        "text": "È la conversione di san Guglielmo d'Aquitania, nobile guerriero del XII secolo che abbandonò le armi per farsi eremita."
+      },
+      {
+        "duration_sec": 15,
+        "text": "Le armi — spada, scudo, elmo — restano deposte a terra, in primo piano: un dettaglio narrativo che sottolinea la rinuncia definitiva alla vita di corte e di guerra condotta fino a quel momento dal protagonista della scena."
+      },
+      {
+        "duration_sec": 22,
+        "text": "Guercino dipinge l'opera intorno al 1620 per la chiesa bolognese dei Santi Gregorio e Siro, con la sua caratteristica luce calda che avvolge i personaggi in un'atmosfera raccolta e solenne: come molte opere bolognesi, fu sequestrata durante l'occupazione napoleonica nel 1796 e tornò in città solo nel 1816-17, al termine delle trattative diplomatiche post-napoleoniche."
+      }
+    ],
+    "price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vestizione_di_san_Guglielmo_d%27Aquitania.jpg?width=1280",
+    "alt_text": "Dettaglio del cavaliere inginocchiato che riceve l'abito monastico",
+    "tags": [
+      "barocco",
+      "bologna",
+      "san-guglielmo"
+    ],
+    "createdAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-11T00:00:00Z"
     }
   }
 ]
