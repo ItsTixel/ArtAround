@@ -4,6 +4,7 @@ const stepsPopulate = [
   { path: 'museum' },
   { path: 'author', select: '-password' },
   { path: 'steps.entity' },
+  { path: 'steps.museum' },
   {
     path: 'steps.items',
     populate: [

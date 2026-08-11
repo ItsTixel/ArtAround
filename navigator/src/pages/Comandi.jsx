@@ -13,6 +13,8 @@ import {
   ExitIcon,
 } from '../components/icons'
 
+const STANDARD_SERVICE_KEYS = ['Toilette', 'Uscita']
+
 function CommandButton({ label, Icon, onClick, disabled, colorClasses }) {
   return (
     <button
@@ -27,10 +29,25 @@ function CommandButton({ label, Icon, onClick, disabled, colorClasses }) {
   )
 }
 
+function ServiceButton({ label, onClick, disabled }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      className="min-h-16 rounded-xl bg-surface px-4 py-3 text-left text-base font-semibold text-text shadow-md ring-1 ring-border transition active:scale-[0.98] focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-white disabled:cursor-not-allowed disabled:opacity-35 disabled:shadow-none disabled:active:scale-100"
+    >
+      {label}
+    </button>
+  )
+}
+
 function Comandi() {
   const { activeVisit } = useActiveVisit()
   const {
     entity,
+    museum,
+    announceService,
     canGoPreviousStep,
     canGoNextStep,
     goToPreviousStep,
@@ -51,8 +68,19 @@ function Comandi() {
 
   if (!activeVisit) return <NoActiveVisit />
 
-  function handleServicePlaceholder(label) {
-    setServiceMessage(`"${label}" non ancora disponibile per questo museo.`)
+  const services = museum?.services || {}
+  const extraServices = Object.entries(services).filter(
+    ([key]) => !STANDARD_SERVICE_KEYS.includes(key)
+  )
+
+  function handleService(label) {
+    const phrase = services[label]
+    if (!phrase) {
+      setServiceMessage(`"${label}" non disponibile per questo museo.`)
+      return
+    }
+    setServiceMessage(phrase)
+    announceService(phrase)
   }
 
   return (
@@ -129,16 +157,25 @@ function Comandi() {
           <CommandButton
             label="Toilette"
             Icon={ToiletIcon}
-            onClick={() => handleServicePlaceholder('Toilette')}
+            onClick={() => handleService('Toilette')}
             colorClasses="bg-violet-600 text-white"
           />
           <CommandButton
             label="Uscita"
             Icon={ExitIcon}
-            onClick={() => handleServicePlaceholder('Uscita')}
+            onClick={() => handleService('Uscita')}
             colorClasses="bg-teal-600 text-white"
           />
         </div>
+
+        {extraServices.length > 0 && (
+          <div className="flex flex-col gap-2">
+            {extraServices.map(([label]) => (
+              <ServiceButton key={label} label={label} onClick={() => handleService(label)} />
+            ))}
+          </div>
+        )}
+
         {serviceMessage && (
           <p role="status" aria-live="polite" className="text-sm text-text-muted">
             {serviceMessage}

@@ -14,6 +14,11 @@
       "zip": "50122",
       "country": "Italia"
     },
+    "services": {
+      "Toilette": "I bagni si trovano al primo piano, subito dopo la Sala di Botticelli, sulla sinistra.",
+      "Uscita": "L'uscita si trova al piano terra, seguendo le indicazioni per il Corridoio Vasariano.",
+      "Bookshop": "Il bookshop è al piano terra, vicino all'ingresso principale."
+    },
     "added_by": {
       "$oid": "aaa000000000000000000001"
     },
@@ -38,6 +43,10 @@
       "city": "Milano",
       "zip": "20121",
       "country": "Italia"
+    },
+    "services": {
+      "Toilette": "I bagni si trovano al secondo piano, vicino alla biglietteria.",
+      "Uscita": "L'uscita si trova al piano terra, tornando verso il cortile d'ingresso."
     },
     "added_by": {
       "$oid": "aaa000000000000000000002"
@@ -64,6 +73,11 @@
       "zip": "00120",
       "country": "Vaticano"
     },
+    "services": {
+      "Toilette": "I bagni si trovano vicino all'ingresso della Cappella Sistina.",
+      "Uscita": "L'uscita si trova in fondo alla Cappella Sistina, seguendo le indicazioni per la Scala Elicoidale.",
+      "Guardaroba": "Il guardaroba è all'ingresso principale, prima dei tornelli."
+    },
     "added_by": {
       "$oid": "aaa000000000000000000001"
     },
@@ -89,6 +103,14 @@
       "zip": "40126",
       "country": "Italia"
     },
+    "services": {
+      "Toilette": "I bagni si trovano al piano terra, subito dopo la biglietteria, sulla destra.",
+      "Uscita": "L'uscita si trova al piano terra, proseguendo dritto verso l'atrio d'ingresso.",
+      "Guardaroba": "Il guardaroba è all'ingresso, accanto alla biglietteria.",
+      "Bookshop":"All'entrata",
+      "Sala Convegni":"Verso l'uscita, dentro la sala 3",
+      "Sala Lettura" : "Al terzo piano, prosegui per la sala 2 e gira a destra"
+    },
     "added_by": {
       "$oid": "aaa000000000000000000004"
     },
@@ -112,6 +134,11 @@
       "city": "Bologna",
       "zip": "40121",
       "country": "Italia"
+    },
+    "services": {
+      "Toilette": "I bagni si trovano al piano terra, vicino al guardaroba.",
+      "Uscita": "L'uscita si trova al piano terra, verso la corte interna.",
+      "Bookshop": "Il bookshop è all'ingresso principale, sulla sinistra."
     },
     "added_by": {
       "$oid": "aaa000000000000000000005"
@@ -137,6 +164,10 @@
       "city": "Bologna",
       "zip": "40126",
       "country": "Italia"
+    },
+    "services": {
+      "Toilette": "I bagni si trovano al primo piano, accanto alla Sala delle Cere Anatomiche.",
+      "Uscita": "L'uscita si trova al piano terra, tornando verso la biglietteria."
     },
     "added_by": {
       "$oid": "aaa000000000000000000004"

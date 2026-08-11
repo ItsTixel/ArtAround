@@ -13,6 +13,13 @@ const museumSchema = new Schema({
     zip:     { type: String, trim: true },
     country: { type: String, trim: true, default: 'Italia' }
   },
+  // Maps a service name (e.g. "Toilette", "Uscita", or any museum-specific
+  // extra like "Guardaroba") to the phrase read aloud to indicate where it is.
+  services: {
+    type: Map,
+    of: { type: String, trim: true },
+    default: {}
+  },
   added_by: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 }, { timestamps: true });
 

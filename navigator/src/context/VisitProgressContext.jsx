@@ -41,6 +41,7 @@ export function VisitProgressProvider({ children }) {
   const canGoNextStep = activeStepIndex < sortedSteps.length - 1
 
   const entity = step?.entity
+  const museum = step?.museum
   const items = useMemo(() => step?.items || [], [step])
 
   const availableTones = useMemo(
@@ -233,6 +234,23 @@ export function VisitProgressProvider({ children }) {
     setAutoplayEnabled((enabled) => !enabled)
   }
 
+  // Pauses whatever description narration is in progress (if any, keeping
+  // its resume position) and reads a service location phrase on top of it.
+  // The main narration stays paused afterwards — it's not resumed
+  // automatically — so Play on Opera picks up right where it left off.
+  function announceService(text) {
+    if (!text) return
+    if (playbackState === 'playing') {
+      utteranceRef.current = null
+      stopProgressTimer()
+      setPlaybackState('paused')
+    }
+    window.speechSynthesis.cancel()
+    const utterance = new SpeechSynthesisUtterance(text)
+    utterance.lang = 'it-IT'
+    window.speechSynthesis.speak(utterance)
+  }
+
   // Resets navigation/playback whenever the active visit changes (a new
   // visit is activated, or the visit is cleared) so state from a previous
   // visit never leaks into the next one.
@@ -276,6 +294,8 @@ export function VisitProgressProvider({ children }) {
   const value = {
     step,
     entity,
+    museum,
+    announceService,
     canGoPreviousStep,
     canGoNextStep,
     goToPreviousStep,
