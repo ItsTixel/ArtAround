@@ -1,6 +1,6 @@
 class MuseumCard extends HTMLElement {
   static get observedAttributes() {
-    return ['museum-id', 'name', 'city', 'country', 'image'];
+    return ['museum-id', 'name', 'city', 'country', 'image', 'opening-hours'];
   }
 
   constructor() {
@@ -17,6 +17,19 @@ class MuseumCard extends HTMLElement {
       .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
 
+  _todayHours() {
+    const raw = this.getAttribute('opening-hours');
+    if (!raw) return null;
+    let hours;
+    try { hours = JSON.parse(raw); } catch { return null; }
+    const dayNames = ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'];
+    const today = dayNames[new Date().getDay()];
+    const value = hours[today];
+    if (!value) return null;
+    const closed = /^chiuso$/i.test(value.trim());
+    return { closed, label: closed ? 'Chiuso oggi' : `Aperto oggi: ${value}` };
+  }
+
   _render() {
     const id      = this.getAttribute('museum-id') || '';
     const name    = this.getAttribute('name')      || '';
@@ -25,6 +38,7 @@ class MuseumCard extends HTMLElement {
     const image   = this.getAttribute('image')     || '';
     const location = [city, country].filter(Boolean).join(' · ');
     const visitsUrl = `/marketplace/pages/visits.html?museum=${encodeURIComponent(id)}&museumName=${encodeURIComponent(name)}`;
+    const todayHours = this._todayHours();
 
     this.shadowRoot.innerHTML = `
       <style>
@@ -138,6 +152,22 @@ class MuseumCard extends HTMLElement {
           flex-shrink: 0;
         }
 
+        .hours {
+          display: flex;
+          align-items: center;
+          gap: 0.35rem;
+          font-family: var(--font-sans, 'Inter', system-ui, sans-serif);
+          font-size: 0.72rem;
+          font-weight: 500;
+          color: var(--color-text-muted, #78716c);
+        }
+        .hours.is-open { color: var(--color-accent, #9e7a46); }
+        .hours-icon {
+          width: 11px; height: 11px;
+          fill: currentColor;
+          flex-shrink: 0;
+        }
+
         h2 {
           font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
           font-size: 1.15rem;
@@ -219,6 +249,13 @@ class MuseumCard extends HTMLElement {
               <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/>
             </svg>
             ${this._escape(location)}
+          </p>` : ''}
+          ${todayHours ? `
+          <p class="hours ${todayHours.closed ? '' : 'is-open'}">
+            <svg class="hours-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 10.41V6h-2v7.83l5.24 3.15 1.03-1.71L13 12.41z"/>
+            </svg>
+            ${this._escape(todayHours.label)}
           </p>` : ''}
           <h2>${this._escape(name)}</h2>
           <div class="foot">

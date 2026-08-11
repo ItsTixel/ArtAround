@@ -67,6 +67,28 @@ class MuseumModal extends HTMLElement {
       .filter(Boolean).join(', ');
   }
 
+  _hoursHtml(hours = {}) {
+    const dayOrder = ['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 'Domenica'];
+    const days = dayOrder.filter((d) => hours[d]);
+    if (!days.length) return '';
+
+    const todayNames = ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'];
+    const today = todayNames[new Date().getDay()];
+
+    return `
+      <div class="hours-section">
+        <h3 class="hours-title">Orari di apertura</h3>
+        <ul class="hours-list">
+          ${days.map((day) => `
+          <li class="hours-row ${day === today ? 'is-today' : ''}">
+            <span class="hours-day">${this._esc(day)}</span>
+            <span class="hours-value">${this._esc(hours[day])}</span>
+          </li>`).join('')}
+        </ul>
+      </div>
+    `;
+  }
+
   _bodyHtml() {
     const m = this._museum;
     const address = this._addressLine(m.address);
@@ -87,6 +109,8 @@ class MuseumModal extends HTMLElement {
         <h2 class="title">${this._esc(m.name)}</h2>
 
         ${m.description ? `<p class="description">${this._esc(m.description)}</p>` : ''}
+
+        ${this._hoursHtml(m.opening_hours)}
 
         <ul class="info-list">
           ${address ? `
@@ -243,6 +267,41 @@ class MuseumModal extends HTMLElement {
           color: var(--color-text-muted, #8a8a8a);
           margin-bottom: 1.3rem;
         }
+
+        .hours-section {
+          margin-bottom: 1.3rem;
+          padding-top: 1.1rem;
+          border-top: 1px solid var(--color-border, #e8e6e1);
+        }
+        .hours-title {
+          font-family: var(--font-sans, 'Inter', sans-serif);
+          font-size: 0.66rem;
+          font-weight: 600;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: var(--color-text-muted, #78716c);
+          margin: 0 0 0.75rem;
+        }
+        .hours-list {
+          list-style: none;
+          display: flex;
+          flex-direction: column;
+          gap: 0.4rem;
+        }
+        .hours-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 1rem;
+          font-size: 0.82rem;
+          color: var(--color-text-muted, #78716c);
+        }
+        .hours-row.is-today {
+          color: var(--color-text, #1c1917);
+          font-weight: 600;
+        }
+        .hours-row.is-today .hours-value { color: var(--color-accent, #9e7a46); }
+        .hours-day { text-transform: capitalize; }
 
         .info-list {
           list-style: none;

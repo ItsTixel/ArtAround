@@ -20,6 +20,13 @@ const museumSchema = new Schema({
     of: { type: String, trim: true },
     default: {}
   },
+  // Maps a day of the week (e.g. "Lunedì") to the opening hours for that day
+  // (e.g. "9:00–19:00" or "Chiuso").
+  opening_hours: {
+    type: Map,
+    of: { type: String, trim: true },
+    default: {}
+  },
   added_by: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 }, { timestamps: true });
 

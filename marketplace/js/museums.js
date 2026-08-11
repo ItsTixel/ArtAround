@@ -42,6 +42,9 @@ function renderGrid(museums) {
     card.setAttribute('city', museum.address?.city ?? '');
     card.setAttribute('country', museum.address?.country ?? '');
     if (museum.image_url) card.setAttribute('image', museum.image_url);
+    if (museum.opening_hours && Object.keys(museum.opening_hours).length) {
+      card.setAttribute('opening-hours', JSON.stringify(museum.opening_hours));
+    }
     grid.appendChild(card);
   });
 }

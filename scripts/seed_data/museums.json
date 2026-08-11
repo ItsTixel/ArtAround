@@ -19,6 +19,15 @@
       "Uscita": "L'uscita si trova al piano terra, seguendo le indicazioni per il Corridoio Vasariano.",
       "Bookshop": "Il bookshop è al piano terra, vicino all'ingresso principale."
     },
+    "opening_hours": {
+      "Lunedì": "Chiuso",
+      "Martedì": "8:15–18:50",
+      "Mercoledì": "8:15–18:50",
+      "Giovedì": "8:15–18:50",
+      "Venerdì": "8:15–18:50",
+      "Sabato": "8:15–18:50",
+      "Domenica": "8:15–18:50"
+    },
     "added_by": {
       "$oid": "aaa000000000000000000001"
     },
@@ -47,6 +56,15 @@
     "services": {
       "Toilette": "I bagni si trovano al secondo piano, vicino alla biglietteria.",
       "Uscita": "L'uscita si trova al piano terra, tornando verso il cortile d'ingresso."
+    },
+    "opening_hours": {
+      "Lunedì": "Chiuso",
+      "Martedì": "8:30–19:15",
+      "Mercoledì": "8:30–19:15",
+      "Giovedì": "8:30–19:15",
+      "Venerdì": "8:30–19:15",
+      "Sabato": "8:30–19:15",
+      "Domenica": "8:30–14:00"
     },
     "added_by": {
       "$oid": "aaa000000000000000000002"
@@ -77,6 +95,15 @@
       "Toilette": "I bagni si trovano vicino all'ingresso della Cappella Sistina.",
       "Uscita": "L'uscita si trova in fondo alla Cappella Sistina, seguendo le indicazioni per la Scala Elicoidale.",
       "Guardaroba": "Il guardaroba è all'ingresso principale, prima dei tornelli."
+    },
+    "opening_hours": {
+      "Lunedì": "9:00–18:00",
+      "Martedì": "9:00–18:00",
+      "Mercoledì": "9:00–18:00",
+      "Giovedì": "9:00–18:00",
+      "Venerdì": "9:00–20:00",
+      "Sabato": "9:00–20:00",
+      "Domenica": "Chiuso"
     },
     "added_by": {
       "$oid": "aaa000000000000000000001"
@@ -111,6 +138,15 @@
       "Sala Convegni":"Verso l'uscita, dentro la sala 3",
       "Sala Lettura" : "Al terzo piano, prosegui per la sala 2 e gira a destra"
     },
+    "opening_hours": {
+      "Lunedì": "Chiuso",
+      "Martedì": "9:00–19:00",
+      "Mercoledì": "9:00–19:00",
+      "Giovedì": "9:00–19:00",
+      "Venerdì": "9:00–19:00",
+      "Sabato": "9:00–19:00",
+      "Domenica": "9:00–13:00"
+    },
     "added_by": {
       "$oid": "aaa000000000000000000004"
     },
@@ -140,6 +176,15 @@
       "Uscita": "L'uscita si trova al piano terra, verso la corte interna.",
       "Bookshop": "Il bookshop è all'ingresso principale, sulla sinistra."
     },
+    "opening_hours": {
+      "Lunedì": "Chiuso",
+      "Martedì": "Chiuso",
+      "Mercoledì": "10:00–18:00",
+      "Giovedì": "10:00–18:00",
+      "Venerdì": "10:00–19:00",
+      "Sabato": "10:00–19:00",
+      "Domenica": "10:00–19:00"
+    },
     "added_by": {
       "$oid": "aaa000000000000000000005"
     },
@@ -168,6 +213,15 @@
     "services": {
       "Toilette": "I bagni si trovano al primo piano, accanto alla Sala delle Cere Anatomiche.",
       "Uscita": "L'uscita si trova al piano terra, tornando verso la biglietteria."
+    },
+    "opening_hours": {
+      "Lunedì": "Chiuso",
+      "Martedì": "10:00–17:00",
+      "Mercoledì": "10:00–17:00",
+      "Giovedì": "10:00–17:00",
+      "Venerdì": "10:00–17:00",
+      "Sabato": "10:00–13:30",
+      "Domenica": "Chiuso"
     },
     "added_by": {
       "$oid": "aaa000000000000000000004"
