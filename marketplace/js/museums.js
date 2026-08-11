@@ -146,6 +146,10 @@ document.addEventListener('DOMContentLoaded', () => {
     load(0);
   });
 
+  document.getElementById('museums-grid').addEventListener('open-museum-info', (e) => {
+    document.querySelector('museum-modal')?.open(e.detail.id);
+  });
+
   populateCityDropdown();
   load(0);
 });

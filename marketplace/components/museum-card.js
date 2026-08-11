@@ -31,6 +31,7 @@ class MuseumCard extends HTMLElement {
         :host { display: block; height: 100%; }
 
         .card {
+          position: relative;
           background: var(--color-surface, #161616);
           border: 1px solid var(--color-border, #2a2a2a);
           border-top: 2px solid var(--color-accent, #d4a853);
@@ -39,14 +40,19 @@ class MuseumCard extends HTMLElement {
           display: flex;
           flex-direction: column;
           height: 100%;
-          cursor: pointer;
-          text-decoration: none;
-          color: inherit;
           transition: box-shadow 0.4s ease, transform 0.4s ease;
         }
         .card:hover {
           transform: translateY(-4px);
           box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), var(--glow-accent, 0 0 20px rgba(212, 168, 83, 0.15));
+        }
+
+        .card-link {
+          position: absolute;
+          inset: 0;
+          z-index: 3;
+          text-decoration: none;
+          color: inherit;
         }
 
         /* ── Banner ───────────────────────────────────────── */
@@ -147,13 +153,38 @@ class MuseumCard extends HTMLElement {
         .foot {
           display: flex;
           align-items: center;
-          justify-content: flex-end;
+          justify-content: space-between;
+          gap: 0.75rem;
           margin-top: auto;
           padding-top: 1rem;
           border-top: 1px solid var(--color-border, #e8e6e1);
         }
 
+        .info-btn {
+          position: relative;
+          z-index: 4;
+          font-family: var(--font-sans, 'Inter', system-ui, sans-serif);
+          font-size: 0.68rem;
+          font-weight: 500;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: var(--color-text-muted, #78716c);
+          background: transparent;
+          border: 1px solid var(--color-border, #2a2a2a);
+          border-radius: var(--radius-sm, 6px);
+          padding: 0.4rem 0.7rem;
+          cursor: pointer;
+          white-space: nowrap;
+          transition: color 0.3s ease, border-color 0.3s ease;
+        }
+        .info-btn:hover {
+          color: var(--color-accent, #9e7a46);
+          border-color: var(--color-accent, #9e7a46);
+        }
+
         .cta {
+          position: relative;
+          z-index: 2;
           font-family: var(--font-sans, 'Inter', system-ui, sans-serif);
           font-size: 0.7rem;
           font-weight: 500;
@@ -171,7 +202,8 @@ class MuseumCard extends HTMLElement {
         }
       </style>
 
-      <a class="card" href="${visitsUrl}" aria-label="${this._escape(name)}">
+      <div class="card">
+        <a class="card-link" href="${visitsUrl}" aria-label="${this._escape(name)}"></a>
         <div class="banner ${image ? 'has-image' : ''}">
           ${image
             ? `<img class="banner-img" src="${this._escape(image)}" alt="" loading="lazy">`
@@ -190,11 +222,20 @@ class MuseumCard extends HTMLElement {
           </p>` : ''}
           <h2>${this._escape(name)}</h2>
           <div class="foot">
+            <button class="info-btn" id="info-btn" aria-label="Informazioni su ${this._escape(name)}">Info museo</button>
             <span class="cta">Esplora le visite →</span>
           </div>
         </div>
-      </a>
+      </div>
     `;
+
+    this.shadowRoot.querySelector('#info-btn')?.addEventListener('click', () => {
+      this.dispatchEvent(new CustomEvent('open-museum-info', {
+        detail: { id },
+        bubbles: true,
+        composed: true,
+      }));
+    });
   }
 }
 
