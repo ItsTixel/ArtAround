@@ -68,15 +68,19 @@ function Comandi() {
 
   if (!activeVisit) return <NoActiveVisit />
 
-  const services = museum?.services || {}
-  const extraServices = Object.entries(services).filter(
-    ([key]) => !STANDARD_SERVICE_KEYS.includes(key)
-  )
+  // A visit can span more than one museum (es. "Leonardo tra Firenze e
+  // Milano"): show one section per museum, with the museum of the step
+  // currently on screen listed first.
+  const currentMuseumId = museum?._id
+  const visitMuseums = (activeVisit.museum || [])
+    .filter((m) => m && typeof m === 'object')
+    .slice()
+    .sort((a, b) => (a._id === currentMuseumId ? -1 : b._id === currentMuseumId ? 1 : 0))
 
-  function handleService(label) {
-    const phrase = services[label]
+  function handleService(museumForService, label) {
+    const phrase = museumForService?.services?.[label]
     if (!phrase) {
-      setServiceMessage(`"${label}" non disponibile per questo museo.`)
+      setServiceMessage(`"${label}" non disponibile per ${museumForService?.name || 'questo museo'}.`)
       return
     }
     setServiceMessage(phrase)
@@ -146,35 +150,55 @@ function Comandi() {
         </div>
       </section>
 
-      <section aria-labelledby="comandi-servizi-heading" className="flex flex-col gap-3">
+      <section aria-labelledby="comandi-servizi-heading" className="flex flex-col gap-5">
         <h2
           id="comandi-servizi-heading"
           className="text-xs font-medium uppercase tracking-wide text-text-muted"
         >
           Posizioni e Servizi
         </h2>
-        <div className="grid grid-cols-2 gap-3">
-          <CommandButton
-            label="Toilette"
-            Icon={ToiletIcon}
-            onClick={() => handleService('Toilette')}
-            colorClasses="bg-violet-600 text-white"
-          />
-          <CommandButton
-            label="Uscita"
-            Icon={ExitIcon}
-            onClick={() => handleService('Uscita')}
-            colorClasses="bg-teal-600 text-white"
-          />
-        </div>
 
-        {extraServices.length > 0 && (
-          <div className="flex flex-col gap-2">
-            {extraServices.map(([label]) => (
-              <ServiceButton key={label} label={label} onClick={() => handleService(label)} />
-            ))}
-          </div>
+        {visitMuseums.length === 0 && (
+          <p className="text-sm text-text-muted">Nessuna informazione disponibile.</p>
         )}
+
+        {visitMuseums.map((visitMuseum) => {
+          const extraServices = Object.entries(visitMuseum.services || {}).filter(
+            ([key]) => !STANDARD_SERVICE_KEYS.includes(key)
+          )
+          return (
+            <div key={visitMuseum._id} className="flex flex-col gap-3">
+              {visitMuseums.length > 1 && (
+                <h3 className="text-sm font-semibold text-text">{visitMuseum.name}</h3>
+              )}
+              <div className="grid grid-cols-2 gap-3">
+                <CommandButton
+                  label="Toilette"
+                  Icon={ToiletIcon}
+                  onClick={() => handleService(visitMuseum, 'Toilette')}
+                  colorClasses="bg-violet-600 text-white"
+                />
+                <CommandButton
+                  label="Uscita"
+                  Icon={ExitIcon}
+                  onClick={() => handleService(visitMuseum, 'Uscita')}
+                  colorClasses="bg-teal-600 text-white"
+                />
+              </div>
+              {extraServices.length > 0 && (
+                <div className="flex flex-col gap-2">
+                  {extraServices.map(([label]) => (
+                    <ServiceButton
+                      key={label}
+                      label={label}
+                      onClick={() => handleService(visitMuseum, label)}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+          )
+        })}
 
         {serviceMessage && (
           <p role="status" aria-live="polite" className="text-sm text-text-muted">
