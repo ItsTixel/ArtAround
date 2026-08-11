@@ -22,7 +22,6 @@ const state = {
 
 let allMuseums     = [];
 let maxDurationMin = 240;
-let heroStatsSet   = false;
 let ownedIds        = new Set();
 
 /* ---- Costruisce la query e fetcha dal backend ---- */
@@ -129,10 +128,8 @@ function updateResultsCount(total) {
 }
 
 function updateHeroStats(total) {
-  if (heroStatsSet) return;
   const el = document.getElementById('hero-total');
   if (el) el.textContent = `${total} percorsi · ${allMuseums.length} musei`;
-  heroStatsSet = true;
 }
 
 /* ---- Caricamento pagina ---- */
