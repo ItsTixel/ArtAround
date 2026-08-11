@@ -29,13 +29,6 @@ function formatTime(sec) {
   return `${m}:${String(s).padStart(2, '0')}`
 }
 
-// Chrome on Android has a long-standing bug where speechSynthesis.resume()
-// silently fails to continue after pause(), leaving playback stuck. There's
-// no reliable feature-detect for it, so on Android "pause" just stops the
-// utterance and "play" restarts the description from the beginning instead
-// of trying (and failing) to resume mid-sentence.
-const IS_ANDROID = /Android/i.test(navigator.userAgent)
-
 function pillClasses(active, activeClasses) {
   return `rounded-full border px-4 py-1.5 text-sm font-medium ${
     active ? activeClasses : 'border-border bg-surface text-text-muted'
@@ -53,6 +46,8 @@ function Opera() {
   const utteranceRef = useRef(null)
   const textRef = useRef('') // full text currently loaded for playback/seeking
   const resumeCharRef = useRef(0) // char offset to resume/seek from
+  const timerRef = useRef(null) // interval driving the progress bar while playing
+  const playStartRef = useRef({ time: 0, baseFraction: 0 })
 
   const sortedSteps = useMemo(() => {
     if (!activeVisit?.steps?.length) return []
@@ -83,8 +78,35 @@ function Opera() {
   const activeDescIndex = Math.min(selectedDescIndex, Math.max(sortedDescriptions.length - 1, 0))
   const currentDescription = sortedDescriptions[activeDescIndex]
 
+  function stopProgressTimer() {
+    if (timerRef.current) {
+      clearInterval(timerRef.current)
+      timerRef.current = null
+    }
+  }
+
+  // Word/sentence `onboundary` events are unreliable across browsers and TTS
+  // voices (many never fire them at all), so the bar can't rely on them.
+  // Instead we estimate position from wall-clock time against the
+  // description's known duration, ticking resumeCharRef along with it so
+  // pause/seek always restart from roughly the right spot.
+  function startProgressTimer(baseFraction) {
+    stopProgressTimer()
+    playStartRef.current = { time: Date.now(), baseFraction }
+    const duration = currentDescription?.duration_sec || 0
+    if (!duration) return
+    timerRef.current = setInterval(() => {
+      const elapsed = (Date.now() - playStartRef.current.time) / 1000
+      const fraction = Math.min(1, playStartRef.current.baseFraction + elapsed / duration)
+      setProgress(fraction)
+      resumeCharRef.current = Math.round(fraction * textRef.current.length)
+    }, 200)
+  }
+
   function stopSpeech() {
+    utteranceRef.current = null
     window.speechSynthesis.cancel()
+    stopProgressTimer()
     setPlaybackState('idle')
     setProgress(0)
     setSeekPreview(null)
@@ -93,16 +115,19 @@ function Opera() {
   }
 
   // Cancels any speech in progress and starts reading textRef.current from
-  // charIndex onward. Used for the initial Play, for seeking, and (on
-  // Android, where speechSynthesis.resume() doesn't reliably work) for
-  // resuming after pause too — one single restart mechanism everywhere.
+  // charIndex onward. Used for the initial Play, for seeking, and for
+  // resuming after pause — speechSynthesis.pause()/resume() is broken on
+  // several browsers (playback gets permanently stuck after pause()), so
+  // "resume" is really just "restart from the last known position".
   function speakFromChar(charIndex) {
     const text = textRef.current
     if (!text) return
     const clamped = Math.max(0, Math.min(charIndex, text.length))
     window.speechSynthesis.cancel()
+    stopProgressTimer()
     resumeCharRef.current = clamped
-    setProgress(text.length ? clamped / text.length : 0)
+    const baseFraction = text.length ? clamped / text.length : 0
+    setProgress(baseFraction)
 
     const remaining = text.slice(clamped)
     if (!remaining) {
@@ -112,16 +137,25 @@ function Opera() {
 
     const utterance = new SpeechSynthesisUtterance(remaining)
     utterance.lang = 'it-IT'
-    utterance.onboundary = (event) => {
-      const absolute = clamped + event.charIndex
-      resumeCharRef.current = absolute
-      setProgress(text.length ? Math.min(1, absolute / text.length) : 0)
+    // cancel() fires the outgoing utterance's onend/onerror asynchronously,
+    // after a newer utterance may already be playing (e.g. seeking again
+    // while the previous cancel is still settling). Ignore callbacks from an
+    // utterance that's no longer the current one so they can't clobber the
+    // fresher state.
+    utterance.onend = () => {
+      if (utteranceRef.current !== utterance) return
+      stopProgressTimer()
+      setPlaybackState('idle')
     }
-    utterance.onend = () => setPlaybackState('idle')
-    utterance.onerror = () => setPlaybackState('idle')
+    utterance.onerror = () => {
+      if (utteranceRef.current !== utterance) return
+      stopProgressTimer()
+      setPlaybackState('idle')
+    }
     utteranceRef.current = utterance
     window.speechSynthesis.speak(utterance)
     setPlaybackState('playing')
+    startProgressTimer(baseFraction)
   }
 
   function handleSeek(fraction) {
@@ -160,24 +194,14 @@ function Opera() {
 
   function handlePlayPause() {
     if (playbackState === 'playing') {
-      if (IS_ANDROID) {
-        // resume() is unreliable on Android; cancel but keep the resume
-        // point from the last onboundary so Play restarts from there.
-        window.speechSynthesis.cancel()
-        setPlaybackState('paused')
-      } else {
-        window.speechSynthesis.pause()
-        setPlaybackState('paused')
-      }
+      utteranceRef.current = null
+      window.speechSynthesis.cancel()
+      stopProgressTimer()
+      setPlaybackState('paused')
       return
     }
     if (playbackState === 'paused') {
-      if (IS_ANDROID) {
-        speakFromChar(resumeCharRef.current)
-      } else {
-        window.speechSynthesis.resume()
-        setPlaybackState('playing')
-      }
+      speakFromChar(resumeCharRef.current)
       return
     }
     if (!currentDescription?.text) return
@@ -189,8 +213,21 @@ function Opera() {
   }
 
   useEffect(() => {
-    return () => window.speechSynthesis.cancel()
+    return () => {
+      window.speechSynthesis.cancel()
+      stopProgressTimer()
+    }
   }, [])
+
+  // Autoplay: start reading as soon as a description becomes current —
+  // on first load, after Avanti/Indietro, and after switching tone/durata.
+  useEffect(() => {
+    if (!currentDescription?.text) return
+    textRef.current = currentDescription.text
+    resumeCharRef.current = 0
+    speakFromChar(0)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentDescription?.text])
 
   if (!activeVisit) return <NoActiveVisit />
 
