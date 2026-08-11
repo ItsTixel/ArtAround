@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import { ActiveVisitProvider } from './context/ActiveVisitContext'
+import { VisitProgressProvider } from './context/VisitProgressContext'
 import AppLayout from './layout/AppLayout'
 import Home from './pages/Home'
 import Mappa from './pages/Mappa'
@@ -10,15 +11,17 @@ import Qr from './pages/Qr'
 function App() {
   return (
     <ActiveVisitProvider>
-      <Routes>
-        <Route element={<AppLayout />}>
-          <Route index element={<Home />} />
-          <Route path="mappa" element={<Mappa />} />
-          <Route path="opera" element={<Opera />} />
-          <Route path="comandi" element={<Comandi />} />
-          <Route path="qr" element={<Qr />} />
-        </Route>
-      </Routes>
+      <VisitProgressProvider>
+        <Routes>
+          <Route element={<AppLayout />}>
+            <Route index element={<Home />} />
+            <Route path="mappa" element={<Mappa />} />
+            <Route path="opera" element={<Opera />} />
+            <Route path="comandi" element={<Comandi />} />
+            <Route path="qr" element={<Qr />} />
+          </Route>
+        </Routes>
+      </VisitProgressProvider>
     </ActiveVisitProvider>
   )
 }

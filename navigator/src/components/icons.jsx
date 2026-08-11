@@ -140,3 +140,75 @@ export function MicrophoneIcon(props) {
     </svg>
   )
 }
+
+export function MoreDetailsIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <path d="M4 6.5h16" />
+      <path d="M4 12h11" />
+      <path d="M4 17.5h7" />
+      <circle cx="19" cy="17.5" r="3.2" />
+      <path d="M19 16.1v2.8" />
+      <path d="M17.6 17.5h2.8" />
+    </svg>
+  )
+}
+
+export function LessDetailsIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <path d="M4 6.5h16" />
+      <path d="M4 12h16" />
+      <path d="M4 17.5h11" />
+      <circle cx="19" cy="17.5" r="3.2" />
+      <path d="M17.6 17.5h2.8" />
+    </svg>
+  )
+}
+
+export function SimplerIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <path d="M4 17.5h3v-3H4z" strokeLinejoin="round" />
+      <path d="M10.5 17.5h3v-7h-3z" strokeLinejoin="round" />
+      <path d="M17 17.5h3v-11h-3z" strokeLinejoin="round" />
+      <path d="M20.5 5 15 10.5" />
+      <path d="M15.3 6.8 15 10.5l3.7-.3" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+export function ComplexIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <path d="M4 17.5h3v-3H4z" strokeLinejoin="round" />
+      <path d="M10.5 17.5h3v-7h-3z" strokeLinejoin="round" />
+      <path d="M17 17.5h3v-11h-3z" strokeLinejoin="round" />
+      <path d="M15 5.5h5.5V11" strokeLinejoin="round" />
+      <path d="M20.5 5.5 15 11" />
+    </svg>
+  )
+}
+
+export function ToiletIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <circle cx="12" cy="6" r="2.2" />
+      <path d="M12 8.2v4" />
+      <path d="M8.5 12h7l-1.2 3.5a1 1 0 0 1-.95.7h-2.7a1 1 0 0 1-.95-.7L8.5 12Z" strokeLinejoin="round" />
+      <path d="M10.5 16.2 9.8 20.5" />
+      <path d="M13.5 16.2l.7 4.3" />
+      <path d="M8.7 20.5h6.6" />
+    </svg>
+  )
+}
+
+export function ExitIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <path d="M10.5 4H6a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h4.5" />
+      <path d="M13 12h8" />
+      <path d="M17.5 8.2 21.3 12l-3.8 3.8" strokeLinejoin="round" />
+    </svg>
+  )
+}
