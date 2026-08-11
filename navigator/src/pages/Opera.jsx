@@ -7,6 +7,7 @@ import {
   PlayIcon,
   PauseIcon,
   MicrophoneIcon,
+  AutoplayIcon,
 } from '../components/icons'
 
 const TONE_ORDER = ['childish', 'simple', 'medium', 'technical']
@@ -43,6 +44,7 @@ function Opera() {
   const [playbackState, setPlaybackState] = useState('idle') // 'idle' | 'playing' | 'paused'
   const [progress, setProgress] = useState(0) // 0..1, position within currentDescription.text
   const [seekPreview, setSeekPreview] = useState(null) // 0..1 while dragging, else null
+  const [autoplayEnabled, setAutoplayEnabled] = useState(true)
   const utteranceRef = useRef(null)
   const textRef = useRef('') // full text currently loaded for playback/seeking
   const resumeCharRef = useRef(0) // char offset to resume/seek from
@@ -221,13 +223,22 @@ function Opera() {
 
   // Autoplay: start reading as soon as a description becomes current —
   // on first load, after Avanti/Indietro, and after switching tone/durata.
+  // Skipped when autoplayEnabled is off; speech already in progress is left
+  // alone rather than stopped.
   useEffect(() => {
+    if (!autoplayEnabled) return
     if (!currentDescription?.text) return
     textRef.current = currentDescription.text
     resumeCharRef.current = 0
     speakFromChar(0)
+    // Deliberately NOT depending on autoplayEnabled: toggling it must not
+    // restart/interrupt whatever is currently playing.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentDescription?.text])
+
+  function toggleAutoplay() {
+    setAutoplayEnabled((enabled) => !enabled)
+  }
 
   if (!activeVisit) return <NoActiveVisit />
 
@@ -344,6 +355,17 @@ function Opera() {
             className={`text-text-muted ${!canGoPrevious ? 'opacity-30' : ''}`}
           >
             <PreviousIcon className="h-6 w-6" />
+          </button>
+          <button
+            type="button"
+            aria-label={
+              autoplayEnabled ? 'Disattiva lettura automatica' : 'Attiva lettura automatica'
+            }
+            aria-pressed={autoplayEnabled}
+            onClick={toggleAutoplay}
+            className={`text-text-muted ${!autoplayEnabled ? 'opacity-30' : ''}`}
+          >
+            <AutoplayIcon className="h-4 w-4" />
           </button>
           <button
             type="button"
