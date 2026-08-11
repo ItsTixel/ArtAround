@@ -11,7 +11,9 @@
       "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8000/api/museums --max-time 5)",
       "Bash(curl -s http://localhost:8000/api/museums --max-time 5)",
       "Bash(docker restart *)",
-      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8000/api/museums --max-time 8)"
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8000/api/museums --max-time 8)",
+      "Bash(npm init *)",
+      "Bash(timeout 30 npm install playwright-core)"
     ]
   }
 }

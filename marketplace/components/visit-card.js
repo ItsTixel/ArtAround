@@ -47,6 +47,7 @@ class VisitCard extends HTMLElement {
     if (!this._data) return;
     const v = this._data;
     const isFree = !v.basePrice;
+    const owned = !!v.owned;
     const placeholderLabel = v.placeholderTag || v.title || `Visita ${v.id}`;
     const museums = v.museumDetails || [];
     const isInfra = museums.length > 1;
@@ -135,6 +136,12 @@ class VisitCard extends HTMLElement {
           color: var(--color-text, #f0ede8);
         }
         .price-tag.free {
+          background: var(--color-accent, #d4a853);
+          color: var(--color-on-accent, #0a0a0a);
+          backdrop-filter: none;
+          -webkit-backdrop-filter: none;
+        }
+        .price-tag.owned {
           background: var(--color-accent, #d4a853);
           color: var(--color-on-accent, #0a0a0a);
           backdrop-filter: none;
@@ -265,7 +272,7 @@ class VisitCard extends HTMLElement {
         <div class="banner ${v.image ? 'has-image' : ''}">
           ${v.image ? `<img class="banner-img" src="${this._esc(v.image)}" alt="" loading="lazy">` : ''}
           ${isInfra ? '<span class="infra-badge">Inframuseale</span>' : ''}
-          <span class="price-tag ${isFree ? 'free' : ''}">${this._fmtPrice(v.basePrice)}</span>
+          <span class="price-tag ${owned ? 'owned' : (isFree ? 'free' : '')}">${owned ? '✓ In tuo possesso' : this._fmtPrice(v.basePrice)}</span>
           <span class="ph-label">${this._esc(placeholderLabel)}</span>
         </div>
         <div class="body">

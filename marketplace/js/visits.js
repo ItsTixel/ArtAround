@@ -3,6 +3,8 @@
  *  Stessa struttura di museums.js: ogni cambio filtro = nuova fetch.
  * ============================================================ */
 
+import { getCurrentUser } from '/marketplace/js/auth-session.js';
+
 const API_VISITS  = '/api/visits';
 const API_MUSEUMS = '/api/museums';
 const PAGE_SIZE   = 12;
@@ -21,6 +23,7 @@ const state = {
 let allMuseums     = [];
 let maxDurationMin = 240;
 let heroStatsSet   = false;
+let ownedIds        = new Set();
 
 /* ---- Costruisce la query e fetcha dal backend ---- */
 async function fetchVisits() {
@@ -70,6 +73,7 @@ function normalizeVisit(v) {
     museumDetails,
     placeholderTag: v.title || `Visita ${v._id}`,
     image:         firstOperaImage(v.steps),
+    owned:         ownedIds.has(String(v._id)),
   };
 }
 
@@ -185,12 +189,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   try {
-    const [musRes, facets] = await Promise.all([
+    const [musRes, facets, user] = await Promise.all([
       fetch(`${API_MUSEUMS}?pageSize=100&sort=name`).then(r => r.json()),
       loadFacets(),
+      getCurrentUser(),
     ]);
     allMuseums     = musRes.data || [];
     maxDurationMin = facets.maxDurationMin;
+    ownedIds       = new Set((user?.adopted_visits || []).map(String));
 
     const sidebar = document.querySelector('filter-sidebar');
     sidebar.data = {

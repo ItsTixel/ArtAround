@@ -10,8 +10,10 @@ class AppNavbar extends HTMLElement {
     const p = window.location.pathname;
     const isMuseums = p === '/marketplace' || p.endsWith('/marketplace/') || p.endsWith('index.html');
     const isVisits  = p.endsWith('visits.html');
+    const isMyVisits = p.endsWith('my-visits.html');
     const isLogin    = p.endsWith('login.html');
     const isRegister = p.endsWith('register.html');
+    this._isMyVisits = isMyVisits;
 
     this.shadowRoot.innerHTML = `
       <style>
@@ -162,7 +164,7 @@ class AppNavbar extends HTMLElement {
       <nav>
         <a class="logo" href="/marketplace"><span>Art</span>Around</a>
         <div class="nav-right">
-          <ul>
+          <ul id="nav-links">
             <li><a href="/marketplace" class="${isMuseums ? 'active' : ''}">Musei</a></li>
             <li><a href="/marketplace/pages/visits.html" class="${isVisits ? 'active' : ''}">Tutte le visite</a></li>
           </ul>
@@ -186,6 +188,17 @@ class AppNavbar extends HTMLElement {
   async _loadUser() {
     const user = await getCurrentUser();
     if (!user) return; // resta lo stato Login/Registrati già renderizzato
+
+    const navLinks = this.shadowRoot.querySelector('#nav-links');
+    if (navLinks) {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = '/marketplace/pages/my-visits.html';
+      a.textContent = 'Le tue visite';
+      if (this._isMyVisits) a.classList.add('active');
+      li.appendChild(a);
+      navLinks.appendChild(li);
+    }
 
     const authActions = this.shadowRoot.querySelector('.auth-actions');
     if (!authActions) return;

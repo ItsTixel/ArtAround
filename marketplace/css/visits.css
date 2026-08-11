@@ -150,6 +150,13 @@ filter-sidebar { display: block; }
   pointer-events: none;
 }
 
+/* ── Contenuto senza sidebar (pagina "Le tue visite") ───────── */
+.my-visits-content {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 2.75rem 3rem 5rem;
+}
+
 /* ── Griglia visite ──────────────────────────────────────── */
 .visits-grid {
   display: grid;
@@ -226,6 +233,7 @@ filter-sidebar { display: block; }
   .page-hero h1 { font-size: 2.2rem; }
   .visits-layout { grid-template-columns: 1fr; }
   .visits-content { padding: 2rem 1.5rem 4rem; }
+  .my-visits-content { padding: 2rem 1.5rem 4rem; }
   .results-bar { gap: 1rem; }
 }
 
