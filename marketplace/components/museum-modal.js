@@ -158,14 +158,17 @@ class MuseumModal extends HTMLElement {
           margin: 4vh auto;
           width: min(640px, 92vw);
           max-height: 92vh;
-          background: var(--color-surface, #161616);
-          border: 1px solid var(--color-border, #2a2a2a);
+          background: var(--panel-bg, rgba(11, 18, 36, 0.72));
+          backdrop-filter: blur(24px) saturate(140%);
+          -webkit-backdrop-filter: blur(24px) saturate(140%);
+          border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
           border-radius: var(--radius, 8px);
           overflow: hidden;
           display: flex;
           flex-direction: column;
-          box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
+          box-shadow: var(--glass-shadow, 0 24px 64px rgba(0, 0, 0, 0.55));
           animation: rise-in 0.35s ease;
+          transition: background-color 0.35s ease;
         }
 
         @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
@@ -177,18 +180,18 @@ class MuseumModal extends HTMLElement {
           z-index: 3;
           width: 34px; height: 34px;
           display: flex; align-items: center; justify-content: center;
-          background: var(--glass-bg, rgba(22, 22, 22, 0.85));
+          background: var(--pill-bg, rgba(255, 255, 255, 0.06));
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
-          border: 1px solid var(--color-border, #2a2a2a);
-          border-radius: var(--radius-sm, 6px);
+          border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+          border-radius: 9999px;
           cursor: pointer;
           font-size: 1.1rem;
           line-height: 1;
           color: var(--color-text, #f0ede8);
           transition: background 0.3s ease, color 0.3s ease;
         }
-        .close-btn:hover { background: var(--color-accent, #d4a853); color: var(--color-on-accent, #0a0a0a); }
+        .close-btn:hover { background: var(--pill-hover-bg, rgba(255, 255, 255, 0.16)); }
 
         .body-scroll { overflow-y: auto; flex: 1; min-height: 0; }
 
@@ -196,7 +199,7 @@ class MuseumModal extends HTMLElement {
         .banner {
           position: relative;
           height: 190px;
-          background: #101010;
+          background: var(--placeholder-bg, #101010);
           border-bottom: 1px solid var(--color-border, #2a2a2a);
           display: flex; align-items: center; justify-content: center;
           overflow: hidden;
@@ -205,7 +208,7 @@ class MuseumModal extends HTMLElement {
         .banner::before {
           content: '';
           position: absolute; inset: 0;
-          background: repeating-linear-gradient(135deg, transparent 0 11px, rgba(255,255,255,0.035) 11px 12px);
+          background: repeating-linear-gradient(135deg, transparent 0 11px, var(--placeholder-line, rgba(255,255,255,0.035)) 11px 12px);
         }
         .banner.has-image::before { display: none; }
         .banner-img {
@@ -217,7 +220,7 @@ class MuseumModal extends HTMLElement {
         .museum-icon {
           position: relative; z-index: 1;
           width: 48px; height: 48px;
-          fill: var(--color-text-muted, #8a8a8a);
+          fill: var(--color-text-muted, #94a3b8);
         }
         .ph-label {
           position: absolute;
@@ -228,11 +231,12 @@ class MuseumModal extends HTMLElement {
           font-size: 0.68rem;
           letter-spacing: 0.14em;
           text-transform: uppercase;
-          color: var(--color-text-muted, #8a8a8a);
-          background: var(--glass-bg, rgba(22, 22, 22, 0.85));
+          color: #e2e8f0;
+          background: rgba(2, 6, 23, 0.55);
+          border: 1px solid rgba(255, 255, 255, 0.1);
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
-          border-radius: var(--radius-sm, 6px);
+          border-radius: 9999px;
           padding: 0.4rem 0.85rem;
           text-align: center;
           max-width: 80%;
@@ -249,7 +253,7 @@ class MuseumModal extends HTMLElement {
           font-weight: 600;
           letter-spacing: 0.16em;
           text-transform: uppercase;
-          color: var(--color-accent, #9e7a46);
+          color: var(--color-text-muted, #94a3b8);
           margin-bottom: 0.5rem;
         }
         .title {
@@ -297,10 +301,10 @@ class MuseumModal extends HTMLElement {
           color: var(--color-text-muted, #78716c);
         }
         .hours-row.is-today {
-          color: var(--color-text, #1c1917);
+          color: var(--color-text, #f0ede8);
           font-weight: 600;
         }
-        .hours-row.is-today .hours-value { color: var(--color-accent, #9e7a46); }
+        .hours-row.is-today .hours-value { color: var(--color-text, #f0ede8); }
         .hours-day { text-transform: capitalize; }
 
         .info-list {
@@ -321,10 +325,10 @@ class MuseumModal extends HTMLElement {
         .info-icon {
           width: 16px; height: 16px;
           flex-shrink: 0;
-          fill: var(--color-accent, #9e7a46);
+          fill: var(--color-text-muted, #94a3b8);
         }
         .website-link {
-          color: var(--color-accent, #9e7a46);
+          color: var(--link-color, #93c5fd);
           text-decoration: none;
           word-break: break-all;
         }
@@ -336,8 +340,8 @@ class MuseumModal extends HTMLElement {
           display: flex; align-items: center; justify-content: flex-end;
           gap: 1rem;
           padding: 1.1rem 2rem;
-          border-top: 1px solid var(--color-border, #e8e6e1);
-          background: var(--color-surface, #fff);
+          border-top: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+          background: transparent;
         }
 
         .btn {
@@ -347,20 +351,27 @@ class MuseumModal extends HTMLElement {
           letter-spacing: 0.08em;
           text-transform: uppercase;
           padding: 0.75rem 1.5rem;
-          border-radius: var(--radius-sm, 6px);
+          border-radius: 9999px;
           border: 1px solid transparent;
           cursor: pointer;
           white-space: nowrap;
           text-decoration: none;
           display: inline-block;
-          transition: box-shadow 0.3s ease;
+          transition: box-shadow 0.3s ease, background 0.3s ease;
         }
         .btn.primary {
-          background: linear-gradient(135deg, var(--color-accent, #d4a853), var(--color-accent-hover, #c49440));
-          border-color: var(--color-accent, #d4a853);
-          color: var(--color-on-accent, #0a0a0a);
+          background: var(--pill-hover-bg, rgba(255, 255, 255, 0.12));
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border-color: var(--pill-hover-border, rgba(255, 255, 255, 0.25));
+          color: var(--color-text, #f0ede8);
         }
-        .btn.primary:hover { box-shadow: 0 0 20px rgba(212, 168, 83, 0.35); }
+        .btn.primary:hover {
+          background: var(--color-accent, #e7edf7);
+          border-color: var(--color-accent, #e7edf7);
+          color: var(--color-on-accent, #0a0f1e);
+          box-shadow: var(--glow-accent, 0 0 20px rgba(148, 197, 253, 0.2));
+        }
 
         .state-msg {
           padding: 4rem 2rem;

@@ -10,14 +10,17 @@ class AppFooter extends HTMLElement {
         :host { display: block; }
 
         footer {
-          background: #0a0a0a;
-          border-top: 1px solid rgba(255, 255, 255, 0.08);
+          background: var(--nav-bg, rgba(2, 6, 23, 0.7));
+          backdrop-filter: blur(16px) saturate(140%);
+          -webkit-backdrop-filter: blur(16px) saturate(140%);
+          border-top: 1px solid var(--nav-border, rgba(255, 255, 255, 0.08));
           padding: 2rem 3rem;
           font-family: var(--font-sans, 'Nunito Sans', system-ui, sans-serif);
           font-size: 0.72rem;
           letter-spacing: 0.05em;
-          color: rgba(240, 237, 232, 0.35);
+          color: var(--color-text-muted, #94a3b8);
           margin-top: auto;
+          transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease;
         }
 
         .footer-inner {
@@ -36,7 +39,7 @@ class AppFooter extends HTMLElement {
           font-weight: 400;
           font-size: 1rem;
           letter-spacing: 0.02em;
-          color: #d4a853;
+          color: var(--color-text, #f0ede8);
         }
 
         @media (max-width: 480px) {

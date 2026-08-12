@@ -1,29 +1,96 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Nunito+Sans:wght@300;400;500;600;700&display=swap');
 
 :root {
-  /* Penombra Velata — illuminazione teatrale da galleria: nero museale,
-     le opere "brillano" sullo schermo, l'ambra cita le cornici dorate. */
-  --color-primary: #0a0a0a;
-  --color-primary-light: #1e1e1e;
-  --color-accent: #d4a853;
-  --color-accent-hover: #c49440;
-  --color-info: #6ba3be;
-  --color-on-accent: #0a0a0a;
-  --color-bg: #0a0a0a;
-  --color-surface: #161616;
+  /* Dark — blu ossidiana profondo, vetro smerigliato scuro (default). */
+  --color-primary: #020617;
+  --color-primary-light: #0b1224;
+  --color-accent: #e7edf7;
+  --color-accent-hover: #c7d2e2;
+  --color-info: #7dd3fc;
+  --color-on-accent: #0a0f1e;
+  --color-bg: #020617;
+  --color-surface: #0b1224;
   --color-text: #f0ede8;
-  --color-text-muted: #8a8a8a;
-  --color-border: #2a2a2a;
+  --color-text-muted: #94a3b8;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --link-color: #93c5fd;
+
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-bg-strong: rgba(255, 255, 255, 0.09);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-border-strong: rgba(255, 255, 255, 0.18);
+  --glass-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+
+  --nav-bg: rgba(2, 6, 23, 0.55);
+  --nav-border: rgba(255, 255, 255, 0.08);
+  --panel-bg: rgba(9, 14, 28, 0.85);
+
+  --pill-bg: rgba(255, 255, 255, 0.05);
+  --pill-border: rgba(255, 255, 255, 0.1);
+  --pill-hover-bg: rgba(255, 255, 255, 0.1);
+  --pill-hover-border: rgba(255, 255, 255, 0.22);
+
+  --placeholder-bg: #0b1224;
+  --placeholder-line: rgba(255, 255, 255, 0.035);
+
+  --blob-1: rgba(59, 130, 246, 0.14);
+  --blob-2: rgba(99, 102, 241, 0.10);
+  --blob-3: rgba(14, 116, 144, 0.12);
+
+  --glow-accent: 0 0 24px rgba(148, 197, 253, 0.16);
+
   --radius: 8px;
   --radius-sm: 6px;
   --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.35);
   --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.45);
-  --glow-accent: 0 0 20px rgba(212, 168, 83, 0.15);
-  --glass-bg: rgba(22, 22, 22, 0.85);
   --font-serif: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
   --font-sans: 'Nunito Sans', system-ui, -apple-system, sans-serif;
   --font: var(--font-sans);
   --transition: 0.4s ease;
+}
+
+/* Light — "Vetro Perla": bianco caldo, vetro smerigliato chiaro; la
+   profondità viene dalle ombre diffuse anziché dai bordi. */
+:root[data-theme="light"] {
+  --color-primary: #f8fafc;
+  --color-primary-light: #ffffff;
+  --color-accent: #1e293b;
+  --color-accent-hover: #334155;
+  --color-info: #2563eb;
+  --color-on-accent: #f8fafc;
+  --color-bg: #f8fafc;
+  --color-surface: #ffffff;
+  --color-text: #1e293b;
+  --color-text-muted: #64748b;
+  --color-border: rgba(15, 23, 42, 0.08);
+  --link-color: #2563eb;
+
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-bg-strong: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.7);
+  --glass-border-strong: rgba(255, 255, 255, 0.95);
+  --glass-shadow: 0 16px 40px rgba(100, 116, 139, 0.18);
+
+  --nav-bg: rgba(255, 255, 255, 0.65);
+  --nav-border: rgba(15, 23, 42, 0.07);
+  --panel-bg: rgba(255, 255, 255, 0.88);
+
+  --pill-bg: rgba(255, 255, 255, 0.5);
+  --pill-border: rgba(15, 23, 42, 0.08);
+  --pill-hover-bg: rgba(255, 255, 255, 0.9);
+  --pill-hover-border: rgba(15, 23, 42, 0.16);
+
+  --placeholder-bg: #eef2f7;
+  --placeholder-line: rgba(15, 23, 42, 0.05);
+
+  --blob-1: rgba(59, 130, 246, 0.07);
+  --blob-2: rgba(129, 140, 248, 0.06);
+  --blob-3: rgba(45, 212, 191, 0.06);
+
+  --glow-accent: 0 10px 28px rgba(100, 116, 139, 0.22);
+
+  --shadow-sm: 0 1px 4px rgba(100, 116, 139, 0.12);
+  --shadow-md: 0 8px 30px rgba(100, 116, 139, 0.16);
 }
 
 *, *::before, *::after {
@@ -35,9 +102,8 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
-  /* Stessa tinta di header/footer: se per un istante si vede oltre il
-     contenuto (es. durante il "pull to refresh" nativo) non mostra bianco. */
   background: var(--color-primary);
+  transition: background-color 0.35s ease;
 }
 
 body {
@@ -47,6 +113,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
 
 main {

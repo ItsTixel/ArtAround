@@ -1,4 +1,8 @@
 import { getCurrentUser, logout } from '/marketplace/js/auth-session.js';
+import { getTheme, toggleTheme } from '/marketplace/js/theme.js';
+
+const SUN_ICON = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>`;
+const MOON_ICON = `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>`;
 
 class AppNavbar extends HTMLElement {
   constructor() {
@@ -20,7 +24,9 @@ class AppNavbar extends HTMLElement {
         :host { display: block; }
 
         nav {
-          background: #0a0a0a;
+          background: var(--nav-bg, rgba(2, 6, 23, 0.55));
+          backdrop-filter: blur(18px) saturate(140%);
+          -webkit-backdrop-filter: blur(18px) saturate(140%);
           height: 72px;
           padding: 0 3rem;
           display: flex;
@@ -29,7 +35,8 @@ class AppNavbar extends HTMLElement {
           position: fixed;
           top: 0; left: 0; right: 0;
           z-index: 100;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+          border-bottom: 1px solid var(--nav-border, rgba(255, 255, 255, 0.08));
+          transition: background-color 0.35s ease, border-color 0.35s ease;
           /* Forza un compositing layer proprio: su iOS/Android evita che
              l'header resti agganciato al rimbalzo elastico del contenuto. */
           transform: translateZ(0);
@@ -43,13 +50,19 @@ class AppNavbar extends HTMLElement {
           font-weight: 400;
           font-style: italic;
           text-decoration: none;
-          color: #f0ede8;
+          color: var(--color-text, #f0ede8);
           letter-spacing: 0.02em;
         }
 
         .logo span {
-          color: #d4a853;
+          color: var(--color-text-muted, #94a3b8);
           font-style: normal;
+        }
+
+        .nav-end {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
         }
 
         .nav-right {
@@ -67,52 +80,61 @@ class AppNavbar extends HTMLElement {
 
         a {
           font-family: var(--font-sans, 'Nunito Sans', system-ui, sans-serif);
-          color: rgba(240, 237, 232, 0.5);
+          color: var(--color-text-muted, #94a3b8);
           text-decoration: none;
           font-size: 0.7rem;
           font-weight: 500;
           letter-spacing: 0.1em;
           text-transform: uppercase;
           padding: 0.4rem 0.9rem;
-          transition: color 0.4s ease;
+          transition: color 0.3s ease, background-color 0.3s ease;
         }
 
-        a:hover { color: #f0ede8; }
-        a.active { color: #d4a853; }
+        a:hover { color: var(--color-text, #f0ede8); }
+        a.active {
+          color: var(--color-text, #f0ede8);
+          background: var(--pill-hover-bg, rgba(255, 255, 255, 0.1));
+          border-radius: 9999px;
+        }
 
         .auth-actions {
           display: flex;
           align-items: center;
           gap: 0.6rem;
           padding-left: 1.5rem;
-          border-left: 1px solid rgba(255, 255, 255, 0.08);
+          border-left: 1px solid var(--nav-border, rgba(255, 255, 255, 0.08));
         }
 
         .auth-actions a {
           padding: 0.45rem 1.1rem;
-          border-radius: 3px;
+          border-radius: 9999px;
           border: 1px solid transparent;
         }
 
         .btn-login {
-          color: rgba(240, 237, 232, 0.7) !important;
-          border-color: rgba(240, 237, 232, 0.25) !important;
+          color: var(--color-text-muted, #94a3b8) !important;
+          border-color: var(--glass-border, rgba(255, 255, 255, 0.1)) !important;
+          background: var(--pill-bg, rgba(255, 255, 255, 0.05));
         }
         .btn-login:hover {
-          color: #f0ede8 !important;
-          border-color: rgba(240, 237, 232, 0.6) !important;
+          color: var(--color-text, #f0ede8) !important;
+          border-color: var(--glass-border-strong, rgba(255, 255, 255, 0.2)) !important;
+          background: var(--pill-hover-bg, rgba(255, 255, 255, 0.1));
         }
         .btn-login.active {
-          color: #d4a853 !important;
-          border-color: #d4a853 !important;
+          color: var(--color-text, #f0ede8) !important;
+          border-color: var(--glass-border-strong, rgba(255, 255, 255, 0.2)) !important;
+          background: var(--pill-hover-bg, rgba(255, 255, 255, 0.1));
         }
 
         .btn-register {
-          color: #0a0a0a !important;
-          background: #d4a853;
+          color: var(--color-on-accent, #0a0f1e) !important;
+          background: var(--color-accent, #e7edf7);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
         }
-        .btn-register:hover { background: #c49440; }
-        .btn-register.active { background: #c49440; }
+        .btn-register:hover { background: var(--color-accent-hover, #c7d2e2); }
+        .btn-register.active { background: var(--color-accent-hover, #c7d2e2); }
 
         .user-actions {
           display: flex;
@@ -125,19 +147,19 @@ class AppNavbar extends HTMLElement {
           font-size: 0.72rem;
           font-weight: 600;
           letter-spacing: 0.06em;
-          color: #d4a853;
+          color: var(--color-text-muted, #94a3b8);
           text-decoration: none;
           cursor: pointer;
-          transition: color 0.4s ease;
+          transition: color 0.3s ease;
         }
 
         .username::before { content: '👤 '; }
-        .username:hover, .username.active { color: #f0ede8; }
+        .username:hover, .username.active { color: var(--color-text, #f0ede8); }
 
         .btn-logout {
           background: transparent;
           border: 1px solid transparent;
-          color: rgba(240, 237, 232, 0.5);
+          color: var(--color-text-muted, #94a3b8);
           font-family: var(--font-sans, 'Nunito Sans', system-ui, sans-serif);
           font-size: 0.7rem;
           font-weight: 500;
@@ -145,11 +167,31 @@ class AppNavbar extends HTMLElement {
           text-transform: uppercase;
           padding: 0.45rem 0.9rem;
           cursor: pointer;
-          transition: color 0.4s ease, border-color 0.4s ease;
+          transition: color 0.3s ease, border-color 0.3s ease;
         }
         .btn-logout:hover {
-          color: #f0ede8;
-          border-color: rgba(240, 237, 232, 0.25);
+          color: var(--color-text, #f0ede8);
+          border-color: var(--glass-border, rgba(255, 255, 255, 0.1));
+        }
+
+        .theme-toggle {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          width: 34px;
+          height: 34px;
+          border-radius: 9999px;
+          border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+          background: var(--pill-bg, rgba(255, 255, 255, 0.05));
+          color: var(--color-text, #f0ede8);
+          cursor: pointer;
+          padding: 0;
+          transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        }
+        .theme-toggle:hover {
+          background: var(--pill-hover-bg, rgba(255, 255, 255, 0.1));
+          border-color: var(--glass-border-strong, rgba(255, 255, 255, 0.2));
         }
 
         .nav-create { position: relative; }
@@ -158,17 +200,17 @@ class AppNavbar extends HTMLElement {
           font-family: var(--font-sans, 'Nunito Sans', system-ui, sans-serif);
           background: transparent;
           border: none;
-          color: rgba(240, 237, 232, 0.5);
+          color: var(--color-text-muted, #94a3b8);
           font-size: 0.7rem;
           font-weight: 500;
           letter-spacing: 0.1em;
           text-transform: uppercase;
           padding: 0.4rem 0.9rem;
           cursor: pointer;
-          transition: color 0.4s ease;
+          transition: color 0.3s ease;
         }
-        .create-trigger:hover { color: #f0ede8; }
-        .nav-create.open .create-trigger { color: #d4a853; }
+        .create-trigger:hover { color: var(--color-text, #f0ede8); }
+        .nav-create.open .create-trigger { color: var(--color-text, #f0ede8); }
 
         .create-menu {
           list-style: none;
@@ -181,10 +223,12 @@ class AppNavbar extends HTMLElement {
           top: calc(100% + 0.5rem);
           left: 0;
           min-width: 200px;
-          background: #141414;
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          border-radius: 6px;
-          box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+          background: var(--panel-bg, rgba(9, 14, 28, 0.85));
+          backdrop-filter: blur(20px) saturate(140%);
+          -webkit-backdrop-filter: blur(20px) saturate(140%);
+          border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+          border-radius: 12px;
+          box-shadow: var(--glass-shadow, 0 12px 32px rgba(0, 0, 0, 0.45));
           padding: 0.4rem;
           opacity: 0;
           visibility: hidden;
@@ -208,19 +252,19 @@ class AppNavbar extends HTMLElement {
           font-size: 0.72rem;
           letter-spacing: 0.06em;
           border-radius: 4px;
-          color: rgba(240, 237, 232, 0.75);
+          color: var(--color-text-muted, #94a3b8);
         }
-        .create-menu a:hover { background: rgba(255, 255, 255, 0.06); color: #f0ede8; }
-        .create-menu a.disabled { color: rgba(240, 237, 232, 0.3); cursor: default; }
-        .create-menu a.disabled:hover { background: transparent; color: rgba(240, 237, 232, 0.3); }
+        .create-menu a:hover { background: var(--pill-bg, rgba(255, 255, 255, 0.06)); color: var(--color-text, #f0ede8); }
+        .create-menu a.disabled { opacity: 0.5; cursor: default; }
+        .create-menu a.disabled:hover { background: transparent; color: var(--color-text-muted, #94a3b8); }
 
         .soon {
           font-size: 0.55rem;
           letter-spacing: 0.05em;
           padding: 0.15rem 0.35rem;
-          border-radius: 3px;
-          background: rgba(212, 168, 83, 0.15);
-          color: #d4a853;
+          border-radius: 999px;
+          background: var(--pill-bg, rgba(255, 255, 255, 0.1));
+          color: var(--color-text-muted, #94a3b8);
           text-transform: uppercase;
         }
 
@@ -243,8 +287,8 @@ class AppNavbar extends HTMLElement {
           display: block;
           width: 22px;
           height: 2px;
-          background: #f0ede8;
-          transition: transform 0.3s ease, opacity 0.3s ease;
+          background: var(--color-text, #f0ede8);
+          transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
         }
 
         .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
@@ -268,8 +312,10 @@ class AppNavbar extends HTMLElement {
             flex-direction: column;
             align-items: stretch;
             gap: 0;
-            background: #0a0a0a;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            background: var(--panel-bg, rgba(2, 6, 23, 0.92));
+            backdrop-filter: blur(18px) saturate(140%);
+            -webkit-backdrop-filter: blur(18px) saturate(140%);
+            border-bottom: 1px solid var(--nav-border, rgba(255, 255, 255, 0.08));
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.35s ease;
@@ -285,7 +331,7 @@ class AppNavbar extends HTMLElement {
             flex-direction: column;
             align-items: stretch;
             border-left: none;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid var(--nav-border, rgba(255, 255, 255, 0.08));
             padding: 1rem 1.5rem;
             gap: 0.6rem;
           }
@@ -313,7 +359,7 @@ class AppNavbar extends HTMLElement {
             width: 100%;
             text-align: center;
             padding: 0.75rem;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.15));
           }
         }
 
@@ -326,24 +372,39 @@ class AppNavbar extends HTMLElement {
       </style>
       <nav>
         <a class="logo" href="/marketplace"><span>Art</span>Around</a>
-        <div class="nav-right">
-          <ul id="nav-links">
-            <li><a href="/marketplace" class="${isMuseums ? 'active' : ''}">Musei</a></li>
-            <li><a href="/marketplace/pages/visits.html" class="${isVisits ? 'active' : ''}">Tutte le visite</a></li>
-          </ul>
-          <div class="auth-actions">
-            <a href="/marketplace/login.html" class="btn-login ${isLogin ? 'active' : ''}">Login</a>
-            <a href="/marketplace/register.html" class="btn-register ${isRegister ? 'active' : ''}">Registrati</a>
+        <div class="nav-end">
+          <div class="nav-right">
+            <ul id="nav-links">
+              <li><a href="/marketplace" class="${isMuseums ? 'active' : ''}">Musei</a></li>
+              <li><a href="/marketplace/pages/visits.html" class="${isVisits ? 'active' : ''}">Tutte le visite</a></li>
+            </ul>
+            <div class="auth-actions">
+              <a href="/marketplace/login.html" class="btn-login ${isLogin ? 'active' : ''}">Login</a>
+              <a href="/marketplace/register.html" class="btn-register ${isRegister ? 'active' : ''}">Registrati</a>
+            </div>
           </div>
+          <button type="button" class="theme-toggle" aria-label="Cambia tema chiaro/scuro" title="Cambia tema"></button>
+          <button type="button" class="hamburger" aria-label="Menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
         </div>
-        <button type="button" class="hamburger" aria-label="Menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
       </nav>
     `;
 
     this._loadUser();
     this._setupMenuToggle();
+    this._setupThemeToggle();
+  }
+
+  _setupThemeToggle() {
+    const btn = this.shadowRoot.querySelector('.theme-toggle');
+    if (!btn) return;
+    const paint = () => { btn.innerHTML = getTheme() === 'light' ? MOON_ICON : SUN_ICON; };
+    paint();
+    btn.addEventListener('click', () => {
+      toggleTheme();
+      paint();
+    });
   }
 
   _setupMenuToggle() {

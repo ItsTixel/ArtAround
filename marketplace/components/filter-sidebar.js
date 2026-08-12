@@ -225,10 +225,10 @@ class FilterSidebar extends HTMLElement {
           font-size: 0.72rem;
           font-weight: 500;
           letter-spacing: 0.02em;
-          background: rgba(212, 168, 83, 0.12);
-          border: 1px solid var(--color-accent, #d4a853);
-          border-radius: var(--radius-sm, 6px);
-          color: var(--color-accent, #d4a853);
+          background: var(--pill-bg, rgba(255, 255, 255, 0.08));
+          border: 1px solid var(--glass-border-strong, rgba(255, 255, 255, 0.2));
+          border-radius: 9999px;
+          color: var(--color-text, #f0ede8);
           padding: 0.3rem 0.35rem 0.3rem 0.65rem;
         }
         .pill .x {
@@ -237,7 +237,7 @@ class FilterSidebar extends HTMLElement {
           align-items: center; justify-content: center;
           border: 0;
           background: transparent;
-          color: rgba(212, 168, 83, 0.7);
+          color: var(--color-text-muted, #94a3b8);
           cursor: pointer;
           padding: 0;
           font: inherit;
@@ -246,8 +246,8 @@ class FilterSidebar extends HTMLElement {
           transition: color 0.2s ease, background 0.2s ease;
         }
         .pill .x:hover {
-          color: var(--color-accent, #d4a853);
-          background: rgba(212, 168, 83, 0.18);
+          color: var(--color-text, #f0ede8);
+          background: var(--pill-hover-bg, rgba(255, 255, 255, 0.18));
         }
 
         /* ── Museum option list ───────────────────────────── */
@@ -370,14 +370,14 @@ class FilterSidebar extends HTMLElement {
           letter-spacing: 0.1em;
           text-transform: uppercase;
           padding: 0.35rem 0.7rem;
-          border-radius: var(--radius-sm, 6px);
-          border: 1px solid var(--color-border, #2a2a2a);
-          background: transparent;
+          border-radius: 9999px;
+          border: 1px solid var(--glass-border, #2a2a2a);
+          background: var(--pill-bg, transparent);
           color: var(--color-text, #f0ede8);
           cursor: pointer;
           transition: all 0.2s ease;
         }
-        .chip:hover { border-color: var(--color-accent, #d4a853); color: var(--color-accent, #d4a853); }
+        .chip:hover { border-color: var(--glass-border-strong, #d4a853); background: var(--pill-hover-bg); }
         .chip.active { background: var(--color-accent, #d4a853); color: var(--color-on-accent, #0a0a0a); border-color: var(--color-accent, #d4a853); }
 
         .reset {

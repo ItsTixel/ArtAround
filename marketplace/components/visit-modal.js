@@ -270,13 +270,15 @@ class VisitModal extends HTMLElement {
           margin: 4vh auto;
           width: min(720px, 92vw);
           max-height: 92vh;
-          background: var(--color-surface, #161616);
-          border: 1px solid var(--color-border, #2a2a2a);
+          background: var(--panel-bg, rgba(11, 18, 36, 0.72));
+          backdrop-filter: blur(24px) saturate(140%);
+          -webkit-backdrop-filter: blur(24px) saturate(140%);
+          border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
           border-radius: var(--radius, 8px);
           overflow: hidden;
           display: flex;
           flex-direction: column;
-          box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
+          box-shadow: var(--glass-shadow, 0 24px 64px rgba(0, 0, 0, 0.55));
           animation: rise-in 0.35s ease;
         }
 
@@ -289,18 +291,18 @@ class VisitModal extends HTMLElement {
           z-index: 3;
           width: 34px; height: 34px;
           display: flex; align-items: center; justify-content: center;
-          background: var(--glass-bg, rgba(22, 22, 22, 0.85));
+          background: var(--pill-bg, rgba(255, 255, 255, 0.06));
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
-          border: 1px solid var(--color-border, #2a2a2a);
-          border-radius: var(--radius-sm, 6px);
+          border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+          border-radius: 9999px;
           cursor: pointer;
           font-size: 1.1rem;
           line-height: 1;
           color: var(--color-text, #f0ede8);
           transition: background 0.3s ease, color 0.3s ease;
         }
-        .close-btn:hover { background: var(--color-accent, #d4a853); color: var(--color-on-accent, #0a0a0a); }
+        .close-btn:hover { background: var(--pill-hover-bg, rgba(255, 255, 255, 0.16)); }
 
         .body-scroll { overflow-y: auto; flex: 1; min-height: 0; }
 
@@ -308,7 +310,7 @@ class VisitModal extends HTMLElement {
         .banner {
           position: relative;
           height: 190px;
-          background: #101010;
+          background: var(--placeholder-bg, #101010);
           border-bottom: 1px solid var(--color-border, #2a2a2a);
           display: flex; align-items: center; justify-content: center;
           overflow: hidden;
@@ -317,7 +319,7 @@ class VisitModal extends HTMLElement {
         .banner::before {
           content: '';
           position: absolute; inset: 0;
-          background: repeating-linear-gradient(135deg, transparent 0 11px, rgba(255,255,255,0.035) 11px 12px);
+          background: repeating-linear-gradient(135deg, transparent 0 11px, var(--placeholder-line, rgba(255,255,255,0.035)) 11px 12px);
         }
         .banner.has-image::before { display: none; }
         .banner-img {
@@ -332,11 +334,12 @@ class VisitModal extends HTMLElement {
           font-size: 0.68rem;
           letter-spacing: 0.14em;
           text-transform: uppercase;
-          color: var(--color-text-muted, #8a8a8a);
-          background: var(--glass-bg, rgba(22, 22, 22, 0.85));
+          color: #e2e8f0;
+          background: rgba(2, 6, 23, 0.55);
+          border: 1px solid rgba(255, 255, 255, 0.1);
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
-          border-radius: var(--radius-sm, 6px);
+          border-radius: 9999px;
           padding: 0.4rem 0.85rem;
           text-align: center;
           max-width: 80%;
@@ -347,11 +350,13 @@ class VisitModal extends HTMLElement {
           font-size: 0.62rem;
           letter-spacing: 0.16em;
           text-transform: uppercase;
-          border-radius: var(--radius-sm, 6px);
+          border-radius: 9999px;
           padding: 0.35rem 0.7rem;
-          background: var(--color-surface, #161616);
-          color: var(--color-accent, #d4a853);
-          border: 1px solid var(--color-accent, #d4a853);
+          background: rgba(2, 6, 23, 0.55);
+          color: #e2e8f0;
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
         }
 
         /* ── Contenuto ────────────────────────────────────── */
@@ -362,7 +367,7 @@ class VisitModal extends HTMLElement {
           font-weight: 600;
           letter-spacing: 0.16em;
           text-transform: uppercase;
-          color: var(--color-accent, #9e7a46);
+          color: var(--color-text-muted, #94a3b8);
           margin-bottom: 0.5rem;
         }
         .title {
@@ -380,7 +385,7 @@ class VisitModal extends HTMLElement {
           color: var(--color-text-muted, #78716c);
           padding-bottom: 1.1rem;
           margin-bottom: 1.1rem;
-          border-bottom: 1px solid var(--color-border, #e8e6e1);
+          border-bottom: 1px solid var(--glass-border, #e8e6e1);
         }
         .meta-row strong { color: var(--color-text, #1c1917); font-weight: 600; }
         .meta-row .sep { width: 3px; height: 3px; border-radius: 50%; background: currentColor; opacity: 0.5; }
@@ -394,8 +399,9 @@ class VisitModal extends HTMLElement {
           letter-spacing: 0.1em;
           text-transform: uppercase;
           color: var(--color-text-muted, #78716c);
-          border: 1px solid var(--color-border, #e8e6e1);
-          padding: 0.25rem 0.6rem;
+          border: 1px solid var(--glass-border, #e8e6e1);
+          border-radius: 9999px;
+          padding: 0.25rem 0.7rem;
           margin: 0 0.4rem 0.4rem 0;
         }
 
@@ -418,7 +424,7 @@ class VisitModal extends HTMLElement {
         .opera-thumb {
           width: 56px; height: 56px;
           flex-shrink: 0;
-          background: #101010;
+          background: var(--placeholder-bg, #101010);
           border: 1px solid var(--color-border, #2a2a2a);
           border-radius: var(--radius-sm, 6px);
           overflow: hidden;
@@ -426,7 +432,7 @@ class VisitModal extends HTMLElement {
         .opera-thumb img { width: 100%; height: 100%; object-fit: cover; }
         .opera-thumb-ph {
           display: block; width: 100%; height: 100%;
-          background: repeating-linear-gradient(135deg, transparent 0 6px, rgba(255,255,255,0.05) 6px 7px);
+          background: repeating-linear-gradient(135deg, transparent 0 6px, var(--placeholder-line, rgba(255,255,255,0.05)) 6px 7px);
         }
         .opera-info { min-width: 0; flex: 1; }
         .opera-info h3 {
@@ -460,8 +466,8 @@ class VisitModal extends HTMLElement {
           display: flex; align-items: center; justify-content: space-between;
           gap: 1rem;
           padding: 1.1rem 2rem;
-          border-top: 1px solid var(--color-border, #e8e6e1);
-          background: var(--color-surface, #fff);
+          border-top: 1px solid var(--glass-border, #e8e6e1);
+          background: transparent;
         }
         .footer-info { display: flex; flex-direction: column; gap: 0.2rem; }
         .footer-price {
@@ -479,24 +485,31 @@ class VisitModal extends HTMLElement {
           letter-spacing: 0.08em;
           text-transform: uppercase;
           padding: 0.75rem 1.5rem;
-          border-radius: var(--radius-sm, 6px);
+          border-radius: 9999px;
           border: 1px solid transparent;
           cursor: pointer;
           white-space: nowrap;
           transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
         }
         .btn.primary {
-          background: linear-gradient(135deg, var(--color-accent, #d4a853), var(--color-accent-hover, #c49440));
-          border-color: var(--color-accent, #d4a853);
-          color: var(--color-on-accent, #0a0a0a);
+          background: var(--pill-hover-bg, rgba(255, 255, 255, 0.12));
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border-color: var(--pill-hover-border, rgba(255, 255, 255, 0.25));
+          color: var(--color-text, #f0ede8);
         }
-        .btn.primary:hover { box-shadow: 0 0 20px rgba(212, 168, 83, 0.35); }
+        .btn.primary:hover {
+          background: var(--color-accent, #e7edf7);
+          border-color: var(--color-accent, #e7edf7);
+          color: var(--color-on-accent, #0a0f1e);
+          box-shadow: var(--glow-accent, 0 0 20px rgba(148, 197, 253, 0.2));
+        }
         .btn.primary:disabled { opacity: 0.55; cursor: default; box-shadow: none; }
-        .btn.ghost { background: transparent; border-color: var(--color-border, #2a2a2a); color: var(--color-text, #f0ede8); }
-        .btn.ghost:hover { background: var(--color-border, #2a2a2a); }
+        .btn.ghost { background: transparent; border-color: var(--glass-border, #2a2a2a); color: var(--color-text, #f0ede8); }
+        .btn.ghost:hover { background: var(--pill-bg, rgba(255, 255, 255, 0.06)); }
         .btn.owned {
           background: transparent;
-          border-color: var(--color-border, #2a2a2a);
+          border-color: var(--glass-border, #2a2a2a);
           color: var(--color-text-muted, #8a8a8a);
           cursor: default;
         }

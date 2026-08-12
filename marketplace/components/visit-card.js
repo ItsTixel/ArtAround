@@ -58,9 +58,11 @@ class VisitCard extends HTMLElement {
         :host { display: block; height: 100%; }
 
         .card {
-          background: var(--color-surface, #161616);
-          border: 1px solid var(--color-border, #2a2a2a);
-          border-top: 2px solid var(--color-accent, #d4a853);
+          background: var(--glass-bg, rgba(255, 255, 255, 0.05));
+          backdrop-filter: blur(20px) saturate(140%);
+          -webkit-backdrop-filter: blur(20px) saturate(140%);
+          border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+          border-top-color: var(--glass-border-strong, rgba(255, 255, 255, 0.22));
           border-radius: var(--radius, 8px);
           overflow: hidden;
           display: flex;
@@ -69,18 +71,19 @@ class VisitCard extends HTMLElement {
           cursor: pointer;
           text-decoration: none;
           color: inherit;
-          transition: box-shadow 0.4s ease, transform 0.4s ease;
+          transition: box-shadow 0.4s ease, transform 0.4s ease, border-color 0.4s ease;
         }
         .card:hover {
           transform: translateY(-4px);
-          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), var(--glow-accent, 0 0 20px rgba(212, 168, 83, 0.15));
+          border-color: var(--glass-border-strong, rgba(255, 255, 255, 0.18));
+          box-shadow: var(--glass-shadow, 0 16px 40px rgba(0, 0, 0, 0.5)), var(--glow-accent, 0 0 24px rgba(148, 197, 253, 0.16));
         }
 
         /* ── Banner placeholder ───────────────────────────── */
         .banner {
           position: relative;
           height: 184px;
-          background: #101010;
+          background: var(--placeholder-bg, #101010);
           border-bottom: 1px solid var(--color-border, #2a2a2a);
           display: flex;
           align-items: center;
@@ -93,7 +96,7 @@ class VisitCard extends HTMLElement {
           background: repeating-linear-gradient(
             135deg,
             transparent 0 11px,
-            rgba(255, 255, 255, 0.035) 11px 12px
+            var(--placeholder-line, rgba(255, 255, 255, 0.035)) 11px 12px
           );
         }
         .banner.has-image::before { display: none; }
@@ -112,9 +115,10 @@ class VisitCard extends HTMLElement {
           font-size: 0.68rem;
           letter-spacing: 0.18em;
           text-transform: uppercase;
-          color: var(--color-text-muted, #8a8a8a);
-          background: var(--glass-bg, rgba(22, 22, 22, 0.85));
-          border-radius: var(--radius-sm, 6px);
+          color: #e2e8f0;
+          background: rgba(2, 6, 23, 0.55);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 9999px;
           padding: 0.4rem 0.85rem;
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
@@ -128,22 +132,19 @@ class VisitCard extends HTMLElement {
           font-weight: 600;
           letter-spacing: 0.08em;
           text-transform: uppercase;
-          border-radius: var(--radius-sm, 6px);
+          border-radius: 9999px;
           padding: 0.35rem 0.7rem;
-          background: var(--glass-bg, rgba(22, 22, 22, 0.85));
+          background: rgba(2, 6, 23, 0.55);
+          border: 1px solid rgba(255, 255, 255, 0.1);
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
-          color: var(--color-text, #f0ede8);
+          color: #e2e8f0;
         }
-        .price-tag.free {
-          background: var(--color-accent, #d4a853);
-          color: var(--color-on-accent, #0a0a0a);
-          backdrop-filter: none;
-          -webkit-backdrop-filter: none;
-        }
+        .price-tag.free,
         .price-tag.owned {
-          background: var(--color-accent, #d4a853);
-          color: var(--color-on-accent, #0a0a0a);
+          background: var(--color-accent, #e7edf7);
+          color: var(--color-on-accent, #0a0f1e);
+          border-color: transparent;
           backdrop-filter: none;
           -webkit-backdrop-filter: none;
         }
@@ -157,11 +158,13 @@ class VisitCard extends HTMLElement {
           font-weight: 500;
           letter-spacing: 0.16em;
           text-transform: uppercase;
-          border-radius: var(--radius-sm, 6px);
+          border-radius: 9999px;
           padding: 0.35rem 0.7rem;
-          background: var(--color-surface, #161616);
-          color: var(--color-accent, #d4a853);
-          border: 1px solid var(--color-accent, #d4a853);
+          background: rgba(2, 6, 23, 0.55);
+          color: #e2e8f0;
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
         }
 
         /* ── Body ─────────────────────────────────────────── */
@@ -179,9 +182,9 @@ class VisitCard extends HTMLElement {
           font-weight: 600;
           letter-spacing: 0.16em;
           text-transform: uppercase;
-          color: var(--color-accent, #9e7a46);
+          color: var(--color-text-muted, #94a3b8);
           padding-bottom: 0.7rem;
-          border-bottom: 1px solid var(--color-border, #e8e6e1);
+          border-bottom: 1px solid var(--glass-border, #e8e6e1);
         }
 
         .meta-top {
@@ -202,9 +205,7 @@ class VisitCard extends HTMLElement {
           color: var(--color-text, #1c1917);
           line-height: 1.3;
           margin: 0;
-          transition: color 0.3s ease;
         }
-        .card:hover h2 { color: var(--color-accent, #9e7a46); }
 
         .desc {
           font-family: var(--font-sans, 'Nunito Sans', system-ui, sans-serif);
@@ -235,7 +236,7 @@ class VisitCard extends HTMLElement {
           gap: 1rem;
           margin-top: auto;
           padding-top: 1rem;
-          border-top: 1px solid var(--color-border, #e8e6e1);
+          border-top: 1px solid var(--glass-border, #e8e6e1);
           font-family: var(--font-sans, 'Inter', system-ui, sans-serif);
         }
         .duration {
@@ -252,19 +253,23 @@ class VisitCard extends HTMLElement {
           margin-bottom: 0.15rem;
         }
         .cta {
-          font-size: 0.7rem;
+          display: inline-flex;
+          align-items: center;
+          font-size: 0.66rem;
           font-weight: 500;
-          letter-spacing: 0.1em;
+          letter-spacing: 0.08em;
           text-transform: uppercase;
-          color: var(--color-text, #1c1917);
-          padding-bottom: 2px;
-          border-bottom: 1px solid var(--color-text, #1c1917);
-          transition: color 0.3s ease, border-color 0.3s ease;
+          color: var(--color-text, #f0ede8);
+          background: var(--pill-bg, rgba(255, 255, 255, 0.08));
+          border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.14));
+          border-radius: 9999px;
+          padding: 0.42rem 0.9rem;
+          transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
           white-space: nowrap;
         }
         .card:hover .cta {
-          color: var(--color-accent, #9e7a46);
-          border-color: var(--color-accent, #9e7a46);
+          border-color: var(--pill-hover-border, rgba(255, 255, 255, 0.28));
+          background: var(--pill-hover-bg, rgba(255, 255, 255, 0.14));
         }
       </style>
 

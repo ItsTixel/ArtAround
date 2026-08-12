@@ -4,21 +4,24 @@
  *  Si appoggia ai token di base.css.
  * ============================================================ */
 
+/* ── Sfondo pagina: bagliori diffusi (coerente con museums.css) ── */
+html, body {
+  background:
+    radial-gradient(ellipse 1100px 620px at 18% -8%, var(--blob-1), transparent 60%),
+    radial-gradient(ellipse 900px 560px at 100% 8%, var(--blob-2), transparent 55%),
+    radial-gradient(ellipse 1000px 700px at 50% 115%, var(--blob-3), transparent 60%),
+    var(--color-bg);
+  color: var(--color-text);
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
 /* ── Page hero ────────────────────────────────────────────── */
 .page-hero {
-  background:
-    radial-gradient(ellipse 900px 480px at 50% -15%, rgba(212, 168, 83, 0.12), transparent 65%),
-    var(--color-bg);
+  background: transparent;
   color: var(--color-text);
   padding: 4.25rem 3rem 3.5rem;
   position: relative;
-  border-bottom: 1px solid var(--color-border);
-}
-.page-hero::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--color-accent);
+  border-bottom: 1px solid var(--glass-border);
 }
 
 .page-hero-inner {
@@ -70,13 +73,18 @@ filter-sidebar { display: block; }
   min-width: 0;
 }
 
-/* ── Toolbar risultati ────────────────────────────────────── */
+/* ── Toolbar risultati — pillola di vetro ────────────────────── */
 .results-bar {
   display: flex; align-items: center; justify-content: space-between;
   gap: 1.5rem; flex-wrap: wrap;
-  padding-bottom: 1.5rem;
+  padding: 0.7rem 0.6rem 0.7rem 1.3rem;
   margin-bottom: 2.25rem;
-  border-bottom: 1px solid var(--color-border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid var(--glass-border);
+  border-radius: 9999px;
+  box-shadow: var(--glass-shadow);
 }
 .results-count {
   font-family: 'JetBrains Mono', ui-monospace, monospace;
@@ -98,22 +106,23 @@ filter-sidebar { display: block; }
 #sort {
   font: inherit;
   font-family: var(--font-sans);
-  font-size: 0.82rem;
-  background: transparent;
-  border: 0;
-  border-bottom: 1px solid var(--color-border);
-  padding: 0.35rem 1.5rem 0.35rem 0.4rem;
+  font-size: 0.78rem;
+  background-color: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 9999px;
+  padding: 0.4rem 1.9rem 0.4rem 1rem;
   color: var(--color-text);
   cursor: pointer;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2378716c'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2394a3b8'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 0 center;
+  background-position: right 0.55rem center;
   background-size: 18px;
   outline: none;
-  transition: border-color var(--transition);
+  transition: border-color 0.3s ease, background-color 0.3s ease;
 }
-#sort:focus { border-bottom-color: var(--color-accent); }
+#sort:hover,
+#sort:focus { border-color: var(--glass-border-strong); background-color: var(--glass-bg-strong); }
 
 /* Visit search (nella toolbar accanto a Ordina) */
 .visit-search {
@@ -126,20 +135,17 @@ filter-sidebar { display: block; }
   width: 100%;
   padding: 0.4rem 0.5rem 0.4rem 1.6rem;
   border: 0;
-  border-bottom: 1px solid var(--color-border);
   background: transparent;
   font: inherit;
   font-family: var(--font-sans);
   font-size: 0.85rem;
   color: var(--color-text);
   outline: 0;
-  transition: border-color var(--transition);
 }
 .visit-search input::placeholder {
   color: var(--color-text-muted);
   font-style: italic;
 }
-.visit-search input:focus { border-bottom-color: var(--color-accent); }
 .visit-search::before {
   content: '';
   position: absolute; left: 0; top: 50%; transform: translateY(-50%);
@@ -184,8 +190,8 @@ filter-sidebar { display: block; }
   content: '';
   display: block;
   width: 24px; height: 24px;
-  border: 1px solid var(--color-border);
-  border-top-color: var(--color-accent);
+  border: 1px solid var(--glass-border);
+  border-top-color: var(--color-text);
   border-radius: 50%;
   animation: spin 1.2s linear infinite;
   margin: 0 auto 2rem;
@@ -202,9 +208,11 @@ filter-sidebar { display: block; }
 }
 .pagination button {
   padding: 0.45rem 1.4rem;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  background: transparent;
+  border: 1px solid var(--glass-border);
+  border-radius: 9999px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   font-family: var(--font-sans);
   font-size: 0.7rem;
   font-weight: 500;
@@ -212,12 +220,11 @@ filter-sidebar { display: block; }
   text-transform: uppercase;
   color: var(--color-text);
   cursor: pointer;
-  transition: background var(--transition), border-color var(--transition), color var(--transition);
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
 .pagination button:hover {
-  background: var(--color-accent);
-  color: var(--color-on-accent);
-  border-color: var(--color-accent);
+  background: var(--glass-bg-strong);
+  border-color: var(--glass-border-strong);
 }
 .pagination button:disabled { opacity: 0.3; cursor: not-allowed; }
 .pagination .page-info {
@@ -238,7 +245,7 @@ filter-sidebar { display: block; }
 }
 
 @media (max-width: 480px) {
-  .results-bar { flex-direction: column; align-items: stretch; }
+  .results-bar { flex-direction: column; align-items: stretch; border-radius: 1.5rem; padding: 1rem 1.25rem; }
   .results-controls { flex-wrap: wrap; }
   .visit-search { flex: 1 1 100%; max-width: none; min-width: 0; }
   #sort { flex: 1 1 auto; min-width: 0; }
