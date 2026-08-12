@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArtAround — Crea Museo</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Nunito+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/marketplace/css/base.css">
+  <link rel="stylesheet" href="/marketplace/css/museums.css">
+  <link rel="stylesheet" href="/marketplace/css/auth.css">
+  <link rel="stylesheet" href="/marketplace/css/create-museum.css">
+
+  <script type="module" src="/marketplace/components/app-navbar.js"></script>
+  <script type="module" src="/marketplace/components/app-footer.js"></script>
+</head>
+<body>
+
+  <app-navbar></app-navbar>
+
+  <main>
+    <section class="page-hero" aria-label="Crea un nuovo museo">
+      <div class="page-hero-inner">
+        <div class="kicker">Crea contenuto</div>
+        <h1>Crea un nuovo museo</h1>
+        <p class="hero-sub">Aggiungi un museo al catalogo di ArtAround</p>
+      </div>
+    </section>
+
+    <section class="create-section">
+      <form id="museum-form" class="create-form">
+
+        <div class="form-block">
+          <h2>Informazioni generali</h2>
+          <div class="field">
+            <label for="name">Nome *</label>
+            <input id="name" name="name" type="text" required placeholder="Es. Galleria degli Uffizi">
+          </div>
+          <div class="field">
+            <label for="wikidata_id">ID Wikidata</label>
+            <input id="wikidata_id" name="wikidata_id" type="text" placeholder="Es. Q51252">
+          </div>
+          <div class="field">
+            <label for="description">Descrizione</label>
+            <textarea id="description" name="description" rows="4" placeholder="Breve descrizione del museo"></textarea>
+          </div>
+          <div class="field">
+            <label for="image_url">URL immagine</label>
+            <input id="image_url" name="image_url" type="text" placeholder="https://upload.wikimedia.org/...">
+          </div>
+          <div class="field">
+            <label for="website">Sito web</label>
+            <input id="website" name="website" type="text" placeholder="https://...">
+          </div>
+        </div>
+
+        <div class="form-block">
+          <h2>Indirizzo</h2>
+          <div class="field">
+            <label for="street">Via</label>
+            <input id="street" name="street" type="text" placeholder="Via, numero civico">
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="city">Città</label>
+              <input id="city" name="city" type="text">
+            </div>
+            <div class="field">
+              <label for="zip">CAP</label>
+              <input id="zip" name="zip" type="text">
+            </div>
+            <div class="field">
+              <label for="country">Paese</label>
+              <input id="country" name="country" type="text" value="Italia">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-block">
+          <h2>Orari di apertura</h2>
+          <p class="block-hint">Lascia vuoto un giorno se non vuoi specificarne l'orario (es. "9:00–19:00" oppure "Chiuso").</p>
+          <div class="hours-grid" id="hours-grid"></div>
+        </div>
+
+        <div class="form-block">
+          <h2>Servizi</h2>
+          <p class="block-hint">Indica dove si trovano servizi come toilette, uscita, guardaroba, ecc.</p>
+          <div id="services-list" class="services-list"></div>
+          <button type="button" id="add-service" class="btn-secondary">+ Aggiungi servizio</button>
+        </div>
+
+        <button type="submit" class="btn-primary">Crea museo</button>
+        <p class="feedback" id="form-feedback"></p>
+      </form>
+    </section>
+  </main>
+
+  <app-footer></app-footer>
+
+  <script type="module" src="/marketplace/js/create-museum.js"></script>
+</body>
+</html>

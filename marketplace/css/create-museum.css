@@ -1,0 +1,169 @@
+/* ============================================================
+ *  create-museum.css — Pagina "Crea Museo"
+ *  Form multi-sezione per l'inserimento di un nuovo museo.
+ * ============================================================ */
+
+.create-section {
+  padding: 3rem 1.5rem 5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.create-form {
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.form-block {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 2rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.form-block h2 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.block-hint {
+  margin: -0.8rem 0 0;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem 1.5rem;
+}
+
+.create-form textarea {
+  width: 100%;
+  padding: 0.5rem 0.1rem;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--color-text);
+  outline: none;
+  resize: vertical;
+  transition: border-color var(--transition);
+}
+.create-form textarea:focus { border-bottom-color: var(--color-accent); }
+.create-form textarea::placeholder { color: var(--color-text-muted); }
+
+.hours-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.hours-row {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hours-row label {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+.hours-row input {
+  padding: 0.5rem 0.1rem;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--color-text);
+  outline: none;
+  transition: border-color var(--transition);
+}
+.hours-row input:focus { border-bottom-color: var(--color-accent); }
+.hours-row input::placeholder { color: var(--color-text-muted); }
+
+.services-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.service-row {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr auto;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.service-row input {
+  padding: 0.5rem 0.1rem;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--color-text);
+  outline: none;
+  transition: border-color var(--transition);
+}
+.service-row input:focus { border-bottom-color: var(--color-accent); }
+.service-row input::placeholder { color: var(--color-text-muted); }
+
+.remove-service {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition);
+}
+.remove-service:hover { color: var(--color-text); border-color: var(--color-text-muted); }
+
+.btn-secondary {
+  align-self: flex-start;
+  padding: 0.55rem 1.1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text-muted);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition);
+}
+.btn-secondary:hover { color: var(--color-text); border-color: var(--color-text-muted); }
+
+.create-form > .btn-primary {
+  align-self: center;
+  min-width: 220px;
+}
+
+.create-form > .feedback { text-align: center; }
+
+@media (max-width: 640px) {
+  .field-row { grid-template-columns: 1fr; }
+  .hours-row { grid-template-columns: 90px 1fr; }
+  .service-row { grid-template-columns: 1fr; }
+  .form-block { padding: 1.5rem 1.25rem; }
+}

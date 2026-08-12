@@ -152,6 +152,73 @@ class AppNavbar extends HTMLElement {
           border-color: rgba(240, 237, 232, 0.25);
         }
 
+        .nav-create { position: relative; }
+
+        .create-trigger {
+          font-family: var(--font-sans, 'Nunito Sans', system-ui, sans-serif);
+          background: transparent;
+          border: none;
+          color: rgba(240, 237, 232, 0.5);
+          font-size: 0.7rem;
+          font-weight: 500;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          padding: 0.4rem 0.9rem;
+          cursor: pointer;
+          transition: color 0.4s ease;
+        }
+        .create-trigger:hover { color: #f0ede8; }
+        .nav-create.open .create-trigger { color: #d4a853; }
+
+        .create-menu {
+          list-style: none;
+          margin: 0;
+          position: absolute;
+          top: calc(100% + 0.5rem);
+          left: 0;
+          min-width: 200px;
+          background: #141414;
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 6px;
+          box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+          padding: 0.4rem;
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(-6px);
+          transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+          z-index: 110;
+        }
+        .nav-create.open .create-menu {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+        }
+        .create-menu li { width: auto; }
+        .create-menu a {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 0.5rem;
+          padding: 0.6rem 0.7rem;
+          font-size: 0.72rem;
+          letter-spacing: 0.06em;
+          border-radius: 4px;
+          color: rgba(240, 237, 232, 0.75);
+        }
+        .create-menu a:hover { background: rgba(255, 255, 255, 0.06); color: #f0ede8; }
+        .create-menu a.disabled { color: rgba(240, 237, 232, 0.3); cursor: default; }
+        .create-menu a.disabled:hover { background: transparent; color: rgba(240, 237, 232, 0.3); }
+
+        .soon {
+          font-size: 0.55rem;
+          letter-spacing: 0.05em;
+          padding: 0.15rem 0.35rem;
+          border-radius: 3px;
+          background: rgba(212, 168, 83, 0.15);
+          color: #d4a853;
+          text-transform: uppercase;
+        }
+
         .hamburger {
           display: none;
           flex-direction: column;
@@ -218,6 +285,23 @@ class AppNavbar extends HTMLElement {
             gap: 0.6rem;
           }
 
+          .create-trigger { width: 100%; text-align: left; padding: 1rem 1.5rem; }
+          .create-menu {
+            position: static;
+            opacity: 1;
+            visibility: visible;
+            transform: none;
+            box-shadow: none;
+            border: none;
+            background: transparent;
+            max-height: 0;
+            overflow: hidden;
+            padding: 0;
+            transition: max-height 0.3s ease;
+          }
+          .nav-create.open .create-menu { max-height: 320px; padding: 0.2rem 0 0.4rem; }
+          .create-menu a { padding: 0.75rem 1.5rem 0.75rem 2.25rem; }
+
           .auth-actions a { text-align: center; padding: 0.75rem 1.1rem; }
           .username { padding: 0.4rem 0; }
           .btn-logout {
@@ -279,6 +363,37 @@ class AppNavbar extends HTMLElement {
     });
   }
 
+  _buildCreateMenu() {
+    const li = document.createElement('li');
+    li.className = 'nav-create';
+    li.innerHTML = `
+      <button type="button" class="create-trigger" aria-haspopup="true" aria-expanded="false">Crea ▾</button>
+      <ul class="create-menu">
+        <li><a href="/marketplace/pages/create-museum.html">Crea Museo</a></li>
+        <li><a href="#" class="disabled">Crea Opera <span class="soon">Presto</span></a></li>
+        <li><a href="#" class="disabled">Crea Visita <span class="soon">Presto</span></a></li>
+        <li><a href="#" class="disabled">Crea Descrizione <span class="soon">Presto</span></a></li>
+      </ul>
+    `;
+
+    const trigger = li.querySelector('.create-trigger');
+    const closeMenu = () => {
+      li.classList.remove('open');
+      trigger.setAttribute('aria-expanded', 'false');
+    };
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = li.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', String(isOpen));
+    });
+    li.querySelectorAll('a.disabled').forEach(a => a.addEventListener('click', (e) => e.preventDefault()));
+    document.addEventListener('click', (e) => {
+      if (!e.composedPath().includes(li)) closeMenu();
+    });
+
+    return li;
+  }
+
   _esc(s) {
     return String(s ?? '')
       .replace(/&/g, '&amp;').replace(/</g, '&lt;')
@@ -291,6 +406,8 @@ class AppNavbar extends HTMLElement {
 
     const navLinks = this.shadowRoot.querySelector('#nav-links');
     if (navLinks) {
+      if (user.role === 'author') navLinks.appendChild(this._buildCreateMenu());
+
       const li = document.createElement('li');
       const a = document.createElement('a');
       a.href = '/marketplace/pages/profile.html#visite:adopted';
