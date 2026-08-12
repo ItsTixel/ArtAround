@@ -148,17 +148,87 @@ class AppNavbar extends HTMLElement {
           border-color: rgba(240, 237, 232, 0.25);
         }
 
-        @media (max-width: 640px) {
-          .auth-actions { padding-left: 0.75rem; gap: 0.4rem; }
-          .auth-actions a { padding: 0.4rem 0.7rem; }
+        .hamburger {
+          display: none;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 5px;
+          width: 34px;
+          height: 34px;
+          background: transparent;
+          border: none;
+          padding: 0;
+          cursor: pointer;
+          z-index: 101;
+        }
+
+        .hamburger span {
+          display: block;
+          width: 22px;
+          height: 2px;
+          background: #f0ede8;
+          transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        @media (max-width: 768px) {
+          nav { justify-content: flex-end; position: relative; }
+          .hamburger { display: flex; }
+
+          .logo {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+          }
+
+          .nav-right {
+            position: fixed;
+            top: 72px; left: 0; right: 0;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0;
+            background: #0a0a0a;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+          }
+
+          .nav-right.open { max-height: calc(100vh - 72px); overflow-y: auto; }
+
+          ul { flex-direction: column; align-items: stretch; width: 100%; gap: 0; padding: 0.5rem 0; }
+          li { width: 100%; }
+          a { display: block; padding: 1rem 1.5rem; }
+
+          .auth-actions, .user-actions {
+            flex-direction: column;
+            align-items: stretch;
+            border-left: none;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 1rem 1.5rem;
+            gap: 0.6rem;
+          }
+
+          .auth-actions a { text-align: center; padding: 0.75rem 1.1rem; }
+          .username { padding: 0.4rem 0; }
+          .btn-logout {
+            width: 100%;
+            text-align: center;
+            padding: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+          }
         }
 
         @media (max-width: 480px) {
           nav { padding: 0 1.5rem; height: 60px; }
           .logo { font-size: 1.1rem; }
-          a { font-size: 0.65rem; padding: 0.35rem 0.6rem; }
-          .nav-right { gap: 0.9rem; }
-          .username { display: none; }
+          .nav-right { top: 60px; }
+          .hamburger { width: 30px; height: 30px; }
         }
       </style>
       <nav>
@@ -173,10 +243,36 @@ class AppNavbar extends HTMLElement {
             <a href="/marketplace/register.html" class="btn-register ${isRegister ? 'active' : ''}">Registrati</a>
           </div>
         </div>
+        <button type="button" class="hamburger" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
       </nav>
     `;
 
     this._loadUser();
+    this._setupMenuToggle();
+  }
+
+  _setupMenuToggle() {
+    const hamburger = this.shadowRoot.querySelector('.hamburger');
+    const navRight = this.shadowRoot.querySelector('.nav-right');
+    if (!hamburger || !navRight) return;
+
+    const closeMenu = () => {
+      hamburger.classList.remove('open');
+      navRight.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    };
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = navRight.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    navRight.addEventListener('click', (e) => {
+      if (e.target.closest('a, button')) closeMenu();
+    });
   }
 
   _esc(s) {
