@@ -52,7 +52,14 @@ async function create(req, res) {
 
 async function update(req, res) {
   try {
-    const updateData = { ...req.body };
+    // Whitelist dei campi modificabili dall'utente stesso: esclude role,
+    // adopted_visits, bookmarked_visits ecc. per evitare che un utente si
+    // auto-assegni permessi o dati non suoi tramite questa rotta.
+    const allowedFields = ['username', 'email', 'password', 'display_name', 'bio', 'avatar_url'];
+    const updateData = {};
+    for (const field of allowedFields) {
+      if (req.body[field] !== undefined) updateData[field] = req.body[field];
+    }
 
         // Criptiamo la password se è presente
         if (updateData.password) {

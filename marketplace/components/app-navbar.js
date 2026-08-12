@@ -10,10 +10,10 @@ class AppNavbar extends HTMLElement {
     const p = window.location.pathname;
     const isMuseums = p === '/marketplace' || p.endsWith('/marketplace/') || p.endsWith('index.html');
     const isVisits  = p.endsWith('/visits.html');
-    const isMyVisits = p.endsWith('my-visits.html');
+    const isProfile  = p.endsWith('profile.html');
     const isLogin    = p.endsWith('login.html');
     const isRegister = p.endsWith('register.html');
-    this._isMyVisits = isMyVisits;
+    this._isProfile  = isProfile;
 
     this.shadowRoot.innerHTML = `
       <style>
@@ -126,9 +126,13 @@ class AppNavbar extends HTMLElement {
           font-weight: 600;
           letter-spacing: 0.06em;
           color: #d4a853;
+          text-decoration: none;
+          cursor: pointer;
+          transition: color 0.4s ease;
         }
 
         .username::before { content: '👤 '; }
+        .username:hover, .username.active { color: #f0ede8; }
 
         .btn-logout {
           background: transparent;
@@ -289,9 +293,8 @@ class AppNavbar extends HTMLElement {
     if (navLinks) {
       const li = document.createElement('li');
       const a = document.createElement('a');
-      a.href = '/marketplace/pages/my-visits.html';
+      a.href = '/marketplace/pages/profile.html#visite:adopted';
       a.textContent = 'Le tue visite';
-      if (this._isMyVisits) a.classList.add('active');
       li.appendChild(a);
       navLinks.appendChild(li);
     }
@@ -301,7 +304,7 @@ class AppNavbar extends HTMLElement {
 
     authActions.className = 'user-actions';
     authActions.innerHTML = `
-      <span class="username">${this._esc(user.username)}</span>
+      <a href="/marketplace/pages/profile.html" class="username ${this._isProfile ? 'active' : ''}">${this._esc(user.username)}</a>
       <button type="button" class="btn-logout">Esci</button>
     `;
     authActions.querySelector('.btn-logout').addEventListener('click', async () => {

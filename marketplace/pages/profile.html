@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArtAround — Il tuo profilo</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Nunito+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/marketplace/css/base.css">
+  <link rel="stylesheet" href="/marketplace/css/visits.css">
+  <link rel="stylesheet" href="/marketplace/css/auth.css">
+  <link rel="stylesheet" href="/marketplace/css/profile.css">
+
+  <script type="module" src="/marketplace/components/app-navbar.js"></script>
+  <script type="module" src="/marketplace/components/app-footer.js"></script>
+  <script type="module" src="/marketplace/components/visit-card.js"></script>
+  <script type="module" src="/marketplace/components/visit-modal.js"></script>
+</head>
+<body>
+
+  <app-navbar></app-navbar>
+
+  <main>
+    <section class="page-hero" aria-label="Il tuo profilo">
+      <div class="page-hero-inner">
+        <div class="kicker">Marketplace</div>
+        <h1>Il tuo profilo</h1>
+        <p class="hero-sub" id="hero-sub">—</p>
+      </div>
+    </section>
+
+    <div class="profile-layout">
+      <nav class="profile-nav" aria-label="Sezioni del profilo">
+        <button type="button" class="tab-btn" data-tab="visite">Visite</button>
+        <button type="button" class="tab-btn" data-tab="descrizioni">Descrizioni</button>
+        <button type="button" class="tab-btn" data-tab="vendite">Vendite &amp; acquisti</button>
+        <button type="button" class="tab-btn" data-tab="impostazioni">Impostazioni</button>
+      </nav>
+
+      <div class="profile-content">
+
+        <!-- ── Visite (create / adottate / preferiti) ── -->
+        <section id="panel-visite" class="panel" aria-label="Le tue visite">
+          <div class="sub-pills" role="tablist" aria-label="Filtro visite">
+            <button type="button" class="pill" data-sub="create">Create</button>
+            <button type="button" class="pill" data-sub="adopted">Adottate</button>
+            <button type="button" class="pill" data-sub="favorites">Preferiti</button>
+          </div>
+          <p class="panel-hint" id="visite-hint"></p>
+          <div class="visits-grid" id="visite-grid" role="list" aria-label="Visite"></div>
+        </section>
+
+        <!-- ── Descrizioni create ── -->
+        <section id="panel-descrizioni" class="panel" aria-label="Le tue descrizioni">
+          <p class="panel-hint">Le descrizioni (item) che hai creato per le opere del catalogo.</p>
+          <div class="desc-grid" id="descrizioni-grid" role="list" aria-label="Descrizioni"></div>
+        </section>
+
+        <!-- ── Vendite & acquisti (placeholder) ── -->
+        <section id="panel-vendite" class="panel" aria-label="Vendite e acquisti">
+          <div class="empty-state">
+            <div class="empty-state-icon">⏳</div>
+            <h2>Funzionalità in arrivo</h2>
+            <p>La cronologia di vendite e acquisti sarà disponibile qui non appena introdurremo le transazioni sul marketplace.</p>
+          </div>
+        </section>
+
+        <!-- ── Impostazioni ── -->
+        <section id="panel-impostazioni" class="panel" aria-label="Impostazioni del profilo">
+          <form id="settings-form" class="auth-form profile-form">
+            <div class="field">
+              <label for="display_name">Nome visualizzato</label>
+              <input id="display_name" name="display_name" type="text" maxlength="60" placeholder="Come vuoi essere chiamato/a">
+            </div>
+            <div class="field">
+              <label for="bio">Bio</label>
+              <textarea id="bio" name="bio" maxlength="300" rows="3" placeholder="Racconta qualcosa di te"></textarea>
+            </div>
+            <div class="field">
+              <label for="avatar_url">URL avatar</label>
+              <input id="avatar_url" name="avatar_url" type="text" placeholder="https://…">
+            </div>
+            <div class="field">
+              <label for="username">Username</label>
+              <input id="username" name="username" type="text" minlength="3" maxlength="30" required>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" required>
+            </div>
+
+            <div class="field-divider">Cambia password <span>(lascia vuoto per non modificarla)</span></div>
+
+            <div class="field">
+              <label for="password">Nuova password</label>
+              <input id="password" name="password" type="password" autocomplete="new-password" placeholder="••••••••">
+            </div>
+            <div class="field">
+              <label for="password_confirm">Conferma nuova password</label>
+              <input id="password_confirm" name="password_confirm" type="password" autocomplete="new-password" placeholder="••••••••">
+            </div>
+
+            <button type="submit" class="btn-primary">Salva modifiche</button>
+            <p class="feedback" id="settings-feedback"></p>
+          </form>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <app-footer></app-footer>
+
+  <visit-modal></visit-modal>
+
+  <script type="module" src="/marketplace/js/profile.js"></script>
+</body>
+</html>

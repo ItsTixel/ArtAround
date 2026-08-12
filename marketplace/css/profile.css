@@ -1,0 +1,227 @@
+/* ============================================================
+ *  profile.css — Pagina "Il tuo profilo"
+ *  Sidebar di sezioni + pannello contenuto. Si appoggia ai token
+ *  di base.css e riusa .field/.auth-form/.btn-primary di auth.css.
+ * ============================================================ */
+
+.profile-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 0;
+  max-width: 1480px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+/* ── Sidebar sezioni ──────────────────────────────────────── */
+.profile-nav {
+  position: sticky;
+  top: 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 2.75rem 1.5rem 2rem 3rem;
+}
+
+.tab-btn {
+  text-align: left;
+  background: transparent;
+  border: none;
+  border-left: 2px solid transparent;
+  padding: 0.7rem 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
+}
+.tab-btn:hover { color: var(--color-text); }
+.tab-btn.active {
+  color: var(--color-accent);
+  border-left-color: var(--color-accent);
+  background: rgba(212, 168, 83, 0.06);
+}
+
+/* ── Contenuto ────────────────────────────────────────────── */
+.profile-content {
+  padding: 2.75rem 3rem 5rem 1.5rem;
+  min-width: 0;
+}
+
+.panel { display: none; }
+.panel.active { display: block; }
+
+.panel-hint {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1.75rem;
+}
+.panel-hint a { color: var(--color-accent); text-decoration: none; }
+.panel-hint a:hover { color: var(--color-accent-hover); }
+
+/* ── Sotto-filtri (pill) per il pannello Visite ──────────────── */
+.sub-pills {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+.pill {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.45rem 1.1rem;
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
+}
+.pill:hover { color: var(--color-text); border-color: rgba(240, 237, 232, 0.3); }
+.pill.active {
+  color: var(--color-on-accent);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* ── Griglia descrizioni ──────────────────────────────────── */
+.desc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.desc-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-top: 2px solid var(--color-accent);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.desc-card .desc-artwork {
+  font-family: var(--font-sans);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.desc-card .desc-summary {
+  font-family: var(--font-serif);
+  font-size: 1.02rem;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--color-text);
+}
+
+.desc-card .desc-tags {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+.desc-tag {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.15rem 0.55rem;
+}
+.desc-tag.license-private { color: #d97878; border-color: rgba(217, 120, 120, 0.4); }
+.desc-tag.license-reserved { color: var(--color-info); border-color: rgba(107, 163, 190, 0.4); }
+.desc-tag.license-public { color: var(--color-accent); border-color: rgba(212, 168, 83, 0.4); }
+
+/* ── Empty state (placeholder Vendite & acquisti) ────────────── */
+.empty-state {
+  text-align: center;
+  padding: 4.5rem 1.5rem;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius);
+}
+.empty-state-icon { font-size: 2rem; margin-bottom: 1rem; }
+.empty-state h2 {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.4rem;
+  color: var(--color-text);
+  margin-bottom: 0.6rem;
+}
+.empty-state p {
+  max-width: 420px;
+  margin: 0 auto;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+/* ── Form impostazioni ────────────────────────────────────── */
+.profile-form { max-width: 460px; }
+.profile-form textarea {
+  width: 100%;
+  padding: 0.5rem 0.1rem;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--color-text);
+  outline: none;
+  resize: vertical;
+  transition: border-color var(--transition);
+}
+.profile-form textarea:focus { border-bottom-color: var(--color-accent); }
+.profile-form textarea::placeholder { color: var(--color-text-muted); }
+
+.field-divider {
+  margin-top: 0.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-border);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.field-divider span {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.7rem;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+.profile-form .feedback { text-align: left; }
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .profile-layout { grid-template-columns: 1fr; }
+  .profile-nav {
+    position: static;
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 1.5rem 1.5rem 0;
+    gap: 0.4rem;
+  }
+  .tab-btn {
+    border-left: none;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+  }
+  .tab-btn.active { border-bottom-color: var(--color-accent); }
+  .profile-content { padding: 1.75rem 1.5rem 4rem; }
+}
