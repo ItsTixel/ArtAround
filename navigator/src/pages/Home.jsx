@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useActiveVisit } from '../context/ActiveVisitContext'
+import VisitDetailModal from '../components/VisitDetailModal'
 
 function formatDuration(sec) {
   if (!sec) return null
@@ -14,9 +16,11 @@ function formatPrice(price) {
 
 function Home() {
   const { activeVisit, activateVisit, clearActiveVisit } = useActiveVisit()
+  const navigate = useNavigate()
   const [visits, setVisits] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [detailVisit, setDetailVisit] = useState(null)
 
   useEffect(() => {
     let cancelled = false
@@ -58,33 +62,31 @@ function Home() {
           const museumNames = (visit.museum || []).map((m) => m.name).join(', ')
 
           return (
-            <li
-              key={visit._id}
-              className={`rounded-lg border bg-surface p-4 shadow-sm ${
-                isActive ? 'border-accent shadow-[0_0_20px_rgba(212,168,83,0.15)]' : 'border-border'
-              }`}
-            >
-              <h2 className="font-serif font-semibold text-text">{visit.title}</h2>
-              {museumNames && (
-                <p className="text-sm text-text-muted">{museumNames}</p>
-              )}
-              <div className="mt-1 flex gap-3 text-xs text-text-muted">
-                {formatDuration(visit.estimated_duration_sec) && (
-                  <span>{formatDuration(visit.estimated_duration_sec)}</span>
-                )}
-                <span>{formatPrice(visit.base_price)}</span>
-              </div>
-
+            <li key={visit._id}>
               <button
                 type="button"
-                onClick={() => (isActive ? clearActiveVisit() : activateVisit(visit))}
-                className={`mt-3 w-full rounded-md px-4 py-2 text-sm font-medium ${
-                  isActive
-                    ? 'bg-accent text-on-accent shadow-[0_0_16px_rgba(212,168,83,0.25)]'
-                    : 'border border-border bg-surface text-text'
+                onClick={() => setDetailVisit(visit)}
+                className={`w-full rounded-lg border bg-surface p-4 text-left shadow-sm ${
+                  isActive ? 'border-accent shadow-[0_0_20px_rgba(212,168,83,0.15)]' : 'border-border'
                 }`}
               >
-                {isActive ? 'Visita attiva ✓' : 'Attiva'}
+                <div className="flex items-start justify-between gap-2">
+                  <h2 className="font-serif font-semibold text-text">{visit.title}</h2>
+                  {isActive && (
+                    <span className="shrink-0 rounded-full bg-accent px-2.5 py-0.5 text-xs font-medium text-on-accent">
+                      Attiva ✓
+                    </span>
+                  )}
+                </div>
+                {museumNames && (
+                  <p className="text-sm text-text-muted">{museumNames}</p>
+                )}
+                <div className="mt-1 flex gap-3 text-xs text-text-muted">
+                  {formatDuration(visit.estimated_duration_sec) && (
+                    <span>{formatDuration(visit.estimated_duration_sec)}</span>
+                  )}
+                  <span>{formatPrice(visit.base_price)}</span>
+                </div>
               </button>
             </li>
           )
@@ -93,6 +95,23 @@ function Home() {
 
       {!loading && !error && visits.length === 0 && (
         <p className="text-text-muted">Nessuna visita disponibile.</p>
+      )}
+
+      {detailVisit && (
+        <VisitDetailModal
+          visit={detailVisit}
+          isActive={activeVisit?._id === detailVisit._id}
+          onClose={() => setDetailVisit(null)}
+          onActivate={() => {
+            activateVisit(detailVisit)
+            setDetailVisit(null)
+            navigate('/opera')
+          }}
+          onDeactivate={() => {
+            clearActiveVisit()
+            setDetailVisit(null)
+          }}
+        />
       )}
     </div>
   )
