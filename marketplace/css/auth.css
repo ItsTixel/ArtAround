@@ -117,6 +117,31 @@
 
 .btn-primary:hover { background: var(--color-accent-hover); }
 
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1.75rem 0 1.5rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.google-btn-wrap {
+  display: flex;
+  justify-content: center;
+}
+
 .feedback {
   min-height: 1.1em;
   margin-top: 1.25rem;

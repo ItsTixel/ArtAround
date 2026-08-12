@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/marketplace/css/auth.css">
     <script type="module" src="/marketplace/components/app-navbar.js"></script>
     <script type="module" src="/marketplace/components/app-footer.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
     <app-navbar></app-navbar>
@@ -33,6 +34,9 @@
                     </div>
                     <button type="submit" class="btn-primary">Entra</button>
                 </form>
+
+                <div class="auth-divider">oppure</div>
+                <div class="google-btn-wrap" id="google-signin-btn"></div>
 
                 <p id="feedbackMessage" class="feedback"></p>
 

@@ -24,7 +24,14 @@ const userSchema = new Schema({
 
     password: {
         type: String,
-        required: true
+        // Non richiesta per gli account creati via Google Sign-In (niente password locale).
+        required: function () { return !this.googleId; }
+    },
+
+    googleId: {
+        type: String,
+        unique: true,
+        sparse: true // permette a più utenti di non avere googleId senza violare l'unique index
     },
 
     role: {

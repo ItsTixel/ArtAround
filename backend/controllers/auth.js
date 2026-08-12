@@ -3,6 +3,12 @@ const User = require('../models/user');
 // Per criptare le password e le info
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { OAuth2Client } = require('google-auth-library');
+
+// Non è un segreto: è l'identificativo pubblico dell'app registrata su
+// Google Cloud Console, finisce anche nel codice frontend.
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || '144640383709-vr6nf4q1kp0n93aih9dc2tgcu25886ua.apps.googleusercontent.com';
+const googleClient = new OAuth2Client(GOOGLE_CLIENT_ID);
 
 async function login(req, res) {
     try {
@@ -14,6 +20,11 @@ async function login(req, res) {
         // Verifica se l'email non esiste
         if (!user) {
             return res.status(401).json({ message: "Email o password errati" });
+        }
+
+        // Account creato via Google Sign-In: non ha una password locale da confrontare
+        if (!user.password) {
+            return res.status(401).json({ message: "Questo account usa l'accesso con Google. Accedi con Google." });
         }
 
         // Confronta la password inserita dell'utente e quella del database
@@ -93,6 +104,78 @@ async function register(req, res) {
     }
 }
 
+async function googleAuth(req, res) {
+    try {
+        const { credential } = req.body;
+        if (!credential) {
+            return res.status(400).json({ message: "Token Google mancante" });
+        }
+
+        // Verifica la firma e la validità dell'ID token presso Google:
+        // se qualcuno manda un token falso o scaduto, questa chiamata fallisce.
+        const ticket = await googleClient.verifyIdToken({
+            idToken: credential,
+            audience: GOOGLE_CLIENT_ID
+        });
+        const payload = ticket.getPayload();
+        const { sub: googleId, email, name } = payload;
+
+        if (!email) {
+            return res.status(400).json({ message: "Impossibile leggere l'email dal profilo Google" });
+        }
+
+        let user = await User.findOne({ $or: [{ googleId }, { email }] });
+
+        if (!user) {
+            // Primo accesso con questo account Google: creiamo l'utente.
+            // Username derivato dalla parte locale dell'email, reso univoco se serve.
+            let base = (email.split('@')[0] || 'utente').toLowerCase().replace(/[^a-z0-9_.-]/g, '');
+            if (base.length < 3) base = base.padEnd(3, '0');
+            base = base.slice(0, 25);
+
+            let username = base;
+            let suffix = 1;
+            while (await User.findOne({ username })) {
+                username = `${base}${suffix++}`;
+            }
+
+            user = new User({
+                username,
+                email,
+                googleId,
+                display_name: name,
+                role: 'visitor'
+            });
+            await user.save();
+        } else if (!user.googleId) {
+            // Account già esistente (registrato con email/password): colleghiamo Google.
+            user.googleId = googleId;
+            await user.save();
+        }
+
+        const tokenPayload = { id: user._id, role: user.role };
+        const secretKey = process.env.JWT_SECRET || "password";
+        const maxAgeMs = 60 * 60 * 1000;
+        const token = jwt.sign(tokenPayload, secretKey, { expiresIn: '1h' });
+
+        res.cookie('token', token, {
+            httpOnly: true,
+            sameSite: 'lax',
+            maxAge: maxAgeMs
+        });
+
+        const { password: _, ...safeUser } = user.toObject();
+
+        res.status(200).json({
+            success: true,
+            message: "Accesso con Google effettuato con successo",
+            user: safeUser
+        });
+    } catch (e) {
+        res.status(401).json({ message: "Token Google non valido", error: e.message });
+    }
+}
+
 async function logout(req, res) {
   res.clearCookie('token', { httpOnly: true, sameSite: 'lax' });
   res.json({ message: 'Logout effettuato' });
@@ -111,4 +194,4 @@ async function me(req, res) {
   }
 }
 
-module.exports = { login, register, logout, me };
+module.exports = { login, register, googleAuth, logout, me };

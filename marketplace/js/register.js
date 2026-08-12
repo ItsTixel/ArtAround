@@ -55,3 +55,51 @@ form.addEventListener('submit', async (e) => {
         feedbackMessage.textContent = "Impossibile contattare il server.";
     }
 });
+
+// ---- Registrazione/accesso con Google ----
+// Stesso endpoint del login: se l'account Google non esiste ancora viene
+// creato al volo, quindi qui il pulsante fa sia da "Registrati" che da "Accedi".
+const GOOGLE_CLIENT_ID = '144640383709-vr6nf4q1kp0n93aih9dc2tgcu25886ua.apps.googleusercontent.com';
+
+async function handleGoogleCredential(response) {
+    const feedbackMessage = document.getElementById('feedbackMessage');
+    feedbackMessage.style.color = "blue";
+    feedbackMessage.textContent = "Connessione con Google in corso...";
+
+    try {
+        const res = await fetch('/api/auth/google', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify({ credential: response.credential })
+        });
+        const data = await res.json();
+
+        if (res.ok) {
+            feedbackMessage.style.color = "green";
+            feedbackMessage.textContent = "Autenticazione riuscita! Benvenuto.";
+            setTimeout(() => {
+                window.location.href = redirectParam || '/marketplace/pages/index.html';
+            }, 400);
+        } else {
+            feedbackMessage.style.color = "red";
+            feedbackMessage.textContent = data.message || "Accesso con Google non riuscito.";
+        }
+    } catch (error) {
+        console.error("Errore di rete:", error);
+        feedbackMessage.style.color = "red";
+        feedbackMessage.textContent = "Impossibile contattare il server.";
+    }
+}
+
+window.addEventListener('load', () => {
+    if (!window.google?.accounts?.id) return;
+    google.accounts.id.initialize({
+        client_id: GOOGLE_CLIENT_ID,
+        callback: handleGoogleCredential
+    });
+    google.accounts.id.renderButton(
+        document.getElementById('google-signin-btn'),
+        { theme: 'filled_black', size: 'large', width: 320, text: 'signup_with', locale: 'it' }
+    );
+});
