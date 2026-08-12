@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ArtAround — Crea Museo</title>
+  <title>ArtAround — Crea Opera</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="/marketplace/css/museums.css">
   <link rel="stylesheet" href="/marketplace/css/auth.css">
   <link rel="stylesheet" href="/marketplace/css/create-content.css">
-  <link rel="stylesheet" href="/marketplace/css/create-museum.css">
+  <link rel="stylesheet" href="/marketplace/css/create-entity.css">
 
   <script type="module" src="/marketplace/components/app-navbar.js"></script>
   <script type="module" src="/marketplace/components/app-footer.js"></script>
@@ -23,36 +23,36 @@
   <app-navbar></app-navbar>
 
   <main>
-    <section class="page-hero" aria-label="Crea un nuovo museo">
+    <section class="page-hero" aria-label="Crea una nuova opera">
       <div class="page-hero-inner">
         <div class="kicker">Crea contenuto</div>
-        <h1>Crea un nuovo museo</h1>
-        <p class="hero-sub">Aggiungi un museo al catalogo di ArtAround</p>
+        <h1>Crea una nuova opera</h1>
+        <p class="hero-sub">Aggiungi un'opera al catalogo di ArtAround</p>
       </div>
     </section>
 
     <section class="create-section">
-      <form id="museum-form" class="create-form" novalidate>
+      <form id="entity-form" class="create-form" novalidate>
 
         <nav class="wizard-steps" aria-label="Sezioni del form">
           <button type="button" class="wizard-step" data-step="0">
             <span class="wizard-step-circle">1</span>
-            <span class="wizard-step-label">Informazioni</span>
+            <span class="wizard-step-label">Fisica?</span>
           </button>
           <span class="wizard-step-line"></span>
           <button type="button" class="wizard-step" data-step="1">
             <span class="wizard-step-circle">2</span>
-            <span class="wizard-step-label">Indirizzo</span>
+            <span class="wizard-step-label">Informazioni</span>
           </button>
           <span class="wizard-step-line"></span>
           <button type="button" class="wizard-step" data-step="2">
             <span class="wizard-step-circle">3</span>
-            <span class="wizard-step-label">Orari</span>
+            <span class="wizard-step-label">Posizione</span>
           </button>
           <span class="wizard-step-line"></span>
           <button type="button" class="wizard-step" data-step="3">
             <span class="wizard-step-circle">4</span>
-            <span class="wizard-step-label">Servizi</span>
+            <span class="wizard-step-label">Link</span>
           </button>
         </nav>
 
@@ -64,68 +64,76 @@
 
             <div class="carousel-slide">
               <div class="form-block">
+                <h2>È un'opera fisica?</h2>
+                <p class="block-hint">Un'opera fisica è collocabile in una stanza di un museo (es. un dipinto, una scultura). Se scegli "No" salteremo la sezione sulla posizione.</p>
+                <div class="choice-group" id="physical-choice">
+                  <label class="choice-card">
+                    <input type="radio" name="is_physical" value="true" checked>
+                    <span class="choice-card-body">
+                      <span class="choice-card-title">Sì, è fisica</span>
+                      <span class="choice-card-sub">È esposta in una stanza di un museo</span>
+                    </span>
+                  </label>
+                  <label class="choice-card">
+                    <input type="radio" name="is_physical" value="false">
+                    <span class="choice-card-body">
+                      <span class="choice-card-title">No, non è fisica</span>
+                      <span class="choice-card-sub">Contenuto digitale, concettuale o senza una collocazione</span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-slide">
+              <div class="form-block">
                 <h2>Informazioni generali</h2>
                 <div class="field">
                   <label for="name">Nome *</label>
-                  <input id="name" name="name" type="text" required placeholder="Es. Galleria degli Uffizi">
+                  <input id="name" name="name" type="text" required placeholder="Es. La Nascita di Venere">
+                </div>
+                <div class="field">
+                  <label for="artwork_author">Autore</label>
+                  <input id="artwork_author" name="artwork_author" type="text" placeholder="Es. Sandro Botticelli">
                 </div>
                 <div class="field">
                   <label for="wikidata_id">ID Wikidata</label>
-                  <input id="wikidata_id" name="wikidata_id" type="text" placeholder="Es. Q51252">
+                  <input id="wikidata_id" name="wikidata_id" type="text" placeholder="Es. Q11923">
                 </div>
                 <div class="field">
                   <label for="description">Descrizione</label>
-                  <textarea id="description" name="description" rows="4" placeholder="Breve descrizione del museo"></textarea>
+                  <textarea id="description" name="description" rows="4" placeholder="Breve descrizione dell'opera"></textarea>
                 </div>
                 <div class="field">
                   <label for="image_url">URL immagine</label>
                   <input id="image_url" name="image_url" type="text" placeholder="https://upload.wikimedia.org/...">
                 </div>
                 <div class="field">
-                  <label for="website">Sito web</label>
-                  <input id="website" name="website" type="text" placeholder="https://...">
+                  <label for="alt_text">Testo alternativo immagine</label>
+                  <input id="alt_text" name="alt_text" type="text" placeholder="Breve descrizione dell'immagine per l'accessibilità">
                 </div>
-              </div>
-            </div>
-
-            <div class="carousel-slide">
-              <div class="form-block">
-                <h2>Indirizzo</h2>
                 <div class="field">
-                  <label for="street">Via *</label>
-                  <input id="street" name="street" type="text" required placeholder="Via, numero civico">
-                </div>
-                <div class="field-row">
-                  <div class="field">
-                    <label for="city">Città *</label>
-                    <input id="city" name="city" type="text" required>
-                  </div>
-                  <div class="field">
-                    <label for="zip">CAP *</label>
-                    <input id="zip" name="zip" type="text" required>
-                  </div>
-                  <div class="field">
-                    <label for="country">Paese *</label>
-                    <input id="country" name="country" type="text" required value="Italia">
-                  </div>
+                  <label for="tags">Tag</label>
+                  <input id="tags" name="tags" type="text" placeholder="Separati da virgola, es. rinascimento, dipinto, mitologia">
                 </div>
               </div>
             </div>
 
             <div class="carousel-slide">
               <div class="form-block">
-                <h2>Orari di apertura</h2>
-                <p class="block-hint">Lascia vuoto un giorno se non vuoi specificarne l'orario (es. "9:00–19:00" oppure "Chiuso").</p>
-                <div class="hours-grid" id="hours-grid"></div>
+                <h2>Posizione nel museo</h2>
+                <p class="block-hint" id="placements-hint">Indica in quali musei è collocata l'opera e, se vuoi, in quale stanza.</p>
+                <div id="placements-list" class="dynamic-list"></div>
+                <button type="button" id="add-placement" class="btn-secondary">+ Aggiungi collocazione</button>
               </div>
             </div>
 
             <div class="carousel-slide">
               <div class="form-block">
-                <h2>Servizi</h2>
-                <p class="block-hint">Indica dove si trovano servizi come toilette, uscita, guardaroba, ecc.</p>
-                <div id="services-list" class="dynamic-list"></div>
-                <button type="button" id="add-service" class="btn-secondary">+ Aggiungi servizio</button>
+                <h2>Link esterni</h2>
+                <p class="block-hint">Pagine di approfondimento su questa opera (es. Wikipedia, sito del museo, catalogo).</p>
+                <div id="links-list" class="dynamic-list"></div>
+                <button type="button" id="add-link" class="btn-secondary">+ Aggiungi link</button>
               </div>
             </div>
 
@@ -142,6 +150,6 @@
 
   <app-footer></app-footer>
 
-  <script type="module" src="/marketplace/js/create-museum.js"></script>
+  <script type="module" src="/marketplace/js/create-entity.js"></script>
 </body>
 </html>

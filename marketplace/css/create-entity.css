@@ -1,0 +1,63 @@
+/* ============================================================
+ *  create-entity.css — Pagina "Crea Opera"
+ *  Parti specifiche del form opera; il resto (stepper, carosello,
+ *  form-block, righe dinamiche...) è in create-content.css.
+ * ============================================================ */
+
+/* ── "È un'opera fisica?" ─────────────────────────────────── */
+.choice-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.choice-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1.1rem 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition);
+}
+.choice-card:hover { border-color: rgba(212, 168, 83, 0.4); }
+.choice-card:has(input:checked) {
+  border-color: var(--color-accent);
+  background: rgba(212, 168, 83, 0.07);
+}
+
+.choice-card input {
+  margin-top: 0.2rem;
+  accent-color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.choice-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.choice-card-title {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.choice-card-sub {
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  color: var(--color-text-muted);
+  line-height: 1.45;
+}
+
+/* ── Posizione nel museo ──────────────────────────────────── */
+.dynamic-row.stack .field label {
+  font-size: 0.68rem;
+}
+
+@media (max-width: 640px) {
+  .choice-group { grid-template-columns: 1fr; }
+}

@@ -173,6 +173,10 @@ class AppNavbar extends HTMLElement {
         .create-menu {
           list-style: none;
           margin: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0.15rem;
           position: absolute;
           top: calc(100% + 0.5rem);
           left: 0;
@@ -193,12 +197,13 @@ class AppNavbar extends HTMLElement {
           visibility: visible;
           transform: translateY(0);
         }
-        .create-menu li { width: auto; }
+        .create-menu li { width: 100%; }
         .create-menu a {
           display: flex;
           align-items: center;
           justify-content: space-between;
           gap: 0.5rem;
+          width: 100%;
           padding: 0.6rem 0.7rem;
           font-size: 0.72rem;
           letter-spacing: 0.06em;
@@ -370,9 +375,9 @@ class AppNavbar extends HTMLElement {
       <button type="button" class="create-trigger" aria-haspopup="true" aria-expanded="false">Crea ▾</button>
       <ul class="create-menu">
         <li><a href="/marketplace/pages/create-museum.html">Crea Museo</a></li>
-        <li><a href="#" class="disabled">Crea Opera <span class="soon">Presto</span></a></li>
+        <li><a href="/marketplace/pages/create-entity.html">Crea Opera</a></li>
         <li><a href="#" class="disabled">Crea Visita <span class="soon">Presto</span></a></li>
-        <li><a href="#" class="disabled">Crea Descrizione <span class="soon">Presto</span></a></li>
+        <li><a href="/marketplace/pages/create-item.html">Crea Descrizione</a></li>
       </ul>
     `;
 

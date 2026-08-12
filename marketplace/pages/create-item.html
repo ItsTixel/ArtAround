@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArtAround — Crea Descrizione</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Nunito+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/marketplace/css/base.css">
+  <link rel="stylesheet" href="/marketplace/css/museums.css">
+  <link rel="stylesheet" href="/marketplace/css/auth.css">
+  <link rel="stylesheet" href="/marketplace/css/create-content.css">
+  <link rel="stylesheet" href="/marketplace/css/create-item.css">
+
+  <script type="module" src="/marketplace/components/app-navbar.js"></script>
+  <script type="module" src="/marketplace/components/app-footer.js"></script>
+</head>
+<body>
+
+  <app-navbar></app-navbar>
+
+  <main>
+    <section class="page-hero" aria-label="Crea una nuova descrizione">
+      <div class="page-hero-inner">
+        <div class="kicker">Crea contenuto</div>
+        <h1>Crea una nuova descrizione</h1>
+        <p class="hero-sub">Scrivi la narrazione di un'opera per il catalogo di ArtAround</p>
+      </div>
+    </section>
+
+    <section class="create-section">
+      <form id="item-form" class="create-form" novalidate>
+
+        <nav class="wizard-steps" aria-label="Sezioni del form">
+          <button type="button" class="wizard-step" data-step="0">
+            <span class="wizard-step-circle">1</span>
+            <span class="wizard-step-label">Informazioni</span>
+          </button>
+          <span class="wizard-step-line"></span>
+          <button type="button" class="wizard-step" data-step="1">
+            <span class="wizard-step-circle">2</span>
+            <span class="wizard-step-label">Paragrafi</span>
+          </button>
+        </nav>
+
+        <div class="carousel-wrap">
+          <button type="button" id="wizard-prev" class="carousel-arrow carousel-arrow-prev hidden" aria-label="Sezione precedente"></button>
+
+          <div class="carousel-viewport">
+          <div class="carousel-track" id="carousel-track">
+
+            <div class="carousel-slide">
+              <div class="form-block">
+                <h2>Informazioni generali</h2>
+                <div class="field">
+                  <label for="artwork">Opera *</label>
+                  <select id="artwork" name="artwork" required>
+                    <option value="">Seleziona un'opera…</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="marketplace_summary">
+                    Riassunto *
+                    <span class="char-counter" id="summary-counter">0/300</span>
+                  </label>
+                  <textarea id="marketplace_summary" name="marketplace_summary" rows="3" maxlength="300" required placeholder="Una breve presentazione, mostrata nel marketplace"></textarea>
+                </div>
+                <div class="field">
+                  <label>Tono</label>
+                  <div class="btn-group" id="tone-group" role="radiogroup" aria-label="Tono">
+                    <button type="button" class="btn-option" role="radio" aria-checked="false" data-value="childish">Per bambini</button>
+                    <button type="button" class="btn-option" role="radio" aria-checked="false" data-value="simple">Semplice</button>
+                    <button type="button" class="btn-option" role="radio" aria-checked="false" data-value="medium">Medio</button>
+                    <button type="button" class="btn-option" role="radio" aria-checked="false" data-value="technical">Tecnico</button>
+                  </div>
+                </div>
+                <div class="field">
+                  <label>Visibilità</label>
+                  <div class="btn-group" id="license-group" role="radiogroup" aria-label="Visibilità">
+                    <button type="button" class="btn-option" role="radio" aria-checked="false" data-value="Public" data-tooltip="Chiunque potrà vederla e usarla per creare le proprie visite.">Pubblica</button>
+                    <button type="button" class="btn-option" role="radio" aria-checked="false" data-value="Reserved" data-tooltip="Solo tu potrai usarla per creare visite, sia pubbliche che private.">Riservata</button>
+                    <button type="button" class="btn-option" role="radio" aria-checked="false" data-value="Private" data-tooltip="Solo tu potrai vederla e usarla, in visite visibili soltanto a te.">Privata</button>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="image_url">URL immagine</label>
+                  <input id="image_url" name="image_url" type="text" placeholder="https://upload.wikimedia.org/...">
+                </div>
+                <div class="field">
+                  <label for="alt_text">Testo alternativo immagine</label>
+                  <input id="alt_text" name="alt_text" type="text" placeholder="Breve descrizione dell'immagine per l'accessibilità">
+                </div>
+                <div class="field">
+                  <label for="tags">Tag</label>
+                  <input id="tags" name="tags" type="text" placeholder="Separati da virgola, es. rinascimento, dipinto, mitologia">
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-slide">
+              <div class="form-block">
+                <h2>Paragrafi della narrazione</h2>
+                <p class="block-hint">Scrivi il testo un paragrafo alla volta: la durata di lettura viene calcolata automaticamente in base alla velocità della sintesi vocale. Ogni volta che inizi a scrivere nell'ultimo paragrafo, te ne viene aggiunto uno nuovo.</p>
+                <div id="paragraphs-list" class="dynamic-list"></div>
+              </div>
+            </div>
+
+          </div>
+          </div>
+
+          <button type="submit" id="wizard-next" class="carousel-arrow carousel-arrow-next" aria-label="Sezione successiva"></button>
+        </div>
+
+        <p class="feedback" id="form-feedback"></p>
+      </form>
+    </section>
+  </main>
+
+  <app-footer></app-footer>
+
+  <script type="module" src="/marketplace/js/create-item.js"></script>
+</body>
+</html>

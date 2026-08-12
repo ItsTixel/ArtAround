@@ -5,13 +5,11 @@
  * ============================================================ */
 
 import { getCurrentUser } from '/marketplace/js/auth-session.js';
+import { createWizard } from '/marketplace/js/wizard.js';
 
 const API_MUSEUMS = '/api/museums';
 const LOGIN_URL   = '/marketplace/login.html';
 const DAYS = ['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 'Domenica'];
-const TOTAL_STEPS = 4;
-
-let currentStep = 0;
 
 function buildHoursGrid() {
   const grid = document.getElementById('hours-grid');
@@ -30,13 +28,13 @@ function buildHoursGrid() {
 function addServiceRow() {
   const list = document.getElementById('services-list');
   const row = document.createElement('div');
-  row.className = 'service-row';
+  row.className = 'dynamic-row kv';
   row.innerHTML = `
-    <input type="text" class="service-key" placeholder="Es. Toilette">
-    <input type="text" class="service-value" placeholder="Es. In fondo a destra dopo la biglietteria">
-    <button type="button" class="remove-service" aria-label="Rimuovi servizio">✕</button>
+    <input type="text" class="dynamic-key" placeholder="Es. Toilette">
+    <input type="text" class="dynamic-value" placeholder="Es. In fondo a destra dopo la biglietteria">
+    <button type="button" class="remove-row" aria-label="Rimuovi servizio">✕</button>
   `;
-  row.querySelector('.remove-service').addEventListener('click', () => row.remove());
+  row.querySelector('.remove-row').addEventListener('click', () => row.remove());
   list.appendChild(row);
 }
 
@@ -51,85 +49,13 @@ function collectOpeningHours() {
 
 function collectServices() {
   const services = {};
-  document.querySelectorAll('.service-row').forEach(row => {
-    const key = row.querySelector('.service-key').value.trim();
-    const value = row.querySelector('.service-value').value.trim();
+  document.querySelectorAll('#services-list .dynamic-row').forEach(row => {
+    const key = row.querySelector('.dynamic-key').value.trim();
+    const value = row.querySelector('.dynamic-value').value.trim();
     if (key && value) services[key] = value;
   });
   return services;
 }
-
-/* ---- Carosello: navigazione tra le sezioni ---- */
-
-function renderWizard() {
-  const track = document.getElementById('carousel-track');
-  const slides = track.querySelectorAll('.carousel-slide');
-  const steps = document.querySelectorAll('.wizard-step');
-  const lines = document.querySelectorAll('.wizard-step-line');
-  const prevBtn = document.getElementById('wizard-prev');
-  const nextBtn = document.getElementById('wizard-next');
-
-  track.style.transform = `translateX(-${currentStep * 100}%)`;
-
-  slides.forEach((slide, i) => {
-    const isActive = i === currentStep;
-    slide.setAttribute('aria-hidden', String(!isActive));
-    slide.querySelectorAll('input, textarea, button').forEach(el => {
-      el.tabIndex = isActive ? 0 : -1;
-    });
-    if (isActive) {
-      slide.classList.remove('entering');
-      // Forza il reflow per poter riavviare l'animazione anche se la
-      // sezione era già stata visitata in precedenza.
-      void slide.offsetWidth;
-      slide.classList.add('entering');
-    }
-  });
-
-  steps.forEach((step, i) => {
-    step.classList.toggle('active', i === currentStep);
-    step.classList.toggle('done', i < currentStep);
-  });
-  lines.forEach((line, i) => line.classList.toggle('filled', i < currentStep));
-
-  prevBtn.classList.toggle('hidden', currentStep === 0);
-  prevBtn.disabled = currentStep === 0;
-  nextBtn.textContent = currentStep === TOTAL_STEPS - 1 ? 'Crea museo' : 'Avanti →';
-}
-
-/** Trova il primo campo obbligatorio non valido tra gli step precedenti a `upToStep`. */
-function findFirstInvalid(upToStep) {
-  const slides = document.querySelectorAll('.carousel-slide');
-  for (let i = 0; i < upToStep; i++) {
-    const invalidInput = slides[i].querySelector('[required]:invalid');
-    if (invalidInput) return { step: i, input: invalidInput };
-  }
-  return null;
-}
-
-function goToStep(index) {
-  const clamped = Math.max(0, Math.min(TOTAL_STEPS - 1, index));
-  const invalid = clamped > 0 ? findFirstInvalid(clamped) : null;
-
-  if (invalid) {
-    currentStep = invalid.step;
-    renderWizard();
-    invalid.input.reportValidity();
-    return;
-  }
-
-  currentStep = clamped;
-  renderWizard();
-}
-
-function setupWizardNav() {
-  document.querySelectorAll('.wizard-step').forEach(step => {
-    step.addEventListener('click', () => goToStep(parseInt(step.dataset.step, 10)));
-  });
-  document.getElementById('wizard-prev').addEventListener('click', () => goToStep(currentStep - 1));
-}
-
-/* ---- Invio del form ---- */
 
 async function submitMuseum() {
   const feedback = document.getElementById('form-feedback');
@@ -172,25 +98,6 @@ async function submitMuseum() {
   }
 }
 
-function setupForm() {
-  const form = document.getElementById('museum-form');
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (currentStep < TOTAL_STEPS - 1) {
-      goToStep(currentStep + 1);
-      return;
-    }
-    const invalid = findFirstInvalid(TOTAL_STEPS);
-    if (invalid) {
-      currentStep = invalid.step;
-      renderWizard();
-      invalid.input.reportValidity();
-      return;
-    }
-    submitMuseum();
-  });
-}
-
 document.addEventListener('DOMContentLoaded', async () => {
   const user = await getCurrentUser();
   if (!user) {
@@ -213,7 +120,15 @@ document.addEventListener('DOMContentLoaded', async () => {
   buildHoursGrid();
   addServiceRow();
   document.getElementById('add-service').addEventListener('click', addServiceRow);
-  setupWizardNav();
-  setupForm();
-  renderWizard();
+
+  createWizard({
+    form: document.getElementById('museum-form'),
+    track: document.getElementById('carousel-track'),
+    stepButtons: document.querySelectorAll('.wizard-step'),
+    lineEls: document.querySelectorAll('.wizard-step-line'),
+    prevBtn: document.getElementById('wizard-prev'),
+    nextBtn: document.getElementById('wizard-next'),
+    submitLabel: 'Crea museo',
+    onSubmit: submitMuseum,
+  });
 });
