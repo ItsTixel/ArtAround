@@ -8,10 +8,10 @@ const museumSchema = new Schema({
   image_url:   { type: String, trim: true },
   website:     { type: String, trim: true },
   address: {
-    street:  { type: String, trim: true },
-    city:    { type: String, trim: true },
-    zip:     { type: String, trim: true },
-    country: { type: String, trim: true, default: 'Italia' }
+    street:  { type: String, trim: true, required: true },
+    city:    { type: String, trim: true, required: true },
+    zip:     { type: String, trim: true, required: true },
+    country: { type: String, trim: true, default: 'Italia', required: true }
   },
   // Maps a service name (e.g. "Toilette", "Uscita", or any museum-specific
   // extra like "Guardaroba") to the phrase read aloud to indicate where it is.

@@ -31,69 +31,108 @@
     </section>
 
     <section class="create-section">
-      <form id="museum-form" class="create-form">
+      <form id="museum-form" class="create-form" novalidate>
 
-        <div class="form-block">
-          <h2>Informazioni generali</h2>
-          <div class="field">
-            <label for="name">Nome *</label>
-            <input id="name" name="name" type="text" required placeholder="Es. Galleria degli Uffizi">
-          </div>
-          <div class="field">
-            <label for="wikidata_id">ID Wikidata</label>
-            <input id="wikidata_id" name="wikidata_id" type="text" placeholder="Es. Q51252">
-          </div>
-          <div class="field">
-            <label for="description">Descrizione</label>
-            <textarea id="description" name="description" rows="4" placeholder="Breve descrizione del museo"></textarea>
-          </div>
-          <div class="field">
-            <label for="image_url">URL immagine</label>
-            <input id="image_url" name="image_url" type="text" placeholder="https://upload.wikimedia.org/...">
-          </div>
-          <div class="field">
-            <label for="website">Sito web</label>
-            <input id="website" name="website" type="text" placeholder="https://...">
-          </div>
-        </div>
+        <nav class="wizard-steps" aria-label="Sezioni del form">
+          <button type="button" class="wizard-step" data-step="0">
+            <span class="wizard-step-circle">1</span>
+            <span class="wizard-step-label">Informazioni</span>
+          </button>
+          <span class="wizard-step-line"></span>
+          <button type="button" class="wizard-step" data-step="1">
+            <span class="wizard-step-circle">2</span>
+            <span class="wizard-step-label">Indirizzo</span>
+          </button>
+          <span class="wizard-step-line"></span>
+          <button type="button" class="wizard-step" data-step="2">
+            <span class="wizard-step-circle">3</span>
+            <span class="wizard-step-label">Orari</span>
+          </button>
+          <span class="wizard-step-line"></span>
+          <button type="button" class="wizard-step" data-step="3">
+            <span class="wizard-step-circle">4</span>
+            <span class="wizard-step-label">Servizi</span>
+          </button>
+        </nav>
 
-        <div class="form-block">
-          <h2>Indirizzo</h2>
-          <div class="field">
-            <label for="street">Via</label>
-            <input id="street" name="street" type="text" placeholder="Via, numero civico">
-          </div>
-          <div class="field-row">
-            <div class="field">
-              <label for="city">Città</label>
-              <input id="city" name="city" type="text">
+        <div class="carousel-viewport">
+          <div class="carousel-track" id="carousel-track">
+
+            <div class="carousel-slide">
+              <div class="form-block">
+                <h2>Informazioni generali</h2>
+                <div class="field">
+                  <label for="name">Nome *</label>
+                  <input id="name" name="name" type="text" required placeholder="Es. Galleria degli Uffizi">
+                </div>
+                <div class="field">
+                  <label for="wikidata_id">ID Wikidata</label>
+                  <input id="wikidata_id" name="wikidata_id" type="text" placeholder="Es. Q51252">
+                </div>
+                <div class="field">
+                  <label for="description">Descrizione</label>
+                  <textarea id="description" name="description" rows="4" placeholder="Breve descrizione del museo"></textarea>
+                </div>
+                <div class="field">
+                  <label for="image_url">URL immagine</label>
+                  <input id="image_url" name="image_url" type="text" placeholder="https://upload.wikimedia.org/...">
+                </div>
+                <div class="field">
+                  <label for="website">Sito web</label>
+                  <input id="website" name="website" type="text" placeholder="https://...">
+                </div>
+              </div>
             </div>
-            <div class="field">
-              <label for="zip">CAP</label>
-              <input id="zip" name="zip" type="text">
+
+            <div class="carousel-slide">
+              <div class="form-block">
+                <h2>Indirizzo</h2>
+                <div class="field">
+                  <label for="street">Via *</label>
+                  <input id="street" name="street" type="text" required placeholder="Via, numero civico">
+                </div>
+                <div class="field-row">
+                  <div class="field">
+                    <label for="city">Città *</label>
+                    <input id="city" name="city" type="text" required>
+                  </div>
+                  <div class="field">
+                    <label for="zip">CAP *</label>
+                    <input id="zip" name="zip" type="text" required>
+                  </div>
+                  <div class="field">
+                    <label for="country">Paese *</label>
+                    <input id="country" name="country" type="text" required value="Italia">
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="field">
-              <label for="country">Paese</label>
-              <input id="country" name="country" type="text" value="Italia">
+
+            <div class="carousel-slide">
+              <div class="form-block">
+                <h2>Orari di apertura</h2>
+                <p class="block-hint">Lascia vuoto un giorno se non vuoi specificarne l'orario (es. "9:00–19:00" oppure "Chiuso").</p>
+                <div class="hours-grid" id="hours-grid"></div>
+              </div>
             </div>
+
+            <div class="carousel-slide">
+              <div class="form-block">
+                <h2>Servizi</h2>
+                <p class="block-hint">Indica dove si trovano servizi come toilette, uscita, guardaroba, ecc.</p>
+                <div id="services-list" class="services-list"></div>
+                <button type="button" id="add-service" class="btn-secondary">+ Aggiungi servizio</button>
+              </div>
+            </div>
+
           </div>
         </div>
 
-        <div class="form-block">
-          <h2>Orari di apertura</h2>
-          <p class="block-hint">Lascia vuoto un giorno se non vuoi specificarne l'orario (es. "9:00–19:00" oppure "Chiuso").</p>
-          <div class="hours-grid" id="hours-grid"></div>
+        <div class="wizard-nav">
+          <button type="button" id="wizard-prev" class="btn-secondary wizard-btn-prev">← Indietro</button>
+          <p class="feedback" id="form-feedback"></p>
+          <button type="submit" id="wizard-next" class="btn-primary">Avanti →</button>
         </div>
-
-        <div class="form-block">
-          <h2>Servizi</h2>
-          <p class="block-hint">Indica dove si trovano servizi come toilette, uscita, guardaroba, ecc.</p>
-          <div id="services-list" class="services-list"></div>
-          <button type="button" id="add-service" class="btn-secondary">+ Aggiungi servizio</button>
-        </div>
-
-        <button type="submit" class="btn-primary">Crea museo</button>
-        <p class="feedback" id="form-feedback"></p>
       </form>
     </section>
   </main>
