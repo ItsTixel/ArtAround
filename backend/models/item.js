@@ -9,7 +9,7 @@ const descriptionSchema = new Schema({
 const itemSchema = new Schema({
   marketplace_summary: {
     type: String, required: true, trim: true, maxLength: 300
-  },
+  }, 
 
   artwork: {
     type: mongoose.Schema.Types.ObjectId, ref: 'Entity', required: true
@@ -21,8 +21,8 @@ const itemSchema = new Schema({
 
   license: {
     type: String,
-    enum: ['Copyright', 'CC-BY', 'CC-BY-NC', 'CC0'],
-    default: 'CC-BY'
+    enum: ['Public', "Private", "Reserved"],
+    default: 'Public'
   },
 
   tone: {
@@ -39,18 +39,6 @@ const itemSchema = new Schema({
       message: 'Un item deve avere almeno una descrizione'
     }
   },
-
-  price: {
-    type: Number,
-    default: 0,
-    min: [0, 'Price must be non negative'],
-        validate: {
-            validator: function (value) {
-                return !(this.license !== 'Copyright' && value > 0);
-            },
-            message: 'Only Copyright items can have a price greater than 0.'
-        }
-    },
 
   image_url: { type: String, trim: true },
   alt_text:  { type: String, trim: true },

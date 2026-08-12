@@ -37,13 +37,6 @@ const visitSchema = new Schema({
 
 }, { timestamps: true });
 
-visitSchema.virtual('total_price').get(function () {
-  return (this.base_price || 0) +
-    this.steps
-      .flatMap(s => s.items)
-      .reduce((sum, item) => sum + (item?.price || 0), 0);
-});
-
 visitSchema.pre('save', async function () {
   const Entity = mongoose.model('Entity');
   const Item = mongoose.model('Item');

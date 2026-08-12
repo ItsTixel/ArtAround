@@ -16,7 +16,7 @@ async function getAll(req, res) {
     if (req.query.tone)    filter.tone     = req.query.tone;
     if (req.query.tags)    filter.tags     = { $in: req.query.tags.split(',').map(t => t.trim()) };
 
-    const allowedSortFields = ['createdAt', 'price', 'marketplace_summary', 'tone', 'license'];
+    const allowedSortFields = ['createdAt', 'marketplace_summary', 'tone', 'license'];
     const rawSort = req.query.sort || '-createdAt';
     const sortField = rawSort.replace(/^-/, '');
     const sort = allowedSortFields.includes(sortField) ? rawSort : '-createdAt';
