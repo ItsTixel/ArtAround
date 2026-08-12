@@ -120,6 +120,14 @@ async function create(req, res) {
   try {
     req.body.author = req.user.id;
 
+    // I visitatori possono creare solo visite private.
+    if (req.user.role === 'visitor') {
+      const isPublic = req.body.is_public !== undefined ? req.body.is_public : true; // 'true' è il default dello schema
+      if (isPublic !== false) {
+        return res.status(403).json({ error: 'I visitatori possono creare solo visite private.' });
+      }
+    }
+
     const existingVisit = await Visit.findOne({ title: req.body.title, museum: req.body.museum });
     if (existingVisit) {
       return res.status(409).json({ error: 'A visit with the same title already exists for this museum' });
@@ -140,6 +148,12 @@ async function update(req, res) {
     if (req.user.role !== 'admin' && visit.author.toString() !== req.user.id) {
       return res.status(403).json({ error: 'Not authorized' });
     }
+
+    // I visitatori possono avere solo visite private.
+    if (req.user.role === 'visitor' && req.body.is_public === true) {
+      return res.status(403).json({ error: 'I visitatori possono avere solo visite private.' });
+    }
+
     visit.set(req.body);
     await visit.save();
     const populatedVisit = await visit.populate(stepsPopulate);

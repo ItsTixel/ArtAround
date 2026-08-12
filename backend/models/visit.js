@@ -46,7 +46,7 @@ visitSchema.pre('save', async function () {
 
   const [entities, items] = await Promise.all([
     Entity.find({ _id: { $in: entityIds } }).select('placements').lean(),
-    Item.find({ _id: { $in: allItemIds } }).select('descriptions').lean()
+    Item.find({ _id: { $in: allItemIds } }).select('descriptions license author').lean()
   ]);
 
   const entityMap = new Map(entities.map(e => [e._id.toString(), e]));
@@ -59,6 +59,17 @@ visitSchema.pre('save', async function () {
     const inPlacements = entity.placements.some(p => p.museum.toString() === step.museum.toString());
     if (!inPlacements) {
       throw new Error(`Museum ${step.museum} is not a placement of entity ${step.entity}`);
+    }
+  }
+
+  // 1b. Private/Reserved items can only be used in a visit by their own author
+  for (const step of this.steps) {
+    for (const itemId of step.items) {
+      const item = itemMap.get(itemId.toString());
+      if (!item) throw new Error(`Item ${itemId} not found`);
+      if (item.license !== 'Public' && item.author.toString() !== this.author.toString()) {
+        throw new Error(`Item ${itemId} is ${item.license} and can only be used in a visit by its author`);
+      }
     }
   }
 

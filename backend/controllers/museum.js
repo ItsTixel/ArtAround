@@ -34,6 +34,7 @@ async function getById(req, res) {
 
 async function create(req, res) {
   try {
+    req.body.added_by = req.user.id;
     const museum = new Museum(req.body);
     await museum.save();
     res.status(201).json(museum);

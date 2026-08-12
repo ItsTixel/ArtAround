@@ -37,6 +37,7 @@ async function getById(req, res) {
 
 async function create(req, res) {
   try {
+    req.body.added_by = req.user.id;
     if (!req.body.wikidata_id) {
       req.body.local_id = await Entity.generateLocalId();
     }
