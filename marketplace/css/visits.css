@@ -124,6 +124,11 @@ filter-sidebar { display: block; }
 #sort:hover,
 #sort:focus { border-color: var(--glass-border-strong); background-color: var(--glass-bg-strong); }
 
+#sort option {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+
 /* Visit search (nella toolbar accanto a Ordina) */
 .visit-search {
   position: relative;

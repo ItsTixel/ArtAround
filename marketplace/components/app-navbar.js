@@ -22,6 +22,7 @@ class AppNavbar extends HTMLElement {
     this.shadowRoot.innerHTML = `
       <style>
         :host { display: block; }
+        *, *::before, *::after { box-sizing: border-box; }
 
         nav {
           background: var(--nav-bg, rgba(2, 6, 23, 0.55));
@@ -221,7 +222,7 @@ class AppNavbar extends HTMLElement {
           gap: 0.15rem;
           position: absolute;
           top: calc(100% + 0.5rem);
-          left: 0;
+          left: 50%;
           min-width: 200px;
           background: var(--panel-bg, rgba(9, 14, 28, 0.85));
           backdrop-filter: blur(20px) saturate(140%);
@@ -232,14 +233,14 @@ class AppNavbar extends HTMLElement {
           padding: 0.4rem;
           opacity: 0;
           visibility: hidden;
-          transform: translateY(-6px);
+          transform: translateX(-50%) translateY(-6px);
           transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
           z-index: 110;
         }
         .nav-create.open .create-menu {
           opacity: 1;
           visibility: visible;
-          transform: translateY(0);
+          transform: translateX(-50%) translateY(0);
         }
         .create-menu li { width: 100%; }
         .create-menu a {
@@ -350,7 +351,7 @@ class AppNavbar extends HTMLElement {
             padding: 0;
             transition: max-height 0.3s ease;
           }
-          .nav-create.open .create-menu { max-height: 320px; padding: 0.2rem 0 0.4rem; }
+          .nav-create.open .create-menu { max-height: 320px; padding: 0.2rem 0 0.4rem; transform: none; }
           .create-menu a { padding: 0.75rem 1.5rem 0.75rem 2.25rem; }
 
           .auth-actions a { text-align: center; padding: 0.75rem 1.1rem; }
