@@ -147,7 +147,10 @@ function renderDescriptions(items) {
   };
   items.forEach(item => {
     const card = document.createElement('div');
-    card.className = 'desc-card bg-slate-400/10 backdrop-blur-lg border border-slate-400/20 shadow-xl shadow-black/5 rounded-2xl p-6 flex flex-col gap-2.5 text-slate-800 dark:text-slate-100 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-white/20 hover:border-white/30 hover:shadow-2xl';
+    card.className = 'desc-card cursor-pointer bg-slate-400/10 backdrop-blur-lg border border-slate-400/20 shadow-xl shadow-black/5 rounded-2xl p-6 flex flex-col gap-2.5 text-slate-800 dark:text-slate-100 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-white/20 hover:border-white/30 hover:shadow-2xl';
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+    card.dataset.itemId = item._id;
     const licenseKey = String(item.license || 'public').toLowerCase();
     const licenseStyle = LICENSE_STYLE[licenseKey] || LICENSE_STYLE.public;
     const tagCls = 'text-[0.62rem] tracking-[0.06em] uppercase border rounded-md px-2 py-0.5 border-slate-400/30 text-slate-500 dark:text-slate-400';
@@ -160,6 +163,11 @@ function renderDescriptions(items) {
         ${(item.tags || []).slice(0, 3).map(t => `<span class="${tagCls}">${esc(t)}</span>`).join('')}
       </div>
     `;
+    const openModal = () => document.querySelector('item-modal')?.open(item._id);
+    card.addEventListener('click', openModal);
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(); }
+    });
     grid.appendChild(card);
   });
 }
@@ -277,6 +285,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   /* Le visit-card aprono il menù in sovraimpressione con i dettagli */
   document.addEventListener('open-visit', (e) => {
     document.querySelector('visit-modal')?.open(e.detail.id);
+  });
+
+  /* Dopo una modifica riuscita nel popup, ricarica la griglia descrizioni */
+  document.querySelector('item-modal')?.addEventListener('item-updated', () => {
+    descriptionsLoaded = true;
+    loadDescriptions();
   });
 
   const user = await getCurrentUser();

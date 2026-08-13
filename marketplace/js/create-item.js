@@ -7,28 +7,13 @@
 
 import { getCurrentUser } from '/marketplace/js/auth-session.js';
 import { createWizard } from '/marketplace/js/wizard.js';
+import { setupParagraphList } from '/marketplace/js/paragraph-list.js';
 
 const API_ITEMS    = '/api/items';
 const API_ENTITIES = '/api/entities';
 const LOGIN_URL    = '/marketplace/login.html';
 
-// Velocità media di lettura della sintesi vocale (window.speechSynthesis a
-// rate 1.0), usata per calcolare la durata dei paragrafi dal loro testo
-// invece di chiederla manualmente.
-const TTS_WORDS_PER_MINUTE = 150;
-
-function estimateDurationSec(text) {
-  const words = text.trim().split(/\s+/).filter(Boolean).length;
-  if (!words) return 0;
-  return Math.max(1, Math.round((words / TTS_WORDS_PER_MINUTE) * 60));
-}
-
-function formatDuration(sec) {
-  if (sec < 60) return `~${sec}s`;
-  const m = Math.floor(sec / 60);
-  const s = sec % 60;
-  return `~${m}m ${s}s`;
-}
+let paragraphList = null;
 
 /* ---- Tono / Visibilità: gruppi di bottoni al posto delle <select> ---- */
 
@@ -114,76 +99,6 @@ async function loadEntities() {
   }
 }
 
-/* ---- Paragrafi: l'elenco si allunga da solo mentre scrivi ---- */
-
-function paragraphRows() {
-  return document.querySelectorAll('#paragraphs-list .paragraph-row');
-}
-
-function lastParagraphRow() {
-  const rows = paragraphRows();
-  return rows[rows.length - 1] || null;
-}
-
-function renumberParagraphs() {
-  const rows = paragraphRows();
-  rows.forEach((row, i) => {
-    row.querySelector('.paragraph-index').textContent = `Paragrafo ${i + 1}`;
-    row.querySelector('.remove-row').hidden = rows.length <= 1;
-  });
-}
-
-function ensureTrailingEmptyParagraph() {
-  const last = lastParagraphRow();
-  if (last && last.querySelector('.paragraph-text').value.trim()) {
-    addParagraphRow();
-  }
-}
-
-function addParagraphRow() {
-  const list = document.getElementById('paragraphs-list');
-  const row = document.createElement('div');
-  row.className = 'dynamic-row paragraph-row';
-  row.innerHTML = `
-    <div class="paragraph-row-head">
-      <span class="paragraph-index"></span>
-      <div class="paragraph-row-meta">
-        <span class="paragraph-duration-estimate">~0s</span>
-        <button type="button" class="remove-row" aria-label="Rimuovi paragrafo">✕</button>
-      </div>
-    </div>
-    <textarea class="paragraph-text" rows="3" placeholder="Testo del paragrafo…"></textarea>
-  `;
-
-  const textarea = row.querySelector('.paragraph-text');
-  const estimateEl = row.querySelector('.paragraph-duration-estimate');
-  textarea.addEventListener('input', (e) => {
-    estimateEl.textContent = formatDuration(estimateDurationSec(e.target.value));
-    if (row === lastParagraphRow() && e.target.value.trim()) {
-      addParagraphRow();
-    }
-  });
-  row.querySelector('.remove-row').addEventListener('click', () => {
-    if (paragraphRows().length <= 1) return;
-    row.remove();
-    renumberParagraphs();
-    ensureTrailingEmptyParagraph();
-  });
-
-  list.appendChild(row);
-  renumberParagraphs();
-}
-
-function collectDescriptions() {
-  const descriptions = [];
-  paragraphRows().forEach(row => {
-    const text = row.querySelector('.paragraph-text').value.trim();
-    if (!text) return;
-    descriptions.push({ text, duration_sec: estimateDurationSec(text) });
-  });
-  return descriptions;
-}
-
 function collectTags() {
   return document.getElementById('tags').value
     .split(',')
@@ -195,12 +110,12 @@ function collectTags() {
 
 async function submitItem() {
   const feedback = document.getElementById('form-feedback');
-  const descriptions = collectDescriptions();
+  const descriptions = paragraphList.collect();
 
   if (!descriptions.length) {
     feedback.style.color = 'red';
     feedback.textContent = 'Aggiungi almeno un paragrafo alla descrizione.';
-    document.querySelector('.paragraph-text')?.focus();
+    paragraphList.focusFirst();
     return;
   }
 
@@ -257,7 +172,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   await loadEntities();
-  addParagraphRow();
+  paragraphList = setupParagraphList(document.getElementById('paragraphs-list'));
   setupBtnGroup('tone-group', 'simple');
   setupBtnGroup('license-group', 'Public');
   setupTooltips();
