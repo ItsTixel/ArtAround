@@ -11,9 +11,9 @@ router.post('/',   controller.create);
 router.put('/:id', verifyToken, isSelf, controller.update);
 router.delete('/:id', controller.remove);
 
-router.put('/:id/adopt/:visitId',       controller.adoptVisit);
-router.delete('/:id/adopt/:visitId',    controller.removeAdoption);
-router.put('/:id/bookmark/:visitId',    controller.bookmarkVisit);
-router.delete('/:id/bookmark/:visitId', controller.removeBookmark);
+router.put('/:id/adopt/:visitId',       verifyToken, isSelf, controller.adoptVisit);
+router.delete('/:id/adopt/:visitId',    verifyToken, isSelf, controller.removeAdoption);
+router.put('/:id/bookmark/:visitId',    verifyToken, isSelf, controller.bookmarkVisit);
+router.delete('/:id/bookmark/:visitId', verifyToken, isSelf, controller.removeBookmark);
 
 module.exports = router;
