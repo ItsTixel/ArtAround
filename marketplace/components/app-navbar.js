@@ -26,7 +26,7 @@ class AppNavbar extends HTMLElement {
             <span class="not-italic text-slate-500 dark:text-slate-400">Art</span>Around
           </a>
 
-          <div id="nav-collapsible" class="hidden md:flex md:items-center md:gap-8 absolute md:static top-full inset-x-0 md:inset-auto mt-2 md:mt-0 flex-col md:flex-row items-stretch md:items-center gap-1.5 md:gap-8 p-4 md:p-0 max-h-[calc(100vh-6rem)] overflow-y-auto bg-white/90 dark:bg-[#0b1224]/90 backdrop-blur-xl md:bg-transparent md:backdrop-blur-none border border-slate-400/20 md:border-0 shadow-2xl md:shadow-none rounded-2xl md:rounded-none">
+          <div id="nav-collapsible" class="hidden md:flex md:items-center md:gap-8 absolute md:static top-full inset-x-0 md:inset-auto mt-2 md:mt-0 flex-col md:flex-row items-stretch md:items-center gap-1.5 md:gap-8 p-4 md:p-0 max-h-[calc(100vh-6rem)] md:max-h-none overflow-y-auto md:overflow-visible bg-white/90 dark:bg-[#0b1224]/90 backdrop-blur-xl md:bg-transparent md:backdrop-blur-none border border-slate-400/20 md:border-0 shadow-2xl md:shadow-none rounded-2xl md:rounded-none">
             <ul id="nav-links" class="flex flex-col md:flex-row items-stretch md:items-center gap-1.5 md:gap-1">
               <li><a href="/marketplace" class="${NAV_LINK} block ${isMuseums ? 'active' : ''}">Musei</a></li>
               <li><a href="/marketplace/pages/visits.html" class="${NAV_LINK} block ${isVisits ? 'active' : ''}">Tutte le visite</a></li>
@@ -109,8 +109,9 @@ class AppNavbar extends HTMLElement {
     const li = document.createElement('li');
     li.className = 'nav-create relative';
     li.innerHTML = `
-      <button type="button" class="create-trigger w-full md:w-auto text-left block ${NAV_LINK}" aria-haspopup="true" aria-expanded="false">Crea &#9662;</button>
-      <ul class="create-menu hidden flex-col gap-1 md:gap-0.5 md:absolute md:top-[calc(100%+0.5rem)] md:left-1/2 md:-translate-x-1/2 md:min-w-[200px] p-2 ${GLASS} md:z-[110]">
+      <button type="button" class="create-trigger w-full md:w-auto text-left block ${NAV_LINK}" aria-haspopup="true" aria-expanded="false">Crea <span class="create-caret inline-block ${TRANSITION}">&#9662;</span></button>
+      <ul class="create-menu hidden flex-col gap-1 md:gap-0.5 md:absolute md:top-[calc(100%+0.625rem)] md:left-1/2 md:-translate-x-1/2 md:min-w-[210px] p-2 bg-white dark:bg-[#0b1224] border border-slate-400/20 shadow-2xl shadow-black/10 dark:shadow-black/40 rounded-2xl md:z-[110]">
+        <span class="hidden md:block absolute -top-[7px] left-1/2 -translate-x-1/2 w-3.5 h-3.5 rotate-45 bg-white dark:bg-[#0b1224] border-l border-t border-slate-400/20"></span>
         <li><a href="/marketplace/pages/create-museum.html" class="block px-4 py-3 md:px-3 md:py-2 rounded-lg text-sm md:text-xs tracking-wide text-slate-600 dark:text-slate-300 hover:bg-slate-900/5 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white ${TRANSITION}">Crea Museo</a></li>
         <li><a href="/marketplace/pages/create-entity.html" class="block px-4 py-3 md:px-3 md:py-2 rounded-lg text-sm md:text-xs tracking-wide text-slate-600 dark:text-slate-300 hover:bg-slate-900/5 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white ${TRANSITION}">Crea Opera</a></li>
         <li><a href="#" class="disabled flex items-center justify-between gap-2 px-4 py-3 md:px-3 md:py-2 rounded-lg text-sm md:text-xs tracking-wide text-slate-400 dark:text-slate-500 cursor-default">Crea Visita <span class="text-[0.6rem] px-1.5 py-0.5 rounded-full bg-slate-400/20 uppercase">Presto</span></a></li>
@@ -119,11 +120,13 @@ class AppNavbar extends HTMLElement {
     `;
 
     const trigger = li.querySelector('.create-trigger');
+    const caret = li.querySelector('.create-caret');
     const menu = li.querySelector('.create-menu');
     const closeMenu = () => {
       li.classList.remove('open');
       menu.classList.remove('flex');
       menu.classList.add('hidden');
+      caret.classList.remove('rotate-180');
       trigger.setAttribute('aria-expanded', 'false');
     };
     trigger.addEventListener('click', (e) => {
@@ -131,6 +134,7 @@ class AppNavbar extends HTMLElement {
       const isOpen = menu.classList.contains('hidden');
       menu.classList.toggle('hidden', !isOpen);
       menu.classList.toggle('flex', isOpen);
+      caret.classList.toggle('rotate-180', isOpen);
       trigger.setAttribute('aria-expanded', String(isOpen));
     });
     li.querySelectorAll('a.disabled').forEach(a => a.addEventListener('click', (e) => e.preventDefault()));
