@@ -15,6 +15,62 @@ function sortDescriptions(item) {
   return [...(item?.descriptions || [])].sort((a, b) => a.duration_sec - b.duration_sec)
 }
 
+const TTS_WORDS_PER_MINUTE = 150
+
+function estimateDurationSec(text) {
+  const words = (text || '').trim().split(/\s+/).filter(Boolean).length
+  if (!words) return 0
+  return Math.max(1, Math.round((words / TTS_WORDS_PER_MINUTE) * 60))
+}
+
+// Resolves the room/floor a step's entity sits in, for the museum that step
+// actually takes place in (an entity can have placements in several
+// museums). Returns null for non-physical entities, which have no
+// meaningful location to give directions to.
+function getStepLocation(step) {
+  if (!step?.entity?.is_physical) return null
+  const museumId = step.museum?._id != null ? String(step.museum._id) : null
+  const placement = (step.entity.placements || []).find((p) => {
+    const placementMuseumId = p.museum?._id != null ? String(p.museum._id) : String(p.museum)
+    return placementMuseumId === museumId
+  })
+  return {
+    museumId,
+    museumName: step.museum?.name || '',
+    floor: placement?.location?.floor || '',
+    room: placement?.location?.room || '',
+  }
+}
+
+// Builds hierarchical directions: museum > floor > room. A difference at one
+// level implies mentioning every level below it, even if its value happens
+// to be textually identical, since the higher-level change already makes it
+// a new place. No previous location (first physical opera of the visit) or
+// no differences at all yields no directions. Returns both a spoken
+// sentence (for the TTS/player) and a structured parts list (for the UI, so
+// it can render one row per level instead of a flat sentence).
+function buildDirections(prev, curr) {
+  if (!prev || !curr) return null
+
+  const museumDiffers = prev.museumId !== curr.museumId
+  const floorDiffers = museumDiffers || (prev.floor || '') !== (curr.floor || '')
+  const roomDiffers = floorDiffers || (prev.room || '') !== (curr.room || '')
+
+  const parts = []
+  if (museumDiffers && curr.museumName) parts.push({ key: 'museum', label: 'Museo', value: curr.museumName })
+  if (floorDiffers && curr.floor) parts.push({ key: 'floor', label: 'Piano', value: curr.floor })
+  if (roomDiffers && curr.room) parts.push({ key: 'room', label: 'Stanza', value: curr.room })
+
+  if (!parts.length) return null
+
+  const sentenceBits = []
+  if (museumDiffers && curr.museumName) sentenceBits.push(`al museo ${curr.museumName}`)
+  if (floorDiffers && curr.floor) sentenceBits.push(`al piano ${curr.floor}`)
+  if (roomDiffers && curr.room) sentenceBits.push(`nella stanza ${curr.room}`)
+
+  return { text: `Procedi ${sentenceBits.join(', ')}.`, parts }
+}
+
 export function VisitProgressProvider({ children }) {
   const { activeVisit } = useActiveVisit()
   const [selectedTone, setSelectedTone] = useState(null)
@@ -24,11 +80,21 @@ export function VisitProgressProvider({ children }) {
   const [progress, setProgress] = useState(0) // 0..1, position within currentDescription.text
   const [seekPreview, setSeekPreview] = useState(null) // 0..1 while dragging, else null
   const [autoplayEnabled, setAutoplayEnabled] = useState(true)
+  const [directions, setDirections] = useState(null) // { text, parts } | null — null when not showing the directions view
   const utteranceRef = useRef(null)
   const textRef = useRef('') // full text currently loaded for playback/seeking
   const resumeCharRef = useRef(0) // char offset to resume/seek from
   const timerRef = useRef(null) // interval driving the progress bar while playing
   const playStartRef = useRef({ time: 0, baseFraction: 0 })
+  const lastPhysicalLocationRef = useRef(null) // location of the last physical opera actually shown
+  const lastStepIndexRef = useRef(null)
+  // Duration matching whatever's currently in textRef.current. Kept as a ref
+  // (not derived from render state) and updated in lockstep with textRef:
+  // effects that set textRef.current and immediately call speakFromChar in
+  // the same pass would otherwise read stale render-time state (e.g.
+  // directionsText right after the setDirections that's meant to introduce
+  // it, but hasn't committed a re-render yet).
+  const activeDurationRef = useRef(0)
 
   const sortedSteps = useMemo(() => {
     if (!activeVisit?.steps?.length) return []
@@ -57,6 +123,15 @@ export function VisitProgressProvider({ children }) {
   const activeDescIndex = Math.min(selectedDescIndex, Math.max(sortedDescriptions.length - 1, 0))
   const currentDescription = sortedDescriptions[activeDescIndex]
 
+  const directionsText = directions?.text || null
+
+  // What the player (progress bar, play/pause, seek) currently acts on:
+  // the directions view's text while it's shown, otherwise the description.
+  const activeText = directionsText || currentDescription?.text || ''
+  const activeDurationSec = directionsText
+    ? estimateDurationSec(directionsText)
+    : currentDescription?.duration_sec || 0
+
   const toneIndex = availableTones.indexOf(activeTone)
   const canGoSimplerTone = toneIndex > 0
   const canGoComplexTone = toneIndex !== -1 && toneIndex < availableTones.length - 1
@@ -78,7 +153,7 @@ export function VisitProgressProvider({ children }) {
   function startProgressTimer(baseFraction) {
     stopProgressTimer()
     playStartRef.current = { time: Date.now(), baseFraction }
-    const duration = currentDescription?.duration_sec || 0
+    const duration = activeDurationRef.current
     if (!duration) return
     timerRef.current = setInterval(() => {
       const elapsed = (Date.now() - playStartRef.current.time) / 1000
@@ -144,8 +219,9 @@ export function VisitProgressProvider({ children }) {
   }
 
   function handleSeek(fraction) {
-    if (!currentDescription?.text) return
-    textRef.current = currentDescription.text
+    if (!activeText) return
+    textRef.current = activeText
+    activeDurationRef.current = activeDurationSec
     const clampedFraction = Math.max(0, Math.min(1, fraction))
     speakFromChar(Math.round(clampedFraction * textRef.current.length))
   }
@@ -222,9 +298,10 @@ export function VisitProgressProvider({ children }) {
       speakFromChar(resumeCharRef.current)
       return
     }
-    if (!currentDescription?.text) return
-    if (textRef.current !== currentDescription.text) {
-      textRef.current = currentDescription.text
+    if (!activeText) return
+    if (textRef.current !== activeText) {
+      textRef.current = activeText
+      activeDurationRef.current = activeDurationSec
       resumeCharRef.current = 0
     }
     speakFromChar(resumeCharRef.current)
@@ -232,6 +309,27 @@ export function VisitProgressProvider({ children }) {
 
   function toggleAutoplay() {
     setAutoplayEnabled((enabled) => !enabled)
+  }
+
+  // Dismisses the directions view, handing the player back to the
+  // description (starting it if autoplay is on) — the main narration wasn't
+  // playing underneath, since directions take over the player while shown.
+  function closeDirections() {
+    if (!directions) return
+    window.speechSynthesis.cancel()
+    stopProgressTimer()
+    setPlaybackState('idle')
+    setProgress(0)
+    setSeekPreview(null)
+    resumeCharRef.current = 0
+    textRef.current = ''
+    setDirections(null)
+    if (autoplayEnabled && currentDescription?.text) {
+      textRef.current = currentDescription.text
+      activeDurationRef.current = currentDescription.duration_sec || 0
+      resumeCharRef.current = 0
+      speakFromChar(0)
+    }
   }
 
   // Pauses whatever description narration is in progress (if any, keeping
@@ -266,6 +364,9 @@ export function VisitProgressProvider({ children }) {
     setStepIndex(0)
     setSelectedTone(null)
     setSelectedDescIndex(0)
+    setDirections(null)
+    lastPhysicalLocationRef.current = null
+    lastStepIndexRef.current = null
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeVisit?._id])
 
@@ -276,20 +377,69 @@ export function VisitProgressProvider({ children }) {
     }
   }, [])
 
-  // Autoplay: start reading as soon as a description becomes current — on
-  // first load, after Prossimo/Precedente, after switching tone/paragrafo,
-  // and when triggered from the Comandi page. Skipped when autoplayEnabled
-  // is off; speech already in progress is left alone rather than stopped.
+  // Handles both step-to-step directions and description autoplay in one
+  // effect so they can never race each other (two separate effects reacting
+  // to the same step change would both try to seize speechSynthesis in the
+  // same commit). On a step change that moves FORWARD (Prossimo, never
+  // Precedente — walking back through steps you've already seen shouldn't
+  // re-litigate directions you already got, and isn't a real physical move),
+  // compares the new physical location against the last physical one
+  // actually shown: if it differs, the directions view takes over the
+  // player and description autoplay is skipped for this step (closeDirections
+  // hands playback back afterwards). Non-physical entities are skipped
+  // entirely — lastPhysicalLocationRef just keeps pointing at the last real
+  // physical opera reached going forward. On a same-step tone/paragraph
+  // change, a backward step, or when there were no directions to show, it
+  // behaves like the old plain autoplay-on-description-change effect.
+  // Whether either narration actually auto-starts speaking is gated on
+  // autoplayEnabled either way — directions just get to load/display
+  // regardless, ready for a manual Play.
   useEffect(() => {
+    if (!step) return
+    const previousStepIndex = lastStepIndexRef.current
+    const stepChanged = previousStepIndex !== activeStepIndex
+    const isInitialMount = previousStepIndex === null
+    const movedForward = !isInitialMount && activeStepIndex > previousStepIndex
+    lastStepIndexRef.current = activeStepIndex
+
+    if (stepChanged) {
+      window.speechSynthesis.cancel()
+      stopProgressTimer()
+
+      // The initial mount must still seed lastPhysicalLocationRef with
+      // wherever the visit starts (so the first real forward move has
+      // something to compare against) even though — like a backward move —
+      // it never shows directions itself: buildDirections already returns
+      // null with no previous location to compare from.
+      if (movedForward || isInitialMount) {
+        const currentLocation = getStepLocation(step)
+        let newDirections = null
+        if (currentLocation) {
+          newDirections = buildDirections(lastPhysicalLocationRef.current, currentLocation)
+          lastPhysicalLocationRef.current = currentLocation
+        }
+        setDirections(newDirections)
+
+        if (newDirections) {
+          textRef.current = newDirections.text
+          activeDurationRef.current = estimateDurationSec(newDirections.text)
+          resumeCharRef.current = 0
+          if (autoplayEnabled) speakFromChar(0)
+          return
+        }
+      } else {
+        setDirections(null)
+      }
+    }
+
     if (!autoplayEnabled) return
     if (!currentDescription?.text) return
     textRef.current = currentDescription.text
+    activeDurationRef.current = currentDescription.duration_sec || 0
     resumeCharRef.current = 0
     speakFromChar(0)
-    // Deliberately NOT depending on autoplayEnabled: toggling it must not
-    // restart/interrupt whatever is currently playing.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentDescription?.text])
+  }, [activeStepIndex, currentDescription?.text])
 
   const value = {
     step,
@@ -324,6 +474,11 @@ export function VisitProgressProvider({ children }) {
     handlePlayPause,
     autoplayEnabled,
     toggleAutoplay,
+    directionsText,
+    directionsParts: directions?.parts || null,
+    closeDirections,
+    activeText,
+    activeDurationSec,
   }
 
   return <VisitProgressContext.Provider value={value}>{children}</VisitProgressContext.Provider>

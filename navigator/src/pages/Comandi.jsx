@@ -166,6 +166,7 @@ function Comandi() {
     canGoNextParagraph,
     goToPreviousParagraph,
     goToNextParagraph,
+    directionsParts,
   } = useVisitProgress()
   const [serviceMessage, setServiceMessage] = useState(null)
 
@@ -226,28 +227,28 @@ function Comandi() {
             label="Meno dettagli"
             Icon={LessDetailsIcon}
             onClick={goToPreviousParagraph}
-            disabled={!canGoPreviousParagraph}
+            disabled={!canGoPreviousParagraph || !!directionsParts}
             colorClasses="bg-emerald-700 text-white"
           />
           <CommandButton
             label="Dimmi di più"
             Icon={MoreDetailsIcon}
             onClick={goToNextParagraph}
-            disabled={!canGoNextParagraph}
+            disabled={!canGoNextParagraph || !!directionsParts}
             colorClasses="bg-emerald-600 text-white"
           />
           <CommandButton
             label="Più semplice"
             Icon={SimplerIcon}
             onClick={goToSimplerTone}
-            disabled={!canGoSimplerTone}
+            disabled={!canGoSimplerTone || !!directionsParts}
             colorClasses="bg-amber-500 text-black"
           />
           <CommandButton
             label="Più complesso"
             Icon={ComplexIcon}
             onClick={goToComplexTone}
-            disabled={!canGoComplexTone}
+            disabled={!canGoComplexTone || !!directionsParts}
             colorClasses="bg-rose-600 text-white"
           />
         </div>
