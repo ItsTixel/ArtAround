@@ -5,6 +5,8 @@ import { useActiveVisit } from '../context/ActiveVisitContext'
 import VisitDetailModal from '../components/VisitDetailModal'
 
 const MARKETPLACE_VISITS_URL = '/marketplace/pages/visits.html'
+const LOGIN_URL = '/marketplace/login.html'
+const REGISTER_URL = '/marketplace/register.html'
 
 function formatDuration(sec) {
   if (!sec) return null
@@ -74,6 +76,28 @@ function Home() {
           Inserisci un codice visita, oppure scegli una delle tue visite qui sotto.
         </p>
       </div>
+
+      {!user && (
+        <div className="flex flex-col gap-2 rounded-lg border border-accent/40 bg-accent/10 p-4 text-center">
+          <p className="text-sm text-text">
+            Accedi o registrati per adottare visite e salvare i tuoi progressi.
+          </p>
+          <div className="flex justify-center gap-3">
+            <a
+              href={`${LOGIN_URL}?redirect=${encodeURIComponent(location.pathname + location.search)}`}
+              className="rounded-md bg-gradient-to-br from-accent to-accent-hover px-4 py-2 text-sm font-medium text-on-accent shadow-[0_0_16px_rgba(212,168,83,0.25)]"
+            >
+              Accedi
+            </a>
+            <a
+              href={`${REGISTER_URL}?redirect=${encodeURIComponent(location.pathname + location.search)}`}
+              className="rounded-md border border-border px-4 py-2 text-sm font-medium text-text"
+            >
+              Registrati
+            </a>
+          </div>
+        </div>
+      )}
 
       <form onSubmit={handleVisitCodeSubmit} className="flex flex-col gap-2">
         <label htmlFor="visit-code" className="text-xs font-medium uppercase tracking-wide text-text-muted">

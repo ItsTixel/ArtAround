@@ -3,7 +3,6 @@ import { AuthProvider } from './context/AuthContext'
 import { ActiveVisitProvider } from './context/ActiveVisitContext'
 import { VisitProgressProvider } from './context/VisitProgressContext'
 import AppLayout from './layout/AppLayout'
-import AuthGateModal from './components/AuthGateModal'
 import Home from './pages/Home'
 import Mappa from './pages/Mappa'
 import Opera from './pages/Opera'
@@ -24,7 +23,6 @@ function App() {
               <Route path="qr" element={<Qr />} />
             </Route>
           </Routes>
-          <AuthGateModal />
         </VisitProgressProvider>
       </ActiveVisitProvider>
     </AuthProvider>

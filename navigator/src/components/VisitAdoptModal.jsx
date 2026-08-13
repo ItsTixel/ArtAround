@@ -42,7 +42,21 @@ function VisitAdoptModal({ visit, onAdopted, onClose }) {
         </div>
 
         <div className="flex shrink-0 flex-col gap-2 border-t border-border p-4">
-          {confirm ? (
+          {!user ? (
+            <div className="flex flex-col gap-2 text-center">
+              <p className="text-sm text-text-muted">
+                {isFree
+                  ? 'Devi accedere per aggiungere questa visita.'
+                  : 'Devi accedere per acquistare questa visita.'}
+              </p>
+              <a
+                href={`/marketplace/login.html?redirect=${encodeURIComponent(window.location.pathname + window.location.search)}`}
+                className="rounded-md bg-gradient-to-br from-accent to-accent-hover px-4 py-2.5 text-sm font-medium text-on-accent shadow-[0_0_16px_rgba(212,168,83,0.25)]"
+              >
+                Accedi
+              </a>
+            </div>
+          ) : confirm ? (
             <div className="flex items-center gap-3">
               <span className="flex-1 text-sm text-text-muted">
                 Sei sicuro? Costa <strong className="text-text">{formatPrice(price)}</strong>

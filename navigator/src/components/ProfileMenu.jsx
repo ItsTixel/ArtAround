@@ -309,6 +309,7 @@ function ProfileMenu() {
   async function handleLogout() {
     closeMenu()
     await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' })
+    clearActiveVisit()
     await refresh()
   }
 
