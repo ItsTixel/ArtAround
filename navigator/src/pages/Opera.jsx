@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useActiveVisit } from '../context/ActiveVisitContext'
 import { useVisitProgress, TONE_LABELS } from '../context/VisitProgressContext'
 import NoActiveVisit from '../components/NoActiveVisit'
@@ -38,6 +39,7 @@ function pillClasses(active, activeClasses) {
 }
 
 function Opera() {
+  const [imageOpen, setImageOpen] = useState(false)
   const { activeVisit } = useActiveVisit()
   const {
     step,
@@ -119,11 +121,18 @@ function Opera() {
         <>
           <div className="relative mx-6 mt-4 h-72 w-[calc(100%-3rem)] overflow-hidden rounded-2xl border border-border shadow-lg">
             {entity.image_url ? (
-              <img
-                src={entity.image_url}
-                alt={entity.alt_text || entity.name}
-                className="h-full w-full object-cover"
-              />
+              <button
+                type="button"
+                onClick={() => setImageOpen(true)}
+                aria-label="Ingrandisci immagine"
+                className="block h-full w-full cursor-zoom-in"
+              >
+                <img
+                  src={entity.image_url}
+                  alt={entity.alt_text || entity.name}
+                  className="h-full w-full object-cover"
+                />
+              </button>
             ) : (
               <div className="flex h-full w-full items-center justify-center bg-border text-sm text-text-muted">
                 Nessuna immagine disponibile
@@ -190,6 +199,28 @@ function Opera() {
             </p>
           </div>
         </>
+      )}
+
+      {imageOpen && entity.image_url && (
+        <div
+          className="fixed inset-0 z-100 flex items-center justify-center bg-black/90 p-4"
+          onClick={() => setImageOpen(false)}
+        >
+          <button
+            type="button"
+            onClick={() => setImageOpen(false)}
+            aria-label="Chiudi"
+            className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/30 text-xl text-white"
+          >
+            ×
+          </button>
+          <img
+            src={entity.image_url}
+            alt={entity.alt_text || entity.name}
+            onClick={(e) => e.stopPropagation()}
+            className="max-h-full max-w-full object-contain"
+          />
+        </div>
       )}
 
       <div className="fixed inset-x-0 bottom-16 z-40 border-t border-border bg-surface">
