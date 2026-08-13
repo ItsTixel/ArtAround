@@ -52,7 +52,7 @@ html, body {
 }
 
 .page-hero .hero-sub {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: var(--font-mono);
   font-size: 0.78rem;
   letter-spacing: 0.08em;
   color: var(--color-text-muted);
@@ -89,7 +89,7 @@ filter-sidebar { display: block; }
   box-shadow: var(--universal-glass-shadow);
 }
 .results-count {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: var(--font-mono);
   font-size: 0.78rem;
   letter-spacing: 0.06em;
   color: var(--color-text-muted);
@@ -161,13 +161,6 @@ filter-sidebar { display: block; }
   mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M21 19l-4.35-4.35A7.5 7.5 0 1 0 15 16.65L19.35 21 21 19zM10.5 16a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z'/></svg>") center/contain no-repeat;
   -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M21 19l-4.35-4.35A7.5 7.5 0 1 0 15 16.65L19.35 21 21 19zM10.5 16a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z'/></svg>") center/contain no-repeat;
   pointer-events: none;
-}
-
-/* ── Contenuto senza sidebar (pagina "Le tue visite") ───────── */
-.my-visits-content {
-  max-width: 1480px;
-  margin: 0 auto;
-  padding: 2.75rem 3rem 5rem;
 }
 
 /* ── Griglia visite ──────────────────────────────────────── */
@@ -247,7 +240,6 @@ filter-sidebar { display: block; }
   .page-hero h1 { font-size: 2.2rem; }
   .visits-layout { grid-template-columns: 1fr; padding: 0 1.5rem; margin-top: 1.5rem; gap: 1.25rem; }
   .visits-content { padding: 0 0 4rem; }
-  .my-visits-content { padding: 2rem 1.5rem 4rem; }
   .results-bar { gap: 1rem; }
 }
 

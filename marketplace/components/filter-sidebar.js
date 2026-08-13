@@ -15,7 +15,8 @@
  *   { museumIds[], price, durationMax, tones[], tags[] }
  */
 
-const GLASS = 'bg-slate-400/10 backdrop-blur-lg border border-slate-400/20 shadow-xl shadow-black/5 rounded-2xl';
+import { GLASS } from '/marketplace/js/ui-tokens.js';
+
 const RING_FOCUS = 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 dark:focus-visible:ring-slate-300 focus-visible:ring-offset-1';
 
 class FilterSidebar extends HTMLElement {

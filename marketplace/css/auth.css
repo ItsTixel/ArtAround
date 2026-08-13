@@ -142,7 +142,7 @@
 .feedback {
   min-height: 1.1em;
   margin-top: 1.25rem;
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: var(--font-mono);
   font-size: 0.78rem;
   text-align: center;
   letter-spacing: 0.02em;

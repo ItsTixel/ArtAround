@@ -1,5 +1,4 @@
-const GLASS = 'bg-slate-400/10 backdrop-blur-lg border border-slate-400/20 shadow-xl shadow-black/5 rounded-2xl';
-const TRANSITION = 'transition-all duration-300 ease-in-out';
+import { GLASS, TRANSITION } from '/marketplace/js/ui-tokens.js';
 
 class MuseumCard extends HTMLElement {
   static get observedAttributes() {
@@ -49,7 +48,7 @@ class MuseumCard extends HTMLElement {
             : `<svg class="relative w-11 h-11 fill-slate-400 dark:fill-slate-500 transition-colors group-hover:fill-slate-600 dark:group-hover:fill-slate-300" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                  <path d="M22 11V9L12 2 2 9v2h2v9h5v-5h6v5h5v-9h2z"/>
                </svg>`}
-          <span class="absolute bottom-3 left-1/2 -translate-x-1/2 z-[2] text-[0.68rem] tracking-[0.18em] uppercase px-3 py-1.5 rounded-full ${GLASS} text-slate-800 dark:text-slate-100 whitespace-nowrap" style="font-family: 'JetBrains Mono', ui-monospace, monospace;">${this._escape(city || 'Museo')}</span>
+          <span class="absolute bottom-3 left-1/2 -translate-x-1/2 z-[2] text-[0.68rem] tracking-[0.18em] uppercase px-3 py-1.5 rounded-full ${GLASS} text-slate-800 dark:text-slate-100 whitespace-nowrap" style="font-family: var(--font-mono);">${this._escape(city || 'Museo')}</span>
         </div>
 
         <div class="p-6 flex-1 flex flex-col gap-2">

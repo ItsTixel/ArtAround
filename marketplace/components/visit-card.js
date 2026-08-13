@@ -7,8 +7,7 @@
  *     tags[], museumDetails[{id, short, name, city}] }
  */
 
-const GLASS = 'bg-slate-400/10 backdrop-blur-lg border border-slate-400/20 shadow-xl shadow-black/5 rounded-2xl';
-const TRANSITION = 'transition-all duration-300 ease-in-out';
+import { GLASS, TRANSITION } from '/marketplace/js/ui-tokens.js';
 
 class VisitCard extends HTMLElement {
   constructor() {
@@ -66,7 +65,7 @@ class VisitCard extends HTMLElement {
           }
           ${isInfra ? `<span class="absolute top-3 left-3 z-10 text-[0.62rem] font-medium tracking-[0.16em] uppercase px-2.5 py-1 rounded-full ${GLASS} text-slate-800 dark:text-slate-100">Inframuseale</span>` : ''}
           <span class="absolute top-3 right-3 z-10 text-[0.7rem] font-semibold tracking-[0.08em] uppercase px-2.5 py-1 rounded-full ${owned || isFree ? 'bg-slate-800 text-white dark:bg-white dark:text-slate-900' : `${GLASS} text-slate-800 dark:text-slate-100`}">${owned ? '✓ In tuo possesso' : this._fmtPrice(v.basePrice)}</span>
-          <span class="relative z-[1] text-[0.68rem] tracking-[0.18em] uppercase px-3 py-1.5 rounded-full ${GLASS} text-slate-800 dark:text-slate-100" style="font-family: 'JetBrains Mono', ui-monospace, monospace;">${this._esc(placeholderLabel)}</span>
+          <span class="relative z-[1] text-[0.68rem] tracking-[0.18em] uppercase px-3 py-1.5 rounded-full ${GLASS} text-slate-800 dark:text-slate-100" style="font-family: var(--font-mono);">${this._esc(placeholderLabel)}</span>
         </div>
 
         <div class="p-6 flex-1 flex flex-col gap-2.5">

@@ -11,13 +11,11 @@
  */
 
 import { getCurrentUser } from '/marketplace/js/auth-session.js';
+import { GLASS_MODAL as GLASS, TRANSITION } from '/marketplace/js/ui-tokens.js';
 
 const API_VISITS = '/api/visits';
 const API_USERS  = '/api/users';
 const LOGIN_URL  = '/marketplace/login.html';
-
-const GLASS = 'bg-slate-400/10 backdrop-blur-2xl border border-slate-400/20 shadow-2xl rounded-2xl';
-const TRANSITION = 'transition-all duration-300 ease-in-out';
 
 class VisitModal extends HTMLElement {
   constructor() {
@@ -207,7 +205,7 @@ class VisitModal extends HTMLElement {
       const desc = s.intro_note || entity.description || '';
       return `
         <li class="flex gap-3.5 items-start">
-          <span class="text-[0.72rem] pt-[0.15rem] shrink-0" style="font-family: 'JetBrains Mono', ui-monospace, monospace; color: var(--color-accent, #9e7a46);">${String(i + 1).padStart(2, '0')}</span>
+          <span class="text-[0.72rem] pt-[0.15rem] shrink-0" style="font-family: var(--font-mono); color: var(--color-accent, #9e7a46);">${String(i + 1).padStart(2, '0')}</span>
           <div class="w-14 h-14 shrink-0 bg-slate-300/20 dark:bg-slate-800/40 border border-slate-400/20 rounded-md overflow-hidden">${entity.image_url
             ? `<img class="w-full h-full object-cover" src="${this._esc(entity.image_url)}" alt="" loading="lazy">`
             : `<span class="block w-full h-full" style="background-image: repeating-linear-gradient(135deg, transparent 0 6px, rgba(100,116,139,0.12) 6px 7px);"></span>`}
@@ -230,8 +228,8 @@ class VisitModal extends HTMLElement {
         ${bannerImage
           ? `<img class="absolute inset-0 w-full h-full object-cover" src="${this._esc(bannerImage)}" alt="" loading="lazy">`
           : `<div class="absolute inset-0" style="background-image: repeating-linear-gradient(135deg, transparent 0 11px, rgba(100,116,139,0.12) 11px 12px);"></div>`}
-        ${isInfra ? `<span class="absolute top-3 left-3 z-[2] text-[0.62rem] tracking-[0.16em] uppercase rounded-full px-2.5 py-1.5 ${GLASS} text-slate-800 dark:text-slate-100" style="font-family: 'JetBrains Mono', ui-monospace, monospace;">Inframuseale</span>` : ''}
-        <span class="relative z-[1] text-[0.68rem] tracking-[0.14em] uppercase px-3 py-1.5 rounded-full ${GLASS} text-slate-800 dark:text-slate-100 text-center max-w-[80%]" style="font-family: 'JetBrains Mono', ui-monospace, monospace;">${this._esc(v.title)}</span>
+        ${isInfra ? `<span class="absolute top-3 left-3 z-[2] text-[0.62rem] tracking-[0.16em] uppercase rounded-full px-2.5 py-1.5 ${GLASS} text-slate-800 dark:text-slate-100" style="font-family: var(--font-mono);">Inframuseale</span>` : ''}
+        <span class="relative z-[1] text-[0.68rem] tracking-[0.14em] uppercase px-3 py-1.5 rounded-full ${GLASS} text-slate-800 dark:text-slate-100 text-center max-w-[80%]" style="font-family: var(--font-mono);">${this._esc(v.title)}</span>
       </div>
 
       <div class="pt-7 px-5 sm:px-8 pb-7 sm:pb-8">

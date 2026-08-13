@@ -1,11 +1,10 @@
 import { getCurrentUser, logout } from '/marketplace/js/auth-session.js';
 import { getTheme, toggleTheme } from '/marketplace/js/theme.js';
+import { GLASS, TRANSITION } from '/marketplace/js/ui-tokens.js';
 
 const SUN_ICON = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>`;
 const MOON_ICON = `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>`;
 
-const GLASS = 'bg-slate-400/10 backdrop-blur-lg border border-slate-400/20 shadow-xl shadow-black/5 rounded-2xl';
-const TRANSITION = 'transition-all duration-300 ease-in-out';
 const NAV_LINK = `px-3.5 py-1.5 rounded-full text-[0.7rem] font-medium tracking-[0.1em] uppercase text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/20 ${TRANSITION} [&.active]:bg-slate-800 [&.active]:text-white dark:[&.active]:bg-white dark:[&.active]:text-slate-900`;
 
 class AppNavbar extends HTMLElement {

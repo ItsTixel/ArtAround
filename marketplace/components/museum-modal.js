@@ -8,11 +8,10 @@
  *   document.querySelector('museum-modal').open(museumId);
  */
 
+import { GLASS_MODAL as GLASS, TRANSITION } from '/marketplace/js/ui-tokens.js';
+
 const API_MUSEUMS = '/api/museums';
 const VISITS_URL  = '/marketplace/pages/visits.html';
-
-const GLASS = 'bg-slate-400/10 backdrop-blur-2xl border border-slate-400/20 shadow-2xl rounded-2xl';
-const TRANSITION = 'transition-all duration-300 ease-in-out';
 
 class MuseumModal extends HTMLElement {
   constructor() {
@@ -105,7 +104,7 @@ class MuseumModal extends HTMLElement {
              <svg class="relative w-12 h-12 fill-slate-400 dark:fill-slate-500" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                <path d="M22 11V9L12 2 2 9v2h2v9h5v-5h6v5h5v-9h2z"/>
              </svg>`}
-        <span class="absolute bottom-3 left-1/2 -translate-x-1/2 z-[1] text-[0.68rem] tracking-[0.14em] uppercase px-3 py-1.5 rounded-full ${GLASS} text-slate-800 dark:text-slate-100 text-center max-w-[80%] whitespace-nowrap overflow-hidden text-ellipsis" style="font-family: 'JetBrains Mono', ui-monospace, monospace;">${this._esc(m.name)}</span>
+        <span class="absolute bottom-3 left-1/2 -translate-x-1/2 z-[1] text-[0.68rem] tracking-[0.14em] uppercase px-3 py-1.5 rounded-full ${GLASS} text-slate-800 dark:text-slate-100 text-center max-w-[80%] whitespace-nowrap overflow-hidden text-ellipsis" style="font-family: var(--font-mono);">${this._esc(m.name)}</span>
       </div>
 
       <div class="pt-7 px-5 sm:px-8 pb-7 sm:pb-8">
