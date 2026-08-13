@@ -34,28 +34,24 @@ const CORNER_PANEL_CONFIG = {
   'top-right': {
     position: 'right-0 top-full mt-2 origin-top-right',
     align: 'items-end',
-    labelMargin: 'mr-1',
     closedTranslate: '-translate-y-1',
     itemClosedTranslate: 'translate-x-2',
   },
   'top-left': {
     position: 'left-0 top-full mt-2 origin-top-left',
     align: 'items-start',
-    labelMargin: 'ml-1',
     closedTranslate: '-translate-y-1',
     itemClosedTranslate: '-translate-x-2',
   },
   'bottom-right': {
     position: 'right-0 bottom-full mb-2 origin-bottom-right',
     align: 'items-end',
-    labelMargin: 'mr-1',
     closedTranslate: 'translate-y-1',
     itemClosedTranslate: 'translate-x-2',
   },
   'bottom-left': {
     position: 'left-0 bottom-full mb-2 origin-bottom-left',
     align: 'items-start',
-    labelMargin: 'ml-1',
     closedTranslate: 'translate-y-1',
     itemClosedTranslate: '-translate-x-2',
   },
@@ -328,7 +324,8 @@ function ProfileMenu() {
       as: 'a',
       href: MARKETPLACE_PROFILE_URL,
       icon: PersonIcon,
-      label: 'Il mio profilo',
+      label,
+      truncate: true,
     },
     activeVisit && {
       key: 'leave-visit',
@@ -391,27 +388,18 @@ function ProfileMenu() {
               : `duration-100 ease-in ${panelConfig.closedTranslate} scale-95 opacity-0`
           }`}
         >
-          <MenuItem
-            index={0}
-            open={open}
-            closedTranslate={panelConfig.itemClosedTranslate}
-            className={`${panelConfig.labelMargin} max-w-[12rem] truncate text-xs font-medium text-text-muted`}
-          >
-            {label}
-          </MenuItem>
-
-          {items.map(({ key, as, icon: Icon, label: itemLabel, accent, ...rest }, i) => (
+          {items.map(({ key, as, icon: Icon, label: itemLabel, accent, truncate, ...rest }, i) => (
             <MenuItem
               key={key}
-              index={i + 1}
+              index={i}
               open={open}
               closedTranslate={panelConfig.itemClosedTranslate}
               as={as}
               className={`${pillClasses} ${accent ? 'bg-gradient-to-br from-accent to-accent-hover text-on-accent' : ''}`}
               {...rest}
             >
-              <Icon className="h-4 w-4" />
-              {itemLabel}
+              <Icon className="h-4 w-4 shrink-0" />
+              <span className={truncate ? 'max-w-[10rem] truncate' : ''}>{itemLabel}</span>
             </MenuItem>
           ))}
         </div>
