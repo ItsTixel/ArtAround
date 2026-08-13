@@ -88,6 +88,10 @@ export function VisitProgressProvider({ children }) {
   const playStartRef = useRef({ time: 0, baseFraction: 0 })
   const lastPhysicalLocationRef = useRef(null) // location of the last physical opera actually shown
   const lastStepIndexRef = useRef(null)
+  // Set by goToStep({ skipDirections: true }) — e.g. a QR jump, where you're
+  // already standing at the opera, so walking directions would be nonsense.
+  // Consumed (and cleared) by the very next directions computation.
+  const skipNextDirectionsRef = useRef(false)
   // Duration matching whatever's currently in textRef.current. Kept as a ref
   // (not derived from render state) and updated in lockstep with textRef:
   // effects that set textRef.current and immediately call speakFromChar in
@@ -237,20 +241,24 @@ export function VisitProgressProvider({ children }) {
     setSelectedDescIndex(index)
   }
 
-  function goToPreviousStep() {
-    if (!canGoPreviousStep) return
+  function goToStep(index, { skipDirections = false } = {}) {
+    const clamped = Math.max(0, Math.min(index, sortedSteps.length - 1))
+    if (clamped === activeStepIndex) return
     stopSpeech()
     setSelectedTone(null)
     setSelectedDescIndex(0)
-    setStepIndex(activeStepIndex - 1)
+    if (skipDirections) skipNextDirectionsRef.current = true
+    setStepIndex(clamped)
+  }
+
+  function goToPreviousStep() {
+    if (!canGoPreviousStep) return
+    goToStep(activeStepIndex - 1)
   }
 
   function goToNextStep() {
     if (!canGoNextStep) return
-    stopSpeech()
-    setSelectedTone(null)
-    setSelectedDescIndex(0)
-    setStepIndex(activeStepIndex + 1)
+    goToStep(activeStepIndex + 1)
   }
 
   function goToPreviousParagraph() {
@@ -349,6 +357,18 @@ export function VisitProgressProvider({ children }) {
     window.speechSynthesis.speak(utterance)
   }
 
+  // Pauses the main narration (if playing) without speaking anything, so an
+  // unrelated one-off narration (e.g. a QR-scanned opera outside the visit's
+  // steps) can use speechSynthesis without fighting over it. Keeps the
+  // resume position, same as the pause branch of handlePlayPause.
+  function pauseNarration() {
+    if (playbackState !== 'playing') return
+    utteranceRef.current = null
+    window.speechSynthesis.cancel()
+    stopProgressTimer()
+    setPlaybackState('paused')
+  }
+
   // Resets navigation/playback whenever the active visit changes (a new
   // visit is activated, or the visit is cleared) so state from a previous
   // visit never leaks into the next one.
@@ -413,9 +433,13 @@ export function VisitProgressProvider({ children }) {
       // null with no previous location to compare from.
       if (movedForward || isInitialMount) {
         const currentLocation = getStepLocation(step)
+        const suppressDirections = skipNextDirectionsRef.current
+        skipNextDirectionsRef.current = false
         let newDirections = null
         if (currentLocation) {
-          newDirections = buildDirections(lastPhysicalLocationRef.current, currentLocation)
+          if (!suppressDirections) {
+            newDirections = buildDirections(lastPhysicalLocationRef.current, currentLocation)
+          }
           lastPhysicalLocationRef.current = currentLocation
         }
         setDirections(newDirections)
@@ -447,12 +471,15 @@ export function VisitProgressProvider({ children }) {
   }, [activeStepIndex, currentDescription?.text])
 
   const value = {
+    steps: sortedSteps,
     step,
     entity,
     museum,
     announceService,
+    pauseNarration,
     canGoPreviousStep,
     canGoNextStep,
+    goToStep,
     goToPreviousStep,
     goToNextStep,
     availableTones,

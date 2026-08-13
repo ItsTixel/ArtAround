@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { useActiveVisit } from '../context/ActiveVisitContext'
 import VisitDetailModal from '../components/VisitDetailModal'
@@ -21,10 +21,13 @@ function Home() {
   const { user } = useAuth()
   const { activeVisit, activateVisit, clearActiveVisit } = useActiveVisit()
   const navigate = useNavigate()
+  const location = useLocation()
   const [visits, setVisits] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  const [detailVisit, setDetailVisit] = useState(null)
+  // Il QR di una visita già adottata arriva qui via navigate('/', { state:
+  // { detailVisit } }) per aprire direttamente il suo popup (vedi Qr.jsx).
+  const [detailVisit, setDetailVisit] = useState(() => location.state?.detailVisit || null)
   const [visitCode, setVisitCode] = useState('')
 
   useEffect(() => {
