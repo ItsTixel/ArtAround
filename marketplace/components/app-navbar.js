@@ -26,7 +26,7 @@ class AppNavbar extends HTMLElement {
             <span class="not-italic text-slate-500 dark:text-slate-400">Art</span>Around
           </a>
 
-          <div id="nav-collapsible" class="hidden md:flex md:items-center md:gap-8 absolute md:static top-full inset-x-0 md:inset-auto mt-2 md:mt-0 flex-col md:flex-row items-stretch md:items-center gap-1.5 md:gap-8 p-4 md:p-0 max-h-[calc(100vh-6rem)] md:max-h-none overflow-y-auto md:overflow-visible bg-white/90 dark:bg-[#0b1224]/90 backdrop-blur-xl md:bg-transparent md:backdrop-blur-none border border-slate-400/20 md:border-0 shadow-2xl md:shadow-none rounded-2xl md:rounded-none">
+          <div id="nav-collapsible" class="hidden md:flex md:items-center md:gap-8 absolute md:static top-full inset-x-0 md:inset-auto mt-2 md:mt-0 flex-col md:flex-row items-stretch md:items-center gap-1.5 md:gap-8 p-4 md:p-0 max-h-[calc(100vh-6rem)] md:max-h-none overflow-y-auto md:overflow-visible bg-white/90 dark:bg-[#0b1224]/90 backdrop-blur-xl md:bg-transparent md:dark:bg-transparent md:backdrop-blur-none border border-slate-400/20 md:border-0 shadow-2xl md:shadow-none rounded-2xl md:rounded-none">
             <ul id="nav-links" class="flex flex-col md:flex-row items-stretch md:items-center gap-1.5 md:gap-1">
               <li><a href="/marketplace" class="${NAV_LINK} block ${isMuseums ? 'active' : ''}">Musei</a></li>
               <li><a href="/marketplace/pages/visits.html" class="${NAV_LINK} block ${isVisits ? 'active' : ''}">Tutte le visite</a></li>
