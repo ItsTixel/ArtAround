@@ -250,6 +250,24 @@ export function RoomIcon(props) {
   )
 }
 
+export function PersonIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <circle cx="12" cy="8" r="3.5" />
+      <path d="M5 20c0-3.6 3.1-6.5 7-6.5s7 2.9 7 6.5" />
+    </svg>
+  )
+}
+
+export function LogoutIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <path d="M12 4v7" />
+      <path d="M7 6.5a7 7 0 1 0 10 0" />
+    </svg>
+  )
+}
+
 export function ExitIcon(props) {
   return (
     <svg viewBox="0 0 24 24" {...strokeProps} {...props}>

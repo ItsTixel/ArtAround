@@ -1,9 +1,11 @@
 import { Outlet } from 'react-router-dom'
 import BottomNav from '../components/BottomNav'
+import ProfileMenu from '../components/ProfileMenu'
 
 function AppLayout() {
   return (
     <div className="mx-auto flex min-h-dvh max-w-md flex-col bg-bg">
+      <ProfileMenu />
       <main className="flex-1 overflow-y-auto pb-20">
         <Outlet />
       </main>
