@@ -74,6 +74,7 @@ class AppNavbar extends HTMLElement {
     const closeMenu = () => {
       collapsible.classList.remove('flex');
       collapsible.classList.add('hidden');
+      document.body.classList.remove('nav-menu-open');
       hamburger.setAttribute('aria-expanded', 'false');
       spans[0].classList.remove('translate-y-2', 'rotate-45');
       spans[1].classList.remove('opacity-0');
@@ -84,6 +85,7 @@ class AppNavbar extends HTMLElement {
       const isOpen = collapsible.classList.contains('hidden');
       collapsible.classList.toggle('hidden', !isOpen);
       collapsible.classList.toggle('flex', isOpen);
+      document.body.classList.toggle('nav-menu-open', isOpen);
       hamburger.setAttribute('aria-expanded', String(isOpen));
       spans[0].classList.toggle('translate-y-2', isOpen);
       spans[0].classList.toggle('rotate-45', isOpen);

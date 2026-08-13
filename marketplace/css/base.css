@@ -109,6 +109,16 @@ main { padding-top: 96px; }
   main { padding-top: 88px; }
 }
 
+/* Sfoca il contenuto della pagina dietro al menu mobile aperto
+   (vedi app-navbar.js: toggla .nav-menu-open su <body>), lasciando
+   comunque possibile lo scroll. */
+body > :not(app-navbar) {
+  transition: filter 0.3s ease;
+}
+body.nav-menu-open > :not(app-navbar) {
+  filter: blur(4px);
+}
+
 img {
   max-width: 100%;
   display: block;
