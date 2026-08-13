@@ -6,7 +6,10 @@
  *  Comportamento: l'ultimo paragrafo resta sempre vuoto pronto per
  *  scrivere; appena ci si scrive dentro, ne viene aggiunto uno nuovo
  *  in coda. Se invece si lascia vuoto un paragrafo e si passa a
- *  un altro (blur), quel paragrafo vuoto viene rimosso.
+ *  un altro (blur), quel paragrafo vuoto viene rimosso. L'ordine dei
+ *  paragrafi si può cambiare trascinandoli dalla maniglia (l'ultimo
+ *  paragrafo vuoto, essendo solo il posto per scriverne uno nuovo,
+ *  resta sempre in fondo e non è trascinabile).
  * ============================================================ */
 
 // Velocità media di lettura della sintesi vocale (window.speechSynthesis a
@@ -45,8 +48,13 @@ export function setupParagraphList(container, initialTexts = []) {
   function renumber() {
     const r = rows();
     r.forEach((row, i) => {
+      const isPlaceholder = row === r[r.length - 1];
       row.querySelector('.paragraph-index').textContent = `Paragrafo ${i + 1}`;
       row.querySelector('.remove-row').hidden = r.length <= 1;
+      const handle = row.querySelector('.paragraph-drag-handle');
+      handle.classList.toggle('is-disabled', isPlaceholder);
+      handle.setAttribute('aria-hidden', String(isPlaceholder));
+      handle.tabIndex = isPlaceholder ? -1 : 0;
     });
   }
 
@@ -60,7 +68,10 @@ export function setupParagraphList(container, initialTexts = []) {
     row.className = 'dynamic-row paragraph-row';
     row.innerHTML = `
       <div class="paragraph-row-head">
-        <span class="paragraph-index"></span>
+        <div class="paragraph-row-head-left">
+          <span class="paragraph-drag-handle" draggable="true" aria-label="Trascina per riordinare" title="Trascina per riordinare">⠿</span>
+          <span class="paragraph-index"></span>
+        </div>
         <div class="paragraph-row-meta">
           <span class="paragraph-duration-estimate">~0s</span>
           <button type="button" class="remove-row" aria-label="Rimuovi paragrafo">✕</button>
@@ -96,6 +107,51 @@ export function setupParagraphList(container, initialTexts = []) {
     return row;
   }
 
+  /* Trascinamento dalla maniglia: il paragrafo trascinato segue il
+   * puntatore tra i paragrafi già scritti, ma non può mai superare
+   * l'ultimo (il posto vuoto pronto per il prossimo testo). */
+  function setupDragReorder() {
+    let draggingRow = null;
+
+    container.addEventListener('dragstart', (e) => {
+      const handle = e.target.closest('.paragraph-drag-handle');
+      const row = handle?.closest('.paragraph-row');
+      if (!row || row === lastRow()) { e.preventDefault(); return; }
+      draggingRow = row;
+      row.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/plain', '');
+      e.dataTransfer.setDragImage(row, 20, 20);
+    });
+
+    container.addEventListener('dragover', (e) => {
+      if (!draggingRow) return;
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+
+      const placeholder = lastRow();
+      const others = [...rows()].filter(r => r !== draggingRow && r !== placeholder);
+      let target = placeholder; // di default va appena prima del posto vuoto in fondo
+      for (const row of others) {
+        const box = row.getBoundingClientRect();
+        if (e.clientY < box.top + box.height / 2) {
+          target = row;
+          break;
+        }
+      }
+      if (target !== draggingRow) container.insertBefore(draggingRow, target);
+    });
+
+    container.addEventListener('drop', (e) => e.preventDefault());
+
+    container.addEventListener('dragend', () => {
+      if (!draggingRow) return;
+      draggingRow.classList.remove('dragging');
+      draggingRow = null;
+      renumber();
+    });
+  }
+
   container.innerHTML = '';
   if (initialTexts.length) {
     initialTexts.forEach(t => addRow(t));
@@ -103,6 +159,7 @@ export function setupParagraphList(container, initialTexts = []) {
   } else {
     addRow();
   }
+  setupDragReorder();
 
   return {
     collect() {

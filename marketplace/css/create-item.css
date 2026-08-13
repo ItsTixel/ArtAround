@@ -85,6 +85,31 @@
   justify-content: space-between;
 }
 
+.paragraph-row-head-left {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.paragraph-drag-handle {
+  cursor: grab;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--color-text-muted);
+  user-select: none;
+  touch-action: none;
+  transition: color var(--transition), opacity var(--transition);
+}
+.paragraph-drag-handle:hover { color: var(--color-text); }
+.paragraph-drag-handle.is-disabled {
+  opacity: 0.25;
+  cursor: default;
+  pointer-events: none;
+}
+
+.paragraph-row.dragging { opacity: 0.5; }
+
 .paragraph-index {
   font-family: var(--font-sans);
   font-size: 0.68rem;
