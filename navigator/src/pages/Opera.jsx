@@ -7,7 +7,6 @@ import {
   PlayIcon,
   PauseIcon,
   MicrophoneIcon,
-  AutoplayIcon,
   SignpostIcon,
   MuseumIcon,
   FloorIcon,
@@ -221,7 +220,7 @@ function Opera() {
             aria-label="Precedente"
             onClick={directionsParts ? closeDirections : goToPreviousStep}
             disabled={!directionsParts && !canGoPreviousStep}
-            className={`text-text-muted transition-opacity ${
+            className={`flex h-10 w-10 items-center justify-center text-text-muted transition-opacity ${
               !directionsParts && !canGoPreviousStep ? 'opacity-30' : ''
             }`}
           >
@@ -234,9 +233,15 @@ function Opera() {
             }
             aria-pressed={autoplayEnabled}
             onClick={toggleAutoplay}
-            className={`text-text-muted transition-opacity ${!autoplayEnabled ? 'opacity-30' : ''}`}
+            className="flex h-10 w-10 items-center justify-center"
           >
-            <AutoplayIcon className="h-4 w-4" />
+            <span
+              className={`rounded-full px-2 py-1 text-[10px] font-bold uppercase tracking-wide transition-colors ${
+                autoplayEnabled ? 'bg-accent text-on-accent' : 'text-text-muted'
+              }`}
+            >
+              Auto
+            </span>
           </button>
           <button
             type="button"
@@ -255,7 +260,7 @@ function Opera() {
             type="button"
             aria-label="Microfono"
             onClick={() => console.log('Microfono')}
-            className="text-text-muted transition-opacity"
+            className="flex h-10 w-10 items-center justify-center text-text-muted transition-opacity"
           >
             <MicrophoneIcon className="h-6 w-6" />
           </button>
@@ -264,7 +269,7 @@ function Opera() {
             aria-label="Prossimo"
             onClick={directionsParts ? closeDirections : goToNextStep}
             disabled={!directionsParts && !canGoNextStep}
-            className={`text-text-muted transition-opacity ${
+            className={`flex h-10 w-10 items-center justify-center text-text-muted transition-opacity ${
               !directionsParts && !canGoNextStep ? 'opacity-30' : ''
             }`}
           >
