@@ -203,6 +203,53 @@ export function ToiletIcon(props) {
   )
 }
 
+export function SignpostIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <path d="M12 21v-9.5" />
+      <path d="M12 4v3" />
+      <path
+        d="M6 6.5h6.5a1 1 0 0 1 .8 1.6L12 10l1.3 1.9a1 1 0 0 1-.8 1.6H6a1 1 0 0 1-1-1v-4.5a1 1 0 0 1 1-1Z"
+        strokeLinejoin="round"
+      />
+      <path d="M9 21h6" />
+    </svg>
+  )
+}
+
+export function MuseumIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <path d="M3 9.5 12 4l9 5.5" strokeLinejoin="round" />
+      <path d="M4.5 9.5V19" />
+      <path d="M19.5 9.5V19" />
+      <path d="M8.5 9.5V19" />
+      <path d="M15.5 9.5V19" />
+      <path d="M12 9.5V19" />
+      <path d="M3 19h18" />
+    </svg>
+  )
+}
+
+export function FloorIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <path d="M4 20h4v-4.5h4V11h4V6.5h4" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+export function RoomIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <path d="M5 20V5.3a1 1 0 0 1 .8-1L14 3v17" strokeLinejoin="round" />
+      <path d="M14 3.2 18.5 4a1 1 0 0 1 .8 1v15" strokeLinejoin="round" />
+      <path d="M4 20h16" />
+      <circle cx="11.3" cy="12" r="0.9" fill="currentColor" stroke="none" />
+    </svg>
+  )
+}
+
 export function ExitIcon(props) {
   return (
     <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
