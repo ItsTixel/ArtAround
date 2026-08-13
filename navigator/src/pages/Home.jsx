@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
 import { useActiveVisit } from '../context/ActiveVisitContext'
 import VisitDetailModal from '../components/VisitDetailModal'
+
+const MARKETPLACE_VISITS_URL = '/marketplace/pages/visits.html'
 
 function formatDuration(sec) {
   if (!sec) return null
@@ -15,22 +18,32 @@ function formatPrice(price) {
 }
 
 function Home() {
+  const { user } = useAuth()
   const { activeVisit, activateVisit, clearActiveVisit } = useActiveVisit()
   const navigate = useNavigate()
   const [visits, setVisits] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [detailVisit, setDetailVisit] = useState(null)
+  const [visitCode, setVisitCode] = useState('')
 
   useEffect(() => {
     let cancelled = false
+    const adoptedIds = user?.adopted_visits || []
 
     async function loadVisits() {
+      if (adoptedIds.length === 0) {
+        setVisits([])
+        setLoading(false)
+        return
+      }
+      setLoading(true)
+      setError(null)
       try {
-        const res = await fetch('/api/visits?pageSize=100&sort=title')
-        if (!res.ok) throw new Error('Errore nel caricamento delle visite')
-        const body = await res.json()
-        if (!cancelled) setVisits(body.data || [])
+        const results = await Promise.all(
+          adoptedIds.map((id) => fetch(`/api/visits/${id}`).then((res) => (res.ok ? res.json() : null)))
+        )
+        if (!cancelled) setVisits(results.filter(Boolean))
       } catch (e) {
         if (!cancelled) setError(e.message)
       } finally {
@@ -42,60 +55,108 @@ function Home() {
     return () => {
       cancelled = true
     }
-  }, [])
+  }, [user])
+
+  function handleVisitCodeSubmit(e) {
+    e.preventDefault()
+    // Il riscatto di un codice visita richiede una rotta backend non ancora
+    // esistente: per ora il campo è solo interfaccia, senza chiamata reale.
+  }
 
   return (
-    <div className="flex flex-col gap-4 p-4">
-      <div>
-        <h1 className="font-serif text-2xl font-semibold text-text">Home</h1>
-        <p className="text-sm text-text-muted">
-          Seleziona una visita da attivare per iniziare.
+    <div className="flex flex-col gap-8 p-4 pt-6">
+      <div className="text-center">
+        <h1 className="font-serif text-3xl font-semibold text-text">Benvenuto</h1>
+        <p className="mt-1 text-sm text-text-muted">
+          Inserisci un codice visita, oppure scegli una delle tue visite qui sotto.
         </p>
       </div>
 
-      {loading && <p className="text-text-muted">Caricamento visite...</p>}
-      {error && <p className="text-red-400">{error}</p>}
+      <form onSubmit={handleVisitCodeSubmit} className="flex flex-col gap-2">
+        <label htmlFor="visit-code" className="text-xs font-medium uppercase tracking-wide text-text-muted">
+          Codice visita
+        </label>
+        <div className="flex gap-2">
+          <input
+            id="visit-code"
+            type="text"
+            value={visitCode}
+            onChange={(e) => setVisitCode(e.target.value)}
+            placeholder="Es. ABC123"
+            autoComplete="off"
+            className="flex-1 rounded-md border border-border bg-surface px-4 py-2.5 text-sm text-text placeholder:text-text-muted focus:border-accent focus:outline-none"
+          />
+          <button
+            type="submit"
+            className="shrink-0 rounded-md bg-gradient-to-br from-accent to-accent-hover px-4 py-2.5 text-sm font-medium text-on-accent shadow-[0_0_16px_rgba(212,168,83,0.25)]"
+          >
+            Vai
+          </button>
+        </div>
+      </form>
 
-      <ul className="flex flex-col gap-3">
-        {visits.map((visit) => {
-          const isActive = activeVisit?._id === visit._id
-          const museumNames = (visit.museum || []).map((m) => m.name).join(', ')
+      <div className="flex flex-col gap-3">
+        <h2 className="font-serif text-lg font-semibold text-text">Visite disponibili</h2>
 
-          return (
-            <li key={visit._id}>
-              <button
-                type="button"
-                onClick={() => setDetailVisit(visit)}
-                className={`w-full rounded-lg border bg-surface p-4 text-left shadow-sm ${
-                  isActive ? 'border-accent shadow-[0_0_20px_rgba(212,168,83,0.15)]' : 'border-border'
-                }`}
-              >
-                <div className="flex items-start justify-between gap-2">
-                  <h2 className="font-serif font-semibold text-text">{visit.title}</h2>
-                  {isActive && (
-                    <span className="shrink-0 rounded-full bg-accent px-2.5 py-0.5 text-xs font-medium text-on-accent">
-                      Attiva ✓
-                    </span>
-                  )}
-                </div>
-                {museumNames && (
-                  <p className="text-sm text-text-muted">{museumNames}</p>
-                )}
-                <div className="mt-1 flex gap-3 text-xs text-text-muted">
-                  {formatDuration(visit.estimated_duration_sec) && (
-                    <span>{formatDuration(visit.estimated_duration_sec)}</span>
-                  )}
-                  <span>{formatPrice(visit.base_price)}</span>
-                </div>
-              </button>
-            </li>
-          )
-        })}
-      </ul>
+        {loading && <p className="text-sm text-text-muted">Caricamento visite...</p>}
+        {error && <p className="text-sm text-red-400">{error}</p>}
 
-      {!loading && !error && visits.length === 0 && (
-        <p className="text-text-muted">Nessuna visita disponibile.</p>
-      )}
+        {!loading && !error && visits.length === 0 && (
+          <p className="text-sm text-text-muted">Non hai ancora nessuna visita adottata.</p>
+        )}
+
+        {!loading && !error && visits.length > 0 && (
+          <ul className="flex max-h-96 flex-col gap-3 overflow-y-auto pr-1">
+            {visits.map((visit) => {
+              const isActive = activeVisit?._id === visit._id
+              const museumNames = (visit.museum || []).map((m) => m.name).join(', ')
+              const coverImage = visit.image_url || visit.steps?.[0]?.entity?.image_url
+
+              return (
+                <li key={visit._id}>
+                  <button
+                    type="button"
+                    onClick={() => setDetailVisit(visit)}
+                    className={`flex w-full items-center gap-3 rounded-lg border bg-surface p-3 text-left shadow-sm ${
+                      isActive ? 'border-accent shadow-[0_0_20px_rgba(212,168,83,0.15)]' : 'border-border'
+                    }`}
+                  >
+                    <div className="h-16 w-16 shrink-0 overflow-hidden rounded-md border border-border bg-bg">
+                      {coverImage && (
+                        <img src={coverImage} alt="" loading="lazy" className="h-full w-full object-cover" />
+                      )}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-start justify-between gap-2">
+                        <h3 className="truncate font-serif font-semibold text-text">{visit.title}</h3>
+                        {isActive && (
+                          <span className="shrink-0 rounded-full bg-accent px-2 py-0.5 text-[0.65rem] font-medium text-on-accent">
+                            Attiva
+                          </span>
+                        )}
+                      </div>
+                      {museumNames && <p className="truncate text-xs text-text-muted">{museumNames}</p>}
+                      <div className="mt-1 flex gap-3 text-xs text-text-muted">
+                        {formatDuration(visit.estimated_duration_sec) && (
+                          <span>{formatDuration(visit.estimated_duration_sec)}</span>
+                        )}
+                        <span>{formatPrice(visit.base_price)}</span>
+                      </div>
+                    </div>
+                  </button>
+                </li>
+              )
+            })}
+          </ul>
+        )}
+
+        <a
+          href={MARKETPLACE_VISITS_URL}
+          className="mt-1 text-center text-sm text-accent underline-offset-4 hover:underline"
+        >
+          Vuoi altre visite? Vai al marketplace
+        </a>
+      </div>
 
       {detailVisit && (
         <VisitDetailModal

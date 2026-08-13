@@ -424,7 +424,7 @@ export function VisitProgressProvider({ children }) {
           textRef.current = newDirections.text
           activeDurationRef.current = estimateDurationSec(newDirections.text)
           resumeCharRef.current = 0
-          if (autoplayEnabled) speakFromChar(0)
+          if (autoplayEnabled && !isInitialMount) speakFromChar(0)
           return
         }
       } else {
@@ -437,6 +437,11 @@ export function VisitProgressProvider({ children }) {
     textRef.current = currentDescription.text
     activeDurationRef.current = currentDescription.duration_sec || 0
     resumeCharRef.current = 0
+    // The very first step of a freshly (re)loaded visit must never speak on
+    // its own — only a user action (Play, or navigating away and back)
+    // should start it. Every other autoplay trigger (step change, tone/
+    // paragraph change) still fires normally.
+    if (isInitialMount) return
     speakFromChar(0)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeStepIndex, currentDescription?.text])
