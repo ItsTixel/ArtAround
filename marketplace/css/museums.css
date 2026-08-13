@@ -21,7 +21,7 @@ html, body {
   color: var(--color-text);
   padding: 4.5rem 3rem 3.25rem;
   position: relative;
-  border-bottom: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--universal-glass-border);
 }
 
 .page-hero-inner {
@@ -62,17 +62,17 @@ html, body {
 .search-section {
   max-width: 1480px;
   margin: 2rem auto 0;
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px) saturate(140%);
-  -webkit-backdrop-filter: blur(20px) saturate(140%);
-  border: 1px solid var(--glass-border);
+  background: var(--universal-glass-bg);
+  backdrop-filter: var(--universal-glass-blur) saturate(140%);
+  -webkit-backdrop-filter: var(--universal-glass-blur) saturate(140%);
+  border: 1px solid var(--universal-glass-border);
   border-radius: 9999px;
   padding: 0.85rem 2rem;
   display: flex;
   align-items: center;
   gap: 2.5rem;
   flex-wrap: wrap;
-  box-shadow: var(--glass-shadow);
+  box-shadow: var(--universal-glass-shadow);
   transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
@@ -116,9 +116,9 @@ html, body {
 
 .filters select {
   padding: 0.4rem 1.9rem 0.4rem 1rem;
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--universal-glass-border);
   border-radius: 9999px;
-  background-color: var(--glass-bg);
+  background-color: var(--universal-glass-bg);
   font-family: var(--font-sans);
   font-size: 0.78rem;
   letter-spacing: 0.02em;
@@ -134,7 +134,7 @@ html, body {
 }
 
 .filters select:hover,
-.filters select:focus { border-color: var(--glass-border-strong); background-color: var(--glass-bg-strong); }
+.filters select:focus { border-color: var(--universal-glass-border-strong); background-color: var(--universal-glass-bg-strong); }
 
 .filters select option {
   background-color: var(--color-surface);
@@ -150,7 +150,7 @@ html, body {
   color: var(--color-text-muted);
   text-decoration: none;
   padding: 0.45rem 1rem;
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--universal-glass-border);
   border-radius: 9999px;
   white-space: nowrap;
   transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
@@ -158,8 +158,8 @@ html, body {
 
 .skip-link:hover {
   color: var(--color-text);
-  border-color: var(--glass-border-strong);
-  background: var(--glass-bg-strong);
+  border-color: var(--universal-glass-border-strong);
+  background: var(--universal-glass-bg-strong);
 }
 
 /* ── Grid Container ───────────────────────────────────────── */
@@ -175,7 +175,7 @@ html, body {
   justify-content: space-between;
   margin-bottom: 2.25rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--universal-glass-border);
 }
 
 .results-count {
@@ -210,7 +210,7 @@ html, body {
   content: '';
   display: block;
   width: 24px; height: 24px;
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--universal-glass-border);
   border-top-color: var(--color-text);
   border-radius: 50%;
   animation: spin 1.2s linear infinite;
@@ -230,11 +230,11 @@ html, body {
 
 .pagination button {
   padding: 0.45rem 1.4rem;
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--universal-glass-border);
   border-radius: 9999px;
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: var(--universal-glass-bg);
+  backdrop-filter: var(--universal-glass-blur);
+  -webkit-backdrop-filter: var(--universal-glass-blur);
   font-family: var(--font-sans);
   font-size: 0.7rem;
   font-weight: 500;
@@ -246,8 +246,8 @@ html, body {
 }
 
 .pagination button:hover {
-  background: var(--glass-bg-strong);
-  border-color: var(--glass-border-strong);
+  background: var(--universal-glass-bg-strong);
+  border-color: var(--universal-glass-border-strong);
 }
 
 .pagination button:disabled { opacity: 0.3; cursor: not-allowed; }

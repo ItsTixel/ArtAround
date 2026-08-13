@@ -92,13 +92,25 @@ export function createWizard({
     nextBtn.title = nextText;
   }
 
+  // Il focus dato da reportValidity() fa scrollare .carousel-viewport
+  // (overflow: hidden, ma resta un "contenitore di scroll" valido per il
+  // browser) per portare il campo invalido in vista. Questo scroll nativo
+  // si somma al translateX con cui il carosello posiziona già la slide,
+  // disallineandole quando si salta più di uno step in avanti tramite lo
+  // stepper numerato. Il carosello gestisce da solo la propria posizione,
+  // quindi lo scroll automatico va annullato.
+  function reportInvalid(invalid) {
+    invalid.input.reportValidity();
+    track.parentElement.scrollLeft = 0;
+  }
+
   function goToStep(index) {
     if (!path().includes(index)) return;
     const invalid = findFirstInvalid(index);
     if (invalid) {
       currentStep = invalid.step;
       render();
-      invalid.input.reportValidity();
+      reportInvalid(invalid);
       return;
     }
     currentStep = index;
@@ -118,7 +130,7 @@ export function createWizard({
       if (invalid) {
         currentStep = invalid.step;
         render();
-        invalid.input.reportValidity();
+        reportInvalid(invalid);
         return;
       }
       onSubmit();

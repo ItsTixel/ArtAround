@@ -7,10 +7,12 @@
  *     tags[], museumDetails[{id, short, name, city}] }
  */
 
+const GLASS = 'bg-slate-400/10 backdrop-blur-lg border border-slate-400/20 shadow-xl shadow-black/5 rounded-2xl';
+const TRANSITION = 'transition-all duration-300 ease-in-out';
+
 class VisitCard extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
     this._data = null;
   }
 
@@ -53,250 +55,40 @@ class VisitCard extends HTMLElement {
     const isInfra = museums.length > 1;
     const museumLine = this._museumLine(museums);
 
-    this.shadowRoot.innerHTML = `
-      <style>
-        :host { display: block; height: 100%; }
+    this.className = 'block h-full';
+    this.innerHTML = `
+      <div class="card group ${GLASS} overflow-hidden flex flex-col h-full cursor-pointer text-slate-800 dark:text-slate-100 ${TRANSITION} hover:-translate-y-1 hover:bg-white/20 hover:border-white/30 hover:shadow-2xl" role="button" tabindex="0" aria-label="${this._esc(v.title)}">
 
-        .card {
-          background: var(--glass-bg, rgba(255, 255, 255, 0.05));
-          backdrop-filter: blur(20px) saturate(140%);
-          -webkit-backdrop-filter: blur(20px) saturate(140%);
-          border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
-          border-top-color: var(--glass-border-strong, rgba(255, 255, 255, 0.22));
-          border-radius: var(--radius, 8px);
-          overflow: hidden;
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-          cursor: pointer;
-          text-decoration: none;
-          color: inherit;
-          transition: box-shadow 0.4s ease, transform 0.4s ease, border-color 0.4s ease;
-        }
-        .card:hover {
-          transform: translateY(-4px);
-          border-color: var(--glass-border-strong, rgba(255, 255, 255, 0.18));
-          box-shadow: var(--glass-shadow, 0 16px 40px rgba(0, 0, 0, 0.5)), var(--glow-accent, 0 0 24px rgba(148, 197, 253, 0.16));
-        }
-
-        /* ── Banner placeholder ───────────────────────────── */
-        .banner {
-          position: relative;
-          height: 184px;
-          background: var(--placeholder-bg, #101010);
-          border-bottom: 1px solid var(--color-border, #2a2a2a);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          overflow: hidden;
-        }
-        .banner::before {
-          content: '';
-          position: absolute; inset: 0;
-          background: repeating-linear-gradient(
-            135deg,
-            transparent 0 11px,
-            var(--placeholder-line, rgba(255, 255, 255, 0.035)) 11px 12px
-          );
-        }
-        .banner.has-image::before { display: none; }
-
-        .banner-img {
-          position: absolute; inset: 0;
-          z-index: 0;
-          width: 100%; height: 100%;
-          object-fit: cover;
-          transition: transform 0.4s ease;
-        }
-        .card:hover .banner-img { transform: scale(1.04); }
-        .ph-label {
-          position: relative; z-index: 1;
-          font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
-          font-size: 0.68rem;
-          letter-spacing: 0.18em;
-          text-transform: uppercase;
-          color: #e2e8f0;
-          background: rgba(2, 6, 23, 0.55);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          border-radius: 9999px;
-          padding: 0.4rem 0.85rem;
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-        }
-        .price-tag {
-          position: absolute;
-          top: 0.85rem; right: 0.85rem;
-          z-index: 2;
-          font-family: var(--font-sans, 'Nunito Sans', system-ui, sans-serif);
-          font-size: 0.7rem;
-          font-weight: 600;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          border-radius: 9999px;
-          padding: 0.35rem 0.7rem;
-          background: rgba(2, 6, 23, 0.55);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          color: #e2e8f0;
-        }
-        .price-tag.free,
-        .price-tag.owned {
-          background: var(--color-accent, #e7edf7);
-          color: var(--color-on-accent, #0a0f1e);
-          border-color: transparent;
-          backdrop-filter: none;
-          -webkit-backdrop-filter: none;
-        }
-
-        .infra-badge {
-          position: absolute;
-          top: 0.85rem; left: 0.85rem;
-          z-index: 2;
-          font-family: 'JetBrains Mono', ui-monospace, monospace;
-          font-size: 0.62rem;
-          font-weight: 500;
-          letter-spacing: 0.16em;
-          text-transform: uppercase;
-          border-radius: 9999px;
-          padding: 0.35rem 0.7rem;
-          background: rgba(2, 6, 23, 0.55);
-          color: #e2e8f0;
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-        }
-
-        /* ── Body ─────────────────────────────────────────── */
-        .body {
-          padding: 1.3rem 1.75rem 1.6rem;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          gap: 0.7rem;
-        }
-
-        .museum-line {
-          font-family: var(--font-sans, 'Inter', system-ui, sans-serif);
-          font-size: 0.66rem;
-          font-weight: 600;
-          letter-spacing: 0.16em;
-          text-transform: uppercase;
-          color: var(--color-text-muted, #94a3b8);
-          padding-bottom: 0.7rem;
-          border-bottom: 1px solid var(--glass-border, #e8e6e1);
-        }
-
-        .meta-top {
-          display: flex; align-items: center; gap: 0.55rem;
-          font-family: var(--font-sans, 'Inter', system-ui, sans-serif);
-          font-size: 0.66rem;
-          font-weight: 500;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          color: var(--color-text-muted, #78716c);
-        }
-        .meta-top .sep { width: 12px; height: 1px; background: currentColor; opacity: 0.4; }
-
-        h2 {
-          font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
-          font-size: 1.15rem;
-          font-weight: 600;
-          color: var(--color-text, #1c1917);
-          line-height: 1.3;
-          margin: 0;
-        }
-
-        .desc {
-          font-family: var(--font-sans, 'Nunito Sans', system-ui, sans-serif);
-          font-size: 0.83rem;
-          line-height: 1.55;
-          color: var(--color-text-muted, #8a8a8a);
-          margin: 0;
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-
-        .tags { font-family: var(--font-sans, 'Inter', system-ui, sans-serif); }
-        .tag {
-          font-size: 0.62rem;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          color: var(--color-text-muted, #78716c);
-          padding: 0.15rem 0;
-        }
-        .tag + .tag::before { content: '·'; margin: 0 0.45rem; opacity: 0.5; }
-
-        .foot {
-          display: flex;
-          align-items: flex-end;
-          justify-content: space-between;
-          gap: 1rem;
-          margin-top: auto;
-          padding-top: 1rem;
-          border-top: 1px solid var(--glass-border, #e8e6e1);
-          font-family: var(--font-sans, 'Inter', system-ui, sans-serif);
-        }
-        .duration {
-          font-size: 0.78rem;
-          font-feature-settings: 'tnum';
-          color: var(--color-text, #1c1917);
-        }
-        .duration small {
-          display: block;
-          font-size: 0.62rem;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          color: var(--color-text-muted, #78716c);
-          margin-bottom: 0.15rem;
-        }
-        .cta {
-          display: inline-flex;
-          align-items: center;
-          font-size: 0.66rem;
-          font-weight: 500;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          color: var(--color-text, #f0ede8);
-          background: var(--pill-bg, rgba(255, 255, 255, 0.08));
-          border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.14));
-          border-radius: 9999px;
-          padding: 0.42rem 0.9rem;
-          transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
-          white-space: nowrap;
-        }
-        .card:hover .cta {
-          border-color: var(--pill-hover-border, rgba(255, 255, 255, 0.28));
-          background: var(--pill-hover-bg, rgba(255, 255, 255, 0.14));
-        }
-      </style>
-
-      <div class="card" role="button" tabindex="0" aria-label="${this._esc(v.title)}">
-        <div class="banner ${v.image ? 'has-image' : ''}">
-          ${v.image ? `<img class="banner-img" src="${this._esc(v.image)}" alt="" loading="lazy">` : ''}
-          ${isInfra ? '<span class="infra-badge">Inframuseale</span>' : ''}
-          <span class="price-tag ${owned ? 'owned' : (isFree ? 'free' : '')}">${owned ? '✓ In tuo possesso' : this._fmtPrice(v.basePrice)}</span>
-          <span class="ph-label">${this._esc(placeholderLabel)}</span>
+        <div class="relative h-44 bg-slate-300/20 dark:bg-slate-800/40 flex items-center justify-center overflow-hidden">
+          ${v.image
+            ? `<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="${this._esc(v.image)}" alt="" loading="lazy">`
+            : `<div class="absolute inset-0" style="background-image: repeating-linear-gradient(135deg, transparent 0 11px, rgba(100,116,139,0.12) 11px 12px);"></div>`
+          }
+          ${isInfra ? `<span class="absolute top-3 left-3 z-10 text-[0.62rem] font-medium tracking-[0.16em] uppercase px-2.5 py-1 rounded-full ${GLASS} text-slate-800 dark:text-slate-100">Inframuseale</span>` : ''}
+          <span class="absolute top-3 right-3 z-10 text-[0.7rem] font-semibold tracking-[0.08em] uppercase px-2.5 py-1 rounded-full ${owned || isFree ? 'bg-slate-800 text-white dark:bg-white dark:text-slate-900' : `${GLASS} text-slate-800 dark:text-slate-100`}">${owned ? '✓ In tuo possesso' : this._fmtPrice(v.basePrice)}</span>
+          <span class="relative z-[1] text-[0.68rem] tracking-[0.18em] uppercase px-3 py-1.5 rounded-full ${GLASS} text-slate-800 dark:text-slate-100" style="font-family: 'JetBrains Mono', ui-monospace, monospace;">${this._esc(placeholderLabel)}</span>
         </div>
-        <div class="body">
-          ${museumLine ? `<div class="museum-line">${museumLine}</div>` : ''}
-          <div class="meta-top">
+
+        <div class="p-6 flex-1 flex flex-col gap-2.5">
+          ${museumLine ? `<div class="text-[0.66rem] font-semibold tracking-[0.16em] uppercase text-slate-500 dark:text-slate-400 pb-2.5 border-b border-slate-400/20">${museumLine}</div>` : ''}
+          <div class="flex items-center gap-2 text-[0.66rem] font-medium tracking-[0.14em] uppercase text-slate-500 dark:text-slate-400">
             ${v.steps ? `<span>${v.steps} tappe</span>` : ''}
           </div>
-          <h2>${this._esc(v.title)}</h2>
-          <p class="desc">${this._esc(v.description)}</p>
-          ${v.tags?.length ? `<div class="tags">${v.tags.slice(0, 3).map(t => `<span class="tag">${this._esc(t)}</span>`).join('')}</div>` : ''}
-          <div class="foot">
-            <span class="duration"><small>Durata</small>${this._fmtDuration(v.durationSec)}</span>
-            <span class="cta">Esplora →</span>
+          <h2 class="text-lg font-semibold leading-snug" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">${this._esc(v.title)}</h2>
+          <p class="text-sm leading-relaxed text-slate-500 dark:text-slate-400 line-clamp-2">${this._esc(v.description)}</p>
+          ${v.tags?.length ? `<div class="flex flex-wrap gap-x-2 text-[0.62rem] tracking-[0.12em] uppercase text-slate-500 dark:text-slate-400">${v.tags.slice(0, 3).map(t => `<span>${this._esc(t)}</span>`).join('<span class="opacity-50">·</span>')}</div>` : ''}
+          <div class="flex items-end justify-between gap-4 mt-auto pt-4 border-t border-slate-400/20">
+            <span class="text-sm">
+              <small class="block text-[0.62rem] tracking-[0.12em] uppercase text-slate-500 dark:text-slate-400 mb-0.5">Durata</small>
+              ${this._fmtDuration(v.durationSec)}
+            </span>
+            <span class="cta inline-flex items-center whitespace-nowrap text-[0.66rem] font-semibold tracking-[0.08em] uppercase px-3.5 py-2 rounded-full bg-slate-800 text-white dark:bg-white dark:text-slate-900 group-hover:opacity-90 ${TRANSITION}">Esplora →</span>
           </div>
         </div>
       </div>
     `;
 
-    const card = this.shadowRoot.querySelector('.card');
+    const card = this.querySelector('.card');
     const open = () => this.dispatchEvent(new CustomEvent('open-visit', {
       detail: { id: v.id },
       bubbles: true,

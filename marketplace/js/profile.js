@@ -140,17 +140,24 @@ function renderDescriptions(items) {
     grid.innerHTML = '<p class="empty">Non hai ancora creato nessuna descrizione.</p>';
     return;
   }
+  const LICENSE_STYLE = {
+    private:  'text-rose-500 dark:text-rose-400 border-rose-400/40',
+    reserved: 'text-sky-600 dark:text-sky-400 border-sky-400/40',
+    public:   'text-slate-600 dark:text-slate-300 border-slate-400/30',
+  };
   items.forEach(item => {
     const card = document.createElement('div');
-    card.className = 'desc-card';
-    const licenseClass = `license-${String(item.license || 'public').toLowerCase()}`;
+    card.className = 'desc-card bg-slate-400/10 backdrop-blur-lg border border-slate-400/20 shadow-xl shadow-black/5 rounded-2xl p-6 flex flex-col gap-2.5 text-slate-800 dark:text-slate-100 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-white/20 hover:border-white/30 hover:shadow-2xl';
+    const licenseKey = String(item.license || 'public').toLowerCase();
+    const licenseStyle = LICENSE_STYLE[licenseKey] || LICENSE_STYLE.public;
+    const tagCls = 'text-[0.62rem] tracking-[0.06em] uppercase border rounded-md px-2 py-0.5 border-slate-400/30 text-slate-500 dark:text-slate-400';
     card.innerHTML = `
-      <div class="desc-artwork">${esc(item.artwork?.name || 'Opera')}</div>
-      <p class="desc-summary">${esc(item.marketplace_summary)}</p>
-      <div class="desc-tags">
-        <span class="desc-tag ${licenseClass}">${esc(item.license)}</span>
-        <span class="desc-tag">${esc(item.tone)}</span>
-        ${(item.tags || []).slice(0, 3).map(t => `<span class="desc-tag">${esc(t)}</span>`).join('')}
+      <div class="text-[0.66rem] font-semibold tracking-[0.14em] uppercase text-slate-500 dark:text-slate-400">${esc(item.artwork?.name || 'Opera')}</div>
+      <p class="text-base italic leading-snug" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">${esc(item.marketplace_summary)}</p>
+      <div class="flex flex-wrap gap-1.5 mt-auto pt-1">
+        <span class="${tagCls} ${licenseStyle}">${esc(item.license)}</span>
+        <span class="${tagCls}">${esc(item.tone)}</span>
+        ${(item.tags || []).slice(0, 3).map(t => `<span class="${tagCls}">${esc(t)}</span>`).join('')}
       </div>
     `;
     grid.appendChild(card);

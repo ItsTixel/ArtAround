@@ -19,12 +19,12 @@
 .auth-card {
   width: 100%;
   max-width: 400px;
-  background: var(--glass-bg);
-  backdrop-filter: blur(24px) saturate(140%);
-  -webkit-backdrop-filter: blur(24px) saturate(140%);
-  border: 1px solid var(--glass-border);
-  border-radius: 1.5rem;
-  box-shadow: var(--glass-shadow);
+  background: var(--universal-glass-bg);
+  backdrop-filter: var(--universal-glass-blur) saturate(140%);
+  -webkit-backdrop-filter: var(--universal-glass-blur) saturate(140%);
+  border: 1px solid var(--universal-glass-border);
+  border-radius: var(--universal-glass-radius);
+  box-shadow: var(--universal-glass-shadow);
   padding: 2.75rem 2.5rem;
   position: relative;
   overflow: hidden;

@@ -16,10 +16,12 @@ const API_VISITS = '/api/visits';
 const API_USERS  = '/api/users';
 const LOGIN_URL  = '/marketplace/login.html';
 
+const GLASS = 'bg-slate-400/10 backdrop-blur-2xl border border-slate-400/20 shadow-2xl rounded-2xl';
+const TRANSITION = 'transition-all duration-300 ease-in-out';
+
 class VisitModal extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
     this._visit = null;
     this._userId = null;
     this._owned = false;
@@ -68,6 +70,7 @@ class VisitModal extends HTMLElement {
     this.removeAttribute('open');
     document.body.style.overflow = '';
     document.removeEventListener('keydown', this._onKeydown);
+    this._render();
   }
 
   _onKeydown(e) {
@@ -134,40 +137,45 @@ class VisitModal extends HTMLElement {
     const price = v.base_price || 0;
     const isFree = !price;
 
+    const btnBase = `text-[0.72rem] font-semibold tracking-[0.08em] uppercase px-6 py-3 rounded-full border border-transparent cursor-pointer whitespace-nowrap ${TRANSITION}`;
+    const btnPrimary = `${btnBase} bg-slate-800 text-white dark:bg-white dark:text-slate-900 hover:opacity-90 disabled:opacity-50 disabled:cursor-default disabled:hover:opacity-50`;
+    const btnGhost = `${btnBase} bg-transparent border-slate-400/20 text-slate-800 dark:text-slate-100 hover:bg-white/20 hover:border-white/30 disabled:opacity-50 disabled:cursor-default`;
+    const btnOwned = `${btnBase} bg-transparent border-slate-400/20 text-slate-500 dark:text-slate-400 cursor-default`;
+
     let action;
     if (this._owned) {
-      action = `<button class="btn owned" disabled>✓ Già in libreria</button>`;
+      action = `<button class="btn owned ${btnOwned}" disabled>✓ Già in libreria</button>`;
     } else if (this._confirm) {
       action = `
-        <div class="confirm">
-          <span class="confirm-text">Sei sicuro di voler comprare questa visita?</span>
-          <div class="confirm-actions">
-            <button class="btn ghost" id="confirm-no" ${this._adding ? 'disabled' : ''}>Annulla</button>
-            <button class="btn primary" id="confirm-yes" ${this._adding ? 'disabled' : ''}>${this._adding ? 'Acquisto…' : 'Sì, acquista'}</button>
+        <div class="confirm flex flex-col items-start gap-2.5 sm:flex-row sm:items-center sm:gap-4">
+          <span class="confirm-text text-[0.78rem] text-slate-800 dark:text-slate-100 max-w-[220px]">Sei sicuro di voler comprare questa visita?</span>
+          <div class="confirm-actions flex gap-2">
+            <button class="btn ghost ${btnGhost}" id="confirm-no" ${this._adding ? 'disabled' : ''}>Annulla</button>
+            <button class="btn primary ${btnPrimary}" id="confirm-yes" ${this._adding ? 'disabled' : ''}>${this._adding ? 'Acquisto…' : 'Sì, acquista'}</button>
           </div>
         </div>`;
     } else {
-      action = `<button class="btn primary" id="add-btn" ${this._adding ? 'disabled' : ''}>${this._adding ? 'Aggiunta…' : (isFree ? 'Aggiungi alla libreria' : 'Aggiungi')}</button>`;
+      action = `<button class="btn primary ${btnPrimary}" id="add-btn" ${this._adding ? 'disabled' : ''}>${this._adding ? 'Aggiunta…' : (isFree ? 'Aggiungi alla libreria' : 'Aggiungi')}</button>`;
     }
 
     return `
-      <div class="footer-info">
-        <span class="footer-price">${this._fmtPrice(price)}</span>
-        ${this._purchaseError ? `<span class="footer-error">${this._esc(this._purchaseError)}</span>` : ''}
+      <div class="footer-info flex flex-col gap-0.5">
+        <span class="footer-price text-lg font-semibold text-slate-800 dark:text-slate-100" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">${this._fmtPrice(price)}</span>
+        ${this._purchaseError ? `<span class="footer-error text-[0.72rem]" style="color:#f38b7f;">${this._esc(this._purchaseError)}</span>` : ''}
       </div>
       <div class="footer-action">${action}</div>
     `;
   }
 
   _renderFooter() {
-    const footer = this.shadowRoot.querySelector('.footer');
+    const footer = this.querySelector('.footer');
     if (!footer || !this._visit) return;
     footer.innerHTML = this._footerHtml();
     this._bindFooter();
   }
 
   _bindFooter() {
-    const footer = this.shadowRoot.querySelector('.footer');
+    const footer = this.querySelector('.footer');
     if (!footer) return;
     footer.querySelector('#add-btn')?.addEventListener('click', () => {
       if (!this._userId) { this._addToLibrary(); return; } // reindirizza al login
@@ -198,19 +206,19 @@ class VisitModal extends HTMLElement {
       const museum = museumById.get(String(s.museum));
       const desc = s.intro_note || entity.description || '';
       return `
-        <li class="opera-row">
-          <span class="opera-order">${String(i + 1).padStart(2, '0')}</span>
-          <div class="opera-thumb">${entity.image_url
-            ? `<img src="${this._esc(entity.image_url)}" alt="" loading="lazy">`
-            : '<span class="opera-thumb-ph"></span>'}
+        <li class="flex gap-3.5 items-start">
+          <span class="text-[0.72rem] pt-[0.15rem] shrink-0" style="font-family: 'JetBrains Mono', ui-monospace, monospace; color: var(--color-accent, #9e7a46);">${String(i + 1).padStart(2, '0')}</span>
+          <div class="w-14 h-14 shrink-0 bg-slate-300/20 dark:bg-slate-800/40 border border-slate-400/20 rounded-md overflow-hidden">${entity.image_url
+            ? `<img class="w-full h-full object-cover" src="${this._esc(entity.image_url)}" alt="" loading="lazy">`
+            : `<span class="block w-full h-full" style="background-image: repeating-linear-gradient(135deg, transparent 0 6px, rgba(100,116,139,0.12) 6px 7px);"></span>`}
           </div>
-          <div class="opera-info">
-            <h3>${this._esc(entity.name)}</h3>
-            <div class="opera-meta">
-              ${entity.artwork_author ? `<span class="opera-author">${this._esc(entity.artwork_author)}</span>` : ''}
-              ${isInfra && museum ? `<span class="opera-museum">${this._esc(museum.name)}</span>` : ''}
+          <div class="min-w-0 flex-1">
+            <h3 class="text-[0.95rem] font-semibold text-slate-800 dark:text-slate-100 mb-0.5" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">${this._esc(entity.name)}</h3>
+            <div class="flex flex-wrap gap-2 mb-1">
+              ${entity.artwork_author ? `<span class="text-[0.68rem] tracking-[0.04em] text-slate-500 dark:text-slate-400">${this._esc(entity.artwork_author)}</span>` : ''}
+              ${isInfra && museum ? `<span class="text-[0.62rem] uppercase tracking-[0.1em]" style="color: var(--color-accent, #9e7a46);">${this._esc(museum.name)}</span>` : ''}
             </div>
-            ${desc ? `<p class="opera-desc">${this._esc(desc)}</p>` : ''}
+            ${desc ? `<p class="text-[0.8rem] leading-relaxed text-slate-500 dark:text-slate-400 line-clamp-2">${this._esc(desc)}</p>` : ''}
           </div>
         </li>`;
     }).join('');
@@ -218,30 +226,32 @@ class VisitModal extends HTMLElement {
     const bannerImage = steps.find(s => s.entity?.image_url)?.entity?.image_url || '';
 
     return `
-      <div class="banner ${bannerImage ? 'has-image' : ''}">
-        ${bannerImage ? `<img class="banner-img" src="${this._esc(bannerImage)}" alt="" loading="lazy">` : ''}
-        ${isInfra ? '<span class="infra-badge">Inframuseale</span>' : ''}
-        <span class="ph-label">${this._esc(v.title)}</span>
+      <div class="relative h-[190px] bg-slate-300/20 dark:bg-slate-800/40 border-b border-slate-400/20 flex items-center justify-center overflow-hidden shrink-0">
+        ${bannerImage
+          ? `<img class="absolute inset-0 w-full h-full object-cover" src="${this._esc(bannerImage)}" alt="" loading="lazy">`
+          : `<div class="absolute inset-0" style="background-image: repeating-linear-gradient(135deg, transparent 0 11px, rgba(100,116,139,0.12) 11px 12px);"></div>`}
+        ${isInfra ? `<span class="absolute top-3 left-3 z-[2] text-[0.62rem] tracking-[0.16em] uppercase rounded-full px-2.5 py-1.5 ${GLASS} text-slate-800 dark:text-slate-100" style="font-family: 'JetBrains Mono', ui-monospace, monospace;">Inframuseale</span>` : ''}
+        <span class="relative z-[1] text-[0.68rem] tracking-[0.14em] uppercase px-3 py-1.5 rounded-full ${GLASS} text-slate-800 dark:text-slate-100 text-center max-w-[80%]" style="font-family: 'JetBrains Mono', ui-monospace, monospace;">${this._esc(v.title)}</span>
       </div>
 
-      <div class="content">
-        ${museumLine ? `<div class="museum-line">${museumLine}</div>` : ''}
-        <h2 class="title">${this._esc(v.title)}</h2>
+      <div class="pt-7 px-5 sm:px-8 pb-7 sm:pb-8">
+        ${museumLine ? `<div class="text-[0.66rem] font-semibold tracking-[0.16em] uppercase text-slate-500 dark:text-slate-400 mb-2">${museumLine}</div>` : ''}
+        <h2 class="text-2xl font-semibold leading-tight text-slate-800 dark:text-slate-100 mb-3.5" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">${this._esc(v.title)}</h2>
 
-        <div class="meta-row">
-          <span><strong>${this._fmtDuration(v.estimated_duration_sec)}</strong> durata</span>
-          <span class="sep"></span>
-          <span><strong>${steps.length}</strong> tapp${steps.length === 1 ? 'a' : 'e'}</span>
-          <span class="sep"></span>
-          <span><strong>${this._fmtPrice(v.base_price)}</strong> prezzo</span>
+        <div class="flex items-center gap-3 text-[0.78rem] text-slate-500 dark:text-slate-400 pb-4 mb-4 border-b border-slate-400/20">
+          <span><strong class="text-slate-800 dark:text-slate-100 font-semibold">${this._fmtDuration(v.estimated_duration_sec)}</strong> durata</span>
+          <span class="inline-block w-[3px] h-[3px] rounded-full bg-current opacity-50"></span>
+          <span><strong class="text-slate-800 dark:text-slate-100 font-semibold">${steps.length}</strong> tapp${steps.length === 1 ? 'a' : 'e'}</span>
+          <span class="inline-block w-[3px] h-[3px] rounded-full bg-current opacity-50"></span>
+          <span><strong class="text-slate-800 dark:text-slate-100 font-semibold">${this._fmtPrice(v.base_price)}</strong> prezzo</span>
         </div>
 
-        ${v.description ? `<p class="description">${this._esc(v.description)}</p>` : ''}
+        ${v.description ? `<p class="text-sm leading-relaxed text-slate-500 dark:text-slate-400 mb-4">${this._esc(v.description)}</p>` : ''}
 
-        ${v.tags?.length ? `<div class="tags">${v.tags.map(t => `<span class="tag">${this._esc(t)}</span>`).join('')}</div>` : ''}
+        ${v.tags?.length ? `<div class="mb-6">${v.tags.map(t => `<span class="inline-block text-[0.62rem] tracking-[0.1em] uppercase text-slate-500 dark:text-slate-400 border border-slate-400/20 rounded-full px-2.5 py-1 mr-1.5 mb-1.5">${this._esc(t)}</span>`).join('')}</div>` : ''}
 
-        <h3 class="section-title">Opere incluse</h3>
-        <ul class="opera-list">${operaRows || '<li class="opera-empty">Nessuna opera disponibile.</li>'}</ul>
+        <h3 class="text-base font-semibold mb-3.5 text-slate-800 dark:text-slate-100" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">Opere incluse</h3>
+        <ul class="flex flex-col gap-4">${operaRows || '<li class="text-[0.82rem] text-slate-500 dark:text-slate-400">Nessuna opera disponibile.</li>'}</ul>
       </div>
     `;
   }
@@ -249,307 +259,25 @@ class VisitModal extends HTMLElement {
   _render() {
     const isOpen = this.hasAttribute('open');
 
-    this.shadowRoot.innerHTML = `
-      <style>
-        :host {
-          display: none;
-          position: fixed;
-          inset: 0;
-          z-index: 1000;
-        }
-        :host([open]) { display: block; }
-
-        .backdrop {
-          position: absolute; inset: 0;
-          background: rgba(0, 0, 0, 0.7);
-          animation: fade-in 0.3s ease;
-        }
-
-        .panel {
-          position: relative;
-          margin: 4vh auto;
-          width: min(720px, 92vw);
-          max-height: 92vh;
-          background: var(--panel-bg, rgba(11, 18, 36, 0.72));
-          backdrop-filter: blur(24px) saturate(140%);
-          -webkit-backdrop-filter: blur(24px) saturate(140%);
-          border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
-          border-radius: var(--radius, 8px);
-          overflow: hidden;
-          display: flex;
-          flex-direction: column;
-          box-shadow: var(--glass-shadow, 0 24px 64px rgba(0, 0, 0, 0.55));
-          animation: rise-in 0.35s ease;
-        }
-
-        @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes rise-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-
-        .close-btn {
-          position: absolute;
-          top: 0.85rem; right: 0.85rem;
-          z-index: 3;
-          width: 34px; height: 34px;
-          display: flex; align-items: center; justify-content: center;
-          background: var(--pill-bg, rgba(255, 255, 255, 0.06));
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
-          border-radius: 9999px;
-          cursor: pointer;
-          font-size: 1.1rem;
-          line-height: 1;
-          color: var(--color-text, #f0ede8);
-          transition: background 0.3s ease, color 0.3s ease;
-        }
-        .close-btn:hover { background: var(--pill-hover-bg, rgba(255, 255, 255, 0.16)); }
-
-        .body-scroll { overflow-y: auto; flex: 1; min-height: 0; }
-
-        /* ── Banner ───────────────────────────────────────── */
-        .banner {
-          position: relative;
-          height: 190px;
-          background: var(--placeholder-bg, #101010);
-          border-bottom: 1px solid var(--color-border, #2a2a2a);
-          display: flex; align-items: center; justify-content: center;
-          overflow: hidden;
-          flex-shrink: 0;
-        }
-        .banner::before {
-          content: '';
-          position: absolute; inset: 0;
-          background: repeating-linear-gradient(135deg, transparent 0 11px, var(--placeholder-line, rgba(255,255,255,0.035)) 11px 12px);
-        }
-        .banner.has-image::before { display: none; }
-        .banner-img {
-          position: absolute; inset: 0;
-          z-index: 0;
-          width: 100%; height: 100%;
-          object-fit: cover;
-        }
-        .ph-label {
-          position: relative; z-index: 1;
-          font-family: 'JetBrains Mono', ui-monospace, monospace;
-          font-size: 0.68rem;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          color: #e2e8f0;
-          background: rgba(2, 6, 23, 0.55);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          border-radius: 9999px;
-          padding: 0.4rem 0.85rem;
-          text-align: center;
-          max-width: 80%;
-        }
-        .infra-badge {
-          position: absolute; top: 0.85rem; left: 0.85rem; z-index: 2;
-          font-family: 'JetBrains Mono', ui-monospace, monospace;
-          font-size: 0.62rem;
-          letter-spacing: 0.16em;
-          text-transform: uppercase;
-          border-radius: 9999px;
-          padding: 0.35rem 0.7rem;
-          background: rgba(2, 6, 23, 0.55);
-          color: #e2e8f0;
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-        }
-
-        /* ── Contenuto ────────────────────────────────────── */
-        .content { padding: 1.75rem 2rem 2rem; font-family: var(--font-sans, 'Inter', sans-serif); }
-
-        .museum-line {
-          font-size: 0.66rem;
-          font-weight: 600;
-          letter-spacing: 0.16em;
-          text-transform: uppercase;
-          color: var(--color-text-muted, #94a3b8);
-          margin-bottom: 0.5rem;
-        }
-        .title {
-          font-family: var(--font-serif, 'Playfair Display', serif);
-          font-size: 1.55rem;
-          font-weight: 600;
-          color: var(--color-text, #1c1917);
-          line-height: 1.25;
-          margin-bottom: 0.9rem;
-        }
-
-        .meta-row {
-          display: flex; align-items: center; gap: 0.7rem;
-          font-size: 0.78rem;
-          color: var(--color-text-muted, #78716c);
-          padding-bottom: 1.1rem;
-          margin-bottom: 1.1rem;
-          border-bottom: 1px solid var(--glass-border, #e8e6e1);
-        }
-        .meta-row strong { color: var(--color-text, #1c1917); font-weight: 600; }
-        .meta-row .sep { width: 3px; height: 3px; border-radius: 50%; background: currentColor; opacity: 0.5; }
-
-        .description { font-size: 0.9rem; line-height: 1.65; color: var(--color-text-muted, #8a8a8a); margin-bottom: 1.1rem; }
-
-        .tags { margin-bottom: 1.6rem; }
-        .tag {
-          display: inline-block;
-          font-size: 0.62rem;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          color: var(--color-text-muted, #78716c);
-          border: 1px solid var(--glass-border, #e8e6e1);
-          border-radius: 9999px;
-          padding: 0.25rem 0.7rem;
-          margin: 0 0.4rem 0.4rem 0;
-        }
-
-        .section-title {
-          font-family: var(--font-serif, 'Playfair Display', serif);
-          font-size: 1.05rem;
-          font-weight: 600;
-          margin-bottom: 0.9rem;
-        }
-
-        .opera-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
-        .opera-row { display: flex; gap: 0.9rem; align-items: flex-start; }
-        .opera-order {
-          font-family: 'JetBrains Mono', ui-monospace, monospace;
-          font-size: 0.72rem;
-          color: var(--color-accent, #9e7a46);
-          padding-top: 0.15rem;
-          flex-shrink: 0;
-        }
-        .opera-thumb {
-          width: 56px; height: 56px;
-          flex-shrink: 0;
-          background: var(--placeholder-bg, #101010);
-          border: 1px solid var(--color-border, #2a2a2a);
-          border-radius: var(--radius-sm, 6px);
-          overflow: hidden;
-        }
-        .opera-thumb img { width: 100%; height: 100%; object-fit: cover; }
-        .opera-thumb-ph {
-          display: block; width: 100%; height: 100%;
-          background: repeating-linear-gradient(135deg, transparent 0 6px, var(--placeholder-line, rgba(255,255,255,0.05)) 6px 7px);
-        }
-        .opera-info { min-width: 0; flex: 1; }
-        .opera-info h3 {
-          font-family: var(--font-serif, 'Playfair Display', serif);
-          font-size: 0.95rem;
-          font-weight: 600;
-          color: var(--color-text, #1c1917);
-          margin-bottom: 0.2rem;
-        }
-        .opera-meta { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.3rem; }
-        .opera-author, .opera-museum {
-          font-size: 0.68rem;
-          letter-spacing: 0.04em;
-          color: var(--color-text-muted, #78716c);
-        }
-        .opera-museum { color: var(--color-accent, #9e7a46); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.62rem; }
-        .opera-desc {
-          font-size: 0.8rem;
-          line-height: 1.5;
-          color: var(--color-text-muted, #8a8a8a);
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-        .opera-empty { font-size: 0.82rem; color: var(--color-text-muted, #78716c); }
-
-        /* ── Footer ───────────────────────────────────────── */
-        .footer {
-          flex-shrink: 0;
-          display: flex; align-items: center; justify-content: space-between;
-          gap: 1rem;
-          padding: 1.1rem 2rem;
-          border-top: 1px solid var(--glass-border, #e8e6e1);
-          background: transparent;
-        }
-        .footer-info { display: flex; flex-direction: column; gap: 0.2rem; }
-        .footer-price {
-          font-family: var(--font-serif, 'Playfair Display', serif);
-          font-size: 1.1rem;
-          font-weight: 600;
-          color: var(--color-text, #1c1917);
-        }
-        .footer-error { font-size: 0.72rem; color: #f38b7f; }
-
-        .btn {
-          font-family: var(--font-sans, 'Nunito Sans', sans-serif);
-          font-size: 0.72rem;
-          font-weight: 600;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          padding: 0.75rem 1.5rem;
-          border-radius: 9999px;
-          border: 1px solid transparent;
-          cursor: pointer;
-          white-space: nowrap;
-          transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
-        }
-        .btn.primary {
-          background: var(--pill-hover-bg, rgba(255, 255, 255, 0.12));
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          border-color: var(--pill-hover-border, rgba(255, 255, 255, 0.25));
-          color: var(--color-text, #f0ede8);
-        }
-        .btn.primary:hover {
-          background: var(--color-accent, #e7edf7);
-          border-color: var(--color-accent, #e7edf7);
-          color: var(--color-on-accent, #0a0f1e);
-          box-shadow: var(--glow-accent, 0 0 20px rgba(148, 197, 253, 0.2));
-        }
-        .btn.primary:disabled { opacity: 0.55; cursor: default; box-shadow: none; }
-        .btn.ghost { background: transparent; border-color: var(--glass-border, #2a2a2a); color: var(--color-text, #f0ede8); }
-        .btn.ghost:hover { background: var(--pill-bg, rgba(255, 255, 255, 0.06)); }
-        .btn.owned {
-          background: transparent;
-          border-color: var(--glass-border, #2a2a2a);
-          color: var(--color-text-muted, #8a8a8a);
-          cursor: default;
-        }
-
-        .confirm { display: flex; align-items: center; gap: 0.9rem; }
-        .confirm-text { font-size: 0.78rem; color: var(--color-text, #1c1917); max-width: 220px; }
-        .confirm-actions { display: flex; gap: 0.5rem; }
-
-        .state-msg {
-          padding: 4rem 2rem;
-          text-align: center;
-          color: var(--color-text-muted, #78716c);
-          font-size: 0.85rem;
-        }
-
-        @media (max-width: 640px) {
-          .panel { width: 100vw; margin: 0; max-height: 100vh; height: 100vh; border-radius: 0; }
-          .content { padding: 1.5rem 1.25rem 1.75rem; }
-          .footer { padding: 1rem 1.25rem; flex-wrap: wrap; }
-          .confirm { flex-direction: column; align-items: flex-start; gap: 0.6rem; }
-        }
-      </style>
-
-      ${isOpen ? `
-        <div class="backdrop"></div>
-        <div class="panel" role="dialog" aria-modal="true" aria-label="${this._visit ? this._esc(this._visit.title) : 'Dettagli visita'}">
-          <button class="close-btn" aria-label="Chiudi">×</button>
-          <div class="body-scroll">
-            ${this._loading ? '<p class="state-msg">Caricamento…</p>' : ''}
-            ${this._error ? `<p class="state-msg">${this._esc(this._error)}</p>` : ''}
+    this.className = isOpen ? '' : 'hidden';
+    this.innerHTML = isOpen ? `
+      <div class="backdrop fixed inset-0 z-[1000] bg-black/70 backdrop-blur-sm"></div>
+      <div class="fixed inset-0 z-[1000] flex items-start sm:items-center justify-center p-0 sm:p-6" style="pointer-events: none;">
+        <div class="panel relative w-screen min-w-0 h-screen sm:w-[min(720px,92vw)] sm:h-auto sm:max-h-[92vh] rounded-none sm:rounded-2xl overflow-hidden flex flex-col ${GLASS} text-slate-800 dark:text-slate-100" style="pointer-events: auto;" role="dialog" aria-modal="true" aria-label="${this._visit ? this._esc(this._visit.title) : 'Dettagli visita'}">
+          <button class="close-btn absolute top-3 right-3 z-10 w-9 h-9 rounded-full border border-slate-400/20 bg-slate-400/10 backdrop-blur-lg flex items-center justify-center text-lg leading-none hover:bg-white/20 hover:border-white/30 ${TRANSITION}" aria-label="Chiudi">×</button>
+          <div class="body-scroll overflow-y-auto flex-1 min-h-0">
+            ${this._loading ? '<p class="py-16 px-8 text-center text-slate-500 dark:text-slate-400 text-sm">Caricamento…</p>' : ''}
+            ${this._error ? `<p class="py-16 px-8 text-center text-slate-500 dark:text-slate-400 text-sm">${this._esc(this._error)}</p>` : ''}
             ${(!this._loading && !this._error && this._visit) ? this._bodyHtml() : ''}
           </div>
-          ${(!this._loading && !this._error && this._visit) ? `<div class="footer">${this._footerHtml()}</div>` : ''}
+          ${(!this._loading && !this._error && this._visit) ? `<div class="footer shrink-0 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4 px-5 py-4 sm:px-8 sm:py-[1.1rem] border-t border-slate-400/20">${this._footerHtml()}</div>` : ''}
         </div>
-      ` : ''}
-    `;
+      </div>
+    ` : '';
 
     if (isOpen) {
-      this.shadowRoot.querySelector('.backdrop')?.addEventListener('click', () => this.close());
-      this.shadowRoot.querySelector('.close-btn')?.addEventListener('click', () => this.close());
+      this.querySelector('.backdrop')?.addEventListener('click', () => this.close());
+      this.querySelector('.close-btn')?.addEventListener('click', () => this.close());
       this._bindFooter();
     }
   }

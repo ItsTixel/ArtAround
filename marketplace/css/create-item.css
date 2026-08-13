@@ -26,7 +26,7 @@
   cursor: pointer;
   transition: border-color var(--transition), color var(--transition), background var(--transition);
 }
-.btn-option:hover { border-color: var(--glass-border-strong); color: var(--color-text); }
+.btn-option:hover { border-color: var(--universal-glass-border-strong); color: var(--color-text); }
 .btn-option[aria-checked="true"] {
   border-color: var(--color-accent);
   background: color-mix(in srgb, var(--color-accent) 14%, transparent);
@@ -45,9 +45,9 @@
   background: var(--panel-bg);
   backdrop-filter: blur(16px) saturate(140%);
   -webkit-backdrop-filter: blur(16px) saturate(140%);
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--universal-glass-border);
   border-radius: 10px;
-  box-shadow: var(--glass-shadow);
+  box-shadow: var(--universal-glass-shadow);
   color: var(--color-text);
   font-family: var(--font-sans);
   font-size: 0.74rem;

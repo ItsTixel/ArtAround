@@ -21,7 +21,7 @@ html, body {
   color: var(--color-text);
   padding: 4.25rem 3rem 3.5rem;
   position: relative;
-  border-bottom: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--universal-glass-border);
 }
 
 .page-hero-inner {
@@ -62,14 +62,16 @@ html, body {
 .visits-layout {
   display: grid;
   grid-template-columns: 300px 1fr;
+  gap: 1.5rem;
   max-width: 1480px;
-  margin: 0 auto;
+  margin: 2rem auto 0;
+  padding: 0 3rem;
 }
 
 filter-sidebar { display: block; }
 
 .visits-content {
-  padding: 2.75rem 3rem 5rem;
+  padding: 0 0 5rem;
   min-width: 0;
 }
 
@@ -79,12 +81,12 @@ filter-sidebar { display: block; }
   gap: 1.5rem; flex-wrap: wrap;
   padding: 0.7rem 0.6rem 0.7rem 1.3rem;
   margin-bottom: 2.25rem;
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px) saturate(140%);
-  -webkit-backdrop-filter: blur(20px) saturate(140%);
-  border: 1px solid var(--glass-border);
+  background: var(--universal-glass-bg);
+  backdrop-filter: var(--universal-glass-blur) saturate(140%);
+  -webkit-backdrop-filter: var(--universal-glass-blur) saturate(140%);
+  border: 1px solid var(--universal-glass-border);
   border-radius: 9999px;
-  box-shadow: var(--glass-shadow);
+  box-shadow: var(--universal-glass-shadow);
 }
 .results-count {
   font-family: 'JetBrains Mono', ui-monospace, monospace;
@@ -107,8 +109,8 @@ filter-sidebar { display: block; }
   font: inherit;
   font-family: var(--font-sans);
   font-size: 0.78rem;
-  background-color: var(--glass-bg);
-  border: 1px solid var(--glass-border);
+  background-color: var(--universal-glass-bg);
+  border: 1px solid var(--universal-glass-border);
   border-radius: 9999px;
   padding: 0.4rem 1.9rem 0.4rem 1rem;
   color: var(--color-text);
@@ -122,7 +124,7 @@ filter-sidebar { display: block; }
   transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 #sort:hover,
-#sort:focus { border-color: var(--glass-border-strong); background-color: var(--glass-bg-strong); }
+#sort:focus { border-color: var(--universal-glass-border-strong); background-color: var(--universal-glass-bg-strong); }
 
 #sort option {
   background-color: var(--color-surface);
@@ -195,7 +197,7 @@ filter-sidebar { display: block; }
   content: '';
   display: block;
   width: 24px; height: 24px;
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--universal-glass-border);
   border-top-color: var(--color-text);
   border-radius: 50%;
   animation: spin 1.2s linear infinite;
@@ -213,11 +215,11 @@ filter-sidebar { display: block; }
 }
 .pagination button {
   padding: 0.45rem 1.4rem;
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--universal-glass-border);
   border-radius: 9999px;
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: var(--universal-glass-bg);
+  backdrop-filter: var(--universal-glass-blur);
+  -webkit-backdrop-filter: var(--universal-glass-blur);
   font-family: var(--font-sans);
   font-size: 0.7rem;
   font-weight: 500;
@@ -228,8 +230,8 @@ filter-sidebar { display: block; }
   transition: background 0.3s ease, border-color 0.3s ease;
 }
 .pagination button:hover {
-  background: var(--glass-bg-strong);
-  border-color: var(--glass-border-strong);
+  background: var(--universal-glass-bg-strong);
+  border-color: var(--universal-glass-border-strong);
 }
 .pagination button:disabled { opacity: 0.3; cursor: not-allowed; }
 .pagination .page-info {
@@ -243,8 +245,8 @@ filter-sidebar { display: block; }
 @media (max-width: 900px) {
   .page-hero { padding: 3.25rem 1.5rem 2.5rem; }
   .page-hero h1 { font-size: 2.2rem; }
-  .visits-layout { grid-template-columns: 1fr; }
-  .visits-content { padding: 2rem 1.5rem 4rem; }
+  .visits-layout { grid-template-columns: 1fr; padding: 0 1.5rem; margin-top: 1.5rem; gap: 1.25rem; }
+  .visits-content { padding: 0 0 4rem; }
   .my-visits-content { padding: 2rem 1.5rem 4rem; }
   .results-bar { gap: 1rem; }
 }

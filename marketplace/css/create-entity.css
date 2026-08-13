@@ -21,7 +21,7 @@
   cursor: pointer;
   transition: border-color var(--transition), background var(--transition);
 }
-.choice-card:hover { border-color: var(--glass-border-strong); }
+.choice-card:hover { border-color: var(--universal-glass-border-strong); }
 .choice-card:has(input:checked) {
   border-color: var(--color-accent);
   background: color-mix(in srgb, var(--color-accent) 8%, transparent);

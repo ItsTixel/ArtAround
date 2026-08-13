@@ -11,10 +11,12 @@
 const API_MUSEUMS = '/api/museums';
 const VISITS_URL  = '/marketplace/pages/visits.html';
 
+const GLASS = 'bg-slate-400/10 backdrop-blur-2xl border border-slate-400/20 shadow-2xl rounded-2xl';
+const TRANSITION = 'transition-all duration-300 ease-in-out';
+
 class MuseumModal extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
     this._museum = null;
     this._loading = false;
     this._error = null;
@@ -50,6 +52,7 @@ class MuseumModal extends HTMLElement {
     this.removeAttribute('open');
     document.body.style.overflow = '';
     document.removeEventListener('keydown', this._onKeydown);
+    this._render();
   }
 
   _onKeydown(e) {
@@ -76,13 +79,13 @@ class MuseumModal extends HTMLElement {
     const today = todayNames[new Date().getDay()];
 
     return `
-      <div class="hours-section">
-        <h3 class="hours-title">Orari di apertura</h3>
-        <ul class="hours-list">
+      <div class="mb-5 pt-4 border-t border-slate-400/20">
+        <h3 class="text-[0.66rem] font-semibold tracking-[0.16em] uppercase text-slate-500 dark:text-slate-400 mb-3">Orari di apertura</h3>
+        <ul class="flex flex-col gap-1.5">
           ${days.map((day) => `
-          <li class="hours-row ${day === today ? 'is-today' : ''}">
-            <span class="hours-day">${this._esc(day)}</span>
-            <span class="hours-value">${this._esc(hours[day])}</span>
+          <li class="flex items-center justify-between gap-4 text-sm ${day === today ? 'text-slate-800 dark:text-slate-100 font-semibold' : 'text-slate-500 dark:text-slate-400'}">
+            <span class="capitalize">${this._esc(day)}</span>
+            <span>${this._esc(hours[day])}</span>
           </li>`).join('')}
         </ul>
       </div>
@@ -95,37 +98,38 @@ class MuseumModal extends HTMLElement {
     const cityLine = [m.address?.city, m.address?.country].filter(Boolean).join(' · ');
 
     return `
-      <div class="banner ${m.image_url ? 'has-image' : ''}">
+      <div class="relative h-[190px] bg-slate-300/20 dark:bg-slate-800/40 border-b border-slate-400/20 flex items-center justify-center overflow-hidden shrink-0">
         ${m.image_url
-          ? `<img class="banner-img" src="${this._esc(m.image_url)}" alt="" loading="lazy">`
-          : `<svg class="museum-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          ? `<img class="absolute inset-0 w-full h-full object-cover" src="${this._esc(m.image_url)}" alt="" loading="lazy">`
+          : `<div class="absolute inset-0" style="background-image: repeating-linear-gradient(135deg, transparent 0 11px, rgba(100,116,139,0.12) 11px 12px);"></div>
+             <svg class="relative w-12 h-12 fill-slate-400 dark:fill-slate-500" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                <path d="M22 11V9L12 2 2 9v2h2v9h5v-5h6v5h5v-9h2z"/>
              </svg>`}
-        <span class="ph-label">${this._esc(m.name)}</span>
+        <span class="absolute bottom-3 left-1/2 -translate-x-1/2 z-[1] text-[0.68rem] tracking-[0.14em] uppercase px-3 py-1.5 rounded-full ${GLASS} text-slate-800 dark:text-slate-100 text-center max-w-[80%] whitespace-nowrap overflow-hidden text-ellipsis" style="font-family: 'JetBrains Mono', ui-monospace, monospace;">${this._esc(m.name)}</span>
       </div>
 
-      <div class="content">
-        ${cityLine ? `<div class="museum-line">${this._esc(cityLine)}</div>` : ''}
-        <h2 class="title">${this._esc(m.name)}</h2>
+      <div class="pt-7 px-5 sm:px-8 pb-7 sm:pb-8">
+        ${cityLine ? `<div class="text-[0.66rem] font-semibold tracking-[0.16em] uppercase text-slate-500 dark:text-slate-400 mb-2">${this._esc(cityLine)}</div>` : ''}
+        <h2 class="text-2xl font-semibold leading-tight text-slate-800 dark:text-slate-100 mb-4" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">${this._esc(m.name)}</h2>
 
-        ${m.description ? `<p class="description">${this._esc(m.description)}</p>` : ''}
+        ${m.description ? `<p class="text-sm leading-relaxed text-slate-500 dark:text-slate-400 mb-5">${this._esc(m.description)}</p>` : ''}
 
         ${this._hoursHtml(m.opening_hours)}
 
-        <ul class="info-list">
+        <ul class="flex flex-col gap-2.5 pt-4 border-t border-slate-400/20">
           ${address ? `
-          <li class="info-row">
-            <svg class="info-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <li class="flex items-center gap-2.5 text-sm text-slate-800 dark:text-slate-100">
+            <svg class="w-4 h-4 shrink-0 fill-slate-500 dark:fill-slate-400" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/>
             </svg>
             <span>${this._esc(address)}</span>
           </li>` : ''}
           ${m.website ? `
-          <li class="info-row">
-            <svg class="info-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <li class="flex items-center gap-2.5 text-sm text-slate-800 dark:text-slate-100">
+            <svg class="w-4 h-4 shrink-0 fill-slate-500 dark:fill-slate-400" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm6.93 6h-2.95a15.7 15.7 0 0 0-1.38-3.56A8.03 8.03 0 0 1 18.93 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14a7.95 7.95 0 0 1 0-4h3.38a16.6 16.6 0 0 0 0 4H4.26zm.81 2h2.95c.32 1.25.78 2.45 1.38 3.56A8.03 8.03 0 0 1 5.07 16zm2.95-8H5.07a8.03 8.03 0 0 1 4.33-3.56A15.7 15.7 0 0 0 8.02 8zM12 19.96a15.7 15.7 0 0 1-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66a14.6 14.6 0 0 1 0-4h4.68a14.6 14.6 0 0 1 0 4zm.27 2h2.95a8.03 8.03 0 0 1-4.33 3.56c.6-1.11 1.06-2.31 1.38-3.56zm-.27-8a14.6 14.6 0 0 0 0-4h2.95a7.95 7.95 0 0 1 0 4h-2.95zM7.4 4.44A15.7 15.7 0 0 0 6.02 8H3.07a8.03 8.03 0 0 1 4.33-3.56z"/>
             </svg>
-            <a class="website-link" href="${this._esc(m.website)}" target="_blank" rel="noopener noreferrer">${this._esc(m.website.replace(/^https?:\/\//, ''))}</a>
+            <a class="hover:underline break-all" style="color: var(--link-color, #93c5fd);" href="${this._esc(m.website)}" target="_blank" rel="noopener noreferrer">${this._esc(m.website.replace(/^https?:\/\//, ''))}</a>
           </li>` : ''}
         </ul>
       </div>
@@ -137,276 +141,28 @@ class MuseumModal extends HTMLElement {
     const m = this._museum;
     const visitsUrl = m ? `${VISITS_URL}?museum=${encodeURIComponent(m._id)}&museumName=${encodeURIComponent(m.name)}` : '#';
 
-    this.shadowRoot.innerHTML = `
-      <style>
-        :host {
-          display: none;
-          position: fixed;
-          inset: 0;
-          z-index: 1000;
-        }
-        :host([open]) { display: block; }
-
-        .backdrop {
-          position: absolute; inset: 0;
-          background: rgba(0, 0, 0, 0.7);
-          animation: fade-in 0.3s ease;
-        }
-
-        .panel {
-          position: relative;
-          margin: 4vh auto;
-          width: min(640px, 92vw);
-          max-height: 92vh;
-          background: var(--panel-bg, rgba(11, 18, 36, 0.72));
-          backdrop-filter: blur(24px) saturate(140%);
-          -webkit-backdrop-filter: blur(24px) saturate(140%);
-          border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
-          border-radius: var(--radius, 8px);
-          overflow: hidden;
-          display: flex;
-          flex-direction: column;
-          box-shadow: var(--glass-shadow, 0 24px 64px rgba(0, 0, 0, 0.55));
-          animation: rise-in 0.35s ease;
-          transition: background-color 0.35s ease;
-        }
-
-        @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes rise-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-
-        .close-btn {
-          position: absolute;
-          top: 0.85rem; right: 0.85rem;
-          z-index: 3;
-          width: 34px; height: 34px;
-          display: flex; align-items: center; justify-content: center;
-          background: var(--pill-bg, rgba(255, 255, 255, 0.06));
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
-          border-radius: 9999px;
-          cursor: pointer;
-          font-size: 1.1rem;
-          line-height: 1;
-          color: var(--color-text, #f0ede8);
-          transition: background 0.3s ease, color 0.3s ease;
-        }
-        .close-btn:hover { background: var(--pill-hover-bg, rgba(255, 255, 255, 0.16)); }
-
-        .body-scroll { overflow-y: auto; flex: 1; min-height: 0; }
-
-        /* ── Banner ───────────────────────────────────────── */
-        .banner {
-          position: relative;
-          height: 190px;
-          background: var(--placeholder-bg, #101010);
-          border-bottom: 1px solid var(--color-border, #2a2a2a);
-          display: flex; align-items: center; justify-content: center;
-          overflow: hidden;
-          flex-shrink: 0;
-        }
-        .banner::before {
-          content: '';
-          position: absolute; inset: 0;
-          background: repeating-linear-gradient(135deg, transparent 0 11px, var(--placeholder-line, rgba(255,255,255,0.035)) 11px 12px);
-        }
-        .banner.has-image::before { display: none; }
-        .banner-img {
-          position: absolute; inset: 0;
-          z-index: 0;
-          width: 100%; height: 100%;
-          object-fit: cover;
-        }
-        .museum-icon {
-          position: relative; z-index: 1;
-          width: 48px; height: 48px;
-          fill: var(--color-text-muted, #94a3b8);
-        }
-        .ph-label {
-          position: absolute;
-          bottom: 0.85rem; left: 50%;
-          transform: translateX(-50%);
-          z-index: 1;
-          font-family: 'JetBrains Mono', ui-monospace, monospace;
-          font-size: 0.68rem;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          color: #e2e8f0;
-          background: rgba(2, 6, 23, 0.55);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          border-radius: 9999px;
-          padding: 0.4rem 0.85rem;
-          text-align: center;
-          max-width: 80%;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-
-        /* ── Contenuto ────────────────────────────────────── */
-        .content { padding: 1.75rem 2rem 2rem; font-family: var(--font-sans, 'Inter', sans-serif); }
-
-        .museum-line {
-          font-size: 0.66rem;
-          font-weight: 600;
-          letter-spacing: 0.16em;
-          text-transform: uppercase;
-          color: var(--color-text-muted, #94a3b8);
-          margin-bottom: 0.5rem;
-        }
-        .title {
-          font-family: var(--font-serif, 'Playfair Display', serif);
-          font-size: 1.55rem;
-          font-weight: 600;
-          color: var(--color-text, #1c1917);
-          line-height: 1.25;
-          margin-bottom: 1rem;
-        }
-
-        .description {
-          font-size: 0.9rem;
-          line-height: 1.65;
-          color: var(--color-text-muted, #8a8a8a);
-          margin-bottom: 1.3rem;
-        }
-
-        .hours-section {
-          margin-bottom: 1.3rem;
-          padding-top: 1.1rem;
-          border-top: 1px solid var(--color-border, #e8e6e1);
-        }
-        .hours-title {
-          font-family: var(--font-sans, 'Inter', sans-serif);
-          font-size: 0.66rem;
-          font-weight: 600;
-          letter-spacing: 0.16em;
-          text-transform: uppercase;
-          color: var(--color-text-muted, #78716c);
-          margin: 0 0 0.75rem;
-        }
-        .hours-list {
-          list-style: none;
-          display: flex;
-          flex-direction: column;
-          gap: 0.4rem;
-        }
-        .hours-row {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 1rem;
-          font-size: 0.82rem;
-          color: var(--color-text-muted, #78716c);
-        }
-        .hours-row.is-today {
-          color: var(--color-text, #f0ede8);
-          font-weight: 600;
-        }
-        .hours-row.is-today .hours-value { color: var(--color-text, #f0ede8); }
-        .hours-day { text-transform: capitalize; }
-
-        .info-list {
-          list-style: none;
-          display: flex;
-          flex-direction: column;
-          gap: 0.65rem;
-          padding-top: 1.1rem;
-          border-top: 1px solid var(--color-border, #e8e6e1);
-        }
-        .info-row {
-          display: flex;
-          align-items: center;
-          gap: 0.6rem;
-          font-size: 0.82rem;
-          color: var(--color-text, #1c1917);
-        }
-        .info-icon {
-          width: 16px; height: 16px;
-          flex-shrink: 0;
-          fill: var(--color-text-muted, #94a3b8);
-        }
-        .website-link {
-          color: var(--link-color, #93c5fd);
-          text-decoration: none;
-          word-break: break-all;
-        }
-        .website-link:hover { text-decoration: underline; }
-
-        /* ── Footer ───────────────────────────────────────── */
-        .footer {
-          flex-shrink: 0;
-          display: flex; align-items: center; justify-content: flex-end;
-          gap: 1rem;
-          padding: 1.1rem 2rem;
-          border-top: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
-          background: transparent;
-        }
-
-        .btn {
-          font-family: var(--font-sans, 'Nunito Sans', sans-serif);
-          font-size: 0.72rem;
-          font-weight: 600;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          padding: 0.75rem 1.5rem;
-          border-radius: 9999px;
-          border: 1px solid transparent;
-          cursor: pointer;
-          white-space: nowrap;
-          text-decoration: none;
-          display: inline-block;
-          transition: box-shadow 0.3s ease, background 0.3s ease;
-        }
-        .btn.primary {
-          background: var(--pill-hover-bg, rgba(255, 255, 255, 0.12));
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          border-color: var(--pill-hover-border, rgba(255, 255, 255, 0.25));
-          color: var(--color-text, #f0ede8);
-        }
-        .btn.primary:hover {
-          background: var(--color-accent, #e7edf7);
-          border-color: var(--color-accent, #e7edf7);
-          color: var(--color-on-accent, #0a0f1e);
-          box-shadow: var(--glow-accent, 0 0 20px rgba(148, 197, 253, 0.2));
-        }
-
-        .state-msg {
-          padding: 4rem 2rem;
-          text-align: center;
-          color: var(--color-text-muted, #78716c);
-          font-size: 0.85rem;
-        }
-
-        @media (max-width: 640px) {
-          .panel { width: 100vw; margin: 0; max-height: 100vh; height: 100vh; border-radius: 0; }
-          .content { padding: 1.5rem 1.25rem 1.75rem; }
-          .footer { padding: 1rem 1.25rem; }
-        }
-      </style>
-
-      ${isOpen ? `
-        <div class="backdrop"></div>
-        <div class="panel" role="dialog" aria-modal="true" aria-label="${m ? this._esc(m.name) : 'Informazioni museo'}">
-          <button class="close-btn" aria-label="Chiudi">×</button>
-          <div class="body-scroll">
-            ${this._loading ? '<p class="state-msg">Caricamento…</p>' : ''}
-            ${this._error ? `<p class="state-msg">${this._esc(this._error)}</p>` : ''}
+    this.className = isOpen ? '' : 'hidden';
+    this.innerHTML = isOpen ? `
+      <div class="backdrop fixed inset-0 z-[1000] bg-black/70 backdrop-blur-sm"></div>
+      <div class="fixed inset-0 z-[1000] flex items-start sm:items-center justify-center p-0 sm:p-6" style="pointer-events: none;">
+        <div class="panel relative w-screen min-w-0 h-screen sm:w-[min(640px,92vw)] sm:h-auto sm:max-h-[92vh] rounded-none sm:rounded-2xl overflow-hidden flex flex-col ${GLASS} text-slate-800 dark:text-slate-100" style="pointer-events: auto;" role="dialog" aria-modal="true" aria-label="${m ? this._esc(m.name) : 'Informazioni museo'}">
+          <button class="close-btn absolute top-3 right-3 z-10 w-9 h-9 rounded-full border border-slate-400/20 bg-slate-400/10 backdrop-blur-lg flex items-center justify-center text-lg leading-none hover:bg-white/20 hover:border-white/30 ${TRANSITION}" aria-label="Chiudi">×</button>
+          <div class="body-scroll overflow-y-auto flex-1 min-h-0">
+            ${this._loading ? '<p class="py-16 px-8 text-center text-slate-500 dark:text-slate-400 text-sm">Caricamento…</p>' : ''}
+            ${this._error ? `<p class="py-16 px-8 text-center text-slate-500 dark:text-slate-400 text-sm">${this._esc(this._error)}</p>` : ''}
             ${(!this._loading && !this._error && m) ? this._bodyHtml() : ''}
           </div>
           ${(!this._loading && !this._error && m) ? `
-          <div class="footer">
-            <a class="btn primary" id="visits-btn" href="${visitsUrl}">Scopri visite</a>
+          <div class="footer shrink-0 flex items-center justify-end gap-4 px-5 py-4 sm:px-8 sm:py-[1.1rem] border-t border-slate-400/20">
+            <a class="btn primary inline-block text-[0.72rem] font-semibold tracking-[0.08em] uppercase px-6 py-3 rounded-full whitespace-nowrap bg-slate-800 text-white dark:bg-white dark:text-slate-900 hover:opacity-90 ${TRANSITION}" id="visits-btn" href="${visitsUrl}">Scopri visite</a>
           </div>` : ''}
         </div>
-      ` : ''}
-    `;
+      </div>
+    ` : '';
 
     if (isOpen) {
-      this.shadowRoot.querySelector('.backdrop')?.addEventListener('click', () => this.close());
-      this.shadowRoot.querySelector('.close-btn')?.addEventListener('click', () => this.close());
+      this.querySelector('.backdrop')?.addEventListener('click', () => this.close());
+      this.querySelector('.close-btn')?.addEventListener('click', () => this.close());
     }
   }
 }
