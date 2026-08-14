@@ -4,4 +4,4 @@
 *.pdf
 *.rest
 /assets/uploads/
-
+.claude/*
