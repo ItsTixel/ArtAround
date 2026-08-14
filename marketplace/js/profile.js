@@ -5,6 +5,7 @@
  * ============================================================ */
 
 import { getCurrentUser, resetCurrentUser } from '/marketplace/js/auth-session.js';
+import { createImageField } from '/marketplace/js/image-field.js';
 
 const API_VISITS = '/api/visits';
 const API_ITEMS  = '/api/items';
@@ -12,6 +13,7 @@ const API_USERS  = '/api/users';
 const LOGIN_URL  = '/marketplace/login.html';
 
 let currentUser  = null;
+let avatarField  = null;
 let ownedIds     = new Set();
 let activeSub    = 'create';
 let descriptionsLoaded = false;
@@ -196,9 +198,11 @@ async function loadDescriptions() {
 function fillSettingsForm(user) {
   document.getElementById('display_name').value = user.display_name || '';
   document.getElementById('bio').value = user.bio || '';
-  document.getElementById('avatar_url').value = user.avatar_url || '';
   document.getElementById('username').value = user.username || '';
   document.getElementById('email').value = user.email || '';
+
+  avatarField = createImageField({ initialUrl: user.avatar_url || '' });
+  document.getElementById('avatar-field').appendChild(avatarField.el);
 }
 
 function setupSettingsForm() {
@@ -216,14 +220,20 @@ function setupSettingsForm() {
       return;
     }
 
+    const avatar = avatarField.getValue();
+
     const payload = {
       display_name: document.getElementById('display_name').value.trim(),
       bio:          document.getElementById('bio').value.trim(),
-      avatar_url:   document.getElementById('avatar_url').value.trim(),
+      avatar_url:   avatar.url,
       username:     document.getElementById('username').value.trim(),
       email:        document.getElementById('email').value.trim(),
     };
     if (password) payload.password = password;
+
+    const formData = new FormData();
+    formData.append('data', JSON.stringify(payload));
+    if (avatar.file) formData.append('avatar', avatar.file);
 
     feedback.style.color = '';
     feedback.textContent = 'Salvataggio in corso…';
@@ -231,9 +241,8 @@ function setupSettingsForm() {
     try {
       const res = await fetch(`${API_USERS}/${currentUser._id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
-        body: JSON.stringify(payload),
+        body: formData, // niente Content-Type: lo imposta il browser (multipart/form-data + boundary)
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Errore durante il salvataggio.');
@@ -241,6 +250,10 @@ function setupSettingsForm() {
       const usernameChanged = data.username !== currentUser.username;
       currentUser = data;
       resetCurrentUser(); // la navbar rilegge /api/auth/me alla prossima navigazione
+
+      document.getElementById('avatar-field').innerHTML = '';
+      avatarField = createImageField({ initialUrl: data.avatar_url || '' });
+      document.getElementById('avatar-field').appendChild(avatarField.el);
 
       feedback.style.color = 'green';
       feedback.textContent = 'Profilo aggiornato con successo.';

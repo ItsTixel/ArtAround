@@ -8,12 +8,14 @@
 import { getCurrentUser } from '/marketplace/js/auth-session.js';
 import { createWizard } from '/marketplace/js/wizard.js';
 import { setupParagraphList } from '/marketplace/js/paragraph-list.js';
+import { createImageField } from '/marketplace/js/image-field.js';
 
 const API_ITEMS    = '/api/items';
 const API_ENTITIES = '/api/entities';
 const LOGIN_URL    = '/marketplace/login.html';
 
 let paragraphList = null;
+let imageField = null;
 
 /* ---- Tono / Visibilità: gruppi di bottoni al posto delle <select> ---- */
 
@@ -119,16 +121,22 @@ async function submitItem() {
     return;
   }
 
+  const image = imageField.getValue();
+
   const payload = {
     artwork:             document.getElementById('artwork').value,
     marketplace_summary: document.getElementById('marketplace_summary').value.trim(),
     tone:                document.getElementById('tone-group').dataset.value,
     license:             document.getElementById('license-group').dataset.value,
-    image_url:           document.getElementById('image_url').value.trim(),
+    image_url:           image.url,
     alt_text:            document.getElementById('alt_text').value.trim(),
     tags:                collectTags(),
     descriptions,
   };
+
+  const formData = new FormData();
+  formData.append('data', JSON.stringify(payload));
+  if (image.file) formData.append('image', image.file);
 
   feedback.style.color = '';
   feedback.textContent = 'Creazione in corso…';
@@ -136,9 +144,8 @@ async function submitItem() {
   try {
     const res = await fetch(API_ITEMS, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
-      body: JSON.stringify(payload),
+      body: formData, // niente Content-Type: lo imposta il browser (multipart/form-data + boundary)
     });
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || 'Errore durante la creazione della descrizione.');
@@ -173,6 +180,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   await loadEntities();
   paragraphList = setupParagraphList(document.getElementById('paragraphs-list'));
+
+  imageField = createImageField({});
+  document.getElementById('image-field').appendChild(imageField.el);
   setupBtnGroup('tone-group', 'simple');
   setupBtnGroup('license-group', 'Public');
   setupTooltips();

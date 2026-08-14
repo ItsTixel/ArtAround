@@ -35,8 +35,9 @@ async function getById(req, res) {
 // La creazione arriva come multipart/form-data (vedi routes/museums.js):
 // il client manda separatamente i campi del museo ("data"), i metadati di
 // ogni mappa ("mapsMeta": [{ name, points, image_url? }], senza image_url
-// per le mappe caricate come file) e i file immagine delle mappe, uno per
-// campo "mapImage_<indice>". Qui il server ricompone l'array `maps` finale
+// per le mappe caricate come file), l'eventuale immagine principale del
+// museo (campo "image") e i file immagine delle mappe, uno per campo
+// "mapImage_<indice>". Qui il server ricompone l'array `maps` finale
 // abbinando ogni voce di mapsMeta al proprio file (se presente) o all'URL
 // fornito (se la mappa usa un'immagine remota).
 async function create(req, res) {
@@ -45,11 +46,14 @@ async function create(req, res) {
     const mapsMeta = JSON.parse(req.body.mapsMeta || '[]');
     const files = req.files || [];
 
+    const mainImage = files.find(f => f.fieldname === 'image');
+    if (mainImage) payload.image_url = `/assets/uploads/museums/${mainImage.filename}`;
+
     payload.maps = mapsMeta.map((m, i) => {
       const file = files.find(f => f.fieldname === `mapImage_${i}`);
       return {
         name: m.name,
-        image_url: file ? `/assets/uploads/maps/${file.filename}` : m.image_url,
+        image_url: file ? `/assets/uploads/museums/${file.filename}` : m.image_url,
         points: m.points || [],
       };
     });

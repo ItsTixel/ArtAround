@@ -6,10 +6,13 @@
 
 import { getCurrentUser } from '/marketplace/js/auth-session.js';
 import { createWizard } from '/marketplace/js/wizard.js';
+import { createImageField } from '/marketplace/js/image-field.js';
 
 const API_MUSEUMS = '/api/museums';
 const LOGIN_URL   = '/marketplace/login.html';
 const DAYS = ['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 'Domenica'];
+
+let imageField = null;
 
 function buildHoursGrid() {
   const grid = document.getElementById('hours-grid');
@@ -256,11 +259,13 @@ async function submitMuseum() {
     }
   }
 
+  const image = imageField.getValue();
+
   const basePayload = {
     name:        document.getElementById('name').value.trim(),
     wikidata_id: document.getElementById('wikidata_id').value.trim(),
     description: document.getElementById('description').value.trim(),
-    image_url:   document.getElementById('image_url').value.trim(),
+    image_url:   image.url,
     website:     document.getElementById('website').value.trim(),
     address: {
       street:  document.getElementById('street').value.trim(),
@@ -283,6 +288,7 @@ async function submitMuseum() {
   const formData = new FormData();
   formData.append('data', JSON.stringify(basePayload));
   formData.append('mapsMeta', JSON.stringify(mapsMeta));
+  if (image.file) formData.append('image', image.file);
   mapSlots.forEach((slot, i) => {
     if (slot.imageMode === 'file' && slot.imageFile) {
       formData.append(`mapImage_${i}`, slot.imageFile);
@@ -332,6 +338,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   buildHoursGrid();
   addServiceRow();
   document.getElementById('add-service').addEventListener('click', addServiceRow);
+
+  imageField = createImageField({});
+  document.getElementById('image-field').appendChild(imageField.el);
 
   document.getElementById('add-map').addEventListener('click', addMapSlot);
 

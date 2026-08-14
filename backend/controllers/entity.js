@@ -35,13 +35,20 @@ async function getById(req, res) {
   }
 }
 
+// La creazione arriva come multipart/form-data (vedi routes/entities.js):
+// i campi dell'opera viaggiano come JSON nel campo "data", e l'eventuale
+// immagine caricata come file arriva in req.file (campo "image"); se
+// presente sostituisce l'image_url passato nel JSON.
 async function create(req, res) {
   try {
-    req.body.added_by = req.user.id;
-    if (!req.body.wikidata_id) {
-      req.body.local_id = await Entity.generateLocalId();
+    const payload = JSON.parse(req.body.data || '{}');
+    if (req.file) payload.image_url = `/assets/uploads/entities/${req.file.filename}`;
+
+    payload.added_by = req.user.id;
+    if (!payload.wikidata_id) {
+      payload.local_id = await Entity.generateLocalId();
     }
-    const entity = new Entity(req.body);
+    const entity = new Entity(payload);
     await entity.save();
     res.status(201).json(entity);
   } catch (e) {

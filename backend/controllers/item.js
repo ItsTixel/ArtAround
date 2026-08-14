@@ -56,19 +56,26 @@ async function getById(req, res) {
   }
 }
 
+// La creazione arriva come multipart/form-data (vedi routes/items.js): i
+// campi della descrizione viaggiano come JSON nel campo "data", e
+// l'eventuale immagine caricata come file arriva in req.file (campo
+// "image"); se presente sostituisce l'image_url passato nel JSON.
 async function create(req, res) {
   try {
-    req.body.author = req.user.id;
+    const payload = JSON.parse(req.body.data || '{}');
+    if (req.file) payload.image_url = `/assets/uploads/items/${req.file.filename}`;
+
+    payload.author = req.user.id;
 
     // I visitatori possono creare solo descrizioni private.
     if (req.user.role === 'visitor') {
-      const license = req.body.license || 'Public'; // 'Public' è il default dello schema
+      const license = payload.license || 'Public'; // 'Public' è il default dello schema
       if (license !== 'Private') {
         return res.status(403).json({ error: 'I visitatori possono creare solo descrizioni private.' });
       }
     }
 
-    const item = new Item(req.body);
+    const item = new Item(payload);
     await item.save();
     res.status(201).json(item);
   } catch (e) {

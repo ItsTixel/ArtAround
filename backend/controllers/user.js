@@ -50,15 +50,22 @@ async function create(req, res) {
   }
 }
 
+// L'aggiornamento arriva come multipart/form-data (vedi routes/users.js): i
+// campi del profilo viaggiano come JSON nel campo "data", e l'eventuale
+// avatar caricato come file arriva in req.file (campo "avatar"); se
+// presente sostituisce l'avatar_url passato nel JSON.
 async function update(req, res) {
   try {
+    const body = JSON.parse(req.body.data || '{}');
+    if (req.file) body.avatar_url = `/assets/uploads/avatars/${req.file.filename}`;
+
     // Whitelist dei campi modificabili dall'utente stesso: esclude role,
     // adopted_visits, bookmarked_visits ecc. per evitare che un utente si
     // auto-assegni permessi o dati non suoi tramite questa rotta.
     const allowedFields = ['username', 'email', 'password', 'display_name', 'bio', 'avatar_url'];
     const updateData = {};
     for (const field of allowedFields) {
-      if (req.body[field] !== undefined) updateData[field] = req.body[field];
+      if (body[field] !== undefined) updateData[field] = body[field];
     }
 
         // Criptiamo la password se è presente

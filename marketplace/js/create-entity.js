@@ -7,6 +7,7 @@
 
 import { getCurrentUser } from '/marketplace/js/auth-session.js';
 import { createWizard } from '/marketplace/js/wizard.js';
+import { createImageField } from '/marketplace/js/image-field.js';
 
 const API_ENTITIES = '/api/entities';
 const API_MUSEUMS  = '/api/museums';
@@ -19,6 +20,7 @@ const STEP_LINKS      = 3;
 
 let museumOptionsHtml = '<option value="">Seleziona un museo…</option>';
 let wizard = null;
+let imageField = null;
 
 function esc(s) {
   return String(s ?? '')
@@ -132,6 +134,7 @@ function collectExternalLinks() {
 async function submitEntity() {
   const feedback = document.getElementById('form-feedback');
   const physical = isPhysical();
+  const image = imageField.getValue();
 
   const payload = {
     name:           document.getElementById('name').value.trim(),
@@ -139,12 +142,16 @@ async function submitEntity() {
     artwork_author: document.getElementById('artwork_author').value.trim(),
     wikidata_id:    document.getElementById('wikidata_id').value.trim(),
     description:    document.getElementById('description').value.trim(),
-    image_url:      document.getElementById('image_url').value.trim(),
+    image_url:      image.url,
     alt_text:       document.getElementById('alt_text').value.trim(),
     tags:           collectTags(),
     external_links: collectExternalLinks(),
     placements:     physical ? collectPlacements() : [],
   };
+
+  const formData = new FormData();
+  formData.append('data', JSON.stringify(payload));
+  if (image.file) formData.append('image', image.file);
 
   feedback.style.color = '';
   feedback.textContent = 'Creazione in corso…';
@@ -152,9 +159,8 @@ async function submitEntity() {
   try {
     const res = await fetch(API_ENTITIES, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
-      body: JSON.stringify(payload),
+      body: formData, // niente Content-Type: lo imposta il browser (multipart/form-data + boundary)
     });
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || "Errore durante la creazione dell'opera.");
@@ -189,6 +195,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   await loadMuseums();
   addLinkRow();
+
+  imageField = createImageField({});
+  document.getElementById('image-field').appendChild(imageField.el);
 
   document.getElementById('add-placement').addEventListener('click', addPlacementRow);
   document.getElementById('add-link').addEventListener('click', addLinkRow);
