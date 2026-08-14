@@ -100,7 +100,7 @@ function initials(name) {
 }
 
 const pillClasses =
-  'flex items-center gap-2 whitespace-nowrap rounded-full border border-slate-400/20 bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg px-4 py-2 text-sm font-medium text-text shadow-lg shadow-black/5'
+  'flex items-center gap-2 whitespace-nowrap rounded-full border border-slate-400/20 bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg px-4 py-2 text-sm font-medium shadow-lg shadow-black/5'
 
 // Ogni voce entra con un piccolo scarto in cascata (via transitionDelay) e
 // esce tutta insieme, senza scarto.
@@ -420,7 +420,7 @@ function ProfileMenu({ hasPlayer = false }) {
               open={open}
               closedTranslate={panelConfig.itemClosedTranslate}
               as={as}
-              className={`${pillClasses} ${accent ? 'bg-gradient-to-br from-accent to-accent-hover text-on-accent' : ''}`}
+              className={`${pillClasses} ${accent ? 'bg-gradient-to-br from-accent to-accent-hover text-on-accent' : 'text-text'}`}
               {...rest}
             >
               <Icon className="h-4 w-4 shrink-0" />
