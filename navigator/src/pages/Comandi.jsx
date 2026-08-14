@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useActiveVisit } from '../context/ActiveVisitContext'
 import { useVisitProgress, TONE_LABELS } from '../context/VisitProgressContext'
 import NoActiveVisit from '../components/NoActiveVisit'
@@ -146,6 +147,7 @@ function ServiceButtonGrid({ labels, onSelect }) {
 }
 
 function Comandi() {
+  const navigate = useNavigate()
   const { activeVisit } = useActiveVisit()
   const {
     entity,
@@ -189,6 +191,7 @@ function Comandi() {
     }
     setServiceMessage(phrase)
     announceService(phrase)
+    navigate('/mappa', { state: { museumId: museumForService?._id, serviceKey: label } })
   }
 
   return (

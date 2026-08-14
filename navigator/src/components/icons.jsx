@@ -257,6 +257,27 @@ export function LogoutIcon(props) {
   )
 }
 
+export function ZoomInIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <circle cx="10.5" cy="10.5" r="6.5" />
+      <path d="m19.5 19.5-4.3-4.3" />
+      <path d="M10.5 7.5v6" />
+      <path d="M7.5 10.5h6" />
+    </svg>
+  )
+}
+
+export function ZoomOutIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <circle cx="10.5" cy="10.5" r="6.5" />
+      <path d="m19.5 19.5-4.3-4.3" />
+      <path d="M7.5 10.5h6" />
+    </svg>
+  )
+}
+
 export function ExitIcon(props) {
   return (
     <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
