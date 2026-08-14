@@ -34,6 +34,36 @@ const SORT_ALIASES = {
 
 const ALLOWED_SORT_FIELDS = ['title', 'base_price', 'createdAt', 'estimated_duration_sec'];
 
+/* ── Paywall: le visite a pagamento mostrano solo un'anteprima (niente
+   testo delle descrizioni) finché l'utente non le ha adottate ────────── */
+async function getAdoptedSet(userId) {
+  if (!userId) return new Set();
+  const user = await User.findById(userId).select('adopted_visits').lean();
+  return user ? new Set(user.adopted_visits.map(id => id.toString())) : new Set();
+}
+
+function isVisitUnlocked(visit, userId, adoptedSet) {
+  if (visit.base_price === 0) return true;
+  if (!userId) return false;
+  const authorId = visit.author?._id?.toString() ?? visit.author?.toString();
+  if (authorId === userId) return true;
+  return adoptedSet.has(visit._id.toString());
+}
+
+function applyPaywall(visit, unlocked) {
+  const obj = visit.toObject();
+  obj.purchased = unlocked;
+  for (const step of obj.steps) {
+    for (const item of step.items) {
+      item.locked = !unlocked;
+      if (!unlocked) {
+        item.descriptions = item.descriptions.map(d => ({ duration_sec: d.duration_sec, text: null }));
+      }
+    }
+  }
+  return obj;
+}
+
 async function getAll(req, res) {
   try {
     const pageSize = Math.min(parseInt(req.query.pageSize) || 10, 100);
@@ -112,7 +142,10 @@ async function getAll(req, res) {
         .limit(pageSize),
     ]);
 
-    res.json({ totalItems, museumCount: distinctMuseums.length, pageSize, page, data: visits });
+    const adoptedSet = await getAdoptedSet(req.user?.id);
+    const data = visits.map(v => applyPaywall(v, isVisitUnlocked(v, req.user?.id, adoptedSet)));
+
+    res.json({ totalItems, museumCount: distinctMuseums.length, pageSize, page, data });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -129,7 +162,9 @@ async function getById(req, res) {
         return res.status(403).json({ error: 'This visit is private.' });
       }
     }
-    res.json(visit);
+
+    const adoptedSet = await getAdoptedSet(req.user?.id);
+    res.json(applyPaywall(visit, isVisitUnlocked(visit, req.user?.id, adoptedSet)));
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
