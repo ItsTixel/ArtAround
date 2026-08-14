@@ -83,8 +83,12 @@ export function createImageField({ initialUrl = '' } = {}) {
     } else {
       const urlInput = document.createElement('input');
       urlInput.type = 'text';
-      urlInput.placeholder = 'https://...';
-      urlInput.value = state.url;
+      // Non si prevalorizza con l'url già salvato (es. avatar esistente):
+      // non deve comparire in chiaro nel form. Se l'utente non tocca il
+      // campo, getValue() ricade comunque sul valore iniziale invariato.
+      urlInput.placeholder = initialUrl
+        ? 'Lascia vuoto per mantenere l\'immagine attuale, oppure incolla un nuovo URL'
+        : 'https://...';
       urlInput.addEventListener('input', (e) => {
         state.url = e.target.value;
         updatePreview(state.url.trim());
