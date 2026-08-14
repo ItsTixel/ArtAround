@@ -21,6 +21,31 @@ html, body { background-image: none; }
 /* Sidebar sezioni (.profile-nav / .tab-btn): aspetto e responsive
    sono interamente su classi Tailwind nel markup di profile.html. */
 
+/* ── Avatar nell'hero ─────────────────────────────────────── */
+.hero-avatar {
+  width: 92px;
+  height: 92px;
+  margin: 0 auto 1.25rem;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-accent);
+  border: 1px solid var(--universal-glass-border);
+}
+.hero-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-avatar #hero-avatar-initial {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 2.4rem;
+  color: var(--color-on-accent);
+}
+
 /* ── Contenuto ────────────────────────────────────────────── */
 .profile-content {
   padding: 2.75rem 3rem 5rem 1.5rem;

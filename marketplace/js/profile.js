@@ -292,6 +292,22 @@ async function loadDescriptions() {
 
 /* ---- Impostazioni ---- */
 
+function updateHeroAvatar(user) {
+  const img = document.getElementById('hero-avatar-img');
+  const initial = document.getElementById('hero-avatar-initial');
+  if (!img || !initial) return;
+  if (user.avatar_url) {
+    img.src = user.avatar_url;
+    img.hidden = false;
+    initial.hidden = true;
+  } else {
+    img.hidden = true;
+    img.src = '';
+    initial.hidden = false;
+    initial.textContent = (user.display_name || user.username || '?').trim().charAt(0).toUpperCase();
+  }
+}
+
 function fillSettingsForm(user) {
   document.getElementById('display_name').value = user.display_name || '';
   document.getElementById('bio').value = user.bio || '';
@@ -351,6 +367,7 @@ function setupSettingsForm() {
       document.getElementById('avatar-field').innerHTML = '';
       avatarField = createImageField({ initialUrl: data.avatar_url || '' });
       document.getElementById('avatar-field').appendChild(avatarField.el);
+      updateHeroAvatar(data);
 
       feedback.style.color = 'green';
       feedback.textContent = 'Profilo aggiornato con successo.';
@@ -440,6 +457,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const heroSub = document.getElementById('hero-sub');
   if (heroSub) heroSub.textContent = `${user.display_name || user.username} · ${user.email}`;
+  updateHeroAvatar(user);
 
   fillSettingsForm(user);
   setupSettingsForm();
