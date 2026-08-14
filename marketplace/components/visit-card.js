@@ -7,7 +7,7 @@
  *     tags[], museumDetails[{id, short, name, city}], images[] }
  */
 
-import { GLASS, TRANSITION } from '/marketplace/js/ui-tokens.js';
+import { GLASS, GLASS_STRONG, TRANSITION } from '/marketplace/js/ui-tokens.js';
 
 /* Timer globale condiviso: fa avanzare in un unico battito i caroselli
  * di tutte le <visit-card> attualmente montate, cosí si muovono assieme.
@@ -92,8 +92,8 @@ class VisitCard extends HTMLElement {
                </div>`
             : `<div class="absolute inset-0" style="background-image: repeating-linear-gradient(135deg, transparent 0 11px, rgba(100,116,139,0.12) 11px 12px);"></div>`
           }
-          ${isInfra ? `<span class="absolute top-3 left-3 z-10 text-[0.62rem] font-medium tracking-[0.16em] uppercase px-2.5 py-1 rounded-full ${GLASS} text-slate-800 dark:text-slate-100">Inframuseale</span>` : ''}
-          <span class="absolute top-3 right-3 z-10 text-[0.7rem] font-semibold tracking-[0.08em] uppercase px-2.5 py-1 rounded-full ${owned || isFree ? 'bg-slate-800 text-white dark:bg-white dark:text-slate-900' : `${GLASS} text-slate-800 dark:text-slate-100`}">${owned ? '✓ In tuo possesso' : this._fmtPrice(v.basePrice)}</span>
+          ${isInfra ? `<span class="absolute top-3 left-3 z-10 text-[0.62rem] font-medium tracking-[0.16em] uppercase px-2.5 py-1 rounded-full ${GLASS_STRONG} text-slate-800 dark:text-slate-100">Inframuseale</span>` : ''}
+          <span class="absolute top-3 right-3 z-10 text-[0.7rem] font-semibold tracking-[0.08em] uppercase px-2.5 py-1 rounded-full ${owned || isFree ? 'bg-slate-800 text-white dark:bg-white dark:text-slate-900' : `${GLASS_STRONG} text-slate-800 dark:text-slate-100`}">${owned ? '✓ In tuo possesso' : this._fmtPrice(v.basePrice)}</span>
           ${images.length > 1 ? `
           <div class="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1.5" aria-hidden="true">
             ${images.map((_, i) => `<span class="hero-dot w-1.5 h-1.5 rounded-full ${TRANSITION} ${i === 0 ? 'bg-white' : 'bg-white/40'}"></span>`).join('')}

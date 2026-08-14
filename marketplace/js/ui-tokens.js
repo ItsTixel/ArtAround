@@ -4,5 +4,9 @@
 // markup via Tailwind, non tramite CSS custom properties dirette.
 
 export const GLASS = 'bg-slate-400/10 backdrop-blur-lg border border-slate-400/20 shadow-xl shadow-black/5 rounded-2xl';
+// Variante più opaca dello stesso "vetro", usata dove il contenuto (es. pillole
+// di testo sopra foto) deve restare leggibile anche su sfondi molto chiari o
+// contrastati. Stessa opacità di sfondo usata dalla navbar.
+export const GLASS_STRONG = 'bg-white/70 dark:bg-slate-900/70 backdrop-blur-lg border border-slate-400/20 shadow-xl shadow-black/5 rounded-2xl';
 export const GLASS_MODAL = 'bg-white/85 dark:bg-slate-900/85 backdrop-blur-2xl border border-slate-400/20 shadow-2xl rounded-2xl';
 export const TRANSITION = 'transition-all duration-300 ease-in-out';
