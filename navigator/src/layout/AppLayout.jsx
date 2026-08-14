@@ -11,7 +11,7 @@ function AppLayout() {
 
   return (
     <div className="mx-auto flex min-h-dvh max-w-md flex-col bg-bg">
-      <ProfileMenu />
+      <ProfileMenu hasPlayer={showPlayer} />
       <main className={`flex-1 overflow-y-auto ${showPlayer ? 'pb-52' : 'pb-20'}`}>
         <Outlet />
       </main>

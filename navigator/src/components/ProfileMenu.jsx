@@ -13,18 +13,22 @@ const STAGGER_MS = 30
 
 const CORNER_STORAGE_KEY = 'navigator_profile_menu_corner'
 const MARGIN = 16 // px dai bordi, coincide con top-4/right-4/left-4
-// px dal basso: deve superare sia la BottomNav (~65px) sia la barra del
-// player audio sopra di essa in Opera.jsx (~133px), con un piccolo margine.
-const BOTTOM_CLEARANCE = 212
-const BUTTON_SIZE = 44 // px, coincide con h-11/w-11
+// px dal basso per gli angoli inferiori: deve sempre superare la BottomNav
+// (~65px); quando è visibile anche la barra del player sopra di essa (fuori
+// dalla Home, con una visita attiva) deve superare anche quella (~133px).
+const BOTTOM_CLEARANCE_NO_PLAYER = 65 + MARGIN
+const BOTTOM_CLEARANCE_WITH_PLAYER = 212
+const BUTTON_SIZE = 56 // px, coincide con h-14/w-14
 const DRAG_THRESHOLD = 6 // px di movimento prima che una pressione diventi un trascinamento
 const SNAP_DURATION_MS = 320
 
+// Gli angoli inferiori non includono l'offset verticale: quello è dinamico
+// (dipende dalla presenza del player) e viene applicato via style inline.
 const CORNER_STATIC_CLASSES = {
   'top-right': 'top-4 right-4',
   'top-left': 'top-4 left-4',
-  'bottom-right': 'bottom-[212px] right-4',
-  'bottom-left': 'bottom-[212px] left-4',
+  'bottom-right': 'right-4',
+  'bottom-left': 'left-4',
 }
 
 // Direzione di apertura e allineamento del pannello a seconda dell'angolo in
@@ -61,11 +65,11 @@ function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max)
 }
 
-function cornerToPosition(cornerKey) {
+function cornerToPosition(cornerKey, bottomClearance) {
   const [vert, horiz] = cornerKey.split('-')
   return {
     left: horiz === 'left' ? MARGIN : window.innerWidth - MARGIN - BUTTON_SIZE,
-    top: vert === 'top' ? MARGIN : window.innerHeight - BOTTOM_CLEARANCE - BUTTON_SIZE,
+    top: vert === 'top' ? MARGIN : window.innerHeight - bottomClearance - BUTTON_SIZE,
   }
 }
 
@@ -113,10 +117,12 @@ function MenuItem({ index, open, closedTranslate, as: Tag = 'div', className = '
   )
 }
 
-function ProfileMenu() {
+function ProfileMenu({ hasPlayer = false }) {
   const { user, refresh } = useAuth()
   const { activeVisit, clearActiveVisit } = useActiveVisit()
   const navigate = useNavigate()
+
+  const bottomClearance = hasPlayer ? BOTTOM_CLEARANCE_WITH_PLAYER : BOTTOM_CLEARANCE_NO_PLAYER
 
   const [mounted, setMounted] = useState(false)
   const [open, setOpen] = useState(false)
@@ -221,7 +227,7 @@ function ProfileMenu() {
 
     e.preventDefault()
     const left = clamp(ds.originLeft + dx, MARGIN, window.innerWidth - MARGIN - BUTTON_SIZE)
-    const top = clamp(ds.originTop + dy, MARGIN, window.innerHeight - BOTTOM_CLEARANCE - BUTTON_SIZE)
+    const top = clamp(ds.originTop + dy, MARGIN, window.innerHeight - bottomClearance - BUTTON_SIZE)
     updateDragPos({ left, top })
   }
 
@@ -260,7 +266,7 @@ function ProfileMenu() {
     // il "transition" viene applicato in un frame separato da quello in cui
     // cambia il target.
     setSnapping(true)
-    const target = cornerToPosition(newCorner)
+    const target = cornerToPosition(newCorner, bottomClearance)
     snapRafRef.current = requestAnimationFrame(() => {
       snapRafRef.current = requestAnimationFrame(() => {
         updateDragPos(target)
@@ -352,7 +358,11 @@ function ProfileMenu() {
         snapping ? 'transition-[left,top] duration-[320ms] ease-[cubic-bezier(0.34,1.56,0.64,1)]' : ''
       }`
     : `fixed z-[60] ${CORNER_STATIC_CLASSES[corner]}`
-  const positionStyle = dragPos ? { left: dragPos.left, top: dragPos.top } : undefined
+  const positionStyle = dragPos
+    ? { left: dragPos.left, top: dragPos.top }
+    : corner.startsWith('bottom')
+      ? { bottom: bottomClearance }
+      : undefined
 
   return (
     <div ref={rootRef} className={positionClassName} style={positionStyle}>
@@ -368,7 +378,7 @@ function ProfileMenu() {
         aria-expanded={mounted}
         aria-label="Profilo"
         style={{ touchAction: 'none' }}
-        className={`flex h-11 w-11 select-none items-center justify-center overflow-hidden rounded-full border border-border bg-surface text-sm font-semibold text-text shadow-md transition-transform duration-150 ease-out ${
+        className={`flex h-14 w-14 select-none items-center justify-center overflow-hidden rounded-full border border-border bg-surface text-base font-semibold text-text shadow-md transition-transform duration-150 ease-out ${
           lifted ? 'scale-110 cursor-grabbing shadow-lg' : 'scale-100 cursor-grab'
         }`}
       >
@@ -377,7 +387,7 @@ function ProfileMenu() {
         ) : initials(label) ? (
           <span>{initials(label)}</span>
         ) : (
-          <PersonIcon className="h-6 w-6" />
+          <PersonIcon className="h-7 w-7" />
         )}
       </button>
 
