@@ -10,3 +10,5 @@ export const GLASS = 'bg-slate-400/10 backdrop-blur-lg border border-slate-400/2
 export const GLASS_STRONG = 'bg-white/70 dark:bg-slate-900/70 backdrop-blur-lg border border-slate-400/20 shadow-xl shadow-black/5 rounded-2xl';
 export const GLASS_MODAL = 'bg-white/85 dark:bg-slate-900/85 backdrop-blur-2xl border border-slate-400/20 shadow-2xl rounded-2xl';
 export const TRANSITION = 'transition-all duration-300 ease-in-out';
+// Pillola piccola bordata per etichette informative (tono, licenza, tag).
+export const TAG_PILL = 'text-[0.62rem] tracking-[0.06em] uppercase border rounded-md px-2 py-0.5 border-slate-400/30 text-slate-500 dark:text-slate-400';

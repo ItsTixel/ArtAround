@@ -12,6 +12,7 @@
 
 import { getCurrentUser } from '/marketplace/js/auth-session.js';
 import { GLASS_MODAL as GLASS, TRANSITION } from '/marketplace/js/ui-tokens.js';
+import { TONE_ORDER, TONE_LABELS } from '/marketplace/js/tone-labels.js';
 
 const API_VISITS = '/api/visits';
 const API_USERS  = '/api/users';
@@ -199,6 +200,10 @@ class VisitModal extends HTMLElement {
 
     const steps = [...(v.steps || [])].sort((a, b) => a.order - b.order);
 
+    const toneSet = new Set();
+    steps.forEach(s => (s.items || []).forEach(it => { if (it?.tone) toneSet.add(it.tone); }));
+    const tones = TONE_ORDER.filter(t => toneSet.has(t));
+
     const operaRows = steps.map((s, i) => {
       const entity = s.entity || {};
       const museum = museumById.get(String(s.museum));
@@ -246,7 +251,16 @@ class VisitModal extends HTMLElement {
 
         ${v.description ? `<p class="text-sm leading-relaxed text-slate-500 dark:text-slate-400 mb-4">${this._esc(v.description)}</p>` : ''}
 
-        ${v.tags?.length ? `<div class="mb-6">${v.tags.map(t => `<span class="inline-block text-[0.62rem] tracking-[0.1em] uppercase text-slate-500 dark:text-slate-400 border border-slate-400/20 rounded-full px-2.5 py-1 mr-1.5 mb-1.5">${this._esc(t)}</span>`).join('')}</div>` : ''}
+        ${v.tags?.length ? `
+        <div class="mb-5">
+          <h4 class="text-[0.62rem] font-semibold tracking-[0.16em] uppercase text-slate-500 dark:text-slate-400 mb-2">Temi</h4>
+          ${v.tags.map(t => `<span class="inline-block text-[0.62rem] tracking-[0.1em] uppercase text-slate-500 dark:text-slate-400 border border-slate-400/20 rounded-full px-2.5 py-1 mr-1.5 mb-1.5">${this._esc(t)}</span>`).join('')}
+        </div>` : ''}
+        ${tones.length ? `
+        <div class="mb-6">
+          <h4 class="text-[0.62rem] font-semibold tracking-[0.16em] uppercase text-slate-500 dark:text-slate-400 mb-2">Linguaggio</h4>
+          ${tones.map(t => `<span class="inline-block text-[0.62rem] tracking-[0.1em] uppercase text-slate-500 dark:text-slate-400 border border-slate-400/20 rounded-full px-2.5 py-1 mr-1.5 mb-1.5">${this._esc(TONE_LABELS[t] || t)}</span>`).join('')}
+        </div>` : ''}
 
         <h3 class="text-base font-semibold mb-3.5 text-slate-800 dark:text-slate-100" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">Opere incluse</h3>
         <ul class="flex flex-col gap-4">${operaRows || '<li class="text-[0.82rem] text-slate-500 dark:text-slate-400">Nessuna opera disponibile.</li>'}</ul>

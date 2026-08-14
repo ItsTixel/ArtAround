@@ -1,4 +1,5 @@
 const Visit = require('../models/visit');
+const Item = require('../models/item');
 
 const stepsPopulate = [
   { path: 'museum' },
@@ -51,6 +52,13 @@ async function getAll(req, res) {
     /* ── Tag ($in: almeno un tag presente) ──────────────────── */
     if (req.query.tags) {
       conditions.push({ tags: { $in: req.query.tags.split(',').map(t => t.trim()) } });
+    }
+
+    /* ── Tono (almeno un'opera di uno step con quel tono) ────── */
+    if (req.query.tones) {
+      const tones = req.query.tones.split(',').map(t => t.trim()).filter(Boolean);
+      const toneItems = await Item.find({ tone: { $in: tones } }).select('_id');
+      conditions.push({ 'steps.items': { $in: toneItems.map(i => i._id) } });
     }
 
     /* ── Ricerca testuale sul titolo ─────────────────────────── */

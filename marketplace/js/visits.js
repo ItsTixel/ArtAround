@@ -4,6 +4,7 @@
  * ============================================================ */
 
 import { getCurrentUser } from '/marketplace/js/auth-session.js';
+import { TONE_ORDER, TONE_LABELS } from '/marketplace/js/tone-labels.js';
 
 const API_VISITS  = '/api/visits';
 const API_MUSEUMS = '/api/museums';
@@ -17,6 +18,7 @@ const state = {
   price:       'all',
   durationMax: null,   /* null = nessun filtro; altrimenti minuti */
   tags:        [],
+  tones:       [],
   total:       0,
 };
 
@@ -37,6 +39,7 @@ async function fetchVisits() {
   if (state.price !== 'all')  params.set('price',       state.price);
   if (state.durationMax)      params.set('durationMax', state.durationMax);
   if (state.tags.length)      params.set('tags',        state.tags.join(','));
+  if (state.tones.length)     params.set('tones',       state.tones.join(','));
 
   const res = await fetch(`${API_VISITS}?${params}`);
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -53,6 +56,15 @@ function operaImages(steps = []) {
     if (url && !seen.has(url)) { seen.add(url); images.push(url); }
   }
   return images;
+}
+
+/* Toni presenti tra le descrizioni delle opere della visita: un tono compare
+ * se almeno un'opera di uno step lo usa, così si intuisce a colpo d'occhio
+ * il target della visita (bambini, esperti, ...). */
+function visitTones(steps = []) {
+  const present = new Set();
+  steps.forEach(s => (s.items || []).forEach(it => { if (it?.tone) present.add(it.tone); }));
+  return TONE_ORDER.filter(t => present.has(t));
 }
 
 /* ---- Normalizza un oggetto visita API → formato usato dalla card ---- */
@@ -77,6 +89,7 @@ function normalizeVisit(v) {
     museums:       museumDetails.map(m => m.id),
     museumDetails,
     images:        operaImages(v.steps),
+    tones:         visitTones(v.steps),
     owned:         ownedIds.has(String(v._id)),
   };
 }
@@ -159,7 +172,7 @@ async function load(page = 0) {
 /* ---- Facets per la sidebar (fetch separata, senza filtri attivi) ---- */
 async function loadFacets() {
   const res = await fetch(`${API_VISITS}?pageSize=100`);
-  if (!res.ok) return { tags: [], maxDurationMin: 240 };
+  if (!res.ok) return { tags: [], tones: [], maxDurationMin: 240 };
   const { data } = await res.json();
 
   const tagCounts = {};
@@ -171,11 +184,19 @@ async function loadFacets() {
     .sort((a, b) => b.count - a.count)
     .slice(0, 12);
 
+  const toneCounts = {};
+  data.forEach(v => {
+    visitTones(v.steps).forEach(t => { toneCounts[t] = (toneCounts[t] || 0) + 1; });
+  });
+  const tones = TONE_ORDER
+    .filter(t => toneCounts[t])
+    .map(value => ({ value, label: TONE_LABELS[value] || value, count: toneCounts[value] }));
+
   const durationsMin = data.map(v => (v.estimated_duration_sec || 0) / 60).filter(d => d > 0);
   const maxRaw = durationsMin.length ? Math.max(...durationsMin) : 60;
   maxDurationMin = Math.max(60, Math.ceil(maxRaw / 30) * 30);
 
-  return { tags, maxDurationMin };
+  return { tags, tones, maxDurationMin };
 }
 
 /* ============================================================
@@ -208,17 +229,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         short: m.name,
         city:  m.address?.city || '',
       })),
-      tones:          [],
+      tones:          facets.tones,
       tags:           facets.tags,
       maxDurationMin,
     };
 
     sidebar.addEventListener('filters-change', (e) => {
-      const { museumIds, price, durationMax, tags } = e.detail;
+      const { museumIds, price, durationMax, tags, tones } = e.detail;
       state.museumIds   = museumIds || [];
       state.price       = price     || 'all';
       state.durationMax = (durationMax && durationMax < maxDurationMin) ? durationMax : null;
       state.tags        = tags      || [];
+      state.tones       = tones     || [];
       load(0);
     });
   } catch (e) {

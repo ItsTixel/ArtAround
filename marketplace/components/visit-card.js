@@ -4,10 +4,11 @@
  *
  * Property `data` (preferita agli attributi, supporta l'intero oggetto):
  *   { id, title, description, durationSec, steps, basePrice,
- *     tags[], museumDetails[{id, short, name, city}], images[] }
+ *     tags[], tones[], museumDetails[{id, short, name, city}], images[] }
  */
 
-import { GLASS, GLASS_STRONG, TRANSITION } from '/marketplace/js/ui-tokens.js';
+import { GLASS, GLASS_STRONG, TRANSITION, TAG_PILL } from '/marketplace/js/ui-tokens.js';
+import { TONE_LABELS } from '/marketplace/js/tone-labels.js';
 
 /* Timer globale condiviso: fa avanzare in un unico battito i caroselli
  * di tutte le <visit-card> attualmente montate, cosí si muovono assieme.
@@ -114,6 +115,11 @@ class VisitCard extends HTMLElement {
           <h2 class="text-lg font-semibold leading-snug" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">${this._esc(v.title)}</h2>
           <p class="text-sm leading-relaxed text-slate-500 dark:text-slate-400 line-clamp-2">${this._esc(v.description)}</p>
           ${v.tags?.length ? `<div class="flex flex-wrap gap-x-2 text-[0.62rem] tracking-[0.12em] uppercase text-slate-500 dark:text-slate-400">${v.tags.slice(0, 3).map(t => `<span>${this._esc(t)}</span>`).join('<span class="opacity-50">·</span>')}</div>` : ''}
+          ${v.tones?.length ? `
+          <div class="tones">
+            <small class="block text-[0.62rem] tracking-[0.12em] uppercase text-slate-500 dark:text-slate-400 mb-1">Linguaggio</small>
+            <div class="flex flex-wrap gap-1.5">${v.tones.map(t => `<span class="${TAG_PILL}">${this._esc(TONE_LABELS[t] || t)}</span>`).join('')}</div>
+          </div>` : ''}
           <div class="flex items-end justify-between gap-4 mt-auto pt-4 border-t border-slate-400/20">
             <span class="text-sm">
               <small class="block text-[0.62rem] tracking-[0.12em] uppercase text-slate-500 dark:text-slate-400 mb-0.5">Durata</small>

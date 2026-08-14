@@ -13,25 +13,19 @@
  * le proprie liste senza ricaricarle da capo.
  */
 
-import { GLASS_MODAL as GLASS, TRANSITION } from '/marketplace/js/ui-tokens.js';
+import { GLASS_MODAL as GLASS, TRANSITION, TAG_PILL as TAG_CLS } from '/marketplace/js/ui-tokens.js';
 import { setupParagraphList, formatDuration } from '/marketplace/js/paragraph-list.js';
+import { TONE_LABELS } from '/marketplace/js/tone-labels.js';
 
 const API_ITEMS    = '/api/items';
 const API_ENTITIES = '/api/entities';
 
-const TONE_LABELS = {
-  childish:  'Per bambini',
-  simple:    'Semplice',
-  medium:    'Medio',
-  technical: 'Tecnico',
-};
 const LICENSE_LABELS = { Public: 'Pubblica', Reserved: 'Riservata', Private: 'Privata' };
 const LICENSE_CLS = {
   private:  'text-rose-500 dark:text-rose-400 border-rose-400/40',
   reserved: 'text-sky-600 dark:text-sky-400 border-sky-400/40',
   public:   'text-slate-600 dark:text-slate-300 border-slate-400/30',
 };
-const TAG_CLS = 'text-[0.62rem] tracking-[0.06em] uppercase border rounded-md px-2 py-0.5 border-slate-400/30 text-slate-500 dark:text-slate-400';
 
 class ItemModal extends HTMLElement {
   constructor() {
