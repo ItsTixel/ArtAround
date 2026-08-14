@@ -58,10 +58,10 @@ class MuseumCard extends HTMLElement {
             ${this._escape(location)}
           </p>` : ''}
           ${todayHours ? `
-          <p class="flex items-center gap-1.5 text-[0.72rem] font-medium ${todayHours.closed ? 'text-slate-500 dark:text-slate-400' : 'text-slate-800 dark:text-slate-100 font-semibold'}">
-            <svg class="w-[11px] h-[11px] fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 10.41V6h-2v7.83l5.24 3.15 1.03-1.71L13 12.41z"/></svg>
-            ${this._escape(todayHours.label)}
-          </p>` : ''}
+          <span class="inline-flex items-center gap-1.5 w-fit text-[0.68rem] font-medium leading-none px-3 py-1.5 rounded-full ${GLASS} ${todayHours.closed ? 'text-slate-500 dark:text-slate-400' : 'text-slate-800 dark:text-slate-100 font-semibold'}">
+            <span class="w-1.5 h-1.5 rounded-full shrink-0 ${todayHours.closed ? 'bg-slate-400/70' : 'bg-green-400/80'}" aria-hidden="true"></span>
+            <span>${this._escape(todayHours.label)}</span>
+          </span>` : ''}
           <h2 class="flex-1 text-lg font-semibold leading-snug" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">${this._escape(name)}</h2>
           <div class="flex items-center justify-between gap-3 mt-auto pt-4 border-t border-slate-400/20">
             <button class="info-btn relative z-[4] text-[0.66rem] font-medium tracking-[0.08em] uppercase text-slate-600 dark:text-slate-300 border border-slate-400/20 rounded-full px-3.5 py-2 whitespace-nowrap hover:text-slate-900 dark:hover:text-white hover:bg-white/20 hover:border-white/30 ${TRANSITION}" id="info-btn" aria-label="Informazioni su ${this._escape(name)}">Info museo</button>

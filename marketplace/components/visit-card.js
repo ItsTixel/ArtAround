@@ -4,7 +4,7 @@
  *
  * Property `data` (preferita agli attributi, supporta l'intero oggetto):
  *   { id, title, description, durationSec, steps, basePrice,
- *     tags[], museumDetails[{id, short, name, city}] }
+ *     tags[], museumDetails[{id, short, name, city}], images[] }
  */
 
 import { GLASS, TRANSITION } from '/marketplace/js/ui-tokens.js';
@@ -13,12 +13,18 @@ class VisitCard extends HTMLElement {
   constructor() {
     super();
     this._data = null;
+    this._autoplayTimer = null;
   }
 
   set data(value) { this._data = value; this._render(); }
   get data() { return this._data; }
 
   connectedCallback() { this._render(); }
+  disconnectedCallback() { this._stopAutoplay(); }
+
+  _stopAutoplay() {
+    if (this._autoplayTimer) { clearInterval(this._autoplayTimer); this._autoplayTimer = null; }
+  }
 
   _esc(s) {
     return String(s ?? '')
@@ -53,18 +59,31 @@ class VisitCard extends HTMLElement {
     const museums = v.museumDetails || [];
     const isInfra = museums.length > 1;
     const museumLine = this._museumLine(museums);
+    const images = (Array.isArray(v.images) && v.images.length) ? v.images : (v.image ? [v.image] : []);
 
     this.className = 'block h-full';
     this.innerHTML = `
       <div class="card group ${GLASS} overflow-hidden flex flex-col h-full cursor-pointer text-slate-800 dark:text-slate-100 ${TRANSITION} hover:-translate-y-1 hover:bg-white/20 hover:border-white/30 hover:shadow-2xl" role="button" tabindex="0" aria-label="${this._esc(v.title)}">
 
         <div class="relative h-44 bg-slate-300/20 dark:bg-slate-800/40 flex items-center justify-center overflow-hidden">
-          ${v.image
-            ? `<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="${this._esc(v.image)}" alt="" loading="lazy">`
+          ${images.length
+            ? `<div class="hero-scroll absolute inset-0 flex overflow-x-auto snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                 ${images.map(img => `<img class="w-full h-full shrink-0 snap-center object-cover transition-transform duration-500 group-hover:scale-105" src="${this._esc(img)}" alt="" loading="lazy">`).join('')}
+               </div>`
             : `<div class="absolute inset-0" style="background-image: repeating-linear-gradient(135deg, transparent 0 11px, rgba(100,116,139,0.12) 11px 12px);"></div>`
           }
           ${isInfra ? `<span class="absolute top-3 left-3 z-10 text-[0.62rem] font-medium tracking-[0.16em] uppercase px-2.5 py-1 rounded-full ${GLASS} text-slate-800 dark:text-slate-100">Inframuseale</span>` : ''}
           <span class="absolute top-3 right-3 z-10 text-[0.7rem] font-semibold tracking-[0.08em] uppercase px-2.5 py-1 rounded-full ${owned || isFree ? 'bg-slate-800 text-white dark:bg-white dark:text-slate-900' : `${GLASS} text-slate-800 dark:text-slate-100`}">${owned ? '✓ In tuo possesso' : this._fmtPrice(v.basePrice)}</span>
+          ${images.length > 1 ? `
+          <div class="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1.5" aria-hidden="true">
+            ${images.map((_, i) => `<span class="hero-dot w-1.5 h-1.5 rounded-full ${TRANSITION} ${i === 0 ? 'bg-white' : 'bg-white/40'}"></span>`).join('')}
+          </div>
+          <button type="button" class="hero-prev absolute left-2 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-7 h-7 rounded-full ${GLASS} text-slate-800 dark:text-slate-100 opacity-0 group-hover:opacity-100 ${TRANSITION}" aria-label="Immagine precedente">
+            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+          </button>
+          <button type="button" class="hero-next absolute right-2 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-7 h-7 rounded-full ${GLASS} text-slate-800 dark:text-slate-100 opacity-0 group-hover:opacity-100 ${TRANSITION}" aria-label="Immagine successiva">
+            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.59 16.59 10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
+          </button>` : ''}
           <span class="relative z-[1] text-[0.68rem] tracking-[0.18em] uppercase px-3 py-1.5 rounded-full ${GLASS} text-slate-800 dark:text-slate-100" style="font-family: var(--font-mono);">${this._esc(placeholderLabel)}</span>
         </div>
 
@@ -95,8 +114,52 @@ class VisitCard extends HTMLElement {
     }));
     card.addEventListener('click', open);
     card.addEventListener('keydown', (e) => {
+      if (e.target !== card) return;
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
     });
+
+    this._stopAutoplay();
+    if (images.length > 1) {
+      const track = this.querySelector('.hero-scroll');
+      const dots = this.querySelectorAll('.hero-dot');
+      const prevBtn = this.querySelector('.hero-prev');
+      const nextBtn = this.querySelector('.hero-next');
+      const currentIndex = () => Math.round(track.scrollLeft / track.clientWidth);
+
+      const goTo = (index) => {
+        const clamped = (index + images.length) % images.length;
+        track.scrollTo({ left: clamped * track.clientWidth, behavior: 'smooth' });
+      };
+
+      track.addEventListener('scroll', () => {
+        const active = currentIndex();
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('bg-white', i === active);
+          dot.classList.toggle('bg-white/40', i !== active);
+        });
+      }, { passive: true });
+
+      const restartAutoplay = () => {
+        this._stopAutoplay();
+        this._autoplayTimer = setInterval(() => goTo(currentIndex() + 1), 4000);
+      };
+
+      prevBtn.addEventListener('click', (e) => {
+        e.preventDefault(); e.stopPropagation();
+        goTo(currentIndex() - 1);
+        restartAutoplay();
+      });
+      nextBtn.addEventListener('click', (e) => {
+        e.preventDefault(); e.stopPropagation();
+        goTo(currentIndex() + 1);
+        restartAutoplay();
+      });
+
+      card.addEventListener('mouseenter', () => this._stopAutoplay());
+      card.addEventListener('mouseleave', restartAutoplay);
+
+      restartAutoplay();
+    }
   }
 }
 

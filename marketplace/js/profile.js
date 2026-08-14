@@ -25,9 +25,15 @@ function esc(s) {
 
 /* ---- Visite: create / adottate / preferiti ---- */
 
-function firstOperaImage(steps = []) {
+function operaImages(steps = []) {
   const sorted = [...steps].sort((a, b) => a.order - b.order);
-  return sorted.find(s => s.entity?.image_url)?.entity?.image_url || '';
+  const seen = new Set();
+  const images = [];
+  for (const s of sorted) {
+    const url = s.entity?.image_url;
+    if (url && !seen.has(url)) { seen.add(url); images.push(url); }
+  }
+  return images;
 }
 
 function normalizeVisit(v) {
@@ -50,7 +56,7 @@ function normalizeVisit(v) {
     tags:          v.tags                   || [],
     museumDetails,
     placeholderTag: v.title || `Visita ${v._id}`,
-    image:         firstOperaImage(v.steps),
+    images:        operaImages(v.steps),
     owned:         ownedIds.has(String(v._id)),
   };
 }

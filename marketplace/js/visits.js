@@ -43,10 +43,16 @@ async function fetchVisits() {
   return res.json();
 }
 
-/* Immagine di default: quella della prima opera (per ordine di tappa) che ne ha una */
-function firstOperaImage(steps = []) {
+/* Immagini delle opere della visita, in ordine di tappa (per il carosello della card) */
+function operaImages(steps = []) {
   const sorted = [...steps].sort((a, b) => a.order - b.order);
-  return sorted.find(s => s.entity?.image_url)?.entity?.image_url || '';
+  const seen = new Set();
+  const images = [];
+  for (const s of sorted) {
+    const url = s.entity?.image_url;
+    if (url && !seen.has(url)) { seen.add(url); images.push(url); }
+  }
+  return images;
 }
 
 /* ---- Normalizza un oggetto visita API → formato usato dalla card ---- */
@@ -71,7 +77,7 @@ function normalizeVisit(v) {
     museums:       museumDetails.map(m => m.id),
     museumDetails,
     placeholderTag: v.title || `Visita ${v._id}`,
-    image:         firstOperaImage(v.steps),
+    images:        operaImages(v.steps),
     owned:         ownedIds.has(String(v._id)),
   };
 }
