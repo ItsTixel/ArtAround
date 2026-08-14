@@ -103,6 +103,12 @@ async function adoptVisit(req, res) {
     const visit = await Visit.findById(req.params.visitId);
     if (!visit) return res.status(404).json({ error: 'Visit not found' });
 
+    // Stesso controllo di visibilità di GET /api/visits/:id: una visita
+    // privata è adottabile solo dal suo autore, anche conoscendone l'ID.
+    if (!visit.is_public && visit.author.toString() !== req.user.id) {
+      return res.status(403).json({ error: 'This visit is private.' });
+    }
+
     const user = await User.findByIdAndUpdate(
       req.params.id,
       { $addToSet: { adopted_visits: req.params.visitId } },
