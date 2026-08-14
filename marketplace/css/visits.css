@@ -122,13 +122,33 @@ filter-sidebar { display: block; }
   background-size: 18px;
   outline: none;
   transition: border-color 0.3s ease, background-color 0.3s ease;
+  appearance: base-select;
 }
 #sort:hover,
 #sort:focus { border-color: var(--universal-glass-border-strong); background-color: var(--universal-glass-bg-strong); }
 
+#sort::picker(select) {
+  appearance: base-select;
+  position-area: block-end !important;
+  margin-top: 0.4rem !important;
+  border: 1px solid var(--universal-glass-border);
+  border-radius: 14px;
+  background-color: var(--color-surface);
+  padding: 0.35rem;
+}
+
+#sort::picker-icon { display: none; }
+
 #sort option {
   background-color: var(--color-surface);
   color: var(--color-text);
+  border-radius: 9999px;
+  padding: 0.4rem 0.8rem;
+}
+
+#sort option:hover,
+#sort option:checked {
+  background-color: var(--universal-glass-bg-strong);
 }
 
 /* Visit search (nella toolbar accanto a Ordina) */

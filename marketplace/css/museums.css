@@ -131,14 +131,34 @@ html, body {
   background-size: 18px;
   outline: none;
   transition: border-color 0.3s ease, background-color 0.3s ease;
+  appearance: base-select;
 }
 
 .filters select:hover,
 .filters select:focus { border-color: var(--universal-glass-border-strong); background-color: var(--universal-glass-bg-strong); }
 
+.filters select::picker(select) {
+  appearance: base-select;
+  position-area: block-end !important;
+  margin-top: 0.4rem !important;
+  border: 1px solid var(--universal-glass-border);
+  border-radius: 14px;
+  background-color: var(--color-surface);
+  padding: 0.35rem;
+}
+
+.filters select::picker-icon { display: none; }
+
 .filters select option {
   background-color: var(--color-surface);
   color: var(--color-text);
+  border-radius: 9999px;
+  padding: 0.4rem 0.8rem;
+}
+
+.filters select option:hover,
+.filters select option:checked {
+  background-color: var(--universal-glass-bg-strong);
 }
 
 .skip-link {
