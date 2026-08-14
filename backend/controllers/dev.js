@@ -11,6 +11,7 @@ const CATEGORIES = [
 	{ name: 'items', file: 'items.json' },
 	{ name: 'visits', file: 'visits.json' },
 	{ name: 'users', file: 'users.json' },
+	{ name: 'orders', file: 'orders.json' },
 ];
 
 exports.reset = async (req, res) => {
