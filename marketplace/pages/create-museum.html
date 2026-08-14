@@ -58,6 +58,11 @@
             <span class="wizard-step-circle">4</span>
             <span class="wizard-step-label">Servizi</span>
           </button>
+          <span class="wizard-step-line"></span>
+          <button type="button" class="wizard-step" data-step="4">
+            <span class="wizard-step-circle">5</span>
+            <span class="wizard-step-label">Mappe</span>
+          </button>
         </nav>
 
         <div class="carousel-wrap">
@@ -130,6 +135,20 @@
                 <p class="block-hint">Indica dove si trovano servizi come toilette, uscita, guardaroba, ecc.</p>
                 <div id="services-list" class="dynamic-list"></div>
                 <button type="button" id="add-service" class="btn-secondary">+ Aggiungi servizio</button>
+              </div>
+            </div>
+
+            <div class="carousel-slide">
+              <div class="form-block">
+                <h2>Mappe</h2>
+                <p class="block-hint">
+                  Per ogni pianta del museo (es. un piano) allega separatamente la sua immagine
+                  (file locale o URL) e un file JSON con <code>name</code> ed eventualmente
+                  <code>points</code> (i punti di interesse cliccabili). Il resto lo mette insieme il server.
+                </p>
+                <div id="maps-list" class="dynamic-list"></div>
+                <button type="button" id="add-map" class="btn-secondary">+ Aggiungi mappa</button>
+                <p class="feedback" id="maps-feedback"></p>
               </div>
             </div>
 

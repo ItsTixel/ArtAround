@@ -12,10 +12,20 @@ function iconForPoint(point) {
   return SignpostIcon
 }
 
+// point.entity è l'opera collegata al punto: un oggetto (con image_url) se
+// il backend l'ha popolata, altrimenti (fallback) un id grezzo.
+function entityIdOf(point) {
+  return point?.entity?._id ?? point?.entity ?? null
+}
+
 const MIN_SCALE = 1
 const MAX_SCALE = 4
 const DOUBLE_TAP_SCALE = 2.5
 const DRAG_THRESHOLD_PX = 6
+// Con tante opere sulla stessa mappa, mostrarle tutte alla vista d'insieme
+// le farebbe sovrapporre illeggibili: restano nascoste finché non si
+// ingrandisce almeno un po' (i punti-servizio restano invece sempre visibili).
+const SHOW_ENTITIES_MIN_SCALE = 1.4
 
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max)
@@ -236,6 +246,7 @@ function Mappa() {
   const [selectedMuseumId, setSelectedMuseumId] = useState(null)
   const [selectedMapIndex, setSelectedMapIndex] = useState(0)
   const [activePoint, setActivePoint] = useState(null)
+  const [hintDismissed, setHintDismissed] = useState(false)
 
   const viewportRef = useRef(null)
   const zoomPan = useMapZoomPan(viewportRef)
@@ -245,6 +256,12 @@ function Mappa() {
     zoomPan.reset()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedMuseumId, selectedMapIndex])
+
+  // Chiudere l'avviso lo nasconde solo finché le opere restano nascoste: se
+  // si torna a ingrandire e poi si rimpicciolisce di nuovo, ricompare.
+  useEffect(() => {
+    if (zoomPan.scale >= SHOW_ENTITIES_MIN_SCALE) setHintDismissed(false)
+  }, [zoomPan.scale])
 
   // Inizializza (o segue una richiesta di evidenziazione) museo/piano/punto
   // attivi. Gira ogni volta che cambia la richiesta di evidenziazione o
@@ -286,6 +303,9 @@ function Mappa() {
 
   const selectedMuseum = museumsWithMaps.find((m) => m._id === selectedMuseumId) || null
   const selectedMap = selectedMuseum?.maps?.[selectedMapIndex] || null
+  const entitiesVisible = zoomPan.scale >= SHOW_ENTITIES_MIN_SCALE
+  const hasHiddenEntities =
+    !entitiesVisible && !hintDismissed && (selectedMap?.points || []).some((p) => p.icon_type === 'entity')
 
   function handleSelectMuseum(id) {
     setSelectedMuseumId(id)
@@ -301,7 +321,7 @@ function Mappa() {
   // Se il punto è un'opera che fa parte della visita, porta allo step
   // corrispondente e passa alla pagina Opera.
   function handleGoToEntity(point) {
-    const stepIndex = steps.findIndex((s) => String(s.entity?._id) === String(point.entity))
+    const stepIndex = steps.findIndex((s) => String(s.entity?._id) === String(entityIdOf(point)))
     if (stepIndex === -1) return
     goToStep(stepIndex, { skipDirections: true })
     navigate('/opera')
@@ -311,7 +331,7 @@ function Mappa() {
     activePoint?.icon_type === 'service' ? selectedMuseum?.services?.[activePoint.service_key] : null
   const canGoToEntity =
     activePoint?.icon_type === 'entity' &&
-    steps.some((s) => String(s.entity?._id) === String(activePoint.entity))
+    steps.some((s) => String(s.entity?._id) === String(entityIdOf(activePoint)))
 
   return (
     <div className="flex flex-col gap-4 p-6 pb-10">
@@ -371,6 +391,20 @@ function Mappa() {
           style={{ cursor: zoomPan.scale > 1 ? 'grab' : 'default' }}
           {...zoomPan.handlers}
         >
+          {hasHiddenEntities && (
+            <div className="pointer-events-none absolute left-2 top-2 z-20 flex max-w-[85%] items-center gap-1.5 rounded-md bg-surface/90 py-1 pl-2 pr-1 shadow-md">
+              <p className="text-xs text-text-muted">Ingrandisci la mappa per vedere le opere.</p>
+              <button
+                type="button"
+                onClick={() => setHintDismissed(true)}
+                aria-label="Chiudi"
+                className="pointer-events-auto shrink-0 rounded px-1 text-text-muted"
+              >
+                ×
+              </button>
+            </div>
+          )}
+
           <div
             style={{
               transform: `translate(${zoomPan.tx}px, ${zoomPan.ty}px) scale(${zoomPan.scale})`,
@@ -386,7 +420,9 @@ function Mappa() {
 
             {selectedMap.points.map((point) => {
               const Icon = iconForPoint(point)
+              const thumbnailUrl = point.icon_type === 'entity' ? point.entity?.image_url : null
               const isActive = activePoint && String(activePoint._id) === String(point._id)
+              const isHiddenEntity = point.icon_type === 'entity' && !entitiesVisible
               return (
                 <button
                   key={point._id}
@@ -397,7 +433,9 @@ function Mappa() {
                   }}
                   aria-label={point.label}
                   style={{ left: `${point.x * 100}%`, top: `${point.y * 100}%` }}
-                  className={`absolute flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 shadow-md transition active:scale-95 ${
+                  className={`absolute flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center overflow-hidden rounded-full border-2 shadow-md transition active:scale-95 ${
+                    isHiddenEntity ? 'pointer-events-none opacity-0' : 'opacity-100'
+                  } ${
                     isActive
                       ? 'z-10 border-accent bg-accent text-on-accent ring-4 ring-accent/40 animate-pulse'
                       : point.icon_type === 'entity'
@@ -405,7 +443,17 @@ function Mappa() {
                         : 'border-accent bg-accent/90 text-on-accent'
                   }`}
                 >
-                  <Icon className="h-5 w-5" aria-hidden="true" />
+                  {thumbnailUrl ? (
+                    <img
+                      src={thumbnailUrl}
+                      alt=""
+                      loading="lazy"
+                      draggable={false}
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  )}
                 </button>
               )
             })}

@@ -3,4 +3,5 @@
 **/.env
 *.pdf
 *.rest
+/assets/uploads/
 
