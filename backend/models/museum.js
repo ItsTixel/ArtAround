@@ -1,6 +1,34 @@
 const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
 
+// A clickable point of interest on a museum map image. `x`/`y` are
+// normalized (0–1, relative to the map image's width/height) so the point
+// stays correctly placed however the image is scaled/rendered.
+const mapPointSchema = new Schema({
+  label: { type: String, required: true, trim: true },
+  icon_type: {
+    type: String,
+    enum: ['service', 'entity', 'generic'],
+    default: 'generic'
+  },
+  x: { type: Number, required: true, min: 0, max: 1 },
+  y: { type: Number, required: true, min: 0, max: 1 },
+  // For icon_type 'service': matches a key of this museum's `services` map,
+  // so the "Indicazioni" commands can jump straight to this point.
+  service_key: { type: String, trim: true },
+  // For icon_type 'entity': the artwork placed at this point.
+  entity: { type: mongoose.Schema.Types.ObjectId, ref: 'Entity' },
+  description: { type: String, trim: true }
+});
+
+// One image (e.g. a floor plan) plus its points of interest. A museum can
+// have zero, one, or several of these (typically one per floor).
+const museumMapSchema = new Schema({
+  name:      { type: String, required: true, trim: true },
+  image_url: { type: String, required: true, trim: true },
+  points:    { type: [mapPointSchema], default: [] }
+});
+
 const museumSchema = new Schema({
   name:        { type: String, required: true, trim: true },
   wikidata_id: { type: String, trim: true },
@@ -27,6 +55,7 @@ const museumSchema = new Schema({
     of: { type: String, trim: true },
     default: {}
   },
+  maps: { type: [museumMapSchema], default: [] },
   added_by: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 }, { timestamps: true });
 
