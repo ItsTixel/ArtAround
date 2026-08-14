@@ -55,7 +55,6 @@ function normalizeVisit(v) {
     basePrice:     v.base_price             || 0,
     tags:          v.tags                   || [],
     museumDetails,
-    placeholderTag: v.title || `Visita ${v._id}`,
     images:        operaImages(v.steps),
     owned:         ownedIds.has(String(v._id)),
   };

@@ -76,7 +76,6 @@ function normalizeVisit(v) {
     tags:          v.tags                   || [],
     museums:       museumDetails.map(m => m.id),
     museumDetails,
-    placeholderTag: v.title || `Visita ${v._id}`,
     images:        operaImages(v.steps),
     owned:         ownedIds.has(String(v._id)),
   };

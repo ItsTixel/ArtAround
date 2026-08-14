@@ -76,7 +76,6 @@ class VisitCard extends HTMLElement {
     const v = this._data;
     const isFree = !v.basePrice;
     const owned = !!v.owned;
-    const placeholderLabel = v.placeholderTag || v.title || `Visita ${v.id}`;
     const museums = v.museumDetails || [];
     const isInfra = museums.length > 1;
     const museumLine = this._museumLine(museums);
@@ -105,7 +104,6 @@ class VisitCard extends HTMLElement {
           <button type="button" class="hero-next absolute right-2 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-7 h-7 rounded-full ${GLASS} text-slate-800 dark:text-slate-100 opacity-0 group-hover:opacity-100 ${TRANSITION}" aria-label="Immagine successiva">
             <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.59 16.59 10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
           </button>` : ''}
-          <span class="relative z-[1] text-[0.68rem] tracking-[0.18em] uppercase px-3 py-1.5 rounded-full ${GLASS} text-slate-800 dark:text-slate-100" style="font-family: var(--font-mono);">${this._esc(placeholderLabel)}</span>
         </div>
 
         <div class="p-6 flex-1 flex flex-col gap-2.5">
