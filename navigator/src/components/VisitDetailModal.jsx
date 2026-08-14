@@ -7,11 +7,19 @@ function VisitDetailModal({ visit, isActive, onClose, onActivate, onDeactivate }
       onClick={onClose}
     >
       <div
-        className="flex max-h-[85vh] w-full max-w-md flex-col rounded-2xl border border-slate-400/20 bg-white/85 dark:bg-slate-900/85 backdrop-blur-2xl shadow-2xl"
+        className="relative flex max-h-[85vh] w-full max-w-md flex-col rounded-2xl border border-slate-400/20 bg-white/85 dark:bg-slate-900/85 backdrop-blur-2xl shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex-1 overflow-y-auto p-6">
-          <VisitInfoBody visit={visit} onClose={onClose} />
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Chiudi"
+          className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-slate-400/20 bg-slate-400/10 backdrop-blur-lg text-lg leading-none text-text hover:bg-white/20 hover:border-white/30"
+        >
+          ×
+        </button>
+        <div className="flex-1 overflow-y-auto">
+          <VisitInfoBody visit={visit} />
         </div>
 
         <div className="flex shrink-0 items-center gap-3 border-t border-border p-4">

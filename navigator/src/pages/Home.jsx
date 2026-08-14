@@ -3,21 +3,11 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { useActiveVisit } from '../context/ActiveVisitContext'
 import VisitDetailModal from '../components/VisitDetailModal'
+import { formatDuration, formatPrice } from '../components/VisitInfoBody'
 
 const MARKETPLACE_VISITS_URL = '/marketplace/pages/visits.html'
 const LOGIN_URL = '/marketplace/login.html'
 const REGISTER_URL = '/marketplace/register.html'
-
-function formatDuration(sec) {
-  if (!sec) return null
-  const minutes = Math.round(sec / 60)
-  return `${minutes} min`
-}
-
-function formatPrice(price) {
-  if (!price) return 'Gratis'
-  return `${price.toFixed(2)} €`
-}
 
 function Home() {
   const { user } = useAuth()
