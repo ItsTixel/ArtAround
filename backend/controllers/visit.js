@@ -1,10 +1,16 @@
 const Visit = require('../models/visit');
 
+// I punti-opera sulle mappe dei musei mostrano una miniatura: serve popolare
+// l'entity referenziata da ogni punto (sia sul museum "riassuntivo" della
+// visita che su quello di ogni step, che sono la stessa collezione ma path
+// Mongoose distinti).
+const mapPointEntityPopulate = { path: 'maps.points.entity', select: 'name image_url alt_text' };
+
 const stepsPopulate = [
-  { path: 'museum' },
+  { path: 'museum', populate: mapPointEntityPopulate },
   { path: 'author', select: '-password' },
   { path: 'steps.entity' },
-  { path: 'steps.museum' },
+  { path: 'steps.museum', populate: mapPointEntityPopulate },
   {
     path: 'steps.items',
     populate: [
