@@ -16,6 +16,7 @@ const LOGIN_URL    = '/marketplace/login.html';
 
 let paragraphList = null;
 let imageField = null;
+let wizard = null;
 
 /* ---- Tono / Visibilità: gruppi di bottoni al posto delle <select> ---- */
 
@@ -118,6 +119,7 @@ async function submitItem() {
     feedback.style.color = 'red';
     feedback.textContent = 'Aggiungi almeno un paragrafo alla descrizione.';
     paragraphList.focusFirst();
+    wizard.setSubmitEnabled(true);
     return;
   }
 
@@ -156,6 +158,7 @@ async function submitItem() {
   } catch (err) {
     feedback.style.color = 'red';
     feedback.textContent = err.message;
+    wizard.setSubmitEnabled(true);
   }
 }
 
@@ -193,7 +196,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     counter.textContent = `${summary.value.length}/300`;
   });
 
-  createWizard({
+  wizard = createWizard({
     form: document.getElementById('item-form'),
     track: document.getElementById('carousel-track'),
     stepButtons: document.querySelectorAll('.wizard-step'),

@@ -123,9 +123,20 @@ export function createWizard({
     return activePath[pos + offset];
   }
 
+  // Un bottone disabled non genera eventi click nel browser: disabilitandolo
+  // subito, in modo sincrono, si blocca anche una raffica di click sparata
+  // prima ancora che la prima risposta del server torni. Resta disabilitato
+  // finché onSubmit() non lo riabilita esplicitamente (in caso di errore, per
+  // permettere di correggere e reinviare); in caso di successo la pagina
+  // reindirizza comunque a breve, quindi non serve riabilitarlo.
+  function setSubmitEnabled(enabled) {
+    nextBtn.disabled = !enabled;
+  }
+
   function next() {
     const nextIndex = stepAt(1);
     if (nextIndex === undefined) {
+      if (nextBtn.disabled) return;
       const invalid = findFirstInvalid(slides.length);
       if (invalid) {
         currentStep = invalid.step;
@@ -133,6 +144,7 @@ export function createWizard({
         reportInvalid(invalid);
         return;
       }
+      setSubmitEnabled(false);
       onSubmit();
       return;
     }
@@ -150,5 +162,5 @@ export function createWizard({
 
   render();
 
-  return { render, goToStep, getCurrentStep: () => currentStep };
+  return { render, goToStep, getCurrentStep: () => currentStep, setSubmitEnabled };
 }

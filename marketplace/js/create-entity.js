@@ -171,6 +171,7 @@ async function submitEntity() {
   } catch (err) {
     feedback.style.color = 'red';
     feedback.textContent = err.message;
+    wizard.setSubmitEnabled(true);
   }
 }
 

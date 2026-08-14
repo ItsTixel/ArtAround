@@ -13,6 +13,7 @@ const LOGIN_URL   = '/marketplace/login.html';
 const DAYS = ['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 'Domenica'];
 
 let imageField = null;
+let wizard = null;
 
 function buildHoursGrid() {
   const grid = document.getElementById('hours-grid');
@@ -255,6 +256,7 @@ async function submitMuseum() {
     if (!hasImage || !slot.mapData) {
       mapsFeedback.style.color = 'red';
       mapsFeedback.textContent = 'Ogni mappa allegata deve avere sia un\'immagine sia un JSON di indicazioni valido (o rimuovila con ✕).';
+      wizard.setSubmitEnabled(true);
       return;
     }
   }
@@ -313,6 +315,7 @@ async function submitMuseum() {
   } catch (err) {
     feedback.style.color = 'red';
     feedback.textContent = err.message;
+    wizard.setSubmitEnabled(true);
   }
 }
 
@@ -344,7 +347,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   document.getElementById('add-map').addEventListener('click', addMapSlot);
 
-  createWizard({
+  wizard = createWizard({
     form: document.getElementById('museum-form'),
     track: document.getElementById('carousel-track'),
     stepButtons: document.querySelectorAll('.wizard-step'),
