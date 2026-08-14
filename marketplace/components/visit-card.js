@@ -9,22 +9,43 @@
 
 import { GLASS, TRANSITION } from '/marketplace/js/ui-tokens.js';
 
+/* Timer globale condiviso: fa avanzare in un unico battito i caroselli
+ * di tutte le <visit-card> attualmente montate, cosí si muovono assieme.
+ * Ogni card in pausa (puntatore sopra) viene semplicemente saltata al tick. */
+const AUTOPLAY_INTERVAL_MS = 4000;
+const activeCarousels = new Set();
+let globalAutoplayTimer = null;
+
+function registerCarousel(card) {
+  activeCarousels.add(card);
+  if (!globalAutoplayTimer) {
+    globalAutoplayTimer = setInterval(() => {
+      activeCarousels.forEach(c => c._advance?.());
+    }, AUTOPLAY_INTERVAL_MS);
+  }
+}
+
+function unregisterCarousel(card) {
+  activeCarousels.delete(card);
+  if (activeCarousels.size === 0 && globalAutoplayTimer) {
+    clearInterval(globalAutoplayTimer);
+    globalAutoplayTimer = null;
+  }
+}
+
 class VisitCard extends HTMLElement {
   constructor() {
     super();
     this._data = null;
-    this._autoplayTimer = null;
+    this._paused = false;
+    this._advance = null;
   }
 
   set data(value) { this._data = value; this._render(); }
   get data() { return this._data; }
 
   connectedCallback() { this._render(); }
-  disconnectedCallback() { this._stopAutoplay(); }
-
-  _stopAutoplay() {
-    if (this._autoplayTimer) { clearInterval(this._autoplayTimer); this._autoplayTimer = null; }
-  }
+  disconnectedCallback() { unregisterCarousel(this); }
 
   _esc(s) {
     return String(s ?? '')
@@ -118,7 +139,9 @@ class VisitCard extends HTMLElement {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
     });
 
-    this._stopAutoplay();
+    unregisterCarousel(this);
+    this._paused = false;
+    this._advance = null;
     if (images.length > 1) {
       const track = this.querySelector('.hero-scroll');
       const dots = this.querySelectorAll('.hero-dot');
@@ -139,26 +162,20 @@ class VisitCard extends HTMLElement {
         });
       }, { passive: true });
 
-      const restartAutoplay = () => {
-        this._stopAutoplay();
-        this._autoplayTimer = setInterval(() => goTo(currentIndex() + 1), 4000);
-      };
-
       prevBtn.addEventListener('click', (e) => {
         e.preventDefault(); e.stopPropagation();
         goTo(currentIndex() - 1);
-        restartAutoplay();
       });
       nextBtn.addEventListener('click', (e) => {
         e.preventDefault(); e.stopPropagation();
         goTo(currentIndex() + 1);
-        restartAutoplay();
       });
 
-      card.addEventListener('mouseenter', () => this._stopAutoplay());
-      card.addEventListener('mouseleave', restartAutoplay);
+      card.addEventListener('mouseenter', () => { this._paused = true; });
+      card.addEventListener('mouseleave', () => { this._paused = false; });
 
-      restartAutoplay();
+      this._advance = () => { if (!this._paused) goTo(currentIndex() + 1); };
+      registerCarousel(this);
     }
   }
 }

@@ -70,6 +70,30 @@
       "Sabato": "9:00–19:00",
       "Domenica": "9:00–13:00"
     },
+    "maps": [
+      {
+        "name": "Piano Primo",
+        "image_url": "/assets/maps/pinacoteca-piano-primo-placeholder.svg",
+        "points": [
+          { "label": "Polittico di Bologna", "icon_type": "entity", "x": 0.128, "y": 0.236, "entity": { "$oid": "ccc000000000000000000019" } },
+          { "label": "San Giorgio e il drago", "icon_type": "entity", "x": 0.314, "y": 0.236, "entity": { "$oid": "ccc000000000000000000020" } },
+          { "label": "Pala dei Mercanti", "icon_type": "entity", "x": 0.500, "y": 0.236, "entity": { "$oid": "ccc000000000000000000021" } },
+          { "label": "Pala Bentivoglio", "icon_type": "entity", "x": 0.686, "y": 0.236, "entity": { "$oid": "ccc000000000000000000022" } },
+          { "label": "Estasi di Santa Cecilia", "icon_type": "entity", "x": 0.872, "y": 0.236, "entity": { "$oid": "ccc000000000000000000024" } },
+          { "label": "Madonna di Santa Margherita", "icon_type": "entity", "x": 0.128, "y": 0.621, "entity": { "$oid": "ccc000000000000000000025" } },
+          { "label": "Madonna dei Bargellini", "icon_type": "entity", "x": 0.314, "y": 0.621, "entity": { "$oid": "ccc000000000000000000026" } },
+          { "label": "Strage degli Innocenti", "icon_type": "entity", "x": 0.480, "y": 0.610, "entity": { "$oid": "ccc000000000000000000029" } },
+          { "label": "Pietà dei Mendicanti", "icon_type": "entity", "x": 0.520, "y": 0.632, "entity": { "$oid": "ccc000000000000000000030" } },
+          { "label": "Vestizione di San Guglielmo d'Aquitania", "icon_type": "entity", "x": 0.686, "y": 0.621, "entity": { "$oid": "ccc000000000000000000033" } },
+          { "label": "Guardaroba", "icon_type": "service", "x": 0.1125, "y": 0.886, "service_key": "Guardaroba" },
+          { "label": "Bookshop", "icon_type": "service", "x": 0.2675, "y": 0.886, "service_key": "Bookshop" },
+          { "label": "Toilette", "icon_type": "service", "x": 0.4225, "y": 0.886, "service_key": "Toilette" },
+          { "label": "Uscita", "icon_type": "service", "x": 0.5775, "y": 0.886, "service_key": "Uscita" },
+          { "label": "Sala Convegni", "icon_type": "service", "x": 0.7325, "y": 0.886, "service_key": "Sala Convegni" },
+          { "label": "Sala Lettura", "icon_type": "service", "x": 0.8875, "y": 0.886, "service_key": "Sala Lettura" }
+        ]
+      }
+    ],
     "added_by": {
       "$oid": "aaa000000000000000000004"
     },

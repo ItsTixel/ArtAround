@@ -181,6 +181,7 @@ app.get('/dev', async function (req, res) {
 </html>
 			`)
 });
+app.use('/assets', express.static(path.join(__dirname, '../assets')));
 app.use('/marketplace', express.static(path.join(__dirname, '../marketplace'), { "index": 'pages/index.html' }));
 app.use('/navigator', express.static(path.join(__dirname, '../navigator/dist')));
 app.get(/^\/navigator\/.*/, (req, res) => {
