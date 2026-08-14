@@ -2,17 +2,7 @@ import { useState } from 'react'
 import { useActiveVisit } from '../context/ActiveVisitContext'
 import { useVisitProgress, TONE_LABELS } from '../context/VisitProgressContext'
 import NoActiveVisit from '../components/NoActiveVisit'
-import {
-  PreviousIcon,
-  NextIcon,
-  PlayIcon,
-  PauseIcon,
-  MicrophoneIcon,
-  SignpostIcon,
-  MuseumIcon,
-  FloorIcon,
-  RoomIcon,
-} from '../components/icons'
+import { SignpostIcon, MuseumIcon, FloorIcon, RoomIcon } from '../components/icons'
 
 const DIRECTIONS_ICONS = {
   museum: MuseumIcon,
@@ -23,13 +13,6 @@ const DIRECTIONS_ICONS = {
 function formatDurationLabel(sec) {
   if (sec < 60) return `${sec} sec`
   return `${Math.round(sec / 60)} min`
-}
-
-function formatTime(sec) {
-  const total = Math.max(0, Math.floor(sec || 0))
-  const m = Math.floor(total / 60)
-  const s = total % 60
-  return `${m}:${String(s).padStart(2, '0')}`
 }
 
 function pillClasses(active, activeClasses) {
@@ -44,10 +27,6 @@ function Opera() {
   const {
     step,
     entity,
-    canGoPreviousStep,
-    canGoNextStep,
-    goToPreviousStep,
-    goToNextStep,
     availableTones,
     activeTone,
     handleToneSelect,
@@ -55,18 +34,7 @@ function Opera() {
     activeDescIndex,
     currentDescription,
     handleDescSelect,
-    playbackState,
-    progress,
-    seekPreview,
-    setSeekPreview,
-    handleSeek,
-    handlePlayPause,
-    autoplayEnabled,
-    toggleAutoplay,
     directionsParts,
-    closeDirections,
-    activeText,
-    activeDurationSec,
   } = useVisitProgress()
 
   if (!activeVisit) return <NoActiveVisit />
@@ -81,7 +49,7 @@ function Opera() {
   }
 
   return (
-    <div className="flex flex-col gap-5 pb-32">
+    <div className="flex flex-col gap-5">
       {directionsParts ? (
         <>
           <div className="flex flex-col items-center gap-3 px-6 pt-10 text-center">
@@ -222,92 +190,6 @@ function Opera() {
           />
         </div>
       )}
-
-      <div className="fixed inset-x-0 bottom-16 z-40 border-t border-border bg-surface">
-        <div className="mx-auto max-w-md px-8 pt-3">
-          <input
-            type="range"
-            min={0}
-            max={1}
-            step={0.001}
-            value={seekPreview ?? progress}
-            disabled={!activeText}
-            onInput={(e) => setSeekPreview(Number(e.target.value))}
-            onChange={(e) => {
-              handleSeek(Number(e.target.value))
-              setSeekPreview(null)
-            }}
-            aria-label="Posizione lettura"
-            className="w-full accent-accent disabled:opacity-30"
-          />
-          <div className="flex items-center justify-between text-xs text-text-muted">
-            <span>{formatTime((seekPreview ?? progress) * (activeDurationSec || 0))}</span>
-            <span>{formatTime(activeDurationSec || 0)}</span>
-          </div>
-        </div>
-        <div className="mx-auto flex max-w-md items-center justify-between px-8 py-3">
-          <button
-            type="button"
-            aria-label="Precedente"
-            onClick={directionsParts ? closeDirections : goToPreviousStep}
-            disabled={!directionsParts && !canGoPreviousStep}
-            className={`flex h-10 w-10 items-center justify-center text-text-muted transition-opacity ${
-              !directionsParts && !canGoPreviousStep ? 'opacity-30' : ''
-            }`}
-          >
-            <PreviousIcon className="h-6 w-6" />
-          </button>
-          <button
-            type="button"
-            aria-label={
-              autoplayEnabled ? 'Disattiva lettura automatica' : 'Attiva lettura automatica'
-            }
-            aria-pressed={autoplayEnabled}
-            onClick={toggleAutoplay}
-            className="flex h-10 w-10 items-center justify-center"
-          >
-            <span
-              className={`rounded-full px-2 py-1 text-[10px] font-bold uppercase tracking-wide transition-colors ${
-                autoplayEnabled ? 'bg-accent text-on-accent' : 'text-text-muted'
-              }`}
-            >
-              Auto
-            </span>
-          </button>
-          <button
-            type="button"
-            aria-label={playbackState === 'playing' ? 'Pausa' : 'Play'}
-            onClick={handlePlayPause}
-            disabled={!activeText}
-            className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent-hover text-on-accent shadow-[0_0_20px_rgba(212,168,83,0.35)] disabled:opacity-40"
-          >
-            {playbackState === 'playing' ? (
-              <PauseIcon className="h-6 w-6" />
-            ) : (
-              <PlayIcon className="h-6 w-6" />
-            )}
-          </button>
-          <button
-            type="button"
-            aria-label="Microfono"
-            onClick={() => console.log('Microfono')}
-            className="flex h-10 w-10 items-center justify-center text-text-muted transition-opacity"
-          >
-            <MicrophoneIcon className="h-6 w-6" />
-          </button>
-          <button
-            type="button"
-            aria-label="Prossimo"
-            onClick={directionsParts ? closeDirections : goToNextStep}
-            disabled={!directionsParts && !canGoNextStep}
-            className={`flex h-10 w-10 items-center justify-center text-text-muted transition-opacity ${
-              !directionsParts && !canGoNextStep ? 'opacity-30' : ''
-            }`}
-          >
-            <NextIcon className="h-6 w-6" />
-          </button>
-        </div>
-      </div>
     </div>
   )
 }
