@@ -15,10 +15,13 @@
  *   { museumIds[], price, durationMax, tones[], tags[] }
  */
 
+import { GLASS } from '/marketplace/js/ui-tokens.js';
+
+const RING_FOCUS = 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 dark:focus-visible:ring-slate-300 focus-visible:ring-offset-1';
+
 class FilterSidebar extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
     this._state = {
       museumIds: new Set(),
       museumQuery: '',
@@ -81,20 +84,18 @@ class FilterSidebar extends HTMLElement {
 
   _radio(name, value, label, checked) {
     return `
-      <label class="row radio">
-        <input type="radio" name="${name}" value="${value}" ${checked ? 'checked' : ''}>
-        <span class="dot"></span>
-        <span class="label">${label}</span>
+      <label class="row flex items-center gap-2.5 cursor-pointer text-[0.85rem] text-slate-800 dark:text-slate-100 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
+        <input type="radio" name="${name}" value="${value}" ${checked ? 'checked' : ''} class="w-3.5 h-3.5 shrink-0 accent-slate-800 dark:accent-white cursor-pointer ${RING_FOCUS} rounded-full">
+        <span class="label flex-1">${label}</span>
       </label>`;
   }
 
   _check(name, value, label, count, checked) {
     return `
-      <label class="row check">
-        <input type="checkbox" name="${name}" value="${value}" ${checked ? 'checked' : ''}>
-        <span class="dot"></span>
-        <span class="label">${label}</span>
-        <span class="count">${count ?? ''}</span>
+      <label class="row flex items-center gap-2.5 cursor-pointer text-[0.85rem] text-slate-800 dark:text-slate-100 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
+        <input type="checkbox" name="${name}" value="${value}" ${checked ? 'checked' : ''} class="w-3.5 h-3.5 shrink-0 rounded accent-slate-800 dark:accent-white cursor-pointer ${RING_FOCUS}">
+        <span class="label flex-1">${label}</span>
+        <span class="count text-[0.7rem] opacity-55 tabular-nums">${count ?? ''}</span>
       </label>`;
   }
 
@@ -110,30 +111,31 @@ class FilterSidebar extends HTMLElement {
     const availableMuseums = this._museumList();
     const selectedMuseums = this._selectedMuseums();
     return `
-      <div class="selected" id="selected">
+      ${selectedMuseums.length ? `
+      <div class="selected flex flex-wrap gap-1.5 mt-3.5">
         ${selectedMuseums.map(m => `
-          <span class="pill">
+          <span class="pill inline-flex items-center gap-1.5 text-[0.72rem] font-medium tracking-[0.02em] bg-slate-400/10 border border-slate-400/20 rounded-full text-slate-800 dark:text-slate-100 pl-2.5 pr-1 py-1">
             ${this._esc(m.short || m.name)}
-            <button type="button" class="x" data-remove="${this._esc(m.id)}" aria-label="Rimuovi ${this._esc(m.short || m.name)}">×</button>
+            <button type="button" class="x w-4 h-4 inline-flex items-center justify-center border-0 bg-transparent p-0 font-inherit text-sm leading-none text-slate-500 dark:text-slate-400 cursor-pointer rounded-full hover:text-slate-800 dark:hover:text-white hover:bg-white/20 transition-colors ${RING_FOCUS}" data-remove="${this._esc(m.id)}" aria-label="Rimuovi ${this._esc(m.short || m.name)}">×</button>
           </span>
         `).join('')}
-      </div>
+      </div>` : ''}
       ${availableMuseums.length ? `
-        <div class="options" id="options">
+        <div class="options mt-3.5 flex flex-col border-t border-slate-400/20">
           ${availableMuseums.map(m => `
-            <button type="button" class="option" data-add="${this._esc(m.id)}">
+            <button type="button" class="option group appearance-none bg-transparent border-0 border-b border-slate-400/20 py-2.5 pr-0 text-left font-inherit text-inherit cursor-pointer flex items-baseline justify-between gap-2.5 hover:text-slate-600 dark:hover:text-slate-300 hover:pl-1.5 transition-all ${RING_FOCUS}" data-add="${this._esc(m.id)}">
               <span>
-                <span class="opt-main">${this._esc(m.name)}</span>
-                <span class="opt-sub"> · ${this._esc(m.city)}</span>
+                <span class="opt-main text-[0.86rem] font-medium">${this._esc(m.name)}</span>
+                <span class="opt-sub text-[0.7rem] tracking-[0.04em] text-slate-500 dark:text-slate-400"> · ${this._esc(m.city)}</span>
               </span>
-              <span class="plus" aria-hidden="true">+</span>
+              <span class="plus text-base leading-none opacity-40 group-hover:opacity-100 transition-opacity" aria-hidden="true">+</span>
             </button>
           `).join('')}
         </div>
       ` : (s.museumQuery
-          ? `<p class="no-options">Nessun museo corrisponde a "${this._esc(s.museumQuery)}".</p>`
+          ? `<p class="no-options text-[0.78rem] text-slate-500 dark:text-slate-400 italic mt-3.5 pt-3.5 border-t border-slate-400/20">Nessun museo corrisponde a "${this._esc(s.museumQuery)}".</p>`
           : (selectedMuseums.length === this._data.museums.length && this._data.museums.length > 0
-              ? `<p class="no-options">Hai selezionato tutti i musei.</p>`
+              ? `<p class="no-options text-[0.78rem] text-slate-500 dark:text-slate-400 italic mt-3.5 pt-3.5 border-t border-slate-400/20">Hai selezionato tutti i musei.</p>`
               : ''))}
     `;
   }
@@ -142,313 +144,37 @@ class FilterSidebar extends HTMLElement {
     return this._data.museums.filter(m => this._state.museumIds.has(m.id));
   }
 
+  _tagChipsHTML() {
+    const s = this._state;
+    return this._data.tags.map(t => `
+      <button type="button" class="chip text-[0.66rem] font-medium tracking-[0.1em] uppercase px-3 py-1.5 rounded-full border transition-all duration-200 ease-in-out ${RING_FOCUS} ${s.tags.has(t.value)
+        ? 'bg-slate-800 text-white dark:bg-white dark:text-slate-900 border-slate-800 dark:border-white'
+        : 'bg-transparent text-slate-800 dark:text-slate-100 border-slate-400/20 hover:border-white/30 hover:bg-white/20'}" data-tag="${this._esc(t.value)}">${this._esc(t.value)}</button>
+    `).join('');
+  }
+
   _render() {
-    const { tones, tags, maxDurationMin } = this._data;
+    const { tones, maxDurationMin } = this._data;
     const s = this._state;
     const hasTones = tones && tones.length > 0;
 
-    this.shadowRoot.innerHTML = `
-      <style>
-        :host {
-          display: block;
-          font-family: var(--font-sans, 'Inter', system-ui, sans-serif);
-          color: var(--color-text, #1c1917);
-          background: transparent;
-          position: sticky;
-          top: 73px;
-          align-self: start;
-          max-height: calc(100vh - 73px);
-          overflow-y: auto;
-          overflow-x: hidden;
-          /* !important: la reset globale "* { padding: 0 }" del documento ospitante
-             altrimenti vince sul padding di :host nonostante la specificità inferiore. */
-          padding: 3.5rem 2.75rem 2.5rem 3rem !important;
-          border-right: 1px solid var(--color-border, #e8e6e1);
-        }
-
-        .group {
-          padding: 1.5rem 0;
-          border-top: 1px solid var(--color-border, #e8e6e1);
-        }
-        .group:first-of-type { padding-top: 0; border-top: 0; }
-
-        h3 {
-          font-family: var(--font-sans, 'Inter', system-ui, sans-serif);
-          font-size: 0.66rem;
-          font-weight: 600;
-          letter-spacing: 0.16em;
-          text-transform: uppercase;
-          color: var(--color-text-muted, #78716c);
-          margin: 0 0 1rem;
-        }
-
-        /* ── Search input ─────────────────────────────────── */
-        .search { position: relative; }
-        .search input {
-          width: 100%;
-          padding: 0.55rem 0.5rem 0.55rem 1.6rem;
-          border: 0;
-          border-bottom: 1px solid var(--color-border, #e8e6e1);
-          background: transparent;
-          font: inherit;
-          font-size: 0.88rem;
-          color: inherit;
-          outline: 0;
-          transition: border-color 0.3s ease;
-        }
-        .search input::placeholder {
-          color: var(--color-text-muted, #78716c);
-          font-style: italic;
-        }
-        .search input:focus { border-bottom-color: var(--color-accent, #9e7a46); }
-        .search::before {
-          content: '';
-          position: absolute; left: 0; top: 50%; transform: translateY(-50%);
-          width: 13px; height: 13px;
-          background: var(--color-text-muted, #78716c);
-          mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M21 19l-4.35-4.35A7.5 7.5 0 1 0 15 16.65L19.35 21 21 19zM10.5 16a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z'/></svg>") center/contain no-repeat;
-          -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M21 19l-4.35-4.35A7.5 7.5 0 1 0 15 16.65L19.35 21 21 19zM10.5 16a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z'/></svg>") center/contain no-repeat;
-        }
-
-        /* ── Museum selected chips ────────────────────────── */
-        .selected {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.4rem;
-          margin: 0.9rem 0 0;
-        }
-        .selected:empty { display: none; }
-        .pill {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.45rem;
-          font-size: 0.72rem;
-          font-weight: 500;
-          letter-spacing: 0.02em;
-          background: rgba(212, 168, 83, 0.12);
-          border: 1px solid var(--color-accent, #d4a853);
-          border-radius: var(--radius-sm, 6px);
-          color: var(--color-accent, #d4a853);
-          padding: 0.3rem 0.35rem 0.3rem 0.65rem;
-        }
-        .pill .x {
-          width: 16px; height: 16px;
-          display: inline-flex;
-          align-items: center; justify-content: center;
-          border: 0;
-          background: transparent;
-          color: rgba(212, 168, 83, 0.7);
-          cursor: pointer;
-          padding: 0;
-          font: inherit;
-          font-size: 0.95rem;
-          line-height: 1;
-          transition: color 0.2s ease, background 0.2s ease;
-        }
-        .pill .x:hover {
-          color: var(--color-accent, #d4a853);
-          background: rgba(212, 168, 83, 0.18);
-        }
-
-        /* ── Museum option list ───────────────────────────── */
-        .options {
-          margin-top: 0.9rem;
-          display: flex; flex-direction: column;
-          border-top: 1px solid var(--color-border, #e8e6e1);
-        }
-        .options:empty { display: none; }
-        .option {
-          appearance: none;
-          background: transparent;
-          border: 0;
-          border-bottom: 1px solid var(--color-border, #e8e6e1);
-          padding: 0.65rem 0.25rem 0.65rem 0;
-          text-align: left;
-          font: inherit;
-          color: inherit;
-          cursor: pointer;
-          display: flex;
-          align-items: baseline;
-          justify-content: space-between;
-          gap: 0.6rem;
-          transition: color 0.2s ease, padding 0.2s ease;
-        }
-        .option:hover {
-          color: var(--color-accent, #9e7a46);
-          padding-left: 0.35rem;
-        }
-        .option .opt-main { font-size: 0.86rem; font-weight: 500; }
-        .option .opt-sub {
-          font-size: 0.7rem;
-          letter-spacing: 0.04em;
-          color: var(--color-text-muted, #78716c);
-        }
-        .option .plus { font-size: 1rem; line-height: 1; opacity: 0.4; margin-left: auto; }
-        .option:hover .plus { opacity: 1; }
-
-        .no-options {
-          font-size: 0.78rem;
-          color: var(--color-text-muted, #78716c);
-          font-style: italic;
-          margin-top: 0.9rem;
-          padding-top: 0.9rem;
-          border-top: 1px solid var(--color-border, #e8e6e1);
-        }
-
-        /* ── Rows (radio + checkbox) ──────────────────────── */
-        .rows { display: flex; flex-direction: column; gap: 0.6rem; }
-        .row {
-          display: flex; align-items: center; gap: 0.7rem;
-          cursor: pointer;
-          font-size: 0.85rem;
-          color: var(--color-text, #1c1917);
-          transition: color 0.2s ease;
-        }
-        .row input { position: absolute; opacity: 0; pointer-events: none; }
-        .row .dot {
-          width: 14px; height: 14px;
-          border: 1px solid var(--color-border, #ccc);
-          background: transparent;
-          flex-shrink: 0;
-          display: inline-flex; align-items: center; justify-content: center;
-          transition: border-color 0.2s ease, background 0.2s ease;
-        }
-        .row.radio .dot { border-radius: 50%; }
-        .row input:checked + .dot { border-color: var(--color-accent, #9e7a46); }
-        .row.radio input:checked + .dot::after {
-          content: ''; width: 6px; height: 6px;
-          background: var(--color-accent, #9e7a46); border-radius: 50%;
-        }
-        .row.check input:checked + .dot { background: var(--color-accent, #9e7a46); }
-        .row.check input:checked + .dot::after {
-          content: '';
-          width: 4px; height: 7px;
-          border-right: 1.5px solid var(--color-on-accent, #0a0a0a);
-          border-bottom: 1.5px solid var(--color-on-accent, #0a0a0a);
-          transform: rotate(45deg) translate(-1px, -1px);
-        }
-        .row .label { flex: 1; }
-        .row .count { font-size: 0.7rem; opacity: 0.55; font-variant-numeric: tabular-nums; }
-        .row:hover { color: var(--color-accent, #9e7a46); }
-
-        /* ── Range slider ─────────────────────────────────── */
-        .slider-wrap { display: flex; flex-direction: column; gap: 0.6rem; }
-        .slider-value {
-          display: flex; justify-content: space-between;
-          font-size: 0.78rem;
-          font-feature-settings: 'tnum';
-          color: var(--color-text-muted, #78716c);
-        }
-        .slider-value strong { color: var(--color-accent, #9e7a46); font-weight: 600; }
-        input[type=range] {
-          -webkit-appearance: none; appearance: none;
-          width: 100%; height: 1px;
-          background: var(--color-border, #e8e6e1);
-          outline: none; cursor: pointer;
-        }
-        input[type=range]::-webkit-slider-thumb {
-          -webkit-appearance: none; appearance: none;
-          width: 14px; height: 14px;
-          background: var(--color-accent, #9e7a46);
-          border: 2px solid var(--color-surface, #fff);
-          border-radius: 50%; cursor: grab;
-          box-shadow: 0 0 0 1px var(--color-accent, #9e7a46);
-        }
-        input[type=range]::-moz-range-thumb {
-          width: 14px; height: 14px;
-          background: var(--color-accent, #9e7a46);
-          border: 2px solid var(--color-surface, #fff);
-          border-radius: 50%; cursor: grab;
-        }
-
-        /* ── Tag chips ────────────────────────────────────── */
-        .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-        .chip {
-          font: inherit;
-          font-size: 0.66rem;
-          font-weight: 500;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          padding: 0.35rem 0.7rem;
-          border-radius: var(--radius-sm, 6px);
-          border: 1px solid var(--color-border, #2a2a2a);
-          background: transparent;
-          color: var(--color-text, #f0ede8);
-          cursor: pointer;
-          transition: all 0.2s ease;
-        }
-        .chip:hover { border-color: var(--color-accent, #d4a853); color: var(--color-accent, #d4a853); }
-        .chip.active { background: var(--color-accent, #d4a853); color: var(--color-on-accent, #0a0a0a); border-color: var(--color-accent, #d4a853); }
-
-        .reset {
-          margin-top: 1.75rem;
-          background: transparent;
-          border: 0;
-          border-bottom: 1px solid var(--color-text-muted, #78716c);
-          padding: 0 0 2px;
-          font: inherit;
-          font-size: 0.7rem;
-          font-weight: 500;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          color: var(--color-text-muted, #78716c);
-          cursor: pointer;
-          align-self: flex-start;
-          transition: color 0.2s ease, border-color 0.2s ease;
-        }
-        .reset:hover { color: var(--color-accent, #9e7a46); border-color: var(--color-accent, #9e7a46); }
-
-        /* ── Toggle mobile (menu a tendina) ───────────────── */
-        .toggle {
-          display: none;
-          width: 100%;
-          align-items: center;
-          justify-content: space-between;
-          background: transparent;
-          border: 0;
-          padding: 0;
-          font: inherit;
-          font-family: var(--font-sans, 'Inter', system-ui, sans-serif);
-          font-size: 0.78rem;
-          font-weight: 600;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          color: var(--color-text, #1c1917);
-          cursor: pointer;
-        }
-        .toggle .chev {
-          font-size: 0.7rem;
-          color: var(--color-accent, #9e7a46);
-          transition: transform 0.25s ease;
-        }
-        .toggle[aria-expanded="true"] .chev { transform: rotate(180deg); }
-
-        @media (max-width: 900px) {
-          :host {
-            position: static;
-            max-height: none;
-            border-right: 0;
-            border-bottom: 1px solid var(--color-border, #e8e6e1);
-            padding: 1.5rem 1.5rem 1.75rem !important;
-          }
-          .toggle { display: flex; }
-          .filters-body { display: none; margin-top: 1.5rem; }
-          .filters-body.open { display: block; }
-        }
-      </style>
-
-      <aside>
-        <button type="button" class="toggle" id="filters-toggle" aria-expanded="${this._mobileOpen ? 'true' : 'false'}" aria-controls="filters-body">
+    this.className = 'block';
+    this.innerHTML = `
+      <aside class="${GLASS} p-6 sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto overflow-x-hidden max-[900px]:static max-[900px]:max-h-none text-slate-800 dark:text-slate-100" style="font-family: var(--font-sans, 'Inter', system-ui, sans-serif);">
+        <button type="button" class="toggle hidden max-[900px]:flex w-full items-center justify-between bg-transparent border-0 p-0 font-inherit text-[0.78rem] font-semibold tracking-[0.1em] uppercase text-slate-800 dark:text-slate-100 cursor-pointer ${RING_FOCUS}" id="filters-toggle" aria-expanded="${this._mobileOpen ? 'true' : 'false'}" aria-controls="filters-body">
           <span>Filtri</span>
-          <span class="chev" aria-hidden="true">⌄</span>
+          <span class="chev text-[0.7rem] text-slate-500 dark:text-slate-400 transition-transform duration-300 ease-in-out ${this._mobileOpen ? 'rotate-180' : ''}" aria-hidden="true">⌄</span>
         </button>
 
-        <div class="filters-body ${this._mobileOpen ? 'open' : ''}" id="filters-body">
+        <div class="filters-body ${this._mobileOpen ? 'max-[900px]:block max-[900px]:mt-6' : 'max-[900px]:hidden'}" id="filters-body">
         <!-- Filtro musei (multi-select con ricerca) -->
-        <div class="group">
-          <h3>Musei</h3>
-          <label class="search">
-            <input id="museum-q" type="search" placeholder="Cerca un museo…" autocomplete="off" value="${this._esc(s.museumQuery)}">
+        <div class="group pt-6 pb-6 border-t border-slate-400/20 first:pt-0 first:border-t-0">
+          <h3 class="text-[0.66rem] font-semibold tracking-[0.16em] uppercase text-slate-500 dark:text-slate-400 mb-4">Musei</h3>
+          <label class="search relative block">
+            <svg class="absolute left-0 top-1/2 -translate-y-1/2 w-3.5 h-3.5 fill-none stroke-slate-500 dark:stroke-slate-400 stroke-2 pointer-events-none" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M21 19l-4.35-4.35A7.5 7.5 0 1 0 15 16.65L19.35 21 21 19zM10.5 16a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z"/>
+            </svg>
+            <input id="museum-q" type="search" placeholder="Cerca un museo…" autocomplete="off" value="${this._esc(s.museumQuery)}" class="w-full pl-6 pr-2 py-2.5 border-0 border-b border-slate-400/20 bg-transparent font-inherit text-sm text-slate-800 dark:text-slate-100 placeholder:italic placeholder:text-slate-500 dark:placeholder:text-slate-400 outline-none focus:border-slate-800 dark:focus:border-white transition-colors">
           </label>
 
           <div id="museum-lists">
@@ -457,9 +183,9 @@ class FilterSidebar extends HTMLElement {
         </div>
 
         <!-- Prezzo -->
-        <div class="group">
-          <h3>Prezzo</h3>
-          <div class="rows" id="price-rows">
+        <div class="group pt-6 pb-6 border-t border-slate-400/20 first:pt-0 first:border-t-0">
+          <h3 class="text-[0.66rem] font-semibold tracking-[0.16em] uppercase text-slate-500 dark:text-slate-400 mb-4">Prezzo</h3>
+          <div class="rows flex flex-col gap-2.5" id="price-rows">
             ${this._radio('price', 'all', 'Tutte', s.price === 'all')}
             ${this._radio('price', 'free', 'Gratis', s.price === 'free')}
             ${this._radio('price', 'paid', 'A pagamento', s.price === 'paid')}
@@ -467,36 +193,36 @@ class FilterSidebar extends HTMLElement {
         </div>
 
         <!-- Durata -->
-        <div class="group">
-          <h3>Durata massima</h3>
-          <div class="slider-wrap">
-            <div class="slider-value">
+        <div class="group pt-6 pb-6 border-t border-slate-400/20 first:pt-0 first:border-t-0">
+          <h3 class="text-[0.66rem] font-semibold tracking-[0.16em] uppercase text-slate-500 dark:text-slate-400 mb-4">Durata massima</h3>
+          <div class="slider-wrap flex flex-col gap-2.5">
+            <div class="slider-value flex justify-between text-[0.78rem] text-slate-500 dark:text-slate-400 tabular-nums">
               <span>5 min</span>
-              <strong id="dur-out">${s.durationMax} min</strong>
+              <strong id="dur-out" class="text-slate-800 dark:text-slate-100 font-semibold">${s.durationMax} min</strong>
             </div>
-            <input id="dur" type="range" min="5" max="${maxDurationMin}" step="5" value="${s.durationMax}">
+            <input id="dur" type="range" min="5" max="${maxDurationMin}" step="5" value="${s.durationMax}" class="w-full h-1 accent-slate-800 dark:accent-white cursor-pointer ${RING_FOCUS} rounded-full">
           </div>
         </div>
 
         ${hasTones ? `
         <!-- Linguaggio -->
-        <div class="group">
-          <h3>Linguaggio</h3>
-          <div class="rows" id="tone-rows">
+        <div class="group pt-6 pb-6 border-t border-slate-400/20 first:pt-0 first:border-t-0">
+          <h3 class="text-[0.66rem] font-semibold tracking-[0.16em] uppercase text-slate-500 dark:text-slate-400 mb-4">Linguaggio</h3>
+          <div class="rows flex flex-col gap-2.5" id="tone-rows">
             ${tones.map(t => this._check('tone', t.value, t.label, t.count, s.tones.has(t.value))).join('')}
           </div>
         </div>
-        ` : '<div id="tone-rows" style="display:none"></div>'}
+        ` : '<div id="tone-rows" class="hidden"></div>'}
 
         <!-- Temi -->
-        <div class="group">
-          <h3>Temi</h3>
-          <div class="chips" id="tag-chips">
-            ${tags.map(t => `<button class="chip ${s.tags.has(t.value) ? 'active' : ''}" data-tag="${this._esc(t.value)}" type="button">${this._esc(t.value)}</button>`).join('')}
+        <div class="group pt-6 pb-6 border-t border-slate-400/20 first:pt-0 first:border-t-0">
+          <h3 class="text-[0.66rem] font-semibold tracking-[0.16em] uppercase text-slate-500 dark:text-slate-400 mb-4">Temi</h3>
+          <div class="chips flex flex-wrap gap-1.5" id="tag-chips">
+            ${this._tagChipsHTML()}
           </div>
         </div>
 
-        <button class="reset" id="reset" type="button">Azzera filtri</button>
+        <button class="reset mt-7 bg-transparent border-0 border-b border-slate-500 dark:border-slate-400 p-0 pb-0.5 font-inherit text-[0.7rem] font-medium tracking-[0.1em] uppercase text-slate-500 dark:text-slate-400 cursor-pointer self-start hover:text-slate-800 dark:hover:text-white hover:border-slate-800 dark:hover:border-white transition-colors ${RING_FOCUS}" id="reset" type="button">Azzera filtri</button>
         </div>
       </aside>
     `;
@@ -505,19 +231,14 @@ class FilterSidebar extends HTMLElement {
   }
 
   _wire() {
-    const root = this.shadowRoot;
-
     /* Toggle mobile (menu a tendina) */
-    root.getElementById('filters-toggle').addEventListener('click', () => {
+    this.querySelector('#filters-toggle').addEventListener('click', () => {
       this._mobileOpen = !this._mobileOpen;
-      const toggle = root.getElementById('filters-toggle');
-      const body = root.getElementById('filters-body');
-      toggle.setAttribute('aria-expanded', String(this._mobileOpen));
-      body.classList.toggle('open', this._mobileOpen);
+      this._render();
     });
 
     /* Museum search */
-    const museumQ = root.getElementById('museum-q');
+    const museumQ = this.querySelector('#museum-q');
     clearTimeout(this._museumTimer);
     museumQ.addEventListener('input', (e) => {
       const value = e.target.value;
@@ -529,7 +250,7 @@ class FilterSidebar extends HTMLElement {
     });
 
     /* Add / remove museum */
-    const museumLists = root.getElementById('museum-lists');
+    const museumLists = this.querySelector('#museum-lists');
     if (museumLists) {
       museumLists.addEventListener('click', (e) => {
         const addBtn = e.target.closest('[data-add]');
@@ -538,7 +259,7 @@ class FilterSidebar extends HTMLElement {
           this._state.museumQuery = '';
           this._renderMuseumLists();
           this._emit();
-          const input = this.shadowRoot.getElementById('museum-q');
+          const input = this.querySelector('#museum-q');
           if (input) { input.value = ''; input.focus(); }
           return;
         }
@@ -552,7 +273,7 @@ class FilterSidebar extends HTMLElement {
     }
 
     /* Price */
-    root.getElementById('price-rows').addEventListener('change', (e) => {
+    this.querySelector('#price-rows').addEventListener('change', (e) => {
       if (e.target.name === 'price') {
         this._state.price = e.target.value;
         this._emit();
@@ -560,8 +281,8 @@ class FilterSidebar extends HTMLElement {
     });
 
     /* Duration */
-    const durInput = root.getElementById('dur');
-    const durOut = root.getElementById('dur-out');
+    const durInput = this.querySelector('#dur');
+    const durOut = this.querySelector('#dur-out');
     durInput.addEventListener('input', (e) => {
       durOut.textContent = e.target.value + ' min';
     });
@@ -571,7 +292,7 @@ class FilterSidebar extends HTMLElement {
     });
 
     /* Tone (opzionale) */
-    const toneRows = root.getElementById('tone-rows');
+    const toneRows = this.querySelector('#tone-rows');
     if (toneRows) {
       toneRows.addEventListener('change', (e) => {
         if (e.target.name === 'tone') {
@@ -583,23 +304,28 @@ class FilterSidebar extends HTMLElement {
     }
 
     /* Tags */
-    root.getElementById('tag-chips').addEventListener('click', (e) => {
+    this.querySelector('#tag-chips').addEventListener('click', (e) => {
       const btn = e.target.closest('.chip');
       if (!btn) return;
       const tag = btn.dataset.tag;
       if (this._state.tags.has(tag)) this._state.tags.delete(tag);
       else this._state.tags.add(tag);
-      btn.classList.toggle('active');
+      this._renderTagChips();
       this._emit();
     });
 
     /* Reset */
-    root.getElementById('reset').addEventListener('click', () => this.reset());
+    this.querySelector('#reset').addEventListener('click', () => this.reset());
   }
 
   _renderMuseumLists() {
-    const lists = this.shadowRoot.getElementById('museum-lists');
+    const lists = this.querySelector('#museum-lists');
     if (lists) lists.innerHTML = this._museumListsHTML();
+  }
+
+  _renderTagChips() {
+    const chips = this.querySelector('#tag-chips');
+    if (chips) chips.innerHTML = this._tagChipsHTML();
   }
 }
 

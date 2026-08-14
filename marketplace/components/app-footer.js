@@ -1,52 +1,10 @@
 class AppFooter extends HTMLElement {
-  constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
-  }
-
   connectedCallback() {
-    this.shadowRoot.innerHTML = `
-      <style>
-        :host { display: block; }
-
-        footer {
-          background: #0a0a0a;
-          border-top: 1px solid rgba(255, 255, 255, 0.08);
-          padding: 2rem 3rem;
-          font-family: var(--font-sans, 'Nunito Sans', system-ui, sans-serif);
-          font-size: 0.72rem;
-          letter-spacing: 0.05em;
-          color: rgba(240, 237, 232, 0.35);
-          margin-top: auto;
-        }
-
-        .footer-inner {
-          max-width: 1360px;
-          margin: 0 auto;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 1rem;
-          flex-wrap: wrap;
-        }
-
-        .brand {
-          font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);
-          font-style: italic;
-          font-weight: 400;
-          font-size: 1rem;
-          letter-spacing: 0.02em;
-          color: #d4a853;
-        }
-
-        @media (max-width: 480px) {
-          footer { padding: 1.75rem 1.5rem; }
-          .footer-inner { flex-direction: column; text-align: center; gap: 0.75rem; }
-        }
-      </style>
-      <footer>
-        <div class="footer-inner">
-          <span class="brand">ArtAround</span>
+    this.className = 'block w-full mt-auto';
+    this.innerHTML = `
+      <footer class="w-full mt-auto bg-slate-400/10 backdrop-blur-lg border-t border-slate-400/20 py-8 px-6 md:px-12 text-xs tracking-wider text-slate-500 dark:text-slate-400 transition-colors duration-300">
+        <div class="footer-inner max-w-[1360px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+          <span class="brand font-serif italic text-base text-slate-800 dark:text-slate-200">ArtAround</span>
           <span>Esplora i musei e le visite guidate disponibili</span>
           <span>&copy; ${new Date().getFullYear()} ArtAround</span>
         </div>

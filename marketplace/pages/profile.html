@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+  <script>(function(){var t=localStorage.getItem('artaround-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ArtAround — Il tuo profilo</title>
@@ -12,12 +13,18 @@
   <link rel="stylesheet" href="/marketplace/css/base.css">
   <link rel="stylesheet" href="/marketplace/css/visits.css">
   <link rel="stylesheet" href="/marketplace/css/auth.css">
+  <link rel="stylesheet" href="/marketplace/css/create-content.css">
+  <link rel="stylesheet" href="/marketplace/css/create-item.css">
   <link rel="stylesheet" href="/marketplace/css/profile.css">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: ['selector', '[data-theme="dark"]'] };</script>
 
   <script type="module" src="/marketplace/components/app-navbar.js"></script>
   <script type="module" src="/marketplace/components/app-footer.js"></script>
   <script type="module" src="/marketplace/components/visit-card.js"></script>
   <script type="module" src="/marketplace/components/visit-modal.js"></script>
+  <script type="module" src="/marketplace/components/item-modal.js"></script>
 </head>
 <body>
 
@@ -33,11 +40,11 @@
     </section>
 
     <div class="profile-layout">
-      <nav class="profile-nav" aria-label="Sezioni del profilo">
-        <button type="button" class="tab-btn" data-tab="visite">Visite</button>
-        <button type="button" class="tab-btn" data-tab="descrizioni">Descrizioni</button>
-        <button type="button" class="tab-btn" data-tab="vendite">Vendite &amp; acquisti</button>
-        <button type="button" class="tab-btn" data-tab="impostazioni">Impostazioni</button>
+      <nav class="profile-nav static md:sticky md:top-24 md:self-start flex flex-row md:flex-col gap-1.5 md:gap-1 overflow-x-auto md:overflow-visible p-6 pb-0 md:pb-8 md:pt-11 md:pl-12 md:pr-6" aria-label="Sezioni del profilo">
+        <button type="button" class="tab-btn text-left rounded-full px-4 py-2.5 md:py-2 text-[0.72rem] font-semibold tracking-[0.08em] uppercase whitespace-nowrap text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/20 transition-all duration-300 ease-in-out [&.active]:bg-slate-800 [&.active]:text-white dark:[&.active]:bg-white dark:[&.active]:text-slate-900" data-tab="visite">Visite</button>
+        <button type="button" class="tab-btn text-left rounded-full px-4 py-2.5 md:py-2 text-[0.72rem] font-semibold tracking-[0.08em] uppercase whitespace-nowrap text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/20 transition-all duration-300 ease-in-out [&.active]:bg-slate-800 [&.active]:text-white dark:[&.active]:bg-white dark:[&.active]:text-slate-900" data-tab="descrizioni">Descrizioni</button>
+        <button type="button" class="tab-btn text-left rounded-full px-4 py-2.5 md:py-2 text-[0.72rem] font-semibold tracking-[0.08em] uppercase whitespace-nowrap text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/20 transition-all duration-300 ease-in-out [&.active]:bg-slate-800 [&.active]:text-white dark:[&.active]:bg-white dark:[&.active]:text-slate-900" data-tab="vendite">Vendite &amp; acquisti</button>
+        <button type="button" class="tab-btn text-left rounded-full px-4 py-2.5 md:py-2 text-[0.72rem] font-semibold tracking-[0.08em] uppercase whitespace-nowrap text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/20 transition-all duration-300 ease-in-out [&.active]:bg-slate-800 [&.active]:text-white dark:[&.active]:bg-white dark:[&.active]:text-slate-900" data-tab="impostazioni">Impostazioni</button>
       </nav>
 
       <div class="profile-content">
@@ -115,6 +122,7 @@
   <app-footer></app-footer>
 
   <visit-modal></visit-modal>
+  <item-modal></item-modal>
 
   <script type="module" src="/marketplace/js/profile.js"></script>
 </body>

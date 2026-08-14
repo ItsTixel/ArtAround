@@ -4,6 +4,11 @@
  *  di base.css e riusa .field/.auth-form/.btn-primary di auth.css.
  * ============================================================ */
 
+/* Lo sfondo dinamico della pagina è gestito dai blob assoluti in
+   Tailwind nel markup: annulla il gradiente CSS ereditato da
+   visits.css per evitare una doppia sfumatura. */
+html, body { background-image: none; }
+
 .profile-layout {
   display: grid;
   grid-template-columns: 240px 1fr;
@@ -13,36 +18,8 @@
   align-items: start;
 }
 
-/* ── Sidebar sezioni ──────────────────────────────────────── */
-.profile-nav {
-  position: sticky;
-  top: 96px;
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  padding: 2.75rem 1.5rem 2rem 3rem;
-}
-
-.tab-btn {
-  text-align: left;
-  background: transparent;
-  border: none;
-  border-left: 2px solid transparent;
-  padding: 0.7rem 1rem;
-  font-family: var(--font-sans);
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  color: var(--color-text-muted);
-  cursor: pointer;
-  transition: color var(--transition), border-color var(--transition), background var(--transition);
-}
-.tab-btn:hover { color: var(--color-text); }
-.tab-btn.active {
-  color: var(--color-accent);
-  border-left-color: var(--color-accent);
-  background: rgba(212, 168, 83, 0.06);
-}
+/* Sidebar sezioni (.profile-nav / .tab-btn): aspetto e responsive
+   sono interamente su classi Tailwind nel markup di profile.html. */
 
 /* ── Contenuto ────────────────────────────────────────────── */
 .profile-content {
@@ -75,14 +52,14 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-text-muted);
-  background: transparent;
-  border: 1px solid var(--color-border);
+  background: var(--pill-bg);
+  border: 1px solid var(--pill-border);
   border-radius: 999px;
   padding: 0.45rem 1.1rem;
   cursor: pointer;
   transition: color var(--transition), border-color var(--transition), background var(--transition);
 }
-.pill:hover { color: var(--color-text); border-color: rgba(240, 237, 232, 0.3); }
+.pill:hover { color: var(--color-text); border-color: var(--pill-hover-border); background: var(--pill-hover-bg); }
 .pill.active {
   color: var(--color-on-accent);
   background: var(--color-accent);
@@ -96,52 +73,8 @@
   gap: 1.5rem;
 }
 
-.desc-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-top: 2px solid var(--color-accent);
-  border-radius: var(--radius);
-  padding: 1.25rem 1.5rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.desc-card .desc-artwork {
-  font-family: var(--font-sans);
-  font-size: 0.66rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-accent);
-}
-
-.desc-card .desc-summary {
-  font-family: var(--font-serif);
-  font-size: 1.02rem;
-  font-style: italic;
-  line-height: 1.4;
-  color: var(--color-text);
-}
-
-.desc-card .desc-tags {
-  display: flex;
-  gap: 0.4rem;
-  flex-wrap: wrap;
-}
-.desc-tag {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 0.62rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  padding: 0.15rem 0.55rem;
-}
-.desc-tag.license-private { color: #d97878; border-color: rgba(217, 120, 120, 0.4); }
-.desc-tag.license-reserved { color: var(--color-info); border-color: rgba(107, 163, 190, 0.4); }
-.desc-tag.license-public { color: var(--color-accent); border-color: rgba(212, 168, 83, 0.4); }
+/* .desc-card: aspetto interamente su classi Tailwind, generate in
+   js/profile.js (renderDescriptions). */
 
 /* ── Empty state (placeholder Vendite & acquisti) ────────────── */
 .empty-state {
@@ -208,20 +141,9 @@
 .profile-form .feedback { text-align: left; }
 
 /* ── Responsive ──────────────────────────────────────────── */
-@media (max-width: 900px) {
+/* 768px per restare allineati al breakpoint `md:` di Tailwind usato
+   dalla sidebar e dalla navbar. */
+@media (max-width: 767px) {
   .profile-layout { grid-template-columns: 1fr; }
-  .profile-nav {
-    position: static;
-    flex-direction: row;
-    overflow-x: auto;
-    padding: 1.5rem 1.5rem 0;
-    gap: 0.4rem;
-  }
-  .tab-btn {
-    border-left: none;
-    border-bottom: 2px solid transparent;
-    white-space: nowrap;
-  }
-  .tab-btn.active { border-bottom-color: var(--color-accent); }
   .profile-content { padding: 1.75rem 1.5rem 4rem; }
 }

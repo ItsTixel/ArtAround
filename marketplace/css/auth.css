@@ -10,27 +10,24 @@
   justify-content: center;
   padding: 3rem 1.5rem;
   background:
-    radial-gradient(ellipse 900px 480px at 50% -15%, rgba(212, 168, 83, 0.12), transparent 65%),
+    radial-gradient(ellipse 1100px 620px at 18% -8%, var(--blob-1), transparent 60%),
+    radial-gradient(ellipse 900px 560px at 100% 8%, var(--blob-2), transparent 55%),
+    radial-gradient(ellipse 1000px 700px at 50% 115%, var(--blob-3), transparent 60%),
     var(--color-bg);
 }
 
 .auth-card {
   width: 100%;
   max-width: 400px;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-md);
+  background: var(--universal-glass-bg);
+  backdrop-filter: var(--universal-glass-blur) saturate(140%);
+  -webkit-backdrop-filter: var(--universal-glass-blur) saturate(140%);
+  border: 1px solid var(--universal-glass-border);
+  border-radius: var(--universal-glass-radius);
+  box-shadow: var(--universal-glass-shadow);
   padding: 2.75rem 2.5rem;
   position: relative;
   overflow: hidden;
-}
-
-.auth-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--color-accent);
 }
 
 .auth-card .kicker {
@@ -103,7 +100,7 @@
   margin-top: 0.5rem;
   padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: var(--radius-sm);
+  border-radius: 9999px;
   background: var(--color-accent);
   color: var(--color-on-accent);
   font-family: var(--font-sans);
@@ -145,7 +142,7 @@
 .feedback {
   min-height: 1.1em;
   margin-top: 1.25rem;
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: var(--font-mono);
   font-size: 0.78rem;
   text-align: center;
   letter-spacing: 0.02em;

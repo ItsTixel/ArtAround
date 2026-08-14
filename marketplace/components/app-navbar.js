@@ -1,11 +1,13 @@
 import { getCurrentUser, logout } from '/marketplace/js/auth-session.js';
+import { getTheme, toggleTheme } from '/marketplace/js/theme.js';
+import { TRANSITION } from '/marketplace/js/ui-tokens.js';
+
+const SUN_ICON = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>`;
+const MOON_ICON = `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>`;
+
+const NAV_LINK = `px-4 py-3 md:px-3.5 md:py-1.5 rounded-xl md:rounded-full text-sm md:text-[0.7rem] font-medium tracking-[0.06em] md:tracking-[0.1em] uppercase text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-900/5 dark:hover:bg-white/10 ${TRANSITION} [&.active]:bg-slate-800 [&.active]:text-white dark:[&.active]:bg-white dark:[&.active]:text-slate-900`;
 
 class AppNavbar extends HTMLElement {
-  constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
-  }
-
   connectedCallback() {
     const p = window.location.pathname;
     const isMuseums = p === '/marketplace' || p.endsWith('/marketplace/') || p.endsWith('index.html');
@@ -15,380 +17,124 @@ class AppNavbar extends HTMLElement {
     const isRegister = p.endsWith('register.html');
     this._isProfile  = isProfile;
 
-    this.shadowRoot.innerHTML = `
-      <style>
-        :host { display: block; }
+    this.className = 'block';
+    this.innerHTML = `
+      <div class="fixed top-3 inset-x-2 md:inset-x-4 z-[100]">
+        <nav class="relative h-16 px-4 md:px-8 flex items-center justify-between gap-4 rounded-2xl text-slate-800 dark:text-slate-100">
+          <div class="absolute inset-0 -z-10 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl border border-slate-400/20 shadow-xl shadow-black/5 rounded-2xl"></div>
+          <a class="logo relative z-10 shrink-0 text-lg italic tracking-wide" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);" href="/marketplace">
+            <span class="not-italic text-slate-500 dark:text-slate-400">Art</span>Around
+          </a>
 
-        nav {
-          background: #0a0a0a;
-          height: 72px;
-          padding: 0 3rem;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          position: fixed;
-          top: 0; left: 0; right: 0;
-          z-index: 100;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-          /* Forza un compositing layer proprio: su iOS/Android evita che
-             l'header resti agganciato al rimbalzo elastico del contenuto. */
-          transform: translateZ(0);
-          -webkit-transform: translateZ(0);
-          will-change: transform;
-        }
-
-        .logo {
-          font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);
-          font-size: 1.3rem;
-          font-weight: 400;
-          font-style: italic;
-          text-decoration: none;
-          color: #f0ede8;
-          letter-spacing: 0.02em;
-        }
-
-        .logo span {
-          color: #d4a853;
-          font-style: normal;
-        }
-
-        .nav-right {
-          display: flex;
-          align-items: center;
-          gap: 1.75rem;
-        }
-
-        ul {
-          list-style: none;
-          display: flex;
-          gap: 0.25rem;
-          align-items: center;
-        }
-
-        a {
-          font-family: var(--font-sans, 'Nunito Sans', system-ui, sans-serif);
-          color: rgba(240, 237, 232, 0.5);
-          text-decoration: none;
-          font-size: 0.7rem;
-          font-weight: 500;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          padding: 0.4rem 0.9rem;
-          transition: color 0.4s ease;
-        }
-
-        a:hover { color: #f0ede8; }
-        a.active { color: #d4a853; }
-
-        .auth-actions {
-          display: flex;
-          align-items: center;
-          gap: 0.6rem;
-          padding-left: 1.5rem;
-          border-left: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .auth-actions a {
-          padding: 0.45rem 1.1rem;
-          border-radius: 3px;
-          border: 1px solid transparent;
-        }
-
-        .btn-login {
-          color: rgba(240, 237, 232, 0.7) !important;
-          border-color: rgba(240, 237, 232, 0.25) !important;
-        }
-        .btn-login:hover {
-          color: #f0ede8 !important;
-          border-color: rgba(240, 237, 232, 0.6) !important;
-        }
-        .btn-login.active {
-          color: #d4a853 !important;
-          border-color: #d4a853 !important;
-        }
-
-        .btn-register {
-          color: #0a0a0a !important;
-          background: #d4a853;
-        }
-        .btn-register:hover { background: #c49440; }
-        .btn-register.active { background: #c49440; }
-
-        .user-actions {
-          display: flex;
-          align-items: center;
-          gap: 0.9rem;
-        }
-
-        .username {
-          font-family: var(--font-sans, 'Nunito Sans', system-ui, sans-serif);
-          font-size: 0.72rem;
-          font-weight: 600;
-          letter-spacing: 0.06em;
-          color: #d4a853;
-          text-decoration: none;
-          cursor: pointer;
-          transition: color 0.4s ease;
-        }
-
-        .username::before { content: '👤 '; }
-        .username:hover, .username.active { color: #f0ede8; }
-
-        .btn-logout {
-          background: transparent;
-          border: 1px solid transparent;
-          color: rgba(240, 237, 232, 0.5);
-          font-family: var(--font-sans, 'Nunito Sans', system-ui, sans-serif);
-          font-size: 0.7rem;
-          font-weight: 500;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          padding: 0.45rem 0.9rem;
-          cursor: pointer;
-          transition: color 0.4s ease, border-color 0.4s ease;
-        }
-        .btn-logout:hover {
-          color: #f0ede8;
-          border-color: rgba(240, 237, 232, 0.25);
-        }
-
-        .nav-create { position: relative; }
-
-        .create-trigger {
-          font-family: var(--font-sans, 'Nunito Sans', system-ui, sans-serif);
-          background: transparent;
-          border: none;
-          color: rgba(240, 237, 232, 0.5);
-          font-size: 0.7rem;
-          font-weight: 500;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          padding: 0.4rem 0.9rem;
-          cursor: pointer;
-          transition: color 0.4s ease;
-        }
-        .create-trigger:hover { color: #f0ede8; }
-        .nav-create.open .create-trigger { color: #d4a853; }
-
-        .create-menu {
-          list-style: none;
-          margin: 0;
-          display: flex;
-          flex-direction: column;
-          align-items: stretch;
-          gap: 0.15rem;
-          position: absolute;
-          top: calc(100% + 0.5rem);
-          left: 0;
-          min-width: 200px;
-          background: #141414;
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          border-radius: 6px;
-          box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
-          padding: 0.4rem;
-          opacity: 0;
-          visibility: hidden;
-          transform: translateY(-6px);
-          transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
-          z-index: 110;
-        }
-        .nav-create.open .create-menu {
-          opacity: 1;
-          visibility: visible;
-          transform: translateY(0);
-        }
-        .create-menu li { width: 100%; }
-        .create-menu a {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 0.5rem;
-          width: 100%;
-          padding: 0.6rem 0.7rem;
-          font-size: 0.72rem;
-          letter-spacing: 0.06em;
-          border-radius: 4px;
-          color: rgba(240, 237, 232, 0.75);
-        }
-        .create-menu a:hover { background: rgba(255, 255, 255, 0.06); color: #f0ede8; }
-        .create-menu a.disabled { color: rgba(240, 237, 232, 0.3); cursor: default; }
-        .create-menu a.disabled:hover { background: transparent; color: rgba(240, 237, 232, 0.3); }
-
-        .soon {
-          font-size: 0.55rem;
-          letter-spacing: 0.05em;
-          padding: 0.15rem 0.35rem;
-          border-radius: 3px;
-          background: rgba(212, 168, 83, 0.15);
-          color: #d4a853;
-          text-transform: uppercase;
-        }
-
-        .hamburger {
-          display: none;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          gap: 5px;
-          width: 34px;
-          height: 34px;
-          background: transparent;
-          border: none;
-          padding: 0;
-          cursor: pointer;
-          z-index: 101;
-        }
-
-        .hamburger span {
-          display: block;
-          width: 22px;
-          height: 2px;
-          background: #f0ede8;
-          transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-
-        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-        .hamburger.open span:nth-child(2) { opacity: 0; }
-        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-        @media (max-width: 768px) {
-          nav { justify-content: flex-end; position: relative; }
-          .hamburger { display: flex; }
-
-          .logo {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-          }
-
-          .nav-right {
-            position: fixed;
-            top: 72px; left: 0; right: 0;
-            flex-direction: column;
-            align-items: stretch;
-            gap: 0;
-            background: #0a0a0a;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.35s ease;
-          }
-
-          .nav-right.open { max-height: calc(100vh - 72px); overflow-y: auto; }
-
-          ul { flex-direction: column; align-items: stretch; width: 100%; gap: 0; padding: 0.5rem 0; }
-          li { width: 100%; }
-          a { display: block; padding: 1rem 1.5rem; }
-
-          .auth-actions, .user-actions {
-            flex-direction: column;
-            align-items: stretch;
-            border-left: none;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 1rem 1.5rem;
-            gap: 0.6rem;
-          }
-
-          .create-trigger { width: 100%; text-align: left; padding: 1rem 1.5rem; }
-          .create-menu {
-            position: static;
-            opacity: 1;
-            visibility: visible;
-            transform: none;
-            box-shadow: none;
-            border: none;
-            background: transparent;
-            max-height: 0;
-            overflow: hidden;
-            padding: 0;
-            transition: max-height 0.3s ease;
-          }
-          .nav-create.open .create-menu { max-height: 320px; padding: 0.2rem 0 0.4rem; }
-          .create-menu a { padding: 0.75rem 1.5rem 0.75rem 2.25rem; }
-
-          .auth-actions a { text-align: center; padding: 0.75rem 1.1rem; }
-          .username { padding: 0.4rem 0; }
-          .btn-logout {
-            width: 100%;
-            text-align: center;
-            padding: 0.75rem;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-          }
-        }
-
-        @media (max-width: 480px) {
-          nav { padding: 0 1.5rem; height: 60px; }
-          .logo { font-size: 1.1rem; }
-          .nav-right { top: 60px; }
-          .hamburger { width: 30px; height: 30px; }
-        }
-      </style>
-      <nav>
-        <a class="logo" href="/marketplace"><span>Art</span>Around</a>
-        <div class="nav-right">
-          <ul id="nav-links">
-            <li><a href="/marketplace" class="${isMuseums ? 'active' : ''}">Musei</a></li>
-            <li><a href="/marketplace/pages/visits.html" class="${isVisits ? 'active' : ''}">Tutte le visite</a></li>
-          </ul>
-          <div class="auth-actions">
-            <a href="/marketplace/login.html" class="btn-login ${isLogin ? 'active' : ''}">Login</a>
-            <a href="/marketplace/register.html" class="btn-register ${isRegister ? 'active' : ''}">Registrati</a>
+          <div id="nav-collapsible" class="hidden md:flex md:items-center md:gap-8 absolute md:static top-full inset-x-0 md:inset-auto mt-2 md:mt-0 flex-col md:flex-row items-stretch md:items-center gap-1.5 md:gap-8 p-4 md:p-0 max-h-[calc(100vh-6rem)] md:max-h-none overflow-y-auto md:overflow-visible bg-white/90 dark:bg-[#0b1224]/90 backdrop-blur-xl md:bg-transparent md:dark:bg-transparent md:backdrop-blur-none border border-slate-400/20 md:border-0 shadow-2xl md:shadow-none rounded-2xl md:rounded-none">
+            <ul id="nav-links" class="flex flex-col md:flex-row items-stretch md:items-center gap-1.5 md:gap-1">
+              <li><a href="/marketplace" class="${NAV_LINK} block ${isMuseums ? 'active' : ''}">Musei</a></li>
+              <li><a href="/marketplace/pages/visits.html" class="${NAV_LINK} block ${isVisits ? 'active' : ''}">Tutte le visite</a></li>
+            </ul>
+            <div class="auth-actions flex flex-col md:flex-row items-stretch md:items-center gap-2 pt-3 md:pt-0 mt-2 md:mt-0 border-t md:border-t-0 md:border-l border-slate-400/20 md:pl-6">
+              <a href="/marketplace/login.html" class="btn-login text-center px-4 py-2.5 md:py-1.5 rounded-full text-[0.75rem] md:text-[0.7rem] font-medium tracking-[0.08em] md:tracking-[0.1em] uppercase border border-slate-400/20 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-900/5 dark:hover:bg-white/10 hover:border-white/30 ${TRANSITION} ${isLogin ? 'bg-slate-400/10 text-slate-900 dark:text-white' : ''}">Login</a>
+              <a href="/marketplace/register.html" class="btn-register text-center px-4 py-2.5 md:py-1.5 rounded-full text-[0.75rem] md:text-[0.7rem] font-semibold tracking-[0.08em] md:tracking-[0.1em] uppercase bg-slate-800 text-white dark:bg-white dark:text-slate-900 hover:opacity-90 ${TRANSITION} ${isRegister ? 'ring-2 ring-offset-2 ring-offset-transparent ring-slate-800 dark:ring-white' : ''}">Registrati</a>
+            </div>
           </div>
-        </div>
-        <button type="button" class="hamburger" aria-label="Menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </nav>
+
+          <div class="relative z-10 flex items-center gap-2 shrink-0">
+            <button type="button" class="theme-toggle w-9 h-9 rounded-full border border-slate-400/20 flex items-center justify-center hover:bg-white/20 hover:border-white/30 ${TRANSITION}" aria-label="Cambia tema chiaro/scuro" title="Cambia tema"></button>
+            <button type="button" class="hamburger md:hidden w-9 h-9 flex flex-col items-center justify-center gap-1.5" aria-label="Menu" aria-expanded="false">
+              <span class="block w-5 h-0.5 bg-current rounded-full ${TRANSITION}"></span>
+              <span class="block w-5 h-0.5 bg-current rounded-full ${TRANSITION}"></span>
+              <span class="block w-5 h-0.5 bg-current rounded-full ${TRANSITION}"></span>
+            </button>
+          </div>
+        </nav>
+      </div>
     `;
 
     this._loadUser();
     this._setupMenuToggle();
+    this._setupThemeToggle();
+  }
+
+  _setupThemeToggle() {
+    const btn = this.querySelector('.theme-toggle');
+    if (!btn) return;
+    const paint = () => { btn.innerHTML = getTheme() === 'light' ? MOON_ICON : SUN_ICON; };
+    paint();
+    btn.addEventListener('click', () => {
+      toggleTheme();
+      paint();
+    });
   }
 
   _setupMenuToggle() {
-    const hamburger = this.shadowRoot.querySelector('.hamburger');
-    const navRight = this.shadowRoot.querySelector('.nav-right');
-    if (!hamburger || !navRight) return;
+    const hamburger = this.querySelector('.hamburger');
+    const collapsible = this.querySelector('#nav-collapsible');
+    if (!hamburger || !collapsible) return;
+    const spans = hamburger.querySelectorAll('span');
 
     const closeMenu = () => {
-      hamburger.classList.remove('open');
-      navRight.classList.remove('open');
+      collapsible.classList.remove('flex');
+      collapsible.classList.add('hidden');
+      document.body.classList.remove('nav-menu-open');
       hamburger.setAttribute('aria-expanded', 'false');
+      spans[0].classList.remove('translate-y-2', 'rotate-45');
+      spans[1].classList.remove('opacity-0');
+      spans[2].classList.remove('-translate-y-2', '-rotate-45');
     };
 
     hamburger.addEventListener('click', () => {
-      const isOpen = navRight.classList.toggle('open');
-      hamburger.classList.toggle('open', isOpen);
+      const isOpen = collapsible.classList.contains('hidden');
+      collapsible.classList.toggle('hidden', !isOpen);
+      collapsible.classList.toggle('flex', isOpen);
+      document.body.classList.toggle('nav-menu-open', isOpen);
       hamburger.setAttribute('aria-expanded', String(isOpen));
+      spans[0].classList.toggle('translate-y-2', isOpen);
+      spans[0].classList.toggle('rotate-45', isOpen);
+      spans[1].classList.toggle('opacity-0', isOpen);
+      spans[2].classList.toggle('-translate-y-2', isOpen);
+      spans[2].classList.toggle('-rotate-45', isOpen);
     });
 
-    navRight.addEventListener('click', (e) => {
+    document.addEventListener('click', (e) => {
+      if (!collapsible.classList.contains('hidden') && !e.composedPath().includes(collapsible) && !e.composedPath().includes(hamburger)) {
+        closeMenu();
+      }
+    });
+
+    collapsible.addEventListener('click', (e) => {
       if (e.target.closest('a, button')) closeMenu();
     });
   }
 
   _buildCreateMenu() {
     const li = document.createElement('li');
-    li.className = 'nav-create';
+    li.className = 'nav-create relative';
     li.innerHTML = `
-      <button type="button" class="create-trigger" aria-haspopup="true" aria-expanded="false">Crea ▾</button>
-      <ul class="create-menu">
-        <li><a href="/marketplace/pages/create-museum.html">Crea Museo</a></li>
-        <li><a href="/marketplace/pages/create-entity.html">Crea Opera</a></li>
-        <li><a href="#" class="disabled">Crea Visita <span class="soon">Presto</span></a></li>
-        <li><a href="/marketplace/pages/create-item.html">Crea Descrizione</a></li>
+      <button type="button" class="create-trigger w-full md:w-auto text-left block ${NAV_LINK}" aria-haspopup="true" aria-expanded="false">Crea <span class="create-caret inline-block ${TRANSITION}">&#9662;</span></button>
+      <ul class="create-menu hidden flex-col gap-1 md:gap-0.5 md:absolute md:top-[calc(100%+0.625rem)] md:left-1/2 md:-translate-x-1/2 md:min-w-[210px] p-2 bg-white dark:bg-[#0b1224] border border-slate-400/20 shadow-2xl shadow-black/10 dark:shadow-black/40 rounded-2xl md:z-[110]">
+        <span class="hidden md:block absolute -top-[7px] left-1/2 -translate-x-1/2 w-3.5 h-3.5 rotate-45 bg-white dark:bg-[#0b1224] border-l border-t border-slate-400/20"></span>
+        <li><a href="/marketplace/pages/create-museum.html" class="block px-4 py-3 md:px-3 md:py-2 rounded-lg text-sm md:text-xs tracking-wide text-slate-600 dark:text-slate-300 hover:bg-slate-900/5 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white ${TRANSITION}">Crea Museo</a></li>
+        <li><a href="/marketplace/pages/create-entity.html" class="block px-4 py-3 md:px-3 md:py-2 rounded-lg text-sm md:text-xs tracking-wide text-slate-600 dark:text-slate-300 hover:bg-slate-900/5 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white ${TRANSITION}">Crea Opera</a></li>
+        <li><a href="#" class="disabled flex items-center justify-between gap-2 px-4 py-3 md:px-3 md:py-2 rounded-lg text-sm md:text-xs tracking-wide text-slate-400 dark:text-slate-500 cursor-default">Crea Visita <span class="text-[0.6rem] px-1.5 py-0.5 rounded-full bg-slate-400/20 uppercase">Presto</span></a></li>
+        <li><a href="/marketplace/pages/create-item.html" class="block px-4 py-3 md:px-3 md:py-2 rounded-lg text-sm md:text-xs tracking-wide text-slate-600 dark:text-slate-300 hover:bg-slate-900/5 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white ${TRANSITION}">Crea Descrizione</a></li>
       </ul>
     `;
 
     const trigger = li.querySelector('.create-trigger');
+    const caret = li.querySelector('.create-caret');
+    const menu = li.querySelector('.create-menu');
     const closeMenu = () => {
       li.classList.remove('open');
+      menu.classList.remove('flex');
+      menu.classList.add('hidden');
+      caret.classList.remove('rotate-180');
       trigger.setAttribute('aria-expanded', 'false');
     };
     trigger.addEventListener('click', (e) => {
       e.stopPropagation();
-      const isOpen = li.classList.toggle('open');
+      const isOpen = menu.classList.contains('hidden');
+      menu.classList.toggle('hidden', !isOpen);
+      menu.classList.toggle('flex', isOpen);
+      caret.classList.toggle('rotate-180', isOpen);
       trigger.setAttribute('aria-expanded', String(isOpen));
     });
     li.querySelectorAll('a.disabled').forEach(a => a.addEventListener('click', (e) => e.preventDefault()));
@@ -409,25 +155,25 @@ class AppNavbar extends HTMLElement {
     const user = await getCurrentUser();
     if (!user) return; // resta lo stato Login/Registrati già renderizzato
 
-    const navLinks = this.shadowRoot.querySelector('#nav-links');
+    const navLinks = this.querySelector('#nav-links');
     if (navLinks) {
       if (user.role === 'author') navLinks.appendChild(this._buildCreateMenu());
 
       const li = document.createElement('li');
       const a = document.createElement('a');
       a.href = '/marketplace/pages/profile.html#visite:adopted';
+      a.className = `${NAV_LINK} block`;
       a.textContent = 'Le tue visite';
       li.appendChild(a);
       navLinks.appendChild(li);
     }
 
-    const authActions = this.shadowRoot.querySelector('.auth-actions');
+    const authActions = this.querySelector('.auth-actions');
     if (!authActions) return;
 
-    authActions.className = 'user-actions';
     authActions.innerHTML = `
-      <a href="/marketplace/pages/profile.html" class="username ${this._isProfile ? 'active' : ''}">${this._esc(user.username)}</a>
-      <button type="button" class="btn-logout">Esci</button>
+      <a href="/marketplace/pages/profile.html" class="username block text-center md:text-left px-4 py-2.5 md:px-3 md:py-1.5 rounded-full text-sm md:text-[0.72rem] font-semibold tracking-[0.04em] md:tracking-[0.06em] text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-900/5 dark:hover:bg-white/10 ${TRANSITION} [&.active]:text-slate-900 dark:[&.active]:text-white ${this._isProfile ? 'active' : ''}">&#128100; ${this._esc(user.username)}</a>
+      <button type="button" class="btn-logout px-4 py-2.5 md:py-1.5 rounded-full text-sm md:text-[0.7rem] font-medium tracking-[0.06em] md:tracking-[0.1em] uppercase text-slate-600 dark:text-slate-300 border border-transparent hover:border-white/30 hover:bg-slate-900/5 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white ${TRANSITION}">Esci</button>
     `;
     authActions.querySelector('.btn-logout').addEventListener('click', async () => {
       await logout();

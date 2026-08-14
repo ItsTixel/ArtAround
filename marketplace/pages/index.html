@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+  <script>(function(){var t=localStorage.getItem('artaround-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ArtAround — Scopri i Musei</title>
@@ -9,6 +10,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Nunito+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/marketplace/css/base.css">
   <link rel="stylesheet" href="/marketplace/css/museums.css">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: ['selector', '[data-theme="dark"]'] };</script>
+
   <script type="module" src="/marketplace/components/app-navbar.js"></script>
   <script type="module" src="/marketplace/components/app-footer.js"></script>
   <script type="module" src="/marketplace/components/museum-card.js"></script>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+  <script>(function(){var t=localStorage.getItem('artaround-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ArtAround — Crea Opera</title>
@@ -14,6 +15,9 @@
   <link rel="stylesheet" href="/marketplace/css/auth.css">
   <link rel="stylesheet" href="/marketplace/css/create-content.css">
   <link rel="stylesheet" href="/marketplace/css/create-entity.css">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: ['selector', '[data-theme="dark"]'] };</script>
 
   <script type="module" src="/marketplace/components/app-navbar.js"></script>
   <script type="module" src="/marketplace/components/app-footer.js"></script>
