@@ -34,7 +34,15 @@ function createImageUpload(subdir) {
 function handleUploadErrors(multerMiddleware) {
   return (req, res, next) => {
     multerMiddleware(req, res, (err) => {
-      if (err) return res.status(400).json({ error: err.message });
+      if (err) {
+        // multer lascia in inglese anche i messaggi dei suoi errori interni
+        // (es. limite di dimensione superato): li traduciamo qui, il resto
+        // (fileFilter) è già in italiano.
+        const message = err.code === 'LIMIT_FILE_SIZE'
+          ? 'Il file è troppo grande (massimo 10MB).'
+          : err.message;
+        return res.status(400).json({ error: message });
+      }
       next();
     });
   };

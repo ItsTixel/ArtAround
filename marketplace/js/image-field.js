@@ -56,8 +56,23 @@ export function createImageField({ initialUrl = '' } = {}) {
       const fileInput = document.createElement('input');
       fileInput.type = 'file';
       fileInput.accept = 'image/*';
+      body.appendChild(fileInput);
+
+      const info = document.createElement('span');
+      info.style.cssText = 'display:block;font-size:0.78rem;color:var(--color-text-muted);margin-top:0.3rem;';
+      body.appendChild(info);
+
+      // Aggiorna solo il testo dell'etichetta invece di richiamare render():
+      // farlo dentro il listener di "change" del file input ricreerebbe
+      // l'input stesso, interrompendo l'evento che lo sta ancora gestendo.
+      function updateInfo() {
+        info.textContent = state.file ? `Selezionato: ${state.file.name}` : '';
+      }
+      updateInfo();
+
       fileInput.addEventListener('change', (e) => {
         state.file = e.target.files[0] || null;
+        updateInfo();
         if (state.file) {
           previewObjectUrl = URL.createObjectURL(state.file);
           updatePreview(previewObjectUrl);
@@ -65,13 +80,6 @@ export function createImageField({ initialUrl = '' } = {}) {
           updatePreview('');
         }
       });
-      body.appendChild(fileInput);
-      if (state.file) {
-        const info = document.createElement('span');
-        info.style.cssText = 'display:block;font-size:0.78rem;color:var(--color-text-muted);margin-top:0.3rem;';
-        info.textContent = `Selezionato: ${state.file.name}`;
-        body.appendChild(info);
-      }
     } else {
       const urlInput = document.createElement('input');
       urlInput.type = 'text';
