@@ -81,6 +81,25 @@ function Opera() {
             })}
           </div>
 
+          {entity.image_url && (
+            <div className="relative mx-6 h-64 overflow-hidden rounded-2xl border border-border shadow-lg">
+              <img
+                src={entity.image_url}
+                alt={entity.alt_text || entity.name}
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent px-5 pb-4 pt-12">
+                <span className="text-xs font-medium uppercase tracking-wide text-white/80">
+                  Cerca questo
+                </span>
+                <h2 className="font-serif text-xl font-semibold text-text">{entity.name}</h2>
+                {entity.artwork_author && (
+                  <p className="text-sm text-text-muted">{entity.artwork_author}</p>
+                )}
+              </div>
+            </div>
+          )}
+
           <p className="px-6 text-center text-xs text-text-muted">
             Premi «Prossimo» quando sei arrivato, per vedere l'opera
           </p>
