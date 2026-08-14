@@ -1,5 +1,7 @@
 const Visit = require('../models/visit');
 const Item = require('../models/item');
+const User = require('../models/user');
+const Order = require('../models/order');
 
 // I punti-opera sulle mappe dei musei mostrano una miniatura: serve popolare
 // l'entity referenziata da ogni punto (sia sul museum "riassuntivo" della
@@ -151,6 +153,16 @@ async function create(req, res) {
     }
     const visit = new Visit(req.body);
     await visit.save();
+
+    // L'autore adotta automaticamente la propria visita appena creata
+    // (stessa meccanica di adoptVisit in controllers/user.js).
+    await User.findByIdAndUpdate(req.user.id, { $addToSet: { adopted_visits: visit._id } });
+    await Order.findOneAndUpdate(
+      { buyer: req.user.id, visit: visit._id },
+      { buyer: req.user.id, visit: visit._id, seller: visit.author, price_paid: visit.base_price },
+      { upsert: true, setDefaultsOnInsert: true }
+    );
+
     const populatedVisit = await visit.populate(stepsPopulate);
     res.status(201).json(populatedVisit);
   } catch (e) {
