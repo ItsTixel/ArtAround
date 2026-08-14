@@ -71,7 +71,7 @@ async function login(req, res) {
 
 async function register(req, res) {
     try {
-        const { username, email, password } = req.body;
+        const { username, email, password, role } = req.body;
 
         // Controlla se l'utente esiste già (per email o username)
         const existing = await User.findOne({ $or: [{ email }, { username }] });
@@ -84,19 +84,40 @@ async function register(req, res) {
         // Il "10" indica il "salt rounds", ovvero quanto deve essere complessa la crittografia
         const hashedPassword = await bcrypt.hash(password, 10);
 
+        // Accettiamo solo i ruoli previsti dallo schema; qualsiasi altro
+        // valore (o l'assenza del campo) ricade sul default "visitor".
+        const allowedRoles = ['visitor', 'author'];
+        const finalRole = allowedRoles.includes(role) ? role : 'visitor';
+
         // Crea e salva il nuovo utente nel database
         const user = new User({
             username: username,
             email: email,
-            password: hashedPassword, 
-            role: 'visitor'
+            password: hashedPassword,
+            role: finalRole
         });
 
         await user.save();
 
-        res.status(201).json({ 
-            success: true, 
-            message: "Registrazione completata con successo! Ora puoi fare il login." 
+        // Login automatico dopo la registrazione: stessa identica logica di
+        // login()/googleAuth(), per evitare di far reinserire subito le
+        // credenziali appena scelte (l'utente arriva già autenticato sull'home).
+        const tokenPayload = { id: user._id, role: user.role };
+        const secretKey = process.env.JWT_SECRET || "password";
+        const maxAgeMs = 60 * 60 * 1000;
+        const token = jwt.sign(tokenPayload, secretKey, { expiresIn: '1h' });
+        res.cookie('token', token, {
+            httpOnly: true,
+            sameSite: 'lax',
+            maxAge: maxAgeMs
+        });
+
+        const { password: _, ...safeUser } = user.toObject();
+
+        res.status(201).json({
+            success: true,
+            message: "Registrazione completata con successo!",
+            user: safeUser
         });
 
     } catch (e) {

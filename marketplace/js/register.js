@@ -15,6 +15,24 @@ if (redirectParam) {
     if (switchLink) switchLink.href = `/marketplace/login.html?redirect=${encodeURIComponent(redirectParam)}`;
 }
 
+// ---- Selezione del ruolo (Visitatore/Autore) ----
+// Di default "Visitatore": è la scelta più sicura/comune, l'utente sceglie
+// "Autore" solo se vuole poter creare musei/opere/visite.
+let selectedRole = 'visitor';
+const roleToggle = document.querySelector('.role-toggle');
+const roleButtons = document.querySelectorAll('.role-btn');
+roleButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        selectedRole = btn.dataset.role;
+        roleToggle.dataset.selected = selectedRole;
+        roleButtons.forEach((b) => {
+            const isActive = b === btn;
+            b.classList.toggle('active', isActive);
+            b.setAttribute('aria-checked', String(isActive));
+        });
+    });
+});
+
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -32,19 +50,21 @@ form.addEventListener('submit', async (e) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username, email, password })
+            credentials: 'include', // riceve subito il cookie httpOnly di sessione (login automatico)
+            body: JSON.stringify({ username, email, password, role: selectedRole })
         });
 
         const data = await response.json();
 
         if (response.ok) {
             feedbackMessage.style.color = "green";
-            feedbackMessage.textContent = data.message || "Registrazione completata! Ora puoi fare il login.";
+            feedbackMessage.textContent = data.message || "Registrazione completata con successo!";
+            // La registrazione ora logga subito dentro (stesso cookie del login):
+            // stessa destinazione della callback Google, redirect se presente
+            // (es. si veniva da un tentativo di acquisto visita), altrimenti l'home.
             setTimeout(() => {
-                window.location.href = redirectParam
-                    ? `/marketplace/login.html?redirect=${encodeURIComponent(redirectParam)}`
-                    : '/marketplace/login.html';
-            }, 2000);
+                window.location.href = redirectParam || '/marketplace/pages/index.html';
+            }, 600);
         } else {
             feedbackMessage.style.color = "red";
             feedbackMessage.textContent = data.message || "Errore durante la registrazione.";

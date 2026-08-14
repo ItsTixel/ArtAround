@@ -41,6 +41,14 @@
                         <label for="password">Password</label>
                         <input type="password" id="password" name="password" required autocomplete="new-password">
                     </div>
+                    <div class="field">
+                        <label>Tipo di account</label>
+                        <div class="role-toggle" role="radiogroup" aria-label="Tipo di account" data-selected="visitor">
+                            <span class="role-thumb" aria-hidden="true"></span>
+                            <button type="button" class="role-btn active" data-role="visitor" role="radio" aria-checked="true">Visitatore</button>
+                            <button type="button" class="role-btn" data-role="author" role="radio" aria-checked="false">Autore</button>
+                        </div>
+                    </div>
                     <button type="submit" class="btn-primary">Registrati</button>
                 </form>
 
