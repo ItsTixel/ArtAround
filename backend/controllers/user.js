@@ -1,4 +1,6 @@
 const User = require('../models/user');
+const Visit = require('../models/visit');
+const Order = require('../models/order');
 
 // Per criptare le password e le info
 const bcrypt = require('bcrypt');
@@ -98,12 +100,24 @@ async function remove(req, res) {
 
 async function adoptVisit(req, res) {
   try {
+    const visit = await Visit.findById(req.params.visitId);
+    if (!visit) return res.status(404).json({ error: 'Visit not found' });
+
     const user = await User.findByIdAndUpdate(
       req.params.id,
       { $addToSet: { adopted_visits: req.params.visitId } },
       { new: true }
     ).select('-password');
     if (!user) return res.status(404).json({ error: 'User not found' });
+
+    // Registra l'ordine (storico acquisti/vendite): idempotente, se
+    // l'utente ha già adottato questa visita l'ordine esiste già.
+    await Order.findOneAndUpdate(
+      { buyer: req.params.id, visit: req.params.visitId },
+      { buyer: req.params.id, visit: req.params.visitId, seller: visit.author, price_paid: visit.base_price },
+      { upsert: true, setDefaultsOnInsert: true }
+    );
+
     res.json(user);
   } catch (e) {
     res.status(400).json({ error: e.message });
@@ -118,6 +132,9 @@ async function removeAdoption(req, res) {
       { new: true }
     ).select('-password');
     if (!user) return res.status(404).json({ error: 'User not found' });
+
+    await Order.deleteOne({ buyer: req.params.id, visit: req.params.visitId });
+
     res.json(user);
   } catch (e) {
     res.status(400).json({ error: e.message });

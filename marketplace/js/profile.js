@@ -10,14 +10,18 @@ import { createImageField } from '/marketplace/js/image-field.js';
 const API_VISITS = '/api/visits';
 const API_ITEMS  = '/api/items';
 const API_USERS  = '/api/users';
+const API_ORDERS = '/api/orders';
 const LOGIN_URL  = '/marketplace/login.html';
 
 let currentUser  = null;
 let avatarField  = null;
 let ownedIds     = new Set();
+let favoritedIds = new Set();
 let activeSub    = 'create';
+let activeOrdersSub = 'purchases';
 let descriptionsLoaded = false;
 const visitsCache = { create: null, adopted: null, favorites: null };
+const ordersCache = { purchases: null, sales: null };
 
 function esc(s) {
   return String(s ?? '')
@@ -59,6 +63,7 @@ function normalizeVisit(v) {
     museumDetails,
     images:        operaImages(v.steps),
     owned:         ownedIds.has(String(v._id)),
+    favorited:     favoritedIds.has(String(v._id)),
   };
 }
 
@@ -115,7 +120,7 @@ const SUB_CONFIG = {
 
 async function loadSub(sub) {
   activeSub = sub;
-  document.querySelectorAll('.pill').forEach(p => p.classList.toggle('active', p.dataset.sub === sub));
+  document.querySelectorAll('#panel-visite .pill').forEach(p => p.classList.toggle('active', p.dataset.sub === sub));
   if (history.replaceState) history.replaceState(null, '', `#visite:${sub}`);
 
   const config = SUB_CONFIG[sub];
@@ -135,6 +140,98 @@ async function loadSub(sub) {
   } catch (e) {
     grid.innerHTML = '<p class="empty">Errore nel caricamento. Riprova più tardi.</p>';
     console.error('Errore nel caricamento delle visite:', e);
+  }
+}
+
+/* ---- Vendite & acquisti ---- */
+
+function fmtOrderPrice(p) {
+  if (!p) return 'Gratis';
+  return `€ ${(+p).toFixed(2).replace('.', ',')}`;
+}
+
+function fmtOrderDate(d) {
+  return new Date(d).toLocaleDateString('it-IT', { day: 'numeric', month: 'short', year: 'numeric' });
+}
+
+const ORDERS_CONFIG = {
+  purchases: {
+    hint: 'Le visite che hai acquistato.',
+    empty: 'Non hai ancora acquistato nessuna visita.',
+    api: `${API_ORDERS}/purchases`,
+    counterpartKey: 'seller',
+    counterpartLabel: 'Venditore',
+  },
+  sales: {
+    hint: 'Le visite che hai venduto.',
+    empty: 'Non hai ancora venduto nessuna visita.',
+    api: `${API_ORDERS}/sales`,
+    counterpartKey: 'buyer',
+    counterpartLabel: 'Acquirente',
+  },
+};
+
+function renderOrders(orders, config) {
+  const list = document.getElementById('vendite-list');
+  list.innerHTML = '';
+  if (!orders.length) {
+    list.innerHTML = `<p class="empty">${config.empty}</p>`;
+    return;
+  }
+  orders.forEach(order => {
+    const visit = order.visit || {};
+    const counterpart = order[config.counterpartKey] || {};
+    const row = document.createElement('div');
+    row.className = 'order-row flex items-center gap-4 bg-slate-400/10 backdrop-blur-lg border border-slate-400/20 shadow-xl shadow-black/5 rounded-2xl p-4 text-slate-800 dark:text-slate-100 transition-all duration-300 ease-in-out';
+    const openable = !!visit._id;
+    if (openable) {
+      row.classList.add('cursor-pointer', 'hover:-translate-y-1', 'hover:bg-white/20', 'hover:border-white/30', 'hover:shadow-2xl');
+      row.setAttribute('role', 'button');
+      row.setAttribute('tabindex', '0');
+    }
+    row.innerHTML = `
+      <div class="w-16 h-16 shrink-0 bg-slate-300/20 dark:bg-slate-800/40 border border-slate-400/20 rounded-md overflow-hidden">
+        ${visit.image_url ? `<img class="w-full h-full object-cover" src="${esc(visit.image_url)}" alt="" loading="lazy">` : ''}
+      </div>
+      <div class="min-w-0 flex-1">
+        <h3 class="text-[0.95rem] font-semibold mb-0.5 truncate" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">${esc(visit.title || 'Visita rimossa')}</h3>
+        <div class="text-[0.72rem] text-slate-500 dark:text-slate-400">${config.counterpartLabel}: ${esc(counterpart.display_name || counterpart.username || '—')} · ${fmtOrderDate(order.createdAt)}</div>
+      </div>
+      <div class="text-sm font-semibold shrink-0" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">${fmtOrderPrice(order.price_paid)}</div>
+    `;
+    if (openable) {
+      const open = () => document.querySelector('visit-modal')?.open(visit._id);
+      row.addEventListener('click', open);
+      row.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+    }
+    list.appendChild(row);
+  });
+}
+
+async function loadOrders(sub) {
+  activeOrdersSub = sub;
+  document.querySelectorAll('#panel-vendite .pill').forEach(p => p.classList.toggle('active', p.dataset.sub === sub));
+  if (history.replaceState) history.replaceState(null, '', `#vendite:${sub}`);
+
+  const config = ORDERS_CONFIG[sub];
+  const hintEl = document.getElementById('vendite-hint');
+  if (hintEl) hintEl.textContent = config.hint;
+
+  const list = document.getElementById('vendite-list');
+  if (ordersCache[sub]) {
+    renderOrders(ordersCache[sub], config);
+    return;
+  }
+
+  list.innerHTML = '<p class="loading"></p>';
+  try {
+    const res = await fetch(config.api, { credentials: 'include' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    ordersCache[sub] = await res.json();
+    renderOrders(ordersCache[sub], config);
+  } catch (e) {
+    list.innerHTML = '<p class="empty">Errore nel caricamento. Riprova più tardi.</p>';
+    console.error('Errore nel caricamento degli ordini:', e);
   }
 }
 
@@ -275,10 +372,12 @@ function activateTab(tab) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
   document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id === `panel-${tab}`));
 
-  // loadSub() imposta già l'hash con il sotto-filtro (#visite:adopted);
-  // per le altre tab basta il nome della tab.
+  // loadSub()/loadOrders() impostano già l'hash con il sotto-filtro
+  // (#visite:adopted, #vendite:sales); per le altre tab basta il nome della tab.
   if (tab === 'visite') {
     loadSub(activeSub);
+  } else if (tab === 'vendite') {
+    loadOrders(activeOrdersSub);
   } else {
     if (history.replaceState) history.replaceState(null, '', `#${tab}`);
     if (tab === 'descrizioni' && !descriptionsLoaded) {
@@ -289,13 +388,14 @@ function activateTab(tab) {
 }
 
 /* Legge dall'hash la tab (e l'eventuale sotto-filtro) da attivare
- * all'apertura della pagina: "#visite", "#visite:adopted", ecc. */
+ * all'apertura della pagina: "#visite", "#visite:adopted", "#vendite:sales", ecc. */
 function parseHash() {
   const [rawTab, rawSub] = location.hash.slice(1).split(':');
   const validTabs = ['visite', 'descrizioni', 'vendite', 'impostazioni'];
   return {
     tab: validTabs.includes(rawTab) ? rawTab : 'visite',
     sub: SUB_CONFIG[rawSub] ? rawSub : null,
+    ordersSub: ORDERS_CONFIG[rawSub] ? rawSub : null,
   };
 }
 
@@ -311,6 +411,23 @@ document.addEventListener('DOMContentLoaded', async () => {
     loadDescriptions();
   });
 
+  /* Tasto cuore sulle visit-card: aggiorna/rimuove il preferito lato server */
+  document.addEventListener('toggle-favorite', async (e) => {
+    const { id, favorited, revert } = e.detail;
+    try {
+      const method = favorited ? 'PUT' : 'DELETE';
+      const res = await fetch(`${API_USERS}/${currentUser._id}/bookmark/${id}`, { method, credentials: 'include' });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      if (favorited) favoritedIds.add(id); else favoritedIds.delete(id);
+      // La lista "Preferiti" potrebbe non riflettere più lo stato reale: la
+      // invalidiamo così viene ricaricata la prossima volta che viene aperta.
+      visitsCache.favorites = null;
+    } catch (err) {
+      console.error('Errore nel salvataggio dei preferiti:', err);
+      revert();
+    }
+  });
+
   const user = await getCurrentUser();
   if (!user) {
     const redirectTo = window.location.pathname + window.location.hash;
@@ -319,6 +436,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
   currentUser = user;
   ownedIds = new Set((user.adopted_visits || []).map(String));
+  favoritedIds = new Set((user.bookmarked_visits || []).map(String));
 
   const heroSub = document.getElementById('hero-sub');
   if (heroSub) heroSub.textContent = `${user.display_name || user.username} · ${user.email}`;
@@ -329,11 +447,15 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => activateTab(btn.dataset.tab));
   });
-  document.querySelectorAll('.pill').forEach(btn => {
+  document.querySelectorAll('#panel-visite .pill').forEach(btn => {
     btn.addEventListener('click', () => loadSub(btn.dataset.sub));
   });
+  document.querySelectorAll('#panel-vendite .pill').forEach(btn => {
+    btn.addEventListener('click', () => loadOrders(btn.dataset.sub));
+  });
 
-  const { tab: initialTab, sub: initialSub } = parseHash();
+  const { tab: initialTab, sub: initialSub, ordersSub: initialOrdersSub } = parseHash();
   if (initialSub) activeSub = initialSub;
+  if (initialOrdersSub) activeOrdersSub = initialOrdersSub;
   activateTab(initialTab);
 });

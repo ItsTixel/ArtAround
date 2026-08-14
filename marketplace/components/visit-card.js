@@ -77,6 +77,7 @@ class VisitCard extends HTMLElement {
     const v = this._data;
     const isFree = !v.basePrice;
     const owned = !!v.owned;
+    const favorited = !!v.favorited;
     const museums = v.museumDetails || [];
     const isInfra = museums.length > 1;
     const museumLine = this._museumLine(museums);
@@ -94,7 +95,12 @@ class VisitCard extends HTMLElement {
             : `<div class="absolute inset-0" style="background-image: repeating-linear-gradient(135deg, transparent 0 11px, rgba(100,116,139,0.12) 11px 12px);"></div>`
           }
           ${isInfra ? `<span class="absolute top-3 left-3 z-10 text-[0.62rem] font-medium tracking-[0.16em] uppercase px-2.5 py-1 rounded-full ${GLASS_STRONG} text-slate-800 dark:text-slate-100">Inframuseale</span>` : ''}
-          <span class="absolute top-3 right-3 z-10 text-[0.7rem] font-semibold tracking-[0.08em] uppercase px-2.5 py-1 rounded-full ${owned || isFree ? 'bg-slate-800 text-white dark:bg-white dark:text-slate-900' : `${GLASS_STRONG} text-slate-800 dark:text-slate-100`}">${owned ? '✓ In tuo possesso' : this._fmtPrice(v.basePrice)}</span>
+          <div class="absolute top-3 right-3 z-10 flex items-center gap-2">
+            <button type="button" class="fav-btn flex items-center justify-center w-7 h-7 rounded-full ${GLASS_STRONG} text-slate-800 dark:text-slate-100 ${TRANSITION}" aria-pressed="${favorited}" aria-label="${favorited ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti'}">
+              <svg class="w-3.5 h-3.5 ${favorited ? 'fill-rose-500 stroke-rose-500' : 'fill-none stroke-current'}" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.6s-6.9-4.35-9.5-8.4C.9 9.1 1.7 5.4 5 4c2.2-.9 4.5 0 5.8 2l1.2 1.5L13.2 6c1.3-2 3.6-2.9 5.8-2 3.3 1.4 4.1 5.1 2.5 8.2-2.6 4.05-9.5 8.4-9.5 8.4z"/></svg>
+            </button>
+            <span class="text-[0.7rem] font-semibold tracking-[0.08em] uppercase px-2.5 py-1 rounded-full ${owned || isFree ? 'bg-slate-800 text-white dark:bg-white dark:text-slate-900' : `${GLASS_STRONG} text-slate-800 dark:text-slate-100`}">${owned ? '✓ In tuo possesso' : this._fmtPrice(v.basePrice)}</span>
+          </div>
           ${images.length > 1 ? `
           <div class="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1.5" aria-hidden="true">
             ${images.map((_, i) => `<span class="hero-dot w-1.5 h-1.5 rounded-full ${TRANSITION} ${i === 0 ? 'bg-white' : 'bg-white/40'}"></span>`).join('')}
@@ -141,6 +147,18 @@ class VisitCard extends HTMLElement {
     card.addEventListener('keydown', (e) => {
       if (e.target !== card) return;
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+    });
+
+    this.querySelector('.fav-btn')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const next = !this._data.favorited;
+      this.data = { ...this._data, favorited: next };
+      this.dispatchEvent(new CustomEvent('toggle-favorite', {
+        detail: { id: v.id, favorited: next, revert: () => { this.data = { ...this.data, favorited: !next }; } },
+        bubbles: true,
+        composed: true,
+      }));
     });
 
     unregisterCarousel(this);

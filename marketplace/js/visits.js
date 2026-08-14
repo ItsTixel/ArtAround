@@ -8,6 +8,8 @@ import { TONE_ORDER, TONE_LABELS } from '/marketplace/js/tone-labels.js';
 
 const API_VISITS  = '/api/visits';
 const API_MUSEUMS = '/api/museums';
+const API_USERS   = '/api/users';
+const LOGIN_URL   = '/marketplace/login.html';
 const PAGE_SIZE   = 12;
 
 const state = {
@@ -25,6 +27,8 @@ const state = {
 let allMuseums     = [];
 let maxDurationMin = 240;
 let ownedIds        = new Set();
+let favoritedIds     = new Set();
+let currentUserId    = null;
 
 /* ---- Costruisce la query e fetcha dal backend ---- */
 async function fetchVisits() {
@@ -91,6 +95,7 @@ function normalizeVisit(v) {
     images:        operaImages(v.steps),
     tones:         visitTones(v.steps),
     owned:         ownedIds.has(String(v._id)),
+    favorited:     favoritedIds.has(String(v._id)),
   };
 }
 
@@ -242,6 +247,25 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.querySelector('visit-modal')?.open(e.detail.id);
   });
 
+  /* Tasto cuore sulle visit-card: aggiorna/rimuove il preferito lato server */
+  document.addEventListener('toggle-favorite', async (e) => {
+    const { id, favorited, revert } = e.detail;
+    if (!currentUserId) {
+      revert();
+      window.location.href = `${LOGIN_URL}?redirect=${encodeURIComponent(window.location.pathname + window.location.search)}`;
+      return;
+    }
+    try {
+      const method = favorited ? 'PUT' : 'DELETE';
+      const res = await fetch(`${API_USERS}/${currentUserId}/bookmark/${id}`, { method, credentials: 'include' });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      if (favorited) favoritedIds.add(id); else favoritedIds.delete(id);
+    } catch (err) {
+      console.error('Errore nel salvataggio dei preferiti:', err);
+      revert();
+    }
+  });
+
   try {
     const [musRes, facets, user] = await Promise.all([
       fetch(`${API_MUSEUMS}?pageSize=100&sort=name`).then(r => r.json()),
@@ -251,6 +275,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     allMuseums     = musRes.data || [];
     maxDurationMin = facets.maxDurationMin;
     ownedIds       = new Set((user?.adopted_visits || []).map(String));
+    favoritedIds   = new Set((user?.bookmarked_visits || []).map(String));
+    currentUserId  = user?._id || null;
 
     const sidebar = document.querySelector('filter-sidebar');
     sidebar.data = {

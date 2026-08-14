@@ -66,13 +66,14 @@
           <div class="desc-grid" id="descrizioni-grid" role="list" aria-label="Descrizioni"></div>
         </section>
 
-        <!-- ── Vendite & acquisti (placeholder) ── -->
+        <!-- ── Vendite & acquisti ── -->
         <section id="panel-vendite" class="panel" aria-label="Vendite e acquisti">
-          <div class="empty-state">
-            <div class="empty-state-icon">⏳</div>
-            <h2>Funzionalità in arrivo</h2>
-            <p>La cronologia di vendite e acquisti sarà disponibile qui non appena introdurremo le transazioni sul marketplace.</p>
+          <div class="sub-pills" role="tablist" aria-label="Filtro vendite e acquisti">
+            <button type="button" class="pill" data-sub="purchases">Acquisti</button>
+            <button type="button" class="pill" data-sub="sales">Vendite</button>
           </div>
+          <p class="panel-hint" id="vendite-hint"></p>
+          <div class="orders-list" id="vendite-list" role="list" aria-label="Ordini"></div>
         </section>
 
         <!-- ── Impostazioni ── -->
