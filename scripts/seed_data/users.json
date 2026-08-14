@@ -11,11 +11,7 @@
     "bio": "Storica dell'arte specializzata nel Rinascimento italiano.",
     "avatar_url": "https://i.pravatar.cc/150?u=alice",
     "adopted_visits": [],
-    "bookmarked_visits": [
-      {
-        "$oid": "eee000000000000000000002"
-      }
-    ],
+    "bookmarked_visits": [],
     "createdAt": {
       "$date": "2025-01-01T00:00:00Z"
     },
@@ -34,11 +30,7 @@
     "display_name": "Bob Neri",
     "bio": "Appassionato di arte lombarda e guide museali per bambini.",
     "avatar_url": "https://i.pravatar.cc/150?u=bob",
-    "adopted_visits": [
-      {
-        "$oid": "eee000000000000000000001"
-      }
-    ],
+    "adopted_visits": [],
     "bookmarked_visits": [],
     "createdAt": {
       "$date": "2025-01-01T00:00:00Z"
@@ -58,19 +50,8 @@
     "display_name": "Carol Bianchi",
     "bio": "",
     "avatar_url": null,
-    "adopted_visits": [
-      {
-        "$oid": "eee000000000000000000001"
-      },
-      {
-        "$oid": "eee000000000000000000002"
-      }
-    ],
-    "bookmarked_visits": [
-      {
-        "$oid": "eee000000000000000000003"
-      }
-    ],
+    "adopted_visits": [],
+    "bookmarked_visits": [],
     "createdAt": {
       "$date": "2025-01-10T00:00:00Z"
     },
@@ -132,16 +113,9 @@
     "adopted_visits": [
       {
         "$oid": "eee000000000000000000009"
-      },
-      {
-        "$oid": "eee000000000000000000001"
       }
     ],
-    "bookmarked_visits": [
-      {
-        "$oid": "eee000000000000000000010"
-      }
-    ],
+    "bookmarked_visits": [],
     "createdAt": {
       "$date": "2025-03-02T00:00:00Z"
     },
@@ -161,14 +135,7 @@
     "bio": "",
     "avatar_url": null,
     "adopted_visits": [],
-    "bookmarked_visits": [
-      {
-        "$oid": "eee000000000000000000011"
-      },
-      {
-        "$oid": "eee000000000000000000002"
-      }
-    ],
+    "bookmarked_visits": [],
     "createdAt": {
       "$date": "2025-03-02T00:00:00Z"
     },

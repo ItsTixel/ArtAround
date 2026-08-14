@@ -1,631 +1,6 @@
 [
   {
     "_id": {
-      "$oid": "ddd000000000000000000001"
-    },
-    "marketplace_summary": "Guida semplice alla Nascita di Venere di Botticelli — adatta a tutti.",
-    "artwork": {
-      "$oid": "ccc000000000000000000001"
-    },
-    "author": {
-      "$oid": "aaa000000000000000000001"
-    },
-    "license": "Public",
-    "tone": "simple",
-    "descriptions": [
-      {
-        "duration_sec": 90,
-        "text": "Venere emerge dal mare su una grande conchiglia, spinta a riva dai venti Zefiro e Clori, mentre una delle Ore le porge un manto fiorito. Botticelli la dipinge come un ideale di bellezza classica ispirato alle statue greche."
-      },
-      {
-        "duration_sec": 60,
-        "text": "Nota la figura allungata e il profilo delicato di Venere: Botticelli si ispira all'antichità classica ma dà alla scena un'atmosfera quasi onirica."
-      }
-    ],
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/El_nacimiento_de_Venus%2C_por_Sandro_Botticelli.jpg?width=1280",
-    "alt_text": "Dettaglio del volto di Venere con capelli dorati mossi dal vento",
-    "tags": [
-      "botticelli",
-      "venere",
-      "mitologia",
-      "rinascimento"
-    ],
-    "createdAt": {
-      "$date": "2025-01-05T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-01-05T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ddd000000000000000000002"
-    },
-    "marketplace_summary": "Analisi tecnica approfondita dell'Annunciazione di Leonardo per appassionati di storia dell'arte.",
-    "artwork": {
-      "$oid": "ccc000000000000000000002"
-    },
-    "author": {
-      "$oid": "aaa000000000000000000001"
-    },
-    "license": "Private",
-    "tone": "technical",
-    "descriptions": [
-      {
-        "duration_sec": 120,
-        "text": "Leonardo impiega un punto di vista insolitamente basso e la prospettiva aerea per creare profondità spaziale. Le ali dell'angelo — realistiche come quelle di uno studio ornitologico — rompono la convenzione dei predecessori fiorentini."
-      },
-      {
-        "duration_sec": 80,
-        "text": "La mano destra della Vergine poggia su un leggio con intarsi marmorei: una dimostrazione precoce del dominio di Leonardo dello scorcio, con la manica che si 'schiaccia' contro il piano del libro in modo visivamente convincente."
-      }
-    ],
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Annunciation_%28Leonardo_c._1472%E2%80%931476%29.jpg?width=1280",
-    "alt_text": "Particolare del leggio marmoreo con la mano della Vergine",
-    "tags": [
-      "leonardo",
-      "annunciazione",
-      "rinascimento",
-      "tecnico"
-    ],
-    "createdAt": {
-      "$date": "2025-01-05T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-01-05T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ddd000000000000000000003"
-    },
-    "marketplace_summary": "Racconto per bambini del Cristo morto di Mantegna — semplice e coinvolgente.",
-    "artwork": {
-      "$oid": "ccc000000000000000000003"
-    },
-    "author": {
-      "$oid": "aaa000000000000000000002"
-    },
-    "license": "Reserved",
-    "tone": "childish",
-    "descriptions": [
-      {
-        "duration_sec": 60,
-        "text": "Questo quadro mostra Gesù sdraiato dopo la crocifissione, con i suoi amici che piangono intorno a lui. Il pittore ha usato un trucco speciale per far sembrare i piedi di Gesù giganteschi — è come guardare qualcuno con i piedi verso di te!"
-      }
-    ],
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The_dead_Christ_and_three_mourners%2C_by_Andrea_Mantegna.jpg?width=1280",
-    "alt_text": "Cristo disteso visto in prospettiva dai piedi, con le ferite visibili sulle mani e sui piedi",
-    "tags": [
-      "mantegna",
-      "bambini",
-      "scorcio",
-      "brera"
-    ],
-    "createdAt": {
-      "$date": "2025-01-06T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-01-06T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ddd000000000000000000004"
-    },
-    "marketplace_summary": "Guida di livello medio che collega la copia dell'Ultima Cena a Brera con l'originale di Leonardo.",
-    "artwork": {
-      "$oid": "ccc000000000000000000004"
-    },
-    "author": {
-      "$oid": "aaa000000000000000000002"
-    },
-    "license": "Public",
-    "tone": "medium",
-    "descriptions": [
-      {
-        "duration_sec": 100,
-        "text": "Dipinta da Giampietrino intorno al 1520, questa copia a grandezza naturale conserva dettagli — come i piedi degli apostoli — ormai persi nell'originale deteriorato di Leonardo a Santa Maria delle Grazie."
-      },
-      {
-        "duration_sec": 70,
-        "text": "Confrontare copie come questa è essenziale per il lavoro di restauro: ha informato il restauro del 1999 del murale di Leonardo, aiutando a ricostruire le parti più danneggiate."
-      }
-    ],
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giampietrino-Last-Supper-ca-1520.jpg?width=1280",
-    "alt_text": "La tavola dell'Ultima Cena con Gesù al centro e dodici apostoli",
-    "tags": [
-      "leonardo",
-      "ultima-cena",
-      "copia",
-      "brera",
-      "medio"
-    ],
-    "createdAt": {
-      "$date": "2025-01-06T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-01-06T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ddd000000000000000000005"
-    },
-    "marketplace_summary": "Descrizione tecnica della Scuola di Atene: iconografia, prospettiva e identità dei filosofi.",
-    "artwork": {
-      "$oid": "ccc000000000000000000006"
-    },
-    "author": {
-      "$oid": "aaa000000000000000000001"
-    },
-    "license": "Private",
-    "tone": "technical",
-    "descriptions": [
-      {
-        "duration_sec": 150,
-        "text": "Raffaello costruisce uno spazio illusionistico con un punto di fuga al centro del dipinto, tra le figure di Platone — che indica il cielo, con le fattezze di Leonardo da Vinci — e Aristotele, che indica la terra. L'affresco sintetizza la filosofia platonica e aristotelica in un'unica composizione armoniosa."
-      },
-      {
-        "duration_sec": 90,
-        "text": "In primo piano a sinistra Pitagora scrive, a destra Euclide (col volto di Bramante) spiega la geometria. Michelangelo come Eraclito, seduto pensieroso sullo scalino centrale, fu aggiunto dopo che Raffaello visitò la Sistina in costruzione."
-      }
-    ],
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg?width=1280",
-    "alt_text": "Platone e Aristotele al centro dell'affresco circondati dai filosofi dell'antichità",
-    "tags": [
-      "raffaello",
-      "vaticano",
-      "filosofia",
-      "affresco",
-      "tecnico"
-    ],
-    "createdAt": {
-      "$date": "2025-01-07T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-01-07T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ddd000000000000000000006"
-    },
-    "marketplace_summary": "Racconto semplice per bambini della Scuola di Atene: tanti professori in un unico grande dipinto!",
-    "artwork": {
-      "$oid": "ccc000000000000000000006"
-    },
-    "author": {
-      "$oid": "aaa000000000000000000002"
-    },
-    "license": "Reserved",
-    "tone": "childish",
-    "descriptions": [
-      {
-        "duration_sec": 55,
-        "text": "Immagina di riunire tutti i professori più bravi della storia in un'unica stanza enorme. Raffaello l'ha fatto in questo dipinto! Ci sono matematici, filosofi e scienziati vissuti migliaia di anni fa, tutti insieme a parlare e a studiare."
-      }
-    ],
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg?width=1280",
-    "alt_text": "Molte figure colorate in una grande sala con archi alti",
-    "tags": [
-      "raffaello",
-      "bambini",
-      "vaticano",
-      "filosofia"
-    ],
-    "createdAt": {
-      "$date": "2025-01-07T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-01-07T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ddd000000000000000000007"
-    },
-    "marketplace_summary": "Guida di livello medio alla Primavera di Botticelli, tra mitologia e allegoria.",
-    "artwork": {
-      "$oid": "ccc000000000000000000007"
-    },
-    "author": {
-      "$oid": "aaa000000000000000000001"
-    },
-    "license": "Public",
-    "tone": "medium",
-    "descriptions": [
-      {
-        "duration_sec": 110,
-        "text": "Botticelli dipinge un giardino di aranci sempre in fiore dove nove figure mitologiche si muovono in un unico istante sospeso: a destra Zefiro insegue la ninfa Clori, che si trasforma in Flora, dea della primavera; al centro Venere presiede alla scena sotto un arco di alloro; a sinistra le tre Grazie danzano mentre Mercurio disperde le nuvole con il suo bastone."
-      }
-    ],
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli-primavera.jpg?width=1280",
-    "alt_text": "Dettaglio delle tre Grazie che danzano a sinistra della composizione",
-    "tags": [
-      "botticelli",
-      "primavera",
-      "mitologia",
-      "rinascimento"
-    ],
-    "createdAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ddd000000000000000000008"
-    },
-    "marketplace_summary": "Analisi tecnica del Tondo Doni: l'unico dipinto autografo di Michelangelo.",
-    "artwork": {
-      "$oid": "ccc000000000000000000008"
-    },
-    "author": {
-      "$oid": "aaa000000000000000000001"
-    },
-    "license": "Private",
-    "tone": "technical",
-    "descriptions": [
-      {
-        "duration_sec": 130,
-        "text": "Michelangelo torce i corpi della Sacra Famiglia in una spirale continua, un effetto scultoreo ottenuto studiando l'anatomia più che la pittura fiamminga allora in voga. Sullo sfondo, oltre un muretto, cinque nudi maschili di ambigua interpretazione anticipano gli ignudi della volta della Cappella Sistina, dipinta pochi anni dopo."
-      }
-    ],
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tondo_Doni_2021.jpg?width=1280",
-    "alt_text": "Dettaglio dei cinque nudi maschili sullo sfondo, oltre il muretto",
-    "tags": [
-      "michelangelo",
-      "tondo-doni",
-      "rinascimento",
-      "tecnico"
-    ],
-    "createdAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ddd000000000000000000009"
-    },
-    "marketplace_summary": "Guida semplice al doppio ritratto dei duchi di Urbino di Piero della Francesca.",
-    "artwork": {
-      "$oid": "ccc000000000000000000009"
-    },
-    "author": {
-      "$oid": "aaa000000000000000000002"
-    },
-    "license": "Public",
-    "tone": "simple",
-    "descriptions": [
-      {
-        "duration_sec": 95,
-        "text": "Federico da Montefeltro si fece ritrarre sempre di profilo sinistro per nascondere l'occhio destro, perso in un torneo. Piero della Francesca lo dipinge con un naso dal profilo spezzato — conseguenza della stessa ferita — davanti a un paesaggio che continua senza interruzioni dietro entrambi i coniugi."
-      }
-    ],
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Piero_della_Francesca_044.jpg?width=1280",
-    "alt_text": "Dettaglio del profilo di Federico da Montefeltro con il naso aquilino",
-    "tags": [
-      "piero-della-francesca",
-      "urbino",
-      "ritratto"
-    ],
-    "createdAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ddd000000000000000000010"
-    },
-    "marketplace_summary": "Racconto per bambini della Medusa di Caravaggio: uno scudo magico!",
-    "artwork": {
-      "$oid": "ccc000000000000000000010"
-    },
-    "author": {
-      "$oid": "aaa000000000000000000002"
-    },
-    "license": "Reserved",
-    "tone": "childish",
-    "descriptions": [
-      {
-        "duration_sec": 70,
-        "text": "Immagina uno specchio magico che invece di riflettere la tua faccia, mostra il momento esatto in cui un mostro con i capelli fatti di serpenti viene sconfitto! Caravaggio ha dipinto questo scudo curvo per farlo sembrare vero e spaventoso, con il sangue che si trasforma in altri serpentelli."
-      }
-    ],
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Medusa_by_Caravaggio.jpg?width=1280",
-    "alt_text": "Dettaglio della bocca spalancata di Medusa nell'attimo del grido",
-    "tags": [
-      "caravaggio",
-      "medusa",
-      "bambini"
-    ],
-    "createdAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ddd000000000000000000011"
-    },
-    "marketplace_summary": "Guida di livello medio allo Sposalizio della Vergine di Raffaello.",
-    "artwork": {
-      "$oid": "ccc000000000000000000011"
-    },
-    "author": {
-      "$oid": "aaa000000000000000000002"
-    },
-    "license": "Public",
-    "tone": "medium",
-    "descriptions": [
-      {
-        "duration_sec": 100,
-        "text": "Raffaello firma e data l'opera sull'architrave del tempio sullo sfondo, costruito con una prospettiva talmente precisa da sembrare reale. Un pretendente respinto spezza il proprio bastone sul ginocchio a destra, mentre Giuseppe porge l'anello a Maria: il bastone di Giuseppe, unico a fiorire, ne segnala la scelta divina."
-      }
-    ],
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raffaello_-_Spozalizio_-_Web_Gallery_of_Art.jpg?width=1280",
-    "alt_text": "Dettaglio del tempio a pianta centrale sullo sfondo della scena",
-    "tags": [
-      "raffaello",
-      "sposalizio",
-      "brera",
-      "rinascimento"
-    ],
-    "createdAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ddd000000000000000000012"
-    },
-    "marketplace_summary": "Guida semplice a Il Bacio di Hayez, tra romanticismo e Risorgimento.",
-    "artwork": {
-      "$oid": "ccc000000000000000000012"
-    },
-    "author": {
-      "$oid": "aaa000000000000000000001"
-    },
-    "license": "Public",
-    "tone": "simple",
-    "descriptions": [
-      {
-        "duration_sec": 85,
-        "text": "Un cavaliere con un piede sul gradino, pronto a partire, abbraccia e bacia la sua amata prima di lasciarla. L'ombra di una terza figura sullo sfondo suggerisce che il pericolo — o la guerra — incombe: molti lo lessero come un addio simbolico prima delle battaglie del Risorgimento."
-      }
-    ],
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/El_Beso_%28Pinacoteca_de_Brera%2C_Mil%C3%A1n%2C_1859%29.jpg?width=1280",
-    "alt_text": "Dettaglio dell'ombra di una terza figura sullo sfondo, dietro la scalinata",
-    "tags": [
-      "hayez",
-      "il-bacio",
-      "brera",
-      "romanticismo"
-    ],
-    "createdAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ddd000000000000000000013"
-    },
-    "marketplace_summary": "Analisi tecnica della Pala di Brera: prospettiva e simbolismo di Piero della Francesca.",
-    "artwork": {
-      "$oid": "ccc000000000000000000013"
-    },
-    "author": {
-      "$oid": "aaa000000000000000000001"
-    },
-    "license": "Private",
-    "tone": "technical",
-    "descriptions": [
-      {
-        "duration_sec": 140,
-        "text": "La composizione è costruita con un rigore matematico assoluto: il punto di fuga cade esattamente dietro la testa della Vergine, e l'uovo di struzzo appeso alla conchiglia dell'abside segue lo stesso asse verticale. Il duca Federico, ritratto senza l'elmo che nascondeva la ferita all'occhio destro, è l'unico donatore ammesso nello spazio sacro insieme ai santi."
-      }
-    ],
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Piero_della_Francesca_046.jpg?width=1280",
-    "alt_text": "Dettaglio dell'uovo di struzzo sospeso sopra la testa della Vergine",
-    "tags": [
-      "piero-della-francesca",
-      "pala-di-brera",
-      "brera",
-      "tecnico"
-    ],
-    "createdAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ddd000000000000000000014"
-    },
-    "marketplace_summary": "Guida di livello medio alla Cena in Emmaus di Caravaggio conservata a Brera.",
-    "artwork": {
-      "$oid": "ccc000000000000000000014"
-    },
-    "author": {
-      "$oid": "aaa000000000000000000002"
-    },
-    "license": "Public",
-    "tone": "medium",
-    "descriptions": [
-      {
-        "duration_sec": 105,
-        "text": "Rispetto alla versione londinese più teatrale, qui Caravaggio smorza i gesti e i colori: dipinta durante la fuga da Roma dopo l'omicidio di Ranuccio Tomassoni, questa Cena in Emmaus è più intima e silenziosa, con la luce che modella i volti dal buio quasi assoluto dello sfondo."
-      }
-    ],
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio_%E2%80%94_Supper_at_Emmaus.jpg?width=1280",
-    "alt_text": "Dettaglio del volto di Cristo che benedice il pane, illuminato dalla luce laterale",
-    "tags": [
-      "caravaggio",
-      "cena-in-emmaus",
-      "brera",
-      "chiaroscuro"
-    ],
-    "createdAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ddd000000000000000000015"
-    },
-    "marketplace_summary": "Racconto per bambini della Creazione di Adamo di Michelangelo.",
-    "artwork": {
-      "$oid": "ccc000000000000000000015"
-    },
-    "author": {
-      "$oid": "aaa000000000000000000001"
-    },
-    "license": "Public",
-    "tone": "childish",
-    "descriptions": [
-      {
-        "duration_sec": 65,
-        "text": "Guarda con attenzione: le due dita di Dio e di Adamo non si toccano davvero, manca solo un soffio! Michelangelo ha dipinto questa scena a testa in su, sdraiato su un'impalcatura per anni, per creare la vita sul soffitto della cappella."
-      }
-    ],
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Creaci%C3%B3n_de_Ad%C3%A1n.jpg?width=1280",
-    "alt_text": "Dettaglio delle due mani, quella di Dio e quella di Adamo, quasi a toccarsi",
-    "tags": [
-      "michelangelo",
-      "cappella-sistina",
-      "bambini"
-    ],
-    "createdAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ddd000000000000000000016"
-    },
-    "marketplace_summary": "Analisi tecnica del Giudizio Universale: composizione e autoritratto nascosto di Michelangelo.",
-    "artwork": {
-      "$oid": "ccc000000000000000000016"
-    },
-    "author": {
-      "$oid": "aaa000000000000000000002"
-    },
-    "license": "Private",
-    "tone": "technical",
-    "descriptions": [
-      {
-        "duration_sec": 135,
-        "text": "Michelangelo abbandona la simmetria rinascimentale per un vortice unico di figure che ruota attorno a Cristo giudice, dipinto senza barba, nell'atto ambiguo tra benedizione e condanna. Nella pelle scuoiata di San Bartolomeo, in basso, l'artista settantenne dipinse il proprio autoritratto deformato."
-      }
-    ],
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo%2C_Giudizio_Universale_02.jpg?width=1280",
-    "alt_text": "Dettaglio della pelle scuoiata di San Bartolomeo con l'autoritratto di Michelangelo",
-    "tags": [
-      "michelangelo",
-      "giudizio-universale",
-      "cappella-sistina",
-      "tecnico"
-    ],
-    "createdAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ddd000000000000000000017"
-    },
-    "marketplace_summary": "Guida semplice al Gruppo del Laocoonte, la scultura che ispirò Michelangelo.",
-    "artwork": {
-      "$oid": "ccc000000000000000000017"
-    },
-    "author": {
-      "$oid": "aaa000000000000000000001"
-    },
-    "license": "Public",
-    "tone": "simple",
-    "descriptions": [
-      {
-        "duration_sec": 90,
-        "text": "Laocoonte aveva avvertito i troiani di non far entrare il cavallo di legno dei greci in città: per punirlo, gli dei inviarono due serpenti marini che avvolsero lui e i suoi figli. Michelangelo, chiamato a vedere la scultura appena scoperta nel 1506, ne rimase talmente colpito da riprenderne la torsione dei muscoli in molte sue opere successive."
-      }
-    ],
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Laocoon_and_His_Sons.jpg?width=1280",
-    "alt_text": "Dettaglio del volto di Laocoonte contratto dal dolore mentre viene morso dai serpenti",
-    "tags": [
-      "laocoonte",
-      "scultura",
-      "vaticano"
-    ],
-    "createdAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ddd000000000000000000018"
-    },
-    "marketplace_summary": "Guida di livello medio alla Trasfigurazione, l'ultima opera di Raffaello.",
-    "artwork": {
-      "$oid": "ccc000000000000000000018"
-    },
-    "author": {
-      "$oid": "aaa000000000000000000002"
-    },
-    "license": "Public",
-    "tone": "medium",
-    "descriptions": [
-      {
-        "duration_sec": 110,
-        "text": "Raffaello contrappone due momenti del Vangelo mai raffigurati insieme prima: la Trasfigurazione di Cristo sul monte Tabor e, subito sotto, la scena del ragazzo indemoniato che gli apostoli non riescono a guarire in sua assenza. Rimasta sul cavalletto del pittore al momento della morte, l'opera fu portata in processione al suo funerale."
-      }
-    ],
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Transfiguration_Raphael.jpg?width=1280",
-    "alt_text": "Dettaglio del gruppo concitato di apostoli e astanti nella parte inferiore del dipinto",
-    "tags": [
-      "raffaello",
-      "trasfigurazione",
-      "vaticano"
-    ],
-    "createdAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
       "$oid": "ddd000000000000000000019"
     },
     "marketplace_summary": "Guida di livello medio al Polittico di Bologna di Giotto, tra storia e restauro.",
@@ -805,39 +180,6 @@
   },
   {
     "_id": {
-      "$oid": "ddd000000000000000000023"
-    },
-    "marketplace_summary": "Guida semplice alla Madonna in gloria e santi di Perugino.",
-    "artwork": {
-      "$oid": "ccc000000000000000000023"
-    },
-    "author": {
-      "$oid": "aaa000000000000000000004"
-    },
-    "license": "Public",
-    "tone": "simple",
-    "descriptions": [
-      {
-        "duration_sec": 75,
-        "text": "La Madonna col Bambino appare tra le nuvole dorate, sospesa sopra quattro santi che la osservano dal basso. Perugino, maestro del giovane Raffaello, dipinge figure calme ed equilibrate, care al gusto rinascimentale del primo Cinquecento."
-      }
-    ],
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pietro_Perugino_cat59.jpg?width=1280",
-    "alt_text": "Dettaglio della Madonna col Bambino tra le nuvole dorate",
-    "tags": [
-      "perugino",
-      "rinascimento",
-      "bologna"
-    ],
-    "createdAt": {
-      "$date": "2025-03-06T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-03-06T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
       "$oid": "ddd000000000000000000024"
     },
     "marketplace_summary": "Analisi tecnica dell'Estasi di Santa Cecilia di Raffaello: committenza, storia e restauri.",
@@ -847,7 +189,7 @@
     "author": {
       "$oid": "aaa000000000000000000004"
     },
-    "license": "Private",
+    "license": "Public",
     "tone": "technical",
     "descriptions": [
       {
@@ -977,74 +319,6 @@
   },
   {
     "_id": {
-      "$oid": "ddd000000000000000000027"
-    },
-    "marketplace_summary": "Guida di livello medio all'Assunzione della Vergine di Annibale Carracci.",
-    "artwork": {
-      "$oid": "ccc000000000000000000027"
-    },
-    "author": {
-      "$oid": "aaa000000000000000000005"
-    },
-    "license": "Public",
-    "tone": "medium",
-    "descriptions": [
-      {
-        "duration_sec": 100,
-        "text": "Dipinta nel 1592 per la cappella Bonasoni in San Francesco, questa Assunzione precede di alcuni anni la più celebre versione che Annibale realizzerà per la cappella Cerasi a Roma: qui il naturalismo emiliano è ancora saldamente legato alla tradizione bolognese di Ludovico e dei Carracci più giovani."
-      }
-    ],
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Annibale_carracci%2C_assunzione_della_vergine%2C_1592%2C_da_s._francesco_01.jpg?width=1280",
-    "alt_text": "Dettaglio della Vergine sollevata al cielo dagli angeli",
-    "tags": [
-      "annibale-carracci",
-      "barocco",
-      "assunzione",
-      "bologna"
-    ],
-    "createdAt": {
-      "$date": "2025-03-06T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-03-06T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ddd000000000000000000028"
-    },
-    "marketplace_summary": "Analisi tecnica della Madonna di San Ludovico di Annibale Carracci.",
-    "artwork": {
-      "$oid": "ccc000000000000000000028"
-    },
-    "author": {
-      "$oid": "aaa000000000000000000004"
-    },
-    "license": "Private",
-    "tone": "technical",
-    "descriptions": [
-      {
-        "duration_sec": 120,
-        "text": "Realizzata tra il 1590 e il 1592 per il convento francescano dei Santi Ludovico e Alessio, la pala mostra un naturalismo di luce e volumi che si discosta dal manierismo ancora dominante a Bologna: le vesti dei santi, in particolare, sono trattate con un'attenzione quasi fiamminga ai tessuti e alle pieghe."
-      }
-    ],
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Annibale_Carracci_Madonna_e_Santi_-_Pinacoteca_Nazionale_Bologna.jpg?width=1280",
-    "alt_text": "Dettaglio dei santi francescani disposti attorno al trono della Madonna",
-    "tags": [
-      "annibale-carracci",
-      "barocco",
-      "bologna",
-      "tecnico"
-    ],
-    "createdAt": {
-      "$date": "2025-03-06T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-03-06T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
       "$oid": "ddd000000000000000000029"
     },
     "marketplace_summary": "Analisi tecnica della Strage degli Innocenti di Guido Reni: composizione e patetismo barocco.",
@@ -1054,7 +328,7 @@
     "author": {
       "$oid": "aaa000000000000000000004"
     },
-    "license": "Private",
+    "license": "Public",
     "tone": "technical",
     "descriptions": [
       {
@@ -1138,75 +412,6 @@
   },
   {
     "_id": {
-      "$oid": "ddd000000000000000000031"
-    },
-    "marketplace_summary": "Guida di livello medio alla Pala della Peste di Guido Reni.",
-    "artwork": {
-      "$oid": "ccc000000000000000000031"
-    },
-    "author": {
-      "$oid": "aaa000000000000000000005"
-    },
-    "license": "Reserved",
-    "tone": "medium",
-    "descriptions": [
-      {
-        "duration_sec": 95,
-        "text": "Dipinta come ex voto dopo la terribile epidemia di peste del 1630, che a Bologna causò decine di migliaia di morti, la pala veniva portata ogni anno in processione dal Palazzo Pubblico alla basilica di San Domenico, in memoria dello scampato pericolo."
-      }
-    ],
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Reni%20-%20Madonna%20col%20Bambino%20in%20gloria%20e%20i%20Santi%20Protettori%20di%20Bologna%20Petronio%2C%20Francesco%2C%20Ignazio%2C%20Francesco%20Saverio%2C%20Procolo%20e%20Floriano.%20%28Pala%20della%20Peste%29%2C%201630%2C%20448.jpg?width=1280",
-    "alt_text": "Dettaglio dei santi patroni di Bologna invocati contro la peste",
-    "tags": [
-      "guido-reni",
-      "barocco",
-      "peste",
-      "bologna"
-    ],
-    "createdAt": {
-      "$date": "2025-03-06T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-03-06T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ddd000000000000000000032"
-    },
-    "marketplace_summary": "Analisi tecnica della Madonna del Rosario di Domenichino.",
-    "artwork": {
-      "$oid": "ccc000000000000000000032"
-    },
-    "author": {
-      "$oid": "aaa000000000000000000004"
-    },
-    "license": "Private",
-    "tone": "technical",
-    "descriptions": [
-      {
-        "duration_sec": 125,
-        "text": "Realizzata tra il 1617 e il 1621 per la cappella Ratta in San Giovanni in Monte, la composizione è nota anche attraverso un ricco corpus di disegni preparatori oggi conservati al Louvre e a Windsor, che documentano il metodo di lavoro estremamente meditato di Domenichino."
-      }
-    ],
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Domenico_Zampieri_detto_il_Domenichino%2C_Madonna_del_Rosario_%281617-1621%29_03.jpg?width=1280",
-    "alt_text": "Dettaglio della Madonna che porge la corona del rosario a un santo inginocchiato",
-    "tags": [
-      "domenichino",
-      "barocco",
-      "rosario",
-      "bologna",
-      "tecnico"
-    ],
-    "createdAt": {
-      "$date": "2025-03-06T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-03-06T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
       "$oid": "ddd000000000000000000033"
     },
     "marketplace_summary": "Guida semplice alla Vestizione di San Guglielmo d'Aquitania di Guercino.",
@@ -1244,208 +449,6 @@
     },
     "updatedAt": {
       "$date": "2026-08-11T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ddd000000000000000000034"
-    },
-    "marketplace_summary": "Guida semplice a una natura morta di Giorgio Morandi.",
-    "artwork": {
-      "$oid": "ccc000000000000000000034"
-    },
-    "author": {
-      "$oid": "aaa000000000000000000005"
-    },
-    "license": "Reserved",
-    "tone": "simple",
-    "descriptions": [
-      {
-        "duration_sec": 70,
-        "text": "Poche bottiglie, vasi e scatole: con questi oggetti quotidiani, sempre gli stessi, Giorgio Morandi ha costruito per tutta la vita composizioni silenziose fatte di forme semplici e colori tenui. Il Museo Morandi, dentro MAMbo, ne raccoglie oltre 250."
-      }
-    ],
-    "alt_text": "Composizione di bottiglie e vasi dai toni tenui su un piano neutro",
-    "tags": [
-      "morandi",
-      "novecento",
-      "mambo",
-      "bambini"
-    ],
-    "createdAt": {
-      "$date": "2025-03-06T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-03-06T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ddd000000000000000000035"
-    },
-    "marketplace_summary": "Guida di livello medio a Non parto non resto di Alighiero Boetti.",
-    "artwork": {
-      "$oid": "ccc000000000000000000035"
-    },
-    "author": {
-      "$oid": "aaa000000000000000000005"
-    },
-    "license": "Reserved",
-    "tone": "medium",
-    "descriptions": [
-      {
-        "duration_sec": 90,
-        "text": "Realizzata a penna biro nel 1984, l'opera appartiene al filone concettuale di Boetti legato alla ripetizione ossessiva del gesto grafico. Il titolo, ambiguo e contraddittorio, riflette l'interesse dell'artista per gli opposti e le dualità."
-      }
-    ],
-    "alt_text": "Superficie ricoperta da una fitta trama regolare di segni a penna blu",
-    "tags": [
-      "boetti",
-      "novecento",
-      "arte-povera",
-      "mambo"
-    ],
-    "createdAt": {
-      "$date": "2025-03-06T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-03-06T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ddd000000000000000000036"
-    },
-    "marketplace_summary": "Guida di livello medio a un Concetto spaziale di Lucio Fontana.",
-    "artwork": {
-      "$oid": "ccc000000000000000000036"
-    },
-    "author": {
-      "$oid": "aaa000000000000000000004"
-    },
-    "license": "Reserved",
-    "tone": "medium",
-    "descriptions": [
-      {
-        "duration_sec": 85,
-        "text": "Con la serie \"Concetto spaziale\", Fontana taglia o fora la superficie della tela monocroma: un gesto che rompe la pittura tradizionale e introduce lo spazio reale, oltre la tela, come parte dell'opera stessa."
-      }
-    ],
-    "alt_text": "Tela monocroma attraversata da uno o più tagli netti",
-    "tags": [
-      "fontana",
-      "spazialismo",
-      "novecento",
-      "mambo"
-    ],
-    "createdAt": {
-      "$date": "2025-03-06T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-03-06T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ddd000000000000000000037"
-    },
-    "marketplace_summary": "Guida semplice alle statue anatomiche di Ercole Lelli.",
-    "artwork": {
-      "$oid": "ccc000000000000000000037"
-    },
-    "author": {
-      "$oid": "aaa000000000000000000004"
-    },
-    "license": "Public",
-    "tone": "simple",
-    "descriptions": [
-      {
-        "duration_sec": 80,
-        "text": "Queste statue, alte quanto una persona vera, mostrano i muscoli del corpo umano come se la pelle fosse stata tolta. Ercole Lelli le realizzò in cera dipinta, applicata su veri scheletri, per insegnare l'anatomia agli studenti di medicina del Settecento."
-      }
-    ],
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Museo_di_Palazzo_Poggi_-_Ercole_Lelli_abc1.jpg?width=1280",
-    "alt_text": "Statua di un uomo scorticato che mostra i fasci muscolari",
-    "tags": [
-      "anatomia",
-      "lelli",
-      "settecento",
-      "palazzo-poggi",
-      "bambini"
-    ],
-    "createdAt": {
-      "$date": "2025-03-06T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-03-06T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ddd000000000000000000038"
-    },
-    "marketplace_summary": "Guida di livello medio all'autoritratto in cera di Anna Morandi Manzolini.",
-    "artwork": {
-      "$oid": "ccc000000000000000000038"
-    },
-    "author": {
-      "$oid": "aaa000000000000000000004"
-    },
-    "license": "Public",
-    "tone": "medium",
-    "descriptions": [
-      {
-        "duration_sec": 100,
-        "text": "Anna Morandi Manzolini si ritrae mentre dissezione un cervello di cera: fu una delle prime donne in Europa a insegnare anatomia all'università, succedendo al marito Giovanni Manzolini nella cattedra bolognese dopo la sua morte nel 1755."
-      }
-    ],
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Morandi_autoritratto.JPG?width=1280",
-    "alt_text": "Busto femminile in cera dipinta, ritratto mentre le mani sezionano un cervello",
-    "tags": [
-      "anatomia",
-      "morandi-manzolini",
-      "settecento",
-      "palazzo-poggi"
-    ],
-    "createdAt": {
-      "$date": "2025-03-06T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-03-06T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ddd000000000000000000039"
-    },
-    "marketplace_summary": "Guida di livello medio alla collezione naturalistica di Ulisse Aldrovandi.",
-    "artwork": {
-      "$oid": "ccc000000000000000000039"
-    },
-    "author": {
-      "$oid": "aaa000000000000000000005"
-    },
-    "license": "Public",
-    "tone": "medium",
-    "descriptions": [
-      {
-        "duration_sec": 95,
-        "text": "Ulisse Aldrovandi, naturalista bolognese del Cinquecento, raccolse per tutta la vita animali, piante ed erbari da ogni parte del mondo conosciuto. La sua collezione, confluita nell'Istituto delle Scienze, è considerata tra le radici dei moderni musei di storia naturale."
-      }
-    ],
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bologna%2C%20Museo%20di%20Palazzo%20Poggi%2C%20Museo%20di%20Ulisse%20Aldrovandi%20%281%29.jpg?width=1280",
-    "alt_text": "Vetrine con animali imbalsamati e reperti naturali disposti secondo l'ordinamento cinquecentesco",
-    "tags": [
-      "storia-naturale",
-      "aldrovandi",
-      "cinquecento",
-      "palazzo-poggi"
-    ],
-    "createdAt": {
-      "$date": "2025-03-06T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-03-06T00:00:00Z"
     }
   },
   {
@@ -1501,7 +504,7 @@
     "author": {
       "$oid": "aaa000000000000000000004"
     },
-    "license": "Private",
+    "license": "Public",
     "tone": "technical",
     "descriptions": [
       {
@@ -1723,7 +726,7 @@
     "author": {
       "$oid": "aaa000000000000000000005"
     },
-    "license": "Reserved",
+    "license": "Public",
     "tone": "childish",
     "descriptions": [
       {
@@ -1765,7 +768,7 @@
     "author": {
       "$oid": "aaa000000000000000000004"
     },
-    "license": "Private",
+    "license": "Public",
     "tone": "technical",
     "descriptions": [
       {
@@ -1940,7 +943,7 @@
     "author": {
       "$oid": "aaa000000000000000000004"
     },
-    "license": "Private",
+    "license": "Public",
     "tone": "technical",
     "descriptions": [
       {
@@ -2319,6 +1322,1300 @@
     },
     "updatedAt": {
       "$date": "2026-08-11T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000100"
+    },
+    "marketplace_summary": "Racconto per bambini della Nascita di Venere di Botticelli.",
+    "artwork": {
+      "$oid": "ccc000000000000000000001"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Guarda: una dea bellissima nasce dal mare dentro a una conchiglia enorme!"
+      },
+      {
+        "duration_sec": 13,
+        "text": "Due venti soffiano forte per spingere la conchiglia fino alla riva: si chiamano Zefiro e Clori, e sembrano abbracciati mentre volano insieme nel cielo, facendo cadere intorno a loro tanti fiori colorati."
+      },
+      {
+        "duration_sec": 34,
+        "text": "Sulla spiaggia una ragazza aspetta Venere con un mantello ricamato di fiori, pronta a coprirla appena tocca terra. Botticelli ha dipinto i capelli dorati di Venere così lunghi da avvolgerle quasi tutto il corpo, mossi dal vento come fili di seta. Anche se la dea è appena nata, non ha l'aspetto di una bambina: gli artisti del Rinascimento la immaginavano già adulta, perfetta come una statua antica, perché per loro la bellezza doveva assomigliare a quella delle sculture greche e romane che tanto ammiravano."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/El_nacimiento_de_Venus%2C_por_Sandro_Botticelli.jpg?width=1280",
+    "alt_text": "Dettaglio del volto di Venere con capelli dorati mossi dal vento",
+    "tags": [
+      "botticelli",
+      "venere",
+      "bambini"
+    ],
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000101"
+    },
+    "marketplace_summary": "Guida semplice alla Nascita di Venere di Botticelli.",
+    "artwork": {
+      "$oid": "ccc000000000000000000001"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Venere nasce dal mare ed è portata a riva dal vento."
+      },
+      {
+        "duration_sec": 15,
+        "text": "Botticelli dipinge la dea in piedi su una conchiglia, spinta verso la spiaggia da Zefiro e Clori, due figure alate abbracciate che soffiano insieme. Sulla riva una fanciulla la aspetta con un manto fiorito pronto ad avvolgerla."
+      },
+      {
+        "duration_sec": 34,
+        "text": "Il quadro fu realizzato per la famiglia Medici, probabilmente per una villa di campagna vicino a Firenze, e univa la mitologia classica al gusto raffinato della corte. Botticelli non cerca un effetto realistico: allunga le proporzioni del corpo di Venere, che sulle gambe non potrebbe reggersi in equilibrio, per ottenere una linea più elegante e sinuosa. Il fondo del mare è reso con onde stilizzate quasi decorative, mentre i fiori che cadono nell'aria richiamano la primavera e la rinascita, temi cari alla cultura umanistica del tempo."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/El_nacimiento_de_Venus%2C_por_Sandro_Botticelli.jpg?width=1280",
+    "alt_text": "Venere in piedi sulla conchiglia, spinta a riva dai venti",
+    "tags": [
+      "botticelli",
+      "venere",
+      "mitologia",
+      "rinascimento"
+    ],
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000102"
+    },
+    "marketplace_summary": "Analisi tecnica della Nascita di Venere per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000001"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Tempera su tela, 172,5x278,5 cm, databile al 1484-1486 circa."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Botticelli abbandona la tavola per la tela, supporto meno costoso allora usato soprattutto per le decorazioni da villa. La figura di Venere riprende lo schema della Venus pudica di tradizione classica, mediato probabilmente da una statua ellenistica o romana conosciuta in collezioni medicee."
+      },
+      {
+        "duration_sec": 29,
+        "text": "Il disegno preparatorio, oggi visibile in riflettografia, mostra pentimenti minimi: Botticelli lavorava con grande sicurezza di linea, tipica della sua formazione nella bottega del Verrocchio insieme a Leonardo. Le proporzioni del corpo di Venere sono volutamente allungate, con il collo innaturalmente lungo e il baricentro spostato, soluzioni che privilegiano il ritmo lineare rispetto alla resa anatomica corretta, in aperta divergenza dal naturalismo che pochi anni dopo si affermerà con Leonardo e Michelangelo."
+      },
+      {
+        "duration_sec": 54,
+        "text": "L'interpretazione neoplatonica del dipinto, proposta a partire dagli studi di Aby Warburg e Ernst Gombrich, lo collega ai versi delle Stanze per la giostra di Angelo Poliziano e alla filosofia di Marsilio Ficino, secondo cui la bellezza fisica di Venere era immagine sensibile della bellezza divina e dell'amore celeste. L'opera venne quasi certamente eseguita per un membro della famiglia Medici, forse Lorenzo di Pierfrancesco de' Medici, cugino del Magnifico, ed è documentata nel Cinquecento a Villa di Castello insieme alla Primavera, sebbene le due opere non siano nate come pendant. Restaurato più volte nei secoli, il dipinto conserva oggi pigmenti particolarmente delicati, tra cui il blu oltremare del mare e le foglie d'oro applicate a conchiglia sui capelli di Venere, che ne rendono la conservazione un caso di studio complesso per i laboratori diagnostici degli Uffizi."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/El_nacimiento_de_Venus%2C_por_Sandro_Botticelli.jpg?width=1280",
+    "alt_text": "Dettaglio delle onde stilizzate e della conchiglia su cui poggia Venere",
+    "tags": [
+      "botticelli",
+      "venere",
+      "tecnico",
+      "neoplatonismo"
+    ],
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000103"
+    },
+    "marketplace_summary": "Guida semplice all'Annunciazione di Leonardo da Vinci.",
+    "artwork": {
+      "$oid": "ccc000000000000000000002"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "L'angelo Gabriele annuncia a Maria che diventerà madre di Gesù."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Leonardo dipinge l'angelo inginocchiato su un prato fiorito, con ali che sembrano vere, ispirate a quelle degli uccelli. Maria, seduta davanti a un leggio di marmo, alza una mano quasi sorpresa, mentre con l'altra segna la pagina del libro che stava leggendo."
+      },
+      {
+        "duration_sec": 36,
+        "text": "Sullo sfondo si apre un paesaggio azzurrino che sfuma verso l'orizzonte, una delle prime prove della prospettiva aerea che Leonardo userà per tutta la vita: più le cose sono lontane, più i colori si fanno tenui e sfumati, come accade davvero ai nostri occhi. Il dipinto fu realizzato quando Leonardo era ancora giovanissimo, forse ventenne, e lavorava nella bottega del suo maestro Andrea del Verrocchio a Firenze. Per secoli l'opera fu attribuita ad altri artisti, e solo nell'Ottocento gli storici dell'arte la riconobbero come un lavoro giovanile di Leonardo."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Annunciation_%28Leonardo_c._1472%E2%80%931476%29.jpg?width=1280",
+    "alt_text": "L'angelo Gabriele inginocchiato su un prato fiorito davanti a Maria",
+    "tags": [
+      "leonardo",
+      "annunciazione",
+      "rinascimento"
+    ],
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000104"
+    },
+    "marketplace_summary": "Guida di livello medio all'Annunciazione di Leonardo, tra bottega e sperimentazione.",
+    "artwork": {
+      "$oid": "ccc000000000000000000002"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Opera giovanile di Leonardo, dipinta nella bottega del Verrocchio intorno al 1472-1475."
+      },
+      {
+        "duration_sec": 18,
+        "text": "L'angelo Gabriele, appena atterrato su un prato di fiori minutamente osservati dal vero, porge un giglio a Maria. Le sue ali, insolitamente naturalistiche per l'epoca, derivano da uno studio diretto delle penne degli uccelli rapaci, un interesse che accompagnerà Leonardo per tutta la vita."
+      },
+      {
+        "duration_sec": 31,
+        "text": "Il leggio marmoreo su cui poggia il braccio della Vergine è un chiaro omaggio alle tombe scolpite da Verrocchio e Antonio Rossellino, mentre la balaustra merlata alle spalle delle figure crea un netto stacco prospettico tra il primo piano e il giardino, sul modello dell'architettura del Palazzo Medici. Alcuni dettagli, come la mano destra di Maria, sono stati a lungo criticati come sproporzionati, un'imperfezione che ha fatto ipotizzare interventi di collaboratori della bottega accanto al giovane Leonardo."
+      },
+      {
+        "duration_sec": 41,
+        "text": "La collocazione originaria dell'opera resta incerta: si ritiene provenisse dal convento di San Bartolomeo a Monteoliveto, presso Firenze, prima di entrare nelle collezioni medicee e infine agli Uffizi nell'Ottocento. Ciò che colpisce ancora oggi è l'ambizione prospettica del dipinto: Leonardo costruisce lo spazio secondo una veduta a distanza ravvicinata, pensata forse per essere osservata leggermente di lato, così da correggere otticamente l'allungamento del braccio di Maria che appare evidente guardando l'opera frontalmente. È un espediente che rivela quanto, già a vent'anni, Leonardo studiasse la percezione visiva con lo stesso rigore scientifico che applicherà più tardi ai suoi taccuini di anatomia e ottica."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Annunciation_%28Leonardo_c._1472%E2%80%931476%29.jpg?width=1280",
+    "alt_text": "Il leggio marmoreo con la mano della Vergine e la balaustra merlata sullo sfondo",
+    "tags": [
+      "leonardo",
+      "annunciazione",
+      "verrocchio"
+    ],
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000105"
+    },
+    "marketplace_summary": "Analisi tecnica dell'Annunciazione di Leonardo per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000002"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Olio e tempera su tavola, 98x217 cm, Firenze, 1472-1475 circa."
+      },
+      {
+        "duration_sec": 15,
+        "text": "Leonardo adotta un punto di vista ribassato e la prospettiva aerea per costruire profondità spaziale, mentre le ali dell'angelo, di ispirazione ornitologica, si discostano dalla convenzione decorativa dei predecessori fiorentini, restituendo un effetto di attendibilità naturalistica ancora inedito."
+      },
+      {
+        "duration_sec": 34,
+        "text": "Attribuzione e datazione restano dibattute: alcuni storici, notando la disomogeneità qualitativa tra le parti, ipotizzano un intervento di più mani nella bottega del Verrocchio, forse coordinato dallo stesso Leonardo su disegno proprio. La resa del leggio marmoreo, con intarsi ispirati ai monumenti funebri di Verrocchio, e lo scorcio della manica della Vergine, che si comprime in modo plausibile contro il piano d'appoggio, sono tra gli elementi più spesso citati a sostegno di una paternità leonardesca già matura nella resa ottica, pur nella persistente incertezza cronologica."
+      },
+      {
+        "duration_sec": 50,
+        "text": "La costruzione prospettica dell'opera è stata oggetto di numerosi studi: la scena sembra concepita per un punto di osservazione basso e spostato verso destra, condizione che corregge otticamente l'anomalia più discussa del dipinto, l'eccessiva lunghezza del braccio destro della Vergine, visibile solo osservando l'opera frontalmente e da distanza ravvicinata. Le indagini riflettografiche condotte dagli Uffizi hanno rivelato un disegno preparatorio sicuro nelle architetture e nel paesaggio, con pentimenti concentrati soprattutto nelle vesti, coerenti con una elaborazione pittorica diretta più che con una copia da cartone. Il restauro del 2000 ha inoltre chiarito la stratigrafia dei pigmenti, confermando l'uso di azzurrite per il cielo e di lapislazzuli nelle vesti della Vergine, scelta cromatica costosa che testimonia l'importanza della committenza originaria, ancora oggi non identificata con certezza."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Annunciation_%28Leonardo_c._1472%E2%80%931476%29.jpg?width=1280",
+    "alt_text": "Particolare del paesaggio sfumato sullo sfondo, esempio di prospettiva aerea",
+    "tags": [
+      "leonardo",
+      "annunciazione",
+      "tecnico",
+      "prospettiva"
+    ],
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000106"
+    },
+    "marketplace_summary": "Racconto per bambini della Primavera di Botticelli, tra dee e fiori.",
+    "artwork": {
+      "$oid": "ccc000000000000000000007"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "In questo quadro è sempre primavera, con tantissimi fiori dipinti!"
+      },
+      {
+        "duration_sec": 16,
+        "text": "Ci sono nove persone in un giardino di aranci: al centro c'è Venere, la dea dell'amore, mentre a destra un vento chiamato Zefiro insegue una ninfa che si trasforma piano piano in un fiore, diventando Flora, la dea della primavera."
+      },
+      {
+        "duration_sec": 32,
+        "text": "A sinistra tre sorelle vestite di veli trasparenti danzano tenendosi per mano: si chiamano le Grazie. Accanto a loro un giovane con la spada, Mercurio, allontana le nuvole grigie con il suo bastone magico per far tornare il sole. Botticelli ha dipinto più di cinquecento fiori diversi sul prato, tutti riconoscibili uno per uno: margherite, violette, rose e tantissimi altri, come se avesse copiato un vero giardino fiorentino di primavera, pieno di piccoli dettagli da scoprire guardando bene da vicino."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli-primavera.jpg?width=1280",
+    "alt_text": "Le tre Grazie che danzano a sinistra della composizione",
+    "tags": [
+      "botticelli",
+      "primavera",
+      "bambini"
+    ],
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000107"
+    },
+    "marketplace_summary": "Guida di livello medio alla Primavera di Botticelli, tra mitologia e allegoria.",
+    "artwork": {
+      "$oid": "ccc000000000000000000007"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Allegoria mitologica dipinta da Botticelli per la famiglia Medici, 1477-1482 circa."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Nove figure si muovono in un giardino di aranci sempre fiorito: a destra Zefiro insegue la ninfa Clori, che nell'attimo della trasformazione diventa Flora, dea della primavera; al centro Venere presiede la scena sotto un arco di alloro, con Cupido che scaglia una freccia dall'alto."
+      },
+      {
+        "duration_sec": 27,
+        "text": "A sinistra le tre Grazie danzano in cerchio con vesti trasparenti, mentre Mercurio, riconoscibile dal caduceo, disperde le nuvole con un gesto del bastone. L'opera fu quasi certamente destinata alla villa di Castello, appartenuta a Lorenzo di Pierfrancesco de' Medici, cugino del Magnifico, e la sua iconografia complessa fu probabilmente suggerita da un consulente colto della cerchia neoplatonica fiorentina, forse lo stesso Marsilio Ficino o il poeta Poliziano."
+      },
+      {
+        "duration_sec": 48,
+        "text": "Botticelli dipinge sul pannello oltre cinquecento specie vegetali identificabili, un catalogo botanico che testimonia un'osservazione diretta della flora toscana unita a un preciso programma simbolico: ogni fiore, dalla violetta al mirto, rimanda per tradizione letteraria all'amore o alla fecondità. La lettura più diffusa interpreta l'opera come un percorso che va dall'amore terreno, rappresentato da Zefiro e Clori, fino all'amore razionale e spirituale custodito da Mercurio, passando per Venere come figura mediana tra i due estremi, secondo la filosofia neoplatonica che vedeva nella bellezza sensibile un primo gradino verso quella divina. Il dipinto fu esposto insieme alla Nascita di Venere solo dal Cinquecento inoltrato, quando entrambe le opere giunsero a Firenze da Castello, benché non fossero state concepite come una coppia."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli-primavera.jpg?width=1280",
+    "alt_text": "Zefiro insegue la ninfa Clori, che si trasforma in Flora, sulla destra della composizione",
+    "tags": [
+      "botticelli",
+      "primavera",
+      "mitologia",
+      "neoplatonismo"
+    ],
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000108"
+    },
+    "marketplace_summary": "Analisi tecnica della Primavera di Botticelli per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000007"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Tempera su tavola, 202x314 cm, databile al 1477-1482 circa."
+      },
+      {
+        "duration_sec": 18,
+        "text": "L'identificazione della committenza resta dibattuta: l'ipotesi più accreditata la lega a Lorenzo di Pierfrancesco de' Medici, documentato proprietario dell'opera a Villa di Castello nel 1499, sebbene la destinazione originaria — camera nuziale o antechamber — non sia attestata da fonti dirette contemporanee alla commissione."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Il programma iconografico, di estrema complessità per l'epoca, ha generato una vasta bibliografia critica: dalle letture ovidiane più letterali, che vedono nella scena una semplice illustrazione dei Fasti, alle interpretazioni neoplatoniche di Warburg e Gombrich, che collegano la disposizione delle figure a un percorso ascensionale dall'amore sensibile a quello intellegibile, fino a proposte più recenti che enfatizzano il valore dinastico e matrimoniale dell'opera in relazione a nozze medicee del periodo."
+      },
+      {
+        "duration_sec": 44,
+        "text": "Dal punto di vista tecnico, le indagini diagnostiche hanno rivelato un disegno preparatorio molto sicuro, con pochissimi pentimenti, segno di una elaborazione compositiva già definita su cartoni preparatori. La superficie pittorica, danneggiata da secoli di esposizione e da un trasferimento settecentesco poco cauto, ha subito interventi di restauro rilevanti nel 1982, che hanno rimosso vernici ingiallite e restituito la luminosità originaria dei verdi e degli ori. Botticelli utilizza una tecnica a tempera magra, con velature sottilissime che permettono un disegno di contorno sempre leggibile sotto colore, coerente con la sua formazione da disegnatore prima ancora che da pittore, probabilmente maturata nella bottega orafa del fratello maggiore prima dell'apprendistato presso Filippo Lippi."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli-primavera.jpg?width=1280",
+    "alt_text": "Dettaglio del prato fiorito con le numerose specie botaniche identificabili",
+    "tags": [
+      "botticelli",
+      "primavera",
+      "tecnico"
+    ],
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000109"
+    },
+    "marketplace_summary": "Guida semplice al Tondo Doni di Michelangelo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000008"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La Sacra Famiglia si passa il Bambino in un gesto quasi acrobatico."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Michelangelo dipinge Maria che si volta all'indietro per prendere Gesù dalle mani di Giuseppe, in una posa a spirale molto complessa. È l'unico dipinto su tavola che sappiamo con certezza realizzato interamente da lui, il resto della sua opera è quasi tutta scultura o affresco."
+      },
+      {
+        "duration_sec": 35,
+        "text": "Il quadro fu commissionato per le nozze di Agnolo Doni, un ricco mercante fiorentino, e di sua moglie Maddalena Strozzi, da cui il nome Tondo Doni: era un regalo di matrimonio pensato per essere appeso in camera. Sullo sfondo, oltre un muretto basso, si vedono cinque giovani uomini quasi nudi, il cui significato non è ancora del tutto chiaro agli studiosi: forse rappresentano l'umanità pagana prima della venuta di Cristo, in attesa di essere battezzata e redenta, come suggerisce anche la piccola figura di san Giovannino sulla destra."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tondo_Doni_2021.jpg?width=1280",
+    "alt_text": "Maria si volta all'indietro per ricevere il Bambino dalle mani di Giuseppe",
+    "tags": [
+      "michelangelo",
+      "tondo-doni",
+      "rinascimento"
+    ],
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000110"
+    },
+    "marketplace_summary": "Guida di livello medio al Tondo Doni, tra scultura e pittura.",
+    "artwork": {
+      "$oid": "ccc000000000000000000008"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "Unico dipinto su tavola autografo di Michelangelo, realizzato tra il 1506 e il 1508."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Fu commissionato da Agnolo Doni per il proprio matrimonio con Maddalena Strozzi, da cui il nome tradizionale dell'opera. La cornice originale, intagliata con teste scolpite a tuttotondo, fu probabilmente disegnata dallo stesso Michelangelo ed è ancora oggi conservata insieme al dipinto."
+      },
+      {
+        "duration_sec": 28,
+        "text": "La Sacra Famiglia occupa il primo piano in una posa avvitata e complessa: Maria, inginocchiata, si volta all'indietro per ricevere il Bambino dalle mani di Giuseppe, in un movimento a spirale che anticipa le soluzioni scultoree della volta della Cappella Sistina, iniziata pochi anni dopo. Il piccolo san Giovanni Battista, riconoscibile dalla veste di pelo, osserva la scena da dietro il muretto che separa il gruppo sacro dallo sfondo."
+      },
+      {
+        "duration_sec": 46,
+        "text": "Sullo sfondo, cinque giovani nudi siedono e si muovono senza un'azione narrativa definita: l'interpretazione più diffusa li lega all'umanità pagana in attesa della redenzione portata da Cristo, oppure a un riferimento al battesimo, suggerito dalla presenza di san Giovannino. Dal punto di vista formale, questi ignudi anticipano chiaramente gli ignudi della Cappella Sistina, confermando quanto Michelangelo pensasse la pittura come un'estensione della scultura: i corpi sono costruiti per volumi netti e contorni decisi, quasi incisi, più che per sfumature cromatiche. Il dipinto rimase nella famiglia Doni fino al Seicento, quando entrò nelle collezioni medicee, e da lì, nell'Ottocento, agli Uffizi, dove è tuttora esposto nella sala a lui dedicata insieme ai fiorentini del primo Cinquecento."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tondo_Doni_2021.jpg?width=1280",
+    "alt_text": "I cinque nudi sullo sfondo, oltre il muretto che li separa dalla Sacra Famiglia",
+    "tags": [
+      "michelangelo",
+      "tondo-doni",
+      "cappella-sistina"
+    ],
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000111"
+    },
+    "marketplace_summary": "Analisi tecnica del Tondo Doni per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000008"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Tempera grassa su tavola, diametro 120 cm, databile al 1506-1508 circa."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Michelangelo torce i corpi della Sacra Famiglia in una composizione a spirale continua, un effetto ottenuto studiando l'anatomia scultorea più che la resa pittorica fiamminga allora in voga a Firenze, con una costruzione plastica dei volumi affine ai suoi cartoni per la Battaglia di Cascina."
+      },
+      {
+        "duration_sec": 31,
+        "text": "La cromia smaltata e i contorni netti, quasi incisi, riflettono la formazione di Michelangelo come scultore prima ancora che come pittore: le figure sembrano modellate a bassorilievo e poi trasferite sul piano, con ombreggiature ridotte al minimo necessario a suggerire il volume. La cornice lignea originale, intagliata con teste profetiche a tuttotondo attribuite allo stesso artista o a un intagliatore su suo disegno, costituisce un caso raro di cornice rinascimentale sopravvissuta insieme al dipinto per cui fu concepita."
+      },
+      {
+        "duration_sec": 46,
+        "text": "L'identità dei cinque nudi sullo sfondo resta uno dei problemi iconografici più discussi dell'opera: le ipotesi spaziano dall'umanità pre-cristiana in attesa della redenzione, a un riferimento ai riti di purificazione ebraici precedenti il battesimo cristiano rappresentato da san Giovannino, fino a letture più recenti che vi leggono un'allusione alla scultura antica, con corpi disposti come un fregio classico. Le indagini diagnostiche condotte dagli Uffizi hanno evidenziato una tecnica esecutiva insolita per l'epoca, con l'uso di una tempera a base d'uovo mescolata a olio che conferisce ai colori una lucentezza quasi smaltata, oggi in parte alterata da vernici a olio stese in restauri successivi, non sempre reversibili con le tecniche conservative disponibili al momento della loro applicazione."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tondo_Doni_2021.jpg?width=1280",
+    "alt_text": "Dettaglio della cornice lignea originale intagliata con teste a tuttotondo",
+    "tags": [
+      "michelangelo",
+      "tondo-doni",
+      "tecnico"
+    ],
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000112"
+    },
+    "marketplace_summary": "Racconto per bambini del doppio ritratto dei duchi di Urbino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000009"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Ecco un marito e una moglie dipinti uno di fronte all'altra."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Si chiamano Federico e Battista, ed erano il duca e la duchessa della città di Urbino tanto tempo fa. Sono dipinti di profilo, come se fossero disegnati su una moneta antica, e dietro di loro si vede un paesaggio con colline, fiumi e piccoli paesini."
+      },
+      {
+        "duration_sec": 36,
+        "text": "Guarda bene il naso del duca Federico: ha una gobba strana proprio a metà, perché durante un torneo un colpo di lancia gli spezzò il naso e gli fece perdere anche l'uso di un occhio. Per questo si faceva sempre ritrarre dal lato sinistro, quello senza ferite, così nei quadri sembrava sempre perfetto! La duchessa Battista invece, quando fu dipinta, era già morta da poco tempo: il pittore Piero della Francesca la rappresentò con la pelle molto pallida proprio per farla sembrare simile a una statua di marmo, quasi immortale."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Piero_della_Francesca_044.jpg?width=1280",
+    "alt_text": "Dettaglio del profilo di Federico da Montefeltro con il naso aquilino",
+    "tags": [
+      "piero-della-francesca",
+      "urbino",
+      "bambini"
+    ],
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000113"
+    },
+    "marketplace_summary": "Guida semplice al doppio ritratto dei duchi di Urbino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000009"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "I duchi di Urbino sono ritratti uno di fronte all'altra, di profilo."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Federico da Montefeltro si fece sempre ritrarre dal lato sinistro per nascondere l'occhio destro, perso in un torneo. Piero della Francesca dipinge il suo naso con un evidente profilo spezzato, conseguenza della stessa ferita, senza cercare di nasconderla o abbellirla."
+      },
+      {
+        "duration_sec": 34,
+        "text": "Accanto a lui, sull'altro pannello, sua moglie Battista Sforza è ritratta con la pelle chiarissima e i capelli acconciati con perle: il ritratto fu realizzato dopo la sua morte prematura, forse basandosi su una maschera funebre o su ritratti precedenti. Dietro entrambi i coniugi si estende uno stesso paesaggio collinare, che continua senza interruzioni da un pannello all'altro, come se i due sposi condividessero davvero lo stesso orizzonte. Sul retro dei pannelli, non sempre esposto, si trovano inoltre due scene allegoriche dei loro trionfi."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Piero_della_Francesca_044.jpg?width=1280",
+    "alt_text": "I due pannelli affiancati con i ritratti di Federico e Battista",
+    "tags": [
+      "piero-della-francesca",
+      "urbino",
+      "ritratto"
+    ],
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000114"
+    },
+    "marketplace_summary": "Guida di livello medio al doppio ritratto dei duchi di Urbino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000009"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Dittico di Piero della Francesca, 1465-1472 circa, che ritrae i duchi di Urbino."
+      },
+      {
+        "duration_sec": 22,
+        "text": "Federico da Montefeltro e Battista Sforza sono ritratti di profilo, secondo la tradizione dei ritratti monetali antichi, uno di fronte all'altra su due tavole distinte ma pensate come un'unica opera. Il profilo, anziché il volto frontale allora più diffuso nel resto d'Italia, era la formula preferita dai signori feltreschi per le proprie effigi ufficiali."
+      },
+      {
+        "duration_sec": 29,
+        "text": "Il naso del duca, dal profilo spezzato a metà, documenta senza attenuazioni una ferita subita in un torneo del 1450, che gli costò anche la vista dell'occhio destro: da allora Federico si fece ritrarre esclusivamente di profilo sinistro. Battista Sforza, morta nel 1472 poco dopo aver dato alla luce l'erede maschio tanto atteso, è raffigurata con un pallore quasi marmoreo, secondo alcuni studiosi memoria consapevole della sua recente scomparsa più che convenzione stilistica."
+      },
+      {
+        "duration_sec": 39,
+        "text": "Il paesaggio che si estende dietro le due figure, reso con la tipica luce chiara e uniforme di Piero della Francesca, prosegue senza soluzione di continuità da un pannello all'altro, suggerendo che i coniugi condividano lo stesso spazio fisico pur essendo fisicamente separati sulle due tavole. Sul retro dei pannelli, generalmente non esposto al pubblico, sono dipinti due carri trionfali allegorici, ispirati ai Trionfi di Francesco Petrarca: Federico è accompagnato dalle virtù cardinali, Battista da quelle teologali, un programma iconografico che trasforma il semplice ritratto coniugale in una celebrazione della dinastia e delle virtù di governo dei Montefeltro."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Piero_della_Francesca_044.jpg?width=1280",
+    "alt_text": "Il paesaggio collinare che continua senza interruzioni dietro le due figure",
+    "tags": [
+      "piero-della-francesca",
+      "urbino",
+      "montefeltro"
+    ],
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000115"
+    },
+    "marketplace_summary": "Racconto per bambini della Medusa di Caravaggio: uno scudo magico!",
+    "artwork": {
+      "$oid": "ccc000000000000000000010"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Guarda questo scudo: sopra c'è dipinta una testa che urla!"
+      },
+      {
+        "duration_sec": 16,
+        "text": "È la testa di Medusa, un mostro delle storie greche che aveva i capelli fatti di serpenti veri e vivi. Chiunque la guardasse negli occhi si trasformava subito in pietra, per questo era pericolosissima da avvicinare, anche solo con lo sguardo."
+      },
+      {
+        "duration_sec": 35,
+        "text": "Un eroe di nome Perseo riuscì a batterla senza guardarla mai direttamente: usò invece uno scudo lucido come uno specchio, per vedere il suo riflesso invece del suo vero volto, e le tagliò la testa con la spada. Caravaggio dipinge proprio l'attimo subito dopo il taglio: la bocca di Medusa è ancora spalancata nel grido, e dal collo escono gocce di sangue che si trasformano in altri piccoli serpenti. Lo scudo curvo fa sembrare la scena quasi viva, come se stesse davvero accadendo proprio davanti a noi."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Medusa_by_Caravaggio.jpg?width=1280",
+    "alt_text": "Dettaglio della bocca spalancata di Medusa nell'attimo del grido",
+    "tags": [
+      "caravaggio",
+      "medusa",
+      "bambini"
+    ],
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000116"
+    },
+    "marketplace_summary": "Guida semplice alla Medusa di Caravaggio.",
+    "artwork": {
+      "$oid": "ccc000000000000000000010"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Uno scudo dipinto con la testa recisa della Gorgone Medusa."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Caravaggio raffigura il mostro mitologico nell'attimo esatto della decapitazione per mano dell'eroe Perseo: la bocca è spalancata in un urlo, gli occhi sbarrati, mentre il sangue che sgorga dal collo si trasforma in altri serpenti attorcigliati tra i capelli."
+      },
+      {
+        "duration_sec": 32,
+        "text": "L'opera fu dipinta su uno scudo cerimoniale convesso, non su una tela piatta, un supporto insolito che accentua l'effetto illusionistico: la superficie curva fa quasi 'gonfiare' il volto verso chi guarda, aumentando la sensazione di realtà e di pericolo imminente. Lo scudo fu commissionato dal cardinale Francesco Maria del Monte, primo grande protettore romano di Caravaggio, come dono per Ferdinando I de' Medici, granduca di Toscana: da qui l'ingresso dell'opera nelle collezioni fiorentine, dove è rimasta fino a oggi."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Medusa_by_Caravaggio.jpg?width=1280",
+    "alt_text": "Lo scudo cerimoniale convesso su cui è dipinta la testa di Medusa",
+    "tags": [
+      "caravaggio",
+      "medusa",
+      "barocco"
+    ],
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000117"
+    },
+    "marketplace_summary": "Analisi tecnica della Medusa di Caravaggio per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000010"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "Olio su tela applicata a scudo di legno convesso, 60 cm di diametro, 1597 circa."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Il supporto convesso, insolito nella produzione pittorica coeva, amplifica l'illusione tridimensionale del volto reciso e trasforma l'oggetto in una sorta di apotropaico rinascimentale, riprendendo la tradizione classica dello scudo di Atena decorato con la testa di Gorgone, la Gorgoneion, qui reinterpretata in chiave naturalistica."
+      },
+      {
+        "duration_sec": 30,
+        "text": "Caravaggio adotta per il volto di Medusa un modello dal vero, secondo la prassi che lo contraddistingue fin dagli esordi romani: la tradizione vuole si tratti di un autoritratto riflesso allo specchio, ipotesi non confermata da fonti dirette ma coerente con l'abitudine dell'artista di utilizzare se stesso o i propri collaboratori come modelli per figure anche drammatiche o violente, come nel Davide con la testa di Golia, dipinto pochi anni più tardi con soluzione compositiva analoga."
+      },
+      {
+        "duration_sec": 38,
+        "text": "L'opera fu donata dal cardinale Francesco Maria del Monte, primo mecenate romano di Caravaggio, a Ferdinando I de' Medici, granduca di Toscana, probabilmente come pezzo da collezione da esporre insieme ad armi e curiosità in una Wunderkammer, più che come opera devozionale o mitologica in senso tradizionale. Le analisi diagnostiche condotte agli Uffizi hanno confermato una stesura pittorica rapidissima, quasi 'alla prima', con pennellate dense nei punti di massima luce, tipiche della tecnica matura di Caravaggio, che dipingeva direttamente sulla tela senza disegno preparatorio esteso, correggendo la composizione in corso d'opera con pentimenti visibili in riflettografia."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Medusa_by_Caravaggio.jpg?width=1280",
+    "alt_text": "Dettaglio dei serpenti attorcigliati che formano i capelli di Medusa",
+    "tags": [
+      "caravaggio",
+      "medusa",
+      "tecnico"
+    ],
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000118"
+    },
+    "marketplace_summary": "Guida semplice alla Venere di Urbino di Tiziano.",
+    "artwork": {
+      "$oid": "ccc000000000000000000040"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "Una giovane donna nuda è distesa su un letto, con lo sguardo verso di noi."
+      },
+      {
+        "duration_sec": 15,
+        "text": "Tiziano la dipinge in una stanza elegante, con un cagnolino addormentato ai suoi piedi, simbolo di fedeltà coniugale. Sullo sfondo, due ancelle frugano dentro un grande baule in cerca di abiti, forse per la giovane sposa appena raffigurata."
+      },
+      {
+        "duration_sec": 36,
+        "text": "Il dipinto fu realizzato per Guidobaldo II della Rovere, futuro duca di Urbino, probabilmente in occasione del suo matrimonio con Giulia da Varano, e serviva anche come modello di virtù femminile per la giovane sposa: il cagnolino addormentato, i fiori nella mano destra e la scena domestica sullo sfondo alludevano tutti alla fedeltà e alla vita coniugale. Nel corso dei secoli l'opera è diventata un modello fondamentale per la pittura occidentale del nudo femminile, imitata da moltissimi artisti, incluso Édouard Manet nel celebre e scandaloso dipinto Olympia del 1863."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiziano%2C_Venere_di_Urbino%2C_1538%2C_00.jpg?width=1280",
+    "alt_text": "Il cagnolino addormentato ai piedi di Venere, simbolo di fedeltà",
+    "tags": [
+      "tiziano",
+      "venere",
+      "urbino"
+    ],
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000119"
+    },
+    "marketplace_summary": "Guida di livello medio alla Venere di Urbino di Tiziano.",
+    "artwork": {
+      "$oid": "ccc000000000000000000040"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Dipinta da Tiziano nel 1538 per Guidobaldo II della Rovere, duca di Urbino."
+      },
+      {
+        "duration_sec": 18,
+        "text": "La giovane donna, distesa su un letto disfatto in un interno domestico contemporaneo, guarda direttamente chi osserva senza pudore né imbarazzo, una novità rispetto ai modelli mitologici precedenti come la Venere dormiente di Giorgione, da cui Tiziano riprende la posa ma non più il contesto boschivo."
+      },
+      {
+        "duration_sec": 30,
+        "text": "Ai piedi della donna dorme un cagnolino, simbolo tradizionale di fedeltà coniugale, mentre sullo sfondo due ancelle cercano abiti in un cassone nuziale, il cosiddetto forziere, oggetto tipico del corredo matrimoniale rinascimentale. Questi elementi, insieme al vaso di mirto sul davanzale, pianta sacra a Venere e simbolo di amore duraturo, suggeriscono che il quadro fosse pensato come immagine allegorica delle virtù coniugali da offrire a una giovane sposa, più che come semplice raffigurazione mitologica."
+      },
+      {
+        "duration_sec": 37,
+        "text": "L'identità della modella resta ignota, sebbene alcuni la abbiano riconosciuta in Eleonora Gonzaga, suocera del committente, ipotesi oggi respinta dalla maggior parte degli storici dell'arte in favore di una figura idealizzata. La fortuna critica del dipinto è enorme: Tiziano fissa uno schema compositivo, il nudo femminile disteso in un interno con lo sguardo rivolto all'osservatore, che diventerà un modello ricorrente della storia dell'arte occidentale, ripreso esplicitamente da Édouard Manet in Olympia nel 1863, opera che scandalizzò il pubblico parigino proprio per aver spogliato la posa tizianesca di ogni riferimento mitologico o allegorico."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiziano%2C_Venere_di_Urbino%2C_1538%2C_00.jpg?width=1280",
+    "alt_text": "Le due ancelle sullo sfondo che frugano in un cassone nuziale",
+    "tags": [
+      "tiziano",
+      "venere",
+      "manet"
+    ],
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000120"
+    },
+    "marketplace_summary": "Analisi tecnica della Venere di Urbino per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000040"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Olio su tela, 119x165 cm, firmato e databile al 1538."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Tiziano riprende lo schema compositivo della Venus dormiente di Giorgione, completata dallo stesso Tiziano dopo la morte prematura del maestro, ma trasforma il paesaggio boschivo in un interno domestico contemporaneo, spostando il registro dell'opera dal mito alla vita quotidiana aristocratica del Cinquecento veneziano."
+      },
+      {
+        "duration_sec": 25,
+        "text": "La lettera di Guidobaldo della Rovere al proprio agente a Venezia, che chiede la 'donna nuda' allora in lavorazione presso Tiziano, costituisce una delle rare testimonianze documentarie dirette sulla genesi di un dipinto tizianesco, sebbene il termine usato nella missiva resti generico e non specifichi il soggetto mitologico o allegorico dell'opera, alimentando ancora oggi il dibattito sulla effettiva iconografia voluta dal committente."
+      },
+      {
+        "duration_sec": 38,
+        "text": "Dal punto di vista tecnico, l'opera mostra la piena maturità della tecnica coloristica veneziana: Tiziano costruisce la figura per velature sovrapposte di colore a olio, senza il ricorso a un disegno di contorno marcato, ottenendo transizioni tonali morbidissime nella resa della pelle, particolarmente evidenti nel confronto con la linearità ancora quattrocentesca di altri nudi coevi. Le analisi radiografiche condotte in tempi recenti hanno rivelato pentimenti nella posizione della mano sinistra della figura e nella disposizione delle ancelle sullo sfondo, segno di un processo compositivo elaborato direttamente sulla tela piuttosto che derivato da un cartone preparatorio fisso."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiziano%2C_Venere_di_Urbino%2C_1538%2C_00.jpg?width=1280",
+    "alt_text": "Dettaglio della resa pittorica della pelle, costruita per velature sovrapposte",
+    "tags": [
+      "tiziano",
+      "venere",
+      "tecnico"
+    ],
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000121"
+    },
+    "marketplace_summary": "Racconto per bambini del Bacco di Caravaggio.",
+    "artwork": {
+      "$oid": "ccc000000000000000000041"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Un ragazzo con una corona di foglie ti offre un bicchiere di vino!"
+      },
+      {
+        "duration_sec": 16,
+        "text": "Si chiama Bacco, ed è il dio del vino nelle storie degli antichi greci e romani. Caravaggio lo dipinge disteso su un lettino, con indosso solo un lenzuolo bianco, mentre allunga verso di noi un calice pieno fino all'orlo."
+      },
+      {
+        "duration_sec": 33,
+        "text": "Accanto a lui c'è un cesto di frutta: mele, uva, fichi e melograni, dipinti così bene che sembrano veri, ma se guardi bene alcuni sono già un po' ammaccati o bacati, perché Caravaggio amava dipingere le cose davvero come sono, senza fingere che siano perfette. Per tantissimi anni questo quadro fu dimenticato in un magazzino degli Uffizi, scambiato per un'opera senza importanza: solo nel 1913 uno storico dell'arte capì che si trattava invece di un vero Caravaggio, nascosto lì da tanto tempo!"
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo_Merisi_da_Caravaggio_-_Bacchus_-_Google_Art_Project.jpg?width=1280",
+    "alt_text": "Il cesto di frutta accanto a Bacco, dipinto con grande realismo",
+    "tags": [
+      "caravaggio",
+      "bacco",
+      "bambini"
+    ],
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000122"
+    },
+    "marketplace_summary": "Guida semplice al Bacco di Caravaggio.",
+    "artwork": {
+      "$oid": "ccc000000000000000000041"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il dio del vino Bacco offre un calice a chi guarda il quadro."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Caravaggio lo raffigura disteso su un triclinio all'antica, con una corona di pampini in testa e la pelle arrossata, forse dallo stesso vino che sta offrendo. Le unghie sporche e le mani non idealizzate sono un dettaglio tipico del suo stile realistico."
+      },
+      {
+        "duration_sec": 31,
+        "text": "Accanto a Bacco c'è una splendida natura morta di frutta, dipinta con estrema cura: molti frutti mostrano segni di maturazione avanzata o piccole imperfezioni, un memento mori discreto che ricorda come tutto, anche la bellezza e il piacere del vino, sia destinato a passare. Il dipinto fu ritrovato nei depositi degli Uffizi nel 1913 dallo storico dell'arte Roberto Longhi, che ne riconobbe l'autografia caravaggesca dopo anni in cui l'opera era stata erroneamente catalogata come lavoro di scuola minore."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo_Merisi_da_Caravaggio_-_Bacchus_-_Google_Art_Project.jpg?width=1280",
+    "alt_text": "Le mani di Bacco con le unghie sporche, dettaglio tipico del realismo caravaggesco",
+    "tags": [
+      "caravaggio",
+      "bacco",
+      "natura-morta"
+    ],
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000123"
+    },
+    "marketplace_summary": "Guida di livello medio al Bacco di Caravaggio, tra mito e realismo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000041"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Dipinto giovanile di Caravaggio, realizzato a Roma intorno al 1598."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Il dio del vino è raffigurato secondo l'iconografia classica, con corona di pampini e calice, ma Caravaggio lo trasforma in un giovane romano contemporaneo dal fisico non idealizzato, con unghie sporche e carnagione arrossata, un realismo che contrasta apertamente con la tradizione mitologica accademica del tempo."
+      },
+      {
+        "duration_sec": 25,
+        "text": "La natura morta di frutta in primo piano è tra le prime del genere nella pittura caravaggesca: mele bacate, foglie ingiallite e chicchi d'uva secchi introducono un sottile richiamo alla caducità, coerente con la tradizione del vanitas, che ricorda come piacere e bellezza siano condizioni transitorie, proprio come il vino offerto dal giovane dio è destinato a essere bevuto e a finire."
+      },
+      {
+        "duration_sec": 40,
+        "text": "Il dipinto rimase per secoli nei depositi della Galleria degli Uffizi, catalogato genericamente come opera di scuola caravaggesca, finché lo storico dell'arte Roberto Longhi non lo riconobbe come autografo nel 1916, dopo un primo avvistamento nel 1913: la riscoperta contribuì in modo decisivo alla riabilitazione critica di Caravaggio nel Novecento, dopo secoli in cui la sua fama era rimasta offuscata rispetto a quella dei grandi maestri rinascimentali. Alcuni studiosi hanno ipotizzato che il volto del giovane rifletta i tratti dello stesso Caravaggio o di un suo compagno di bottega, sebbene manchino conferme documentarie dirette a sostegno di questa lettura autobiografica."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo_Merisi_da_Caravaggio_-_Bacchus_-_Google_Art_Project.jpg?width=1280",
+    "alt_text": "La natura morta di frutta con mele bacate e foglie ingiallite",
+    "tags": [
+      "caravaggio",
+      "bacco",
+      "longhi"
+    ],
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000124"
+    },
+    "marketplace_summary": "Guida semplice alla Battaglia di San Romano di Paolo Uccello.",
+    "artwork": {
+      "$oid": "ccc000000000000000000042"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Cavalieri con lance e armature si scontrano in una grande battaglia dipinta."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Il quadro racconta una vittoria dei fiorentini contro i senesi nel 1432, vicino al paese di San Romano. Al centro della scena, in groppa a un grande cavallo bianco, c'è il comandante fiorentino Niccolò da Tolentino, riconoscibile dal grande cappello."
+      },
+      {
+        "duration_sec": 36,
+        "text": "Paolo Uccello era affascinato dalla prospettiva, la tecnica che permette di dipingere le cose lontane più piccole di quelle vicine, per far sembrare il quadro davvero profondo come una scena reale: per questo disegna le lance spezzate a terra tutte puntate verso lo stesso punto lontano, come tante frecce che indicano la direzione dello sguardo. Questo dipinto è solo uno di tre pannelli molto simili che raccontavano insieme la stessa battaglia: gli altri due oggi si trovano in due musei diversi, uno a Parigi e uno a Londra, lontanissimi da Firenze."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paolo_Uccello%2C_Battle_of_San_Romano%2C_Uffizi.jpg?width=1280",
+    "alt_text": "Niccolò da Tolentino sul cavallo bianco alla guida della carica",
+    "tags": [
+      "paolo-uccello",
+      "battaglia",
+      "quattrocento"
+    ],
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000125"
+    },
+    "marketplace_summary": "Guida di livello medio alla Battaglia di San Romano di Paolo Uccello.",
+    "artwork": {
+      "$oid": "ccc000000000000000000042"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "Uno dei tre pannelli dipinti da Paolo Uccello sulla battaglia di San Romano del 1432."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Il pannello degli Uffizi mostra il condottiero fiorentino Niccolò da Tolentino, a capo della cavalleria, nell'atto di guidare la carica contro le truppe senesi comandate da Bernardino della Ciarda, in una composizione affollata di cavalieri, lance e stendardi disposti secondo un rigido ordine geometrico."
+      },
+      {
+        "duration_sec": 25,
+        "text": "Paolo Uccello applica con quasi ossessiva coerenza le regole della prospettiva lineare, allora appena codificata a Firenze da Filippo Brunelleschi e Leon Battista Alberti: le lance spezzate a terra convergono verso un unico punto di fuga, mentre i cavalli sono disposti a distanze calcolate per accentuare l'illusione di profondità, in un equilibrio tra rigore geometrico e narrazione cavalleresca ancora debitrice del gusto tardogotico."
+      },
+      {
+        "duration_sec": 34,
+        "text": "I tre pannelli della serie, oggi divisi tra gli Uffizi, il Louvre di Parigi e la National Gallery di Londra, erano probabilmente destinati al palazzo fiorentino della famiglia Bartolini Salimbeni, per poi entrare nelle collezioni medicee entro la metà del Cinquecento, forse per volere di Lorenzo il Magnifico che li avrebbe fatti tagliare e adattare per inserirli in una propria camera. La ricostruzione dell'ordine originario della sequenza narrativa resta dibattuta tra gli storici dell'arte, così come l'esatta identificazione del momento della battaglia rappresentato in ciascun pannello."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paolo_Uccello%2C_Battle_of_San_Romano%2C_Uffizi.jpg?width=1280",
+    "alt_text": "Le lance spezzate a terra, disposte secondo linee prospettiche convergenti",
+    "tags": [
+      "paolo-uccello",
+      "battaglia",
+      "prospettiva"
+    ],
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000126"
+    },
+    "marketplace_summary": "Analisi tecnica della Battaglia di San Romano per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000042"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Tempera su tavola, 182x320 cm, databile al 1435-1440 circa."
+      },
+      {
+        "duration_sec": 19,
+        "text": "Paolo Uccello costruisce la scena secondo un reticolo prospettico rigoroso, con le lance a terra e gli oggetti sparsi sul campo di battaglia usati come linee guida verso un punto di fuga condiviso, applicazione quasi didattica delle teorie prospettiche allora appena formulate da Brunelleschi e Alberti a Firenze."
+      },
+      {
+        "duration_sec": 25,
+        "text": "L'uso di colori innaturalistici per i cavalli, rosa, blu e bianchi contro un fondale scuro privo di profondità atmosferica, tradisce un residuo linguaggio tardogotico non ancora del tutto superato, in tensione dialettica con il rigore matematico della costruzione spaziale: una convivenza di arcaismo decorativo e sperimentazione scientifica che rende Paolo Uccello una figura di cerniera tra Gotico internazionale e primo Rinascimento fiorentino."
+      },
+      {
+        "duration_sec": 34,
+        "text": "La superficie pittorica, molto rimaneggiata da restauri storici poco documentati, presenta oggi vaste zone di ridipintura soprattutto nel cielo, originariamente forse decorato con motivi araldici oggi perduti. Le tre tavole della serie, di dimensioni leggermente diverse tra loro, sono state probabilmente tagliate e adattate in epoca medicea per essere inserite in una specifica cornice architettonica, ipotesi supportata dal confronto tra le misure attuali e le tracce di taglio rilevabili sui bordi delle tavole, oggetto di studi comparativi tra i tre musei che oggi le conservano separatamente."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paolo_Uccello%2C_Battle_of_San_Romano%2C_Uffizi.jpg?width=1280",
+    "alt_text": "Dettaglio dei colori innaturalistici usati per i cavalli, rosa e blu su fondo scuro",
+    "tags": [
+      "paolo-uccello",
+      "battaglia",
+      "tecnico"
+    ],
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000127"
+    },
+    "marketplace_summary": "Racconto per bambini della Madonna del Cardellino di Raffaello.",
+    "artwork": {
+      "$oid": "ccc000000000000000000043"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Un bambino tiene in mano un piccolo uccellino: si chiama cardellino."
+      },
+      {
+        "duration_sec": 16,
+        "text": "La mamma seduta si chiama Maria, e vicino a lei ci sono due bambini: Gesù e il suo cuginetto Giovannino. Giovannino ha appena preso un cardellino, un uccellino con le piume rosse e gialle, e lo sta mostrando a Gesù."
+      },
+      {
+        "duration_sec": 32,
+        "text": "Il quadro fu dipinto da Raffaello come regalo di nozze per un amico fiorentino di nome Lorenzo Nasi. Purtroppo, alcuni anni dopo essere stato dipinto, la casa della famiglia Nasi crollò per una frana, e il quadro si ruppe in tantissimi pezzettini! Per fortuna un altro pittore riuscì a raccogliere tutti i frammenti e a rimetterli insieme con grandissima pazienza, come un puzzle enorme, così oggi possiamo ancora ammirare Maria, Gesù e Giovannino tutti insieme nel loro prato verde."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raffaello_Sanzio_-_Madonna_del_Cardellino_-_Google_Art_Project.jpg?width=1280",
+    "alt_text": "Il piccolo Giovannino che porge un cardellino a Gesù bambino",
+    "tags": [
+      "raffaello",
+      "madonna",
+      "bambini"
+    ],
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000128"
+    },
+    "marketplace_summary": "Guida semplice alla Madonna del Cardellino di Raffaello.",
+    "artwork": {
+      "$oid": "ccc000000000000000000043"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La Madonna con Gesù bambino e il piccolo san Giovannino in un prato."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Raffaello dispone le tre figure in una composizione piramidale, con la Madonna al vertice e i due bambini alla base, uno schema che aveva imparato osservando le opere di Leonardo da Vinci, allora presente a Firenze. Giovannino porge a Gesù un cardellino appena catturato."
+      },
+      {
+        "duration_sec": 32,
+        "text": "Il cardellino non è un dettaglio casuale: secondo la tradizione, questo uccellino si nutre di spine e cardi, e per questo era diventato un simbolo della futura passione e morte di Cristo sulla croce. Il dipinto fu commissionato dal fiorentino Lorenzo Nasi in occasione delle proprie nozze, ma pochi anni dopo un crollo della sua abitazione, causato da una frana, ridusse l'opera in diciassette frammenti. Un allievo di Raffaello, Ridolfo del Ghirlandaio, li ricompose pazientemente, restituendo il dipinto quasi integro."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raffaello_Sanzio_-_Madonna_del_Cardellino_-_Google_Art_Project.jpg?width=1280",
+    "alt_text": "La composizione piramidale della Madonna con i due bambini",
+    "tags": [
+      "raffaello",
+      "madonna",
+      "cardellino"
+    ],
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000129"
+    },
+    "marketplace_summary": "Analisi tecnica della Madonna del Cardellino per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000043"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Olio su tavola, 107x77 cm, databile al 1505-1506 circa."
+      },
+      {
+        "duration_sec": 18,
+        "text": "La composizione piramidale, con il vertice nel volto della Madonna e la base allargata dai due bambini, deriva direttamente dagli studi fiorentini di Leonardo da Vinci sulla Sant'Anna, che Raffaello poté osservare dal vero durante il proprio soggiorno fiorentino tra il 1504 e il 1508."
+      },
+      {
+        "duration_sec": 26,
+        "text": "Il cardellino, uccello che secondo la tradizione popolare si nutre di spine e cardi, funge da presagio iconografico della Passione di Cristo, un tema che Raffaello colloca però in un contesto di quieta naturalezza domestica, lontano dai toni drammatici che lo stesso soggetto assumerà altrove: la scelta compositiva accentua il contrasto tra l'infanzia serena delle figure e il destino di sofferenza già annunciato dal piccolo animale."
+      },
+      {
+        "duration_sec": 40,
+        "text": "Il dipinto fu gravemente danneggiato nel 1547, quando il crollo della casa di Lorenzo Nasi, provocato da una frana della collina di San Giorgio a Firenze, lo ridusse in diciassette frammenti; il restauro, condotto dall'allievo di Raffaello Ridolfo del Ghirlandaio, ricompose l'opera ma lasciò visibili alcune giunture, oggi ben documentate dalle indagini radiografiche condotte agli Uffizi. Queste analisi hanno inoltre confermato un disegno preparatorio dettagliato e diversi pentimenti nella posa della Madonna, testimonianza di un processo compositivo elaborato attraverso più fasi di studio, coerente con il metodo di lavoro raffaellesco documentato anche da numerosi disegni preparatori conservati in collezioni grafiche europee."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raffaello_Sanzio_-_Madonna_del_Cardellino_-_Google_Art_Project.jpg?width=1280",
+    "alt_text": "Dettaglio delle giunture visibili in riflettografia, esito del restauro cinquecentesco",
+    "tags": [
+      "raffaello",
+      "madonna",
+      "tecnico"
+    ],
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
     }
   }
 ]

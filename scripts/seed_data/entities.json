@@ -1,768 +1,6 @@
 [
   {
     "_id": {
-      "$oid": "ccc000000000000000000001"
-    },
-    "wikidata_id": "Q128717",
-    "name": "Nascita di Venere",
-    "is_physical": true,
-    "artwork_author": "Sandro Botticelli",
-    "description": "Capolavoro di Sandro Botticelli (1484-1486 circa), raffigura la dea Venere che emerge dal mare adulta, soffiata verso la riva dai venti.",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/El_nacimiento_de_Venus%2C_por_Sandro_Botticelli.jpg?width=1280",
-    "alt_text": "Venere nuda emerge da una conchiglia in mare, affiancata da Zefiro e Clori a sinistra e da una delle Grazie a destra",
-    "placements": [
-      {
-        "museum": {
-          "$oid": "bbb000000000000000000001"
-        },
-        "location": {
-          "room": "Sala 10-14",
-          "floor": "2",
-          "note": "Parete nord"
-        }
-      }
-    ],
-    "tags": [
-      "rinascimento",
-      "mitologia",
-      "tempera",
-      "botticelli",
-      "venere"
-    ],
-    "external_links": [
-      {
-        "label": "Wikipedia",
-        "url": "https://it.wikipedia.org/wiki/Nascita_di_Venere_(Botticelli)"
-      },
-      {
-        "label": "Scheda Uffizi",
-        "url": "https://www.uffizi.it/opere/nascita-di-venere"
-      }
-    ],
-    "added_by": {
-      "$oid": "aaa000000000000000000001"
-    },
-    "createdAt": {
-      "$date": "2025-01-01T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-01-01T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ccc000000000000000000002"
-    },
-    "wikidata_id": "Q216637",
-    "name": "Annunciazione",
-    "is_physical": true,
-    "artwork_author": "Leonardo da Vinci",
-    "description": "Dipinto a olio e tempera su tavola (1472-1475 circa). È tra le prime opere attribuite a Leonardo, realizzate durante il suo apprendistato nella bottega del Verrocchio.",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Annunciation_%28Leonardo_c._1472%E2%80%931476%29.jpg?width=1280",
-    "alt_text": "L'angelo Gabriele genuflesso a sinistra annuncia a Maria, seduta a destra davanti a un leggio marmoreo, la sua gravidanza",
-    "placements": [
-      {
-        "museum": {
-          "$oid": "bbb000000000000000000001"
-        },
-        "location": {
-          "room": "Sala 8",
-          "floor": "2",
-          "note": "Ala est"
-        }
-      }
-    ],
-    "tags": [
-      "rinascimento",
-      "leonardo",
-      "tavola",
-      "sacro",
-      "annunciazione"
-    ],
-    "external_links": [
-      {
-        "label": "Wikipedia",
-        "url": "https://it.wikipedia.org/wiki/Annunciazione_(Leonardo)"
-      }
-    ],
-    "added_by": {
-      "$oid": "aaa000000000000000000001"
-    },
-    "createdAt": {
-      "$date": "2025-01-01T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-01-01T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ccc000000000000000000003"
-    },
-    "wikidata_id": "Q1200429",
-    "name": "Cristo morto nel sepolcro",
-    "is_physical": true,
-    "artwork_author": "Andrea Mantegna",
-    "description": "Capolavoro dello scorcio prospettico (1480 circa), mostra il Cristo disteso in un impressionante scorcio dal basso che crea un effetto di drammatica vicinanza.",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The_dead_Christ_and_three_mourners%2C_by_Andrea_Mantegna.jpg?width=1280",
-    "alt_text": "Cristo disteso su una lastra di marmo visto in scorcio prospettico dai piedi, con la Vergine e san Giovanni affranti sul lato sinistro",
-    "placements": [
-      {
-        "museum": {
-          "$oid": "bbb000000000000000000002"
-        },
-        "location": {
-          "room": "Sala VI",
-          "floor": "1",
-          "note": "Centro sala"
-        }
-      }
-    ],
-    "tags": [
-      "rinascimento",
-      "mantegna",
-      "scorcio",
-      "sacro",
-      "tempera"
-    ],
-    "external_links": [
-      {
-        "label": "Wikipedia",
-        "url": "https://it.wikipedia.org/wiki/Cristo_morto_(Mantegna)"
-      }
-    ],
-    "added_by": {
-      "$oid": "aaa000000000000000000002"
-    },
-    "createdAt": {
-      "$date": "2025-01-01T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-01-01T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ccc000000000000000000004"
-    },
-    "wikidata_id": "Q60666",
-    "name": "Ultima Cena (copia Giampietrino)",
-    "is_physical": true,
-    "artwork_author": "Giampietrino",
-    "description": "Copia a grandezza naturale dell'Ultima Cena di Leonardo (1520 circa), realizzata da uno dei suoi allievi. Conserva dettagli ormai perduti nell'originale deteriorato.",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giampietrino-Last-Supper-ca-1520.jpg?width=1280",
-    "alt_text": "Gesù al centro della tavola con i dodici apostoli, di fronte a un fondale con tre finestre ad arco",
-    "placements": [
-      {
-        "museum": {
-          "$oid": "bbb000000000000000000002"
-        },
-        "location": {
-          "room": "Sala XII",
-          "floor": "1",
-          "note": "Parete sud"
-        }
-      }
-    ],
-    "tags": [
-      "rinascimento",
-      "leonardo",
-      "copia",
-      "ultima-cena",
-      "olio"
-    ],
-    "external_links": [
-      {
-        "label": "Wikipedia",
-        "url": "https://it.wikipedia.org/wiki/Ultima_Cena_(Giampietrino)"
-      }
-    ],
-    "added_by": {
-      "$oid": "aaa000000000000000000002"
-    },
-    "createdAt": {
-      "$date": "2025-01-01T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-01-01T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ccc000000000000000000005"
-    },
-    "local_id": "AA-00001",
-    "name": "Umanesimo rinascimentale",
-    "is_physical": false,
-    "description": "Movimento culturale e filosofico nato in Italia nel XIV secolo che rivalutò l'uomo e la cultura classica greco-romana come centro dell'esperienza intellettuale.",
-    "placements": [
-      {
-        "museum": {
-          "$oid": "bbb000000000000000000001"
-        },
-        "location": {}
-      },
-      {
-        "museum": {
-          "$oid": "bbb000000000000000000003"
-        },
-        "location": {}
-      }
-    ],
-    "tags": [
-      "concetto",
-      "rinascimento",
-      "filosofia",
-      "umanesimo"
-    ],
-    "external_links": [
-      {
-        "label": "Wikipedia",
-        "url": "https://it.wikipedia.org/wiki/Umanesimo"
-      }
-    ],
-    "added_by": {
-      "$oid": "aaa000000000000000000001"
-    },
-    "createdAt": {
-      "$date": "2025-01-01T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-01-01T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ccc000000000000000000006"
-    },
-    "wikidata_id": "Q126599960",
-    "name": "Scuola di Atene",
-    "is_physical": true,
-    "artwork_author": "Raffaello Sanzio",
-    "description": "Affresco monumentale (1509-1511) che raffigura i maggiori filosofi e scienziati dell'antichità riuniti in un'immaginaria architettura classica.",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg?width=1280",
-    "alt_text": "Ampio affresco con decine di figure in una maestosa architettura ad archi; al centro Platone e Aristotele camminano affiancati",
-    "placements": [
-      {
-        "museum": {
-          "$oid": "bbb000000000000000000003"
-        },
-        "location": {
-          "room": "Stanza della Segnatura",
-          "floor": "2",
-          "note": "Parete ovest"
-        }
-      }
-    ],
-    "tags": [
-      "rinascimento",
-      "raffaello",
-      "affresco",
-      "filosofia",
-      "vaticano"
-    ],
-    "external_links": [
-      {
-        "label": "Wikipedia",
-        "url": "https://it.wikipedia.org/wiki/Scuola_di_Atene"
-      },
-      {
-        "label": "Musei Vaticani",
-        "url": "https://www.museivaticani.va/content/museivaticani/it/collezioni/musei/stanze-di-raffaello/stanza-della-segnatura/scuola-di-atene.html"
-      }
-    ],
-    "added_by": {
-      "$oid": "aaa000000000000000000001"
-    },
-    "createdAt": {
-      "$date": "2025-01-02T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-01-02T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ccc000000000000000000007"
-    },
-    "name": "Primavera",
-    "is_physical": true,
-    "artwork_author": "Sandro Botticelli",
-    "description": "Allegoria dipinta da Sandro Botticelli (1477-1482 circa) per la villa medicea di Castello. Nove figure mitologiche animano un giardino di aranci in fiore, in una delle composizioni più affascinanti ed enigmatiche del Rinascimento fiorentino.",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli-primavera.jpg?width=1280",
-    "alt_text": "Nove figure mitologiche in un giardino fiorito: al centro Venere, a sinistra le tre Grazie e Mercurio, a destra Zefiro insegue Clori mentre Flora sparge fiori",
-    "placements": [
-      {
-        "museum": {
-          "$oid": "bbb000000000000000000001"
-        },
-        "location": {
-          "room": "Sala 10-14",
-          "floor": "2",
-          "note": "Accanto alla Nascita di Venere"
-        }
-      }
-    ],
-    "tags": [
-      "rinascimento",
-      "botticelli",
-      "mitologia",
-      "tempera",
-      "allegoria"
-    ],
-    "external_links": [],
-    "added_by": {
-      "$oid": "aaa000000000000000000001"
-    },
-    "createdAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ccc000000000000000000008"
-    },
-    "name": "Tondo Doni",
-    "is_physical": true,
-    "artwork_author": "Michelangelo Buonarroti",
-    "description": "Unico dipinto su tavola sopravvissuto di Michelangelo Buonarroti (1506-1508 circa), realizzato per le nozze di Agnolo Doni e Maddalena Strozzi. La Sacra Famiglia in primo piano anticipa le figure plastiche e contorte della Cappella Sistina.",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tondo_Doni_2021.jpg?width=1280",
-    "alt_text": "La Sacra Famiglia in primo piano con Maria che riceve il Bambino da Giuseppe, e cinque nudi maschili sullo sfondo oltre un muretto",
-    "placements": [
-      {
-        "museum": {
-          "$oid": "bbb000000000000000000001"
-        },
-        "location": {
-          "room": "Sala 41",
-          "floor": "2",
-          "note": "Sala dedicata a Michelangelo e ai fiorentini"
-        }
-      }
-    ],
-    "tags": [
-      "rinascimento",
-      "michelangelo",
-      "tondo",
-      "sacro",
-      "scultoreo"
-    ],
-    "external_links": [],
-    "added_by": {
-      "$oid": "aaa000000000000000000001"
-    },
-    "createdAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ccc000000000000000000009"
-    },
-    "name": "Doppio ritratto dei duchi di Urbino",
-    "is_physical": true,
-    "artwork_author": "Piero della Francesca",
-    "description": "Dittico di Piero della Francesca (1465-1472 circa) che ritrae Federico da Montefeltro e Battista Sforza, duchi di Urbino, di profilo su uno sfondo di paesaggio continuo, secondo la tradizione dei ritratti monetali antichi.",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Piero_della_Francesca_044.jpg?width=1280",
-    "alt_text": "Due ritratti di profilo affiancati, l'uomo a destra con naso aquilino e copricapo rosso, la donna a sinistra pallida con gioielli, sopra un paesaggio collinare",
-    "placements": [
-      {
-        "museum": {
-          "$oid": "bbb000000000000000000001"
-        },
-        "location": {
-          "room": "Sala 7",
-          "floor": "2",
-          "note": "Sala dedicata a Piero della Francesca"
-        }
-      }
-    ],
-    "tags": [
-      "rinascimento",
-      "piero-della-francesca",
-      "ritratto",
-      "urbino",
-      "profilo"
-    ],
-    "external_links": [],
-    "added_by": {
-      "$oid": "aaa000000000000000000001"
-    },
-    "createdAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ccc000000000000000000010"
-    },
-    "name": "Medusa",
-    "is_physical": true,
-    "artwork_author": "Michelangelo Merisi da Caravaggio",
-    "description": "Scudo cerimoniale dipinto da Caravaggio (1597 circa) con la testa recisa di Medusa nell'attimo del grido, il sangue che ne sgorga trasformato in serpenti. Donato dal cardinale Del Monte a Ferdinando I de' Medici.",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Medusa_by_Caravaggio.jpg?width=1280",
-    "alt_text": "Testa mozzata di Medusa con capelli di serpenti, bocca spalancata in un grido, dipinta su uno scudo rotondo convesso",
-    "placements": [
-      {
-        "museum": {
-          "$oid": "bbb000000000000000000001"
-        },
-        "location": {
-          "room": "Sala 90",
-          "floor": "1",
-          "note": "Sala del Caravaggio"
-        }
-      }
-    ],
-    "tags": [
-      "caravaggio",
-      "barocco",
-      "mitologia",
-      "scudo",
-      "testa-di-medusa"
-    ],
-    "external_links": [],
-    "added_by": {
-      "$oid": "aaa000000000000000000001"
-    },
-    "createdAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ccc000000000000000000011"
-    },
-    "name": "Sposalizio della Vergine",
-    "is_physical": true,
-    "artwork_author": "Raffaello Sanzio",
-    "description": "Pala d'altare dipinta da Raffaello a soli 21 anni (1504), che raffigura il matrimonio tra Maria e Giuseppe davanti a un tempio a pianta centrale. Segna il passaggio dello stile di Raffaello da quello del maestro Perugino verso un linguaggio più autonomo.",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raffaello_-_Spozalizio_-_Web_Gallery_of_Art.jpg?width=1280",
-    "alt_text": "Il sacerdote unisce le mani di Maria e Giuseppe davanti a un tempio poligonale a cupola, con un gruppo di figure su ciascun lato",
-    "placements": [
-      {
-        "museum": {
-          "$oid": "bbb000000000000000000002"
-        },
-        "location": {
-          "room": "Sala XXIV",
-          "floor": "1",
-          "note": "Sala dedicata a Raffaello"
-        }
-      }
-    ],
-    "tags": [
-      "rinascimento",
-      "raffaello",
-      "sacro",
-      "matrimonio",
-      "brera"
-    ],
-    "external_links": [],
-    "added_by": {
-      "$oid": "aaa000000000000000000001"
-    },
-    "createdAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ccc000000000000000000012"
-    },
-    "name": "Il Bacio",
-    "is_physical": true,
-    "artwork_author": "Francesco Hayez",
-    "description": "Dipinto manifesto del Romanticismo italiano di Francesco Hayez (1859), raffigura un bacio d'addio tra due innamorati in costume medievale. Letto anche come allegoria patriottica dell'alleanza tra Italia e Francia durante il Risorgimento.",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/El_Beso_%28Pinacoteca_de_Brera%2C_Mil%C3%A1n%2C_1859%29.jpg?width=1280",
-    "alt_text": "Un uomo con mantello e cappello piumato bacia una donna in abito azzurro, appoggiata contro una scalinata in penombra",
-    "placements": [
-      {
-        "museum": {
-          "$oid": "bbb000000000000000000002"
-        },
-        "location": {
-          "room": "Sala XXXVIII",
-          "floor": "1",
-          "note": "Sala dell'Ottocento lombardo"
-        }
-      }
-    ],
-    "tags": [
-      "romanticismo",
-      "hayez",
-      "brera",
-      "risorgimento",
-      "ottocento"
-    ],
-    "external_links": [],
-    "added_by": {
-      "$oid": "aaa000000000000000000001"
-    },
-    "createdAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ccc000000000000000000013"
-    },
-    "name": "Pala di Brera",
-    "is_physical": true,
-    "artwork_author": "Piero della Francesca",
-    "description": "Pala d'altare di Piero della Francesca (1472 circa) con la Sacra Conversazione e Federico da Montefeltro inginocchiato in armatura. Un uovo di struzzo sospeso sopra la Vergine allude alla nascita e alla protezione divina del duca.",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Piero_della_Francesca_046.jpg?width=1280",
-    "alt_text": "La Vergine con il Bambino addormentato in grembo, circondata da santi e angeli sotto un'abside a conchiglia, con il duca Federico da Montefeltro inginocchiato in armatura in primo piano",
-    "placements": [
-      {
-        "museum": {
-          "$oid": "bbb000000000000000000002"
-        },
-        "location": {
-          "room": "Sala XXIII",
-          "floor": "1",
-          "note": "Fondo della sala, punto focale della prospettiva"
-        }
-      }
-    ],
-    "tags": [
-      "rinascimento",
-      "piero-della-francesca",
-      "sacro",
-      "brera",
-      "montefeltro"
-    ],
-    "external_links": [],
-    "added_by": {
-      "$oid": "aaa000000000000000000001"
-    },
-    "createdAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ccc000000000000000000014"
-    },
-    "name": "Cena in Emmaus",
-    "is_physical": true,
-    "artwork_author": "Michelangelo Merisi da Caravaggio",
-    "description": "Seconda versione, più sobria, del tema realizzata da Caravaggio nel 1606 durante la fuga da Roma. Cristo risorto si rivela a due discepoli a cena, in un gioco di luce e ombra tipicamente caravaggesco.",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio_%E2%80%94_Supper_at_Emmaus.jpg?width=1280",
-    "alt_text": "Cristo benedice il pane a una tavola con due discepoli sorpresi e un oste in penombra, in una stanza scarsamente illuminata",
-    "placements": [
-      {
-        "museum": {
-          "$oid": "bbb000000000000000000002"
-        },
-        "location": {
-          "room": "Sala XXIX",
-          "floor": "1",
-          "note": "Sala dedicata a Caravaggio"
-        }
-      }
-    ],
-    "tags": [
-      "caravaggio",
-      "barocco",
-      "sacro",
-      "brera",
-      "chiaroscuro"
-    ],
-    "external_links": [],
-    "added_by": {
-      "$oid": "aaa000000000000000000001"
-    },
-    "createdAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ccc000000000000000000015"
-    },
-    "name": "Creazione di Adamo",
-    "is_physical": true,
-    "artwork_author": "Michelangelo Buonarroti",
-    "description": "Scena centrale della volta della Cappella Sistina dipinta da Michelangelo (1511-1512 circa): Dio infonde la vita ad Adamo in un gesto sospeso a un soffio di distanza, una delle immagini più celebri dell'arte occidentale.",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Creaci%C3%B3n_de_Ad%C3%A1n.jpg?width=1280",
-    "alt_text": "Adamo disteso tende il braccio verso Dio, avvolto in un manto fluttuante circondato da angeli, le due dita indice quasi si toccano",
-    "placements": [
-      {
-        "museum": {
-          "$oid": "bbb000000000000000000003"
-        },
-        "location": {
-          "room": "Cappella Sistina, volta",
-          "floor": "2",
-          "note": "Al centro della volta, sopra i troni dei Papi"
-        }
-      }
-    ],
-    "tags": [
-      "michelangelo",
-      "cappella-sistina",
-      "affresco",
-      "vaticano",
-      "rinascimento"
-    ],
-    "external_links": [],
-    "added_by": {
-      "$oid": "aaa000000000000000000001"
-    },
-    "createdAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ccc000000000000000000016"
-    },
-    "name": "Giudizio Universale",
-    "is_physical": true,
-    "artwork_author": "Michelangelo Buonarroti",
-    "description": "Grandioso affresco dipinto da Michelangelo sulla parete d'altare della Cappella Sistina (1536-1541), con Cristo giudice al centro di un vortice di oltre 300 figure tra dannati e beati.",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo%2C_Giudizio_Universale_02.jpg?width=1280",
-    "alt_text": "Cristo al centro con il braccio alzato circondato da santi, sotto un turbinio di corpi che salgono verso il cielo o precipitano verso l'inferno",
-    "placements": [
-      {
-        "museum": {
-          "$oid": "bbb000000000000000000003"
-        },
-        "location": {
-          "room": "Cappella Sistina, parete d'altare",
-          "floor": "2",
-          "note": "Parete dietro l'altare maggiore"
-        }
-      }
-    ],
-    "tags": [
-      "michelangelo",
-      "cappella-sistina",
-      "affresco",
-      "vaticano",
-      "giudizio"
-    ],
-    "external_links": [],
-    "added_by": {
-      "$oid": "aaa000000000000000000001"
-    },
-    "createdAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ccc000000000000000000017"
-    },
-    "name": "Gruppo del Laocoonte",
-    "is_physical": true,
-    "artwork_author": "Agesandro, Atenodoro e Polidoro di Rodi",
-    "description": "Scultura marmorea ellenistica (I secolo a.C.) che raffigura il sacerdote troiano Laocoonte e i suoi due figli avvolti dai serpenti mandati dagli dei. Riscoperta nel 1506 a Roma, influenzò profondamente Michelangelo e l'arte del Rinascimento.",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Laocoon_and_His_Sons.jpg?width=1280",
-    "alt_text": "Un uomo barbuto e i suoi due figli, nudi, avvolti e morsi da due grandi serpenti marini, i volti contratti dal dolore",
-    "placements": [
-      {
-        "museum": {
-          "$oid": "bbb000000000000000000003"
-        },
-        "location": {
-          "room": "Museo Pio-Clementino, Cortile Ottagono",
-          "floor": "1",
-          "note": "Nicchia centrale del cortile"
-        }
-      }
-    ],
-    "tags": [
-      "scultura",
-      "ellenistico",
-      "vaticano",
-      "mitologia",
-      "laocoonte"
-    ],
-    "external_links": [],
-    "added_by": {
-      "$oid": "aaa000000000000000000001"
-    },
-    "createdAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ccc000000000000000000018"
-    },
-    "name": "Trasfigurazione",
-    "is_physical": true,
-    "artwork_author": "Raffaello Sanzio",
-    "description": "Ultima opera di Raffaello, rimasta incompiuta alla sua morte nel 1520. Divide la scena in due registri: in alto Cristo trasfigurato tra le nuvole, in basso il caos degli apostoli incapaci di guarire un ragazzo indemoniato.",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Transfiguration_Raphael.jpg?width=1280",
-    "alt_text": "In alto Cristo luminoso sospeso tra le nuvole tra Mosè ed Elia; in basso un gruppo concitato di apostoli e astanti attorno a un ragazzo sofferente",
-    "placements": [
-      {
-        "museum": {
-          "$oid": "bbb000000000000000000003"
-        },
-        "location": {
-          "room": "Pinacoteca Vaticana, Sala VIII",
-          "floor": "1",
-          "note": "Sala dedicata a Raffaello"
-        }
-      }
-    ],
-    "tags": [
-      "raffaello",
-      "rinascimento",
-      "sacro",
-      "vaticano",
-      "pinacoteca"
-    ],
-    "external_links": [],
-    "added_by": {
-      "$oid": "aaa000000000000000000001"
-    },
-    "createdAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-02-01T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
       "$oid": "ccc000000000000000000019"
     },
     "wikidata_id": "Q3907499",
@@ -945,51 +183,6 @@
   },
   {
     "_id": {
-      "$oid": "ccc000000000000000000023"
-    },
-    "wikidata_id": "Q3213771",
-    "name": "Madonna in gloria e santi",
-    "is_physical": true,
-    "artwork_author": "Pietro Perugino",
-    "description": "Dipinta intorno al 1500-1501 per la cappella Scarani in San Giovanni in Monte. La Madonna appare in gloria su un trono di nubi, in una mandorla dorata, con i santi Michele, Caterina d'Alessandria, Apollonia e Giovanni Evangelista disposti sotto di lei.",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pietro_Perugino_cat59.jpg?width=1280",
-    "alt_text": "La Madonna col Bambino appare tra le nuvole dorate sopra un gruppo di quattro santi in piedi",
-    "placements": [
-      {
-        "museum": {
-          "$oid": "bbb000000000000000000004"
-        },
-        "location": {
-          "room": "Sale del Rinascimento",
-          "floor": "1",
-          "note": "Collocazione non documentata con precisione"
-        }
-      }
-    ],
-    "tags": [
-      "rinascimento",
-      "perugino",
-      "bologna",
-      "cinquecento"
-    ],
-    "external_links": [
-      {
-        "label": "Wikipedia",
-        "url": "https://it.wikipedia.org/wiki/Madonna_in_gloria_e_santi_(Perugino)"
-      }
-    ],
-    "added_by": {
-      "$oid": "aaa000000000000000000004"
-    },
-    "createdAt": {
-      "$date": "2025-03-05T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-03-05T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
       "$oid": "ccc000000000000000000024"
     },
     "wikidata_id": "Q1103801",
@@ -1125,96 +318,6 @@
   },
   {
     "_id": {
-      "$oid": "ccc000000000000000000027"
-    },
-    "wikidata_id": "Q131501612",
-    "name": "Assunzione della Vergine",
-    "is_physical": true,
-    "artwork_author": "Annibale Carracci",
-    "description": "Dipinta nel 1592 per la cappella Bonasoni nella chiesa di San Francesco a Bologna. Da non confondere con la più nota Assunzione dipinta da Annibale per la cappella Cerasi a Roma nel 1600-1601.",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Annibale_carracci%2C_assunzione_della_vergine%2C_1592%2C_da_s._francesco_01.jpg?width=1280",
-    "alt_text": "La Vergine sale al cielo sollevata da angeli, mentre gli apostoli osservano stupiti dal basso attorno al sepolcro vuoto",
-    "placements": [
-      {
-        "museum": {
-          "$oid": "bbb000000000000000000004"
-        },
-        "location": {
-          "room": "Sala 23",
-          "floor": "1",
-          "note": "Sala dei Carracci"
-        }
-      }
-    ],
-    "tags": [
-      "barocco",
-      "annibale-carracci",
-      "assunzione",
-      "bologna"
-    ],
-    "external_links": [
-      {
-        "label": "Wikipedia",
-        "url": "https://it.wikipedia.org/wiki/Assunzione_della_Vergine_(Annibale_Carracci_Bologna)"
-      }
-    ],
-    "added_by": {
-      "$oid": "aaa000000000000000000004"
-    },
-    "createdAt": {
-      "$date": "2025-03-05T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-03-05T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ccc000000000000000000028"
-    },
-    "wikidata_id": "Q126127672",
-    "name": "Madonna di San Ludovico",
-    "is_physical": true,
-    "artwork_author": "Annibale Carracci",
-    "description": "Dipinta tra il 1590 e il 1592 per il convento francescano dei Santi Ludovico e Alessio. Raffigura la Madonna col Bambino tra le sante Chiara e Caterina d'Alessandria e i santi Ludovico IX, Francesco, Alessio e il piccolo san Giovanni Battista.",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Annibale_Carracci_Madonna_e_Santi_-_Pinacoteca_Nazionale_Bologna.jpg?width=1280",
-    "alt_text": "La Madonna col Bambino in trono circondata da sei santi francescani, in un'ambientazione sobria e naturalistica",
-    "placements": [
-      {
-        "museum": {
-          "$oid": "bbb000000000000000000004"
-        },
-        "location": {
-          "room": "Sala 23",
-          "floor": "1",
-          "note": "Sala dei Carracci"
-        }
-      }
-    ],
-    "tags": [
-      "barocco",
-      "annibale-carracci",
-      "bologna",
-      "francescani"
-    ],
-    "external_links": [
-      {
-        "label": "Wikipedia",
-        "url": "https://it.wikipedia.org/wiki/Madonna_di_San_Ludovico"
-      }
-    ],
-    "added_by": {
-      "$oid": "aaa000000000000000000004"
-    },
-    "createdAt": {
-      "$date": "2025-03-05T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-03-05T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
       "$oid": "ccc000000000000000000029"
     },
     "wikidata_id": "Q2448678",
@@ -1305,97 +408,6 @@
   },
   {
     "_id": {
-      "$oid": "ccc000000000000000000031"
-    },
-    "wikidata_id": "Q25217589",
-    "name": "Pala della Peste",
-    "is_physical": true,
-    "artwork_author": "Guido Reni",
-    "description": "Dipinta nel 1631-1632 come ex voto dopo l'epidemia di peste del 1630 (inventario 448). Veniva portata ogni anno in processione dal Palazzo Pubblico alla basilica di San Domenico in ricordo dello scampato pericolo.",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Reni%20-%20Madonna%20col%20Bambino%20in%20gloria%20e%20i%20Santi%20Protettori%20di%20Bologna%20Petronio%2C%20Francesco%2C%20Ignazio%2C%20Francesco%20Saverio%2C%20Procolo%20e%20Floriano.%20%28Pala%20della%20Peste%29%2C%201630%2C%20448.jpg?width=1280",
-    "alt_text": "La Madonna col Bambino appare tra le nuvole sopra i santi patroni di Bologna, invocati contro la peste",
-    "placements": [
-      {
-        "museum": {
-          "$oid": "bbb000000000000000000004"
-        },
-        "location": {
-          "room": "Sale del Barocco",
-          "floor": "1",
-          "note": "Inventario 448, collocazione non documentata con precisione"
-        }
-      }
-    ],
-    "tags": [
-      "barocco",
-      "guido-reni",
-      "peste",
-      "bologna",
-      "ex-voto"
-    ],
-    "external_links": [
-      {
-        "label": "Wikipedia",
-        "url": "https://it.wikipedia.org/wiki/Pala_della_Peste"
-      }
-    ],
-    "added_by": {
-      "$oid": "aaa000000000000000000004"
-    },
-    "createdAt": {
-      "$date": "2025-03-05T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-03-05T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "ccc000000000000000000032"
-    },
-    "wikidata_id": "Q131690596",
-    "name": "Madonna del Rosario",
-    "is_physical": true,
-    "artwork_author": "Domenichino",
-    "description": "Dipinta tra il 1617 e il 1621 per la cappella Ratta in San Giovanni in Monte. La composizione, ampiamente studiata attraverso i disegni preparatori conservati al Louvre e a Windsor, mostra la Madonna che consegna il rosario a san Domenico.",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Domenico_Zampieri_detto_il_Domenichino%2C_Madonna_del_Rosario_%281617-1621%29_03.jpg?width=1280",
-    "alt_text": "La Madonna col Bambino in trono porge una corona del rosario a un santo inginocchiato, circondata da altri santi e angeli",
-    "placements": [
-      {
-        "museum": {
-          "$oid": "bbb000000000000000000004"
-        },
-        "location": {
-          "room": "Sala 29",
-          "floor": "1",
-          "note": "Sala dei grandi formati"
-        }
-      }
-    ],
-    "tags": [
-      "barocco",
-      "domenichino",
-      "rosario",
-      "bologna"
-    ],
-    "external_links": [
-      {
-        "label": "Wikipedia",
-        "url": "https://it.wikipedia.org/wiki/Madonna_del_Rosario_(Domenichino)"
-      }
-    ],
-    "added_by": {
-      "$oid": "aaa000000000000000000004"
-    },
-    "createdAt": {
-      "$date": "2025-03-05T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2025-03-05T00:00:00Z"
-    }
-  },
-  {
-    "_id": {
       "$oid": "ccc000000000000000000033"
     },
     "wikidata_id": "Q133857694",
@@ -1441,265 +453,439 @@
   },
   {
     "_id": {
-      "$oid": "ccc000000000000000000034"
+      "$oid": "ccc000000000000000000001"
     },
-    "name": "Natura morta",
+    "wikidata_id": "Q128717",
+    "name": "Nascita di Venere",
     "is_physical": true,
-    "artwork_author": "Giorgio Morandi",
-    "description": "Una delle celebri nature morte di Giorgio Morandi, esponente bolognese della pittura del Novecento. Il Museo Morandi, che raccoglie oltre 250 opere donate dalla sorella dell'artista, è ospitato dal 2012 all'interno dell'edificio di MAMbo.",
-    "alt_text": "Composizione di pochi oggetti quotidiani (bottiglie, vasi, scatole) dai toni tenui e sfumati",
+    "artwork_author": "Sandro Botticelli",
+    "description": "Capolavoro di Sandro Botticelli (1484-1486 circa), raffigura la dea Venere che emerge dal mare adulta, soffiata verso la riva dai venti.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/El_nacimiento_de_Venus%2C_por_Sandro_Botticelli.jpg?width=1280",
+    "alt_text": "Venere nuda emerge da una conchiglia in mare, affiancata da Zefiro e Clori a sinistra e da una delle Grazie a destra",
     "placements": [
       {
         "museum": {
-          "$oid": "bbb000000000000000000005"
+          "$oid": "bbb000000000000000000001"
         },
         "location": {
-          "room": "Museo Morandi",
+          "room": "Sala 10-14",
           "floor": "2",
-          "note": "Collezione permanente"
+          "note": "Parete nord"
         }
       }
     ],
     "tags": [
-      "novecento",
-      "morandi",
-      "natura-morta",
-      "mambo"
+      "rinascimento",
+      "mitologia",
+      "tempera",
+      "botticelli",
+      "venere"
     ],
     "external_links": [
       {
         "label": "Wikipedia",
-        "url": "https://it.wikipedia.org/wiki/Giorgio_Morandi"
+        "url": "https://it.wikipedia.org/wiki/Nascita_di_Venere_(Botticelli)"
+      },
+      {
+        "label": "Scheda Uffizi",
+        "url": "https://www.uffizi.it/opere/nascita-di-venere"
       }
     ],
     "added_by": {
-      "$oid": "aaa000000000000000000004"
+      "$oid": "aaa000000000000000000001"
     },
     "createdAt": {
-      "$date": "2025-03-05T00:00:00Z"
+      "$date": "2025-01-01T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2025-03-05T00:00:00Z"
+      "$date": "2025-01-01T00:00:00Z"
     }
   },
   {
     "_id": {
-      "$oid": "ccc000000000000000000035"
+      "$oid": "ccc000000000000000000002"
     },
-    "name": "Non parto non resto",
+    "wikidata_id": "Q216637",
+    "name": "Annunciazione",
     "is_physical": true,
-    "artwork_author": "Alighiero Boetti",
-    "description": "Opera a penna biro del 1984, commissionata dalla Galleria d'Arte Moderna di Bologna. Fa parte del nucleo di opere di Arte Povera e concettuale della collezione permanente di MAMbo.",
-    "alt_text": "Superficie ricoperta da una fitta trama regolare di segni a penna blu",
+    "artwork_author": "Leonardo da Vinci",
+    "description": "Dipinto a olio e tempera su tavola (1472-1475 circa). È tra le prime opere attribuite a Leonardo, realizzate durante il suo apprendistato nella bottega del Verrocchio.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Annunciation_%28Leonardo_c._1472%E2%80%931476%29.jpg?width=1280",
+    "alt_text": "L'angelo Gabriele genuflesso a sinistra annuncia a Maria, seduta a destra davanti a un leggio marmoreo, la sua gravidanza",
     "placements": [
       {
         "museum": {
-          "$oid": "bbb000000000000000000005"
+          "$oid": "bbb000000000000000000001"
         },
         "location": {
-          "room": "Sale del Novecento",
-          "floor": "1",
-          "note": "Collezione permanente"
+          "room": "Sala 8",
+          "floor": "2",
+          "note": "Ala est"
         }
       }
     ],
     "tags": [
-      "novecento",
-      "boetti",
-      "arte-povera",
-      "mambo"
+      "rinascimento",
+      "leonardo",
+      "tavola",
+      "sacro",
+      "annunciazione"
     ],
     "external_links": [
       {
         "label": "Wikipedia",
-        "url": "https://it.wikipedia.org/wiki/Alighiero_Boetti"
+        "url": "https://it.wikipedia.org/wiki/Annunciazione_(Leonardo)"
       }
     ],
     "added_by": {
-      "$oid": "aaa000000000000000000004"
+      "$oid": "aaa000000000000000000001"
     },
     "createdAt": {
-      "$date": "2025-03-05T00:00:00Z"
+      "$date": "2025-01-01T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2025-03-05T00:00:00Z"
+      "$date": "2025-01-01T00:00:00Z"
     }
   },
   {
     "_id": {
-      "$oid": "ccc000000000000000000036"
+      "$oid": "ccc000000000000000000007"
     },
-    "name": "Concetto spaziale",
+    "name": "Primavera",
     "is_physical": true,
-    "artwork_author": "Lucio Fontana",
-    "description": "Opera della serie \"Concetto spaziale\", il ciclo con cui Fontana taglia o fora la tela monocroma per introdurre lo spazio reale nell'opera, superando i limiti della pittura bidimensionale.",
-    "alt_text": "Tela monocroma attraversata da uno o più tagli netti",
+    "artwork_author": "Sandro Botticelli",
+    "description": "Allegoria dipinta da Sandro Botticelli (1477-1482 circa) per la villa medicea di Castello. Nove figure mitologiche animano un giardino di aranci in fiore, in una delle composizioni più affascinanti ed enigmatiche del Rinascimento fiorentino.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli-primavera.jpg?width=1280",
+    "alt_text": "Nove figure mitologiche in un giardino fiorito: al centro Venere, a sinistra le tre Grazie e Mercurio, a destra Zefiro insegue Clori mentre Flora sparge fiori",
     "placements": [
       {
         "museum": {
-          "$oid": "bbb000000000000000000005"
+          "$oid": "bbb000000000000000000001"
         },
         "location": {
-          "room": "Sale del Novecento",
-          "floor": "1",
-          "note": "Collezione permanente"
+          "room": "Sala 10-14",
+          "floor": "2",
+          "note": "Accanto alla Nascita di Venere"
         }
       }
     ],
     "tags": [
-      "novecento",
-      "fontana",
-      "spazialismo",
-      "mambo"
+      "rinascimento",
+      "botticelli",
+      "mitologia",
+      "tempera",
+      "allegoria"
     ],
-    "external_links": [
-      {
-        "label": "Wikipedia",
-        "url": "https://it.wikipedia.org/wiki/Lucio_Fontana"
-      }
-    ],
+    "external_links": [],
     "added_by": {
-      "$oid": "aaa000000000000000000004"
+      "$oid": "aaa000000000000000000001"
     },
     "createdAt": {
-      "$date": "2025-03-05T00:00:00Z"
+      "$date": "2025-02-01T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2025-03-05T00:00:00Z"
+      "$date": "2025-02-01T00:00:00Z"
     }
   },
   {
     "_id": {
-      "$oid": "ccc000000000000000000037"
+      "$oid": "ccc000000000000000000008"
     },
-    "name": "Statua anatomica (scorticato)",
+    "name": "Tondo Doni",
     "is_physical": true,
-    "artwork_author": "Ercole Lelli",
-    "description": "Una delle otto statue a grandezza naturale realizzate da Ercole Lelli tra il 1734 e il 1740 per la Sala di Anatomia dell'Istituto delle Scienze: cera dipinta applicata su scheletri veri, per mostrare i diversi strati muscolari del corpo umano a scopo didattico.",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Museo_di_Palazzo_Poggi_-_Ercole_Lelli_abc1.jpg?width=1280",
-    "alt_text": "Statua di un uomo scorticato che mostra i fasci muscolari, in posizione eretta su un basamento",
+    "artwork_author": "Michelangelo Buonarroti",
+    "description": "Unico dipinto su tavola sopravvissuto di Michelangelo Buonarroti (1506-1508 circa), realizzato per le nozze di Agnolo Doni e Maddalena Strozzi. La Sacra Famiglia in primo piano anticipa le figure plastiche e contorte della Cappella Sistina.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tondo_Doni_2021.jpg?width=1280",
+    "alt_text": "La Sacra Famiglia in primo piano con Maria che riceve il Bambino da Giuseppe, e cinque nudi maschili sullo sfondo oltre un muretto",
     "placements": [
       {
         "museum": {
-          "$oid": "bbb000000000000000000006"
+          "$oid": "bbb000000000000000000001"
         },
         "location": {
-          "room": "Sala di Anatomia",
-          "floor": "1",
-          "note": "Collezione delle cere anatomiche"
+          "room": "Sala 41",
+          "floor": "2",
+          "note": "Sala dedicata a Michelangelo e ai fiorentini"
         }
       }
     ],
     "tags": [
-      "anatomia",
-      "cere-anatomiche",
-      "ercole-lelli",
-      "settecento",
-      "palazzo-poggi"
+      "rinascimento",
+      "michelangelo",
+      "tondo",
+      "sacro",
+      "scultoreo"
     ],
-    "external_links": [
-      {
-        "label": "Wikipedia",
-        "url": "https://it.wikipedia.org/wiki/Ercole_Lelli"
-      }
-    ],
+    "external_links": [],
     "added_by": {
-      "$oid": "aaa000000000000000000004"
+      "$oid": "aaa000000000000000000001"
     },
     "createdAt": {
-      "$date": "2025-03-05T00:00:00Z"
+      "$date": "2025-02-01T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2025-03-05T00:00:00Z"
+      "$date": "2025-02-01T00:00:00Z"
     }
   },
   {
     "_id": {
-      "$oid": "ccc000000000000000000038"
+      "$oid": "ccc000000000000000000009"
     },
-    "name": "Autoritratto in cera",
+    "name": "Doppio ritratto dei duchi di Urbino",
     "is_physical": true,
-    "artwork_author": "Anna Morandi Manzolini",
-    "description": "Busto in cera realizzato dalla stessa Anna Morandi Manzolini (1714-1774), che si ritrae nell'atto di dissezionare un cervello. Fu una delle prime donne anatomiste e docenti universitarie d'Europa, e succedette al marito nell'insegnamento presso l'Istituto delle Scienze.",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Morandi_autoritratto.JPG?width=1280",
-    "alt_text": "Busto femminile in cera dipinta, ritratto mentre le mani sezionano un cervello posato su un tavolo",
+    "artwork_author": "Piero della Francesca",
+    "description": "Dittico di Piero della Francesca (1465-1472 circa) che ritrae Federico da Montefeltro e Battista Sforza, duchi di Urbino, di profilo su uno sfondo di paesaggio continuo, secondo la tradizione dei ritratti monetali antichi.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Piero_della_Francesca_044.jpg?width=1280",
+    "alt_text": "Due ritratti di profilo affiancati, l'uomo a destra con naso aquilino e copricapo rosso, la donna a sinistra pallida con gioielli, sopra un paesaggio collinare",
     "placements": [
       {
         "museum": {
-          "$oid": "bbb000000000000000000006"
+          "$oid": "bbb000000000000000000001"
         },
         "location": {
-          "room": "Sezione delle cere anatomiche",
-          "floor": "1",
-          "note": "Non documentata con precisione"
+          "room": "Sala 7",
+          "floor": "2",
+          "note": "Sala dedicata a Piero della Francesca"
         }
       }
     ],
     "tags": [
-      "anatomia",
-      "cere-anatomiche",
-      "morandi-manzolini",
-      "settecento",
-      "palazzo-poggi"
+      "rinascimento",
+      "piero-della-francesca",
+      "ritratto",
+      "urbino",
+      "profilo"
     ],
-    "external_links": [
-      {
-        "label": "Wikipedia",
-        "url": "https://it.wikipedia.org/wiki/Anna_Morandi_Manzolini"
-      }
-    ],
+    "external_links": [],
     "added_by": {
-      "$oid": "aaa000000000000000000004"
+      "$oid": "aaa000000000000000000001"
     },
     "createdAt": {
-      "$date": "2025-03-05T00:00:00Z"
+      "$date": "2025-02-01T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2025-03-05T00:00:00Z"
+      "$date": "2025-02-01T00:00:00Z"
     }
   },
   {
     "_id": {
-      "$oid": "ccc000000000000000000039"
+      "$oid": "ccc000000000000000000010"
     },
-    "name": "Collezione di storia naturale di Ulisse Aldrovandi",
+    "name": "Medusa",
     "is_physical": true,
-    "artwork_author": "Collezione di Ulisse Aldrovandi",
-    "description": "Parte della raccolta naturalistica formata dal naturalista bolognese Ulisse Aldrovandi (1522-1605): erbari, animali imbalsamati e reperti naturali confluiti nel patrimonio dell'Istituto delle Scienze, tra le origini dei moderni musei di storia naturale.",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bologna%2C%20Museo%20di%20Palazzo%20Poggi%2C%20Museo%20di%20Ulisse%20Aldrovandi%20%281%29.jpg?width=1280",
-    "alt_text": "Vetrine con animali imbalsamati e reperti naturali disposti secondo l'ordinamento naturalistico cinquecentesco",
+    "artwork_author": "Michelangelo Merisi da Caravaggio",
+    "description": "Scudo cerimoniale dipinto da Caravaggio (1597 circa) con la testa recisa di Medusa nell'attimo del grido, il sangue che ne sgorga trasformato in serpenti. Donato dal cardinale Del Monte a Ferdinando I de' Medici.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Medusa_by_Caravaggio.jpg?width=1280",
+    "alt_text": "Testa mozzata di Medusa con capelli di serpenti, bocca spalancata in un grido, dipinta su uno scudo rotondo convesso",
     "placements": [
       {
         "museum": {
-          "$oid": "bbb000000000000000000006"
+          "$oid": "bbb000000000000000000001"
         },
         "location": {
-          "room": "Museo di Ulisse Aldrovandi",
+          "room": "Sala 90",
           "floor": "1",
-          "note": "Collezione permanente"
+          "note": "Sala del Caravaggio"
         }
       }
     ],
     "tags": [
-      "storia-naturale",
-      "aldrovandi",
-      "cinquecento",
-      "palazzo-poggi"
+      "caravaggio",
+      "barocco",
+      "mitologia",
+      "scudo",
+      "testa-di-medusa"
+    ],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2025-02-01T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-02-01T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000040"
+    },
+    "wikidata_id": "Q131371",
+    "name": "Venere di Urbino",
+    "is_physical": true,
+    "artwork_author": "Tiziano Vecellio",
+    "description": "Dipinta da Tiziano nel 1538 per Guidobaldo II della Rovere, duca di Urbino, forse in occasione delle sue nozze. Una giovane donna nuda è distesa su un letto, lo sguardo rivolto verso chi guarda; sullo sfondo due ancelle frugano in un cassone in cerca di abiti.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiziano%2C_Venere_di_Urbino%2C_1538%2C_00.jpg?width=1280",
+    "alt_text": "Una donna nuda distesa su un letto disfatto, un cagnolino addormentato ai suoi piedi, con due ancelle sullo sfondo",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "location": {
+          "room": "Sala 83",
+          "floor": "1",
+          "note": "Sala dedicata a Tiziano"
+        }
+      }
+    ],
+    "tags": [
+      "rinascimento",
+      "tiziano",
+      "venere",
+      "nudo",
+      "urbino"
     ],
     "external_links": [
       {
         "label": "Wikipedia",
-        "url": "https://it.wikipedia.org/wiki/Ulisse_Aldrovandi"
+        "url": "https://it.wikipedia.org/wiki/Venere_di_Urbino"
       }
     ],
     "added_by": {
-      "$oid": "aaa000000000000000000004"
+      "$oid": "aaa000000000000000000001"
     },
     "createdAt": {
-      "$date": "2025-03-05T00:00:00Z"
+      "$date": "2026-08-14T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2025-03-05T00:00:00Z"
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000041"
+    },
+    "wikidata_id": "Q1473263",
+    "name": "Bacco",
+    "is_physical": true,
+    "artwork_author": "Michelangelo Merisi da Caravaggio",
+    "description": "Dipinto giovanile di Caravaggio (1598 circa), raffigura il dio del vino disteso su un triclinio, con una corona di pampini e un calice offerto a chi guarda. Fu ritrovato negli scantinati degli Uffizi nel 1913 dallo storico dell'arte Roberto Longhi.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo_Merisi_da_Caravaggio_-_Bacchus_-_Google_Art_Project.jpg?width=1280",
+    "alt_text": "Un giovane con corona di foglie di vite offre un calice di vino, disteso accanto a un cesto di frutta",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "location": {
+          "room": "Sala 90",
+          "floor": "1",
+          "note": "Sala del Caravaggio"
+        }
+      }
+    ],
+    "tags": [
+      "caravaggio",
+      "barocco",
+      "bacco",
+      "natura-morta"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/Bacco_(Caravaggio)"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000042"
+    },
+    "wikidata_id": "Q1201200",
+    "name": "Battaglia di San Romano",
+    "is_physical": true,
+    "artwork_author": "Paolo Uccello",
+    "description": "Uno dei tre pannelli dipinti da Paolo Uccello per celebrare la vittoria fiorentina su Siena nel 1432; questo, agli Uffizi, mostra il condottiero Niccolò da Tolentino alla guida della cavalleria. Gli altri due pannelli sono al Louvre e alla National Gallery di Londra.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Paolo_Uccello%2C_Battle_of_San_Romano%2C_Uffizi.jpg?width=1280",
+    "alt_text": "Cavalieri in armatura con lance spezzate si scontrano su cavalli bardati, in una composizione dai colori vivaci",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "location": {
+          "room": "Sala 8-9",
+          "floor": "2",
+          "note": "Sala del primo Rinascimento fiorentino"
+        }
+      }
+    ],
+    "tags": [
+      "quattrocento",
+      "paolo-uccello",
+      "battaglia",
+      "prospettiva"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/Battaglia_di_San_Romano_(Uccello)"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000043"
+    },
+    "wikidata_id": "Q1329164",
+    "name": "Madonna del Cardellino",
+    "is_physical": true,
+    "artwork_author": "Raffaello Sanzio",
+    "description": "Dipinta da Raffaello nel 1505-1506 per le nozze del fiorentino Lorenzo Nasi, ritrae la Madonna con il piccolo Gesù e san Giovannino, che regge un cardellino. Il dipinto fu ridotto in frammenti dal crollo della casa dei Nasi nel 1547 e ricomposto poco dopo.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raffaello_Sanzio_-_Madonna_del_Cardellino_-_Google_Art_Project.jpg?width=1280",
+    "alt_text": "La Madonna seduta in un paesaggio con il Bambino e san Giovannino, che le porge un piccolo uccellino",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "location": {
+          "room": "Sala 41",
+          "floor": "2",
+          "note": "Sala dedicata a Raffaello"
+        }
+      }
+    ],
+    "tags": [
+      "rinascimento",
+      "raffaello",
+      "madonna",
+      "cardellino"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/Madonna_del_Cardellino"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-14T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-14T00:00:00Z"
     }
   }
 ]
