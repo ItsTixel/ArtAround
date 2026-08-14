@@ -100,14 +100,17 @@ async function getAll(req, res) {
       sort = ALLOWED_SORT_FIELDS.includes(field) ? rawSort : 'title';
     }
 
-    const totalItems = await Visit.countDocuments(filter);
-    const visits = await Visit.find(filter)
-      .populate(stepsPopulate)
-      .sort(sort)
-      .skip(pageSize * page)
-      .limit(pageSize);
+    const [totalItems, distinctMuseums, visits] = await Promise.all([
+      Visit.countDocuments(filter),
+      Visit.distinct('museum', filter),
+      Visit.find(filter)
+        .populate(stepsPopulate)
+        .sort(sort)
+        .skip(pageSize * page)
+        .limit(pageSize),
+    ]);
 
-    res.json({ totalItems, pageSize, page, data: visits });
+    res.json({ totalItems, museumCount: distinctMuseums.length, pageSize, page, data: visits });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }

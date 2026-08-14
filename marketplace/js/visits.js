@@ -145,9 +145,13 @@ function updateResultsCount(total) {
   el.textContent = `${total} visit${s ? 'a' : 'e'} disponibil${s ? 'e' : 'i'}`;
 }
 
-function updateHeroStats(total) {
+function updateHeroStats(total, museumCount) {
   const el = document.getElementById('hero-total');
-  if (el) el.textContent = `${total} percorsi · ${allMuseums.length} musei`;
+  /* Con un filtro museo attivo il conteggio riflette i musei selezionati,
+   * non i musei distinti tra i risultati (che può includere musei "di passaggio"
+   * nei percorsi inframuseali collegati al filtro). */
+  const count = state.museumIds.length ? state.museumIds.length : museumCount;
+  if (el) el.textContent = `${total} percorsi · ${count} musei`;
 }
 
 /* ---- Caricamento pagina ---- */
@@ -157,12 +161,12 @@ async function load(page = 0) {
   grid.innerHTML = '<p class="loading"></p>';
 
   try {
-    const { data, totalItems, pageSize } = await fetchVisits();
+    const { data, totalItems, museumCount, pageSize } = await fetchVisits();
     state.total = totalItems;
     renderGrid(data);
     renderPagination(totalItems, pageSize, page);
     updateResultsCount(totalItems);
-    updateHeroStats(totalItems);
+    updateHeroStats(totalItems, museumCount);
   } catch (e) {
     grid.innerHTML = '<p class="empty">Errore nel caricamento. Riprova più tardi.</p>';
     console.error('Failed to fetch visits:', e);
@@ -197,6 +201,33 @@ async function loadFacets() {
   maxDurationMin = Math.max(60, Math.ceil(maxRaw / 30) * 30);
 
   return { tags, tones, maxDurationMin };
+}
+
+/* Ricalcola i conteggi "Linguaggio" tenendo conto degli altri filtri attivi
+ * (museo, prezzo, durata, titolo, temi), ma non del filtro tono stesso:
+ * altrimenti selezionare un tono azzererebbe il conteggio degli altri. */
+async function refreshToneCounts() {
+  const params = new URLSearchParams({ pageSize: 100 });
+  if (state.title)            params.set('title',       state.title);
+  if (state.museumIds.length) params.set('museum',      state.museumIds.join(','));
+  if (state.price !== 'all')  params.set('price',       state.price);
+  if (state.durationMax)      params.set('durationMax', state.durationMax);
+  if (state.tags.length)      params.set('tags',        state.tags.join(','));
+
+  const res = await fetch(`${API_VISITS}?${params}`);
+  if (!res.ok) return;
+  const { data } = await res.json();
+
+  const toneCounts = {};
+  data.forEach(v => {
+    visitTones(v.steps).forEach(t => { toneCounts[t] = (toneCounts[t] || 0) + 1; });
+  });
+  const tones = TONE_ORDER
+    .filter(t => toneCounts[t] || state.tones.includes(t))
+    .map(value => ({ value, label: TONE_LABELS[value] || value, count: toneCounts[value] || 0 }));
+
+  const sidebar = document.querySelector('filter-sidebar');
+  if (sidebar) sidebar.data = { tones };
 }
 
 /* ============================================================
@@ -242,6 +273,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       state.tags        = tags      || [];
       state.tones       = tones     || [];
       load(0);
+      refreshToneCounts();
     });
   } catch (e) {
     console.error('Errore nel caricamento della sidebar:', e);
@@ -254,6 +286,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     searchTimer = setTimeout(() => {
       state.title = e.target.value.trim();
       load(0);
+      refreshToneCounts();
     }, 320);
   });
 

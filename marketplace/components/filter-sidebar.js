@@ -35,8 +35,11 @@ class FilterSidebar extends HTMLElement {
   }
 
   set data(value) {
+    const prevMax = this._data.maxDurationMin;
     this._data = { ...this._data, ...value };
-    this._state.durationMax = this._data.maxDurationMin;
+    if (this._data.maxDurationMin !== prevMax) {
+      this._state.durationMax = this._data.maxDurationMin;
+    }
     this._render();
   }
   get data() { return this._data; }
