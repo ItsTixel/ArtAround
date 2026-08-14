@@ -29,7 +29,7 @@ function VisitInfoBody({ visit, onClose }) {
           type="button"
           onClick={onClose}
           aria-label="Chiudi"
-          className="shrink-0 rounded-md border border-border px-2 py-1 text-text-muted"
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-400/20 text-text-muted hover:bg-slate-400/10"
         >
           ×
         </button>

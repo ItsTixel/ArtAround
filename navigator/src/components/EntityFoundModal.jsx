@@ -13,7 +13,7 @@ function formatDurationLabel(sec) {
 
 function pillClasses(active, activeClasses) {
   return `rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
-    active ? `${activeClasses} shadow-sm` : 'border-border bg-surface text-text-muted'
+    active ? `${activeClasses} shadow-sm` : 'border-[color:var(--pill-border)] bg-[color:var(--pill-bg)] text-text-muted'
   }`
 }
 
@@ -110,9 +110,9 @@ function EntityFoundModal({ entity, matchedStep, onGoToStep, onClose }) {
   }
 
   return (
-    <div className="fixed inset-0 z-100 flex items-center justify-center bg-black/70 p-4" onClick={handleClose}>
+    <div className="fixed inset-0 z-100 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4" onClick={handleClose}>
       <div
-        className="flex max-h-[85vh] w-full max-w-md flex-col rounded-lg border border-border bg-surface shadow-xl"
+        className="flex max-h-[85vh] w-full max-w-md flex-col rounded-2xl border border-slate-400/20 bg-white/85 dark:bg-slate-900/85 backdrop-blur-2xl shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex-1 overflow-y-auto p-6">
@@ -130,7 +130,7 @@ function EntityFoundModal({ entity, matchedStep, onGoToStep, onClose }) {
               type="button"
               onClick={handleClose}
               aria-label="Chiudi"
-              className="shrink-0 rounded-md border border-border px-2 py-1 text-text-muted"
+              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-400/20 text-text-muted hover:bg-slate-400/10"
             >
               ×
             </button>
@@ -147,7 +147,7 @@ function EntityFoundModal({ entity, matchedStep, onGoToStep, onClose }) {
                 <button
                   type="button"
                   onClick={onGoToStep}
-                  className="rounded-md bg-gradient-to-br from-accent to-accent-hover px-4 py-2.5 text-sm font-medium text-on-accent shadow-[0_0_16px_rgba(212,168,83,0.25)]"
+                  className="rounded-md bg-gradient-to-br from-accent to-accent-hover px-4 py-2.5 text-sm font-medium text-on-accent shadow-lg shadow-black/10 dark:shadow-black/30"
                 >
                   Vai a questo punto della visita
                 </button>
@@ -158,7 +158,7 @@ function EntityFoundModal({ entity, matchedStep, onGoToStep, onClose }) {
                 className={
                   matchedStep
                     ? 'rounded-md border border-border px-4 py-2.5 text-sm font-medium text-text'
-                    : 'rounded-md bg-gradient-to-br from-accent to-accent-hover px-4 py-2.5 text-sm font-medium text-on-accent shadow-[0_0_16px_rgba(212,168,83,0.25)]'
+                    : 'rounded-md bg-gradient-to-br from-accent to-accent-hover px-4 py-2.5 text-sm font-medium text-on-accent shadow-lg shadow-black/10 dark:shadow-black/30'
                 }
               >
                 Ascolta informazioni su quest'opera
@@ -169,7 +169,7 @@ function EntityFoundModal({ entity, matchedStep, onGoToStep, onClose }) {
           {phase === 'listening' && (
             <div className="flex flex-col gap-4">
               {loadingItems && <p className="text-sm text-text-muted">Caricamento...</p>}
-              {itemsError && <p className="text-sm text-red-400">{itemsError}</p>}
+              {itemsError && <p className="text-sm text-[color:var(--color-error)]">{itemsError}</p>}
 
               {!loadingItems && !itemsError && (
                 <>
@@ -213,7 +213,7 @@ function EntityFoundModal({ entity, matchedStep, onGoToStep, onClose }) {
                     <button
                       type="button"
                       onClick={handlePlayStop}
-                      className="flex items-center justify-center gap-2 self-start rounded-full bg-gradient-to-br from-accent to-accent-hover px-5 py-2.5 text-sm font-medium text-on-accent shadow-[0_0_16px_rgba(212,168,83,0.25)]"
+                      className="flex items-center justify-center gap-2 self-start rounded-full bg-gradient-to-br from-accent to-accent-hover px-5 py-2.5 text-sm font-medium text-on-accent shadow-lg shadow-black/10 dark:shadow-black/30"
                     >
                       {playbackState === 'playing' ? (
                         <>

@@ -33,7 +33,7 @@ function PlayerBar() {
   if (!activeVisit) return null
 
   return (
-    <div className="fixed inset-x-0 bottom-16 z-40 border-t border-border bg-surface">
+    <div className="fixed inset-x-0 bottom-16 z-40 border-t border-slate-400/20 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl transition-colors duration-300">
       <div className="mx-auto max-w-md px-8 pt-3">
         <input
           type="range"
@@ -87,7 +87,7 @@ function PlayerBar() {
           aria-label={playbackState === 'playing' ? 'Pausa' : 'Play'}
           onClick={handlePlayPause}
           disabled={!activeText}
-          className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent-hover text-on-accent shadow-[0_0_20px_rgba(212,168,83,0.35)] disabled:opacity-40"
+          className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent-hover text-on-accent shadow-lg shadow-black/20 disabled:opacity-40"
         >
           {playbackState === 'playing' ? <PauseIcon className="h-6 w-6" /> : <PlayIcon className="h-6 w-6" />}
         </button>

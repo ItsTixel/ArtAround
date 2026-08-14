@@ -17,7 +17,7 @@ function formatDurationLabel(sec) {
 
 function pillClasses(active, activeClasses) {
   return `rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
-    active ? `${activeClasses} shadow-sm` : 'border-border bg-surface text-text-muted'
+    active ? `${activeClasses} shadow-sm` : 'border-[color:var(--pill-border)] bg-[color:var(--pill-bg)] text-text-muted'
   }`
 }
 
@@ -62,7 +62,7 @@ function Opera() {
             </div>
           </div>
 
-          <div className="mx-6 flex flex-col divide-y divide-border overflow-hidden rounded-xl border border-border bg-surface">
+          <div className="glass-panel mx-6 flex flex-col divide-y divide-border overflow-hidden rounded-2xl">
             {directionsParts.map((part) => {
               const Icon = DIRECTIONS_ICONS[part.key]
               return (
@@ -179,7 +179,7 @@ function Opera() {
             </div>
           </div>
 
-          <div className="relative mx-6 overflow-hidden rounded-lg border border-border bg-surface p-5 pl-6">
+          <div className="glass-panel relative mx-6 overflow-hidden rounded-2xl p-5 pl-6">
             <span className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-accent to-accent-hover" />
             <p className="text-sm leading-relaxed text-text">
               {currentDescription?.text || 'Nessuna descrizione disponibile.'}

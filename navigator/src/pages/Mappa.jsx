@@ -356,7 +356,7 @@ function Mappa() {
               className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
                 m._id === selectedMuseumId
                   ? 'border-accent bg-accent text-on-accent shadow-sm'
-                  : 'border-border bg-surface text-text-muted'
+                  : 'border-[color:var(--pill-border)] bg-[color:var(--pill-bg)] text-text-muted'
               }`}
             >
               {m.name}
@@ -375,7 +375,7 @@ function Mappa() {
               className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
                 index === selectedMapIndex
                   ? 'border-info bg-info text-on-accent shadow-sm'
-                  : 'border-border bg-surface text-text-muted'
+                  : 'border-[color:var(--pill-border)] bg-[color:var(--pill-bg)] text-text-muted'
               }`}
             >
               {map.name}
@@ -387,18 +387,18 @@ function Mappa() {
       {selectedMap && (
         <div
           ref={viewportRef}
-          className="relative w-full touch-none select-none overflow-hidden rounded-lg border border-border bg-surface"
+          className="glass-panel relative w-full touch-none select-none overflow-hidden rounded-2xl"
           style={{ cursor: zoomPan.scale > 1 ? 'grab' : 'default' }}
           {...zoomPan.handlers}
         >
           {hasHiddenEntities && (
-            <div className="pointer-events-none absolute left-2 top-2 z-20 flex max-w-[85%] items-center gap-1.5 rounded-md bg-surface/90 py-1 pl-2 pr-1 shadow-md">
+            <div className="pointer-events-none absolute left-2 top-2 z-20 flex max-w-[85%] items-center gap-1.5 rounded-full border border-slate-400/20 bg-white/85 dark:bg-slate-900/85 backdrop-blur-lg py-1 pl-3 pr-1.5 shadow-md">
               <p className="text-xs text-text-muted">Ingrandisci la mappa per vedere le opere.</p>
               <button
                 type="button"
                 onClick={() => setHintDismissed(true)}
                 aria-label="Chiudi"
-                className="pointer-events-auto shrink-0 rounded px-1 text-text-muted"
+                className="pointer-events-auto shrink-0 rounded-full px-1.5 text-text-muted"
               >
                 ×
               </button>
@@ -465,7 +465,7 @@ function Mappa() {
               onClick={() => zoomPan.zoomByStep(1.5)}
               disabled={zoomPan.scale >= MAX_SCALE}
               aria-label="Ingrandisci"
-              className="flex h-9 w-9 items-center justify-center rounded-md border border-border bg-surface/90 text-text shadow-md disabled:opacity-40"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-400/20 bg-white/85 dark:bg-slate-900/85 backdrop-blur-lg text-text shadow-md disabled:opacity-40"
             >
               <ZoomInIcon className="h-5 w-5" aria-hidden="true" />
             </button>
@@ -474,7 +474,7 @@ function Mappa() {
               onClick={() => zoomPan.zoomByStep(1 / 1.5)}
               disabled={zoomPan.scale <= MIN_SCALE}
               aria-label="Rimpicciolisci"
-              className="flex h-9 w-9 items-center justify-center rounded-md border border-border bg-surface/90 text-text shadow-md disabled:opacity-40"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-400/20 bg-white/85 dark:bg-slate-900/85 backdrop-blur-lg text-text shadow-md disabled:opacity-40"
             >
               <ZoomOutIcon className="h-5 w-5" aria-hidden="true" />
             </button>
@@ -483,14 +483,14 @@ function Mappa() {
       )}
 
       {activePoint && (
-        <div className="flex flex-col gap-3 rounded-lg border border-border bg-surface p-4">
+        <div className="glass-panel flex flex-col gap-3 rounded-2xl p-4">
           <div className="flex items-start justify-between gap-3">
             <h2 className="font-serif text-lg font-semibold text-text">{activePoint.label}</h2>
             <button
               type="button"
               onClick={() => setActivePoint(null)}
               aria-label="Chiudi"
-              className="shrink-0 rounded-md border border-border px-2 py-1 text-text-muted"
+              className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-slate-400/20 text-text-muted hover:bg-slate-400/10"
             >
               ×
             </button>
@@ -503,7 +503,7 @@ function Mappa() {
             <button
               type="button"
               onClick={() => handleGoToEntity(activePoint)}
-              className="self-start rounded-md bg-gradient-to-br from-accent to-accent-hover px-4 py-2.5 text-sm font-medium text-on-accent shadow-[0_0_16px_rgba(212,168,83,0.25)]"
+              className="self-start rounded-md bg-gradient-to-br from-accent to-accent-hover px-4 py-2.5 text-sm font-medium text-on-accent shadow-lg shadow-black/10 dark:shadow-black/30"
             >
               Vai a quest'opera
             </button>
