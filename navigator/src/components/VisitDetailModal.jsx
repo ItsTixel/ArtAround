@@ -1,4 +1,5 @@
 import VisitInfoBody from './VisitInfoBody'
+import FavoriteButton from './FavoriteButton'
 
 function VisitDetailModal({ visit, isActive, onClose, onActivate, onDeactivate }) {
   return (
@@ -18,6 +19,7 @@ function VisitDetailModal({ visit, isActive, onClose, onActivate, onDeactivate }
         >
           ×
         </button>
+        <FavoriteButton visit={visit} className="absolute right-14 top-3 z-10" />
         <div className="flex-1 overflow-y-auto">
           <VisitInfoBody visit={visit} />
         </div>

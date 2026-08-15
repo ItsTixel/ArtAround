@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useAuth } from '../context/AuthContext'
 import VisitInfoBody, { formatPrice } from './VisitInfoBody'
+import FavoriteButton from './FavoriteButton'
 
 // Popup mostrato dopo la scansione del QR di una visita che l'utente non ha
 // ancora adottato: propone l'adozione (con conferma se a pagamento) invece
@@ -45,6 +46,7 @@ function VisitAdoptModal({ visit, onAdopted, onClose }) {
         >
           ×
         </button>
+        <FavoriteButton visit={visit} className="absolute right-14 top-3 z-10" />
         <div className="flex-1 overflow-y-auto">
           <VisitInfoBody visit={visit} />
         </div>
