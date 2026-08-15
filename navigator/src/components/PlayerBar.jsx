@@ -1,5 +1,6 @@
 import { useActiveVisit } from '../context/ActiveVisitContext'
 import { useVisitProgress } from '../context/VisitProgressContext'
+import { useGroupSession } from '../context/GroupSessionContext'
 import { PreviousIcon, NextIcon, PlayIcon, PauseIcon, MicrophoneIcon } from './icons'
 
 function formatTime(sec) {
@@ -29,8 +30,13 @@ function PlayerBar() {
     activeText,
     activeDurationSec,
   } = useVisitProgress()
+  const { role, status: groupStatus } = useGroupSession()
 
   if (!activeVisit) return null
+
+  // In una sessione di gruppo attiva lo studente non sceglie l'opera: è il
+  // professore a decidere per tutta la stanza (visit:set_active_step).
+  const isRestrictedStudent = role === 'student' && groupStatus === 'active'
 
   return (
     <div className="fixed inset-x-0 bottom-16 z-40 border-t border-slate-400/20 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl transition-colors duration-300">
@@ -59,10 +65,10 @@ function PlayerBar() {
         <button
           type="button"
           aria-label="Precedente"
-          onClick={directionsParts ? closeDirections : goToPreviousStep}
-          disabled={!directionsParts && !canGoPreviousStep}
+          onClick={directionsParts ? closeDirections : (isRestrictedStudent ? undefined : goToPreviousStep)}
+          disabled={directionsParts ? false : (isRestrictedStudent || !canGoPreviousStep)}
           className={`flex h-10 w-10 items-center justify-center text-text-muted transition-opacity ${
-            !directionsParts && !canGoPreviousStep ? 'opacity-30' : ''
+            directionsParts ? '' : (isRestrictedStudent || !canGoPreviousStep) ? 'opacity-30' : ''
           }`}
         >
           <PreviousIcon className="h-6 w-6" />
@@ -102,10 +108,10 @@ function PlayerBar() {
         <button
           type="button"
           aria-label="Prossimo"
-          onClick={directionsParts ? closeDirections : goToNextStep}
-          disabled={!directionsParts && !canGoNextStep}
+          onClick={directionsParts ? closeDirections : (isRestrictedStudent ? undefined : goToNextStep)}
+          disabled={directionsParts ? false : (isRestrictedStudent || !canGoNextStep)}
           className={`flex h-10 w-10 items-center justify-center text-text-muted transition-opacity ${
-            !directionsParts && !canGoNextStep ? 'opacity-30' : ''
+            directionsParts ? '' : (isRestrictedStudent || !canGoNextStep) ? 'opacity-30' : ''
           }`}
         >
           <NextIcon className="h-6 w-6" />

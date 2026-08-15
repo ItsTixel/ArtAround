@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { useActiveVisit } from '../context/ActiveVisitContext'
+import { useGroupSession } from '../context/GroupSessionContext'
 import VisitDetailModal from '../components/VisitDetailModal'
+import GroupVisitPreviewModal, { PENDING_CODE_KEY } from '../components/GroupVisitPreviewModal'
 import { formatDuration, formatPrice } from '../components/VisitInfoBody'
 
 const MARKETPLACE_VISITS_URL = '/marketplace/pages/visits.html'
@@ -12,6 +14,7 @@ const REGISTER_URL = '/marketplace/register.html'
 function Home() {
   const { user } = useAuth()
   const { activeVisit, activateVisit, clearActiveVisit } = useActiveVisit()
+  const { lookupCode } = useGroupSession()
   const navigate = useNavigate()
   const location = useLocation()
   const [visits, setVisits] = useState([])
@@ -21,6 +24,8 @@ function Home() {
   // { detailVisit } }) per aprire direttamente il suo popup (vedi Qr.jsx).
   const [detailVisit, setDetailVisit] = useState(() => location.state?.detailVisit || null)
   const [visitCode, setVisitCode] = useState('')
+  const [codePreview, setCodePreview] = useState(null) // { code, preview } | null
+  const [codeError, setCodeError] = useState(null)
 
   useEffect(() => {
     let cancelled = false
@@ -52,11 +57,34 @@ function Home() {
     }
   }, [user])
 
+  async function openCodePreview(code) {
+    setCodeError(null)
+    try {
+      const preview = await lookupCode(code)
+      setCodePreview({ code, preview })
+    } catch (e) {
+      setCodeError(e.message)
+    }
+  }
+
   function handleVisitCodeSubmit(e) {
     e.preventDefault()
-    // Il riscatto di un codice visita richiede una rotta backend non ancora
-    // esistente: per ora il campo è solo interfaccia, senza chiamata reale.
+    if (!visitCode.trim()) return
+    openCodePreview(visitCode.trim())
   }
+
+  // Se l'utente ha inserito un codice da sloggato, è stato mandato a
+  // login/registrati e torna qui: riprende automaticamente l'anteprima
+  // del codice che aveva lasciato in sospeso.
+  useEffect(() => {
+    if (!user) return
+    const pendingCode = localStorage.getItem(PENDING_CODE_KEY)
+    if (!pendingCode) return
+    localStorage.removeItem(PENDING_CODE_KEY)
+    setVisitCode(pendingCode)
+    openCodePreview(pendingCode)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user])
 
   return (
     <div className="flex flex-col gap-8 p-4 pt-6">
@@ -110,6 +138,7 @@ function Home() {
             Vai
           </button>
         </div>
+        {codeError && <p className="text-sm text-[color:var(--color-error)]">{codeError}</p>}
       </form>
 
       <div className="flex flex-col gap-3">
@@ -189,6 +218,14 @@ function Home() {
             clearActiveVisit()
             setDetailVisit(null)
           }}
+        />
+      )}
+
+      {codePreview && (
+        <GroupVisitPreviewModal
+          code={codePreview.code}
+          preview={codePreview.preview}
+          onClose={() => setCodePreview(null)}
         />
       )}
     </div>

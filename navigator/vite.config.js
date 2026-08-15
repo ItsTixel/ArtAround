@@ -10,6 +10,7 @@ export default defineConfig({
     proxy: {
       '/api': 'http://localhost:8000',
       '/assets': 'http://localhost:8000',
+      '/socket.io': { target: 'http://localhost:8000', ws: true },
     },
   },
 })
