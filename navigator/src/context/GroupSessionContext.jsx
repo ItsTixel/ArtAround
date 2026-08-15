@@ -226,6 +226,26 @@ export function GroupSessionProvider({ children }) {
     setError(null)
   }
 
+  // Ricorda se la sessione è mai arrivata ad 'active'/'quiz', per distinguere
+  // "il professore ha terminato una visita in corso" (va fatto uscire subito
+  // lo studente, ovunque si trovi: /opera, /mappa, /comandi, /qr) da "il
+  // professore ha annullato prima di avviarla" (SessionLobby.jsx già mostra
+  // un messaggio dedicato senza bisogno di essere scacciati altrove).
+  const wasActiveRef = useRef(false)
+  useEffect(() => {
+    if (status === 'active' || status === 'quiz') wasActiveRef.current = true
+  }, [status])
+
+  useEffect(() => {
+    if (role !== 'student') return
+    if (status !== 'finished') return
+    if (!wasActiveRef.current) return
+    wasActiveRef.current = false
+    leaveSession()
+    navigate('/', { state: { groupSessionEnded: true } })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [role, status])
+
   // Riprende una sessione di gruppo dopo un reload della pagina: nessuna
   // chiamata REST distruttiva, solo il fetch del contenuto + la ri-unione
   // via socket (vedi establishSession).

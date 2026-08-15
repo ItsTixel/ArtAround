@@ -4,6 +4,7 @@ import jsQR from 'jsqr'
 import { useAuth } from '../context/AuthContext'
 import { useActiveVisit } from '../context/ActiveVisitContext'
 import { useVisitProgress } from '../context/VisitProgressContext'
+import { useGroupSession } from '../context/GroupSessionContext'
 import EntityFoundModal from '../components/EntityFoundModal'
 import VisitAdoptModal from '../components/VisitAdoptModal'
 
@@ -27,6 +28,10 @@ function Qr() {
   const { user, refresh } = useAuth()
   const { activeVisit } = useActiveVisit()
   const { step, steps, goToStep, pauseNarration } = useVisitProgress()
+  const { role, status: groupStatus } = useGroupSession()
+  // Scansionare un QR durante una sessione di gruppo permetterebbe di saltare
+  // a un'altra opera/visita fuori dal controllo del professore.
+  const isRestrictedStudent = role === 'student' && groupStatus === 'active'
   const [status, setStatus] = useState('requesting') // 'requesting' | 'scanning' | 'detected' | 'error'
   const [errorMessage, setErrorMessage] = useState('')
   const [result, setResult] = useState(null) // { type, id } | null
@@ -117,10 +122,11 @@ function Qr() {
   }, [tick])
 
   useEffect(() => {
+    if (isRestrictedStudent) return
     startCamera()
     return () => stopCamera()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [isRestrictedStudent])
 
   useEffect(() => {
     if (status !== 'detected' || result?.type !== 'entity') {
@@ -256,6 +262,15 @@ function Qr() {
       },
     },
   ]
+
+  if (isRestrictedStudent) {
+    return (
+      <div className="flex flex-col items-center gap-3 p-6 text-center">
+        <h1 className="font-serif text-2xl font-semibold text-text">QR</h1>
+        <p className="text-text-muted">Non disponibile durante una visita di gruppo in corso.</p>
+      </div>
+    )
+  }
 
   return (
     <div className="flex flex-col gap-4 p-6">

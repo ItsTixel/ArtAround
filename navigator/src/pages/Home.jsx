@@ -26,6 +26,9 @@ function Home() {
   const [visitCode, setVisitCode] = useState('')
   const [codePreview, setCodePreview] = useState(null) // { code, preview } | null
   const [codeError, setCodeError] = useState(null)
+  // Il professore ha terminato una visita di gruppo in corso: GroupSessionContext
+  // riporta qui lo studente via navigate('/', { state: { groupSessionEnded } }).
+  const [groupSessionEnded, setGroupSessionEnded] = useState(() => Boolean(location.state?.groupSessionEnded))
 
   useEffect(() => {
     let cancelled = false
@@ -94,6 +97,20 @@ function Home() {
           Inserisci un codice visita, oppure scegli una delle tue visite qui sotto.
         </p>
       </div>
+
+      {groupSessionEnded && (
+        <div className="flex items-center justify-between gap-3 rounded-lg border border-border bg-surface p-3 text-sm text-text">
+          <span>Il professore ha terminato la visita di gruppo.</span>
+          <button
+            type="button"
+            onClick={() => setGroupSessionEnded(false)}
+            aria-label="Chiudi"
+            className="shrink-0 text-text-muted hover:text-text"
+          >
+            ×
+          </button>
+        </div>
+      )}
 
       {!user && (
         <div className="flex flex-col gap-2 rounded-lg border border-accent/40 bg-accent/10 p-4 text-center">

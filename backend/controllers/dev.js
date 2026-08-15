@@ -9,6 +9,7 @@ const CATEGORIES = [
 	{ name: 'museums', file: 'museums.json' },
 	{ name: 'entities', file: 'entities.json' },
 	{ name: 'items', file: 'items.json' },
+	{ name: 'quizzes', file: 'quizzes.json' },
 	{ name: 'visits', file: 'visits.json' },
 	{ name: 'users', file: 'users.json' },
 	{ name: 'orders', file: 'orders.json' },

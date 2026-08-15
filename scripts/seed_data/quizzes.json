@@ -1,0 +1,37 @@
+[
+  {
+    "_id": {
+      "$oid": "fee000000000000000000001"
+    },
+    "title": "Quiz: Gruppone Visitone",
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "questions": [
+      {
+        "text": "Il polittico d'oro della Saletta di Giotto è stato per secoli:",
+        "item": {
+          "$oid": "ddd000000000000000000019"
+        },
+        "options": ["Smembrato e disperso", "Nascosto in un caveau", "Esposto solo di notte"],
+        "correct_option_index": 0
+      },
+      {
+        "text": "Cosa trafigge San Giorgio nel dipinto di Vitale da Bologna?",
+        "item": {
+          "$oid": "ddd000000000000000000020"
+        },
+        "options": ["Un leone", "Un drago", "Un cavallo"],
+        "correct_option_index": 1
+      },
+      {
+        "text": "Cosa regge in mano San Petronio nel dipinto?",
+        "item": {
+          "$oid": "ddd000000000000000000021"
+        },
+        "options": ["Un modellino della città", "Un libro sacro", "Una spada"],
+        "correct_option_index": 0
+      }
+    ]
+  }
+]

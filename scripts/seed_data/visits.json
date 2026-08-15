@@ -1,10 +1,302 @@
-[   {
+[   
+  {
     "_id": {
       "$oid": "eee000000000000000000090"
     },
     "is_group": true,
     "code":"1111",
-    "quiz":"",
+    "quiz": {
+      "$oid": "fee000000000000000000001"
+    },
+    "title": "Gruppone Visitone",
+    "description": "Un percorso introduttivo pensato per chi visita la Pinacoteca Nazionale di Bologna per la prima volta: dieci opere, dal Trecento gotico al Barocco, raccontate in modo semplice e accessibile a tutti.",
+    "museum": [
+      {
+        "$oid": "bbb000000000000000000004"
+      }
+    ],
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "base_price": 0,
+    "steps": [
+      {
+        "_id": {
+          "$oid": "fff000000000000000000031"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000019"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000019"
+          },
+          {
+            "$oid": "ddd000000000000000000040"
+          },
+          {
+            "$oid": "ddd000000000000000000041"
+          }
+        ],
+        "logistic_note": "Entra dall'ingresso principale e sali al primo piano: la Saletta di Giotto è la prima sala del percorso.",
+        "intro_note": "Comincia da qui: un polittico d'oro che per secoli è stato smembrato e disperso, prima di tornare intero in questa sala.",
+        "order": 1
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000032"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000020"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000020"
+          },
+          {
+            "$oid": "ddd000000000000000000042"
+          },
+          {
+            "$oid": "ddd000000000000000000043"
+          }
+        ],
+        "logistic_note": "Prosegui nella Sala 1, dedicata al Duecento e al Gotico bolognese.",
+        "intro_note": "Cerca il drago: Vitale da Bologna lo dipinge contorto e feroce, mentre San Giorgio lo trafigge senza esitazione.",
+        "order": 2
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000033"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000021"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000021"
+          },
+          {
+            "$oid": "ddd000000000000000000044"
+          },
+          {
+            "$oid": "ddd000000000000000000045"
+          }
+        ],
+        "logistic_note": "Raggiungi le sale 10-12, dedicate al primo Rinascimento bolognese.",
+        "intro_note": "Osserva il modellino della città che San Petronio regge in mano: è una delle prime vedute dipinte di Bologna.",
+        "order": 3
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000034"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000022"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000022"
+          },
+          {
+            "$oid": "ddd000000000000000000046"
+          },
+          {
+            "$oid": "ddd000000000000000000047"
+          }
+        ],
+        "logistic_note": "Resta nella stessa area, alla Sala 13.",
+        "intro_note": "I due fratelli Bentivoglio, inginocchiati ai lati, volevano essere ricordati per sempre accanto alla Sacra Famiglia.",
+        "order": 4
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000035"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000024"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000024"
+          },
+          {
+            "$oid": "ddd000000000000000000048"
+          },
+          {
+            "$oid": "ddd000000000000000000049"
+          }
+        ],
+        "logistic_note": "Raggiungi la Sala 15, il cuore rinascimentale della Pinacoteca.",
+        "intro_note": "Fermati qualche istante prima di leggere la guida: osserva gli strumenti musicali abbandonati ai piedi di santa Cecilia.",
+        "order": 5
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000036"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000025"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000025"
+          },
+          {
+            "$oid": "ddd000000000000000000050"
+          },
+          {
+            "$oid": "ddd000000000000000000051"
+          }
+        ],
+        "logistic_note": "Prosegui verso la Sala 18.",
+        "intro_note": "Si racconta che questo dipinto fosse tra i preferiti di Guido Reni, che lo studierà a lungo.",
+        "order": 6
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000037"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000026"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000026"
+          },
+          {
+            "$oid": "ddd000000000000000000052"
+          },
+          {
+            "$oid": "ddd000000000000000000053"
+          }
+        ],
+        "logistic_note": "Entra nella Sala 23, dedicata ai Carracci.",
+        "intro_note": "Guarda in basso a sinistra: la donna inginocchiata in abito da monaca è la committente del dipinto.",
+        "order": 7
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000038"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000029"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000029"
+          },
+          {
+            "$oid": "ddd000000000000000000054"
+          },
+          {
+            "$oid": "ddd000000000000000000055"
+          }
+        ],
+        "logistic_note": "Prosegui nella Sala 24, dedicata a Guido Reni.",
+        "intro_note": "È una scena drammatica: prenditi un momento prima di osservarla da vicino.",
+        "order": 8
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000039"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000030"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000030"
+          },
+          {
+            "$oid": "ddd000000000000000000056"
+          },
+          {
+            "$oid": "ddd000000000000000000057"
+          }
+        ],
+        "logistic_note": "Resta nella Sala 24: la grande pala si trova sulla parete opposta.",
+        "intro_note": "Conta i santi allineati in basso: sono i patroni della città di Bologna.",
+        "order": 9
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000040"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000033"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000033"
+          },
+          {
+            "$oid": "ddd000000000000000000058"
+          },
+          {
+            "$oid": "ddd000000000000000000059"
+          }
+        ],
+        "logistic_note": "Concludi il percorso nelle sale dedicate al Seicento bolognese.",
+        "intro_note": "Un finale luminoso: la luce calda di Guercino chiude la nostra prima visita alla Pinacoteca.",
+        "order": 10
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vitale%20da%20bologna%2C%20san%20giorgio%20libera%20la%20principessa%2C%201330-35%20ca.%2C%2001.jpg?width=1280",
+    "tags": [
+      "pinacoteca",
+      "bologna",
+      "principianti",
+      "famiglie",
+      "panoramica"
+    ],
+    "is_public": true,
+    "estimated_duration_sec": 481,
+    "createdAt": {
+      "$date": "2025-03-10T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-11T00:00:00Z"
+    }
+  },
+    {
+    "_id": {
+      "$oid": "eee000000000000000000091"
+    },
+    "is_group": true,
+    "code":"2222",
+    "quiz": {
+      "$oid": "fee000000000000000000001"
+    },
     "title": "Gruppone Visitone",
     "description": "Un percorso introduttivo pensato per chi visita la Pinacoteca Nazionale di Bologna per la prima volta: dieci opere, dal Trecento gotico al Barocco, raccontate in modo semplice e accessibile a tutti.",
     "museum": [

@@ -384,8 +384,8 @@ async function joinSession(req, res) {
 
     if (!['waiting', 'active'].includes(visit.live_session.status)) {
       const message = visit.live_session.status === 'finished'
-        ? 'This session has ended.'
-        : 'Session not open yet.';
+        ? 'Questa sessione è terminata.'
+        : 'La sessione non è ancora aperta.';
       return res.status(400).json({ error: message });
     }
 

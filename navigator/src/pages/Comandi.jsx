@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useActiveVisit } from '../context/ActiveVisitContext'
 import { useVisitProgress, TONE_LABELS } from '../context/VisitProgressContext'
+import { useGroupSession } from '../context/GroupSessionContext'
 import NoActiveVisit from '../components/NoActiveVisit'
 import {
   PreviousIcon,
@@ -170,9 +171,14 @@ function Comandi() {
     goToNextParagraph,
     directionsParts,
   } = useVisitProgress()
+  const { role, status: groupStatus } = useGroupSession()
   const [serviceMessage, setServiceMessage] = useState(null)
 
   if (!activeVisit) return <NoActiveVisit />
+
+  // In una sessione di gruppo attiva lo studente non sceglie l'opera: stessa
+  // restrizione applicata in PlayerBar.jsx.
+  const isRestrictedStudent = role === 'student' && groupStatus === 'active'
 
   // A visit can span more than one museum (es. "Leonardo tra Firenze e
   // Milano"): show one section per museum, with the museum of the step
@@ -216,14 +222,14 @@ function Comandi() {
             label="Precedente"
             Icon={PreviousIcon}
             onClick={goToPreviousStep}
-            disabled={!canGoPreviousStep}
+            disabled={isRestrictedStudent || !canGoPreviousStep}
             colorClasses="bg-sky-600 text-white"
           />
           <CommandButton
             label="Prossimo"
             Icon={NextIcon}
             onClick={goToNextStep}
-            disabled={!canGoNextStep}
+            disabled={isRestrictedStudent || !canGoNextStep}
             colorClasses="bg-sky-600 text-white"
           />
           <CommandButton
