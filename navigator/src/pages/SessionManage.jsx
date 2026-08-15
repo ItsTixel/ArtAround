@@ -1,6 +1,13 @@
 import { useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGroupSession } from '../context/GroupSessionContext'
+import { PlayIcon, PauseIcon } from '../components/icons'
+
+const TONE_ABBR = { childish: 'Infan.', simple: 'Elem.', medium: 'Med.', technical: 'Avan.' }
+
+function tileClasses(extra = '') {
+  return `flex h-8 min-w-9 items-center justify-center rounded-md border border-[color:var(--pill-border)] bg-[color:var(--pill-bg)] px-2 text-xs font-medium text-text-muted ${extra}`
+}
 
 function SessionManage() {
   const navigate = useNavigate()
@@ -21,6 +28,15 @@ function SessionManage() {
     if (!groupVisit?.steps?.length) return []
     return [...groupVisit.steps].sort((a, b) => a.order - b.order)
   }, [groupVisit])
+
+  const activeStep = sortedSteps[currentStepIndex]
+
+  // Il totale dei paragrafi dipende dall'opera (item) che lo studente sta
+  // guardando col proprio tono — non è un numero fisso della visita.
+  function paragraphTotal(tone) {
+    const item = activeStep?.items?.find((it) => it.tone === tone)
+    return item?.descriptions?.length || null
+  }
 
   if (!groupVisit) {
     return (
@@ -66,11 +82,39 @@ function SessionManage() {
           <p className="text-sm text-text-muted">Nessuno studente si è ancora unito.</p>
         ) : (
           <ul className="flex flex-col gap-2">
-            {roster.map((p) => (
-              <li key={p.userId} className="glass-panel rounded-xl px-4 py-2.5 text-sm text-text">
-                {p.display_name || p.username}
-              </li>
-            ))}
+            {roster.map((p) => {
+              const total = paragraphTotal(p.tone)
+              return (
+                <li key={p.userId} className="glass-panel flex items-center justify-between gap-3 rounded-xl px-4 py-2.5 text-sm text-text">
+                  <span className="min-w-0 truncate">{p.display_name || p.username}</span>
+                  {(status === 'active' || status === 'quiz') && (
+                    <div className="flex shrink-0 items-center gap-1.5">
+                      <span className={tileClasses()} title="Tono">
+                        {p.tone ? TONE_ABBR[p.tone] : '–'}
+                      </span>
+                      <span className={tileClasses()} title="Paragrafo">
+                        {p.paragraphIndex != null ? `${p.paragraphIndex + 1}${total ? `/${total}` : ''}` : '–'}
+                      </span>
+                      <span className={tileClasses()} title={p.playbackState === 'playing' ? 'In ascolto' : p.playbackState === 'paused' ? 'In pausa' : 'Playback'}>
+                        {p.playbackState === 'playing' ? (
+                          <PlayIcon className="h-3.5 w-3.5" />
+                        ) : p.playbackState === 'paused' ? (
+                          <PauseIcon className="h-3.5 w-3.5" />
+                        ) : (
+                          '–'
+                        )}
+                      </span>
+                      <span
+                        className={tileClasses(p.ready ? 'border-info! bg-info! text-on-accent!' : '')}
+                        title="Pronto"
+                      >
+                        {p.ready ? '✓' : '–'}
+                      </span>
+                    </div>
+                  )}
+                </li>
+              )
+            })}
           </ul>
         )}
       </div>

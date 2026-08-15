@@ -54,7 +54,12 @@ module.exports = function registerVisitSessionHandlers(io, socket) {
         return ack?.({ error: 'Invalid stepIndex.' });
       }
 
-      await Visit.updateOne({ _id: visitId }, { $set: { 'live_session.current_step_index': stepIndex } });
+      // Il "pronto" è legato all'opera corrente: cambiando opera va
+      // riazzerato per tutti, non solo per chi lo emetterà di nuovo.
+      await Visit.updateOne(
+        { _id: visitId },
+        { $set: { 'live_session.current_step_index': stepIndex, 'live_session.participants.$[].ready': false } }
+      );
       io.to(visitRoom(visitId)).emit('visit:active_step_changed', { stepIndex });
       ack?.({ ok: true });
     } catch (e) {
@@ -62,9 +67,9 @@ module.exports = function registerVisitSessionHandlers(io, socket) {
     }
   });
 
-  // Solo lo studente: aggiorna il proprio tono/paragrafo/playback locale.
-  // Nessun campo stepIndex qui — lo studente non naviga tra le opere.
-  socket.on('visit:update_state', async ({ visitId, tone, paragraphIndex, playbackState }, ack) => {
+  // Solo lo studente: aggiorna il proprio tono/paragrafo/playback/pronto
+  // locale. Nessun campo stepIndex qui — lo studente non naviga tra le opere.
+  socket.on('visit:update_state', async ({ visitId, tone, paragraphIndex, playbackState, ready }, ack) => {
     try {
       const visit = await Visit.findById(visitId).select('live_session');
       const isParticipant = visit?.live_session.participants.some(p => p.user.toString() === socket.user.id);
@@ -79,6 +84,7 @@ module.exports = function registerVisitSessionHandlers(io, socket) {
       if (tone !== undefined) set['live_session.participants.$[elem].tone'] = tone;
       if (paragraphIndex !== undefined) set['live_session.participants.$[elem].paragraph_index'] = paragraphIndex;
       if (playbackState !== undefined) set['live_session.participants.$[elem].playback_state'] = playbackState;
+      if (ready !== undefined) set['live_session.participants.$[elem].ready'] = ready;
       if (Object.keys(set).length === 0) return ack?.({ ok: true });
 
       await Visit.updateOne(
@@ -88,7 +94,7 @@ module.exports = function registerVisitSessionHandlers(io, socket) {
       );
 
       io.to(hostRoom(visitId)).emit('visit:participant_state_changed', {
-        userId: socket.user.id, tone, paragraphIndex, playbackState
+        userId: socket.user.id, tone, paragraphIndex, playbackState, ready
       });
       ack?.({ ok: true });
     } catch (e) {

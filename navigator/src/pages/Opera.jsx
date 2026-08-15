@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useActiveVisit } from '../context/ActiveVisitContext'
 import { useVisitProgress, TONE_LABELS } from '../context/VisitProgressContext'
+import { useGroupSession } from '../context/GroupSessionContext'
 import NoActiveVisit from '../components/NoActiveVisit'
 import { SignpostIcon, MuseumIcon, FloorIcon, RoomIcon } from '../components/icons'
 
@@ -36,6 +37,7 @@ function Opera() {
     handleDescSelect,
     directionsParts,
   } = useVisitProgress()
+  const { role, status: groupStatus, isReady, setReady } = useGroupSession()
 
   if (!activeVisit) return <NoActiveVisit />
 
@@ -186,6 +188,23 @@ function Opera() {
             </p>
           </div>
         </>
+      )}
+
+      {role === 'student' && groupStatus === 'active' && !directionsParts && (
+        <div className="px-6">
+          <button
+            type="button"
+            onClick={() => setReady(!isReady)}
+            aria-pressed={isReady}
+            className={`w-full rounded-md border px-4 py-2.5 text-sm font-medium transition-colors ${
+              isReady
+                ? 'border-info bg-info text-on-accent'
+                : 'border-border text-text'
+            }`}
+          >
+            {isReady ? 'Pronto — in attesa del professore' : 'Segnala che sei pronto per la prossima opera'}
+          </button>
+        </div>
       )}
 
       {imageOpen && entity.image_url && (

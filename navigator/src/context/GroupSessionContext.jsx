@@ -11,7 +11,7 @@ const GroupSessionContext = createContext(null)
 export function GroupSessionProvider({ children }) {
   const navigate = useNavigate()
   const { activeVisit, activateVisit, clearActiveVisit } = useActiveVisit()
-  const { goToStep } = useVisitProgress()
+  const { goToStep, activeTone, activeDescIndex, playbackState: localPlaybackState } = useVisitProgress()
 
   const [role, setRole] = useState(null) // 'host' | 'student' | null
   const [visitId, setVisitId] = useState(null)
@@ -19,8 +19,9 @@ export function GroupSessionProvider({ children }) {
   const [status, setStatus] = useState(null) // 'waiting' | 'active' | 'quiz' | 'finished' | null
   const [currentStepIndex, setCurrentStepIndex] = useState(0)
   const [connected, setConnected] = useState(false)
-  const [roster, setRoster] = useState([]) // host only
+  const [roster, setRoster] = useState([]) // host only — include per-studente tono/paragrafo/playback/pronto, valorizzati man mano che arrivano
   const [ownParticipant, setOwnParticipant] = useState(null) // student only
+  const [isReady, setIsReady] = useState(false) // student only: proprio stato "pronto per la prossima opera"
   const [error, setError] = useState(null)
 
   const socketRef = useRef(null)
@@ -45,6 +46,10 @@ export function GroupSessionProvider({ children }) {
           username: p.user?.username,
           display_name: p.user?.display_name,
           joined_at: p.joined_at,
+          tone: p.tone,
+          paragraphIndex: p.paragraph_index,
+          playbackState: p.playback_state,
+          ready: p.ready,
         }))
       )
     } else {
@@ -79,7 +84,16 @@ export function GroupSessionProvider({ children }) {
       setCurrentStepIndex(payload?.stepIndex ?? 0)
     })
     socket.on('visit:session_ended', () => setStatus('finished'))
-    socket.on('visit:active_step_changed', (payload) => setCurrentStepIndex(payload?.stepIndex ?? 0))
+    socket.on('visit:active_step_changed', (payload) => {
+      setCurrentStepIndex(payload?.stepIndex ?? 0)
+      // Il backend azzera "pronto" per tutti i partecipanti a ogni cambio
+      // opera (è un segnale legato all'opera corrente, non alla sessione):
+      // rispecchia subito lo stesso reset nel roster del professore, senza
+      // aspettare un visit:participant_state_changed per ciascuno studente.
+      if (roleRef.current === 'host') {
+        setRoster((prev) => prev.map((p) => (p.ready ? { ...p, ready: false } : p)))
+      }
+    })
     // Solo lato host (la room :host è l'unica a riceverlo): un nuovo
     // partecipante che si è unito dopo che il professore era già connesso.
     socket.on('visit:participant_joined', (payload) => {
@@ -95,6 +109,22 @@ export function GroupSessionProvider({ children }) {
     // socket): togli subito la riga dal roster del professore.
     socket.on('visit:participant_left', (payload) => {
       setRoster((prev) => prev.filter((p) => p.userId !== payload.userId))
+    })
+    // Solo lato host: tono/paragrafo/playback/pronto di uno studente sono
+    // cambiati. Il payload porta solo i campi effettivamente aggiornati
+    // (undefined per gli altri), quindi si fa merge parziale sulla riga.
+    socket.on('visit:participant_state_changed', (payload) => {
+      setRoster((prev) =>
+        prev.map((p) => {
+          if (p.userId !== payload.userId) return p
+          const next = { ...p }
+          if (payload.tone !== undefined) next.tone = payload.tone
+          if (payload.paragraphIndex !== undefined) next.paragraphIndex = payload.paragraphIndex
+          if (payload.playbackState !== undefined) next.playbackState = payload.playbackState
+          if (payload.ready !== undefined) next.ready = payload.ready
+          return next
+        })
+      )
     })
     socketRef.current = socket
     return socket
@@ -203,6 +233,19 @@ export function GroupSessionProvider({ children }) {
     await fetch(`/api/visits/${visitId}/session/end`, { method: 'POST', credentials: 'include' })
   }
 
+  // Solo lo studente: emette il proprio stato locale al professore (mai
+  // richiesto in risposta, il monitor si aggiorna via visit:participant_state_changed).
+  function updateOwnState(partial) {
+    const socket = socketRef.current
+    if (!socket || !visitIdRef.current || roleRef.current !== 'student') return
+    socket.emit('visit:update_state', { visitId: visitIdRef.current, ...partial })
+  }
+
+  function setReady(value) {
+    setIsReady(value)
+    updateOwnState({ ready: value })
+  }
+
   function setActiveStep(stepIndex) {
     const socket = socketRef.current
     if (!socket || !visitId) return
@@ -235,6 +278,7 @@ export function GroupSessionProvider({ children }) {
     setCurrentStepIndex(0)
     setRoster([])
     setOwnParticipant(null)
+    setIsReady(false)
     setError(null)
   }
 
@@ -307,6 +351,27 @@ export function GroupSessionProvider({ children }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [role, activeVisit?._id, currentStepIndex])
 
+  // Telemetria live dello studente: ogni cambio di tono/paragrafo/playback
+  // locale viene inoltrato al professore. Salta l'invio quando playbackState
+  // è ancora 'idle' (prima del primo play) — non è un valore accettato dallo
+  // schema del server ('playing'|'paused' soltanto), e non c'è comunque nulla
+  // di significativo da mostrare nel monitor prima che l'ascolto inizi.
+  useEffect(() => {
+    if (role !== 'student' || status !== 'active') return
+    if (localPlaybackState === 'idle') return
+    updateOwnState({ tone: activeTone, paragraphIndex: activeDescIndex, playbackState: localPlaybackState })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [role, status, activeTone, activeDescIndex, localPlaybackState])
+
+  // "Pronto" è legato all'opera corrente: quando il professore ne cambia una
+  // (currentStepIndex cambia) il proprio segnale locale si azzera, così lo
+  // studente deve premerlo di nuovo per la nuova opera. Il backend fa lo
+  // stesso reset lato server per il roster del professore.
+  useEffect(() => {
+    if (role !== 'student') return
+    setIsReady(false)
+  }, [role, currentStepIndex])
+
   useEffect(() => {
     return () => {
       if (socketRef.current) socketRef.current.disconnect()
@@ -322,6 +387,7 @@ export function GroupSessionProvider({ children }) {
     connected,
     roster,
     ownParticipant,
+    isReady,
     error,
     lookupCode,
     openAsHost,
@@ -331,6 +397,7 @@ export function GroupSessionProvider({ children }) {
     startSession,
     endSession,
     setActiveStep,
+    setReady,
     leaveSession,
   }
 

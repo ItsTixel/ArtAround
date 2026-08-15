@@ -19,6 +19,7 @@ const liveParticipantSchema = new Schema({
   tone: { type: String, enum: ['childish', 'simple', 'medium', 'technical'], default: 'medium' },
   paragraph_index: { type: Number, default: 0 },
   playback_state: { type: String, enum: ['playing', 'paused'], default: 'playing' },
+  ready: { type: Boolean, default: false },
   quiz_answers: { type: [Number], default: [] },
   quiz_score: { type: Number, default: null }
 }, { _id: false });
