@@ -2,10 +2,15 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/auth');
 const verifyToken = require('../middlewares/verifyToken');
+const rateLimit = require('../middlewares/rateLimit');
 
-router.post('/login',  controller.login);
-router.post('/register', controller.register);
-router.post('/google', controller.googleAuth);
+const loginLimiter = rateLimit({ windowMs: 5 * 60 * 1000, max: 20 });
+const registerLimiter = rateLimit({ windowMs: 60 * 60 * 1000, max: 10 });
+const googleLimiter = rateLimit({ windowMs: 5 * 60 * 1000, max: 20 });
+
+router.post('/login',  loginLimiter, controller.login);
+router.post('/register', registerLimiter, controller.register);
+router.post('/google', googleLimiter, controller.googleAuth);
 router.post('/logout', controller.logout);
 router.get('/me', verifyToken, controller.me);
 
