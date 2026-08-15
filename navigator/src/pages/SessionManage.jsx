@@ -21,6 +21,7 @@ function SessionManage() {
     startSession,
     endSession,
     setActiveStep,
+    startQuiz,
     leaveSession,
   } = useGroupSession()
 
@@ -87,7 +88,7 @@ function SessionManage() {
               return (
                 <li key={p.userId} className="glass-panel flex items-center justify-between gap-3 rounded-xl px-4 py-2.5 text-sm text-text">
                   <span className="min-w-0 truncate">{p.display_name || p.username}</span>
-                  {(status === 'active' || status === 'quiz') && (
+                  {status === 'active' && (
                     <div className="flex shrink-0 items-center gap-1.5">
                       <span className={tileClasses()} title="Tono">
                         {p.tone ? TONE_ABBR[p.tone] : '–'}
@@ -112,6 +113,17 @@ function SessionManage() {
                       </span>
                     </div>
                   )}
+                  {status === 'quiz' && (
+                    <span
+                      className={`shrink-0 rounded-full border px-2.5 py-1 text-xs font-medium ${
+                        p.quizScore != null
+                          ? 'border-info bg-info text-on-accent'
+                          : 'border-[color:var(--pill-border)] bg-[color:var(--pill-bg)] text-text-muted'
+                      }`}
+                    >
+                      {p.quizScore != null ? `${p.quizScore}/${p.quizTotal}` : 'In corso…'}
+                    </span>
+                  )}
                 </li>
               )
             })}
@@ -129,53 +141,63 @@ function SessionManage() {
         </button>
       )}
 
-      {(status === 'active' || status === 'quiz') && (
-        <>
-          <div className="mt-5 flex flex-col gap-2">
-            <h2 className="text-xs font-medium uppercase tracking-wide text-text-muted">Opera attiva</h2>
-            <ul className="flex max-h-72 flex-col gap-2 overflow-y-auto pr-1">
-              {sortedSteps.map((step, index) => (
-                <li key={step._id || index}>
-                  <button
-                    type="button"
-                    onClick={() => setActiveStep(index)}
-                    className={`glass-panel flex w-full items-center gap-3 rounded-xl p-2.5 text-left ${
-                      index === currentStepIndex ? 'border-accent!' : ''
-                    }`}
-                  >
-                    {step.entity?.image_url && (
-                      <img src={step.entity.image_url} alt="" className="h-10 w-10 shrink-0 rounded-md object-cover" />
-                    )}
-                    <span className="min-w-0 flex-1 truncate text-sm text-text">{step.entity?.name}</span>
-                    {index === currentStepIndex && (
-                      <span className="shrink-0 rounded-full bg-accent px-2 py-0.5 text-[0.65rem] font-medium text-on-accent">
-                        In corso
-                      </span>
-                    )}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
+      {status === 'active' && (
+        <div className="mt-5 flex flex-col gap-2">
+          <h2 className="text-xs font-medium uppercase tracking-wide text-text-muted">Opera attiva</h2>
+          <ul className="flex max-h-72 flex-col gap-2 overflow-y-auto pr-1">
+            {sortedSteps.map((step, index) => (
+              <li key={step._id || index}>
+                <button
+                  type="button"
+                  onClick={() => setActiveStep(index)}
+                  className={`glass-panel flex w-full items-center gap-3 rounded-xl p-2.5 text-left ${
+                    index === currentStepIndex ? 'border-accent!' : ''
+                  }`}
+                >
+                  {step.entity?.image_url && (
+                    <img src={step.entity.image_url} alt="" className="h-10 w-10 shrink-0 rounded-md object-cover" />
+                  )}
+                  <span className="min-w-0 flex-1 truncate text-sm text-text">{step.entity?.name}</span>
+                  {index === currentStepIndex && (
+                    <span className="shrink-0 rounded-full bg-accent px-2 py-0.5 text-[0.65rem] font-medium text-on-accent">
+                      In corso
+                    </span>
+                  )}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
-          <div className="mt-5 flex gap-3">
+      {status === 'quiz' && (
+        <div className="mt-5 flex flex-col gap-2">
+          <h2 className="text-xs font-medium uppercase tracking-wide text-text-muted">Quiz in corso</h2>
+          <p className="text-sm text-text-muted">
+            {roster.filter((p) => p.quizScore != null).length}/{roster.length} studenti hanno risposto.
+          </p>
+        </div>
+      )}
+
+      {(status === 'active' || status === 'quiz') && (
+        <div className="mt-5 flex gap-3">
+          {status === 'active' && (
             <button
               type="button"
-              disabled
-              title="Disponibile in un prossimo aggiornamento"
-              className="flex-1 rounded-md border border-border px-4 py-2.5 text-sm font-medium text-text-muted opacity-50"
+              onClick={startQuiz}
+              className="flex-1 rounded-md border border-border px-4 py-2.5 text-sm font-medium text-text"
             >
               Avvia quiz
             </button>
-            <button
-              type="button"
-              onClick={endSession}
-              className="flex-1 rounded-md border border-border px-4 py-2.5 text-sm font-medium text-text"
-            >
-              Termina visita
-            </button>
-          </div>
-        </>
+          )}
+          <button
+            type="button"
+            onClick={endSession}
+            className="flex-1 rounded-md border border-border px-4 py-2.5 text-sm font-medium text-text"
+          >
+            Termina visita
+          </button>
+        </div>
       )}
 
       {status === 'finished' && (

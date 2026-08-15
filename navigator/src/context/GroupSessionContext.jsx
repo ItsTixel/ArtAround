@@ -22,6 +22,11 @@ export function GroupSessionProvider({ children }) {
   const [roster, setRoster] = useState([]) // host only — include per-studente tono/paragrafo/playback/pronto, valorizzati man mano che arrivano
   const [ownParticipant, setOwnParticipant] = useState(null) // student only
   const [isReady, setIsReady] = useState(false) // student only: proprio stato "pronto per la prossima opera"
+  // Quiz sanificato (mai correct_option_index): arriva via visit:quiz_started
+  // o, per uno studente che entra/rientra a quiz già avviato, nell'ack di
+  // visit:join. L'host non ne ha bisogno per la UI (usa groupVisit.quiz, che
+  // include le risposte corrette), ma lo teniamo comunque per simmetria.
+  const [quiz, setQuiz] = useState(null)
   const [error, setError] = useState(null)
 
   const socketRef = useRef(null)
@@ -54,6 +59,7 @@ export function GroupSessionProvider({ children }) {
       )
     } else {
       setOwnParticipant(ls.participant || null)
+      if (ls.quiz) setQuiz(ls.quiz)
     }
   }
 
@@ -84,6 +90,10 @@ export function GroupSessionProvider({ children }) {
       setCurrentStepIndex(payload?.stepIndex ?? 0)
     })
     socket.on('visit:session_ended', () => setStatus('finished'))
+    socket.on('visit:quiz_started', (payload) => {
+      setStatus('quiz')
+      setQuiz(payload?.quiz || null)
+    })
     socket.on('visit:active_step_changed', (payload) => {
       setCurrentStepIndex(payload?.stepIndex ?? 0)
       // Il backend azzera "pronto" per tutti i partecipanti a ogni cambio
@@ -126,12 +136,19 @@ export function GroupSessionProvider({ children }) {
         })
       )
     })
+    // Solo lato host: uno studente ha inviato le risposte del quiz.
+    socket.on('visit:quiz_result', (payload) => {
+      setRoster((prev) =>
+        prev.map((p) => (p.userId === payload.userId ? { ...p, quizScore: payload.score, quizTotal: payload.totalQuestions } : p))
+      )
+    })
     socketRef.current = socket
     return socket
   }
 
   async function establishSession(newVisitId, newRole, { pendingStepIndex } = {}) {
     setError(null)
+    setQuiz(null)
     let visit
     try {
       const res = await fetch(`/api/visits/${newVisitId}`, { credentials: 'include' })
@@ -173,7 +190,11 @@ export function GroupSessionProvider({ children }) {
       navigate('/sessione/gestisci')
     } else {
       const finalStatus = ack.live_session.status
-      if (finalStatus === 'active') navigate('/opera')
+      // 'quiz' atterra su /opera come 'active': GroupQuizModal (montata
+      // globalmente) mostra il quiz sopra qualunque pagina, non serve una
+      // rotta dedicata — e se lo studente ha già risposto (rientro dopo
+      // reload) la modale resta chiusa da sola.
+      if (finalStatus === 'active' || finalStatus === 'quiz') navigate('/opera')
       else if (finalStatus === 'finished') {
         setError('Questa visita è terminata.')
         navigate('/')
@@ -233,6 +254,36 @@ export function GroupSessionProvider({ children }) {
     await fetch(`/api/visits/${visitId}/session/end`, { method: 'POST', credentials: 'include' })
   }
 
+  // Solo il professore. Lo stato aggiornato (status='quiz' + le domande
+  // sanificate) arriva a tutti — incluso il professore stesso, che è anche
+  // lui nella visitRoom — via l'evento socket visit:quiz_started, non dalla
+  // risposta REST: nessun aggiornamento locale qui.
+  async function startQuiz() {
+    if (!visitId) return
+    const res = await fetch(`/api/visits/${visitId}/session/quiz/start`, { method: 'POST', credentials: 'include' })
+    if (!res.ok) {
+      const body = await res.json().catch(() => ({}))
+      setError(body.error || "Errore nell'avvio del quiz.")
+    }
+  }
+
+  // Solo lo studente: invia le risposte, il punteggio torna nella risposta
+  // REST (calcolato server-side). Aggiorna subito ownParticipant così la UI
+  // (GroupQuizModal) può mostrare il risultato senza aspettare un reload.
+  async function submitQuizAnswers(answers) {
+    if (!visitId) return { error: 'Nessuna sessione attiva.' }
+    const res = await fetch(`/api/visits/${visitId}/session/quiz/answers`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ answers }),
+    })
+    const body = await res.json().catch(() => ({}))
+    if (!res.ok) return { error: body.error || 'Errore nell\'invio delle risposte.' }
+    setOwnParticipant((prev) => (prev ? { ...prev, quiz_answers: answers, quiz_score: body.score } : prev))
+    return body
+  }
+
   // Solo lo studente: emette il proprio stato locale al professore (mai
   // richiesto in risposta, il monitor si aggiorna via visit:participant_state_changed).
   function updateOwnState(partial) {
@@ -279,6 +330,7 @@ export function GroupSessionProvider({ children }) {
     setRoster([])
     setOwnParticipant(null)
     setIsReady(false)
+    setQuiz(null)
     setError(null)
   }
 
@@ -388,6 +440,7 @@ export function GroupSessionProvider({ children }) {
     roster,
     ownParticipant,
     isReady,
+    quiz,
     error,
     lookupCode,
     openAsHost,
@@ -398,6 +451,8 @@ export function GroupSessionProvider({ children }) {
     endSession,
     setActiveStep,
     setReady,
+    startQuiz,
+    submitQuizAnswers,
     leaveSession,
   }
 

@@ -11,6 +11,7 @@ import Comandi from './pages/Comandi'
 import Qr from './pages/Qr'
 import SessionLobby from './pages/SessionLobby'
 import SessionManage from './pages/SessionManage'
+import GroupQuizModal from './components/GroupQuizModal'
 
 function App() {
   return (
@@ -18,6 +19,10 @@ function App() {
       <ActiveVisitProvider>
         <VisitProgressProvider>
           <GroupSessionProvider>
+            {/* Overlay globale: deve interrompere lo studente qualunque tab
+                stia guardando quando il professore avvia il quiz, non solo
+                su /opera — per questo sta qui e non dentro una singola route. */}
+            <GroupQuizModal />
             <Routes>
               {/* Al di fuori di AppLayout: niente BottomNav/PlayerBar/ProfileMenu,
                   sono console di attesa/gestione, non contenuto da navigare. */}

@@ -31,7 +31,7 @@ function Qr() {
   const { role, status: groupStatus } = useGroupSession()
   // Scansionare un QR durante una sessione di gruppo permetterebbe di saltare
   // a un'altra opera/visita fuori dal controllo del professore.
-  const isRestrictedStudent = role === 'student' && groupStatus === 'active'
+  const isRestrictedStudent = role === 'student' && (groupStatus === 'active' || groupStatus === 'quiz')
   const [status, setStatus] = useState('requesting') // 'requesting' | 'scanning' | 'detected' | 'error'
   const [errorMessage, setErrorMessage] = useState('')
   const [result, setResult] = useState(null) // { type, id } | null

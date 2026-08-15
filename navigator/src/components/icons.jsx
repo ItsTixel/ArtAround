@@ -304,3 +304,19 @@ export function ExitIcon(props) {
     </svg>
   )
 }
+
+export function ChevronLeftIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <path d="M15 5.5 8 12l7 6.5" />
+    </svg>
+  )
+}
+
+export function ChevronRightIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <path d="M9 5.5 16 12l-7 6.5" />
+    </svg>
+  )
+}

@@ -27,11 +27,28 @@ module.exports = function registerVisitSessionHandlers(io, socket) {
       if (isAuthor) {
         return ack?.({ live_session: visit.live_session });
       }
+
+      // Uno studente che entra (o rientra dopo un reload) a quiz già avviato
+      // deve poter ricevere le domande — visit:quiz_started è già passato e
+      // non verrà ripetuto. Stessa sanificazione di startQuiz: mai
+      // correct_option_index qui.
+      let quiz;
+      if (visit.live_session.status === 'quiz') {
+        await visit.populate('quiz');
+        if (visit.quiz) {
+          quiz = {
+            title: visit.quiz.title,
+            questions: visit.quiz.questions.map(q => ({ _id: q._id, text: q.text, item: q.item, options: q.options }))
+          };
+        }
+      }
+
       ack?.({
         live_session: {
           status: visit.live_session.status,
           current_step_index: visit.live_session.current_step_index,
-          participant: own
+          participant: own,
+          quiz
         }
       });
     } catch (e) {

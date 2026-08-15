@@ -178,7 +178,7 @@ function Comandi() {
 
   // In una sessione di gruppo attiva lo studente non sceglie l'opera: stessa
   // restrizione applicata in PlayerBar.jsx.
-  const isRestrictedStudent = role === 'student' && groupStatus === 'active'
+  const isRestrictedStudent = role === 'student' && (groupStatus === 'active' || groupStatus === 'quiz')
 
   // A visit can span more than one museum (es. "Leonardo tra Firenze e
   // Milano"): show one section per museum, with the museum of the step

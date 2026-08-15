@@ -36,7 +36,7 @@ function PlayerBar() {
 
   // In una sessione di gruppo attiva lo studente non sceglie l'opera: è il
   // professore a decidere per tutta la stanza (visit:set_active_step).
-  const isRestrictedStudent = role === 'student' && groupStatus === 'active'
+  const isRestrictedStudent = role === 'student' && (groupStatus === 'active' || groupStatus === 'quiz')
 
   return (
     <div className="fixed inset-x-0 bottom-16 z-40 border-t border-slate-400/20 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl transition-colors duration-300">
