@@ -28,10 +28,14 @@ function Qr() {
   const { user, refresh } = useAuth()
   const { activeVisit } = useActiveVisit()
   const { step, steps, goToStep, pauseNarration } = useVisitProgress()
-  const { role, status: groupStatus } = useGroupSession()
+  const { role, status: groupStatus, currentStepIndex, setActiveStep } = useGroupSession()
   // Scansionare un QR durante una sessione di gruppo permetterebbe di saltare
   // a un'altra opera/visita fuori dal controllo del professore.
   const isRestrictedStudent = role === 'student' && (groupStatus === 'active' || groupStatus === 'quiz')
+  // Stessa logica di PlayerBar.jsx/Comandi.jsx: se il professore scansiona il
+  // QR di un'opera già nella visita, deve cambiare l'opera attiva per tutti,
+  // non solo per la sua copia locale.
+  const isHostControlling = role === 'host' && groupStatus === 'active'
   const [status, setStatus] = useState('requesting') // 'requesting' | 'scanning' | 'detected' | 'error'
   const [errorMessage, setErrorMessage] = useState('')
   const [result, setResult] = useState(null) // { type, id } | null
@@ -346,8 +350,17 @@ function Qr() {
           matchedStep={entityLookup.matchedStep}
           onGoToStep={() => {
             // Sei già davanti all'opera (hai appena inquadrato il suo QR):
-            // le indicazioni per raggiungerla non avrebbero senso qui.
+            // le indicazioni per raggiungerla non avrebbero senso qui — vale
+            // anche per il professore, che vede la propria copia aggiornata
+            // subito via questa stessa chiamata locale. goToStep è un no-op
+            // se l'indice è già quello corrente, quindi il successivo
+            // visit:active_step_changed di ritorno (che invece NON salta le
+            // indicazioni, corrette per gli studenti che devono raggiungerla)
+            // non sovrascrive questo skip per lui.
             goToStep(entityLookup.matchedIndex, { skipDirections: true })
+            if (isHostControlling && entityLookup.matchedIndex !== currentStepIndex) {
+              setActiveStep(entityLookup.matchedIndex)
+            }
             navigate('/opera')
           }}
           onClose={startCamera}

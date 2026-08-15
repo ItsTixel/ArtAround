@@ -10,7 +10,7 @@ import Opera from './pages/Opera'
 import Comandi from './pages/Comandi'
 import Qr from './pages/Qr'
 import SessionLobby from './pages/SessionLobby'
-import SessionManage from './pages/SessionManage'
+import Gruppo from './pages/Gruppo'
 import GroupQuizModal from './components/GroupQuizModal'
 
 function App() {
@@ -25,15 +25,18 @@ function App() {
             <GroupQuizModal />
             <Routes>
               {/* Al di fuori di AppLayout: niente BottomNav/PlayerBar/ProfileMenu,
-                  sono console di attesa/gestione, non contenuto da navigare. */}
+                  è una sala d'attesa, non contenuto da navigare. La console del
+                  professore (ex /sessione/gestisci) è invece dentro AppLayout,
+                  sulla tab "Gruppo" — il professore segue la visita come
+                  chiunque altro mentre la gestisce. */}
               <Route path="sessione" element={<SessionLobby />} />
-              <Route path="sessione/gestisci" element={<SessionManage />} />
               <Route element={<AppLayout />}>
                 <Route index element={<Home />} />
                 <Route path="mappa" element={<Mappa />} />
                 <Route path="opera" element={<Opera />} />
                 <Route path="comandi" element={<Comandi />} />
                 <Route path="qr" element={<Qr />} />
+                <Route path="gruppo" element={<Gruppo />} />
               </Route>
             </Routes>
           </GroupSessionProvider>

@@ -171,7 +171,7 @@ function Comandi() {
     goToNextParagraph,
     directionsParts,
   } = useVisitProgress()
-  const { role, status: groupStatus } = useGroupSession()
+  const { role, status: groupStatus, currentStepIndex, setActiveStep } = useGroupSession()
   const [serviceMessage, setServiceMessage] = useState(null)
 
   if (!activeVisit) return <NoActiveVisit />
@@ -179,6 +179,9 @@ function Comandi() {
   // In una sessione di gruppo attiva lo studente non sceglie l'opera: stessa
   // restrizione applicata in PlayerBar.jsx.
   const isRestrictedStudent = role === 'student' && (groupStatus === 'active' || groupStatus === 'quiz')
+  // Stessa logica di PlayerBar.jsx: le frecce del professore cambiano
+  // l'opera per tutta la stanza invece di navigare solo la sua copia locale.
+  const isHostControlling = role === 'host' && groupStatus === 'active'
 
   // A visit can span more than one museum (es. "Leonardo tra Firenze e
   // Milano"): show one section per museum, with the museum of the step
@@ -221,14 +224,14 @@ function Comandi() {
           <CommandButton
             label="Precedente"
             Icon={PreviousIcon}
-            onClick={goToPreviousStep}
+            onClick={isHostControlling ? () => setActiveStep(currentStepIndex - 1) : goToPreviousStep}
             disabled={isRestrictedStudent || !canGoPreviousStep}
             colorClasses="bg-sky-600 text-white"
           />
           <CommandButton
             label="Prossimo"
             Icon={NextIcon}
-            onClick={goToNextStep}
+            onClick={isHostControlling ? () => setActiveStep(currentStepIndex + 1) : goToNextStep}
             disabled={isRestrictedStudent || !canGoNextStep}
             colorClasses="bg-sky-600 text-white"
           />

@@ -30,13 +30,18 @@ function PlayerBar() {
     activeText,
     activeDurationSec,
   } = useVisitProgress()
-  const { role, status: groupStatus } = useGroupSession()
+  const { role, status: groupStatus, currentStepIndex, setActiveStep } = useGroupSession()
 
   if (!activeVisit) return null
 
   // In una sessione di gruppo attiva lo studente non sceglie l'opera: è il
   // professore a decidere per tutta la stanza (visit:set_active_step).
   const isRestrictedStudent = role === 'student' && (groupStatus === 'active' || groupStatus === 'quiz')
+  // Il professore ora ascolta la visita come chiunque altro, ma le sue
+  // Precedente/Prossimo restano l'unica sorgente di verità per l'opera
+  // attiva: invece di navigare solo la propria copia locale, cambiano
+  // l'opera per tutta la stanza (stessa azione dello step-picker in Gruppo).
+  const isHostControlling = role === 'host' && groupStatus === 'active'
 
   return (
     <div className="fixed inset-x-0 bottom-16 z-40 border-t border-slate-400/20 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl transition-colors duration-300">
@@ -65,7 +70,15 @@ function PlayerBar() {
         <button
           type="button"
           aria-label="Precedente"
-          onClick={directionsParts ? closeDirections : (isRestrictedStudent ? undefined : goToPreviousStep)}
+          onClick={
+            directionsParts
+              ? closeDirections
+              : isRestrictedStudent
+                ? undefined
+                : isHostControlling
+                  ? () => setActiveStep(currentStepIndex - 1)
+                  : goToPreviousStep
+          }
           disabled={directionsParts ? false : (isRestrictedStudent || !canGoPreviousStep)}
           className={`flex h-10 w-10 items-center justify-center text-text-muted transition-opacity ${
             directionsParts ? '' : (isRestrictedStudent || !canGoPreviousStep) ? 'opacity-30' : ''
@@ -108,7 +121,15 @@ function PlayerBar() {
         <button
           type="button"
           aria-label="Prossimo"
-          onClick={directionsParts ? closeDirections : (isRestrictedStudent ? undefined : goToNextStep)}
+          onClick={
+            directionsParts
+              ? closeDirections
+              : isRestrictedStudent
+                ? undefined
+                : isHostControlling
+                  ? () => setActiveStep(currentStepIndex + 1)
+                  : goToNextStep
+          }
           disabled={directionsParts ? false : (isRestrictedStudent || !canGoNextStep)}
           className={`flex h-10 w-10 items-center justify-center text-text-muted transition-opacity ${
             directionsParts ? '' : (isRestrictedStudent || !canGoNextStep) ? 'opacity-30' : ''

@@ -166,10 +166,11 @@ export function GroupSessionProvider({ children }) {
     setRole(newRole)
     setGroupVisit(visit)
 
-    if (newRole === 'student') {
-      pendingStepIndexRef.current = pendingStepIndex ?? visit.live_session?.current_step_index ?? 0
-      activateVisit(visit)
-    }
+    // Il professore ora può seguire la visita come uno studente (ascolto,
+    // tono/paragrafo locali) mentre gestisce il gruppo dalla tab Gruppo — sia
+    // host che student attivano quindi la visita nel player.
+    pendingStepIndexRef.current = pendingStepIndex ?? visit.live_session?.current_step_index ?? 0
+    activateVisit(visit)
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ visitId: newVisitId, role: newRole }))
 
@@ -187,7 +188,7 @@ export function GroupSessionProvider({ children }) {
     }
 
     if (newRole === 'host') {
-      navigate('/sessione/gestisci')
+      navigate('/gruppo')
     } else {
       const finalStatus = ack.live_session.status
       // 'quiz' atterra su /opera come 'active': GroupQuizModal (montata
@@ -306,11 +307,17 @@ export function GroupSessionProvider({ children }) {
   }
 
   function leaveSession() {
-    // Uscita esplicita, distinta da una semplice caduta di connessione: avvisa
-    // il backend così il professore vede subito sparire la riga dal roster
-    // (fire-and-forget, non blocca la pulizia locale se la richiesta fallisce).
+    // Uscita esplicita, distinta da una semplice caduta di connessione.
     if (roleRef.current === 'student' && visitIdRef.current) {
+      // Avvisa il backend così il professore vede subito sparire la riga dal
+      // roster (fire-and-forget, non blocca la pulizia locale se fallisce).
       fetch(`/api/visits/${visitIdRef.current}/session/leave`, { method: 'POST', credentials: 'include' }).catch(() => {})
+    } else if (roleRef.current === 'host' && visitIdRef.current) {
+      // Se il professore esce (disattiva la visita, fa logout, ne carica
+      // un'altra via QR, ecc.) non c'è più nessuno a guidare il gruppo:
+      // termina la sessione per tutti invece di lasciarla "orfana" in stato
+      // waiting/active — stessa richiesta REST del bottone "Termina visita".
+      fetch(`/api/visits/${visitIdRef.current}/session/end`, { method: 'POST', credentials: 'include' }).catch(() => {})
     }
 
     localStorage.removeItem(STORAGE_KEY)
@@ -318,7 +325,9 @@ export function GroupSessionProvider({ children }) {
       socketRef.current.disconnect()
       socketRef.current = null
     }
-    if (roleRef.current === 'student') clearActiveVisit()
+    // Sia host che student attivano la visita in establishSession ora, quindi
+    // entrambi la puliscono qui allo stesso modo.
+    clearActiveVisit()
     visitIdRef.current = null
     roleRef.current = null
     pendingStepIndexRef.current = null
@@ -381,20 +390,25 @@ export function GroupSessionProvider({ children }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  // Tiene VisitProgressContext allineato all'opera scelta dal professore per
-  // tutta la durata della sessione, non solo al momento del join: ogni volta
-  // che currentStepIndex cambia (join iniziale, ingresso tardivo, o un
+  // Tiene VisitProgressContext allineato all'opera attiva per tutta la
+  // durata della sessione, non solo al momento del join: ogni volta che
+  // currentStepIndex cambia (join iniziale, ingresso tardivo, o un
   // successivo visit:active_step_changed) chiama goToStep di conseguenza.
-  // Il primo allineamento dopo un join (pendingStepIndexRef ancora valorizzato
-  // da establishSession) salta le indicazioni — non è un vero spostamento
-  // fisico, lo studente si sta solo unendo a un punto già in corso; i cambi
+  // Vale sia per lo studente che per il professore: il professore ora può
+  // ascoltare la visita come un partecipante, e le sue stesse frecce
+  // Precedente/Prossimo passano da setActiveStep (broadcast), quindi il suo
+  // player deve risincronizzarsi dallo stesso currentStepIndex "di ritorno"
+  // invece di navigare la propria copia locale due volte. Il primo
+  // allineamento dopo un join (pendingStepIndexRef ancora valorizzato da
+  // establishSession) salta le indicazioni — non è un vero spostamento
+  // fisico, si sta solo entrando su un punto già in corso; i cambi
   // successivi le mostrano normalmente, come per un reale spostamento del
   // gruppo da un'opera all'altra. Dipende da activeVisit?._id (non solo da
   // role) così da correre dopo l'effect di reset di VisitProgressContext
   // sullo stesso activeVisit._id — garantito dall'ordine di annidamento dei
   // provider in App.jsx.
   useEffect(() => {
-    if (role !== 'student') return
+    if (!role) return
     if (!activeVisit) return
     if (currentStepIndex == null) return
     const skipDirections = pendingStepIndexRef.current != null

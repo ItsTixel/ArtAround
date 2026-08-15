@@ -227,16 +227,18 @@ function Home() {
           isActive={activeVisit?._id === detailVisit._id}
           onClose={() => setDetailVisit(null)}
           onActivate={() => {
-            // Attivare qui una visita singola diversa mentre si è studenti in
-            // una sessione di gruppo lascerebbe quella sessione "appesa" (socket
-            // ancora connesso, stato ancora popolato) — si esce prima esplicitamente.
-            if (groupRole === 'student') leaveGroupSession()
+            // Attivare qui una visita singola diversa mentre si è in una
+            // sessione di gruppo (host o student) lascerebbe quella sessione
+            // "appesa" (socket ancora connesso, stato ancora popolato) — si
+            // esce prima esplicitamente. Per il professore questo termina
+            // anche la visita di gruppo per tutti (vedi leaveSession).
+            if (groupRole) leaveGroupSession()
             activateVisit(detailVisit)
             setDetailVisit(null)
             navigate('/opera')
           }}
           onDeactivate={() => {
-            if (groupRole === 'student') leaveGroupSession()
+            if (groupRole) leaveGroupSession()
             else clearActiveVisit()
             setDetailVisit(null)
           }}

@@ -318,7 +318,11 @@ function ProfileMenu({ hasPlayer = false }) {
 
   async function handleLogout() {
     closeMenu()
-    if (groupRole === 'student') leaveGroupSession()
+    // In una visita di gruppo (host o student) l'uscita deve passare da
+    // GroupSessionContext (avvisa il backend, chiude il socket, pulisce lo
+    // stato di sessione — e se si è il professore termina la visita per
+    // tutti) — clearActiveVisit() da sola lascerebbe la sessione "appesa".
+    if (groupRole) leaveGroupSession()
     else clearActiveVisit()
     await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' })
     await refresh()
@@ -326,11 +330,7 @@ function ProfileMenu({ hasPlayer = false }) {
 
   function handleLeaveVisit() {
     closeMenu()
-    // In una visita di gruppo l'uscita deve passare da GroupSessionContext
-    // (avvisa il backend, chiude il socket, pulisce lo stato di sessione) —
-    // clearActiveVisit() da sola lascerebbe la sessione "appesa" e si
-    // riconnetterebbe da sola al prossimo reload.
-    if (groupRole === 'student') leaveGroupSession()
+    if (groupRole) leaveGroupSession()
     else clearActiveVisit()
     navigate('/')
   }

@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom'
 import { useGroupSession } from '../context/GroupSessionContext'
-import { HomeIcon, MapIcon, OperaIcon, CommandsIcon, QrIcon } from './icons'
+import { HomeIcon, MapIcon, OperaIcon, CommandsIcon, QrIcon, GroupIcon } from './icons'
 
-const items = [
+const baseItems = [
   { to: '/', label: 'Home', Icon: HomeIcon, end: true },
   { to: '/mappa', label: 'Mappa', Icon: MapIcon },
   { to: '/opera', label: 'Opera', Icon: OperaIcon },
@@ -15,6 +15,9 @@ function BottomNav() {
   // Scansionare un QR durante una sessione di gruppo permetterebbe di
   // saltare a un'altra opera/visita fuori dal controllo del professore.
   const isRestrictedStudent = role === 'student' && (status === 'active' || status === 'quiz')
+  // Tab in più, solo per il professore: la console di gestione del gruppo,
+  // ora una tab come le altre invece di una rotta isolata.
+  const items = role === 'host' ? [...baseItems, { to: '/gruppo', label: 'Gruppo', Icon: GroupIcon }] : baseItems
 
   return (
     <nav className="fixed inset-x-0 bottom-0 z-50 border-t border-slate-400/20 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl shadow-xl shadow-black/5 transition-colors duration-300 pb-[env(safe-area-inset-bottom)]">

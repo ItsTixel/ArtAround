@@ -9,7 +9,7 @@ function tileClasses(extra = '') {
   return `flex h-8 min-w-9 items-center justify-center rounded-md border border-[color:var(--pill-border)] bg-[color:var(--pill-bg)] px-2 text-xs font-medium text-text-muted ${extra}`
 }
 
-function SessionManage() {
+function Gruppo() {
   const navigate = useNavigate()
   const {
     groupVisit,
@@ -41,15 +41,8 @@ function SessionManage() {
 
   if (!groupVisit) {
     return (
-      <div className="flex min-h-dvh flex-col items-center justify-center gap-3 p-6 text-center">
-        <p className="text-text-muted">Nessuna sessione in corso.</p>
-        <button
-          type="button"
-          onClick={() => navigate('/')}
-          className="rounded-md bg-gradient-to-br from-accent to-accent-hover px-4 py-2 text-sm font-medium text-on-accent"
-        >
-          Torna alla Home
-        </button>
+      <div className="flex flex-col items-center gap-3 p-6 text-center">
+        <p className="text-text-muted">Nessuna sessione di gruppo in corso.</p>
       </div>
     )
   }
@@ -60,22 +53,18 @@ function SessionManage() {
   }
 
   return (
-    <div className="mx-auto flex min-h-dvh max-w-md flex-col bg-bg p-6">
-      <div className="flex items-center justify-between">
+    <div className="flex flex-col gap-6 p-6 pb-10">
+      <div>
         <span className="text-xs font-medium uppercase tracking-wide text-text-muted">
           {connected ? 'Connesso' : 'Riconnessione…'}
         </span>
-        <button type="button" onClick={handleExit} className="text-sm text-text-muted underline-offset-4 hover:underline">
-          Esci
-        </button>
+        <h1 className="mt-1 font-serif text-2xl font-semibold text-text">{groupVisit.title}</h1>
+        <p className="mt-1 text-sm text-text-muted">Codice: {groupVisit.code}</p>
       </div>
 
-      <h1 className="mt-2 font-serif text-2xl font-semibold text-text">{groupVisit.title}</h1>
-      <p className="mt-1 text-sm text-text-muted">Codice: {groupVisit.code}</p>
+      {error && <p className="text-sm text-[color:var(--color-error)]">{error}</p>}
 
-      {error && <p className="mt-3 text-sm text-[color:var(--color-error)]">{error}</p>}
-
-      <div className="mt-5 flex flex-col gap-2">
+      <div className="flex flex-col gap-2">
         <h2 className="text-xs font-medium uppercase tracking-wide text-text-muted">
           Partecipanti ({roster.length})
         </h2>
@@ -135,14 +124,14 @@ function SessionManage() {
         <button
           type="button"
           onClick={startSession}
-          className="mt-6 rounded-md bg-gradient-to-br from-accent to-accent-hover px-4 py-3 text-sm font-medium text-on-accent shadow-lg shadow-black/10 dark:shadow-black/30"
+          className="rounded-md bg-gradient-to-br from-accent to-accent-hover px-4 py-3 text-sm font-medium text-on-accent shadow-lg shadow-black/10 dark:shadow-black/30"
         >
           Avvia visita
         </button>
       )}
 
       {status === 'active' && (
-        <div className="mt-5 flex flex-col gap-2">
+        <div className="flex flex-col gap-2">
           <h2 className="text-xs font-medium uppercase tracking-wide text-text-muted">Opera attiva</h2>
           <ul className="flex max-h-72 flex-col gap-2 overflow-y-auto pr-1">
             {sortedSteps.map((step, index) => (
@@ -171,7 +160,7 @@ function SessionManage() {
       )}
 
       {status === 'quiz' && (
-        <div className="mt-5 flex flex-col gap-2">
+        <div className="flex flex-col gap-2">
           <h2 className="text-xs font-medium uppercase tracking-wide text-text-muted">Quiz in corso</h2>
           <p className="text-sm text-text-muted">
             {roster.filter((p) => p.quizScore != null).length}/{roster.length} studenti hanno risposto.
@@ -180,7 +169,7 @@ function SessionManage() {
       )}
 
       {(status === 'active' || status === 'quiz') && (
-        <div className="mt-5 flex gap-3">
+        <div className="flex gap-3">
           {status === 'active' && (
             <button
               type="button"
@@ -201,7 +190,7 @@ function SessionManage() {
       )}
 
       {status === 'finished' && (
-        <div className="mt-6 flex flex-col items-center gap-3 text-center">
+        <div className="flex flex-col items-center gap-3 text-center">
           <p className="text-text-muted">Visita terminata.</p>
           <button
             type="button"
@@ -216,4 +205,4 @@ function SessionManage() {
   )
 }
 
-export default SessionManage
+export default Gruppo

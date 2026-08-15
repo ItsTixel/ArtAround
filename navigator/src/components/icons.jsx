@@ -320,3 +320,14 @@ export function ChevronRightIcon(props) {
     </svg>
   )
 }
+
+export function GroupIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <circle cx="9" cy="8" r="2.8" />
+      <path d="M4 19c0-2.8 2.2-5 5-5s5 2.2 5 5" />
+      <circle cx="17" cy="9.5" r="2.1" />
+      <path d="M14.7 19c.2-2.1 1.8-3.8 3.8-4.2" />
+    </svg>
+  )
+}
