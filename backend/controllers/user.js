@@ -137,6 +137,11 @@ async function adoptVisit(req, res) {
     const visit = await Visit.findById(req.params.visitId);
     if (!visit) return res.status(404).json({ error: 'Visit not found' });
 
+    // Le visite di gruppo non si adottano: ci si unisce con un codice.
+    if (visit.is_group) {
+      return res.status(403).json({ error: 'Group visits cannot be adopted — join with a code instead.' });
+    }
+
     // Stesso controllo di visibilità di GET /api/visits/:id: una visita
     // privata è adottabile solo dal suo autore, anche conoscendone l'ID.
     if (!visit.is_public && visit.author.toString() !== req.user.id) {
@@ -183,6 +188,15 @@ async function removeAdoption(req, res) {
 
 async function bookmarkVisit(req, res) {
   try {
+    // A differenza di adoptVisit, questa rotta non aveva finora nessun
+    // controllo di visibilità: chiunque conoscesse l'id poteva salvare nei
+    // preferiti una visita di gruppo altrui.
+    const visit = await Visit.findById(req.params.visitId).select('is_group');
+    if (!visit) return res.status(404).json({ error: 'Visit not found' });
+    if (visit.is_group) {
+      return res.status(403).json({ error: 'Group visits cannot be bookmarked — join with a code instead.' });
+    }
+
     const user = await User.findByIdAndUpdate(
       req.params.id,
       { $addToSet: { bookmarked_visits: req.params.visitId } },

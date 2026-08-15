@@ -2,6 +2,7 @@
 global.startDate = null;
 
 const path = require('path');
+const http = require('http');
 const express = require('express');
 const cors = require('cors')
 const cookieParser = require('cookie-parser');
@@ -22,6 +23,7 @@ const credentials = {
 }
 
 let app = express();
+const server = http.createServer(app);
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
@@ -37,7 +39,9 @@ app.use('/api/users',    require('./routes/users'));
 app.use('/api/orders',   require('./routes/orders'));
 app.use('/api/dev',      require('./routes/dev'));
 
-
+const { initSocketServer } = require('./sockets');
+const io = initSocketServer(server);
+app.set('io', io); // i controller lo raggiungono con req.app.get('io')
 
 
 // https://stackoverflow.com/questions/40459511/in-express-js-req-protocol-is-not-picking-up-https-for-my-secure-link-it-alwa
@@ -301,7 +305,7 @@ app.get(/^\/navigator\/.*/, (req, res) => {
 
 const PORT = process.env.PORT || 8000;
 
-app.listen(PORT, function () {
+server.listen(PORT, function () {
 	global.startDate = new Date();
 	console.log(`App listening on port ${PORT} started ${global.startDate.toLocaleString()}`)
 })

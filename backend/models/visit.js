@@ -10,6 +10,28 @@ const visitStepSchema = new Schema({
   museum: { type: mongoose.Schema.Types.ObjectId, ref: 'Museum', required: true }
 }, { _id: true });
 
+// Stato della visita di gruppo "live" in corso. Sotto-documento singolo (non
+// un array/storico): a ogni riapertura da parte del professore viene
+// sovrascritto per intero — nessuno storico multi-sessione per ora.
+const liveParticipantSchema = new Schema({
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  joined_at: { type: Date, default: Date.now },
+  tone: { type: String, enum: ['childish', 'simple', 'medium', 'technical'], default: 'medium' },
+  paragraph_index: { type: Number, default: 0 },
+  playback_state: { type: String, enum: ['playing', 'paused'], default: 'playing' },
+  quiz_answers: { type: [Number], default: [] },
+  quiz_score: { type: Number, default: null }
+}, { _id: false });
+
+const liveSessionSchema = new Schema({
+  status: { type: String, enum: ['idle', 'waiting', 'active', 'quiz', 'finished'], default: 'idle' },
+  current_step_index: { type: Number, default: 0 },
+  opened_at: Date,
+  started_at: Date,
+  quiz_started_at: Date,
+  participants: { type: [liveParticipantSchema], default: [] }
+}, { _id: false });
+
 const visitSchema = new Schema({
   title: { type: String, required: true, trim: true, maxLength: 200 },
   description: { type: String, trim: true, default: '' },
@@ -33,11 +55,41 @@ const visitSchema = new Schema({
 
   is_public: { type: Boolean, default: true },
 
-  estimated_duration_sec: { type: Number }
+  estimated_duration_sec: { type: Number },
+
+  is_group: { type: Boolean, default: false },
+
+  // Univoco solo tra le visite che lo hanno: sparse così le visite singole
+  // (che non hanno code) non violano l'indice unique.
+  code: {
+    type: String,
+    trim: true,
+    uppercase: true,
+    minLength: 6,
+    maxLength: 8,
+    unique: true,
+    sparse: true
+  },
+
+  quiz: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Quiz',
+    required: function () { return this.is_group === true; }
+  },
+
+  live_session: { type: liveSessionSchema, default: () => ({}) }
 
 }, { timestamps: true });
 
 visitSchema.pre('save', async function () {
+  // Le visite di gruppo non sono mai pubbliche né a pagamento: questo rende
+  // gratuiti sia il paywall (isVisitUnlocked già ritorna true a base_price 0)
+  // sia il controllo di privacy di base (is_public), senza altra logica.
+  if (this.is_group) {
+    this.is_public = false;
+    this.base_price = 0;
+  }
+
   const Entity = mongoose.model('Entity');
   const Item = mongoose.model('Item');
 
