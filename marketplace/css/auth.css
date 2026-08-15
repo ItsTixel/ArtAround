@@ -192,11 +192,17 @@
 .feedback {
   min-height: 1.1em;
   margin-top: 1.25rem;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
   text-align: center;
   letter-spacing: 0.02em;
+  color: var(--color-text-muted);
 }
+
+.feedback.is-pending { color: var(--link-color); }
+.feedback.is-success { color: var(--color-success); }
+.feedback.is-error { color: var(--color-danger); }
 
 .auth-switch {
   margin-top: 1.75rem;

@@ -29,8 +29,9 @@ log.addEventListener('submit', async (e) => {
     const password = document.getElementById('password').value;
     const feedbackMessage = document.getElementById('feedbackMessage'); // Il "Password o email errati" sotto il submit 
 
-    feedbackMessage.style.color = "blue";
-    feedbackMessage.textContent = "Connessione in corso...";
+    feedbackMessage.classList.remove('is-success', 'is-error');
+    feedbackMessage.classList.add('is-pending');
+    feedbackMessage.textContent = "Connessione in corso…";
 
     try {
         const response = await fetch('/api/auth/login', {
@@ -45,8 +46,9 @@ log.addEventListener('submit', async (e) => {
         const data = await response.json();
 
         if (response.ok) {
-            feedbackMessage.style.color = "green";
-            feedbackMessage.textContent = "Autenticazione riuscita! Benvenuto.";
+            feedbackMessage.classList.remove('is-pending');
+            feedbackMessage.classList.add('is-success');
+            feedbackMessage.textContent = "Accesso effettuato.";
 
             // Il token vive in un cookie httpOnly gestito dal browser: non c'è
             // nulla da salvare qui. Torniamo al marketplace (o alla pagina di
@@ -55,12 +57,14 @@ log.addEventListener('submit', async (e) => {
                 window.location.href = getSafeRedirect();
             }, 600);
         } else {
-            feedbackMessage.style.color = "red";
+            feedbackMessage.classList.remove('is-pending');
+            feedbackMessage.classList.add('is-error');
             feedbackMessage.textContent = data.message || "Credenziali non valide.";
         }
     } catch (error) {
         console.error("Errore di rete:", error);
-        feedbackMessage.style.color = "red";
+        feedbackMessage.classList.remove('is-pending');
+        feedbackMessage.classList.add('is-error');
         feedbackMessage.textContent = "Impossibile contattare il server.";
     }
 });
@@ -73,8 +77,9 @@ const GOOGLE_CLIENT_ID = '144640383709-vr6nf4q1kp0n93aih9dc2tgcu25886ua.apps.goo
 
 async function handleGoogleCredential(response) {
     const feedbackMessage = document.getElementById('feedbackMessage');
-    feedbackMessage.style.color = "blue";
-    feedbackMessage.textContent = "Connessione con Google in corso...";
+    feedbackMessage.classList.remove('is-success', 'is-error');
+    feedbackMessage.classList.add('is-pending');
+    feedbackMessage.textContent = "Connessione con Google in corso…";
 
     try {
         const res = await fetch('/api/auth/google', {
@@ -86,18 +91,21 @@ async function handleGoogleCredential(response) {
         const data = await res.json();
 
         if (res.ok) {
-            feedbackMessage.style.color = "green";
-            feedbackMessage.textContent = "Autenticazione riuscita! Benvenuto.";
+            feedbackMessage.classList.remove('is-pending');
+            feedbackMessage.classList.add('is-success');
+            feedbackMessage.textContent = "Accesso effettuato con Google.";
             setTimeout(() => {
                 window.location.href = getSafeRedirect();
             }, 400);
         } else {
-            feedbackMessage.style.color = "red";
+            feedbackMessage.classList.remove('is-pending');
+            feedbackMessage.classList.add('is-error');
             feedbackMessage.textContent = data.message || "Accesso con Google non riuscito.";
         }
     } catch (error) {
         console.error("Errore di rete:", error);
-        feedbackMessage.style.color = "red";
+        feedbackMessage.classList.remove('is-pending');
+        feedbackMessage.classList.add('is-error');
         feedbackMessage.textContent = "Impossibile contattare il server.";
     }
 }

@@ -168,6 +168,16 @@
   transform: rotate(45deg) translate(-1px, -2px);
 }
 
+/* Sovrascrive .carousel-arrow:hover, che schiarirebbe il testo fino a
+   farlo coincidere con lo sfondo pieno di questo bottone (bianco su
+   bianco in dark mode). Qui lo sfondo scurisce invece del testo, come
+   in .btn-primary:hover. */
+.carousel-arrow-next.is-submit:hover:not(:disabled) {
+  border-color: var(--color-accent-hover);
+  background: var(--color-accent-hover);
+  color: var(--color-on-accent);
+}
+
 /* Il tasto invio, a differenza di "indietro", va tenuto visibile (solo
    attenuato) mentre è disabled durante l'invio: la regola .carousel-arrow:disabled
    sopra lo nasconderebbe come se fosse uno step saltato. */

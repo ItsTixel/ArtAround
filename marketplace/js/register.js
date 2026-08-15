@@ -41,8 +41,9 @@ form.addEventListener('submit', async (e) => {
     const password = document.getElementById('password').value;
     const feedbackMessage = document.getElementById('feedbackMessage');
 
-    feedbackMessage.style.color = "blue";
-    feedbackMessage.textContent = "Registrazione in corso...";
+    feedbackMessage.classList.remove('is-success', 'is-error');
+    feedbackMessage.classList.add('is-pending');
+    feedbackMessage.textContent = "Registrazione in corso…";
 
     try {
         const response = await fetch('/api/auth/register', {
@@ -57,8 +58,9 @@ form.addEventListener('submit', async (e) => {
         const data = await response.json();
 
         if (response.ok) {
-            feedbackMessage.style.color = "green";
-            feedbackMessage.textContent = data.message || "Registrazione completata con successo!";
+            feedbackMessage.classList.remove('is-pending');
+            feedbackMessage.classList.add('is-success');
+            feedbackMessage.textContent = data.message || "Registrazione completata.";
             // La registrazione ora logga subito dentro (stesso cookie del login):
             // stessa destinazione della callback Google, redirect se presente
             // (es. si veniva da un tentativo di acquisto visita), altrimenti l'home.
@@ -66,12 +68,14 @@ form.addEventListener('submit', async (e) => {
                 window.location.href = redirectParam || '/marketplace/pages/index.html';
             }, 600);
         } else {
-            feedbackMessage.style.color = "red";
+            feedbackMessage.classList.remove('is-pending');
+            feedbackMessage.classList.add('is-error');
             feedbackMessage.textContent = data.message || "Errore durante la registrazione.";
         }
     } catch (error) {
         console.error("Errore di rete:", error);
-        feedbackMessage.style.color = "red";
+        feedbackMessage.classList.remove('is-pending');
+        feedbackMessage.classList.add('is-error');
         feedbackMessage.textContent = "Impossibile contattare il server.";
     }
 });
@@ -83,8 +87,9 @@ const GOOGLE_CLIENT_ID = '144640383709-vr6nf4q1kp0n93aih9dc2tgcu25886ua.apps.goo
 
 async function handleGoogleCredential(response) {
     const feedbackMessage = document.getElementById('feedbackMessage');
-    feedbackMessage.style.color = "blue";
-    feedbackMessage.textContent = "Connessione con Google in corso...";
+    feedbackMessage.classList.remove('is-success', 'is-error');
+    feedbackMessage.classList.add('is-pending');
+    feedbackMessage.textContent = "Connessione con Google in corso…";
 
     try {
         const res = await fetch('/api/auth/google', {
@@ -96,18 +101,21 @@ async function handleGoogleCredential(response) {
         const data = await res.json();
 
         if (res.ok) {
-            feedbackMessage.style.color = "green";
-            feedbackMessage.textContent = "Autenticazione riuscita! Benvenuto.";
+            feedbackMessage.classList.remove('is-pending');
+            feedbackMessage.classList.add('is-success');
+            feedbackMessage.textContent = "Registrazione completata con Google.";
             setTimeout(() => {
                 window.location.href = redirectParam || '/marketplace/pages/index.html';
             }, 400);
         } else {
-            feedbackMessage.style.color = "red";
+            feedbackMessage.classList.remove('is-pending');
+            feedbackMessage.classList.add('is-error');
             feedbackMessage.textContent = data.message || "Accesso con Google non riuscito.";
         }
     } catch (error) {
         console.error("Errore di rete:", error);
-        feedbackMessage.style.color = "red";
+        feedbackMessage.classList.remove('is-pending');
+        feedbackMessage.classList.add('is-error');
         feedbackMessage.textContent = "Impossibile contattare il server.";
     }
 }

@@ -116,7 +116,8 @@ async function submitItem() {
   const descriptions = paragraphList.collect();
 
   if (!descriptions.length) {
-    feedback.style.color = 'red';
+    feedback.classList.remove('is-pending', 'is-success');
+    feedback.classList.add('is-error');
     feedback.textContent = 'Aggiungi almeno un paragrafo alla descrizione.';
     paragraphList.focusFirst();
     wizard.setSubmitEnabled(true);
@@ -140,7 +141,8 @@ async function submitItem() {
   formData.append('data', JSON.stringify(payload));
   if (image.file) formData.append('image', image.file);
 
-  feedback.style.color = '';
+  feedback.classList.remove('is-success', 'is-error');
+  feedback.classList.add('is-pending');
   feedback.textContent = 'Creazione in corso…';
 
   try {
@@ -152,11 +154,13 @@ async function submitItem() {
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || 'Errore durante la creazione della descrizione.');
 
-    feedback.style.color = 'green';
-    feedback.textContent = 'Descrizione creata con successo! Reindirizzamento…';
+    feedback.classList.remove('is-pending');
+    feedback.classList.add('is-success');
+    feedback.textContent = 'Descrizione creata. Reindirizzamento…';
     setTimeout(() => { window.location.href = '/marketplace/pages/profile.html#descrizioni'; }, 1200);
   } catch (err) {
-    feedback.style.color = 'red';
+    feedback.classList.remove('is-pending');
+    feedback.classList.add('is-error');
     feedback.textContent = err.message;
     wizard.setSubmitEnabled(true);
   }
