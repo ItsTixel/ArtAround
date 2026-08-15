@@ -53,7 +53,11 @@ function isVisitUnlocked(visit, userId, adoptedSet) {
 }
 
 function applyPaywall(visit, unlocked) {
-  const obj = visit.toObject();
+  // flattenMaps: toObject() defaults to false (unlike toJSON()), so without
+  // this a populated museum's `services`/`opening_hours` (Mongoose Maps)
+  // survive as native Map instances — which JSON.stringify serializes as
+  // "{}", silently dropping them from the API response.
+  const obj = visit.toObject({ flattenMaps: true });
   obj.purchased = unlocked;
   for (const step of obj.steps) {
     for (const item of step.items) {
