@@ -411,6 +411,24 @@ async function joinSession(req, res) {
   }
 }
 
+// Uscita esplicita di un partecipante (distinta da una semplice disconnessione
+// socket, che potrebbe essere solo un calo di rete transitorio): rimuove il
+// partecipante dal roster e avvisa il professore. Un rientro successivo passa
+// di nuovo da joinSession, che lo riaggiunge con stato pulito.
+async function leaveSession(req, res) {
+  try {
+    const visit = req.visit;
+    await Visit.updateOne(
+      { _id: visit._id },
+      { $pull: { 'live_session.participants': { user: req.user.id } } }
+    );
+    emitToHost(req, visit._id, 'visit:participant_left', { userId: req.user.id });
+    res.status(204).send();
+  } catch (e) {
+    res.status(400).json({ error: e.message });
+  }
+}
+
 async function startSession(req, res) {
   try {
     if (req.visit.live_session.status !== 'waiting') {
@@ -551,5 +569,5 @@ async function getSessionState(req, res) {
 
 module.exports = {
   getAll, getById, create, update, remove,
-  getByCode, openSession, joinSession, startSession, startQuiz, submitQuizAnswers, endSession, getSessionState
+  getByCode, openSession, joinSession, leaveSession, startSession, startQuiz, submitQuizAnswers, endSession, getSessionState
 };

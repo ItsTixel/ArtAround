@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { useActiveVisit } from '../context/ActiveVisitContext'
+import { useGroupSession } from '../context/GroupSessionContext'
 import { PersonIcon, LogoutIcon, ExitIcon, SunIcon, MoonIcon } from './icons'
 import { getTheme, toggleTheme } from '../theme'
 
@@ -121,6 +122,7 @@ function MenuItem({ index, open, closedTranslate, as: Tag = 'div', className = '
 function ProfileMenu({ hasPlayer = false }) {
   const { user, refresh } = useAuth()
   const { activeVisit, clearActiveVisit } = useActiveVisit()
+  const { role: groupRole, leaveSession: leaveGroupSession } = useGroupSession()
   const navigate = useNavigate()
 
   const bottomClearance = hasPlayer ? BOTTOM_CLEARANCE_WITH_PLAYER : BOTTOM_CLEARANCE_NO_PLAYER
@@ -316,14 +318,20 @@ function ProfileMenu({ hasPlayer = false }) {
 
   async function handleLogout() {
     closeMenu()
+    if (groupRole === 'student') leaveGroupSession()
+    else clearActiveVisit()
     await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' })
-    clearActiveVisit()
     await refresh()
   }
 
   function handleLeaveVisit() {
     closeMenu()
-    clearActiveVisit()
+    // In una visita di gruppo l'uscita deve passare da GroupSessionContext
+    // (avvisa il backend, chiude il socket, pulisce lo stato di sessione) —
+    // clearActiveVisit() da sola lascerebbe la sessione "appesa" e si
+    // riconnetterebbe da sola al prossimo reload.
+    if (groupRole === 'student') leaveGroupSession()
+    else clearActiveVisit()
     navigate('/')
   }
 

@@ -14,7 +14,7 @@ const REGISTER_URL = '/marketplace/register.html'
 function Home() {
   const { user } = useAuth()
   const { activeVisit, activateVisit, clearActiveVisit } = useActiveVisit()
-  const { lookupCode } = useGroupSession()
+  const { role: groupRole, lookupCode, leaveSession: leaveGroupSession } = useGroupSession()
   const navigate = useNavigate()
   const location = useLocation()
   const [visits, setVisits] = useState([])
@@ -227,12 +227,17 @@ function Home() {
           isActive={activeVisit?._id === detailVisit._id}
           onClose={() => setDetailVisit(null)}
           onActivate={() => {
+            // Attivare qui una visita singola diversa mentre si è studenti in
+            // una sessione di gruppo lascerebbe quella sessione "appesa" (socket
+            // ancora connesso, stato ancora popolato) — si esce prima esplicitamente.
+            if (groupRole === 'student') leaveGroupSession()
             activateVisit(detailVisit)
             setDetailVisit(null)
             navigate('/opera')
           }}
           onDeactivate={() => {
-            clearActiveVisit()
+            if (groupRole === 'student') leaveGroupSession()
+            else clearActiveVisit()
             setDetailVisit(null)
           }}
         />

@@ -30,8 +30,9 @@ router.post('/:id/session/start', verifyToken, loadGroupVisit, requireVisitAutho
 router.post('/:id/session/end', verifyToken, loadGroupVisit, requireVisitAuthor, controller.endSession);
 router.post('/:id/session/quiz/start', verifyToken, loadGroupVisit, requireVisitAuthor, controller.startQuiz);
 
-// Qualsiasi utente autenticato: unirsi, rispondere al quiz.
+// Qualsiasi utente autenticato: unirsi, uscire esplicitamente, rispondere al quiz.
 router.post('/:id/session/join', verifyToken, loadGroupVisit, controller.joinSession);
+router.post('/:id/session/leave', verifyToken, loadGroupVisit, controller.leaveSession);
 router.post('/:id/session/quiz/answers', verifyToken, loadGroupVisit, controller.submitQuizAnswers);
 
 // Autore o partecipante (il controller distingue cosa vede chi).

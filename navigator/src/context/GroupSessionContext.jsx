@@ -91,6 +91,11 @@ export function GroupSessionProvider({ children }) {
         ]
       })
     })
+    // Uscita esplicita di uno studente (non una semplice disconnessione
+    // socket): togli subito la riga dal roster del professore.
+    socket.on('visit:participant_left', (payload) => {
+      setRoster((prev) => prev.filter((p) => p.userId !== payload.userId))
+    })
     socketRef.current = socket
     return socket
   }
@@ -207,6 +212,13 @@ export function GroupSessionProvider({ children }) {
   }
 
   function leaveSession() {
+    // Uscita esplicita, distinta da una semplice caduta di connessione: avvisa
+    // il backend così il professore vede subito sparire la riga dal roster
+    // (fire-and-forget, non blocca la pulizia locale se la richiesta fallisce).
+    if (roleRef.current === 'student' && visitIdRef.current) {
+      fetch(`/api/visits/${visitIdRef.current}/session/leave`, { method: 'POST', credentials: 'include' }).catch(() => {})
+    }
+
     localStorage.removeItem(STORAGE_KEY)
     if (socketRef.current) {
       socketRef.current.disconnect()
@@ -248,8 +260,15 @@ export function GroupSessionProvider({ children }) {
 
   // Riprende una sessione di gruppo dopo un reload della pagina: nessuna
   // chiamata REST distruttiva, solo il fetch del contenuto + la ri-unione
-  // via socket (vedi establishSession).
+  // via socket (vedi establishSession). Il guard su hasResumedRef non è
+  // ridondante: in sviluppo React StrictMode invoca due volte l'effect di
+  // mount, e due chiamate concorrenti a establishSession si contenderebbero
+  // l'unico pendingResolveRef condiviso (la seconda sovrascrive la prima),
+  // producendo uno stato finale imprevedibile.
+  const hasResumedRef = useRef(false)
   useEffect(() => {
+    if (hasResumedRef.current) return
+    hasResumedRef.current = true
     const raw = localStorage.getItem(STORAGE_KEY)
     if (!raw) return
     try {
