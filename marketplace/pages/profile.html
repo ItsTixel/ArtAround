@@ -82,6 +82,16 @@
 
         <!-- ── Impostazioni ── -->
         <section id="panel-impostazioni" class="panel" aria-label="Impostazioni del profilo">
+
+          <!-- ── Upgrade a Autore (solo per i visitatori) ── -->
+          <div id="upgrade-author-card" class="mb-6" style="display: none;">
+            <div class="max-w-[460px] bg-slate-400/10 backdrop-blur-lg border border-slate-400/20 shadow-xl shadow-black/5 rounded-3xl px-6 py-5 flex flex-col items-start gap-3 text-slate-800 dark:text-slate-100">
+              <p class="text-sm text-slate-600 dark:text-slate-300 m-0"><strong class="text-slate-800 dark:text-slate-100 font-semibold">Diventa autore</strong> — crea musei, entità e visite sul marketplace.</p>
+              <button type="button" id="upgrade-author-btn" class="btn-primary m-0 self-center">Diventa autore</button>
+            </div>
+            <p class="feedback" id="upgrade-author-feedback"></p>
+          </div>
+
           <form id="settings-form" class="auth-form profile-form">
             <div class="field">
               <label for="display_name">Nome visualizzato</label>

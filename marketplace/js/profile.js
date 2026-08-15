@@ -383,6 +383,40 @@ function setupSettingsForm() {
   });
 }
 
+function setupUpgradeToAuthor(user) {
+  const card = document.getElementById('upgrade-author-card');
+  if (!card) return;
+  if (user.role !== 'visitor') return; // già autore: la card resta nascosta (display:none di default)
+
+  card.style.display = 'block';
+  const btn = document.getElementById('upgrade-author-btn');
+  const feedback = document.getElementById('upgrade-author-feedback');
+
+  btn.addEventListener('click', async () => {
+    btn.disabled = true;
+    feedback.style.color = '';
+    feedback.textContent = 'Aggiornamento in corso…';
+
+    try {
+      const res = await fetch(`${API_USERS}/${currentUser._id}/upgrade`, {
+        method: 'PUT',
+        credentials: 'include',
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Errore durante l\'aggiornamento.');
+
+      resetCurrentUser(); // il ruolo cambia anche nel cookie JWT: la navbar deve rileggerlo
+      feedback.style.color = 'green';
+      feedback.textContent = 'Ora sei un autore! Ricaricamento…';
+      setTimeout(() => window.location.reload(), 600);
+    } catch (err) {
+      btn.disabled = false;
+      feedback.style.color = 'red';
+      feedback.textContent = err.message;
+    }
+  });
+}
+
 /* ---- Tab principali ---- */
 
 function activateTab(tab) {
@@ -461,6 +495,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   fillSettingsForm(user);
   setupSettingsForm();
+  setupUpgradeToAuthor(user);
 
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => activateTab(btn.dataset.tab));
