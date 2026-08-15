@@ -6,6 +6,14 @@ const express = require('express');
 const cors = require('cors')
 const cookieParser = require('cookie-parser');
 const mongoose = require("mongoose");
+const Museum = require('./models/museum');
+const Entity = require('./models/entity');
+
+function escapeHtml(str) {
+	return String(str ?? '')
+		.replace(/&/g, '&amp;').replace(/</g, '&lt;')
+		.replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
 const credentials = {
 	user: process.env.DB_USER || "site242555",
 	pwd: process.env.DB_PASS || "Kahti2ho",
@@ -50,91 +58,189 @@ app.enable('trust proxy');
 })();
 
 app.get('/', async function (req, res) {
+	let museumsCount = 0;
+	let entitiesCount = 0;
+	let featured = [];
+	try {
+		[museumsCount, entitiesCount, featured] = await Promise.all([
+			Museum.countDocuments(),
+			Entity.countDocuments(),
+			Entity.find({ image_url: { $exists: true, $ne: '' } })
+				.sort({ createdAt: 1 })
+				.limit(3)
+				.populate('placements.museum', 'name address.city')
+				.lean()
+		]);
+	} catch (e) {
+		console.error('Landing page: impossibile leggere il catalogo:', e.message);
+	}
+
+	const entityCard = (e) => {
+		const museum = e.placements?.[0]?.museum;
+		const meta = [e.artwork_author, museum?.name].filter(Boolean).join(' — ');
+		return `
+			<a class="lp-entity-card" href="/marketplace">
+				<div class="thumb" style="background-image: url('${escapeHtml(e.image_url)}')"></div>
+				<div class="body">
+					<div class="name">${escapeHtml(e.name)}</div>
+					<div class="meta">${escapeHtml(meta)}</div>
+				</div>
+			</a>`;
+	};
+
+	const previewItem = (e) => {
+		const museum = e.placements?.[0]?.museum;
+		return `
+			<div class="lp-preview-item">
+				<img class="lp-preview-thumb" src="${escapeHtml(e.image_url)}" alt="" loading="lazy">
+				<div class="lp-preview-text">
+					<div class="name">${escapeHtml(e.name)}</div>
+					<div class="meta">${escapeHtml(museum?.name || '')}</div>
+				</div>
+			</div>`;
+	};
+
+	const modeRow = (e) => {
+		const museum = e.placements?.[0]?.museum;
+		return `
+			<div class="lp-mode-row">
+				<img class="lp-mode-thumb" src="${escapeHtml(e.image_url)}" alt="" loading="lazy">
+				<div class="text">
+					<div class="name">${escapeHtml(e.name)}</div>
+					<div class="meta">${escapeHtml(museum?.name || '')}</div>
+				</div>
+			</div>`;
+	};
+
 	res.send(
 		`<!doctype html>
 <html lang="it">
 <head>
+	<script>(function(){var t=localStorage.getItem('artaround-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>ArtAround</title>
+	<title>ArtAround — L'arte, illuminata</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-	<style>
-		:root {
-			--color-primary: #2c3a4a;
-			--color-accent: #9e7a46;
-			--color-accent-hover: #7c5e33;
-			--color-bg: #f9f8f5;
-			--color-surface: #ffffff;
-			--color-text: #1c1917;
-			--color-text-muted: #78716c;
-			--color-border: #e8e6e1;
-			--font-serif: 'Playfair Display', Georgia, serif;
-			--font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-		}
-		* { box-sizing: border-box; margin: 0; padding: 0; }
-		body {
-			min-height: 100vh;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			background: var(--color-bg);
-			color: var(--color-text);
-			font-family: var(--font-sans);
-		}
-		main {
-			text-align: center;
-			padding: 2.5rem;
-		}
-		h1 {
-			font-family: var(--font-serif);
-			font-size: 2.5rem;
-			font-weight: 600;
-			color: var(--color-primary);
-		}
-		p {
-			margin-top: 0.75rem;
-			color: var(--color-text-muted);
-		}
-		.links {
-			margin-top: 2.5rem;
-			display: flex;
-			gap: 1rem;
-			justify-content: center;
-			flex-wrap: wrap;
-		}
-		.links a {
-			display: inline-block;
-			padding: 0.85rem 2rem;
-			text-decoration: none;
-			font-weight: 500;
-			border: 1px solid var(--color-border);
-			background: var(--color-surface);
-			color: var(--color-primary);
-			transition: 0.2s ease;
-		}
-		.links a.primary {
-			background: var(--color-accent);
-			border-color: var(--color-accent);
-			color: #fff;
-		}
-		.links a:hover {
-			background: var(--color-accent-hover);
-			border-color: var(--color-accent-hover);
-			color: #fff;
-		}
-	</style>
+	<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Nunito+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="/marketplace/css/base.css">
+	<link rel="stylesheet" href="/marketplace/css/landing.css">
+
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script>tailwind.config = { darkMode: ['selector', '[data-theme="dark"]'] };</script>
+
+	<script type="module" src="/marketplace/components/app-navbar.js"></script>
+	<script type="module" src="/marketplace/components/app-footer.js"></script>
 </head>
-<body>
+<body class="lp">
+
+	<app-navbar></app-navbar>
+
 	<main>
-		<h1>ArtAround</h1>
-		<p>Scopri i musei o continua la tua visita.</p>
-		<div class="links">
-			<a class="primary" href="/marketplace">Marketplace</a>
-			<a href="/navigator">Navigator</a>
-		</div>
+		<section class="lp-hero" aria-label="Presentazione">
+			<div class="lp-hero-inner">
+				<div class="lp-hero-copy">
+					<p class="lp-kicker">Tecnologia per i beni culturali</p>
+					<h1>L'arte, <em>illuminata</em>.</h1>
+					<p class="lp-lead">Guide personalizzate, contenuti su più livelli e un marketplace per la cultura: due app pensate una per chi visita, una per chi cura.</p>
+					<div class="lp-cta-row">
+						<a class="lp-btn lp-btn-primary" href="/navigator">Esplora Navigator →</a>
+						<a class="lp-btn lp-btn-ghost" href="/marketplace">Scopri il Marketplace</a>
+					</div>
+				</div>
+				<div class="lp-hero-preview">
+					<div class="lp-hero-preview-label">In catalogo</div>
+					${featured.length ? featured.map(previewItem).join('') : '<p class="lp-lead">Il catalogo si popola non appena i musei pubblicano le prime opere.</p>'}
+				</div>
+			</div>
+			<div class="lp-stats">
+				<div class="lp-stat"><span class="lp-stat-num">${museumsCount}</span><span class="lp-stat-label">Musei in catalogo</span></div>
+				<div class="lp-stat"><span class="lp-stat-num">${entitiesCount}</span><span class="lp-stat-label">Opere censite</span></div>
+				<div class="lp-stat"><span class="lp-stat-num">4</span><span class="lp-stat-label">Livelli di racconto</span></div>
+				<div class="lp-stat"><span class="lp-stat-num">2</span><span class="lp-stat-label">Modalità, Giorno e Notte</span></div>
+			</div>
+		</section>
+
+		${featured.length ? `
+		<section class="lp-section" aria-label="Opere già in catalogo">
+			<div class="lp-section-head">
+				<h2>Opere già in catalogo</h2>
+				<a class="lp-link" href="/marketplace">Sfoglia il marketplace →</a>
+			</div>
+			<div class="lp-entity-grid">
+				${featured.map(entityCard).join('')}
+			</div>
+		</section>` : ''}
+
+		<section class="lp-section lp-features" aria-label="Funzionalità">
+			<div class="lp-section-head lp-section-head-center">
+				<p class="lp-kicker">Cosa include ArtAround</p>
+				<h2>Tutto ciò che serve, <em>niente di superfluo</em></h2>
+				<p class="lp-lead">Funzionalità pensate per accompagnare la visita passo passo, e per chi i musei li racconta.</p>
+			</div>
+			<div class="lp-feature-grid">
+				<div class="lp-feature-card">
+					<div class="lp-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z" stroke-linejoin="round"/><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18 6.5a7.5 7.5 0 0 1 0 11"/></svg></div>
+					<h3>Audio guida</h3>
+					<p>Play, pausa e avanzamento automatico da opera a opera: ascolta la visita senza mai distogliere lo sguardo.</p>
+				</div>
+				<div class="lp-feature-card">
+					<div class="lp-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h13"/><path d="M4 12h9"/><path d="M4 18h13"/><path d="M20 12h.01"/></svg></div>
+					<h3>Contenuti multilivello</h3>
+					<p>Dallo stile Infantile a quello Avanzato: lo stesso racconto adattato a chi ascolta, un tocco per cambiare.</p>
+				</div>
+				<div class="lp-feature-card">
+					<div class="lp-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 3.5 6v14L9 18l6 2 5.5-2V4L15 6 9 4Z" stroke-linejoin="round"/><path d="M9 4v14"/><path d="M15 6v14"/></svg></div>
+					<h3>Mappe indoor</h3>
+					<p>Pianta interattiva sala per sala, con zoom e punti di interesse per opere e servizi del museo.</p>
+				</div>
+				<div class="lp-feature-card">
+					<div class="lp-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="6" height="6" rx="0.5"/><rect x="14.5" y="3.5" width="6" height="6" rx="0.5"/><rect x="3.5" y="14.5" width="6" height="6" rx="0.5"/><path d="M14.5 14.5h3v3h-3z"/><path d="M20.5 14.5v3"/><path d="M14.5 20.5h3"/><path d="M20.5 20.5h.01"/></svg></div>
+					<h3>Scansiona ed esplora</h3>
+					<p>Inquadra il QR in sala per aprire subito un'opera o adottare la visita guidata di quel museo.</p>
+				</div>
+				<div class="lp-feature-card">
+					<div class="lp-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V9.5L12 4l8 5.5V20" stroke-linejoin="round"/><path d="M9.5 20v-6h5v6"/></svg></div>
+					<h3>Editor per curatori</h3>
+					<p>Crea musei, opere e descrizioni a più livelli direttamente dal Marketplace, senza passare da un CMS esterno.</p>
+				</div>
+				<div class="lp-feature-card">
+					<div class="lp-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 5 4h14l1.5 4.5" stroke-linejoin="round"/><path d="M3.5 8.5a2.3 2.3 0 0 0 4.6 0 2.3 2.3 0 0 0 4.6 0 2.3 2.3 0 0 0 4.6 0 2.3 2.3 0 0 0 4.6 0"/><path d="M5 8.5V20h14V8.5" stroke-linejoin="round"/><path d="M9.5 20v-5h5v5"/></svg></div>
+					<h3>Marketplace</h3>
+					<p>Pubblica e scopri le visite guidate create dai musei e dalle istituzioni della rete ArtAround.</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="lp-section lp-modes" aria-label="Tema Giorno e Notte">
+			<div class="lp-section-head lp-section-head-center">
+				<p class="lp-kicker">Sempre a proprio agio</p>
+				<h2>Due modalità, <em>un'identità</em></h2>
+				<p class="lp-lead">Notte per la visita in sala, Giorno per la consultazione a mente fredda: cambia con un tocco, la preferenza resta salvata sul dispositivo.</p>
+			</div>
+			<div class="lp-modes-grid">
+				<div class="lp-mode-card lp-mode-night">
+					<div class="lp-mode-label">☾ Modalità Notte</div>
+					${featured.length ? featured.map(modeRow).join('') : ''}
+				</div>
+				<div class="lp-mode-card lp-mode-day">
+					<div class="lp-mode-label">☼ Modalità Giorno</div>
+					${featured.length ? featured.map(modeRow).join('') : ''}
+				</div>
+			</div>
+		</section>
+
+		<section class="lp-cta-band" aria-label="Registrazione">
+			<h2>Porta il tuo museo <em>nel futuro</em>.</h2>
+			<p class="lp-lead">Registrati come curatore e pubblica il tuo primo museo in pochi minuti.</p>
+			<div class="lp-cta-row">
+				<a class="lp-btn lp-btn-primary" href="/marketplace/register.html">Crea il tuo account →</a>
+				<a class="lp-btn lp-btn-ghost" href="/marketplace/login.html">Accedi</a>
+			</div>
+		</section>
 	</main>
+
+	<app-footer></app-footer>
 </body>
 </html>
 			`)

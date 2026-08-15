@@ -5,8 +5,8 @@
 export const TONE_ORDER = ['childish', 'simple', 'medium', 'technical'];
 
 export const TONE_LABELS = {
-  childish:  'Per bambini',
-  simple:    'Semplice',
+  childish:  'Infantile',
+  simple:    'Elementare',
   medium:    'Medio',
-  technical: 'Tecnico',
+  technical: 'Avanzato',
 };

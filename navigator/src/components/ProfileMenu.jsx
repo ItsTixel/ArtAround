@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { useActiveVisit } from '../context/ActiveVisitContext'
-import { PersonIcon, LogoutIcon, ExitIcon } from './icons'
+import { PersonIcon, LogoutIcon, ExitIcon, SunIcon, MoonIcon } from './icons'
+import { getTheme, toggleTheme } from '../theme'
 
 const MARKETPLACE_PROFILE_URL = '/marketplace/pages/profile.html'
 
@@ -99,7 +100,7 @@ function initials(name) {
 }
 
 const pillClasses =
-  'flex items-center gap-2 whitespace-nowrap rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium text-text shadow-md'
+  'flex items-center gap-2 whitespace-nowrap rounded-full border border-slate-400/20 bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg px-4 py-2 text-sm font-medium shadow-lg shadow-black/5'
 
 // Ogni voce entra con un piccolo scarto in cascata (via transitionDelay) e
 // esce tutta insieme, senza scarto.
@@ -127,6 +128,7 @@ function ProfileMenu({ hasPlayer = false }) {
   const [mounted, setMounted] = useState(false)
   const [open, setOpen] = useState(false)
   const [corner, setCorner] = useState(readStoredCorner)
+  const [theme, setThemeState] = useState(getTheme)
   const [dragPos, setDragPos] = useState(null)
   const [lifted, setLifted] = useState(false)
   const [snapping, setSnapping] = useState(false)
@@ -325,6 +327,10 @@ function ProfileMenu({ hasPlayer = false }) {
     navigate('/')
   }
 
+  function handleToggleTheme() {
+    setThemeState(toggleTheme())
+  }
+
   const items = [
     {
       key: 'profile',
@@ -333,6 +339,14 @@ function ProfileMenu({ hasPlayer = false }) {
       icon: PersonIcon,
       label,
       truncate: true,
+    },
+    {
+      key: 'theme',
+      as: 'button',
+      type: 'button',
+      onClick: handleToggleTheme,
+      icon: theme === 'light' ? MoonIcon : SunIcon,
+      label: theme === 'light' ? 'Tema scuro' : 'Tema chiaro',
     },
     activeVisit && {
       key: 'leave-visit',
@@ -378,8 +392,8 @@ function ProfileMenu({ hasPlayer = false }) {
         aria-expanded={mounted}
         aria-label="Profilo"
         style={{ touchAction: 'none' }}
-        className={`flex h-14 w-14 select-none items-center justify-center overflow-hidden rounded-full border border-border bg-surface text-base font-semibold text-text shadow-md transition-transform duration-150 ease-out ${
-          lifted ? 'scale-110 cursor-grabbing shadow-lg' : 'scale-100 cursor-grab'
+        className={`flex h-14 w-14 select-none items-center justify-center overflow-hidden rounded-full border border-slate-400/20 bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg text-base font-semibold text-text shadow-lg shadow-black/5 transition-transform duration-150 ease-out ${
+          lifted ? 'scale-110 cursor-grabbing shadow-xl' : 'scale-100 cursor-grab'
         }`}
       >
         {user.avatar_url ? (
@@ -406,7 +420,7 @@ function ProfileMenu({ hasPlayer = false }) {
               open={open}
               closedTranslate={panelConfig.itemClosedTranslate}
               as={as}
-              className={`${pillClasses} ${accent ? 'bg-gradient-to-br from-accent to-accent-hover text-on-accent' : ''}`}
+              className={`${pillClasses} ${accent ? 'bg-gradient-to-br from-accent to-accent-hover text-on-accent' : 'text-text'}`}
               {...rest}
             >
               <Icon className="h-4 w-4 shrink-0" />

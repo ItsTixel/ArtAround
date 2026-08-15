@@ -3,21 +3,11 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { useActiveVisit } from '../context/ActiveVisitContext'
 import VisitDetailModal from '../components/VisitDetailModal'
+import { formatDuration, formatPrice } from '../components/VisitInfoBody'
 
 const MARKETPLACE_VISITS_URL = '/marketplace/pages/visits.html'
 const LOGIN_URL = '/marketplace/login.html'
 const REGISTER_URL = '/marketplace/register.html'
-
-function formatDuration(sec) {
-  if (!sec) return null
-  const minutes = Math.round(sec / 60)
-  return `${minutes} min`
-}
-
-function formatPrice(price) {
-  if (!price) return 'Gratis'
-  return `${price.toFixed(2)} €`
-}
 
 function Home() {
   const { user } = useAuth()
@@ -85,7 +75,7 @@ function Home() {
           <div className="flex justify-center gap-3">
             <a
               href={`${LOGIN_URL}?redirect=${encodeURIComponent(location.pathname + location.search)}`}
-              className="rounded-md bg-gradient-to-br from-accent to-accent-hover px-4 py-2 text-sm font-medium text-on-accent shadow-[0_0_16px_rgba(212,168,83,0.25)]"
+              className="rounded-md bg-gradient-to-br from-accent to-accent-hover px-4 py-2 text-sm font-medium text-on-accent shadow-lg shadow-black/10 dark:shadow-black/30"
             >
               Accedi
             </a>
@@ -115,7 +105,7 @@ function Home() {
           />
           <button
             type="submit"
-            className="shrink-0 rounded-md bg-gradient-to-br from-accent to-accent-hover px-4 py-2.5 text-sm font-medium text-on-accent shadow-[0_0_16px_rgba(212,168,83,0.25)]"
+            className="shrink-0 rounded-md bg-gradient-to-br from-accent to-accent-hover px-4 py-2.5 text-sm font-medium text-on-accent shadow-lg shadow-black/10 dark:shadow-black/30"
           >
             Vai
           </button>
@@ -126,7 +116,7 @@ function Home() {
         <h2 className="font-serif text-lg font-semibold text-text">Visite disponibili</h2>
 
         {loading && <p className="text-sm text-text-muted">Caricamento visite...</p>}
-        {error && <p className="text-sm text-red-400">{error}</p>}
+        {error && <p className="text-sm text-[color:var(--color-error)]">{error}</p>}
 
         {!loading && !error && visits.length === 0 && (
           <p className="text-sm text-text-muted">Non hai ancora nessuna visita adottata.</p>
@@ -144,8 +134,8 @@ function Home() {
                   <button
                     type="button"
                     onClick={() => setDetailVisit(visit)}
-                    className={`flex w-full items-center gap-3 rounded-lg border bg-surface p-3 text-left shadow-sm ${
-                      isActive ? 'border-accent shadow-[0_0_20px_rgba(212,168,83,0.15)]' : 'border-border'
+                    className={`glass-panel flex w-full items-center gap-3 rounded-2xl p-3 text-left transition-colors ${
+                      isActive ? 'border-accent! shadow-lg shadow-black/10 dark:shadow-black/30' : ''
                     }`}
                   >
                     <div className="h-16 w-16 shrink-0 overflow-hidden rounded-md border border-border bg-bg">

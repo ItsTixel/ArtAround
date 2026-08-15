@@ -286,7 +286,7 @@ function Qr() {
             <button
               type="button"
               onClick={startCamera}
-              className="rounded-md bg-gradient-to-br from-accent to-accent-hover px-4 py-2 text-sm font-medium text-on-accent shadow-[0_0_16px_rgba(212,168,83,0.25)]"
+              className="rounded-md bg-gradient-to-br from-accent to-accent-hover px-4 py-2 text-sm font-medium text-on-accent shadow-lg shadow-black/10 dark:shadow-black/30"
             >
               Riprova
             </button>
@@ -313,7 +313,7 @@ function Qr() {
             <button
               type="button"
               onClick={startCamera}
-              className="rounded-md bg-gradient-to-br from-accent to-accent-hover px-4 py-2 text-sm font-medium text-on-accent shadow-[0_0_16px_rgba(212,168,83,0.25)]"
+              className="rounded-md bg-gradient-to-br from-accent to-accent-hover px-4 py-2 text-sm font-medium text-on-accent shadow-lg shadow-black/10 dark:shadow-black/30"
             >
               Scansiona di nuovo
             </button>
@@ -382,7 +382,7 @@ function Qr() {
                 </button>
               ))}
             </div>
-            {testError && <p className="text-xs text-red-400">{testError}</p>}
+            {testError && <p className="text-xs text-[color:var(--color-error)]">{testError}</p>}
           </div>
         )}
       </div>

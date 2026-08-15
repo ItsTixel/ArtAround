@@ -183,10 +183,10 @@ class ItemModal extends HTMLElement {
           <div class="field">
             <label>Tono</label>
             <div class="btn-group" id="edit-tone-group" role="radiogroup" aria-label="Tono">
-              <button type="button" class="btn-option" role="radio" aria-checked="false" data-value="childish">Per bambini</button>
-              <button type="button" class="btn-option" role="radio" aria-checked="false" data-value="simple">Semplice</button>
+              <button type="button" class="btn-option" role="radio" aria-checked="false" data-value="childish">Infantile</button>
+              <button type="button" class="btn-option" role="radio" aria-checked="false" data-value="simple">Elementare</button>
               <button type="button" class="btn-option" role="radio" aria-checked="false" data-value="medium">Medio</button>
-              <button type="button" class="btn-option" role="radio" aria-checked="false" data-value="technical">Tecnico</button>
+              <button type="button" class="btn-option" role="radio" aria-checked="false" data-value="technical">Avanzato</button>
             </div>
           </div>
           <div class="field">
