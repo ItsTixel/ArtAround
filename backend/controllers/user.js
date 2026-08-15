@@ -88,6 +88,40 @@ async function update(req, res) {
   }
 }
 
+// L'upgrade è un'azione separata da update(): role non è nella whitelist di
+// quella rotta apposta, e qui va anche ri-emesso il cookie JWT (role viaggia
+// nel payload firmato al login, quindi un semplice update nel DB non
+// basterebbe: il vecchio cookie continuerebbe a valere 'visitor' finché
+// l'utente non rifà login).
+async function upgradeToAuthor(req, res) {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ error: 'User not found' });
+
+    if (user.role === 'author') {
+      return res.status(400).json({ error: 'Sei già un autore.' });
+    }
+
+    user.role = 'author';
+    await user.save();
+
+    const payload = { id: user._id, role: user.role };
+    const secretKey = process.env.JWT_SECRET || "password";
+    const maxAgeMs = 60 * 60 * 1000; // stesso valore di login()/register()
+    const token = jwt.sign(payload, secretKey, { expiresIn: '1h' });
+    res.cookie('token', token, {
+      httpOnly: true,
+      sameSite: 'lax',
+      maxAge: maxAgeMs
+    });
+
+    const { password: _, ...safeUser } = user.toObject();
+    res.json(safeUser);
+  } catch (e) {
+    res.status(400).json({ error: e.message });
+  }
+}
+
 async function remove(req, res) {
   try {
     const user = await User.findByIdAndDelete(req.params.id);
@@ -175,4 +209,4 @@ async function removeBookmark(req, res) {
   }
 }
 
-module.exports = { getAll, getById, create, update, remove, adoptVisit, removeAdoption, bookmarkVisit, removeBookmark };
+module.exports = { getAll, getById, create, update, remove, upgradeToAuthor, adoptVisit, removeAdoption, bookmarkVisit, removeBookmark };

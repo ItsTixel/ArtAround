@@ -18,6 +18,7 @@ router.get('/:id', controller.getById);
 router.post('/',   controller.create);
 router.put('/:id', verifyToken, isSelf, uploadAvatar, controller.update);
 router.delete('/:id', verifyToken, isSelf, controller.remove);
+router.put('/:id/upgrade', verifyToken, isSelf, controller.upgradeToAuthor);
 
 router.put('/:id/adopt/:visitId',       verifyToken, isSelf, adoptLimiter, controller.adoptVisit);
 router.delete('/:id/adopt/:visitId',    verifyToken, isSelf, controller.removeAdoption);
