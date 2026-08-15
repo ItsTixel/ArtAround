@@ -114,6 +114,10 @@
 
 .btn-primary:hover { background: var(--color-accent-hover); }
 
+.role-field {
+  margin-bottom: 1.6rem;
+}
+
 .role-toggle {
   position: relative;
   display: flex;

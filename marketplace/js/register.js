@@ -96,7 +96,9 @@ async function handleGoogleCredential(response) {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
-            body: JSON.stringify({ credential: response.credential })
+            // Il ruolo scelto nel toggle sopra vale anche per la registrazione
+            // con Google (viene usato solo se l'account Google è nuovo).
+            body: JSON.stringify({ credential: response.credential, role: selectedRole })
         });
         const data = await res.json();
 

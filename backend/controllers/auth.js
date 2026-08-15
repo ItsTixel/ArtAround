@@ -127,10 +127,16 @@ async function register(req, res) {
 
 async function googleAuth(req, res) {
     try {
-        const { credential } = req.body;
+        const { credential, role } = req.body;
         if (!credential) {
             return res.status(400).json({ message: "Token Google mancante" });
         }
+
+        // Come in register(): ruolo valido solo se esplicitamente 'author',
+        // altrimenti 'visitor'. Si applica solo alla creazione del nuovo
+        // utente più sotto, mai a un account Google già esistente.
+        const allowedRoles = ['visitor', 'author'];
+        const requestedRole = allowedRoles.includes(role) ? role : 'visitor';
 
         // Verifica la firma e la validità dell'ID token presso Google:
         // se qualcuno manda un token falso o scaduto, questa chiamata fallisce.
@@ -165,7 +171,7 @@ async function googleAuth(req, res) {
                 email,
                 googleId,
                 display_name: name,
-                role: 'visitor'
+                role: requestedRole
             });
             await user.save();
         } else if (!user.googleId) {
