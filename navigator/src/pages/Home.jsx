@@ -74,13 +74,13 @@ function Home() {
           </p>
           <div className="flex justify-center gap-3">
             <a
-              href={`${LOGIN_URL}?redirect=${encodeURIComponent(location.pathname + location.search)}`}
+              href={`${LOGIN_URL}?redirect=${encodeURIComponent(window.location.pathname + window.location.search)}`}
               className="rounded-md bg-gradient-to-br from-accent to-accent-hover px-4 py-2 text-sm font-medium text-on-accent shadow-lg shadow-black/10 dark:shadow-black/30"
             >
               Accedi
             </a>
             <a
-              href={`${REGISTER_URL}?redirect=${encodeURIComponent(location.pathname + location.search)}`}
+              href={`${REGISTER_URL}?redirect=${encodeURIComponent(window.location.pathname + window.location.search)}`}
               className="rounded-md border border-border px-4 py-2 text-sm font-medium text-text"
             >
               Registrati
