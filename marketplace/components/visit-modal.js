@@ -24,6 +24,7 @@ class VisitModal extends HTMLElement {
     this._visit = null;
     this._userId = null;
     this._owned = false;
+    this._favorited = false;
     this._loading = false;
     this._error = null;
     this._confirm = false;
@@ -41,6 +42,7 @@ class VisitModal extends HTMLElement {
     this._confirm = false;
     this._adding = false;
     this._purchaseError = null;
+    this._favorited = false;
 
     this.setAttribute('open', '');
     document.body.style.overflow = 'hidden';
@@ -55,7 +57,9 @@ class VisitModal extends HTMLElement {
       if (!visitRes.ok) throw new Error(`HTTP ${visitRes.status}`);
       this._visit = await visitRes.json();
       this._userId = user?._id || null;
-      this._owned = await this._checkOwned(visitId, this._userId);
+      const flags = await this._loadUserFlags(visitId, this._userId);
+      this._owned = flags.owned;
+      this._favorited = flags.favorited;
     } catch (e) {
       console.error('Errore nel caricamento della visita:', e);
       this._error = 'Errore nel caricamento della visita. Riprova più tardi.';
@@ -76,16 +80,42 @@ class VisitModal extends HTMLElement {
     if (e.key === 'Escape') this.close();
   }
 
-  async _checkOwned(visitId, userId) {
-    if (!userId) return false;
+  async _loadUserFlags(visitId, userId) {
+    if (!userId) return { owned: false, favorited: false };
     try {
       const res = await fetch(`${API_USERS}/${userId}`);
-      if (!res.ok) return false;
+      if (!res.ok) return { owned: false, favorited: false };
       const user = await res.json();
-      return (user.adopted_visits || []).some(id => String(id) === String(visitId));
+      return {
+        owned:     (user.adopted_visits || []).some(id => String(id) === String(visitId)),
+        favorited: (user.bookmarked_visits || []).some(id => String(id) === String(visitId)),
+      };
     } catch {
-      return false;
+      return { owned: false, favorited: false };
     }
+  }
+
+  _toggleFavorite() {
+    const next = !this._favorited;
+    this._favorited = next;
+    this._renderFavBtn();
+    this.dispatchEvent(new CustomEvent('toggle-favorite', {
+      detail: {
+        id: this._visit._id,
+        favorited: next,
+        revert: () => { this._favorited = !next; this._renderFavBtn(); },
+      },
+      bubbles: true,
+      composed: true,
+    }));
+  }
+
+  _renderFavBtn() {
+    const btn = this.querySelector('.fav-btn');
+    if (!btn) return;
+    btn.setAttribute('aria-pressed', String(this._favorited));
+    btn.setAttribute('aria-label', this._favorited ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti');
+    btn.querySelector('svg').setAttribute('class', `w-4 h-4 ${this._favorited ? 'fill-rose-500 stroke-rose-500' : 'fill-none stroke-current'}`);
   }
 
   async _addToLibrary() {
@@ -277,6 +307,10 @@ class VisitModal extends HTMLElement {
       <div class="fixed inset-0 z-[1000] flex items-start sm:items-center justify-center p-0 sm:p-6" style="pointer-events: none;">
         <div class="panel relative w-screen min-w-0 h-screen sm:w-[min(720px,92vw)] sm:h-auto sm:max-h-[92vh] rounded-none sm:rounded-2xl overflow-hidden flex flex-col ${GLASS} text-slate-800 dark:text-slate-100" style="pointer-events: auto;" role="dialog" aria-modal="true" aria-label="${this._visit ? this._esc(this._visit.title) : 'Dettagli visita'}">
           <button class="close-btn absolute top-3 right-3 z-10 w-9 h-9 rounded-full border border-slate-400/20 bg-slate-400/10 backdrop-blur-lg flex items-center justify-center text-lg leading-none hover:bg-white/20 hover:border-white/30 ${TRANSITION}" aria-label="Chiudi">×</button>
+          ${(!this._loading && !this._error && this._visit) ? `
+          <button class="fav-btn absolute top-3 right-14 z-10 w-9 h-9 rounded-full border border-slate-400/20 bg-slate-400/10 backdrop-blur-lg flex items-center justify-center hover:bg-white/20 hover:border-white/30 ${TRANSITION}" aria-pressed="${this._favorited}" aria-label="${this._favorited ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti'}">
+            <svg class="w-4 h-4 ${this._favorited ? 'fill-rose-500 stroke-rose-500' : 'fill-none stroke-current'}" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.6s-6.9-4.35-9.5-8.4C.9 9.1 1.7 5.4 5 4c2.2-.9 4.5 0 5.8 2l1.2 1.5L13.2 6c1.3-2 3.6-2.9 5.8-2 3.3 1.4 4.1 5.1 2.5 8.2-2.6 4.05-9.5 8.4-9.5 8.4z"/></svg>
+          </button>` : ''}
           <div class="body-scroll overflow-y-auto flex-1 min-h-0">
             ${this._loading ? '<p class="py-16 px-8 text-center text-slate-500 dark:text-slate-400 text-sm">Caricamento…</p>' : ''}
             ${this._error ? `<p class="py-16 px-8 text-center text-slate-500 dark:text-slate-400 text-sm">${this._esc(this._error)}</p>` : ''}
@@ -290,6 +324,7 @@ class VisitModal extends HTMLElement {
     if (isOpen) {
       this.querySelector('.backdrop')?.addEventListener('click', () => this.close());
       this.querySelector('.close-btn')?.addEventListener('click', () => this.close());
+      this.querySelector('.fav-btn')?.addEventListener('click', () => this._toggleFavorite());
       this._bindFooter();
     }
   }
