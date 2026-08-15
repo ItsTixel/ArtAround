@@ -5,12 +5,23 @@
  *  dalle classi Tailwind/atomiche usate dal resto del sito.
  * ============================================================ */
 
+/* Foto museale fissa a piena pagina (non scorre col contenuto: resta
+   "agganciata" al viewport come un fondale), con vignetta radiale a
+   tema sopra — trasparente al centro dove si intravede la foto, quasi
+   opaca ai bordi nella stessa tinta di --color-bg. I bagliori colorati
+   restano un layer separato che scorre normalmente col documento. */
 html, body {
-  background:
+  background-color: var(--color-bg);
+    background-image:
     radial-gradient(ellipse 1100px 620px at 18% -8%, var(--blob-1), transparent 60%),
     radial-gradient(ellipse 900px 560px at 100% 8%, var(--blob-2), transparent 55%),
     radial-gradient(ellipse 1000px 700px at 50% 115%, var(--blob-3), transparent 60%),
-    var(--color-bg);
+    radial-gradient(ellipse 80% 65% at 50% 38%, var(--lp-bg-vignette-center) 0%, var(--lp-bg-vignette-mid) 65%, var(--lp-bg-vignette-edge) 100%),
+      url('/assets/landing/hero-bg1.jpg');
+      background-repeat: no-repeat;
+      background-position: 0 0, 0 0, 0 0, center, center 30%;
+      background-size: auto, auto, auto, 100% 100%, cover;
+      background-attachment: scroll, scroll, scroll, fixed, fixed;
   color: var(--color-text);
 }
 

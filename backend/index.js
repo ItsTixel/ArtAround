@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser');
 const mongoose = require("mongoose");
 const Museum = require('./models/museum');
 const Entity = require('./models/entity');
+const Visit = require('./models/visit');
 
 function escapeHtml(str) {
 	return String(str ?? '')
@@ -60,11 +61,13 @@ app.enable('trust proxy');
 app.get('/', async function (req, res) {
 	let museumsCount = 0;
 	let entitiesCount = 0;
+	let visitsCount = 0;
 	let featured = [];
 	try {
-		[museumsCount, entitiesCount, featured] = await Promise.all([
+		[museumsCount, entitiesCount, visitsCount, featured] = await Promise.all([
 			Museum.countDocuments(),
 			Entity.countDocuments(),
+			Visit.countDocuments(),
 			Entity.find({ image_url: { $exists: true, $ne: '' } })
 				.sort({ createdAt: 1 })
 				.limit(3)
@@ -157,7 +160,7 @@ app.get('/', async function (req, res) {
 				<div class="lp-stat"><span class="lp-stat-num">${museumsCount}</span><span class="lp-stat-label">Musei in catalogo</span></div>
 				<div class="lp-stat"><span class="lp-stat-num">${entitiesCount}</span><span class="lp-stat-label">Opere censite</span></div>
 				<div class="lp-stat"><span class="lp-stat-num">4</span><span class="lp-stat-label">Livelli di racconto</span></div>
-				<div class="lp-stat"><span class="lp-stat-num">2</span><span class="lp-stat-label">Modalità, Giorno e Notte</span></div>
+				<div class="lp-stat"><span class="lp-stat-num">${visitsCount}</span><span class="lp-stat-label">Visite guidate</span></div>
 			</div>
 		</section>
 
@@ -232,7 +235,7 @@ app.get('/', async function (req, res) {
 
 		<section class="lp-cta-band" aria-label="Registrazione">
 			<h2>Porta il tuo museo <em>nel futuro</em>.</h2>
-			<p class="lp-lead">Registrati come curatore e pubblica il tuo primo museo in pochi minuti.</p>
+			<p class="lp-lead">Registrati come curatore e pubblica il tuo primo museo in pochi minuti oppure come visitatore per goderti le visite guidate.</p>
 			<div class="lp-cta-row">
 				<a class="lp-btn lp-btn-primary" href="/marketplace/register.html">Crea il tuo account →</a>
 				<a class="lp-btn lp-btn-ghost" href="/marketplace/login.html">Accedi</a>

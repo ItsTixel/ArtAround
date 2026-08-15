@@ -28,6 +28,14 @@
   --blob-2: rgba(99, 102, 241, 0.10);
   --blob-3: rgba(14, 116, 144, 0.12);
 
+  /* Vignetta sopra la foto di sfondo della landing (vedi landing.css,
+     html/body): un radial-gradient dal centro (più trasparente, la foto
+     si intravede) ai bordi (quasi opaco, stessa tinta di --color-bg) per
+     restare leggibile mantenendo l'identità del tema corrente. */
+  --lp-bg-vignette-center: rgba(2, 6, 23, 0.62);
+  --lp-bg-vignette-mid: rgba(2, 6, 23, 0.82);
+  --lp-bg-vignette-edge: rgba(2, 6, 23, 0.97);
+
   /* "Universal Glass": lo stesso mix neutro semi-trasparente di
      navbar/sidebar/card (Tailwind bg-slate-400/10 border-slate-400/20
      shadow-xl shadow-black/5). Volutamente identico in light e dark:
@@ -74,6 +82,10 @@
   --blob-1: rgba(59, 130, 246, 0.07);
   --blob-2: rgba(129, 140, 248, 0.06);
   --blob-3: rgba(45, 212, 191, 0.06);
+
+  --lp-bg-vignette-center: rgba(248, 250, 252, 0.68);
+  --lp-bg-vignette-mid: rgba(248, 250, 252, 0.86);
+  --lp-bg-vignette-edge: rgba(248, 250, 252, 0.97);
 }
 
 *, *::before, *::after {
