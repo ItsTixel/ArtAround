@@ -58,6 +58,9 @@ function Home() {
   const [favoriteVisits, setFavoriteVisits] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  // Pill "Adottate" / "Preferiti", stesso pattern delle sub-pill nella tab
+  // "Visite" del profilo marketplace: un'unica sezione, filtro sopra la lista.
+  const [visitsTab, setVisitsTab] = useState('adopted')
   // Preferito non ancora adottato su cui l'utente ha cliccato: apre
   // VisitAdoptModal invece del VisitDetailModal (serve prima adottarla).
   const [adoptVisit, setAdoptVisit] = useState(null)
@@ -212,71 +215,100 @@ function Home() {
       {error && <p className="text-sm text-[color:var(--color-error)]">{error}</p>}
 
       <div className="flex flex-col gap-3">
-        <h2 className="font-serif text-lg font-semibold text-text">Visite adottate</h2>
+        <div className="flex gap-2" role="tablist" aria-label="Filtro visite">
+          <button
+            type="button"
+            role="tab"
+            aria-selected={visitsTab === 'adopted'}
+            onClick={() => setVisitsTab('adopted')}
+            className={`rounded-full px-4 py-1.5 text-xs font-medium uppercase tracking-wide transition-colors ${
+              visitsTab === 'adopted'
+                ? 'bg-gradient-to-br from-accent to-accent-hover text-on-accent shadow-lg shadow-black/10 dark:shadow-black/30'
+                : 'border border-border text-text-muted'
+            }`}
+          >
+            Adottate
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={visitsTab === 'favorites'}
+            onClick={() => setVisitsTab('favorites')}
+            className={`rounded-full px-4 py-1.5 text-xs font-medium uppercase tracking-wide transition-colors ${
+              visitsTab === 'favorites'
+                ? 'bg-gradient-to-br from-accent to-accent-hover text-on-accent shadow-lg shadow-black/10 dark:shadow-black/30'
+                : 'border border-border text-text-muted'
+            }`}
+          >
+            Preferiti
+          </button>
+        </div>
 
-        {!loading && !error && visits.length === 0 && (
-          <p className="text-sm text-text-muted">Non hai ancora nessuna visita adottata.</p>
-        )}
+        {visitsTab === 'adopted' ? (
+          <>
+            {!loading && !error && visits.length === 0 && (
+              <p className="text-sm text-text-muted">Non hai ancora nessuna visita adottata.</p>
+            )}
 
-        {!loading && !error && visits.length > 0 && (
-          <ul className="flex max-h-96 flex-col gap-3 overflow-y-auto pr-1">
-            {visits.map((visit) => {
-              const isActive = activeVisit?._id === visit._id
-              return (
-                <VisitRow
-                  key={visit._id}
-                  visit={visit}
-                  isActive={isActive}
-                  onClick={() => setDetailVisit(visit)}
-                  badge={
-                    isActive && (
-                      <span className="shrink-0 rounded-full bg-accent px-2 py-0.5 text-[0.65rem] font-medium text-on-accent">
-                        Attiva
-                      </span>
-                    )
-                  }
-                />
-              )
-            })}
-          </ul>
-        )}
-      </div>
+            {!loading && !error && visits.length > 0 && (
+              <ul className="flex max-h-96 flex-col gap-3 overflow-y-auto pr-1">
+                {visits.map((visit) => {
+                  const isActive = activeVisit?._id === visit._id
+                  return (
+                    <VisitRow
+                      key={visit._id}
+                      visit={visit}
+                      isActive={isActive}
+                      onClick={() => setDetailVisit(visit)}
+                      badge={
+                        isActive && (
+                          <span className="shrink-0 rounded-full bg-accent px-2 py-0.5 text-[0.65rem] font-medium text-on-accent">
+                            Attiva
+                          </span>
+                        )
+                      }
+                    />
+                  )
+                })}
+              </ul>
+            )}
+          </>
+        ) : (
+          <>
+            {!loading && !error && favoriteVisits.length === 0 && (
+              <p className="text-sm text-text-muted">Non hai ancora nessuna visita tra i preferiti.</p>
+            )}
 
-      <div className="flex flex-col gap-3">
-        <h2 className="font-serif text-lg font-semibold text-text">Preferiti</h2>
-
-        {!loading && !error && favoriteVisits.length === 0 && (
-          <p className="text-sm text-text-muted">Non hai ancora nessuna visita tra i preferiti.</p>
-        )}
-
-        {!loading && !error && favoriteVisits.length > 0 && (
-          <ul className="flex max-h-96 flex-col gap-3 overflow-y-auto pr-1">
-            {favoriteVisits.map((visit) => {
-              const isActive = activeVisit?._id === visit._id
-              const isAdopted = (user?.adopted_visits || []).some((id) => String(id) === String(visit._id))
-              return (
-                <VisitRow
-                  key={visit._id}
-                  visit={visit}
-                  isActive={isActive}
-                  onClick={() => (isAdopted ? setDetailVisit(visit) : setAdoptVisit(visit))}
-                  badge={
-                    isActive ? (
-                      <span className="shrink-0 rounded-full bg-accent px-2 py-0.5 text-[0.65rem] font-medium text-on-accent">
-                        Attiva
-                      </span>
-                    ) : (
-                      !isAdopted && (
-                        <span className="shrink-0 rounded-full border border-border px-2 py-0.5 text-[0.65rem] font-medium text-text-muted">
-                          Da adottare
-                        </span>
-                      )
-                    )
-                  }
-                />
-              )
-            })}
-          </ul>
+            {!loading && !error && favoriteVisits.length > 0 && (
+              <ul className="flex max-h-96 flex-col gap-3 overflow-y-auto pr-1">
+                {favoriteVisits.map((visit) => {
+                  const isActive = activeVisit?._id === visit._id
+                  const isAdopted = (user?.adopted_visits || []).some((id) => String(id) === String(visit._id))
+                  return (
+                    <VisitRow
+                      key={visit._id}
+                      visit={visit}
+                      isActive={isActive}
+                      onClick={() => (isAdopted ? setDetailVisit(visit) : setAdoptVisit(visit))}
+                      badge={
+                        isActive ? (
+                          <span className="shrink-0 rounded-full bg-accent px-2 py-0.5 text-[0.65rem] font-medium text-on-accent">
+                            Attiva
+                          </span>
+                        ) : (
+                          !isAdopted && (
+                            <span className="shrink-0 rounded-full border border-border px-2 py-0.5 text-[0.65rem] font-medium text-text-muted">
+                              Da adottare
+                            </span>
+                          )
+                        )
+                      }
+                    />
+                  )
+                })}
+              </ul>
+            )}
+          </>
         )}
       </div>
 
