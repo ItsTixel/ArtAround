@@ -2,6 +2,7 @@ import { useActiveVisit } from '../context/ActiveVisitContext'
 import { useVisitProgress } from '../context/VisitProgressContext'
 import { useGroupSession } from '../context/GroupSessionContext'
 import { PreviousIcon, NextIcon, PlayIcon, PauseIcon, MicrophoneIcon } from './icons'
+import MicListeningIndicator from './MicListeningIndicator'
 
 function formatTime(sec) {
   const total = Math.max(0, Math.floor(sec || 0))
@@ -38,6 +39,7 @@ function PlayerBar() {
 
   return (
     <div className="fixed inset-x-0 bottom-16 z-40 border-t border-slate-400/20 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl transition-colors duration-300">
+      <MicListeningIndicator />
       <div className="mx-auto max-w-md px-8 pt-3">
         <input
           type="range"

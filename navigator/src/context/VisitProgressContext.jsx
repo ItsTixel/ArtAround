@@ -116,6 +116,7 @@ export function VisitProgressProvider({ children }) {
   const [autoplayEnabled, setAutoplayEnabled] = useState(true)
   const [directions, setDirections] = useState(null) // { text, parts } | null — null when not showing the directions view
   const [micListening, setMicListening] = useState(false)
+  const [micTranscript, setMicTranscript] = useState('') // live/final speech heard during the current listen, for the "listening" popup
   const [micAutoEnabled, setMicAutoEnabled] = useState(true)
   const micAutoEnabledRef = useRef(true) // mirrors micAutoEnabled for onend callbacks created before a later toggle
   micAutoEnabledRef.current = micAutoEnabled
@@ -533,7 +534,7 @@ export function VisitProgressProvider({ children }) {
     const recognition = new SpeechRecognitionCtor()
     recognition.lang = 'it-IT'
     recognition.continuous = false
-    recognition.interimResults = false
+    recognition.interimResults = true
     recognition.maxAlternatives = 1
     recognitionRef.current = recognition
     return recognition
@@ -560,10 +561,22 @@ export function VisitProgressProvider({ children }) {
     }
     promptUtteranceRef.current = null
     window.speechSynthesis.cancel()
+    setMicTranscript('')
 
     recognition.onresult = (event) => {
-      const transcript = event.results[0]?.[0]?.transcript || ''
-      handleVoiceCommand(transcript)
+      // interimResults=true fires this repeatedly as the phrase is heard, so
+      // the popup can show live speech-to-text; only the isFinal chunk is
+      // actually resolved to a command.
+      let interimText = ''
+      let finalText = ''
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        const result = event.results[i]
+        const text = result[0]?.transcript || ''
+        if (result.isFinal) finalText += text
+        else interimText += text
+      }
+      setMicTranscript((finalText || interimText).trim())
+      if (finalText) handleVoiceCommand(finalText)
     }
     recognition.onerror = () => setMicListening(false)
     recognition.onend = () => setMicListening(false)
@@ -768,6 +781,7 @@ export function VisitProgressProvider({ children }) {
     goToService,
     pauseNarration,
     micListening,
+    micTranscript,
     micAutoEnabled,
     micSupported,
     handleMicToggle,
