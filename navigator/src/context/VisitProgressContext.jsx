@@ -104,6 +104,27 @@ function matchVoiceCommand(transcript) {
   return match?.key || null
 }
 
+// Maps SpeechRecognition's onerror event.error codes to a friendly Italian
+// message for the listening popup. 'no-speech' (silence timeout) and
+// 'aborted' (user cancelled via the mic button) are expected, unremarkable
+// endings, not failures — they return null so nothing flashes.
+function describeMicError(code) {
+  switch (code) {
+    case 'not-allowed':
+    case 'service-not-allowed':
+      return 'Microfono non autorizzato: controlla i permessi del browser (su rete locale serve anche una connessione HTTPS).'
+    case 'audio-capture':
+      return 'Nessun microfono trovato.'
+    case 'network':
+      return 'Riconoscimento vocale non disponibile: controlla la connessione.'
+    case 'no-speech':
+    case 'aborted':
+      return null
+    default:
+      return 'Non sono riuscito ad avviare il microfono.'
+  }
+}
+
 export function VisitProgressProvider({ children }) {
   const navigate = useNavigate()
   const { activeVisit } = useActiveVisit()
@@ -117,6 +138,8 @@ export function VisitProgressProvider({ children }) {
   const [directions, setDirections] = useState(null) // { text, parts } | null — null when not showing the directions view
   const [micListening, setMicListening] = useState(false)
   const [micTranscript, setMicTranscript] = useState('') // live/final speech heard during the current listen, for the "listening" popup
+  const [micError, setMicError] = useState(null) // friendly message flashed in the listening popup when recognition fails (denied permission, insecure origin, no mic, ...)
+  const micErrorTimeoutRef = useRef(null)
   const [micAutoEnabled, setMicAutoEnabled] = useState(true)
   const micAutoEnabledRef = useRef(true) // mirrors micAutoEnabled for onend callbacks created before a later toggle
   micAutoEnabledRef.current = micAutoEnabled
@@ -136,7 +159,7 @@ export function VisitProgressProvider({ children }) {
   const latestScheduleAutoListenRef = useRef(null)
   const micSupported =
     typeof window !== 'undefined' && Boolean(window.SpeechRecognition || window.webkitSpeechRecognition)
-  const recognitionRef = useRef(null) // lazily-created SpeechRecognition instance, reused across listens
+  const recognitionRef = useRef(null) // the current/most recent SpeechRecognition instance — a fresh one each listen (see createRecognition), kept here so stopListening/cleanup effects can abort() it
   const promptUtteranceRef = useRef(null) // current one-off spoken message (service info, "non ho capito"...) — kept separate from narration's utteranceRef so the two lanes' stale-callback guards can't cross
   const utteranceRef = useRef(null)
   const textRef = useRef('') // full text currently loaded for playback/seeking
@@ -527,8 +550,13 @@ export function VisitProgressProvider({ children }) {
   // funnels through startListening, which always silences speechSynthesis
   // first — mic and TTS are never allowed to run at the same time.
 
-  function getRecognition() {
-    if (recognitionRef.current) return recognitionRef.current
+  // A fresh instance every listen, deliberately not reused: some browsers
+  // (notably Chrome on Android) leave a SpeechRecognition instance wedged
+  // after it errors out — later start() calls on that same instance fail
+  // silently, with no onerror firing at all — so error feedback would only
+  // ever show up once. Recreating it each time keeps every attempt, success
+  // or failure, independent of whatever happened last time.
+  function createRecognition() {
     const SpeechRecognitionCtor = window.SpeechRecognition || window.webkitSpeechRecognition
     if (!SpeechRecognitionCtor) return null
     const recognition = new SpeechRecognitionCtor()
@@ -536,13 +564,18 @@ export function VisitProgressProvider({ children }) {
     recognition.continuous = false
     recognition.interimResults = true
     recognition.maxAlternatives = 1
-    recognitionRef.current = recognition
     return recognition
   }
 
   function stopListening() {
     recognitionRef.current?.abort()
     setMicListening(false)
+  }
+
+  function flashMicError(message) {
+    clearTimeout(micErrorTimeoutRef.current)
+    setMicError(message)
+    micErrorTimeoutRef.current = setTimeout(() => setMicError(null), 3500)
   }
 
   function scheduleAutoListen() {
@@ -552,8 +585,9 @@ export function VisitProgressProvider({ children }) {
   latestScheduleAutoListenRef.current = scheduleAutoListen
 
   function startListening() {
-    const recognition = getRecognition()
+    const recognition = createRecognition()
     if (!recognition) return
+    recognitionRef.current = recognition
     if (playbackState === 'playing') {
       utteranceRef.current = null
       stopProgressTimer()
@@ -562,6 +596,8 @@ export function VisitProgressProvider({ children }) {
     promptUtteranceRef.current = null
     window.speechSynthesis.cancel()
     setMicTranscript('')
+    clearTimeout(micErrorTimeoutRef.current)
+    setMicError(null)
 
     recognition.onresult = (event) => {
       // interimResults=true fires this repeatedly as the phrase is heard, so
@@ -578,15 +614,21 @@ export function VisitProgressProvider({ children }) {
       setMicTranscript((finalText || interimText).trim())
       if (finalText) handleVoiceCommand(finalText)
     }
-    recognition.onerror = () => setMicListening(false)
+    recognition.onerror = (event) => {
+      setMicListening(false)
+      const message = describeMicError(event.error)
+      if (message) flashMicError(message)
+    }
     recognition.onend = () => setMicListening(false)
 
     try {
       recognition.start()
       setMicListening(true)
     } catch {
-      // start() throws if a session is already active (e.g. a stray
-      // double-press) — the existing session just continues.
+      // Each call gets its own fresh instance now, so a throw here is a
+      // genuine failure to start (not the old "already active" double-press
+      // case that reuse used to hit) — worth flashing.
+      flashMicError('Non sono riuscito ad avviare il microfono.')
     }
   }
 
@@ -782,6 +824,7 @@ export function VisitProgressProvider({ children }) {
     pauseNarration,
     micListening,
     micTranscript,
+    micError,
     micAutoEnabled,
     micSupported,
     handleMicToggle,
