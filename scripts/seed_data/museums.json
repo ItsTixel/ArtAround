@@ -28,6 +28,40 @@
       "Sabato": "8:15–18:50",
       "Domenica": "8:15–18:50"
     },
+    "maps": [
+      {
+        "name": "Piano Terra",
+        "image_url": "/assets/maps/uffizi-piano-terra-placeholder.svg",
+        "points": [
+          { "label": "Atrio d'Ingresso", "icon_type": "generic", "x": 0.19, "y": 0.2357, "description": "Punto di partenza della visita" },
+          { "label": "Bookshop", "icon_type": "service", "x": 0.26, "y": 0.5, "service_key": "Bookshop" },
+          { "label": "Uscita", "icon_type": "service", "x": 0.73, "y": 0.5, "service_key": "Uscita" }
+        ]
+      },
+      {
+        "name": "Primo Piano",
+        "image_url": "/assets/maps/uffizi-primo-piano-placeholder.svg",
+        "points": [
+          { "label": "Venere di Urbino", "icon_type": "entity", "x": 0.314, "y": 0.2357, "entity": { "$oid": "ccc000000000000000000040" } },
+          { "label": "Medusa", "icon_type": "entity", "x": 0.47, "y": 0.214, "entity": { "$oid": "ccc000000000000000000010" } },
+          { "label": "Bacco", "icon_type": "entity", "x": 0.53, "y": 0.271, "entity": { "$oid": "ccc000000000000000000041" } },
+          { "label": "Toilette", "icon_type": "service", "x": 0.5, "y": 0.5, "service_key": "Toilette" }
+        ]
+      },
+      {
+        "name": "Secondo Piano",
+        "image_url": "/assets/maps/uffizi-secondo-piano-placeholder.svg",
+        "points": [
+          { "label": "Doppio ritratto dei duchi di Urbino", "icon_type": "entity", "x": 0.128, "y": 0.2357, "entity": { "$oid": "ccc000000000000000000009" } },
+          { "label": "Annunciazione", "icon_type": "entity", "x": 0.314, "y": 0.2357, "entity": { "$oid": "ccc000000000000000000002" } },
+          { "label": "Battaglia di San Romano", "icon_type": "entity", "x": 0.5, "y": 0.2357, "entity": { "$oid": "ccc000000000000000000042" } },
+          { "label": "Nascita di Venere", "icon_type": "entity", "x": 0.65, "y": 0.214, "entity": { "$oid": "ccc000000000000000000001" } },
+          { "label": "Primavera", "icon_type": "entity", "x": 0.722, "y": 0.271, "entity": { "$oid": "ccc000000000000000000007" } },
+          { "label": "Tondo Doni", "icon_type": "entity", "x": 0.836, "y": 0.214, "entity": { "$oid": "ccc000000000000000000008" } },
+          { "label": "Madonna del Cardellino", "icon_type": "entity", "x": 0.908, "y": 0.271, "entity": { "$oid": "ccc000000000000000000043" } }
+        ]
+      }
+    ],
     "added_by": {
       "$oid": "aaa000000000000000000001"
     },
