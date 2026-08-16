@@ -14,9 +14,10 @@ import { getCurrentUser } from '/marketplace/js/auth-session.js';
 import { GLASS_MODAL as GLASS, TRANSITION } from '/marketplace/js/ui-tokens.js';
 import { TONE_ORDER, TONE_LABELS } from '/marketplace/js/tone-labels.js';
 
-const API_VISITS = '/api/visits';
-const API_USERS  = '/api/users';
-const LOGIN_URL  = '/marketplace/login.html';
+const API_VISITS   = '/api/visits';
+const API_USERS    = '/api/users';
+const LOGIN_URL    = '/marketplace/login.html';
+const NAVIGATOR_URL = '/navigator/';
 
 class VisitModal extends HTMLElement {
   constructor() {
@@ -30,6 +31,7 @@ class VisitModal extends HTMLElement {
     this._confirm = false;
     this._adding = false;
     this._purchaseError = null;
+    this._justAdopted = false;
     this._onKeydown = this._onKeydown.bind(this);
   }
 
@@ -42,6 +44,7 @@ class VisitModal extends HTMLElement {
     this._confirm = false;
     this._adding = false;
     this._purchaseError = null;
+    this._justAdopted = false;
     this._favorited = false;
 
     this.setAttribute('open', '');
@@ -132,6 +135,11 @@ class VisitModal extends HTMLElement {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       this._owned = true;
       this._confirm = false;
+      this._justAdopted = true;
+      setTimeout(() => {
+        this._justAdopted = false;
+        this._renderFooter();
+      }, 1000);
     } catch (e) {
       console.error('Errore durante l\'aggiunta alla libreria:', e);
       this._purchaseError = 'Errore durante l\'acquisto. Riprova.';
@@ -173,7 +181,11 @@ class VisitModal extends HTMLElement {
 
     let action;
     if (this._owned) {
-      action = `<button class="btn owned ${btnOwned}" disabled>✓ Già in libreria</button>`;
+      if (this._justAdopted) {
+        action = `<button class="btn owned ${btnOwned}" disabled>✓ Aggiunta alla libreria!</button>`;
+      } else {
+        action = `<button class="btn primary ${btnPrimary}" id="start-btn">Comincia visita</button>`;
+      }
     } else if (this._confirm) {
       action = `
         <div class="confirm flex flex-col items-start gap-2.5 sm:flex-row sm:items-center sm:gap-4">
@@ -218,6 +230,9 @@ class VisitModal extends HTMLElement {
       this._renderFooter();
     });
     footer.querySelector('#confirm-yes')?.addEventListener('click', () => this._addToLibrary());
+    footer.querySelector('#start-btn')?.addEventListener('click', () => {
+      window.location.href = NAVIGATOR_URL;
+    });
   }
 
   /* ---- Corpo: informazioni generali + lista delle opere ---- */
