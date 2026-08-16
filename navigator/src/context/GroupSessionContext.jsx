@@ -11,13 +11,70 @@ const GroupSessionContext = createContext(null)
 export function GroupSessionProvider({ children }) {
   const navigate = useNavigate()
   const { activeVisit, activateVisit, clearActiveVisit } = useActiveVisit()
-  const { goToStep, activeTone, activeDescIndex, playbackState: localPlaybackState } = useVisitProgress()
+  const {
+    goToStep,
+    activeTone,
+    activeDescIndex,
+    playbackState: localPlaybackState,
+    registerGroupNav,
+    requestPreviousStep,
+    requestNextStep,
+    canGoPreviousStep,
+    canGoNextStep,
+    directionsText,
+  } = useVisitProgress()
 
   const [role, setRole] = useState(null) // 'host' | 'student' | null
   const [visitId, setVisitId] = useState(null)
   const [groupVisit, setGroupVisit] = useState(null) // GET /api/visits/:id response
   const [status, setStatus] = useState(null) // 'waiting' | 'active' | 'quiz' | 'finished' | null
   const [currentStepIndex, setCurrentStepIndex] = useState(0)
+
+  const isRestrictedStudent = role === 'student' && (status === 'active' || status === 'quiz')
+  const isHostControlling = role === 'host' && status === 'active'
+
+  // Precedente/Prossimo: the one implementation both PlayerBar.jsx/
+  // Comandi.jsx's buttons and voice commands call — group-session rules
+  // wrapped around VisitProgressContext's ungated requestPreviousStep/
+  // requestNextStep (the directions-view dismissal lives there; this only
+  // adds who's allowed to navigate and who's steering the room).
+  function handlePreviousStep() {
+    if (directionsText) {
+      requestPreviousStep()
+      return
+    }
+    if (isRestrictedStudent || !canGoPreviousStep) return
+    if (isHostControlling) {
+      setActiveStep(currentStepIndex - 1)
+      return
+    }
+    requestPreviousStep()
+  }
+
+  function handleNextStep() {
+    if (directionsText) {
+      requestNextStep()
+      return
+    }
+    if (isRestrictedStudent || !canGoNextStep) return
+    if (isHostControlling) {
+      setActiveStep(currentStepIndex + 1)
+      return
+    }
+    requestNextStep()
+  }
+
+  const previousStepDisabled = !directionsText && (isRestrictedStudent || !canGoPreviousStep)
+  const nextStepDisabled = !directionsText && (isRestrictedStudent || !canGoNextStep)
+
+  // VisitProgressContext can't consume this context back (it depends on
+  // VisitProgressContext itself — goToStep above — so importing it here
+  // would be circular). This re-seats handlePreviousStep/handleNextStep
+  // into a ref there instead, every render, so voice commands (resolved
+  // inside VisitProgressContext) call the exact same functions the buttons
+  // do — not a second implementation of the same rules that could drift.
+  registerGroupNav({ handlePreviousStep, handleNextStep })
+
   const [connected, setConnected] = useState(false)
   const [roster, setRoster] = useState([]) // host only — include per-studente tono/paragrafo/playback/pronto, valorizzati man mano che arrivano
   const [ownParticipant, setOwnParticipant] = useState(null) // student only
@@ -464,6 +521,10 @@ export function GroupSessionProvider({ children }) {
     startSession,
     endSession,
     setActiveStep,
+    handlePreviousStep,
+    handleNextStep,
+    previousStepDisabled,
+    nextStepDisabled,
     setReady,
     startQuiz,
     submitQuizAnswers,

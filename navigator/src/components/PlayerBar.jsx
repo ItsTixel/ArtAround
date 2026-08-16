@@ -13,10 +13,6 @@ function formatTime(sec) {
 function PlayerBar() {
   const { activeVisit } = useActiveVisit()
   const {
-    canGoPreviousStep,
-    canGoNextStep,
-    goToPreviousStep,
-    goToNextStep,
     playbackState,
     progress,
     seekPreview,
@@ -25,23 +21,20 @@ function PlayerBar() {
     handlePlayPause,
     autoplayEnabled,
     toggleAutoplay,
-    directionsParts,
-    closeDirections,
     activeText,
     activeDurationSec,
+    micListening,
+    micAutoEnabled,
+    micSupported,
+    handleMicToggle,
+    toggleMicAuto,
   } = useVisitProgress()
-  const { role, status: groupStatus, currentStepIndex, setActiveStep } = useGroupSession()
+  // Precedente/Prossimo come funzione: la stessa che usa Comandi.jsx e la
+  // stessa che risolvono i comandi vocali — un solo posto decide cosa fanno
+  // e quando sono permessi, non una copia per canale di input.
+  const { handlePreviousStep, handleNextStep, previousStepDisabled, nextStepDisabled } = useGroupSession()
 
   if (!activeVisit) return null
-
-  // In una sessione di gruppo attiva lo studente non sceglie l'opera: è il
-  // professore a decidere per tutta la stanza (visit:set_active_step).
-  const isRestrictedStudent = role === 'student' && (groupStatus === 'active' || groupStatus === 'quiz')
-  // Il professore ora ascolta la visita come chiunque altro, ma le sue
-  // Precedente/Prossimo restano l'unica sorgente di verità per l'opera
-  // attiva: invece di navigare solo la propria copia locale, cambiano
-  // l'opera per tutta la stanza (stessa azione dello step-picker in Gruppo).
-  const isHostControlling = role === 'host' && groupStatus === 'active'
 
   return (
     <div className="fixed inset-x-0 bottom-16 z-40 border-t border-slate-400/20 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl transition-colors duration-300">
@@ -66,77 +59,92 @@ function PlayerBar() {
           <span>{formatTime(activeDurationSec || 0)}</span>
         </div>
       </div>
-      <div className="mx-auto flex max-w-md items-center justify-between px-8 py-3">
-        <button
-          type="button"
-          aria-label="Precedente"
-          onClick={
-            directionsParts
-              ? closeDirections
-              : isRestrictedStudent
-                ? undefined
-                : isHostControlling
-                  ? () => setActiveStep(currentStepIndex - 1)
-                  : goToPreviousStep
-          }
-          disabled={directionsParts ? false : (isRestrictedStudent || !canGoPreviousStep)}
-          className={`flex h-10 w-10 items-center justify-center text-text-muted transition-opacity ${
-            directionsParts ? '' : (isRestrictedStudent || !canGoPreviousStep) ? 'opacity-30' : ''
-          }`}
-        >
-          <PreviousIcon className="h-6 w-6" />
-        </button>
-        <button
-          type="button"
-          aria-label={autoplayEnabled ? 'Disattiva lettura automatica' : 'Attiva lettura automatica'}
-          aria-pressed={autoplayEnabled}
-          onClick={toggleAutoplay}
-          className="flex h-10 w-10 items-center justify-center"
-        >
-          <span
-            className={`rounded-full px-2 py-1 text-[10px] font-bold uppercase tracking-wide transition-colors ${
-              autoplayEnabled ? 'bg-accent text-on-accent' : 'text-text-muted'
+      <div className="mx-auto grid max-w-md grid-cols-[1fr_auto_1fr] items-center gap-2 px-4 py-3">
+        <div className="flex items-center justify-between">
+          <button
+            type="button"
+            aria-label="Precedente"
+            onClick={handlePreviousStep}
+            disabled={previousStepDisabled}
+            className={`flex h-10 w-10 items-center justify-center text-text-muted transition-opacity ${
+              previousStepDisabled ? 'opacity-30' : ''
             }`}
           >
-            Auto
-          </span>
-        </button>
+            <PreviousIcon className="h-6 w-6" />
+          </button>
+          <button
+            type="button"
+            aria-label={autoplayEnabled ? 'Disattiva lettura automatica' : 'Attiva lettura automatica'}
+            aria-pressed={autoplayEnabled}
+            onClick={toggleAutoplay}
+            className="flex h-10 w-10 items-center justify-center"
+          >
+            <span
+              className={`rounded-full px-2 py-1 text-[10px] font-bold uppercase tracking-wide transition-colors ${
+                autoplayEnabled ? 'bg-accent text-on-accent' : 'text-text-muted'
+              }`}
+            >
+              Auto Play
+            </span>
+          </button>
+        </div>
+
         <button
           type="button"
           aria-label={playbackState === 'playing' ? 'Pausa' : 'Play'}
           onClick={handlePlayPause}
           disabled={!activeText}
-          className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent-hover text-on-accent shadow-lg shadow-black/20 disabled:opacity-40"
+          className="flex h-14 w-14 items-center justify-center justify-self-center rounded-full bg-gradient-to-br from-accent to-accent-hover text-on-accent shadow-lg shadow-black/20 disabled:opacity-40"
         >
           {playbackState === 'playing' ? <PauseIcon className="h-6 w-6" /> : <PlayIcon className="h-6 w-6" />}
         </button>
-        <button
-          type="button"
-          aria-label="Microfono"
-          onClick={() => console.log('Microfono')}
-          className="flex h-10 w-10 items-center justify-center text-text-muted transition-opacity"
-        >
-          <MicrophoneIcon className="h-6 w-6" />
-        </button>
-        <button
-          type="button"
-          aria-label="Prossimo"
-          onClick={
-            directionsParts
-              ? closeDirections
-              : isRestrictedStudent
-                ? undefined
-                : isHostControlling
-                  ? () => setActiveStep(currentStepIndex + 1)
-                  : goToNextStep
-          }
-          disabled={directionsParts ? false : (isRestrictedStudent || !canGoNextStep)}
-          className={`flex h-10 w-10 items-center justify-center text-text-muted transition-opacity ${
-            directionsParts ? '' : (isRestrictedStudent || !canGoNextStep) ? 'opacity-30' : ''
-          }`}
-        >
-          <NextIcon className="h-6 w-6" />
-        </button>
+
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-1">
+            <button
+              type="button"
+              aria-label={micListening ? 'Interrompi ascolto' : 'Attiva microfono'}
+              aria-pressed={micListening}
+              onClick={handleMicToggle}
+              disabled={!micSupported}
+              title={micSupported ? undefined : 'Riconoscimento vocale non supportato in questo browser.'}
+              className={`flex h-10 w-10 items-center justify-center transition-opacity disabled:opacity-30 ${
+                micListening ? 'text-accent' : 'text-text-muted'
+              }`}
+            >
+              <MicrophoneIcon className="h-6 w-6" />
+            </button>
+            <button
+              type="button"
+              aria-label={
+                micAutoEnabled ? 'Disattiva attivazione automatica microfono' : 'Attiva attivazione automatica microfono'
+              }
+              aria-pressed={micAutoEnabled}
+              onClick={toggleMicAuto}
+              disabled={!micSupported}
+              className="flex h-10 w-10 items-center justify-center disabled:opacity-30"
+            >
+              <span
+                className={`rounded-full px-2 py-1 text-[10px] font-bold uppercase tracking-wide transition-colors ${
+                  micAutoEnabled && micSupported ? 'bg-accent text-on-accent' : 'text-text-muted'
+                }`}
+              >
+                Auto Mic
+              </span>
+            </button>
+          </div>
+          <button
+            type="button"
+            aria-label="Prossimo"
+            onClick={handleNextStep}
+            disabled={nextStepDisabled}
+            className={`flex h-10 w-10 items-center justify-center text-text-muted transition-opacity ${
+              nextStepDisabled ? 'opacity-30' : ''
+            }`}
+          >
+            <NextIcon className="h-6 w-6" />
+          </button>
+        </div>
       </div>
     </div>
   )

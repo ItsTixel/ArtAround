@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useActiveVisit } from './ActiveVisitContext'
 
 export const TONE_ORDER = ['childish', 'simple', 'medium', 'technical']
@@ -71,7 +72,40 @@ function buildDirections(prev, curr) {
   return { text: `Procedi ${sentenceBits.join(', ')}.`, parts }
 }
 
+// Voice command phrase → action key. Patterns are matched as substrings of
+// the normalized (lowercased, accent-stripped) transcript, so a full
+// sentence like "puoi dirmi dov'è il bagno" still matches "bagno" — users
+// won't say the exact Comandi.jsx button label.
+const VOICE_COMMAND_PATTERNS = [
+  { key: 'previousStep', patterns: ['precedente', 'indietro'] },
+  { key: 'nextStep', patterns: ['prossimo', 'successivo', 'avanti'] },
+  { key: 'lessDetails', patterns: ['meno dettagli', 'meno particolari'] },
+  { key: 'moreDetails', patterns: ['dimmi di piu', 'piu dettagli', 'continua'] },
+  { key: 'simplerTone', patterns: ['piu semplice', 'troppo difficile', 'troppo complesso', 'semplifica'] },
+  { key: 'complexTone', patterns: ['piu complesso', 'troppo semplice', 'piu difficile', 'complica'] },
+  { key: 'toilette', patterns: ['bagno', 'toilette'] },
+  { key: 'uscita', patterns: ['uscita', 'come esco'] },
+]
+
+function normalizeVoiceText(text) {
+  return (text || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '')
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+function matchVoiceCommand(transcript) {
+  const normalized = normalizeVoiceText(transcript)
+  if (!normalized) return null
+  const match = VOICE_COMMAND_PATTERNS.find(({ patterns }) => patterns.some((p) => normalized.includes(p)))
+  return match?.key || null
+}
+
 export function VisitProgressProvider({ children }) {
+  const navigate = useNavigate()
   const { activeVisit } = useActiveVisit()
   const [selectedTone, setSelectedTone] = useState(null)
   const [selectedDescIndex, setSelectedDescIndex] = useState(0)
@@ -81,6 +115,28 @@ export function VisitProgressProvider({ children }) {
   const [seekPreview, setSeekPreview] = useState(null) // 0..1 while dragging, else null
   const [autoplayEnabled, setAutoplayEnabled] = useState(true)
   const [directions, setDirections] = useState(null) // { text, parts } | null — null when not showing the directions view
+  const [micListening, setMicListening] = useState(false)
+  const [micAutoEnabled, setMicAutoEnabled] = useState(true)
+  const micAutoEnabledRef = useRef(true) // mirrors micAutoEnabled for onend callbacks created before a later toggle
+  micAutoEnabledRef.current = micAutoEnabled
+  // scheduleAutoListen is a fresh closure every render (it reads directions,
+  // canGoNextStep, museum, etc. transitively through handleVoiceCommand).
+  // But utterance.onend/onerror in speakFromChar/speakEphemeral can be
+  // *armed* by a call that happened synchronously inside an effect, one
+  // render before a state update (e.g. setDirections) actually commits — if
+  // they called the closed-over scheduleAutoListen directly, the mic would
+  // end up resolving a voice command against that stale pre-commit state
+  // (concretely: saying "prossimo" right after the directions view appears
+  // would see a stale directions=null and skip the opera instead of just
+  // dismissing the view). Routing through this ref — updated every render,
+  // read only when the callback actually fires — guarantees whichever
+  // render is current *at that moment* runs, not whichever was current when
+  // the utterance was armed. See also `function scheduleAutoListen` below.
+  const latestScheduleAutoListenRef = useRef(null)
+  const micSupported =
+    typeof window !== 'undefined' && Boolean(window.SpeechRecognition || window.webkitSpeechRecognition)
+  const recognitionRef = useRef(null) // lazily-created SpeechRecognition instance, reused across listens
+  const promptUtteranceRef = useRef(null) // current one-off spoken message (service info, "non ho capito"...) — kept separate from narration's utteranceRef so the two lanes' stale-callback guards can't cross
   const utteranceRef = useRef(null)
   const textRef = useRef('') // full text currently loaded for playback/seeking
   const resumeCharRef = useRef(0) // char offset to resume/seek from
@@ -88,6 +144,15 @@ export function VisitProgressProvider({ children }) {
   const playStartRef = useRef({ time: 0, baseFraction: 0 })
   const lastPhysicalLocationRef = useRef(null) // location of the last physical opera actually shown
   const lastStepIndexRef = useRef(null)
+  // { handlePreviousStep, handleNextStep } | null — the exact same
+  // functions GroupSessionProvider hands PlayerBar.jsx/Comandi.jsx for
+  // their Precedente/Prossimo onClick, re-seated here every render.
+  // GroupSessionContext already depends on this context (goToStep etc.),
+  // so it can't be consumed here without a circular import; this ref is the
+  // other direction of that bridge, letting voice commands call the exact
+  // same functions a tap does instead of a second implementation of the
+  // same group-session rules that could drift out of sync.
+  const groupNavRef = useRef(null)
   // Set by goToStep({ skipDirections: true }) — e.g. a QR jump, where you're
   // already standing at the opera, so walking directions would be nonsense.
   // Consumed (and cleared) by the very next directions computation.
@@ -187,6 +252,7 @@ export function VisitProgressProvider({ children }) {
     const text = textRef.current
     if (!text) return
     const clamped = Math.max(0, Math.min(charIndex, text.length))
+    stopListening()
     window.speechSynthesis.cancel()
     stopProgressTimer()
     resumeCharRef.current = clamped
@@ -210,11 +276,13 @@ export function VisitProgressProvider({ children }) {
       if (utteranceRef.current !== utterance) return
       stopProgressTimer()
       setPlaybackState('idle')
+      latestScheduleAutoListenRef.current?.()
     }
     utterance.onerror = () => {
       if (utteranceRef.current !== utterance) return
       stopProgressTimer()
       setPlaybackState('idle')
+      latestScheduleAutoListenRef.current?.()
     }
     utteranceRef.current = utterance
     window.speechSynthesis.speak(utterance)
@@ -340,6 +408,77 @@ export function VisitProgressProvider({ children }) {
     }
   }
 
+  // ---- Request functions ------------------------------------------------
+  //
+  // The single implementation behind each Comandi.jsx/PlayerBar.jsx nav
+  // button — a tap and a voice command both end up calling the very same
+  // function, so there's exactly one place that decides "what does this
+  // button do and when is it allowed", not a copy per input method that can
+  // drift out of sync. Precedente/Prossimo are additionally group-session
+  // gated; that gating can't live here (GroupSessionContext depends on this
+  // context, so the dependency can't run the other way — see groupNavRef),
+  // so requestPreviousStep/requestNextStep only cover the ungated base
+  // case, and GroupSessionProvider wraps them into handlePreviousStep/
+  // handleNextStep, which is what buttons and voice both actually call.
+  function requestPreviousStep() {
+    if (directions) {
+      closeDirections()
+      return
+    }
+    goToPreviousStep()
+  }
+
+  function requestNextStep() {
+    if (directions) {
+      closeDirections()
+      return
+    }
+    goToNextStep()
+  }
+
+  function requestPreviousParagraph() {
+    if (directions) return
+    goToPreviousParagraph()
+  }
+
+  function requestNextParagraph() {
+    if (directions) return
+    goToNextParagraph()
+  }
+
+  function requestSimplerTone() {
+    if (directions) return
+    goToSimplerTone()
+  }
+
+  function requestComplexTone() {
+    if (directions) return
+    goToComplexTone()
+  }
+
+  // Speaks a short one-off message (service info, mic "didn't catch that"
+  // prompts) outside the narration lane: cancels whatever's currently
+  // speaking, doesn't touch textRef/resumeCharRef/progress, and — when the
+  // message finishes on its own — re-opens the mic if auto-listen is on.
+  // The separate promptUtteranceRef (instead of narration's utteranceRef)
+  // keeps this lane's stale-callback guard from crossing with speakFromChar's.
+  function speakEphemeral(text) {
+    if (!text) return
+    stopListening()
+    window.speechSynthesis.cancel()
+    const utterance = new SpeechSynthesisUtterance(text)
+    utterance.lang = 'it-IT'
+    promptUtteranceRef.current = utterance
+    const finish = () => {
+      if (promptUtteranceRef.current !== utterance) return
+      promptUtteranceRef.current = null
+      latestScheduleAutoListenRef.current?.()
+    }
+    utterance.onend = finish
+    utterance.onerror = finish
+    window.speechSynthesis.speak(utterance)
+  }
+
   // Pauses whatever description narration is in progress (if any, keeping
   // its resume position) and reads a service location phrase on top of it.
   // The main narration stays paused afterwards — it's not resumed
@@ -351,22 +490,172 @@ export function VisitProgressProvider({ children }) {
       stopProgressTimer()
       setPlaybackState('paused')
     }
-    window.speechSynthesis.cancel()
-    const utterance = new SpeechSynthesisUtterance(text)
-    utterance.lang = 'it-IT'
-    window.speechSynthesis.speak(utterance)
+    speakEphemeral(text)
+  }
+
+  // Looks up a museum's spoken info for a given service label (e.g.
+  // "Toilette", "Uscita"), speaks it, and jumps to the map centered on it.
+  // Returns the phrase on success, null when the museum has none for that
+  // label — shared by the Comandi service buttons and the "dov'è il bagno"
+  // style voice commands so both stay in sync.
+  function goToService(museumForService, label) {
+    const phrase = museumForService?.services?.[label]
+    if (!phrase) return null
+    announceService(phrase)
+    navigate('/mappa', { state: { museumId: museumForService?._id, serviceKey: label } })
+    return phrase
   }
 
   // Pauses the main narration (if playing) without speaking anything, so an
   // unrelated one-off narration (e.g. a QR-scanned opera outside the visit's
   // steps) can use speechSynthesis without fighting over it. Keeps the
-  // resume position, same as the pause branch of handlePlayPause.
+  // resume position, same as the pause branch of handlePlayPause. Also
+  // silences an in-progress mic listen — whoever's borrowing the audio
+  // channel gets it exclusively, same as narration vs. mic below.
   function pauseNarration() {
+    stopListening()
     if (playbackState !== 'playing') return
     utteranceRef.current = null
     window.speechSynthesis.cancel()
     stopProgressTimer()
     setPlaybackState('paused')
+  }
+
+  // ---- Voice control ---------------------------------------------------
+  //
+  // Two ways the mic turns on: the user presses the mic button (interrupting
+  // whatever's speaking), or a narration/service/prompt utterance finishes
+  // on its own while micAutoEnabled is on (scheduleAutoListen, wired into
+  // speakFromChar's and speakEphemeral's onend/onerror above). Either path
+  // funnels through startListening, which always silences speechSynthesis
+  // first — mic and TTS are never allowed to run at the same time.
+
+  function getRecognition() {
+    if (recognitionRef.current) return recognitionRef.current
+    const SpeechRecognitionCtor = window.SpeechRecognition || window.webkitSpeechRecognition
+    if (!SpeechRecognitionCtor) return null
+    const recognition = new SpeechRecognitionCtor()
+    recognition.lang = 'it-IT'
+    recognition.continuous = false
+    recognition.interimResults = false
+    recognition.maxAlternatives = 1
+    recognitionRef.current = recognition
+    return recognition
+  }
+
+  function stopListening() {
+    recognitionRef.current?.abort()
+    setMicListening(false)
+  }
+
+  function scheduleAutoListen() {
+    if (!micAutoEnabledRef.current) return
+    startListening()
+  }
+  latestScheduleAutoListenRef.current = scheduleAutoListen
+
+  function startListening() {
+    const recognition = getRecognition()
+    if (!recognition) return
+    if (playbackState === 'playing') {
+      utteranceRef.current = null
+      stopProgressTimer()
+      setPlaybackState('paused')
+    }
+    promptUtteranceRef.current = null
+    window.speechSynthesis.cancel()
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0]?.[0]?.transcript || ''
+      handleVoiceCommand(transcript)
+    }
+    recognition.onerror = () => setMicListening(false)
+    recognition.onend = () => setMicListening(false)
+
+    try {
+      recognition.start()
+      setMicListening(true)
+    } catch {
+      // start() throws if a session is already active (e.g. a stray
+      // double-press) — the existing session just continues.
+    }
+  }
+
+  // Manual mic button: interrupts whatever's speaking and starts listening,
+  // or — pressed again while already listening — cancels the listen.
+  function handleMicToggle() {
+    if (micListening) {
+      stopListening()
+      return
+    }
+    startListening()
+  }
+
+  function toggleMicAuto() {
+    setMicAutoEnabled((enabled) => !enabled)
+  }
+
+  // Registered every render by GroupSessionProvider with the exact same
+  // handlePreviousStep/handleNextStep it hands PlayerBar.jsx/Comandi.jsx for
+  // their onClick — voice ends up calling the identical function a tap
+  // would, group gating included, instead of a second implementation of the
+  // same rules that could drift out of sync with the buttons'.
+  function registerGroupNav(nav) {
+    groupNavRef.current = nav
+  }
+
+  // Precedente/Prossimo go through whatever GroupSessionProvider registered
+  // (group-gated) when it's available, and straight to the ungated request
+  // function on the very first renders before it has (there's no group
+  // session to gate against yet anyway).
+  function callStepNav(name, fallback) {
+    const fn = groupNavRef.current?.[name]
+    if (fn) fn()
+    else fallback()
+  }
+
+  // Resolves one recognized phrase to its Comandi.jsx/PlayerBar.jsx button
+  // equivalent, calling the exact same function the button's onClick does —
+  // so a blocked command does nothing, same as tapping a disabled button.
+  // The service commands are the one exception: their button never
+  // disables (always speaks the phrase or shows why not), so an unavailable
+  // service is voiced too instead of silently doing nothing. Unrecognized
+  // speech has no button equivalent at all, so that one alone prompts a
+  // retry.
+  function handleVoiceCommand(transcript) {
+    const key = matchVoiceCommand(transcript)
+    switch (key) {
+      case 'previousStep':
+        callStepNav('handlePreviousStep', requestPreviousStep)
+        break
+      case 'nextStep':
+        callStepNav('handleNextStep', requestNextStep)
+        break
+      case 'lessDetails':
+        requestPreviousParagraph()
+        break
+      case 'moreDetails':
+        requestNextParagraph()
+        break
+      case 'simplerTone':
+        requestSimplerTone()
+        break
+      case 'complexTone':
+        requestComplexTone()
+        break
+      case 'toilette': {
+        const phrase = goToService(museum, 'Toilette')
+        if (!phrase) speakEphemeral('Il bagno non è disponibile per questo museo.')
+        break
+      }
+      case 'uscita': {
+        const phrase = goToService(museum, 'Uscita')
+        if (!phrase) speakEphemeral("L'uscita non è disponibile per questo museo.")
+        break
+      }
+      default:
+        speakEphemeral('Non ho capito, puoi ripetere?')
+    }
   }
 
   // Resets navigation/playback whenever the active visit changes (a new
@@ -375,6 +664,9 @@ export function VisitProgressProvider({ children }) {
   useEffect(() => {
     window.speechSynthesis.cancel()
     stopProgressTimer()
+    recognitionRef.current?.abort()
+    setMicListening(false)
+    promptUtteranceRef.current = null
     utteranceRef.current = null
     textRef.current = ''
     resumeCharRef.current = 0
@@ -394,6 +686,7 @@ export function VisitProgressProvider({ children }) {
     return () => {
       window.speechSynthesis.cancel()
       stopProgressTimer()
+      recognitionRef.current?.abort()
     }
   }, [])
 
@@ -476,12 +769,21 @@ export function VisitProgressProvider({ children }) {
     entity,
     museum,
     announceService,
+    goToService,
     pauseNarration,
+    micListening,
+    micAutoEnabled,
+    micSupported,
+    handleMicToggle,
+    toggleMicAuto,
+    registerGroupNav,
     canGoPreviousStep,
     canGoNextStep,
     goToStep,
     goToPreviousStep,
     goToNextStep,
+    requestPreviousStep,
+    requestNextStep,
     availableTones,
     activeTone,
     currentItem,
@@ -490,6 +792,8 @@ export function VisitProgressProvider({ children }) {
     canGoComplexTone,
     goToSimplerTone,
     goToComplexTone,
+    requestSimplerTone,
+    requestComplexTone,
     sortedDescriptions,
     activeDescIndex,
     currentDescription,
@@ -498,6 +802,8 @@ export function VisitProgressProvider({ children }) {
     canGoNextParagraph,
     goToPreviousParagraph,
     goToNextParagraph,
+    requestPreviousParagraph,
+    requestNextParagraph,
     playbackState,
     progress,
     seekPreview,

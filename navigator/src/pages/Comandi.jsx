@@ -1,5 +1,4 @@
 import { useLayoutEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useActiveVisit } from '../context/ActiveVisitContext'
 import { useVisitProgress, TONE_LABELS } from '../context/VisitProgressContext'
 import { useGroupSession } from '../context/GroupSessionContext'
@@ -148,40 +147,31 @@ function ServiceButtonGrid({ labels, onSelect }) {
 }
 
 function Comandi() {
-  const navigate = useNavigate()
   const { activeVisit } = useActiveVisit()
   const {
     entity,
     museum,
-    announceService,
-    canGoPreviousStep,
-    canGoNextStep,
-    goToPreviousStep,
-    goToNextStep,
+    goToService,
     activeTone,
     canGoSimplerTone,
     canGoComplexTone,
-    goToSimplerTone,
-    goToComplexTone,
+    requestSimplerTone,
+    requestComplexTone,
     sortedDescriptions,
     activeDescIndex,
     canGoPreviousParagraph,
     canGoNextParagraph,
-    goToPreviousParagraph,
-    goToNextParagraph,
+    requestPreviousParagraph,
+    requestNextParagraph,
     directionsParts,
   } = useVisitProgress()
-  const { role, status: groupStatus, currentStepIndex, setActiveStep } = useGroupSession()
+  // Precedente/Prossimo come funzione: la stessa che usa PlayerBar.jsx e la
+  // stessa che risolvono i comandi vocali — un solo posto decide cosa fanno
+  // e quando sono permessi, non una copia per canale di input.
+  const { handlePreviousStep, handleNextStep, previousStepDisabled, nextStepDisabled } = useGroupSession()
   const [serviceMessage, setServiceMessage] = useState(null)
 
   if (!activeVisit) return <NoActiveVisit />
-
-  // In una sessione di gruppo attiva lo studente non sceglie l'opera: stessa
-  // restrizione applicata in PlayerBar.jsx.
-  const isRestrictedStudent = role === 'student' && (groupStatus === 'active' || groupStatus === 'quiz')
-  // Stessa logica di PlayerBar.jsx: le frecce del professore cambiano
-  // l'opera per tutta la stanza invece di navigare solo la sua copia locale.
-  const isHostControlling = role === 'host' && groupStatus === 'active'
 
   // A visit can span more than one museum (es. "Leonardo tra Firenze e
   // Milano"): show one section per museum, with the museum of the step
@@ -193,14 +183,12 @@ function Comandi() {
     .sort((a, b) => (a._id === currentMuseumId ? -1 : b._id === currentMuseumId ? 1 : 0))
 
   function handleService(museumForService, label) {
-    const phrase = museumForService?.services?.[label]
+    const phrase = goToService(museumForService, label)
     if (!phrase) {
       setServiceMessage(`"${label}" non disponibile per ${museumForService?.name || 'questo museo'}.`)
       return
     }
     setServiceMessage(phrase)
-    announceService(phrase)
-    navigate('/mappa', { state: { museumId: museumForService?._id, serviceKey: label } })
   }
 
   return (
@@ -224,42 +212,42 @@ function Comandi() {
           <CommandButton
             label="Precedente"
             Icon={PreviousIcon}
-            onClick={isHostControlling ? () => setActiveStep(currentStepIndex - 1) : goToPreviousStep}
-            disabled={isRestrictedStudent || !canGoPreviousStep}
+            onClick={handlePreviousStep}
+            disabled={previousStepDisabled}
             colorClasses="bg-sky-600 text-white"
           />
           <CommandButton
             label="Prossimo"
             Icon={NextIcon}
-            onClick={isHostControlling ? () => setActiveStep(currentStepIndex + 1) : goToNextStep}
-            disabled={isRestrictedStudent || !canGoNextStep}
+            onClick={handleNextStep}
+            disabled={nextStepDisabled}
             colorClasses="bg-sky-600 text-white"
           />
           <CommandButton
             label="Meno dettagli"
             Icon={LessDetailsIcon}
-            onClick={goToPreviousParagraph}
+            onClick={requestPreviousParagraph}
             disabled={!canGoPreviousParagraph || !!directionsParts}
             colorClasses="bg-emerald-700 text-white"
           />
           <CommandButton
             label="Dimmi di più"
             Icon={MoreDetailsIcon}
-            onClick={goToNextParagraph}
+            onClick={requestNextParagraph}
             disabled={!canGoNextParagraph || !!directionsParts}
             colorClasses="bg-emerald-600 text-white"
           />
           <CommandButton
             label="Più semplice"
             Icon={SimplerIcon}
-            onClick={goToSimplerTone}
+            onClick={requestSimplerTone}
             disabled={!canGoSimplerTone || !!directionsParts}
             colorClasses="bg-amber-500 text-black"
           />
           <CommandButton
             label="Più complesso"
             Icon={ComplexIcon}
-            onClick={goToComplexTone}
+            onClick={requestComplexTone}
             disabled={!canGoComplexTone || !!directionsParts}
             colorClasses="bg-rose-600 text-white"
           />
