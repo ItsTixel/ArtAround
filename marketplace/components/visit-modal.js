@@ -231,7 +231,7 @@ class VisitModal extends HTMLElement {
     });
     footer.querySelector('#confirm-yes')?.addEventListener('click', () => this._addToLibrary());
     footer.querySelector('#start-btn')?.addEventListener('click', () => {
-      window.location.href = NAVIGATOR_URL;
+      window.location.href = `${NAVIGATOR_URL}?openVisit=${encodeURIComponent(this._visit._id)}`;
     });
   }
 

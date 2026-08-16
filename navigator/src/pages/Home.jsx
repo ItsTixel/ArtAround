@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { useActiveVisit } from '../context/ActiveVisitContext'
 import { useGroupSession } from '../context/GroupSessionContext'
@@ -54,6 +54,7 @@ function Home() {
   const { role: groupRole, lookupCode, leaveSession: leaveGroupSession } = useGroupSession()
   const navigate = useNavigate()
   const location = useLocation()
+  const [searchParams, setSearchParams] = useSearchParams()
   const [visits, setVisits] = useState([])
   const [favoriteVisits, setFavoriteVisits] = useState([])
   const [loading, setLoading] = useState(true)
@@ -112,6 +113,40 @@ function Home() {
       cancelled = true
     }
   }, [user])
+
+  // Dal marketplace, dopo aver adottato/acquistato una visita, si arriva qui
+  // via window.location.href (page load vero e proprio, non navigazione SPA:
+  // location.state non è disponibile) con ?openVisit=<id> per aprire subito
+  // il popup "Attiva visita". Si fa fetch diretta della visita invece di
+  // aspettare che si popoli la lista `visits` (derivata da user.adopted_visits,
+  // che carica in modo asincrono dopo l'auth): così il popup appare subito,
+  // senza dipendere dal timing di quel secondo caricamento.
+  useEffect(() => {
+    const openVisitId = searchParams.get('openVisit')
+    if (!openVisitId) return
+    let cancelled = false
+    fetch(`/api/visits/${openVisitId}`)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((visit) => {
+        if (cancelled || !visit) return
+        setDetailVisit(visit)
+      })
+      .finally(() => {
+        if (cancelled) return
+        setSearchParams(
+          (prev) => {
+            const next = new URLSearchParams(prev)
+            next.delete('openVisit')
+            return next
+          },
+          { replace: true }
+        )
+      })
+    return () => {
+      cancelled = true
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   async function openCodePreview(code) {
     setCodeError(null)
