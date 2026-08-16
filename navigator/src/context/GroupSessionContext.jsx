@@ -35,14 +35,14 @@ export function GroupSessionProvider({ children }) {
 
   // Precedente/Prossimo: the one implementation both PlayerBar.jsx/
   // Comandi.jsx's buttons and voice commands call — group-session rules
-  // wrapped around VisitProgressContext's ungated requestPreviousStep/
-  // requestNextStep (the directions-view dismissal lives there; this only
-  // adds who's allowed to navigate and who's steering the room).
+  // wrapped around VisitProgressContext's requestPreviousStep/requestNextStep.
+  // Precedente always performs a real step change (also during directions —
+  // it must go back to the previous opera, never just dismiss the directions
+  // view, hence no directionsText bypass here). Prossimo during directions
+  // instead just dismisses the directions view (requestNextStep's own
+  // closeDirections branch), so it's exempted from the restricted-student
+  // gate below on purpose — that's the one thing a student may unlock.
   function handlePreviousStep() {
-    if (directionsText) {
-      requestPreviousStep()
-      return
-    }
     if (isRestrictedStudent || !canGoPreviousStep) return
     if (isHostControlling) {
       setActiveStep(currentStepIndex - 1)
@@ -64,7 +64,7 @@ export function GroupSessionProvider({ children }) {
     requestNextStep()
   }
 
-  const previousStepDisabled = !directionsText && (isRestrictedStudent || !canGoPreviousStep)
+  const previousStepDisabled = isRestrictedStudent || !canGoPreviousStep
   const nextStepDisabled = !directionsText && (isRestrictedStudent || !canGoNextStep)
 
   // VisitProgressContext can't consume this context back (it depends on

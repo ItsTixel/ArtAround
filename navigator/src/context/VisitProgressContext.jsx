@@ -421,10 +421,6 @@ export function VisitProgressProvider({ children }) {
   // case, and GroupSessionProvider wraps them into handlePreviousStep/
   // handleNextStep, which is what buttons and voice both actually call.
   function requestPreviousStep() {
-    if (directions) {
-      closeDirections()
-      return
-    }
     goToPreviousStep()
   }
 
