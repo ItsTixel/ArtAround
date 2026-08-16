@@ -17,6 +17,14 @@ class AppNavbar extends HTMLElement {
     const isRegister = p.endsWith('register.html');
     this._isProfile  = isProfile;
 
+    // Login/Registrati devono riportare l'utente da dove è partito (es. la
+    // landing page "/", o qualunque altra pagina) invece di scaricarlo
+    // sempre sull'home del marketplace: ci si porta dietro il path corrente
+    // come redirect (tranne quando si è già su login/register, dove questo
+    // parametro lo gestiscono già login.js/register.js leggendolo dall'URL).
+    const currentPath = window.location.pathname + window.location.search;
+    const redirectQS = (!isLogin && !isRegister) ? `?redirect=${encodeURIComponent(currentPath)}` : '';
+
     this.className = 'block';
     this.innerHTML = `
       <div class="fixed top-3 inset-x-2 md:inset-x-4 z-[100]">
@@ -32,8 +40,8 @@ class AppNavbar extends HTMLElement {
               <li><a href="/marketplace/pages/visits.html" class="${NAV_LINK} block ${isVisits ? 'active' : ''}">Tutte le visite</a></li>
             </ul>
             <div class="auth-actions flex flex-col md:flex-row items-stretch md:items-center gap-2 pt-3 md:pt-0 mt-2 md:mt-0 border-t md:border-t-0 md:border-l border-slate-400/20 md:pl-6">
-              <a href="/marketplace/login.html" class="btn-login text-center px-4 py-2.5 md:py-1.5 rounded-full text-[0.75rem] md:text-[0.7rem] font-medium tracking-[0.08em] md:tracking-[0.1em] uppercase border border-slate-400/20 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-900/5 dark:hover:bg-white/10 hover:border-white/30 ${TRANSITION} ${isLogin ? 'bg-slate-400/10 text-slate-900 dark:text-white' : ''}">Login</a>
-              <a href="/marketplace/register.html" class="btn-register text-center px-4 py-2.5 md:py-1.5 rounded-full text-[0.75rem] md:text-[0.7rem] font-semibold tracking-[0.08em] md:tracking-[0.1em] uppercase bg-slate-800 text-white dark:bg-white dark:text-slate-900 hover:opacity-90 ${TRANSITION} ${isRegister ? 'ring-2 ring-offset-2 ring-offset-transparent ring-slate-800 dark:ring-white' : ''}">Registrati</a>
+              <a href="/marketplace/login.html${redirectQS}" class="btn-login text-center px-4 py-2.5 md:py-1.5 rounded-full text-[0.75rem] md:text-[0.7rem] font-medium tracking-[0.08em] md:tracking-[0.1em] uppercase border border-slate-400/20 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-900/5 dark:hover:bg-white/10 hover:border-white/30 ${TRANSITION} ${isLogin ? 'bg-slate-400/10 text-slate-900 dark:text-white' : ''}">Login</a>
+              <a href="/marketplace/register.html${redirectQS}" class="btn-register text-center px-4 py-2.5 md:py-1.5 rounded-full text-[0.75rem] md:text-[0.7rem] font-semibold tracking-[0.08em] md:tracking-[0.1em] uppercase bg-slate-800 text-white dark:bg-white dark:text-slate-900 hover:opacity-90 ${TRANSITION} ${isRegister ? 'ring-2 ring-offset-2 ring-offset-transparent ring-slate-800 dark:ring-white' : ''}">Registrati</a>
             </div>
           </div>
 
