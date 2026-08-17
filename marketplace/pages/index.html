@@ -25,10 +25,21 @@
 
   <main>
     <section class="page-hero" aria-label="Musei disponibili">
+      <div class="hero-slideshow" data-interval="6000" aria-hidden="true">
+        <img src="/marketplace/assets/museums/img1.png" class="is-active" alt="">
+        <img src="/marketplace/assets/museums/img2.png" alt="">
+        <img src="/marketplace/assets/museums/img3.png" alt="">
+        <img src="/marketplace/assets/museums/img4.png" alt="">
+        <img src="/marketplace/assets/museums/img5.png" alt="">
+        <img src="/marketplace/assets/museums/img6.png" alt="">
+        <img src="/marketplace/assets/museums/img7.png" alt="">
+      </div>
       <div class="page-hero-inner">
-        <div class="kicker">Marketplace</div>
-        <h1>Scopri i Musei</h1>
-        <p class="hero-sub" id="hero-total">— musei disponibili</p>
+        <div class="page-hero-card">
+          <div class="kicker">Marketplace</div>
+          <h1>Scopri i Musei</h1>
+          <p class="hero-sub" id="hero-total">— musei disponibili</p>
+        </div>
       </div>
     </section>
 
@@ -70,6 +81,7 @@
 
   <museum-modal></museum-modal>
 
+  <script src="/marketplace/js/hero-slideshow.js"></script>
   <script src="/marketplace/js/museums.js"></script>
 </body>
 </html>

@@ -28,10 +28,21 @@
 
   <main>
     <section class="page-hero" aria-label="Visite disponibili">
+      <div class="hero-slideshow" data-interval="6000" aria-hidden="true">
+        <img src="/marketplace/assets/visits/img1.png" class="is-active" alt="">
+        <img src="/marketplace/assets/visits/img2.png" alt="">
+        <img src="/marketplace/assets/visits/img3.png" alt="">
+        <img src="/marketplace/assets/visits/img4.png" alt="">
+        <img src="/marketplace/assets/visits/img5.png" alt="">
+        <img src="/marketplace/assets/visits/img6.png" alt="">
+        <img src="/marketplace/assets/visits/img7.png" alt="">
+      </div>
       <div class="page-hero-inner">
-        <div class="kicker">Marketplace</div>
-        <h1>Scopri le visite</h1>
-        <p class="hero-sub" id="hero-total">— percorsi · — musei</p>
+        <div class="page-hero-card">
+          <div class="kicker">Marketplace</div>
+          <h1>Scopri le visite</h1>
+          <p class="hero-sub" id="hero-total">— percorsi · — musei</p>
+        </div>
       </div>
     </section>
 
@@ -68,6 +79,7 @@
 
   <visit-modal></visit-modal>
 
+  <script src="/marketplace/js/hero-slideshow.js"></script>
   <script type="module" src="/marketplace/js/visits.js"></script>
 </body>
 </html>
