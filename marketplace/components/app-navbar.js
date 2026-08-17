@@ -1,6 +1,6 @@
 import { getCurrentUser, logout } from '/marketplace/js/auth-session.js';
 import { getTheme, toggleTheme } from '/marketplace/js/theme.js';
-import { GLASS_STRONG, TRANSITION } from '/marketplace/js/ui-tokens.js';
+import { GLASS_STRONG, GLASS_MODAL, TRANSITION } from '/marketplace/js/ui-tokens.js';
 
 const SUN_ICON = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>`;
 const MOON_ICON = `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>`;
@@ -14,6 +14,29 @@ const NAV_LINK = `relative z-[1] px-4 py-3 md:px-3.5 md:py-1.5 rounded-xl md:rou
 // e .auth-actions (vedi _wireFluidIndicator). Stessa ricetta di GLASS
 // (ui-tokens.js) ma rounded-full per combaciare con la forma dei link.
 const NAV_INDICATOR = 'nav-indicator hidden md:block absolute top-0 bottom-0 left-0 w-0 rounded-full liquid-glass bg-slate-400/10 backdrop-blur-lg border border-slate-400/20 shadow-xl shadow-black/5 pointer-events-none opacity-0 transition-[transform,width,opacity] duration-300 ease-out';
+
+// I browser sparano eventi "fantasma" (mouseover sull'elemento già sotto al
+// cursore, focusin dal ripristino del focus) appena la pagina finisce di
+// caricare/navigare, pur senza nessuna vera interazione dell'utente. Senza
+// filtrarli la pillola vetro reagisce mostrandosi/scivolando su una voce (o
+// spostandosi da una all'altra) per poi sparire subito: un lampo sgradevole
+// a ogni reload. Li ignoriamo finché non c'è un'interazione vera: un mousemove
+// con coordinate diverse dalla prima lettura (un mousemove "fantasma" riporta
+// la stessa posizione statica del cursore, senza reale spostamento) o una
+// pressione di tasto reale (focus da tastiera).
+let userHasInteracted = false;
+let lastPointerX = null, lastPointerY = null;
+const markInteracted = () => {
+  userHasInteracted = true;
+  window.removeEventListener('mousemove', onPointerMove);
+  window.removeEventListener('keydown', markInteracted);
+};
+const onPointerMove = (e) => {
+  if (lastPointerX === null) { lastPointerX = e.clientX; lastPointerY = e.clientY; return; }
+  if (e.clientX !== lastPointerX || e.clientY !== lastPointerY) markInteracted();
+};
+window.addEventListener('mousemove', onPointerMove);
+window.addEventListener('keydown', markInteracted);
 
 class AppNavbar extends HTMLElement {
   connectedCallback() {
@@ -69,6 +92,12 @@ class AppNavbar extends HTMLElement {
       </div>
     `;
 
+    // Come nel commento dentro _wireFluidIndicator: forza subito l'invisibilità di
+    // ogni pillola presente nel markup iniziale, prima ancora che Tailwind possa
+    // applicare "opacity-0" o che _loadUser() (asincrono) arrivi ad agganciarle.
+    this.querySelectorAll('.nav-indicator').forEach((el) => { el.style.opacity = '0'; });
+    this._pinTransparentBorders(this);
+
     this._loadUser();
     this._setupMenuToggle();
     this._setupThemeToggle();
@@ -83,6 +112,12 @@ class AppNavbar extends HTMLElement {
     if (!wrap) return;
     const indicator = wrap.querySelector(':scope > .nav-indicator');
     if (!indicator) return;
+    // Tailwind (CDN) applica la classe "opacity-0" in modo asincrono: nel primissimo
+    // frame dopo un reload/navigazione l'indicatore può quindi risultare visibile di
+    // default finché quella classe non viene iniettata, per poi sfumare a 0 — un
+    // lampo indesiderato sulla voce attiva. Lo stile inline ha priorità sulla classe
+    // e garantisce l'invisibilità fin da subito, indipendentemente dai tempi di Tailwind.
+    indicator.style.opacity = '0';
 
     // `silent`: riposiziona senza toccare l'opacità (preset iniziale sulla voce
     // attiva, o correzione geometria — vedi refresh() sotto). `lastTarget` tiene
@@ -99,11 +134,13 @@ class AppNavbar extends HTMLElement {
     const hide = () => { indicator.style.opacity = '0'; };
 
     wrap.addEventListener('mouseover', (e) => {
+      if (!userHasInteracted) return;
       const target = e.target.closest(itemSelector);
       if (target) moveTo(target);
     });
     wrap.addEventListener('mouseleave', hide);
     wrap.addEventListener('focusin', (e) => {
+      if (!userHasInteracted) return;
       const target = e.target.closest(itemSelector);
       if (target) moveTo(target);
     });
@@ -128,6 +165,24 @@ class AppNavbar extends HTMLElement {
     window.addEventListener('load', refresh);
     document.fonts?.ready?.then(refresh);
     setTimeout(refresh, 400);
+  }
+
+  // Tailwind (CDN) applica "border" (colore di default grigio) e "border-transparent"
+  // in due passaggi asincroni separati: per una finestra di qualche centinaio di ms
+  // il bordo di default resta visibile prima che "border-transparent" lo azzeri, e
+  // con `transition-all` (TRANSITION) già attivo quella correzione si vede come una
+  // sfumatura vistosa sul bordo di ogni voce coinvolta (Musei, Tutte le visite,
+  // "Crea", nome utente...). Fissiamo il bordo a trasparente via stile inline (vince
+  // sempre sulle classi, indipendentemente dall'ordine con cui Tailwind le applica)
+  // finché Tailwind non si è stabilizzato, poi restituiamo il controllo alle classi
+  // — serve per l'hover mobile "border-white/30" sulle voci del menu collassato.
+  _pinTransparentBorders(root) {
+    const els = root.querySelectorAll('.border-transparent');
+    els.forEach((el) => { el.style.borderColor = 'transparent'; });
+    const release = () => { els.forEach((el) => { el.style.borderColor = ''; }); };
+    window.addEventListener('load', release, { once: true });
+    document.fonts?.ready?.then(release);
+    setTimeout(release, 600);
   }
 
   _setupThemeToggle() {
@@ -186,12 +241,12 @@ class AppNavbar extends HTMLElement {
     li.className = 'nav-create relative';
     li.innerHTML = `
       <button type="button" class="create-trigger w-full md:w-auto text-left block ${NAV_LINK}" aria-haspopup="true" aria-expanded="false">Crea <span class="create-caret inline-block ${TRANSITION}">&#9662;</span></button>
-      <ul class="create-menu hidden flex-col gap-1 md:gap-0.5 md:absolute md:top-[calc(100%+0.625rem)] md:left-1/2 md:-translate-x-1/2 md:min-w-[210px] p-2 bg-white dark:bg-[#0b1224] border border-slate-400/20 shadow-2xl shadow-black/10 dark:shadow-black/40 rounded-2xl md:z-[110]">
-        <span class="hidden md:block absolute -top-[7px] left-1/2 -translate-x-1/2 w-3.5 h-3.5 rotate-45 bg-white dark:bg-[#0b1224] border-l border-t border-slate-400/20"></span>
-        <li><a href="/marketplace/pages/create-museum.html" class="block px-4 py-3 md:px-3 md:py-2 rounded-lg text-sm md:text-xs tracking-wide text-slate-600 dark:text-slate-300 hover:bg-slate-900/5 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white ${TRANSITION}">Crea Museo</a></li>
-        <li><a href="/marketplace/pages/create-entity.html" class="block px-4 py-3 md:px-3 md:py-2 rounded-lg text-sm md:text-xs tracking-wide text-slate-600 dark:text-slate-300 hover:bg-slate-900/5 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white ${TRANSITION}">Crea Opera</a></li>
+      <ul class="create-menu hidden flex-col gap-1 md:gap-0.5 md:absolute md:top-[calc(100%+0.625rem)] md:left-1/2 md:-translate-x-1/2 md:min-w-[210px] p-2 ${GLASS_MODAL} shadow-black/10 dark:shadow-black/40 md:z-[110]">
+        <span class="hidden md:block absolute -top-[7px] left-1/2 -translate-x-1/2 w-3.5 h-3.5 rotate-45 bg-white/85 dark:bg-slate-900/85 backdrop-blur-2xl border-l border-t border-slate-400/20"></span>
+        <li><a href="/marketplace/pages/create-museum.html" class="block px-4 py-3 md:px-3 md:py-2 rounded-lg text-sm md:text-xs tracking-wide text-slate-600 dark:text-slate-300 border border-transparent hover:bg-white/20 hover:border-white/30 hover:text-slate-900 dark:hover:text-white ${TRANSITION}">Crea Museo</a></li>
+        <li><a href="/marketplace/pages/create-entity.html" class="block px-4 py-3 md:px-3 md:py-2 rounded-lg text-sm md:text-xs tracking-wide text-slate-600 dark:text-slate-300 border border-transparent hover:bg-white/20 hover:border-white/30 hover:text-slate-900 dark:hover:text-white ${TRANSITION}">Crea Opera</a></li>
         <li><a href="#" class="disabled flex items-center justify-between gap-2 px-4 py-3 md:px-3 md:py-2 rounded-lg text-sm md:text-xs tracking-wide text-slate-400 dark:text-slate-500 cursor-default">Crea Visita <span class="text-[0.6rem] px-1.5 py-0.5 rounded-full bg-slate-400/20 uppercase">Presto</span></a></li>
-        <li><a href="/marketplace/pages/create-item.html" class="block px-4 py-3 md:px-3 md:py-2 rounded-lg text-sm md:text-xs tracking-wide text-slate-600 dark:text-slate-300 hover:bg-slate-900/5 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white ${TRANSITION}">Crea Descrizione</a></li>
+        <li><a href="/marketplace/pages/create-item.html" class="block px-4 py-3 md:px-3 md:py-2 rounded-lg text-sm md:text-xs tracking-wide text-slate-600 dark:text-slate-300 border border-transparent hover:bg-white/20 hover:border-white/30 hover:text-slate-900 dark:hover:text-white ${TRANSITION}">Crea Descrizione</a></li>
       </ul>
     `;
 
@@ -247,6 +302,7 @@ class AppNavbar extends HTMLElement {
       a.textContent = 'Le tue visite';
       li.appendChild(a);
       navLinks.appendChild(li);
+      this._pinTransparentBorders(navLinks);
     }
 
     const authActions = this.querySelector('.auth-actions');
@@ -261,6 +317,7 @@ class AppNavbar extends HTMLElement {
       await logout();
       window.location.href = '/marketplace';
     });
+    this._pinTransparentBorders(authActions);
     this._wireFluidIndicator(authActions, '.auth-actions > a, .auth-actions > button');
   }
 }

@@ -20,11 +20,26 @@ class MuseumCard extends HTMLElement {
     let hours;
     try { hours = JSON.parse(raw); } catch { return null; }
     const dayNames = ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'];
-    const today = dayNames[new Date().getDay()];
+    const now = new Date();
+    const today = dayNames[now.getDay()];
     const value = hours[today];
     if (!value) return null;
-    const closed = /^chiuso$/i.test(value.trim());
-    return { closed, label: closed ? 'Chiuso oggi' : `Aperto oggi: ${value}` };
+    const trimmed = value.trim();
+    if (/^chiuso$/i.test(trimmed)) {
+      return { closed: true, label: 'Chiuso oggi' };
+    }
+    const match = trimmed.match(/^(\d{1,2}):(\d{2})\s*[-–]\s*(\d{1,2}):(\d{2})$/);
+    if (match) {
+      const [, h1, m1, h2, m2] = match.map(Number);
+      const nowMinutes = now.getHours() * 60 + now.getMinutes();
+      const openMinutes = h1 * 60 + m1;
+      const closeMinutes = h2 * 60 + m2;
+      const withinHours = nowMinutes >= openMinutes && nowMinutes < closeMinutes;
+      return withinHours
+        ? { closed: false, label: `Aperto ora: ${trimmed}` }
+        : { closed: true, label: `Chiuso ora (oggi ${trimmed})` };
+    }
+    return { closed: false, label: `Aperto oggi: ${trimmed}` };
   }
 
   _render() {
@@ -58,7 +73,7 @@ class MuseumCard extends HTMLElement {
           </p>` : ''}
           ${todayHours ? `
           <span class="inline-flex items-center gap-1.5 w-fit text-[0.68rem] font-medium leading-none px-3 py-1.5 rounded-full ${GLASS} ${todayHours.closed ? 'text-slate-500 dark:text-slate-400' : 'text-slate-800 dark:text-slate-100 font-semibold'}">
-            <span class="w-1.5 h-1.5 rounded-full shrink-0 ${todayHours.closed ? 'bg-slate-400/70' : 'bg-green-400/80'}" aria-hidden="true"></span>
+            <span class="w-1.5 h-1.5 rounded-full shrink-0 ${todayHours.closed ? 'bg-red-400/80' : 'bg-green-400/80'}" aria-hidden="true"></span>
             <span>${this._escape(todayHours.label)}</span>
           </span>` : ''}
           <h2 class="flex-1 text-lg font-semibold leading-snug" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">${this._escape(name)}</h2>
