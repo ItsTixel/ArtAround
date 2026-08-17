@@ -151,9 +151,9 @@ function PlayerBar() {
               disabled={!activeText}
               className="group absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center disabled:opacity-40"
             >
-              <span className="absolute inset-0 rounded-full bg-accent/60 blur-xl transition-opacity group-disabled:opacity-0" />
-              <span className="glass-orb relative flex h-16 w-16 items-center justify-center rounded-full text-accent">
-                {playbackState === 'playing' ? <PauseIcon className="h-6 w-6" /> : <PlayIcon className="h-6 w-6" />}
+              <span className="absolute inset-0 rounded-full bg-info/50 blur-xl transition-opacity group-disabled:opacity-0" />
+              <span className="play-orb relative flex h-16 w-16 items-center justify-center rounded-full text-slate-700 dark:text-slate-100">
+                {playbackState === 'playing' ? <PauseIcon className="h-6 w-6" /> : <PlayIcon className="h-6 w-6 translate-x-0.5" />}
               </span>
             </button>
           </div>
