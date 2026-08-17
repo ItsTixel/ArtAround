@@ -42,6 +42,7 @@ class AppNavbar extends HTMLElement {
   connectedCallback() {
     const p = window.location.pathname;
     const isMuseums = p === '/marketplace' || p.endsWith('/marketplace/') || p.endsWith('index.html');
+    const isOpere   = p.endsWith('/opere.html');
     const isVisits  = p.endsWith('/visits.html');
     const isProfile  = p.endsWith('profile.html');
     const isLogin    = p.endsWith('login.html');
@@ -70,6 +71,7 @@ class AppNavbar extends HTMLElement {
               <span class="${NAV_INDICATOR}"></span>
               <ul id="nav-links" class="flex flex-col md:flex-row items-stretch md:items-center gap-1.5 md:gap-1">
                 <li><a href="/marketplace" class="${NAV_LINK} block ${isMuseums ? 'active' : ''}">Musei</a></li>
+                <li><a href="/marketplace/pages/opere.html" class="${NAV_LINK} block ${isOpere ? 'active' : ''}">Opere</a></li>
                 <li><a href="/marketplace/pages/visits.html" class="${NAV_LINK} block ${isVisits ? 'active' : ''}">Tutte le visite</a></li>
               </ul>
             </div>

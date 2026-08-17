@@ -5,12 +5,19 @@ async function getAll(req, res) {
     const pageSize = Math.min(parseInt(req.query.pageSize) || 10, 100);
     const page = Math.max(parseInt(req.query.page) || 0, 0);
     const filter = {};
-    if (req.query.museum)      filter['placements.museum'] = req.query.museum;
+    if (req.query.museum) {
+      const ids = req.query.museum.split(',').map(s => s.trim()).filter(Boolean);
+      filter['placements.museum'] = ids.length === 1 ? ids[0] : { $in: ids };
+    }
     if (req.query.added_by)    filter.added_by    = req.query.added_by;
     if (req.query.wikidata_id) filter.wikidata_id = req.query.wikidata_id;
     if (req.query.is_physical !== undefined) filter.is_physical = req.query.is_physical === 'true';
     if (req.query.name)  filter.name = { $regex: req.query.name, $options: 'i' };
     if (req.query.tags)  filter.tags = { $in: req.query.tags.split(',').map(t => t.trim()) };
+    if (req.query.artwork_author) {
+      const authors = req.query.artwork_author.split(',').map(a => a.trim()).filter(Boolean);
+      filter.artwork_author = authors.length === 1 ? authors[0] : { $in: authors };
+    }
 
     const allowedSortFields = ['name', 'artwork_author', 'is_physical', 'createdAt'];
     const rawSort = req.query.sort || 'name';
@@ -58,9 +65,11 @@ async function create(req, res) {
 
 async function update(req, res) {
   try {
-    const entity = await Entity.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true }).populate('placements.museum');
-    if (!entity) return res.status(404).json({ error: 'Entity not found' });
-    res.json(entity);
+    const entity = req.entity; // impostato da isEntityOwner
+    entity.set(req.body);
+    await entity.save();
+    const populated = await entity.populate('placements.museum');
+    res.json(populated);
   } catch (e) {
     res.status(400).json({ error: e.message });
   }
@@ -68,8 +77,7 @@ async function update(req, res) {
 
 async function remove(req, res) {
   try {
-    const entity = await Entity.findByIdAndDelete(req.params.id);
-    if (!entity) return res.status(404).json({ error: 'Entity not found' });
+    await req.entity.deleteOne(); // req.entity impostato da isEntityOwner
     res.status(204).send();
   } catch (e) {
     res.status(500).json({ error: e.message });

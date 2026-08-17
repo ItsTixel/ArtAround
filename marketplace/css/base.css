@@ -181,3 +181,68 @@ img {
 a {
   color: inherit;
 }
+
+/* ── Pillole di selezione riusabili (sotto-filtri) ───────────────
+   .sub-pills/.pill: gruppo di sotto-filtri (es. Create/Adottate/Preferiti
+   nel profilo). .type-toggle: variante a segmenti "attaccati" per una
+   scelta esclusiva a 2-3 opzioni (es. Tutte/Fisiche/Non fisiche nella
+   pagina Opere e nel profilo). Condivise tra profile.css e opere.css. */
+.sub-pills {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+.pill {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  background: var(--pill-bg);
+  border: 1px solid var(--pill-border);
+  box-shadow: var(--pill-shadow);
+  border-radius: 999px;
+  padding: 0.45rem 1.1rem;
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
+}
+.pill:hover { color: var(--color-text); border-color: var(--pill-hover-border); background: var(--pill-hover-bg); }
+.pill.active {
+  color: var(--color-on-accent);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.type-toggle {
+  display: inline-flex;
+  gap: 0.25rem;
+  padding: 0.3rem;
+  margin-bottom: 1.5rem;
+  background: var(--universal-glass-bg);
+  backdrop-filter: var(--universal-glass-blur);
+  -webkit-backdrop-filter: var(--universal-glass-blur);
+  border: 1px solid var(--universal-glass-border);
+  border-radius: 999px;
+  box-shadow: var(--universal-glass-shadow);
+}
+.type-toggle button {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  background: transparent;
+  border: none;
+  border-radius: 999px;
+  padding: 0.5rem 1.15rem;
+  cursor: pointer;
+  transition: color var(--transition), background var(--transition);
+}
+.type-toggle button:hover { color: var(--color-text); }
+.type-toggle button.active {
+  color: var(--color-on-accent);
+  background: var(--color-accent);
+}

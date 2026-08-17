@@ -53,6 +53,11 @@ adopted_visits: [{
     bookmarked_visits: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Visit'
+    }],
+
+    bookmarked_entities: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Entity'
     }]
 }, {
     timestamps: true

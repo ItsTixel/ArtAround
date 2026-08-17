@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="/marketplace/css/auth.css">
   <link rel="stylesheet" href="/marketplace/css/create-content.css">
   <link rel="stylesheet" href="/marketplace/css/create-item.css">
+  <link rel="stylesheet" href="/marketplace/css/create-entity.css">
+  <link rel="stylesheet" href="/marketplace/css/opere.css">
   <link rel="stylesheet" href="/marketplace/css/profile.css">
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -25,6 +27,8 @@
   <script type="module" src="/marketplace/components/visit-card.js"></script>
   <script type="module" src="/marketplace/components/visit-modal.js"></script>
   <script type="module" src="/marketplace/components/item-modal.js"></script>
+  <script type="module" src="/marketplace/components/opera-card.js"></script>
+  <script type="module" src="/marketplace/components/opera-modal.js"></script>
 </head>
 <body>
 
@@ -47,6 +51,7 @@
       <nav class="profile-nav static md:sticky md:top-24 md:self-start flex flex-row md:flex-col gap-1.5 md:gap-1 overflow-x-auto md:overflow-visible p-6 pb-0 md:pb-8 md:pt-11 md:pl-12 md:pr-6" aria-label="Sezioni del profilo">
         <button type="button" class="tab-btn text-left rounded-full px-4 py-2.5 md:py-2 text-[0.72rem] font-semibold tracking-[0.08em] uppercase whitespace-nowrap text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/20 transition-all duration-300 ease-in-out [&.active]:bg-slate-800 [&.active]:text-white dark:[&.active]:bg-white dark:[&.active]:text-slate-900" data-tab="visite">Visite</button>
         <button type="button" class="tab-btn text-left rounded-full px-4 py-2.5 md:py-2 text-[0.72rem] font-semibold tracking-[0.08em] uppercase whitespace-nowrap text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/20 transition-all duration-300 ease-in-out [&.active]:bg-slate-800 [&.active]:text-white dark:[&.active]:bg-white dark:[&.active]:text-slate-900" data-tab="descrizioni">Descrizioni</button>
+        <button type="button" class="tab-btn text-left rounded-full px-4 py-2.5 md:py-2 text-[0.72rem] font-semibold tracking-[0.08em] uppercase whitespace-nowrap text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/20 transition-all duration-300 ease-in-out [&.active]:bg-slate-800 [&.active]:text-white dark:[&.active]:bg-white dark:[&.active]:text-slate-900" data-tab="opere">Opere</button>
         <button type="button" class="tab-btn text-left rounded-full px-4 py-2.5 md:py-2 text-[0.72rem] font-semibold tracking-[0.08em] uppercase whitespace-nowrap text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/20 transition-all duration-300 ease-in-out [&.active]:bg-slate-800 [&.active]:text-white dark:[&.active]:bg-white dark:[&.active]:text-slate-900" data-tab="vendite">Vendite &amp; acquisti</button>
         <button type="button" class="tab-btn text-left rounded-full px-4 py-2.5 md:py-2 text-[0.72rem] font-semibold tracking-[0.08em] uppercase whitespace-nowrap text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/20 transition-all duration-300 ease-in-out [&.active]:bg-slate-800 [&.active]:text-white dark:[&.active]:bg-white dark:[&.active]:text-slate-900" data-tab="impostazioni">Impostazioni</button>
       </nav>
@@ -68,6 +73,21 @@
         <section id="panel-descrizioni" class="panel" aria-label="Le tue descrizioni">
           <p class="panel-hint">Le descrizioni (item) che hai creato per le opere del catalogo.</p>
           <div class="desc-grid" id="descrizioni-grid" role="list" aria-label="Descrizioni"></div>
+        </section>
+
+        <!-- ── Opere (create / preferiti) ── -->
+        <section id="panel-opere" class="panel" aria-label="Le tue opere">
+          <div class="sub-pills" role="tablist" aria-label="Filtro opere">
+            <button type="button" class="pill" data-sub="create">Create</button>
+            <button type="button" class="pill" data-sub="favorites">Preferiti</button>
+          </div>
+          <div class="type-toggle" id="opere-type-toggle" role="tablist" aria-label="Tipo di opera">
+            <button type="button" class="active" data-type="all">Tutte</button>
+            <button type="button" data-type="true">Fisiche</button>
+            <button type="button" data-type="false">Non fisiche</button>
+          </div>
+          <p class="panel-hint" id="opere-hint"></p>
+          <div class="opere-grid" id="opere-grid" role="list" aria-label="Opere"></div>
         </section>
 
         <!-- ── Vendite & acquisti ── -->
@@ -138,6 +158,7 @@
 
   <visit-modal></visit-modal>
   <item-modal></item-modal>
+  <opera-modal></opera-modal>
 
   <script type="module" src="/marketplace/js/profile.js"></script>
 </body>

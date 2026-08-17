@@ -7,22 +7,28 @@
 import { getCurrentUser, resetCurrentUser } from '/marketplace/js/auth-session.js';
 import { createImageField } from '/marketplace/js/image-field.js';
 import { GLASS, TRANSITION, TAG_PILL } from '/marketplace/js/ui-tokens.js';
+import { normalizeEntity } from '/marketplace/js/entity-utils.js';
 
-const API_VISITS = '/api/visits';
-const API_ITEMS  = '/api/items';
-const API_USERS  = '/api/users';
-const API_ORDERS = '/api/orders';
-const LOGIN_URL  = '/marketplace/login.html';
+const API_VISITS   = '/api/visits';
+const API_ITEMS    = '/api/items';
+const API_ENTITIES = '/api/entities';
+const API_USERS    = '/api/users';
+const API_ORDERS   = '/api/orders';
+const LOGIN_URL    = '/marketplace/login.html';
 
 let currentUser  = null;
 let avatarField  = null;
 let ownedIds     = new Set();
 let favoritedIds = new Set();
+let favoritedEntityIds = new Set();
 let activeSub    = 'create';
 let activeOrdersSub = 'purchases';
+let activeOpereSub = 'create';
+let activeOperePhysical = 'all'; // 'all' | 'true' | 'false'
 let descriptionsLoaded = false;
 const visitsCache = { create: null, adopted: null, favorites: null };
 const ordersCache = { purchases: null, sales: null };
+const operesCache = { create: null, favorites: null };
 
 function esc(s) {
   return String(s ?? '')
@@ -322,6 +328,75 @@ async function loadDescriptions() {
   }
 }
 
+/* ---- Opere: create / preferiti ---- */
+
+const OPERE_SUB_CONFIG = {
+  create: {
+    hint: 'Le opere che hai creato tu.',
+    empty: 'Non hai ancora creato nessuna opera.',
+    async load() {
+      const res = await fetch(`${API_ENTITIES}?added_by=${currentUser._id}&pageSize=100`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const { data } = await res.json();
+      return data;
+    },
+  },
+  favorites: {
+    hint: 'Le opere che hai salvato tra i preferiti.',
+    empty: 'Non hai ancora salvato nessuna opera tra i preferiti.',
+    async load() {
+      const ids = [...new Set((currentUser.bookmarked_entities || []).map(String))];
+      if (!ids.length) return [];
+      const results = await Promise.all(
+        ids.map(id => fetch(`${API_ENTITIES}/${id}`).then(r => (r.ok ? r.json() : null)))
+      );
+      return results.filter(Boolean);
+    },
+  },
+};
+
+function renderOperaGrid(entities, emptyMessage) {
+  const grid = document.getElementById('opere-grid');
+  grid.innerHTML = '';
+  const filtered = activeOperePhysical === 'all'
+    ? entities
+    : entities.filter(e => String(!!e.is_physical) === activeOperePhysical);
+  if (!filtered.length) {
+    grid.innerHTML = `<p class="empty">${emptyMessage}</p>`;
+    return;
+  }
+  filtered.forEach(e => {
+    const card = document.createElement('opera-card');
+    card.data = normalizeEntity(e, favoritedEntityIds);
+    grid.appendChild(card);
+  });
+}
+
+async function loadOpereSub(sub) {
+  activeOpereSub = sub;
+  document.querySelectorAll('#panel-opere .pill').forEach(p => p.classList.toggle('active', p.dataset.sub === sub));
+  if (history.replaceState) history.replaceState(null, '', `#opere:${sub}`);
+
+  const config = OPERE_SUB_CONFIG[sub];
+  const hintEl = document.getElementById('opere-hint');
+  if (hintEl) hintEl.textContent = config.hint;
+
+  const grid = document.getElementById('opere-grid');
+  if (operesCache[sub]) {
+    renderOperaGrid(operesCache[sub], config.empty);
+    return;
+  }
+
+  grid.innerHTML = '<p class="loading"></p>';
+  try {
+    operesCache[sub] = await config.load();
+    renderOperaGrid(operesCache[sub], config.empty);
+  } catch (e) {
+    grid.innerHTML = '<p class="empty">Errore nel caricamento. Riprova più tardi.</p>';
+    console.error('Errore nel caricamento delle opere:', e);
+  }
+}
+
 /* ---- Impostazioni ---- */
 
 function updateHeroAvatar(user) {
@@ -459,6 +534,8 @@ function activateTab(tab) {
   // (#visite:adopted, #vendite:sales); per le altre tab basta il nome della tab.
   if (tab === 'visite') {
     loadSub(activeSub);
+  } else if (tab === 'opere') {
+    loadOpereSub(activeOpereSub);
   } else if (tab === 'vendite') {
     loadOrders(activeOrdersSub);
   } else {
@@ -471,14 +548,18 @@ function activateTab(tab) {
 }
 
 /* Legge dall'hash la tab (e l'eventuale sotto-filtro) da attivare
- * all'apertura della pagina: "#visite", "#visite:adopted", "#vendite:sales", ecc. */
+ * all'apertura della pagina: "#visite", "#visite:adopted", "#vendite:sales", ecc.
+ * Il sotto-filtro è valido solo se appartiene alla config della tab indicata
+ * dall'hash stesso: "create"/"favorites" esistono sia per Visite sia per
+ * Opere, ma qui contano solo se la tab dell'hash è quella giusta. */
 function parseHash() {
   const [rawTab, rawSub] = location.hash.slice(1).split(':');
-  const validTabs = ['visite', 'descrizioni', 'vendite', 'impostazioni'];
+  const validTabs = ['visite', 'descrizioni', 'opere', 'vendite', 'impostazioni'];
   return {
-    tab: validTabs.includes(rawTab) ? rawTab : 'visite',
-    sub: SUB_CONFIG[rawSub] ? rawSub : null,
-    ordersSub: ORDERS_CONFIG[rawSub] ? rawSub : null,
+    tab:       validTabs.includes(rawTab) ? rawTab : 'visite',
+    sub:       (rawTab === 'visite' && SUB_CONFIG[rawSub]) ? rawSub : null,
+    ordersSub: (rawTab === 'vendite' && ORDERS_CONFIG[rawSub]) ? rawSub : null,
+    opereSub:  (rawTab === 'opere' && OPERE_SUB_CONFIG[rawSub]) ? rawSub : null,
   };
 }
 
@@ -492,6 +573,38 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.querySelector('item-modal')?.addEventListener('item-updated', () => {
     descriptionsLoaded = true;
     loadDescriptions();
+  });
+
+  /* Le opera-card aprono il popup con i dettagli dell'opera */
+  document.addEventListener('open-opera', (e) => {
+    document.querySelector('opera-modal')?.open(e.detail.id);
+  });
+
+  /* Dopo una modifica riuscita nel popup opera, invalida entrambe le cache
+   * (l'opera modificata può comparire sia tra "Create" sia, se l'autore
+   * l'ha salvata lui stesso, tra "Preferiti") e ricarica se il tab Opere
+   * è quello attivo */
+  document.querySelector('opera-modal')?.addEventListener('entity-updated', () => {
+    operesCache.create = null;
+    operesCache.favorites = null;
+    if (document.getElementById('panel-opere')?.classList.contains('active')) {
+      loadOpereSub(activeOpereSub);
+    }
+  });
+
+  /* Cuoricino sulle opera-card: aggiorna/rimuove il preferito lato server */
+  document.addEventListener('toggle-favorite-entity', async (e) => {
+    const { id, favorited, revert } = e.detail;
+    try {
+      const method = favorited ? 'PUT' : 'DELETE';
+      const res = await fetch(`${API_USERS}/${currentUser._id}/bookmark-entity/${id}`, { method, credentials: 'include' });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      if (favorited) favoritedEntityIds.add(id); else favoritedEntityIds.delete(id);
+      operesCache.favorites = null;
+    } catch (err) {
+      console.error('Errore nel salvataggio dei preferiti:', err);
+      revert();
+    }
   });
 
   /* Tasto cuore sulle visit-card: aggiorna/rimuove il preferito lato server */
@@ -520,6 +633,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   currentUser = user;
   ownedIds = new Set((user.adopted_visits || []).map(String));
   favoritedIds = new Set((user.bookmarked_visits || []).map(String));
+  favoritedEntityIds = new Set((user.bookmarked_entities || []).map(String));
 
   const heroSub = document.getElementById('hero-sub');
   if (heroSub) heroSub.textContent = `${user.display_name || user.username} · ${user.email}`;
@@ -535,12 +649,24 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.querySelectorAll('#panel-visite .pill').forEach(btn => {
     btn.addEventListener('click', () => loadSub(btn.dataset.sub));
   });
+  document.querySelectorAll('#panel-opere .pill').forEach(btn => {
+    btn.addEventListener('click', () => loadOpereSub(btn.dataset.sub));
+  });
+  document.getElementById('opere-type-toggle')?.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-type]');
+    if (!btn) return;
+    document.querySelectorAll('#opere-type-toggle button').forEach(b => b.classList.toggle('active', b === btn));
+    activeOperePhysical = btn.dataset.type;
+    const config = OPERE_SUB_CONFIG[activeOpereSub];
+    if (operesCache[activeOpereSub]) renderOperaGrid(operesCache[activeOpereSub], config.empty);
+  });
   document.querySelectorAll('#panel-vendite .pill').forEach(btn => {
     btn.addEventListener('click', () => loadOrders(btn.dataset.sub));
   });
 
-  const { tab: initialTab, sub: initialSub, ordersSub: initialOrdersSub } = parseHash();
+  const { tab: initialTab, sub: initialSub, ordersSub: initialOrdersSub, opereSub: initialOpereSub } = parseHash();
   if (initialSub) activeSub = initialSub;
   if (initialOrdersSub) activeOrdersSub = initialOrdersSub;
+  if (initialOpereSub) activeOpereSub = initialOpereSub;
   activateTab(initialTab);
 });

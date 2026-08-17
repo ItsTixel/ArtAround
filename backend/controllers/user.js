@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const Visit = require('../models/visit');
+const Entity = require('../models/entity');
 const Order = require('../models/order');
 
 // Per criptare le password e le info
@@ -223,4 +224,35 @@ async function removeBookmark(req, res) {
   }
 }
 
-module.exports = { getAll, getById, create, update, remove, upgradeToAuthor, adoptVisit, removeAdoption, bookmarkVisit, removeBookmark };
+async function bookmarkEntity(req, res) {
+  try {
+    const entity = await Entity.findById(req.params.entityId).select('_id');
+    if (!entity) return res.status(404).json({ error: 'Entity not found' });
+
+    const user = await User.findByIdAndUpdate(
+      req.params.id,
+      { $addToSet: { bookmarked_entities: req.params.entityId } },
+      { new: true }
+    ).select('-password');
+    if (!user) return res.status(404).json({ error: 'User not found' });
+    res.json(user);
+  } catch (e) {
+    res.status(400).json({ error: e.message });
+  }
+}
+
+async function removeEntityBookmark(req, res) {
+  try {
+    const user = await User.findByIdAndUpdate(
+      req.params.id,
+      { $pull: { bookmarked_entities: req.params.entityId } },
+      { new: true }
+    ).select('-password');
+    if (!user) return res.status(404).json({ error: 'User not found' });
+    res.json(user);
+  } catch (e) {
+    res.status(400).json({ error: e.message });
+  }
+}
+
+module.exports = { getAll, getById, create, update, remove, upgradeToAuthor, adoptVisit, removeAdoption, bookmarkVisit, removeBookmark, bookmarkEntity, removeEntityBookmark };

@@ -25,4 +25,7 @@ router.delete('/:id/adopt/:visitId',    verifyToken, isSelf, controller.removeAd
 router.put('/:id/bookmark/:visitId',    verifyToken, isSelf, controller.bookmarkVisit);
 router.delete('/:id/bookmark/:visitId', verifyToken, isSelf, controller.removeBookmark);
 
+router.put('/:id/bookmark-entity/:entityId',    verifyToken, isSelf, controller.bookmarkEntity);
+router.delete('/:id/bookmark-entity/:entityId', verifyToken, isSelf, controller.removeEntityBookmark);
+
 module.exports = router;

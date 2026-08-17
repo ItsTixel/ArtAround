@@ -1,0 +1,50 @@
+/* ============================================================
+ *  opere.css — Pagina "Scopri le opere" + pannello "Opere" del profilo
+ *  Layout/hero/toolbar/paginazione sono condivisi con visits.css
+ *  (stesse classi generiche: .page-hero, .results-bar, .pagination,
+ *  .loading, .empty). Qui solo le parti specifiche delle opere.
+ *  .sub-pills/.pill/.type-toggle sono in base.css (condivisi col profilo).
+ * ============================================================ */
+
+/* ── Griglia opere (stessa densità di .desc-grid nel profilo) ── */
+.opere-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ── Ricerca opera nella toolbar (mirror di .visit-search) ───── */
+.opera-search {
+  position: relative;
+  flex: 1;
+  min-width: 180px;
+  max-width: 320px;
+}
+.opera-search input {
+  width: 100%;
+  padding: 0.4rem 0.5rem 0.4rem 1.6rem;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--color-text);
+  outline: 0;
+}
+.opera-search input::placeholder {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+.opera-search::before {
+  content: '';
+  position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  width: 13px; height: 13px;
+  background: var(--color-text-muted);
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M21 19l-4.35-4.35A7.5 7.5 0 1 0 15 16.65L19.35 21 21 19zM10.5 16a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z'/></svg>") center/contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M21 19l-4.35-4.35A7.5 7.5 0 1 0 15 16.65L19.35 21 21 19zM10.5 16a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z'/></svg>") center/contain no-repeat;
+  pointer-events: none;
+}
+
+@media (max-width: 480px) {
+  .opera-search { flex: 1 1 100%; max-width: none; min-width: 0; }
+}

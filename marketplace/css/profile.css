@@ -63,34 +63,9 @@ html, body { background-image: none; }
 .panel-hint a { color: var(--color-accent); text-decoration: none; }
 .panel-hint a:hover { color: var(--color-accent-hover); }
 
-/* ── Sotto-filtri (pill) per il pannello Visite ──────────────── */
-.sub-pills {
-  display: flex;
-  gap: 0.6rem;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-}
-.pill {
-  font-family: var(--font-sans);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-  background: var(--pill-bg);
-  border: 1px solid var(--pill-border);
-  box-shadow: var(--pill-shadow);
-  border-radius: 999px;
-  padding: 0.45rem 1.1rem;
-  cursor: pointer;
-  transition: color var(--transition), border-color var(--transition), background var(--transition);
-}
-.pill:hover { color: var(--color-text); border-color: var(--pill-hover-border); background: var(--pill-hover-bg); }
-.pill.active {
-  color: var(--color-on-accent);
-  background: var(--color-accent);
-  border-color: var(--color-accent);
-}
+/* ── Sotto-filtri (pill) per i pannelli Visite/Opere ─────────────
+   .sub-pills/.pill e .type-toggle sono definiti in base.css: sono
+   generici (non specifici del profilo) e riusati anche da opere.css. */
 
 /* ── Griglia descrizioni ──────────────────────────────────── */
 .desc-grid {
