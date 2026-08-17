@@ -117,7 +117,7 @@ class FilterSidebar extends HTMLElement {
       ${selectedMuseums.length ? `
       <div class="selected flex flex-wrap gap-1.5 mt-3.5">
         ${selectedMuseums.map(m => `
-          <span class="pill inline-flex items-center gap-1.5 text-[0.72rem] font-medium tracking-[0.02em] bg-slate-400/10 border border-slate-400/20 rounded-full text-slate-800 dark:text-slate-100 pl-2.5 pr-1 py-1">
+          <span class="pill liquid-glass-pill inline-flex items-center gap-1.5 text-[0.72rem] font-medium tracking-[0.02em] border border-slate-400/20 rounded-full text-slate-800 dark:text-slate-100 pl-2.5 pr-1 py-1">
             ${this._esc(m.short || m.name)}
             <button type="button" class="x w-4 h-4 inline-flex items-center justify-center border-0 bg-transparent p-0 font-inherit text-sm leading-none text-slate-500 dark:text-slate-400 cursor-pointer rounded-full hover:text-slate-800 dark:hover:text-white hover:bg-white/20 transition-colors ${RING_FOCUS}" data-remove="${this._esc(m.id)}" aria-label="Rimuovi ${this._esc(m.short || m.name)}">×</button>
           </span>

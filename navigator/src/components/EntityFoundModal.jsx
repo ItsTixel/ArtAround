@@ -13,7 +13,7 @@ function formatDurationLabel(sec) {
 
 function pillClasses(active, activeClasses) {
   return `rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
-    active ? `${activeClasses} shadow-sm` : 'border-[color:var(--pill-border)] bg-[color:var(--pill-bg)] text-text-muted'
+    active ? `${activeClasses} shadow-sm` : 'glass-pill text-text-muted'
   }`
 }
 

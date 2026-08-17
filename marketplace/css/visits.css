@@ -109,7 +109,7 @@ filter-sidebar { display: block; }
   font: inherit;
   font-family: var(--font-sans);
   font-size: 0.78rem;
-  background-color: var(--universal-glass-bg);
+  background: var(--universal-glass-bg);
   border: 1px solid var(--universal-glass-border);
   border-radius: 9999px;
   padding: 0.4rem 1.9rem 0.4rem 1rem;
@@ -125,7 +125,7 @@ filter-sidebar { display: block; }
   appearance: base-select;
 }
 #sort:hover,
-#sort:focus { border-color: var(--universal-glass-border-strong); background-color: var(--universal-glass-bg-strong); }
+#sort:focus { border-color: var(--universal-glass-border-strong); background: var(--universal-glass-bg-strong); }
 
 #sort::picker(select) {
   appearance: base-select;
@@ -148,7 +148,7 @@ filter-sidebar { display: block; }
 
 #sort option:hover,
 #sort option:checked {
-  background-color: var(--universal-glass-bg-strong);
+  background: var(--universal-glass-bg-strong);
 }
 
 /* Visit search (nella toolbar accanto a Ordina) */

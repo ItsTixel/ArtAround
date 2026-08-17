@@ -63,7 +63,7 @@ function PlayerBar() {
   return (
     <div className="fixed inset-x-0 bottom-[calc(4rem+0.625rem)] z-40 px-3 transition-colors duration-300">
       <MicListeningIndicator />
-      <div className="mx-auto max-w-md rounded-3xl border border-slate-400/20 bg-white/70 dark:bg-slate-900/70 shadow-xl shadow-black/10 dark:shadow-black/40 backdrop-blur-xl">
+      <div className="glass-surface mx-auto max-w-md rounded-3xl border border-slate-400/20 backdrop-blur-xl">
         <div className="px-5 pt-4">
           <input
             type="range"

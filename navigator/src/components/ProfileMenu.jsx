@@ -101,7 +101,7 @@ function initials(name) {
 }
 
 const pillClasses =
-  'flex items-center gap-2 whitespace-nowrap rounded-full border border-slate-400/20 bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg px-4 py-2 text-sm font-medium shadow-lg shadow-black/5'
+  'glass-chip flex items-center gap-2 whitespace-nowrap rounded-full border border-slate-400/20 backdrop-blur-lg px-4 py-2 text-sm font-medium'
 
 // Ogni voce entra con un piccolo scarto in cascata (via transitionDelay) e
 // esce tutta insieme, senza scarto.
@@ -400,7 +400,7 @@ function ProfileMenu({ hasPlayer = false }) {
         aria-expanded={mounted}
         aria-label="Profilo"
         style={{ touchAction: 'none' }}
-        className={`flex h-14 w-14 select-none items-center justify-center overflow-hidden rounded-full border border-slate-400/20 bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg text-base font-semibold text-text shadow-lg shadow-black/5 transition-transform duration-150 ease-out ${
+        className={`glass-chip flex h-14 w-14 select-none items-center justify-center overflow-hidden rounded-full border border-slate-400/20 backdrop-blur-lg text-base font-semibold text-text transition-transform duration-150 ease-out ${
           lifted ? 'scale-110 cursor-grabbing shadow-xl' : 'scale-100 cursor-grab'
         }`}
       >

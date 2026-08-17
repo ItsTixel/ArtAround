@@ -124,6 +124,7 @@
   gap: 0.25rem;
   background: var(--pill-bg);
   border: 1px solid var(--pill-border);
+  box-shadow: var(--pill-shadow);
   border-radius: 9999px;
   padding: 0.25rem;
 }

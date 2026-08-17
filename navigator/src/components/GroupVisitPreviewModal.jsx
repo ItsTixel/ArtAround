@@ -49,7 +49,7 @@ function GroupVisitPreviewModal({ code, preview, onClose }) {
           type="button"
           onClick={onClose}
           aria-label="Chiudi"
-          className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-slate-400/20 bg-slate-400/10 backdrop-blur-lg text-lg leading-none text-text hover:bg-white/20 hover:border-white/30"
+          className="glass-chip absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-slate-400/20 backdrop-blur-lg text-lg leading-none text-text hover:bg-white/20 hover:border-white/30"
         >
           ×
         </button>

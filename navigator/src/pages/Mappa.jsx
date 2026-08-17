@@ -356,7 +356,7 @@ function Mappa() {
               className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
                 m._id === selectedMuseumId
                   ? 'border-accent bg-accent text-on-accent shadow-sm'
-                  : 'border-[color:var(--pill-border)] bg-[color:var(--pill-bg)] text-text-muted'
+                  : 'glass-pill text-text-muted'
               }`}
             >
               {m.name}
@@ -375,7 +375,7 @@ function Mappa() {
               className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
                 index === selectedMapIndex
                   ? 'border-info bg-info text-on-accent shadow-sm'
-                  : 'border-[color:var(--pill-border)] bg-[color:var(--pill-bg)] text-text-muted'
+                  : 'glass-pill text-text-muted'
               }`}
             >
               {map.name}
@@ -392,7 +392,7 @@ function Mappa() {
           {...zoomPan.handlers}
         >
           {hasHiddenEntities && (
-            <div className="pointer-events-none absolute left-2 top-2 z-20 flex max-w-[85%] items-center gap-1.5 rounded-full border border-slate-400/20 bg-white/85 dark:bg-slate-900/85 backdrop-blur-lg py-1 pl-3 pr-1.5 shadow-md">
+            <div className="glass-chip pointer-events-none absolute left-2 top-2 z-20 flex max-w-[85%] items-center gap-1.5 rounded-full border border-slate-400/20 backdrop-blur-lg py-1 pl-3 pr-1.5">
               <p className="text-xs text-text-muted">Ingrandisci la mappa per vedere le opere.</p>
               <button
                 type="button"
@@ -465,7 +465,7 @@ function Mappa() {
               onClick={() => zoomPan.zoomByStep(1.5)}
               disabled={zoomPan.scale >= MAX_SCALE}
               aria-label="Ingrandisci"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-400/20 bg-white/85 dark:bg-slate-900/85 backdrop-blur-lg text-text shadow-md disabled:opacity-40"
+              className="glass-chip flex h-9 w-9 items-center justify-center rounded-full border border-slate-400/20 backdrop-blur-lg text-text disabled:opacity-40"
             >
               <ZoomInIcon className="h-5 w-5" aria-hidden="true" />
             </button>
@@ -474,7 +474,7 @@ function Mappa() {
               onClick={() => zoomPan.zoomByStep(1 / 1.5)}
               disabled={zoomPan.scale <= MIN_SCALE}
               aria-label="Rimpicciolisci"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-400/20 bg-white/85 dark:bg-slate-900/85 backdrop-blur-lg text-text shadow-md disabled:opacity-40"
+              className="glass-chip flex h-9 w-9 items-center justify-center rounded-full border border-slate-400/20 backdrop-blur-lg text-text disabled:opacity-40"
             >
               <ZoomOutIcon className="h-5 w-5" aria-hidden="true" />
             </button>

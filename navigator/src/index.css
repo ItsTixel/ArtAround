@@ -62,37 +62,79 @@
   --pill-border: rgba(15, 23, 42, 0.08);
 }
 
-/* "Liquid glass" della capsula centrale della PlayerBar: un vetro
-   convesso, non piatto — highlight netto lungo il bordo alto (la luce che
-   scivola sulla curvatura), ombra interna morbida in basso (lo spessore
-   del vetro che si addensa verso il fondo) e un'ombra proiettata esterna
-   che la stacca dalla card. Le due varianti (dark/light) invertono solo
-   l'intensità delle luci, non la meccanica. */
+/* "Liquid glass" — token condivisi da ogni superficie di vetro
+   dell'app (pannelli, pillole, capsule): un vetro convesso, non piatto —
+   highlight netto lungo il bordo alto (la luce che scivola sulla
+   curvatura), ombra interna morbida in basso (lo spessore del vetro che
+   si addensa verso il fondo) e un'ombra proiettata esterna che stacca
+   l'elemento dallo sfondo. Le due varianti (dark/light) invertono solo
+   l'intensità delle luci, non la meccanica — così un solo set di
+   variabili serve sia i pannelli di Opera/Mappa/Gruppo sia le pillole dei
+   filtri sia la capsula della PlayerBar, invece di reinventare il vetro
+   ad ogni componente. */
 :root {
-  --glass-capsule-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.04) 45%, rgba(0, 0, 0, 0.12) 100%);
-  --glass-capsule-border: rgba(255, 255, 255, 0.22);
-  --glass-capsule-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.55), inset 0 -10px 16px -4px rgba(0, 0, 0, 0.35),
-    0 10px 24px -6px rgba(0, 0, 0, 0.45);
+  --liquid-glass-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 45%, rgba(0, 0, 0, 0.1) 100%);
+  --liquid-glass-border: rgba(255, 255, 255, 0.2);
+  --liquid-glass-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5), inset 0 -10px 16px -4px rgba(0, 0, 0, 0.3),
+    0 10px 24px -6px rgba(0, 0, 0, 0.4);
+  /* Variante leggera: stesso vetro ma ombra interna più tenue, per
+     superfici piccole (badge, pillole, avatar) dove l'ombra "piena"
+     satura e l'elemento sembra bucato invece che di vetro. */
+  --liquid-glass-shadow-light: inset 0 1px 1px rgba(255, 255, 255, 0.45), inset 0 -4px 8px -2px rgba(0, 0, 0, 0.22),
+    0 2px 8px -2px rgba(0, 0, 0, 0.25);
 }
 
 :root[data-theme="light"] {
-  --glass-capsule-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.55) 45%, rgba(148, 163, 184, 0.25) 100%);
-  --glass-capsule-border: rgba(255, 255, 255, 0.8);
-  --glass-capsule-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.9), inset 0 -10px 16px -4px rgba(15, 23, 42, 0.12),
-    0 10px 24px -8px rgba(15, 23, 42, 0.25);
+  --liquid-glass-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.5) 45%, rgba(148, 163, 184, 0.22) 100%);
+  --liquid-glass-border: rgba(255, 255, 255, 0.75);
+  --liquid-glass-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.85), inset 0 -10px 16px -4px rgba(15, 23, 42, 0.1),
+    0 10px 24px -8px rgba(15, 23, 42, 0.2);
+  --liquid-glass-shadow-light: inset 0 1px 1px rgba(255, 255, 255, 0.8), inset 0 -4px 8px -2px rgba(15, 23, 42, 0.08),
+    0 2px 8px -2px rgba(15, 23, 42, 0.12);
 }
 
-.glass-capsule {
-  background: var(--glass-capsule-bg);
-  border: 1px solid var(--glass-capsule-border);
-  box-shadow: var(--glass-capsule-shadow);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+.glass-panel,
+.glass-capsule,
+.glass-pill {
+  background: var(--liquid-glass-bg);
+  border: 1px solid var(--liquid-glass-border);
+  box-shadow: var(--liquid-glass-shadow);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
-/* Bottone play/pausa: stesso principio "liquid glass" ma sferico invece
-   che a pillola — un cerchio di vetro che lascia intravedere l'alone
-   colorato dietro invece di un disco pieno. */
+/* Pillole/badge piccoli (filtri, tag, celle): stesso vetro dei pannelli
+   ma ombra più leggera, altrimenti su superfici piccole l'ombra interna
+   satura e la pillola sembra bucata invece che di vetro. */
+.glass-pill {
+  box-shadow: var(--liquid-glass-shadow-light);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Solo sfondo + ombra, senza bordo/blur propri: per le barre/badge che
+   hanno già un bordo e un blur scelti a mano (BottomNav, PlayerBar,
+   ProfileMenu, i tag su Mappa/VisitInfoBody...) e devono solo prendere
+   in prestito il vetro convesso senza perdere quelle scelte. */
+.glass-surface {
+  background: var(--liquid-glass-bg);
+  box-shadow: var(--liquid-glass-shadow);
+}
+.glass-chip {
+  background: var(--liquid-glass-bg);
+  box-shadow: var(--liquid-glass-shadow-light);
+}
+/* L'avatar di ProfileMenu aggiunge shadow-xl mentre viene trascinato
+   (lifted): senza questo, la sola .glass-chip (stessa specificità)
+   vincerebbe sempre e quel feedback di sollevamento sparirebbe. */
+.glass-chip.shadow-xl {
+  box-shadow: var(--liquid-glass-shadow-light), 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* Bottone play/pausa e altri controlli circolari (frecce, icone): stesso
+   principio "liquid glass" ma sferico invece che piatto — un cerchio di
+   vetro con una specularità decentrata (come su una sfera) che lascia
+   intravedere l'alone colorato dietro, invece di un disco pieno. */
 .glass-orb {
   background: radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.06) 45%, rgba(255, 255, 255, 0.02) 100%);
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -106,14 +148,6 @@
   border-color: rgba(255, 255, 255, 0.85);
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.95), inset 0 -8px 14px -4px rgba(15, 23, 42, 0.15),
     0 4px 18px rgba(15, 23, 42, 0.18);
-}
-
-.glass-panel {
-  background: var(--universal-glass-bg);
-  backdrop-filter: var(--universal-glass-blur);
-  -webkit-backdrop-filter: var(--universal-glass-blur);
-  border: 1px solid var(--universal-glass-border);
-  box-shadow: var(--universal-glass-shadow);
 }
 
 /* Slider di riproduzione della PlayerBar: pallino pieno + traccia

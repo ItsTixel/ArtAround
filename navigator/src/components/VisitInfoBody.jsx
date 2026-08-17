@@ -47,11 +47,11 @@ function VisitInfoBody({ visit }) {
           />
         )}
         {isInfra && (
-          <span className="absolute left-3 top-3 z-[2] rounded-full bg-white/80 dark:bg-slate-900/80 px-2.5 py-1.5 font-mono text-[0.62rem] uppercase tracking-[0.16em] text-text shadow-xl shadow-black/5 backdrop-blur-lg border border-slate-400/20">
+          <span className="glass-chip absolute left-3 top-3 z-[2] rounded-full px-2.5 py-1.5 font-mono text-[0.62rem] uppercase tracking-[0.16em] text-text backdrop-blur-lg border border-slate-400/20">
             Inframuseale
           </span>
         )}
-        <span className="relative z-[1] max-w-[80%] truncate rounded-full bg-white/80 dark:bg-slate-900/80 px-3 py-1.5 text-center font-mono text-[0.68rem] uppercase tracking-[0.14em] text-text shadow-xl shadow-black/5 backdrop-blur-lg border border-slate-400/20">
+        <span className="glass-chip relative z-[1] max-w-[80%] truncate rounded-full px-3 py-1.5 text-center font-mono text-[0.68rem] uppercase tracking-[0.14em] text-text backdrop-blur-lg border border-slate-400/20">
           {visit.title}
         </span>
       </div>

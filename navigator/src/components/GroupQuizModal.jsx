@@ -66,7 +66,7 @@ function GroupQuizModal() {
               onClick={() => setQuestionIndex((i) => i - 1)}
               disabled={questionIndex === 0}
               aria-label="Domanda precedente"
-              className="absolute left-0 top-1/2 z-10 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[color:var(--pill-border)] bg-[color:var(--pill-bg)] text-text shadow-lg backdrop-blur-md disabled:opacity-30"
+              className="glass-orb absolute left-0 top-1/2 z-10 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-text disabled:opacity-30"
             >
               <ChevronLeftIcon className="h-5 w-5" />
             </button>
@@ -75,7 +75,7 @@ function GroupQuizModal() {
               onClick={() => setQuestionIndex((i) => i + 1)}
               disabled={isLast}
               aria-label="Domanda successiva"
-              className="absolute right-0 top-1/2 z-10 flex h-10 w-10 translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[color:var(--pill-border)] bg-[color:var(--pill-bg)] text-text shadow-lg backdrop-blur-md disabled:opacity-30"
+              className="glass-orb absolute right-0 top-1/2 z-10 flex h-10 w-10 translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-text disabled:opacity-30"
             >
               <ChevronRightIcon className="h-5 w-5" />
             </button>
@@ -140,7 +140,7 @@ function GroupQuizModal() {
                         className={`rounded-md border px-3 py-2 text-left text-sm transition-colors ${
                           answers[questionIndex] === oIndex
                             ? 'border-accent bg-accent text-on-accent'
-                            : 'border-[color:var(--pill-border)] bg-[color:var(--pill-bg)] text-text'
+                            : 'glass-pill text-text'
                         }`}
                       >
                         {option}

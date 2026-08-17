@@ -6,7 +6,7 @@ import { PlayIcon, PauseIcon } from '../components/icons'
 const TONE_ABBR = { childish: 'Infan.', simple: 'Elem.', medium: 'Med.', technical: 'Avan.' }
 
 function tileClasses(extra = '') {
-  return `flex h-8 min-w-9 items-center justify-center rounded-md border border-[color:var(--pill-border)] bg-[color:var(--pill-bg)] px-2 text-xs font-medium text-text-muted ${extra}`
+  return `glass-pill flex h-8 min-w-9 items-center justify-center rounded-md px-2 text-xs font-medium text-text-muted ${extra}`
 }
 
 function Gruppo() {
@@ -107,7 +107,7 @@ function Gruppo() {
                       className={`shrink-0 rounded-full border px-2.5 py-1 text-xs font-medium ${
                         p.quizScore != null
                           ? 'border-info bg-info text-on-accent'
-                          : 'border-[color:var(--pill-border)] bg-[color:var(--pill-bg)] text-text-muted'
+                          : 'glass-pill text-text-muted'
                       }`}
                     >
                       {p.quizScore != null ? `${p.quizScore}/${p.quizTotal}` : 'In corso…'}

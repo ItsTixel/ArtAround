@@ -21,7 +21,7 @@ function MicListeningIndicator() {
         visible ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-2 opacity-0'
       }`}
     >
-      <div className="flex max-w-xs items-center gap-3 rounded-full border border-slate-400/20 bg-white/85 dark:bg-slate-900/85 backdrop-blur-2xl px-4 py-2.5 shadow-2xl shadow-black/10 dark:shadow-black/30">
+      <div className="glass-chip flex max-w-xs items-center gap-3 rounded-full border border-slate-400/20 backdrop-blur-2xl px-4 py-2.5">
         <span className="relative flex h-9 w-9 shrink-0 items-center justify-center">
           {!micError && (
             <span className="absolute h-full w-full animate-ping rounded-full bg-accent opacity-40" />

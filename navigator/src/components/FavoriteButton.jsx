@@ -41,7 +41,7 @@ function FavoriteButton({ visit, className = '' }) {
       disabled={pending}
       aria-pressed={favorited}
       aria-label={favorited ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti'}
-      className={`flex h-9 w-9 items-center justify-center rounded-full border border-slate-400/20 bg-slate-400/10 backdrop-blur-lg hover:bg-white/20 hover:border-white/30 disabled:opacity-50 ${className}`}
+      className={`glass-chip flex h-9 w-9 items-center justify-center rounded-full border border-slate-400/20 backdrop-blur-lg hover:bg-white/20 hover:border-white/30 disabled:opacity-50 ${className}`}
     >
       <svg
         className={`h-4 w-4 ${favorited ? 'fill-rose-500 stroke-rose-500' : 'fill-none stroke-current text-text'}`}

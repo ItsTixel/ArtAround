@@ -79,6 +79,7 @@ html, body { background-image: none; }
   color: var(--color-text-muted);
   background: var(--pill-bg);
   border: 1px solid var(--pill-border);
+  box-shadow: var(--pill-shadow);
   border-radius: 999px;
   padding: 0.45rem 1.1rem;
   cursor: pointer;

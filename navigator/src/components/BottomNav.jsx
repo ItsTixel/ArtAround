@@ -20,7 +20,7 @@ function BottomNav() {
   const items = role === 'host' ? [...baseItems, { to: '/gruppo', label: 'Gruppo', Icon: GroupIcon }] : baseItems
 
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-50 border-t border-slate-400/20 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl shadow-xl shadow-black/5 transition-colors duration-300 pb-[env(safe-area-inset-bottom)]">
+    <nav className="glass-surface fixed inset-x-0 bottom-0 z-50 border-t border-slate-400/20 backdrop-blur-xl transition-colors duration-300 pb-[env(safe-area-inset-bottom)]">
       <ul className="flex h-16 items-stretch justify-around">
         {items.map(({ to, label, Icon, end }) => {
           const disabled = isRestrictedStudent && to === '/qr'
