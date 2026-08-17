@@ -6,7 +6,7 @@ async function getMyPurchases(req, res) {
   try {
     const orders = await Order.find({ buyer: req.user.id })
       .sort('-createdAt')
-      .populate('visit', 'title image_url base_price')
+      .populate('visit', 'title image_url base_price estimated_duration_sec')
       .populate('seller', 'username display_name avatar_url');
     res.json(orders);
   } catch (e) {
@@ -20,7 +20,7 @@ async function getMySales(req, res) {
   try {
     const orders = await Order.find({ seller: req.user.id })
       .sort('-createdAt')
-      .populate('visit', 'title image_url base_price')
+      .populate('visit', 'title image_url base_price estimated_duration_sec')
       .populate('buyer', 'username display_name avatar_url');
     res.json(orders);
   } catch (e) {

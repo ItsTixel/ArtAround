@@ -171,6 +171,33 @@ const ORDERS_CONFIG = {
   },
 };
 
+// order.visit arriva dal backend popolato solo con { _id, title,
+// image_url, base_price } (vedi controllers/order.js), molto più
+// magro dei documenti restituiti da /api/visits — per questo non passa
+// da normalizeVisit() ma costruisce direttamente la forma minima che
+// <visit-card> sa già gestire con i suoi campi opzionali.
+function normalizeOrderVisit(visit) {
+  const id = String(visit._id || '');
+  return {
+    id,
+    title: visit.title || 'Visita rimossa',
+    description: '',
+    durationSec: visit.estimated_duration_sec || 0,
+    steps: 0,
+    basePrice: visit.base_price || 0,
+    tags: [],
+    museumDetails: [],
+    images: visit.image_url ? [visit.image_url] : [],
+    owned: ownedIds.has(id),
+    favorited: favoritedIds.has(id),
+  };
+}
+
+// Stessa <visit-card> di visits.html/griglia "Le tue visite": un
+// ordine deve avere lo stesso aspetto di una visita ovunque compaia,
+// non una riga costruita a mano con un proprio stile. Il venditore/
+// acquirente e la data restano come didascalia sotto la card, perché
+// <visit-card> non ha modo di mostrare metadati specifici dell'ordine.
 function renderOrders(orders, config) {
   const list = document.getElementById('vendite-list');
   list.innerHTML = '';
@@ -181,30 +208,26 @@ function renderOrders(orders, config) {
   orders.forEach(order => {
     const visit = order.visit || {};
     const counterpart = order[config.counterpartKey] || {};
-    const row = document.createElement('div');
-    row.className = 'order-row flex items-center gap-4 bg-slate-400/10 backdrop-blur-lg border border-slate-400/20 shadow-xl shadow-black/5 rounded-2xl p-4 text-slate-800 dark:text-slate-100 transition-all duration-300 ease-in-out';
-    const openable = !!visit._id;
-    if (openable) {
-      row.classList.add('cursor-pointer', 'hover:-translate-y-1', 'hover:bg-white/20', 'hover:border-white/30', 'hover:shadow-2xl');
-      row.setAttribute('role', 'button');
-      row.setAttribute('tabindex', '0');
+    const item = document.createElement('div');
+    item.className = 'flex flex-col gap-2';
+
+    if (visit._id) {
+      const card = document.createElement('visit-card');
+      card.data = normalizeOrderVisit(visit);
+      item.appendChild(card);
+    } else {
+      const removed = document.createElement('p');
+      removed.className = 'empty';
+      removed.textContent = 'Visita rimossa';
+      item.appendChild(removed);
     }
-    row.innerHTML = `
-      <div class="w-16 h-16 shrink-0 bg-slate-300/20 dark:bg-slate-800/40 border border-slate-400/20 rounded-md overflow-hidden">
-        ${visit.image_url ? `<img class="w-full h-full object-cover" src="${esc(visit.image_url)}" alt="" loading="lazy">` : ''}
-      </div>
-      <div class="min-w-0 flex-1">
-        <h3 class="text-[0.95rem] font-semibold mb-0.5 truncate" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">${esc(visit.title || 'Visita rimossa')}</h3>
-        <div class="text-[0.72rem] text-slate-500 dark:text-slate-400">${config.counterpartLabel}: ${esc(counterpart.display_name || counterpart.username || '—')} · ${fmtOrderDate(order.createdAt)}</div>
-      </div>
-      <div class="text-sm font-semibold shrink-0" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">${fmtOrderPrice(order.price_paid)}</div>
-    `;
-    if (openable) {
-      const open = () => document.querySelector('visit-modal')?.open(visit._id);
-      row.addEventListener('click', open);
-      row.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
-    }
-    list.appendChild(row);
+
+    const meta = document.createElement('p');
+    meta.className = 'text-[0.72rem] text-slate-500 dark:text-slate-400 px-1';
+    meta.textContent = `${config.counterpartLabel}: ${counterpart.display_name || counterpart.username || '—'} · ${fmtOrderDate(order.createdAt)} · ${fmtOrderPrice(order.price_paid)}`;
+    item.appendChild(meta);
+
+    list.appendChild(item);
   });
 }
 

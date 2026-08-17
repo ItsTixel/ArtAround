@@ -103,13 +103,9 @@ html, body { background-image: none; }
    js/profile.js (renderDescriptions). */
 
 /* ── Lista ordini (Vendite & acquisti) ───────────────────────── */
-.orders-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-/* .order-row: aspetto interamente su classi Tailwind, generate in
-   js/profile.js (renderOrders). */
+/* Riusa .visits-grid (visits.css) e <visit-card>: stessa griglia e
+   stessa card della pagina "Tutte le visite", così un ordine ha
+   identico aspetto ovunque appaia — vedi js/profile.js (renderOrders). */
 
 /* ── Form impostazioni ────────────────────────────────────── */
 .profile-form { max-width: 460px; }
