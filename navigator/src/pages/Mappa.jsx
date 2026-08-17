@@ -465,7 +465,7 @@ function Mappa() {
               onClick={() => zoomPan.zoomByStep(1.5)}
               disabled={zoomPan.scale >= MAX_SCALE}
               aria-label="Ingrandisci"
-              className="glass-chip flex h-9 w-9 items-center justify-center rounded-full border border-slate-400/20 backdrop-blur-lg text-text disabled:opacity-40"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-400/20 bg-white/85 dark:bg-slate-900/85 backdrop-blur-lg text-text shadow-lg shadow-black/10 dark:shadow-black/30 disabled:opacity-40"
             >
               <ZoomInIcon className="h-5 w-5" aria-hidden="true" />
             </button>
@@ -474,7 +474,7 @@ function Mappa() {
               onClick={() => zoomPan.zoomByStep(1 / 1.5)}
               disabled={zoomPan.scale <= MIN_SCALE}
               aria-label="Rimpicciolisci"
-              className="glass-chip flex h-9 w-9 items-center justify-center rounded-full border border-slate-400/20 backdrop-blur-lg text-text disabled:opacity-40"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-400/20 bg-white/85 dark:bg-slate-900/85 backdrop-blur-lg text-text shadow-lg shadow-black/10 dark:shadow-black/30 disabled:opacity-40"
             >
               <ZoomOutIcon className="h-5 w-5" aria-hidden="true" />
             </button>

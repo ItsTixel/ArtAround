@@ -87,7 +87,7 @@ function VisitInfoBody({ visit }) {
               {visit.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full border border-border px-2.5 py-0.5 text-[0.65rem] uppercase tracking-wide text-text-muted"
+                  className="glass-chip rounded-full border border-slate-400/20 backdrop-blur-lg px-2.5 py-0.5 text-[0.65rem] uppercase tracking-wide text-text-muted"
                 >
                   {tag}
                 </span>
@@ -105,7 +105,7 @@ function VisitInfoBody({ visit }) {
               {availableTones.map((tone) => (
                 <span
                   key={tone}
-                  className="rounded-full border border-border px-2.5 py-0.5 text-[0.65rem] uppercase tracking-wide text-text-muted"
+                  className="glass-chip rounded-full border border-slate-400/20 backdrop-blur-lg px-2.5 py-0.5 text-[0.65rem] uppercase tracking-wide text-text-muted"
                 >
                   {TONE_LABELS[tone]}
                 </span>
