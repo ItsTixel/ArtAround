@@ -62,12 +62,110 @@
   --pill-border: rgba(15, 23, 42, 0.08);
 }
 
+/* "Liquid glass" della capsula centrale della PlayerBar: un vetro
+   convesso, non piatto — highlight netto lungo il bordo alto (la luce che
+   scivola sulla curvatura), ombra interna morbida in basso (lo spessore
+   del vetro che si addensa verso il fondo) e un'ombra proiettata esterna
+   che la stacca dalla card. Le due varianti (dark/light) invertono solo
+   l'intensità delle luci, non la meccanica. */
+:root {
+  --glass-capsule-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.04) 45%, rgba(0, 0, 0, 0.12) 100%);
+  --glass-capsule-border: rgba(255, 255, 255, 0.22);
+  --glass-capsule-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.55), inset 0 -10px 16px -4px rgba(0, 0, 0, 0.35),
+    0 10px 24px -6px rgba(0, 0, 0, 0.45);
+}
+
+:root[data-theme="light"] {
+  --glass-capsule-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.55) 45%, rgba(148, 163, 184, 0.25) 100%);
+  --glass-capsule-border: rgba(255, 255, 255, 0.8);
+  --glass-capsule-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.9), inset 0 -10px 16px -4px rgba(15, 23, 42, 0.12),
+    0 10px 24px -8px rgba(15, 23, 42, 0.25);
+}
+
+.glass-capsule {
+  background: var(--glass-capsule-bg);
+  border: 1px solid var(--glass-capsule-border);
+  box-shadow: var(--glass-capsule-shadow);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Bottone play/pausa: stesso principio "liquid glass" ma sferico invece
+   che a pillola — un cerchio di vetro che lascia intravedere l'alone
+   colorato dietro invece di un disco pieno. */
+.glass-orb {
+  background: radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.06) 45%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.7), inset 0 -8px 14px -4px rgba(0, 0, 0, 0.3),
+    0 4px 18px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+:root[data-theme="light"] .glass-orb {
+  border-color: rgba(255, 255, 255, 0.85);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.95), inset 0 -8px 14px -4px rgba(15, 23, 42, 0.15),
+    0 4px 18px rgba(15, 23, 42, 0.18);
+}
+
 .glass-panel {
   background: var(--universal-glass-bg);
   backdrop-filter: var(--universal-glass-blur);
   -webkit-backdrop-filter: var(--universal-glass-blur);
   border: 1px solid var(--universal-glass-border);
   box-shadow: var(--universal-glass-shadow);
+}
+
+/* Slider di riproduzione della PlayerBar: pallino pieno + traccia
+   bicolore (percorsa/rimanente) via --seek-percent, stessa idea di un
+   player audio nativo ma disegnata a mano perché lo stile di default
+   dell'input range non è truccabile a sufficienza cross-browser. */
+.player-seek {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    var(--color-accent) var(--seek-percent, 0%),
+    var(--color-border) var(--seek-percent, 0%)
+  );
+  cursor: pointer;
+}
+
+.player-seek::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 999px;
+  background: var(--color-text);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--color-accent) 25%, transparent), 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.player-seek::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border: none;
+  border-radius: 999px;
+  background: var(--color-text);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--color-accent) 25%, transparent), 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.player-seek::-moz-range-track {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--color-border);
+}
+
+.player-seek::-moz-range-progress {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--color-accent);
+}
+
+.player-seek:disabled {
+  cursor: default;
 }
 
 html,
