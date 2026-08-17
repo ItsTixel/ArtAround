@@ -152,7 +152,7 @@ class FilterSidebar extends HTMLElement {
     return this._data.tags.map(t => `
       <button type="button" class="chip text-[0.66rem] font-medium tracking-[0.1em] uppercase px-3 py-1.5 rounded-full border transition-all duration-200 ease-in-out ${RING_FOCUS} ${s.tags.has(t.value)
         ? 'bg-slate-800 text-white dark:bg-white dark:text-slate-900 border-slate-800 dark:border-white'
-        : 'bg-transparent text-slate-800 dark:text-slate-100 border-slate-400/20 hover:border-white/30 hover:bg-white/20'}" data-tag="${this._esc(t.value)}">${this._esc(t.value)}</button>
+        : 'liquid-glass-pill bg-transparent text-slate-800 dark:text-slate-100 border-slate-400/20 hover:border-white/30 hover:bg-white/20'}" data-tag="${this._esc(t.value)}">${this._esc(t.value)}</button>
     `).join('');
   }
 

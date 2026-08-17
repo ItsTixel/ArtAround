@@ -6,7 +6,7 @@
 
 import { getCurrentUser, resetCurrentUser } from '/marketplace/js/auth-session.js';
 import { createImageField } from '/marketplace/js/image-field.js';
-import { GLASS, TRANSITION } from '/marketplace/js/ui-tokens.js';
+import { GLASS, TRANSITION, TAG_PILL } from '/marketplace/js/ui-tokens.js';
 
 const API_VISITS = '/api/visits';
 const API_ITEMS  = '/api/items';
@@ -282,7 +282,7 @@ function renderDescriptions(items) {
     card.dataset.itemId = item._id;
     const licenseKey = String(item.license || 'public').toLowerCase();
     const licenseStyle = LICENSE_STYLE[licenseKey] || LICENSE_STYLE.public;
-    const tagCls = 'text-[0.62rem] tracking-[0.06em] uppercase border rounded-md px-2 py-0.5 border-slate-400/30 text-slate-500 dark:text-slate-400';
+    const tagCls = TAG_PILL;
     card.innerHTML = `
       <div class="relative h-44 bg-slate-300/20 dark:bg-slate-800/40 flex items-center justify-center overflow-hidden">
         ${artwork.image_url

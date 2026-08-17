@@ -100,8 +100,16 @@ function initials(name) {
     .join('')
 }
 
-const pillClasses =
-  'glass-chip flex items-center gap-2 whitespace-nowrap rounded-full border border-slate-400/20 backdrop-blur-lg px-4 py-2 text-sm font-medium'
+// `glass-chip` (index.css) applica il proprio `background` fuori da un
+// @layer Tailwind: essendo "unlayered" batte sempre, a prescindere
+// dall'ordine, le utility di sfondo di Tailwind (che vivono in
+// @layer utilities) — incluso il gradiente "accent" qui sotto. Per la
+// voce logout (accent) va quindi omessa, altrimenti il gradiente non si
+// vede mai e il testo (`text-on-accent`, pensato per contrastare
+// sull'accent) resta su un vetro che ha il tono quasi opposto in entrambi
+// i temi, illeggibile.
+const pillBaseClasses =
+  'flex items-center gap-2 whitespace-nowrap rounded-full border border-slate-400/20 backdrop-blur-lg px-4 py-2 text-sm font-medium'
 
 // Ogni voce entra con un piccolo scarto in cascata (via transitionDelay) e
 // esce tutta insieme, senza scarto.
@@ -428,7 +436,7 @@ function ProfileMenu({ hasPlayer = false }) {
               open={open}
               closedTranslate={panelConfig.itemClosedTranslate}
               as={as}
-              className={`${pillClasses} ${accent ? 'bg-gradient-to-br from-accent to-accent-hover text-on-accent' : 'text-text'}`}
+              className={`${pillBaseClasses} ${accent ? 'bg-gradient-to-br from-accent to-accent-hover text-on-accent' : 'glass-chip text-text'}`}
               {...rest}
             >
               <Icon className="h-4 w-4 shrink-0" />

@@ -187,7 +187,7 @@ function Home() {
       </div>
 
       {groupSessionEnded && (
-        <div className="flex items-center justify-between gap-3 rounded-lg border border-border bg-surface p-3 text-sm text-text">
+        <div className="glass-panel flex items-center justify-between gap-3 rounded-2xl p-3 text-sm text-text">
           <span>Il professore ha terminato la visita di gruppo.</span>
           <button
             type="button"
@@ -201,20 +201,20 @@ function Home() {
       )}
 
       {!user && (
-        <div className="flex flex-col gap-2 rounded-lg border border-accent/40 bg-accent/10 p-4 text-center">
+        <div className="glass-panel flex flex-col gap-2 rounded-2xl p-4 text-center outline outline-1 outline-accent/30 outline-offset-[-1px]">
           <p className="text-sm text-text">
             Accedi o registrati per adottare visite e salvare i tuoi progressi.
           </p>
           <div className="flex justify-center gap-3">
             <a
               href={`${LOGIN_URL}?redirect=${encodeURIComponent(window.location.pathname + window.location.search)}`}
-              className="rounded-md bg-gradient-to-br from-accent to-accent-hover px-4 py-2 text-sm font-medium text-on-accent shadow-lg shadow-black/10 dark:shadow-black/30"
+              className="rounded-full bg-gradient-to-br from-accent to-accent-hover px-4 py-2 text-sm font-medium text-on-accent shadow-lg shadow-black/10 dark:shadow-black/30"
             >
               Accedi
             </a>
             <a
               href={`${REGISTER_URL}?redirect=${encodeURIComponent(window.location.pathname + window.location.search)}`}
-              className="rounded-md border border-border px-4 py-2 text-sm font-medium text-text"
+              className="glass-pill rounded-full px-4 py-2 text-sm font-medium text-text"
             >
               Registrati
             </a>
@@ -226,7 +226,7 @@ function Home() {
         <label htmlFor="visit-code" className="text-xs font-medium uppercase tracking-wide text-text-muted">
           Codice visita
         </label>
-        <div className="flex gap-2">
+        <div className="glass-panel flex gap-2 rounded-2xl p-1.5">
           <input
             id="visit-code"
             type="text"
@@ -234,11 +234,11 @@ function Home() {
             onChange={(e) => setVisitCode(e.target.value)}
             placeholder="Es. ABC123"
             autoComplete="off"
-            className="flex-1 rounded-md border border-border bg-surface px-4 py-2.5 text-sm text-text placeholder:text-text-muted focus:border-accent focus:outline-none"
+            className="flex-1 rounded-xl bg-transparent px-3 py-2 text-sm text-text placeholder:text-text-muted focus:outline-none"
           />
           <button
             type="submit"
-            className="shrink-0 rounded-md bg-gradient-to-br from-accent to-accent-hover px-4 py-2.5 text-sm font-medium text-on-accent shadow-lg shadow-black/10 dark:shadow-black/30"
+            className="shrink-0 rounded-xl bg-gradient-to-br from-accent to-accent-hover px-4 py-2 text-sm font-medium text-on-accent shadow-lg shadow-black/10 dark:shadow-black/30"
           >
             Vai
           </button>
@@ -259,7 +259,7 @@ function Home() {
             className={`rounded-full px-4 py-1.5 text-xs font-medium uppercase tracking-wide transition-colors ${
               visitsTab === 'adopted'
                 ? 'bg-gradient-to-br from-accent to-accent-hover text-on-accent shadow-lg shadow-black/10 dark:shadow-black/30'
-                : 'border border-border text-text-muted'
+                : 'glass-pill text-text-muted'
             }`}
           >
             Adottate
@@ -272,7 +272,7 @@ function Home() {
             className={`rounded-full px-4 py-1.5 text-xs font-medium uppercase tracking-wide transition-colors ${
               visitsTab === 'favorites'
                 ? 'bg-gradient-to-br from-accent to-accent-hover text-on-accent shadow-lg shadow-black/10 dark:shadow-black/30'
-                : 'border border-border text-text-muted'
+                : 'glass-pill text-text-muted'
             }`}
           >
             Preferiti

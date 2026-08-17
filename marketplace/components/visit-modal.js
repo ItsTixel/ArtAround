@@ -299,12 +299,12 @@ class VisitModal extends HTMLElement {
         ${v.tags?.length ? `
         <div class="mb-5">
           <h4 class="text-[0.62rem] font-semibold tracking-[0.16em] uppercase text-slate-500 dark:text-slate-400 mb-2">Temi</h4>
-          ${v.tags.map(t => `<span class="inline-block text-[0.62rem] tracking-[0.1em] uppercase text-slate-500 dark:text-slate-400 border border-slate-400/20 rounded-full px-2.5 py-1 mr-1.5 mb-1.5">${this._esc(t)}</span>`).join('')}
+          ${v.tags.map(t => `<span class="liquid-glass-pill inline-block text-[0.62rem] tracking-[0.1em] uppercase text-slate-500 dark:text-slate-400 border border-slate-400/20 rounded-full px-2.5 py-1 mr-1.5 mb-1.5">${this._esc(t)}</span>`).join('')}
         </div>` : ''}
         ${tones.length ? `
         <div class="mb-6">
           <h4 class="text-[0.62rem] font-semibold tracking-[0.16em] uppercase text-slate-500 dark:text-slate-400 mb-2">Linguaggio</h4>
-          ${tones.map(t => `<span class="inline-block text-[0.62rem] tracking-[0.1em] uppercase text-slate-500 dark:text-slate-400 border border-slate-400/20 rounded-full px-2.5 py-1 mr-1.5 mb-1.5">${this._esc(TONE_LABELS[t] || t)}</span>`).join('')}
+          ${tones.map(t => `<span class="liquid-glass-pill inline-block text-[0.62rem] tracking-[0.1em] uppercase text-slate-500 dark:text-slate-400 border border-slate-400/20 rounded-full px-2.5 py-1 mr-1.5 mb-1.5">${this._esc(TONE_LABELS[t] || t)}</span>`).join('')}
         </div>` : ''}
 
         <h3 class="text-base font-semibold mb-3.5 text-slate-800 dark:text-slate-100" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">Opere incluse</h3>

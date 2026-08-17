@@ -121,7 +121,7 @@ class VisitCard extends HTMLElement {
           </div>
           <h2 class="text-base sm:text-lg font-semibold leading-snug" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">${this._esc(v.title)}</h2>
           <p class="text-xs sm:text-sm leading-relaxed text-slate-500 dark:text-slate-400 line-clamp-2">${this._esc(v.description)}</p>
-          ${v.tags?.length ? `<div class="flex flex-wrap gap-x-2 text-[0.58rem] sm:text-[0.62rem] tracking-[0.12em] uppercase text-slate-500 dark:text-slate-400">${v.tags.slice(0, 3).map(t => `<span>${this._esc(t)}</span>`).join('<span class="opacity-50">·</span>')}</div>` : ''}
+          ${v.tags?.length ? `<div class="flex flex-wrap gap-1.5">${v.tags.slice(0, 3).map(t => `<span class="${TAG_PILL}">${this._esc(t)}</span>`).join('')}</div>` : ''}
           ${v.tones?.length ? `
           <div class="tones">
             <small class="block text-[0.58rem] sm:text-[0.62rem] tracking-[0.12em] uppercase text-slate-500 dark:text-slate-400 mb-1">Linguaggio</small>
