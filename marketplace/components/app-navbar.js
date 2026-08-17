@@ -5,7 +5,15 @@ import { GLASS_STRONG, TRANSITION } from '/marketplace/js/ui-tokens.js';
 const SUN_ICON = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>`;
 const MOON_ICON = `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>`;
 
-const NAV_LINK = `px-4 py-3 md:px-3.5 md:py-1.5 rounded-xl md:rounded-full text-sm md:text-[0.7rem] font-medium tracking-[0.06em] md:tracking-[0.1em] uppercase text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-900/5 dark:hover:bg-white/10 ${TRANSITION} [&.active]:bg-slate-800 [&.active]:text-white dark:[&.active]:bg-white dark:[&.active]:text-slate-900`;
+// z-[1]: sta sopra il .nav-indicator che scivola dietro la voce sotto hover
+// (vedi _wireFluidIndicator). Il fondo glass hover conta solo su mobile
+// (max-md:), perché da md in su ci pensa l'indicatore a fare da evidenziazione.
+const NAV_LINK = `relative z-[1] px-4 py-3 md:px-3.5 md:py-1.5 rounded-xl md:rounded-full text-sm md:text-[0.7rem] font-medium tracking-[0.06em] md:tracking-[0.1em] uppercase text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white border border-transparent max-md:hover:bg-white/20 max-md:hover:border-white/30 ${TRANSITION} [&.active]:bg-slate-800 [&.active]:text-white dark:[&.active]:bg-white dark:[&.active]:text-slate-900`;
+
+// Pillola "vetro" che scivola dietro la voce sotto hover/focus in #nav-links
+// e .auth-actions (vedi _wireFluidIndicator). Stessa ricetta di GLASS
+// (ui-tokens.js) ma rounded-full per combaciare con la forma dei link.
+const NAV_INDICATOR = 'nav-indicator hidden md:block absolute top-0 bottom-0 left-0 w-0 rounded-full liquid-glass bg-slate-400/10 backdrop-blur-lg border border-slate-400/20 shadow-xl shadow-black/5 pointer-events-none opacity-0 transition-[transform,width,opacity] duration-300 ease-out';
 
 class AppNavbar extends HTMLElement {
   connectedCallback() {
@@ -35,13 +43,17 @@ class AppNavbar extends HTMLElement {
           </a>
 
           <div id="nav-collapsible" class="hidden md:flex md:items-center md:gap-8 absolute md:static top-full inset-x-0 md:inset-auto mt-2 md:mt-0 flex-col md:flex-row items-stretch md:items-center gap-1.5 md:gap-8 p-4 md:p-0 max-h-[calc(100vh-6rem)] md:max-h-none overflow-y-auto md:overflow-visible bg-white/90 dark:bg-[#0b1224]/90 backdrop-blur-xl md:bg-transparent md:dark:bg-transparent md:backdrop-blur-none border border-slate-400/20 md:border-0 shadow-2xl md:shadow-none rounded-2xl md:rounded-none">
-            <ul id="nav-links" class="flex flex-col md:flex-row items-stretch md:items-center gap-1.5 md:gap-1">
-              <li><a href="/marketplace" class="${NAV_LINK} block ${isMuseums ? 'active' : ''}">Musei</a></li>
-              <li><a href="/marketplace/pages/visits.html" class="${NAV_LINK} block ${isVisits ? 'active' : ''}">Tutte le visite</a></li>
-            </ul>
-            <div class="auth-actions flex flex-col md:flex-row items-stretch md:items-center gap-2 pt-3 md:pt-0 mt-2 md:mt-0 border-t md:border-t-0 md:border-l border-slate-400/20 md:pl-6">
-              <a href="/marketplace/login.html${redirectQS}" class="btn-login text-center px-4 py-2.5 md:py-1.5 rounded-full text-[0.75rem] md:text-[0.7rem] font-medium tracking-[0.08em] md:tracking-[0.1em] uppercase border border-slate-400/20 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-900/5 dark:hover:bg-white/10 hover:border-white/30 ${TRANSITION} ${isLogin ? 'bg-slate-400/10 text-slate-900 dark:text-white' : ''}">Login</a>
-              <a href="/marketplace/register.html${redirectQS}" class="btn-register text-center px-4 py-2.5 md:py-1.5 rounded-full text-[0.75rem] md:text-[0.7rem] font-semibold tracking-[0.08em] md:tracking-[0.1em] uppercase bg-slate-800 text-white dark:bg-white dark:text-slate-900 hover:opacity-90 ${TRANSITION} ${isRegister ? 'ring-2 ring-offset-2 ring-offset-transparent ring-slate-800 dark:ring-white' : ''}">Registrati</a>
+            <div class="nav-links-wrap relative">
+              <span class="${NAV_INDICATOR}"></span>
+              <ul id="nav-links" class="flex flex-col md:flex-row items-stretch md:items-center gap-1.5 md:gap-1">
+                <li><a href="/marketplace" class="${NAV_LINK} block ${isMuseums ? 'active' : ''}">Musei</a></li>
+                <li><a href="/marketplace/pages/visits.html" class="${NAV_LINK} block ${isVisits ? 'active' : ''}">Tutte le visite</a></li>
+              </ul>
+            </div>
+            <div class="auth-actions relative flex flex-col md:flex-row items-stretch md:items-center gap-2 pt-3 md:pt-0 mt-2 md:mt-0 border-t md:border-t-0 md:border-l border-slate-400/20 md:pl-6">
+              <span class="${NAV_INDICATOR}"></span>
+              <a href="/marketplace/login.html${redirectQS}" class="btn-login relative z-[1] text-center px-4 py-2.5 md:py-1.5 rounded-full text-[0.75rem] md:text-[0.7rem] font-medium tracking-[0.08em] md:tracking-[0.1em] uppercase border border-slate-400/20 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white max-md:hover:bg-white/20 max-md:hover:border-white/30 ${TRANSITION} ${isLogin ? 'bg-slate-400/10 text-slate-900 dark:text-white' : ''}">Login</a>
+              <a href="/marketplace/register.html${redirectQS}" class="btn-register relative z-[1] text-center px-4 py-2.5 md:py-1.5 rounded-full text-[0.75rem] md:text-[0.7rem] font-semibold tracking-[0.08em] md:tracking-[0.1em] uppercase bg-slate-800 text-white dark:bg-white dark:text-slate-900 hover:opacity-90 ${TRANSITION} ${isRegister ? 'ring-2 ring-offset-2 ring-offset-transparent ring-slate-800 dark:ring-white' : ''}">Registrati</a>
             </div>
           </div>
 
@@ -60,6 +72,62 @@ class AppNavbar extends HTMLElement {
     this._loadUser();
     this._setupMenuToggle();
     this._setupThemeToggle();
+    this._wireFluidIndicator(this.querySelector('.nav-links-wrap'), '#nav-links > li > a, #nav-links > li > button');
+  }
+
+  // Fa scivolare la pillola vetro .nav-indicator (primo figlio di `wrap`) dietro
+  // alla voce sotto hover/focus, invece del semplice cambio di colore istantaneo.
+  // `itemSelector` limita il match alle sole voci dirette (esclude es. i link del
+  // menu "Crea", che sono discendenti più interni e non vanno evidenziati qui).
+  _wireFluidIndicator(wrap, itemSelector) {
+    if (!wrap) return;
+    const indicator = wrap.querySelector(':scope > .nav-indicator');
+    if (!indicator) return;
+
+    // `silent`: riposiziona senza toccare l'opacità (preset iniziale sulla voce
+    // attiva, o correzione geometria — vedi refresh() sotto). `lastTarget` tiene
+    // traccia di quale voce l'indicatore sta seguendo, per poterla ri-misurare.
+    let lastTarget = null;
+    const moveTo = (el, silent = false) => {
+      lastTarget = el;
+      const wrapRect = wrap.getBoundingClientRect();
+      const elRect = el.getBoundingClientRect();
+      if (!silent) indicator.style.opacity = '1';
+      indicator.style.width = `${elRect.width}px`;
+      indicator.style.transform = `translateX(${elRect.left - wrapRect.left}px)`;
+    };
+    const hide = () => { indicator.style.opacity = '0'; };
+
+    wrap.addEventListener('mouseover', (e) => {
+      const target = e.target.closest(itemSelector);
+      if (target) moveTo(target);
+    });
+    wrap.addEventListener('mouseleave', hide);
+    wrap.addEventListener('focusin', (e) => {
+      const target = e.target.closest(itemSelector);
+      if (target) moveTo(target);
+    });
+    wrap.addEventListener('focusout', (e) => {
+      if (!wrap.contains(e.relatedTarget)) hide();
+    });
+
+    // Pre-posiziona (invisibile, opacity resta 0) sulla voce attiva, così il
+    // primo hover scivola da lì invece di "crescere" da un bordo a larghezza 0.
+    const activeEl = wrap.querySelector(itemSelector.split(',').map(s => `${s.trim()}.active`).join(', '));
+    if (activeEl) moveTo(activeEl, /* silent */ true);
+
+    // Il CDN di Tailwind genera lo stile delle classi via MutationObserver DOPO
+    // che questo markup viene inserito, quindi una misura fatta troppo presto
+    // (qui sopra, o per un mouseover "fantasma" che il browser spara sulla voce
+    // già sotto al cursore appena la pagina è pronta, es. subito dopo un click
+    // di navigazione) può restare bloccata su una geometria pre-stile — la pillola
+    // risulta storta/non centrata perché nessun hover successivo la ricalcola se
+    // il cursore non si muove più. Una volta che pagina e font sono davvero
+    // pronti, ri-misuriamo (senza toccare l'opacità) l'ultima voce agganciata.
+    const refresh = () => { if (lastTarget) moveTo(lastTarget, /* silent */ true); };
+    window.addEventListener('load', refresh);
+    document.fonts?.ready?.then(refresh);
+    setTimeout(refresh, 400);
   }
 
   _setupThemeToggle() {
@@ -161,7 +229,12 @@ class AppNavbar extends HTMLElement {
 
   async _loadUser() {
     const user = await getCurrentUser();
-    if (!user) return; // resta lo stato Login/Registrati già renderizzato
+    if (!user) {
+      // Resta lo stato Login/Registrati già renderizzato: qui va solo
+      // agganciato l'indicatore fluido (il markup c'è già dal render iniziale).
+      this._wireFluidIndicator(this.querySelector('.auth-actions'), '.auth-actions > a, .auth-actions > button');
+      return;
+    }
 
     const navLinks = this.querySelector('#nav-links');
     if (navLinks) {
@@ -180,13 +253,15 @@ class AppNavbar extends HTMLElement {
     if (!authActions) return;
 
     authActions.innerHTML = `
-      <a href="/marketplace/pages/profile.html" class="username block text-center md:text-left px-4 py-2.5 md:px-3 md:py-1.5 rounded-full text-sm md:text-[0.72rem] font-semibold tracking-[0.04em] md:tracking-[0.06em] text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-900/5 dark:hover:bg-white/10 ${TRANSITION} [&.active]:text-slate-900 dark:[&.active]:text-white ${this._isProfile ? 'active' : ''}">&#128100; ${this._esc(user.username)}</a>
-      <button type="button" class="btn-logout px-4 py-2.5 md:py-1.5 rounded-full text-sm md:text-[0.7rem] font-medium tracking-[0.06em] md:tracking-[0.1em] uppercase text-slate-600 dark:text-slate-300 border border-transparent hover:border-white/30 hover:bg-slate-900/5 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white ${TRANSITION}">Esci</button>
+      <span class="${NAV_INDICATOR}"></span>
+      <a href="/marketplace/pages/profile.html" class="username relative z-[1] block text-center md:text-left px-4 py-2.5 md:px-3 md:py-1.5 rounded-full text-sm md:text-[0.72rem] font-semibold tracking-[0.04em] md:tracking-[0.06em] text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white border border-transparent max-md:hover:bg-white/20 max-md:hover:border-white/30 ${TRANSITION} [&.active]:text-slate-900 dark:[&.active]:text-white ${this._isProfile ? 'active' : ''}">&#128100; ${this._esc(user.username)}</a>
+      <button type="button" class="btn-logout relative z-[1] px-4 py-2.5 md:py-1.5 rounded-full text-sm md:text-[0.7rem] font-medium tracking-[0.06em] md:tracking-[0.1em] uppercase text-slate-600 dark:text-slate-300 border border-transparent max-md:hover:bg-white/20 max-md:hover:border-white/30 hover:text-slate-900 dark:hover:text-white ${TRANSITION}">Esci</button>
     `;
     authActions.querySelector('.btn-logout').addEventListener('click', async () => {
       await logout();
       window.location.href = '/marketplace';
     });
+    this._wireFluidIndicator(authActions, '.auth-actions > a, .auth-actions > button');
   }
 }
 
