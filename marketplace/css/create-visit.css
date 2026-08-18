@@ -336,26 +336,55 @@
 }
 
 /* ── Descrizioni selezionabili per la tappa ──────────────────── */
+.step-items-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.btn-compact { align-self: auto; padding: 0.4rem 0.75rem; }
+
 .step-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+/* ── Una sezione per tono: al massimo una descrizione selezionabile ── */
+.tone-section {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
+.tone-section-title {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
 .step-item-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.step-item-row-select {
   display: flex;
   align-items: flex-start;
   gap: 0.65rem;
+  flex: 1;
+  min-width: 0;
   padding: 0.6rem 0.75rem;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: border-color var(--transition);
 }
-.step-item-row:has(input:checked) { border-color: var(--color-accent); background: color-mix(in srgb, var(--color-accent) 8%, transparent); }
+.step-item-row-select:has(input:checked) { border-color: var(--color-accent); background: color-mix(in srgb, var(--color-accent) 8%, transparent); }
 /* Selettore più specifico di ".field input" (auth.css, width:100%): questa
  * checkbox vive dentro un ".field" (per riusarne lo stile di label), ma non
  * deve ereditarne larghezza/padding pensati per i campi di testo. */
-.step-item-row input[type="checkbox"] {
+.step-item-row-select input[type="checkbox"] {
   width: auto;
   height: auto;
   padding: 0;
@@ -367,6 +396,35 @@
 .step-item-row-body { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
 .step-item-row-summary { font-size: 0.8rem; color: var(--color-text); }
 .step-item-row-meta { font-size: 0.66rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--color-text-muted); }
+.step-item-expand-btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition);
+}
+.step-item-expand-btn:hover { color: var(--color-text); border-color: var(--color-text-muted); }
+/* L'icona è una freccina verso il basso: chiusa punta a sinistra ("apri
+ * questa voce"), ruotata a puntare in giù quando il testo è aperto. */
+.step-item-expand-btn svg { transform: rotate(90deg); transition: transform var(--transition); }
+.step-item-expand-btn[aria-expanded="true"] svg { transform: rotate(0deg); }
+.step-item-row-text {
+  padding: 0.65rem 0.85rem;
+  margin-top: -0.3rem;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+.step-item-row-text p + p { margin-top: 0.5rem; }
 .step-items-empty { font-size: 0.78rem; font-style: italic; color: var(--color-text-muted); }
 
 /* ── Quiz di gruppo ───────────────────────────────────────────── */

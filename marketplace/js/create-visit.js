@@ -9,6 +9,7 @@
 
 import { getCurrentUser } from '/marketplace/js/auth-session.js';
 import { createWizard } from '/marketplace/js/wizard.js';
+import { TONE_ORDER, TONE_LABELS } from '/marketplace/js/tone-labels.js';
 
 const API_VISITS   = '/api/visits';
 const API_ENTITIES = '/api/entities';
@@ -171,6 +172,58 @@ function populateStepMuseumSelect(entity) {
     .join('');
 }
 
+/* Ogni tono può contribuire al massimo una descrizione alla tappa (vedi
+ * feedback-visit-step-design in memoria: il tono è ciò che distingue le
+ * versioni della stessa opera, non un dettaglio da sommare liberamente).
+ * Le checkbox sono raggruppate per data-tone e questo listener le rende
+ * mutualmente esclusive all'interno dello stesso tono, restando comunque
+ * deselezionabili con un secondo click (a differenza di un vero radio). */
+function enforceToneExclusivity(container, tone, checkbox) {
+  if (!checkbox.checked) return;
+  container.querySelectorAll(`input[data-tone="${tone}"]`).forEach(cb => {
+    if (cb !== checkbox) cb.checked = false;
+  });
+}
+
+function renderStepItemRow(container, it) {
+  const row = document.createElement('div');
+  row.className = 'step-item-row';
+  const totalSec = (it.descriptions || []).reduce((sum, d) => sum + (d.duration_sec || 0), 0);
+  row.innerHTML = `
+    <label class="step-item-row-select">
+      <input type="checkbox" value="${it._id}" data-tone="${it.tone}">
+      <span class="step-item-row-body">
+        <span class="step-item-row-summary">${esc(it.marketplace_summary)}</span>
+        <span class="step-item-row-meta">${esc(it.license)}${totalSec ? ` · ${totalSec}s` : ''}</span>
+      </span>
+    </label>
+    <button type="button" class="step-item-expand-btn" aria-expanded="false" aria-label="Mostra il testo di questa descrizione">
+      <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  `;
+
+  const textPanel = document.createElement('div');
+  textPanel.className = 'step-item-row-text';
+  textPanel.hidden = true;
+  textPanel.innerHTML = (it.descriptions || []).map(d => `<p>${esc(d.text)}</p>`).join('')
+    || '<p class="step-items-empty">Nessun testo disponibile.</p>';
+
+  row.querySelector('.step-item-expand-btn').addEventListener('click', (btnEvent) => {
+    const btn = btnEvent.currentTarget;
+    const opening = textPanel.hidden;
+    textPanel.hidden = !opening;
+    btn.setAttribute('aria-expanded', String(opening));
+    btn.setAttribute('aria-label', opening ? 'Nascondi il testo di questa descrizione' : 'Mostra il testo di questa descrizione');
+  });
+
+  const checkbox = row.querySelector('input[type="checkbox"]');
+  checkbox.addEventListener('change', () => enforceToneExclusivity(container, it.tone, checkbox));
+
+  container.appendChild(row);
+  container.appendChild(textPanel);
+  return checkbox;
+}
+
 async function loadStepItems(entity) {
   const list = document.getElementById('step-items-list');
   list.innerHTML = '<p class="step-items-empty">Caricamento…</p>';
@@ -192,22 +245,39 @@ async function loadStepItems(entity) {
 
     const preselected = new Set((state.editingIndex !== null ? state.steps[state.editingIndex].items : []).map(it => it.id));
 
-    usable.forEach(it => {
-      const row = document.createElement('label');
-      row.className = 'step-item-row';
-      row.innerHTML = `
-        <input type="checkbox" value="${it._id}" ${preselected.has(it._id) ? 'checked' : ''}>
-        <span class="step-item-row-body">
-          <span class="step-item-row-summary">${esc(it.marketplace_summary)}</span>
-          <span class="step-item-row-meta">${esc(it.tone)} · ${esc(it.license)}</span>
-        </span>
-      `;
-      list.appendChild(row);
+    TONE_ORDER.forEach(tone => {
+      const section = document.createElement('div');
+      section.className = 'tone-section';
+      section.innerHTML = `<div class="tone-section-title">${esc(TONE_LABELS[tone])}</div>`;
+
+      const items = usable.filter(it => it.tone === tone);
+      if (!items.length) {
+        section.innerHTML += '<p class="step-items-empty">Nessuna descrizione con questo tono per questa opera.</p>';
+      } else {
+        items.forEach(it => {
+          const checkbox = renderStepItemRow(section, it);
+          checkbox.checked = preselected.has(it._id);
+        });
+      }
+
+      list.appendChild(section);
     });
   } catch (e) {
     list.innerHTML = '<p class="step-items-empty">Errore nel caricamento delle descrizioni.</p>';
     console.error('Errore nel caricamento degli item:', e);
   }
+}
+
+/* Seleziona automaticamente la prima descrizione disponibile per ogni
+ * tono che non ne ha ancora una scelta: non tocca i toni già impostati
+ * a mano, così il tasto si può usare anche solo per completare i vuoti. */
+function autofillStepItems() {
+  const list = document.getElementById('step-items-list');
+  TONE_ORDER.forEach(tone => {
+    if (list.querySelector(`input[data-tone="${tone}"]:checked`)) return;
+    const first = list.querySelector(`input[data-tone="${tone}"]`);
+    if (first) first.checked = true;
+  });
 }
 
 async function openConfigure(entity) {
@@ -571,6 +641,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('picker-close-configure').addEventListener('click', closePicker);
   document.getElementById('picker-back').addEventListener('click', backToBrowse);
   document.getElementById('step-confirm').addEventListener('click', confirmStep);
+  document.getElementById('step-items-autofill').addEventListener('click', autofillStepItems);
   document.getElementById('picker-overlay').addEventListener('click', (e) => {
     if (e.target.id === 'picker-overlay') closePicker();
   });
