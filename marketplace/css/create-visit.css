@@ -16,6 +16,47 @@
   pointer-events: none;
 }
 
+/* ── Codice della visita di gruppo, con verifica live di disponibilità ── */
+.code-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.code-input-wrap input {
+  padding-right: 1.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.code-status-icon {
+  position: absolute;
+  right: 0.1rem;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+.code-status-icon.is-checking {
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-text-muted);
+  animation: code-status-spin 0.7s linear infinite;
+}
+.code-status-icon.is-available {
+  background: var(--color-success);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3 3 7-7' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3 3 7-7' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.code-status-icon.is-taken {
+  background: var(--color-danger);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 4l8 8M12 4l-8 8' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 4l8 8M12 4l-8 8' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.code-status-hint.is-error { color: var(--color-danger); }
+.code-status-hint.is-success { color: var(--color-success); }
+
+@keyframes code-status-spin {
+  to { transform: rotate(360deg); }
+}
+
 .empty-hint {
   margin: -0.4rem 0 0;
   font-size: 0.8rem;

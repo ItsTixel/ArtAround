@@ -207,6 +207,7 @@ async function getById(req, res) {
 
 async function create(req, res) {
   let quizDoc = null;
+  let codeWasRequested = false;
   try {
     req.body.author = req.user.id;
 
@@ -229,7 +230,26 @@ async function create(req, res) {
       quizDoc = new Quiz({ title: req.body.quiz.title, questions: req.body.quiz.questions, author: req.user.id });
       await quizDoc.save();
       req.body.quiz = quizDoc._id;
-      req.body.code = await generateUniqueCode(Visit);
+
+      // L'autore può scegliere il codice (verificato lato client con
+      // GET /code/:code/available mentre digita): qui va comunque
+      // riverificato server-side prima di usarlo. Se non ne è stato
+      // richiesto uno, se ne genera uno casuale come prima.
+      if (req.body.code) {
+        codeWasRequested = true;
+        const requestedCode = String(req.body.code).trim().toUpperCase();
+        if (!CODE_PATTERN.test(requestedCode)) {
+          await Quiz.findByIdAndDelete(quizDoc._id).catch(() => {});
+          return res.status(400).json({ error: 'Il codice deve avere 4-15 caratteri, solo lettere e cifre.' });
+        }
+        if (await Visit.exists({ code: requestedCode })) {
+          await Quiz.findByIdAndDelete(quizDoc._id).catch(() => {});
+          return res.status(409).json({ error: 'Codice già in uso, scegline un altro.' });
+        }
+        req.body.code = requestedCode;
+      } else {
+        req.body.code = await generateUniqueCode(Visit);
+      }
     }
 
     const existingVisit = await Visit.findOne({ title: req.body.title, museum: req.body.museum });
@@ -243,9 +263,15 @@ async function create(req, res) {
       await visit.save();
     } catch (saveErr) {
       // Race su un codice duplicato (rarissima, ma l'unique index del
-      // db è l'ultima rete di sicurezza): rigenera il codice e riprova
-      // una sola volta prima di arrendersi.
+      // db è l'ultima rete di sicurezza): per un codice generato si
+      // rigenera e si riprova una sola volta prima di arrendersi; per
+      // un codice scelto dall'autore si segnala l'errore invece di
+      // sostituirlo a sua insaputa con uno diverso.
       if (req.body.is_group && saveErr.code === 11000 && /code/.test(saveErr.message)) {
+        if (codeWasRequested) {
+          if (quizDoc) await Quiz.findByIdAndDelete(quizDoc._id).catch(() => {});
+          return res.status(409).json({ error: 'Codice già in uso, scegline un altro.' });
+        }
         visit.code = await generateUniqueCode(Visit);
         await visit.save();
       } else {
@@ -343,6 +369,26 @@ function emitToVisit(req, visitId, event, payload) {
 function emitToHost(req, visitId, event, payload) {
   const io = req.app.get('io');
   if (io) io.to(`visit:${visitId}:host`).emit(event, payload);
+}
+
+// Formato accettato sia per un codice scelto dall'autore sia per uno
+// generato automaticamente: stesso range di lunghezza dello schema
+// (backend/models/visit.js), ma alfabeto più permissivo — l'autore può
+// scegliere lettere/cifre a piacere, non solo quelle senza ambiguità usate
+// da generateUniqueCode per i codici casuali.
+const CODE_PATTERN = /^[A-Z0-9]{4,15}$/;
+
+async function checkCodeAvailability(req, res) {
+  try {
+    const code = req.params.code.trim().toUpperCase();
+    if (!CODE_PATTERN.test(code)) {
+      return res.json({ available: false, reason: 'invalid' });
+    }
+    const taken = await Visit.exists({ code });
+    res.json({ available: !taken });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
 }
 
 async function getByCode(req, res) {
@@ -573,5 +619,5 @@ async function getSessionState(req, res) {
 
 module.exports = {
   getAll, getById, create, update, remove,
-  getByCode, openSession, joinSession, leaveSession, startSession, startQuiz, submitQuizAnswers, endSession, getSessionState
+  getByCode, checkCodeAvailability, openSession, joinSession, leaveSession, startSession, startQuiz, submitQuizAnswers, endSession, getSessionState
 };

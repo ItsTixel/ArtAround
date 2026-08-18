@@ -26,6 +26,15 @@ let currentUser = null;
 let wizard = null;
 let allMuseums = [];
 
+/* Codice della visita di gruppo: il valore per cui l'ultima verifica al
+ * backend ha risposto "disponibile". Si azzera a ogni modifica del campo e
+ * viene ricontrollato al submit, perché la validità nativa dell'input
+ * (customValidity) da sola non copre il caso "l'utente ha inviato il form
+ * mentre la verifica era ancora in corso". */
+let confirmedCode = null;
+let codeCheckTimer = null;
+let codeCheckToken = 0;
+
 /* Sequenza in costruzione. Ogni voce: { entity, museum, items[], introNote, logisticNote } */
 const state = { steps: [], editingIndex: null };
 
@@ -76,6 +85,79 @@ function syncGroupFields() {
   document.getElementById('price-field').hidden = group;
   document.getElementById('visibility-field').hidden = group;
   document.getElementById('group-info-hint').hidden = !group;
+
+  const codeInput = document.getElementById('visit-code');
+  document.getElementById('group-code-field').hidden = !group;
+  codeInput.required = group;
+  if (group) {
+    onCodeInput({ target: codeInput }); // ri-valida un eventuale codice già scritto in precedenza
+  } else {
+    resetCodeCheck();
+  }
+}
+
+const CODE_DEFAULT_HINT = 'I partecipanti useranno questo codice per unirsi alla visita. 4-15 caratteri, lettere e numeri.';
+
+function setCodeStatus(iconState, hintText, hintState) {
+  const icon = document.getElementById('code-status-icon');
+  const hint = document.getElementById('code-status-hint');
+  icon.className = 'code-status-icon' + (iconState ? ` is-${iconState}` : '');
+  hint.className = 'block-hint' + (hintState ? ` is-${hintState}` : '');
+  hint.textContent = hintText;
+}
+
+function resetCodeCheck() {
+  clearTimeout(codeCheckTimer);
+  codeCheckToken++;
+  confirmedCode = null;
+  document.getElementById('visit-code').setCustomValidity('');
+  setCodeStatus('', CODE_DEFAULT_HINT);
+}
+
+async function checkCodeAvailability(code) {
+  const token = ++codeCheckToken;
+  const input = document.getElementById('visit-code');
+  try {
+    const res = await fetch(`${API_VISITS}/code/${encodeURIComponent(code)}/available`, { credentials: 'include' });
+    if (token !== codeCheckToken) return; // l'utente ha continuato a scrivere: risposta obsoleta
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const { available } = await res.json();
+    if (available) {
+      confirmedCode = code;
+      input.setCustomValidity('');
+      setCodeStatus('available', 'Codice disponibile.', 'success');
+    } else {
+      input.setCustomValidity('Codice già in uso.');
+      setCodeStatus('taken', 'Codice già in uso, scegline un altro.', 'error');
+    }
+  } catch (e) {
+    if (token !== codeCheckToken) return;
+    input.setCustomValidity('');
+    setCodeStatus('', 'Impossibile verificare il codice al momento.', 'error');
+    console.error('Errore nella verifica del codice:', e);
+  }
+}
+
+/* Chiamato sia dall'evento 'input' del campo sia da syncGroupFields quando
+ * si torna sulla visita di gruppo con un codice già scritto. */
+function onCodeInput(e) {
+  const input = e.target;
+  const cleaned = input.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+  if (cleaned !== input.value) input.value = cleaned;
+
+  clearTimeout(codeCheckTimer);
+  codeCheckToken++; // invalida eventuali verifiche già in volo per il valore precedente
+  confirmedCode = null;
+
+  if (cleaned.length < 4) {
+    input.setCustomValidity(cleaned ? 'Il codice deve avere almeno 4 caratteri.' : 'Scegli un codice per la visita.');
+    setCodeStatus('', CODE_DEFAULT_HINT);
+    return;
+  }
+
+  input.setCustomValidity(''); // provvisorio: la verifica async lo conferma o lo nega a breve
+  setCodeStatus('checking', 'Verifica disponibilità…');
+  codeCheckTimer = setTimeout(() => checkCodeAvailability(cleaned), 400);
 }
 
 function collectTags() {
@@ -542,6 +624,18 @@ async function submitVisit() {
   if (group) {
     payload.is_public = false;
     payload.base_price = 0;
+
+    const code = document.getElementById('visit-code').value.trim().toUpperCase();
+    if (!code || code !== confirmedCode) {
+      feedback.classList.remove('is-pending', 'is-success');
+      feedback.classList.add('is-error');
+      feedback.textContent = 'Scegli un codice disponibile per la visita.';
+      wizard.setSubmitEnabled(true);
+      wizard.goToStep(STEP_TYPE);
+      return;
+    }
+    payload.code = code;
+
     const quiz = collectQuiz();
     if (!quiz.questions.length) {
       feedback.classList.remove('is-pending', 'is-success');
@@ -632,6 +726,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       wizard.render();
     });
   });
+  document.getElementById('visit-code').addEventListener('input', onCodeInput);
 
   renderStepsList();
 

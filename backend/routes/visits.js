@@ -16,6 +16,10 @@ router.get('/', optionalAuth, controller.getAll);
 // account (ospite/nickname) è rimandato a una fase successiva.
 router.get('/code/:code', verifyToken, controller.getByCode);
 
+// Visite di gruppo — disponibilità di un codice scelto dall'autore in fase
+// di creazione (controllo live mentre digita, prima di inviare il form).
+router.get('/code/:code/available', verifyToken, controller.checkCodeAvailability);
+
 router.get('/:id', optionalAuth, controller.getById);
 
 // ROUTES PROTETTE

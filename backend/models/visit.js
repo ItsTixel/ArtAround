@@ -66,8 +66,8 @@ const visitSchema = new Schema({
     type: String,
     trim: true,
     uppercase: true,
-    minLength: 6,
-    maxLength: 8,
+    minLength: 4,
+    maxLength: 15,
     unique: true,
     sparse: true
   },
