@@ -56,51 +56,21 @@ html, body {
   text-align: center;
 }
 
-/* Pannello "vetro" solo dietro al testo (non su tutta la hero): tiene
-   titolo e sottotitolo leggibili sopra foto molto chiare o molto scure,
-   in entrambi i temi, senza velare l'immagine attorno. */
-.page-hero-card {
-  display: inline-block;
-  max-width: 100%;
-  padding: 1.75rem 3rem;
-  border-radius: 1.5rem;
-  background: rgba(15, 23, 42, 0.7);
-  backdrop-filter: var(--universal-glass-blur);
-  -webkit-backdrop-filter: var(--universal-glass-blur);
-  border: 1px solid var(--universal-glass-border-strong);
-  box-shadow: var(--universal-glass-shadow);
-}
-
-:root[data-theme="light"] .page-hero-card {
-  background: rgba(255, 255, 255, 0.7);
-}
-
-.page-hero .kicker {
-  font-family: var(--font-sans);
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-  margin-bottom: 0.75rem;
-}
-
+/* Il titolo sta ora direttamente sulla foto (nessun pannello "vetro" dietro):
+   peso pieno + ombra netta al posto dell'opacità del pannello per restare
+   leggibile sopra foto molto chiare o molto scure, in entrambi i temi. Il
+   colore resta fisso (non segue --color-text) perché qui sotto c'è sempre
+   una foto, non lo sfondo dell'app. */
 .page-hero h1 {
   font-family: var(--font-serif);
   font-size: 3rem;
-  font-weight: 400;
+  font-weight: 700;
   font-style: italic;
   line-height: 1.15;
   letter-spacing: 0.005em;
-  color: var(--color-text);
-  margin: 0 0 1rem;
-}
-
-.page-hero .hero-sub {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.08em;
-  color: var(--color-text-muted);
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.55), 0 10px 30px rgba(0, 0, 0, 0.4);
+  margin: 0;
 }
 
 /* ── Layout 2 colonne ─────────────────────────────────────── */
@@ -303,7 +273,6 @@ filter-sidebar { display: block; }
 @media (max-width: 900px) {
   .page-hero { padding: 3.25rem 1.5rem 2.5rem; min-height: clamp(260px, 36vh, 380px); }
   .page-hero h1 { font-size: 2.2rem; }
-  .page-hero-card { padding: 1.25rem 1.75rem; }
   .visits-layout { grid-template-columns: 1fr; padding: 0 1.5rem; margin-top: 1.5rem; gap: 1.25rem; }
   .visits-content { padding: 0 0 4rem; }
   .results-bar { gap: 1rem; }

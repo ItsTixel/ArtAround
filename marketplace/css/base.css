@@ -127,6 +127,22 @@
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.85), inset 0 -10px 18px -8px rgba(15, 23, 42, 0.06),
     0 25px 50px -12px rgba(15, 23, 42, 0.25) !important;
 }
+/* Variante "forte" (navbar, badge/pillole sopra foto): a differenza di
+   .liquid-glass NON forza lo sfondo, lascia vincere l'opacità esplicita di
+   GLASS_STRONG (bg-white/70 / dark:bg-slate-900/70 in ui-tokens.js) — con
+   .liquid-glass quello sfondo veniva sempre sovrascritto dal gradiente
+   trasparente di --universal-glass-bg, e su foto molto chiare o molto
+   scure (es. la navbar fissa che scorre sopra le hero) il testo perdeva
+   contrasto. Qui si aggiunge solo l'ombra interna convessa, come per
+   .liquid-glass-modal. */
+.liquid-glass-strong {
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5), inset 0 -10px 18px -8px rgba(0, 0, 0, 0.22),
+    0 25px 50px -12px rgba(0, 0, 0, 0.45) !important;
+}
+:root[data-theme="light"] .liquid-glass-strong {
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.85), inset 0 -10px 18px -8px rgba(15, 23, 42, 0.06),
+    0 25px 50px -12px rgba(15, 23, 42, 0.25) !important;
+}
 
 *, *::before, *::after {
   box-sizing: border-box;

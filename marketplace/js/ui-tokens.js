@@ -8,10 +8,13 @@
 // alto, ombra interna in basso) usato dal resto dell'app — le utility
 // Tailwind restano solo per blur/border/radius, che !important non tocca.
 export const GLASS = 'liquid-glass bg-slate-400/10 backdrop-blur-lg border border-slate-400/20 shadow-xl shadow-black/5 rounded-2xl';
-// Variante più opaca dello stesso "vetro", usata dove il contenuto (es. pillole
-// di testo sopra foto) deve restare leggibile anche su sfondi molto chiari o
-// contrastati. Stessa opacità di sfondo usata dalla navbar.
-export const GLASS_STRONG = 'liquid-glass bg-white/70 dark:bg-slate-900/70 backdrop-blur-lg border border-slate-400/20 shadow-xl shadow-black/5 rounded-2xl';
+// Variante più opaca dello stesso "vetro", usata dove il contenuto (es. navbar
+// fissa, pillole di testo sopra foto) deve restare leggibile anche su sfondi
+// molto chiari o molto scuri. A differenza di `.liquid-glass`, `.liquid-glass-strong`
+// non forza il background via !important: lascia vincere bg-white/70 /
+// dark:bg-slate-900/70 (Tailwind) e aggiunge solo l'ombra interna convessa —
+// così l'opacità dichiarata qui è quella davvero renderizzata.
+export const GLASS_STRONG = 'liquid-glass-strong bg-white/70 dark:bg-slate-900/70 backdrop-blur-lg border border-slate-400/20 shadow-xl shadow-black/5 rounded-2xl';
 // I modali (museo/visita/opera) restano sull'opacità piena
 // bg-white/85 dark:bg-slate-900/85 — la stessa dei modali del navigator
 // (VisitDetailModal, VisitAdoptModal...) — invece del gradiente quasi
