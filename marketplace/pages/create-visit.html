@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <script>(function(){var t=localStorage.getItem('artaround-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArtAround — Crea Visita</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Nunito+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/marketplace/css/base.css">
+  <link rel="stylesheet" href="/marketplace/css/museums.css">
+  <link rel="stylesheet" href="/marketplace/css/auth.css">
+  <link rel="stylesheet" href="/marketplace/css/create-content.css">
+  <link rel="stylesheet" href="/marketplace/css/create-item.css">
+  <link rel="stylesheet" href="/marketplace/css/create-entity.css">
+  <link rel="stylesheet" href="/marketplace/css/create-visit.css">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: ['selector', '[data-theme="dark"]'] };</script>
+
+  <script type="module" src="/marketplace/components/app-navbar.js"></script>
+  <script type="module" src="/marketplace/components/app-footer.js"></script>
+</head>
+<body>
+
+  <app-navbar></app-navbar>
+
+  <main>
+    <section class="page-hero" aria-label="Crea una nuova visita">
+      <div class="page-hero-inner">
+        <div class="kicker">Crea contenuto</div>
+        <h1>Crea una nuova visita</h1>
+        <p class="hero-sub">Componi una sequenza di opere: singola, oppure di gruppo per una classe o una guida</p>
+      </div>
+    </section>
+
+    <section class="create-section">
+      <form id="visit-form" class="create-form" novalidate>
+
+        <nav class="wizard-steps" aria-label="Sezioni del form">
+          <button type="button" class="wizard-step" data-step="0">
+            <span class="wizard-step-circle">1</span>
+            <span class="wizard-step-label">Tipo</span>
+          </button>
+          <span class="wizard-step-line"></span>
+          <button type="button" class="wizard-step" data-step="1">
+            <span class="wizard-step-circle">2</span>
+            <span class="wizard-step-label">Informazioni</span>
+          </button>
+          <span class="wizard-step-line"></span>
+          <button type="button" class="wizard-step" data-step="2">
+            <span class="wizard-step-circle">3</span>
+            <span class="wizard-step-label">Sequenza</span>
+          </button>
+          <span class="wizard-step-line"></span>
+          <button type="button" class="wizard-step" data-step="3">
+            <span class="wizard-step-circle">4</span>
+            <span class="wizard-step-label">Quiz</span>
+          </button>
+        </nav>
+
+        <div class="carousel-wrap">
+          <button type="button" id="wizard-prev" class="carousel-arrow carousel-arrow-prev hidden" aria-label="Sezione precedente"></button>
+
+          <div class="carousel-viewport">
+          <div class="carousel-track" id="carousel-track">
+
+            <!-- STEP 0 — Tipo di visita -->
+            <div class="carousel-slide">
+              <div class="form-block">
+                <h2>Che tipo di visita è?</h2>
+                <p class="block-hint">Una visita di gruppo è pensata per essere condotta in diretta da te (insegnante/guida): i partecipanti la seguono in sincrono con un codice, e finisce con un quiz.</p>
+                <div class="choice-group" id="type-choice">
+                  <label class="choice-card">
+                    <input type="radio" name="visit_type" value="single" checked>
+                    <span class="choice-card-body">
+                      <span class="choice-card-title">Visita singola</span>
+                      <span class="choice-card-sub">Ogni visitatore la vive per conto proprio, quando vuole</span>
+                    </span>
+                  </label>
+                  <label class="choice-card" id="group-choice-card">
+                    <input type="radio" name="visit_type" value="group" id="visit-type-group">
+                    <span class="choice-card-body">
+                      <span class="choice-card-title">Visita di gruppo</span>
+                      <span class="choice-card-sub">Guidata in diretta con un codice, richiede un quiz finale</span>
+                    </span>
+                  </label>
+                </div>
+                <p class="block-hint" id="group-disabled-hint" hidden>Solo gli autori possono creare visite di gruppo.</p>
+              </div>
+            </div>
+
+            <!-- STEP 1 — Informazioni generali -->
+            <div class="carousel-slide">
+              <div class="form-block">
+                <h2>Informazioni generali</h2>
+                <div class="field">
+                  <label for="title">Titolo *</label>
+                  <input id="title" name="title" type="text" required placeholder="Es. Il Rinascimento in tre opere">
+                </div>
+                <div class="field">
+                  <label for="description">Descrizione</label>
+                  <textarea id="description" name="description" rows="4" placeholder="Racconta cosa troveranno i visitatori in questa visita"></textarea>
+                </div>
+                <div class="field">
+                  <label for="image_url">Immagine di copertina (URL)</label>
+                  <input id="image_url" name="image_url" type="text" placeholder="https://...">
+                </div>
+                <div class="field">
+                  <label for="tags">Tag</label>
+                  <input id="tags" name="tags" type="text" placeholder="Separati da virgola, es. rinascimento, famiglia, breve">
+                </div>
+                <div class="field" id="price-field">
+                  <label for="base_price">Prezzo (€)</label>
+                  <input id="base_price" name="base_price" type="number" min="0" step="0.5" value="0">
+                </div>
+                <div class="field" id="visibility-field">
+                  <label>Visibilità</label>
+                  <div class="btn-group" id="visibility-group" role="radiogroup" aria-label="Visibilità">
+                    <button type="button" class="btn-option" role="radio" aria-checked="false" data-value="public" data-tooltip="Chiunque potrà trovarla nel catalogo e adottarla.">Pubblica</button>
+                    <button type="button" class="btn-option" role="radio" aria-checked="false" data-value="private" data-tooltip="Solo tu potrai vederla e vivertela.">Privata</button>
+                  </div>
+                </div>
+                <p class="block-hint" id="group-info-hint" hidden>Le visite di gruppo sono sempre private e gratuite.</p>
+              </div>
+            </div>
+
+            <!-- STEP 2 — Sequenza delle tappe -->
+            <div class="carousel-slide">
+              <div class="form-block form-block-wide">
+                <h2>Sequenza della visita</h2>
+                <p class="block-hint">Aggiungi le tappe nell'ordine in cui verranno vissute: per ciascuna scegli un'opera, il museo in cui si trova e le descrizioni da usare.</p>
+
+                <div id="steps-list" class="steps-list"></div>
+                <p class="empty-hint" id="steps-empty-hint">Non hai ancora aggiunto nessuna tappa.</p>
+
+                <button type="button" id="open-picker" class="btn-secondary">+ Aggiungi tappa</button>
+              </div>
+            </div>
+
+            <!-- STEP 3 — Quiz (solo visite di gruppo) -->
+            <div class="carousel-slide">
+              <div class="form-block">
+                <h2>Quiz finale</h2>
+                <p class="block-hint">I partecipanti rispondono a queste domande alla fine della visita di gruppo.</p>
+                <div class="field">
+                  <label for="quiz-title">Titolo del quiz</label>
+                  <input id="quiz-title" type="text" placeholder="Es. Metti alla prova la memoria">
+                </div>
+                <div id="quiz-questions-list" class="dynamic-list"></div>
+                <button type="button" id="add-question" class="btn-secondary">+ Aggiungi domanda</button>
+              </div>
+            </div>
+
+          </div>
+          </div>
+
+          <button type="submit" id="wizard-next" class="carousel-arrow carousel-arrow-next" aria-label="Sezione successiva"></button>
+        </div>
+
+        <p class="feedback" id="form-feedback"></p>
+      </form>
+    </section>
+  </main>
+
+  <!-- Modale di selezione opera: 3 viste (catalogo / create da te / preferiti) -->
+  <div class="visit-picker-overlay" id="picker-overlay" hidden>
+    <div class="visit-picker-modal" role="dialog" aria-modal="true" aria-label="Scegli un'opera per la tappa">
+
+      <div class="picker-browse" id="picker-browse">
+        <div class="visit-picker-header">
+          <h3>Scegli un'opera</h3>
+          <button type="button" class="picker-close" id="picker-close-browse" aria-label="Chiudi">✕</button>
+        </div>
+        <div class="sub-pills" id="picker-tabs">
+          <button type="button" class="pill active" data-tab="catalog">Tutto il catalogo</button>
+          <button type="button" class="pill" data-tab="created">Create da te</button>
+          <button type="button" class="pill" data-tab="favorites">Preferiti</button>
+        </div>
+        <div class="picker-toolbar">
+          <input type="search" id="picker-search" placeholder="Cerca un'opera…" autocomplete="off">
+          <select id="picker-museum"><option value="">Tutti i musei</option></select>
+        </div>
+        <div class="picker-grid" id="picker-grid"></div>
+      </div>
+
+      <div class="picker-configure" id="picker-configure" hidden>
+        <div class="visit-picker-header">
+          <button type="button" class="picker-back" id="picker-back">← Cambia opera</button>
+          <button type="button" class="picker-close" id="picker-close-configure" aria-label="Chiudi">✕</button>
+        </div>
+        <div class="picker-configure-entity" id="picker-configure-entity"></div>
+        <div class="field">
+          <label for="step-museum">Museo</label>
+          <select id="step-museum"></select>
+        </div>
+        <div class="field">
+          <label>Descrizioni da includere</label>
+          <div id="step-items-list" class="step-items-list"></div>
+        </div>
+        <div class="field">
+          <label for="step-intro-note">Nota introduttiva (facoltativa)</label>
+          <textarea id="step-intro-note" rows="2" placeholder="Testo mostrato prima di questa tappa"></textarea>
+        </div>
+        <div class="field">
+          <label for="step-logistic-note">Nota logistica (facoltativa)</label>
+          <textarea id="step-logistic-note" rows="2" placeholder="Es. indicazioni per raggiungere questa tappa"></textarea>
+        </div>
+        <button type="button" class="btn-primary" id="step-confirm">Aggiungi alla sequenza</button>
+      </div>
+
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+
+  <script type="module" src="/marketplace/js/create-visit.js"></script>
+</body>
+</html>

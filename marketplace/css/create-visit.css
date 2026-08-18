@@ -1,0 +1,422 @@
+/* ============================================================
+ *  create-visit.css — Pagina "Crea Visita"
+ *  Parti specifiche: lista tappe della sequenza + modale di
+ *  selezione opera (catalogo/create/preferiti) + quiz di gruppo.
+ *  Il resto (stepper, carosello, form-block, righe dinamiche,
+ *  choice-group, btn-group...) è in create-content.css / create-entity.css / create-item.css.
+ * ============================================================ */
+
+.form-block-wide {
+  max-width: none;
+}
+
+.choice-card.is-disabled {
+  opacity: 0.45;
+  cursor: default;
+  pointer-events: none;
+}
+
+.empty-hint {
+  margin: -0.4rem 0 0;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+/* ── Lista delle tappe già aggiunte ──────────────────────────── */
+.steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.step-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color var(--transition);
+}
+.step-row:hover { border-color: var(--universal-glass-border-strong); }
+
+.step-row-order {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.step-row-thumb {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--color-surface);
+}
+.step-row-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+.step-row-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.step-row-name {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.step-row-meta {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.step-row-actions {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.step-row-actions button {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  width: 26px;
+  height: 26px;
+  line-height: 1;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition);
+}
+.step-row-actions button:hover:not(:disabled) { color: var(--color-text); border-color: var(--color-text-muted); }
+.step-row-actions button:disabled { opacity: 0.3; cursor: default; }
+
+/* ── Modale di selezione opera ────────────────────────────────── */
+.visit-picker-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(15, 20, 30, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.visit-picker-overlay[hidden] { display: none; }
+
+.visit-picker-modal {
+  width: 100%;
+  max-width: 760px;
+  max-height: min(85vh, 720px);
+  display: flex;
+  flex-direction: column;
+  background: var(--panel-bg);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid var(--universal-glass-border);
+  border-radius: var(--universal-glass-radius);
+  box-shadow: var(--universal-glass-shadow);
+  padding: 1.75rem;
+  gap: 1.1rem;
+  overflow: hidden;
+}
+
+.visit-picker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.visit-picker-header h3 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.picker-close,
+.picker-back {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition);
+}
+.picker-close {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+.picker-close:hover { color: var(--color-text); border-color: var(--color-text-muted); }
+
+.picker-back {
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.picker-back:hover { color: var(--color-text); border-color: var(--color-text-muted); }
+
+.picker-browse,
+.picker-configure {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+#picker-tabs { margin: 0; }
+
+.picker-toolbar {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.picker-toolbar input[type="search"] {
+  flex: 1;
+  min-width: 160px;
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  color: var(--color-text);
+  outline: none;
+  transition: border-color var(--transition);
+}
+.picker-toolbar input[type="search"]:focus { border-color: var(--color-accent); }
+.picker-toolbar select {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-surface);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--color-text);
+  outline: none;
+}
+
+/* Il modale vive fuori da .create-form (è appeso al <body>), quindi non
+ * eredita lo stile di .create-form select/textarea (create-content.css):
+ * qui lo stesso stile viene ridichiarato per i campi della configurazione tappa. */
+.picker-configure textarea,
+.picker-configure select {
+  width: 100%;
+  padding: 0.5rem 0.1rem;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--color-text);
+  outline: none;
+  transition: border-color var(--transition);
+}
+.picker-configure textarea::placeholder { color: var(--color-text-muted); }
+.picker-configure textarea:focus,
+.picker-configure select:focus { border-bottom-color: var(--color-accent); }
+.picker-configure select { background: var(--color-surface); }
+
+.picker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 0.9rem;
+  min-height: 120px;
+  overflow-y: auto;
+  padding: 0.15rem;
+}
+
+.picker-card {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color var(--transition), transform var(--transition);
+}
+.picker-card:hover:not(:disabled) { border-color: var(--color-accent); transform: translateY(-2px); }
+.picker-card:disabled { opacity: 0.4; cursor: default; }
+
+.picker-card-thumb {
+  height: 96px;
+  background: var(--color-surface);
+}
+.picker-card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.picker-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.65rem 0.75rem 0.8rem;
+}
+.picker-card-name {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+.picker-card-author,
+.picker-card-museum {
+  font-size: 0.68rem;
+  color: var(--color-text-muted);
+}
+
+.picker-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 2.5rem 1rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+/* ── Opera scelta, in cima al pannello di configurazione tappa ── */
+.picker-configure-entity {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+.picker-configure-entity img {
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: var(--color-surface);
+}
+.picker-configure-entity-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+.picker-configure-entity-name {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+.picker-configure-entity-author {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+}
+
+/* ── Descrizioni selezionabili per la tappa ──────────────────── */
+.step-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.step-item-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color var(--transition);
+}
+.step-item-row:has(input:checked) { border-color: var(--color-accent); background: color-mix(in srgb, var(--color-accent) 8%, transparent); }
+/* Selettore più specifico di ".field input" (auth.css, width:100%): questa
+ * checkbox vive dentro un ".field" (per riusarne lo stile di label), ma non
+ * deve ereditarne larghezza/padding pensati per i campi di testo. */
+.step-item-row input[type="checkbox"] {
+  width: auto;
+  height: auto;
+  padding: 0;
+  border: none;
+  margin-top: 0.15rem;
+  accent-color: var(--color-accent);
+  flex-shrink: 0;
+}
+.step-item-row-body { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
+.step-item-row-summary { font-size: 0.8rem; color: var(--color-text); }
+.step-item-row-meta { font-size: 0.66rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--color-text-muted); }
+.step-items-empty { font-size: 0.78rem; font-style: italic; color: var(--color-text-muted); }
+
+/* ── Quiz di gruppo ───────────────────────────────────────────── */
+.quiz-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.35rem;
+}
+.quiz-option-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+/* Stesso motivo del checkbox delle tappe: sovrascrive ".field input" (width:100%). */
+.quiz-option-row input[type="radio"] {
+  width: auto;
+  height: auto;
+  padding: 0;
+  border: none;
+  accent-color: var(--color-accent);
+  flex-shrink: 0;
+}
+.quiz-option-row input[type="text"] {
+  flex: 1;
+  padding: 0.4rem 0.1rem;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  color: var(--color-text);
+  outline: none;
+}
+.quiz-option-row input[type="text"]:focus { border-bottom-color: var(--color-accent); }
+.remove-option {
+  flex-shrink: 0;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  width: 22px;
+  height: 22px;
+  line-height: 1;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.remove-option:hover { color: var(--color-text); border-color: var(--color-text-muted); }
+
+@media (max-width: 640px) {
+  .visit-picker-modal { padding: 1.25rem; max-height: 92vh; }
+  .picker-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  .step-row { flex-wrap: wrap; }
+}
