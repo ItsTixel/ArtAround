@@ -32,6 +32,8 @@ class VisitModal extends HTMLElement {
     this._adding = false;
     this._purchaseError = null;
     this._justAdopted = false;
+    this._copying = false;
+    this._copyError = null;
     this._onKeydown = this._onKeydown.bind(this);
   }
 
@@ -45,6 +47,8 @@ class VisitModal extends HTMLElement {
     this._adding = false;
     this._purchaseError = null;
     this._justAdopted = false;
+    this._copying = false;
+    this._copyError = null;
     this._favorited = false;
 
     this.setAttribute('open', '');
@@ -149,6 +153,67 @@ class VisitModal extends HTMLElement {
     }
   }
 
+  /* ---- "Copia visita": duplica la visita posseduta come nuova bozza
+     gratuita e privata dell'utente corrente. Non disponibile per le visite
+     di gruppo (richiedono un quiz proprio e non sono mai listate qui) né
+     per visite che includono opere Private/Reserved di un altro autore:
+     Visit.pre('save') sul backend rifiuta il salvataggio in quel caso
+     (vedi backend/models/visit.js). ---- */
+  _canCopy() {
+    if (!this._visit || !this._owned || this._visit.is_group) return false;
+    const uid = this._userId;
+    return !(this._visit.steps || []).some(step =>
+      (step.items || []).some(it => {
+        if (!it || it.license === 'Public') return false;
+        const authorId = it.author?._id || it.author;
+        return String(authorId) !== String(uid);
+      })
+    );
+  }
+
+  async _copyVisit() {
+    if (this._copying || !this._visit) return;
+    this._copying = true;
+    this._copyError = null;
+    this._renderFooter();
+    try {
+      const v = this._visit;
+      const payload = {
+        title: `Copia - ${v.title}`,
+        description: v.description || '',
+        image_url: v.image_url || '',
+        tags: v.tags || [],
+        is_group: false,
+        base_price: 0,
+        is_public: false,
+        steps: (v.steps || []).map(s => ({
+          entity: s.entity?._id || s.entity,
+          museum: s.museum?._id || s.museum,
+          items: (s.items || []).map(it => it._id || it),
+          order: s.order,
+          intro_note: s.intro_note || undefined,
+          logistic_note: s.logistic_note || undefined,
+        })),
+      };
+      const res = await fetch(API_VISITS, {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+      this.close();
+      window.location.href = '/marketplace/pages/profile.html#visite:create';
+    } catch (e) {
+      console.error('Errore durante la copia della visita:', e);
+      this._copyError = 'Errore durante la copia della visita. Riprova.';
+    } finally {
+      this._copying = false;
+      this._renderFooter();
+    }
+  }
+
   _esc(s) {
     return String(s ?? '')
       .replace(/&/g, '&amp;').replace(/</g, '&lt;')
@@ -184,7 +249,14 @@ class VisitModal extends HTMLElement {
       if (this._justAdopted) {
         action = `<button class="btn owned ${btnOwned}" disabled>✓ Aggiunta alla libreria!</button>`;
       } else {
-        action = `<button class="btn primary ${btnPrimary}" id="start-btn">Comincia visita</button>`;
+        const copyBtn = this._canCopy()
+          ? `<button class="btn ghost ${btnGhost}" id="copy-btn" ${this._copying ? 'disabled' : ''}>${this._copying ? 'Copia in corso…' : 'Copia visita'}</button>`
+          : '';
+        action = `
+          <div class="flex flex-col items-stretch gap-2 sm:flex-row sm:items-center">
+            ${copyBtn}
+            <button class="btn primary ${btnPrimary}" id="start-btn">Comincia visita</button>
+          </div>`;
       }
     } else if (this._confirm) {
       action = `
@@ -202,7 +274,7 @@ class VisitModal extends HTMLElement {
     return `
       <div class="footer-info flex flex-col gap-0.5">
         <span class="footer-price text-lg font-semibold text-slate-800 dark:text-slate-100" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">${this._fmtPrice(price)}</span>
-        ${this._purchaseError ? `<span class="footer-error text-[0.72rem]" style="color:#f38b7f;">${this._esc(this._purchaseError)}</span>` : ''}
+        ${(this._purchaseError || this._copyError) ? `<span class="footer-error text-[0.72rem]" style="color:#f38b7f;">${this._esc(this._purchaseError || this._copyError)}</span>` : ''}
       </div>
       <div class="footer-action">${action}</div>
     `;
@@ -233,6 +305,7 @@ class VisitModal extends HTMLElement {
     footer.querySelector('#start-btn')?.addEventListener('click', () => {
       window.location.href = `${NAVIGATOR_URL}?openVisit=${encodeURIComponent(this._visit._id)}`;
     });
+    footer.querySelector('#copy-btn')?.addEventListener('click', () => this._copyVisit());
   }
 
   /* ---- Corpo: informazioni generali + lista delle opere ---- */
