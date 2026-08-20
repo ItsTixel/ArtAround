@@ -67,8 +67,9 @@ app.get('/', async function (req, res) {
 	let entitiesCount = 0;
 	let visitsCount = 0;
 	let featured = [];
+	let featuredVisits = [];
 	try {
-		[museumsCount, entitiesCount, visitsCount, featured] = await Promise.all([
+		[museumsCount, entitiesCount, visitsCount, featured, featuredVisits] = await Promise.all([
 			Museum.countDocuments(),
 			Entity.countDocuments(),
 			Visit.countDocuments(),
@@ -76,24 +77,40 @@ app.get('/', async function (req, res) {
 				.sort({ createdAt: 1 })
 				.limit(3)
 				.populate('placements.museum', 'name address.city')
+				.lean(),
+			Visit.find({ is_public: true })
+				.sort({ createdAt: 1 })
+				.limit(3)
+				.populate('museum', 'name address.city')
+				.populate('steps.entity', 'image_url')
 				.lean()
 		]);
 	} catch (e) {
 		console.error('Landing page: impossibile leggere il catalogo:', e.message);
 	}
 
-	const entityCard = (e) => {
-		const museum = e.placements?.[0]?.museum;
-		const meta = [e.artwork_author, museum?.name].filter(Boolean).join(' — ');
-		return `
-			<a class="lp-entity-card" href="/marketplace">
-				<div class="thumb" style="background-image: url('${escapeHtml(e.image_url)}')"></div>
-				<div class="body">
-					<div class="name">${escapeHtml(e.name)}</div>
-					<div class="meta">${escapeHtml(meta)}</div>
-				</div>
-			</a>`;
+	// Stessa normalizzazione di normalizeVisit() in marketplace/js/visits.js,
+	// ridotta ai soli campi che <visit-card> mostra qui: nome, immagini delle
+	// opere in visita (per il carosello), musei coinvolti e durata stimata.
+	const toVisitCardData = (v) => {
+		const museumDetails = (v.museum || []).map(m => ({
+			id: m._id,
+			name: m.name || '',
+			short: m.name || '',
+			city: m.address?.city || '',
+		}));
+		const seen = new Set();
+		const images = [];
+		for (const step of [...(v.steps || [])].sort((a, b) => a.order - b.order)) {
+			const url = step.entity?.image_url;
+			if (url && !seen.has(url)) { seen.add(url); images.push(url); }
+		}
+		return { id: v._id, title: v.title || '', images, museumDetails, durationSec: v.estimated_duration_sec || 0 };
 	};
+
+	// JSON dentro un <script>: sfugge '<' così un titolo o url ostile non può
+	// contenere "</script>" e interrompere il tag prematuramente.
+	const embedJson = (data) => JSON.stringify(data).replace(/</g, '\\u003c');
 
 	const previewItem = (e) => {
 		const museum = e.placements?.[0]?.museum;
@@ -168,15 +185,25 @@ app.get('/', async function (req, res) {
 			</div>
 		</section>
 
-		${featured.length ? `
-		<section class="lp-section" aria-label="Opere già in catalogo">
+		${featuredVisits.length ? `
+		<section class="lp-section" aria-label="Visite già in catalogo">
 			<div class="lp-section-head">
-				<h2>Opere già in catalogo</h2>
-				<a class="lp-link" href="/marketplace">Sfoglia il marketplace →</a>
+				<h2>Visite già in catalogo</h2>
+				<a class="lp-link" href="/marketplace/pages/visits.html">Sfoglia il marketplace →</a>
 			</div>
-			<div class="lp-entity-grid">
-				${featured.map(entityCard).join('')}
-			</div>
+			<div class="lp-entity-grid" id="lp-visit-grid"></div>
+			<script type="application/json" id="lp-visit-data">${embedJson(featuredVisits.map(toVisitCardData))}</script>
+			<script type="module">
+				import '/marketplace/components/visit-card.js';
+				const items = JSON.parse(document.getElementById('lp-visit-data').textContent);
+				const grid = document.getElementById('lp-visit-grid');
+				items.forEach((v) => {
+					const card = document.createElement('visit-card');
+					card.data = v;
+					card.addEventListener('open-visit', () => { window.location.href = '/marketplace/pages/visits.html'; });
+					grid.appendChild(card);
+				});
+			</script>
 		</section>` : ''}
 
 		<section class="lp-section lp-features" aria-label="Funzionalità">

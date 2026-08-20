@@ -250,51 +250,11 @@ html, body {
 }
 .lp-link:hover { color: var(--color-text); }
 
-/* ── Opere già in catalogo ────────────────────────────────── */
+/* ── Visite già in catalogo ───────────────────────────────── */
 .lp-entity-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.75rem;
-}
-
-.lp-entity-card {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  background: var(--universal-glass-bg);
-  backdrop-filter: var(--universal-glass-blur);
-  -webkit-backdrop-filter: var(--universal-glass-blur);
-  border: 1px solid var(--universal-glass-border);
-  border-radius: var(--universal-glass-radius);
-  overflow: hidden;
-  transition: transform var(--transition), background var(--transition), border-color var(--transition), box-shadow var(--transition);
-}
-.lp-entity-card:hover {
-  transform: translateY(-4px);
-  background: var(--universal-glass-bg-strong);
-  border-color: var(--universal-glass-border-strong);
-  box-shadow: var(--universal-glass-shadow);
-}
-
-.lp-entity-card .thumb {
-  height: 190px;
-  background-size: cover;
-  background-position: center;
-  background: var(--universal-glass-bg-strong);
-}
-
-.lp-entity-card .body { padding: 1.35rem 1.5rem 1.5rem; }
-.lp-entity-card .name {
-  font-family: var(--font-serif);
-  font-size: 1.1rem;
-  color: var(--color-text);
-  margin-bottom: 0.3rem;
-}
-.lp-entity-card .meta {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.03em;
-  color: var(--color-text-muted);
 }
 
 /* ── Funzionalità ─────────────────────────────────────────── */
@@ -369,7 +329,13 @@ html, body {
   border-color: rgba(255, 255, 255, 0.1);
   color: #f0ede8;
 }
-.lp-mode-night .lp-mode-row { border-color: rgba(255, 255, 255, 0.1); }
+.lp-mode-night .lp-mode-row {
+  border-color: rgba(255, 255, 255, 0.1);
+  /* --universal-glass-bg del tema scuro, fissato: la variabile reale segue
+     il tema del sito e sotto [data-theme="light"] diventa un gradiente quasi
+     bianco, illeggibile col testo chiaro di questa card sempre scura. */
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(148, 163, 184, 0.08) 45%, rgba(0, 0, 0, 0.08) 100%);
+}
 .lp-mode-night .lp-mode-thumb { border-color: rgba(255, 255, 255, 0.1); background: rgba(255, 255, 255, 0.06); }
 
 .lp-mode-day {
@@ -377,7 +343,11 @@ html, body {
   border-color: rgba(15, 23, 42, 0.08);
   color: #1e293b;
 }
-.lp-mode-day .lp-mode-row { border-color: rgba(15, 23, 42, 0.08); }
+.lp-mode-day .lp-mode-row {
+  border-color: rgba(15, 23, 42, 0.08);
+  /* --universal-glass-bg del tema chiaro, fissato per lo stesso motivo. */
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.4) 45%, rgba(148, 163, 184, 0.16) 100%);
+}
 .lp-mode-day .lp-mode-thumb { border-color: rgba(15, 23, 42, 0.08); background: rgba(15, 23, 42, 0.04); }
 
 .lp-mode-label {
@@ -394,9 +364,11 @@ html, body {
 }
 
 /* Stessa "glass-panel" (rounded-2xl + universal glass) delle righe visita
-   di navigator/src/pages/Home.jsx — i valori --universal-glass-* sono
-   identici in light e dark, quindi restano corretti anche dentro una
-   card a tema fisso. */
+   di navigator/src/pages/Home.jsx. Lo sfondo NON usa var(--universal-glass-bg):
+   quella variabile cambia con [data-theme="light"] (vedi base.css), mentre
+   qui serve un valore fisso per ciascuna card, coerente col suo tema
+   congelato indipendentemente dal tema reale del sito — vedi .lp-mode-night
+   .lp-mode-row / .lp-mode-day .lp-mode-row sotto. */
 .lp-mode-row {
   display: flex;
   align-items: center;
@@ -404,7 +376,6 @@ html, body {
   padding: 0.6rem;
   border: 1px solid;
   border-radius: 1rem;
-  background: var(--universal-glass-bg);
 }
 
 .lp-mode-thumb {
