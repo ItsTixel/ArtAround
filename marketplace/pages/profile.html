@@ -65,6 +65,9 @@
             <button type="button" class="pill" data-sub="adopted">Adottate</button>
             <button type="button" class="pill" data-sub="favorites">Preferiti</button>
           </div>
+          <label class="panel-search" aria-label="Cerca tra le tue visite">
+            <input id="search-visite" type="search" placeholder="Cerca una visita…" autocomplete="off">
+          </label>
           <p class="panel-hint" id="visite-hint"></p>
           <div class="visits-grid" id="visite-grid" role="list" aria-label="Visite"></div>
         </section>
@@ -72,6 +75,9 @@
         <!-- ── Descrizioni create ── -->
         <section id="panel-descrizioni" class="panel" aria-label="Le tue descrizioni">
           <p class="panel-hint">Le descrizioni (item) che hai creato per le opere del catalogo.</p>
+          <label class="panel-search" aria-label="Cerca tra le tue descrizioni">
+            <input id="search-descrizioni" type="search" placeholder="Cerca una descrizione…" autocomplete="off">
+          </label>
           <div class="desc-grid" id="descrizioni-grid" role="list" aria-label="Descrizioni"></div>
         </section>
 
@@ -86,6 +92,9 @@
             <button type="button" data-type="true">Fisiche</button>
             <button type="button" data-type="false">Non fisiche</button>
           </div>
+          <label class="panel-search" aria-label="Cerca tra le tue opere">
+            <input id="search-opere" type="search" placeholder="Cerca un'opera…" autocomplete="off">
+          </label>
           <p class="panel-hint" id="opere-hint"></p>
           <div class="opere-grid" id="opere-grid" role="list" aria-label="Opere"></div>
         </section>

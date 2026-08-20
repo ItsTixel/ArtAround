@@ -26,6 +26,10 @@ let activeOrdersSub = 'purchases';
 let activeOpereSub = 'create';
 let activeOperePhysical = 'all'; // 'all' | 'true' | 'false'
 let descriptionsLoaded = false;
+let visiteQuery = '';
+let opereQuery = '';
+let descrizioniQuery = '';
+let descriptionsCache = null;
 const visitsCache = { create: null, adopted: null, favorites: null };
 const ordersCache = { purchases: null, sales: null };
 const operesCache = { create: null, favorites: null };
@@ -34,6 +38,22 @@ function esc(s) {
   return String(s ?? '')
     .replace(/&/g, '&amp;').replace(/</g, '&lt;')
     .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+/* ---- Ricerca client-side nei pannelli: le liste sono già caricate per
+ * intero (pageSize=100), quindi si filtrano in memoria senza rifare la
+ * fetch ad ogni tasto. ---- */
+function filterByText(list, query, getText) {
+  const q = query.trim().toLowerCase();
+  if (!q) return list;
+  return list.filter(item => getText(item).toLowerCase().includes(q));
+}
+
+function withSearchEmptyMessage(list, filtered, query, fallback) {
+  if (list.length && !filtered.length && query.trim()) {
+    return `Nessun risultato per «${esc(query.trim())}».`;
+  }
+  return fallback;
 }
 
 /* ---- Visite: create / adottate / preferiti ---- */
@@ -125,6 +145,13 @@ const SUB_CONFIG = {
   },
 };
 
+function renderFilteredVisits() {
+  const list = visitsCache[activeSub] || [];
+  const filtered = filterByText(list, visiteQuery, v => v.title || '');
+  const config = SUB_CONFIG[activeSub];
+  renderVisitsGrid(filtered, withSearchEmptyMessage(list, filtered, visiteQuery, config.empty));
+}
+
 async function loadSub(sub) {
   activeSub = sub;
   document.querySelectorAll('#panel-visite .pill').forEach(p => p.classList.toggle('active', p.dataset.sub === sub));
@@ -136,14 +163,14 @@ async function loadSub(sub) {
 
   const grid = document.getElementById('visite-grid');
   if (visitsCache[sub]) {
-    renderVisitsGrid(visitsCache[sub], config.empty);
+    renderFilteredVisits();
     return;
   }
 
   grid.innerHTML = '<p class="loading"></p>';
   try {
     visitsCache[sub] = await config.load();
-    renderVisitsGrid(visitsCache[sub], config.empty);
+    renderFilteredVisits();
   } catch (e) {
     grid.innerHTML = '<p class="empty">Errore nel caricamento. Riprova più tardi.</p>';
     console.error('Errore nel caricamento delle visite:', e);
@@ -267,11 +294,11 @@ async function loadOrders(sub) {
 
 /* ---- Descrizioni create ---- */
 
-function renderDescriptions(items) {
+function renderDescriptions(items, emptyMessage) {
   const grid = document.getElementById('descrizioni-grid');
   grid.innerHTML = '';
   if (!items.length) {
-    grid.innerHTML = '<p class="empty">Non hai ancora creato nessuna descrizione.</p>';
+    grid.innerHTML = `<p class="empty">${emptyMessage}</p>`;
     return;
   }
   const LICENSE_STYLE = {
@@ -314,6 +341,12 @@ function renderDescriptions(items) {
   });
 }
 
+function renderFilteredDescriptions() {
+  const list = descriptionsCache || [];
+  const filtered = filterByText(list, descrizioniQuery, item => `${item.artwork?.name || ''} ${item.marketplace_summary || ''}`);
+  renderDescriptions(filtered, withSearchEmptyMessage(list, filtered, descrizioniQuery, 'Non hai ancora creato nessuna descrizione.'));
+}
+
 async function loadDescriptions() {
   const grid = document.getElementById('descrizioni-grid');
   grid.innerHTML = '<p class="loading"></p>';
@@ -321,7 +354,8 @@ async function loadDescriptions() {
     const res = await fetch(`${API_ITEMS}?author=${currentUser._id}&pageSize=100`);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const { data } = await res.json();
-    renderDescriptions(data);
+    descriptionsCache = data;
+    renderFilteredDescriptions();
   } catch (e) {
     grid.innerHTML = '<p class="empty">Errore nel caricamento. Riprova più tardi.</p>';
     console.error('Errore nel caricamento delle descrizioni:', e);
@@ -358,11 +392,12 @@ const OPERE_SUB_CONFIG = {
 function renderOperaGrid(entities, emptyMessage) {
   const grid = document.getElementById('opere-grid');
   grid.innerHTML = '';
-  const filtered = activeOperePhysical === 'all'
+  const byType = activeOperePhysical === 'all'
     ? entities
     : entities.filter(e => String(!!e.is_physical) === activeOperePhysical);
+  const filtered = filterByText(byType, opereQuery, e => e.name || '');
   if (!filtered.length) {
-    grid.innerHTML = `<p class="empty">${emptyMessage}</p>`;
+    grid.innerHTML = `<p class="empty">${withSearchEmptyMessage(byType, filtered, opereQuery, emptyMessage)}</p>`;
     return;
   }
   filtered.forEach(e => {
@@ -649,8 +684,21 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.querySelectorAll('#panel-visite .pill').forEach(btn => {
     btn.addEventListener('click', () => loadSub(btn.dataset.sub));
   });
+  document.getElementById('search-visite')?.addEventListener('input', (e) => {
+    visiteQuery = e.target.value;
+    if (visitsCache[activeSub]) renderFilteredVisits();
+  });
+  document.getElementById('search-descrizioni')?.addEventListener('input', (e) => {
+    descrizioniQuery = e.target.value;
+    if (descriptionsCache) renderFilteredDescriptions();
+  });
   document.querySelectorAll('#panel-opere .pill').forEach(btn => {
     btn.addEventListener('click', () => loadOpereSub(btn.dataset.sub));
+  });
+  document.getElementById('search-opere')?.addEventListener('input', (e) => {
+    opereQuery = e.target.value;
+    const config = OPERE_SUB_CONFIG[activeOpereSub];
+    if (operesCache[activeOpereSub]) renderOperaGrid(operesCache[activeOpereSub], config.empty);
   });
   document.getElementById('opere-type-toggle')?.addEventListener('click', (e) => {
     const btn = e.target.closest('button[data-type]');

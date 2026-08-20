@@ -67,6 +67,51 @@ html, body { background-image: none; }
    .sub-pills/.pill e .type-toggle sono definiti in base.css: sono
    generici (non specifici del profilo) e riusati anche da opere.css. */
 
+/* ── Ricerca rapida nei pannelli Visite/Descrizioni/Opere ────────
+   Stessa idea di .visit-search (visits.css: pillola di vetro + lente),
+   ma autonoma nello sfondo/bordo perché lì il vetro lo dà .results-bar
+   attorno, mentre qui la barra sta da sola sopra la griglia. */
+.panel-search {
+  position: relative;
+  display: block;
+  max-width: 320px;
+  margin-bottom: 1.5rem;
+  background: var(--universal-glass-bg);
+  backdrop-filter: var(--universal-glass-blur);
+  -webkit-backdrop-filter: var(--universal-glass-blur);
+  border: 1px solid var(--universal-glass-border);
+  border-radius: 9999px;
+  transition: border-color var(--transition), background var(--transition);
+}
+.panel-search:focus-within {
+  border-color: var(--universal-glass-border-strong);
+  background: var(--universal-glass-bg-strong);
+}
+.panel-search input {
+  width: 100%;
+  padding: 0.55rem 1rem 0.55rem 2.1rem;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--color-text);
+  outline: 0;
+}
+.panel-search input::placeholder {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+.panel-search::before {
+  content: '';
+  position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
+  width: 13px; height: 13px;
+  background: var(--color-text-muted);
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M21 19l-4.35-4.35A7.5 7.5 0 1 0 15 16.65L19.35 21 21 19zM10.5 16a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z'/></svg>") center/contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M21 19l-4.35-4.35A7.5 7.5 0 1 0 15 16.65L19.35 21 21 19zM10.5 16a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z'/></svg>") center/contain no-repeat;
+  pointer-events: none;
+}
+
 /* ── Griglia descrizioni ──────────────────────────────────── */
 .desc-grid {
   display: grid;
