@@ -80,6 +80,8 @@
     "adopted_visits": [
       {
         "$oid": "eee000000000000000000009"
+      },{
+        "$oid": "eee000000000000000000090"
       }
     ],
     "bookmarked_visits": [],
