@@ -3,9 +3,8 @@ import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { useActiveVisit } from '../context/ActiveVisitContext'
 import { useGroupSession } from '../context/GroupSessionContext'
-import VisitDetailModal from '../components/VisitDetailModal'
+import VisitDetailModal, { PENDING_CODE_KEY } from '../components/VisitDetailModal'
 import VisitAdoptModal from '../components/VisitAdoptModal'
-import GroupVisitPreviewModal, { PENDING_CODE_KEY } from '../components/GroupVisitPreviewModal'
 import { formatDuration, formatPrice } from '../components/VisitInfoBody'
 
 const MARKETPLACE_VISITS_URL = '/marketplace/pages/visits.html'
@@ -158,6 +157,17 @@ function Home() {
     }
   }
 
+  // Una visita di gruppo può comparire tra le "Adottate" per il suo stesso
+  // autore (auto-adottata alla creazione, vedi backend/controllers/visit.js
+  // create): va aperta con lo stesso popup/le stesse azioni del flusso da
+  // codice, non con l'attiva/disattiva delle visite singole. La visita qui è
+  // già quella completa (fetch di /api/visits/:id, non la preview snella di
+  // /code/:code), ma ha la stessa forma più `live_session.status` al posto
+  // di `status`: si adatta prima di passarla al modal.
+  function openGroupVisit(visit) {
+    setCodePreview({ code: visit.code, preview: { ...visit, status: visit.live_session?.status } })
+  }
+
   function handleVisitCodeSubmit(e) {
     e.preventDefault()
     if (!visitCode.trim()) return
@@ -294,7 +304,7 @@ function Home() {
                       key={visit._id}
                       visit={visit}
                       isActive={isActive}
-                      onClick={() => setDetailVisit(visit)}
+                      onClick={() => (visit.is_group ? openGroupVisit(visit) : setDetailVisit(visit))}
                       badge={
                         isActive && (
                           <span className="shrink-0 rounded-full bg-accent px-2 py-0.5 text-[0.65rem] font-medium text-on-accent">
@@ -391,13 +401,7 @@ function Home() {
         />
       )}
 
-      {codePreview && (
-        <GroupVisitPreviewModal
-          code={codePreview.code}
-          preview={codePreview.preview}
-          onClose={() => setCodePreview(null)}
-        />
-      )}
+      {codePreview && <VisitDetailModal groupVisit={codePreview} onClose={() => setCodePreview(null)} />}
     </div>
   )
 }
