@@ -105,7 +105,7 @@ class EntityFilterSidebar extends HTMLElement {
         `).join('')}
       </div>` : ''}
       ${availableMuseums.length ? `
-        <div class="options mt-3.5 flex flex-col border-t border-slate-400/20">
+        <div class="options mt-3.5 flex flex-col border-t border-slate-400/20 max-h-64 overflow-y-auto pr-1">
           ${availableMuseums.map(m => `
             <button type="button" class="option group appearance-none bg-transparent border-0 border-b border-slate-400/20 py-2.5 pr-0 text-left font-inherit text-inherit cursor-pointer flex items-baseline justify-between gap-2.5 hover:text-slate-600 dark:hover:text-slate-300 hover:pl-1.5 transition-all ${RING_FOCUS}" data-add="${this._esc(m.id)}">
               <span>
@@ -145,7 +145,7 @@ class EntityFilterSidebar extends HTMLElement {
         `).join('')}
       </div>` : ''}
       ${available.length ? `
-        <div class="options mt-3.5 flex flex-col border-t border-slate-400/20">
+        <div class="options mt-3.5 flex flex-col border-t border-slate-400/20 max-h-64 overflow-y-auto pr-1">
           ${available.map(a => `
             <button type="button" class="option group appearance-none bg-transparent border-0 border-b border-slate-400/20 py-2.5 pr-0 text-left font-inherit text-inherit cursor-pointer flex items-baseline justify-between gap-2.5 hover:text-slate-600 dark:hover:text-slate-300 hover:pl-1.5 transition-all ${RING_FOCUS}" data-add-author="${this._esc(a.value)}">
               <span class="opt-main text-[0.86rem] font-medium">${this._esc(a.value)}</span>
@@ -216,7 +216,7 @@ class EntityFilterSidebar extends HTMLElement {
         <!-- Temi -->
         <div class="group pt-6 pb-6 border-t border-slate-400/20 first:pt-0 first:border-t-0">
           <h3 class="text-[0.66rem] font-semibold tracking-[0.16em] uppercase text-slate-500 dark:text-slate-400 mb-4">Temi</h3>
-          <div class="chips flex flex-wrap gap-1.5" id="tag-chips">
+          <div class="chips flex flex-wrap gap-1.5 max-h-36 overflow-y-auto pr-1" id="tag-chips">
             ${this._tagChipsHTML()}
           </div>
         </div>
