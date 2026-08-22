@@ -36,6 +36,7 @@ function Opera() {
     currentDescription,
     handleDescSelect,
     directionsParts,
+    entityLocation,
   } = useVisitProgress()
   const { role, status: groupStatus, isReady, setReady } = useGroupSession()
 
@@ -94,9 +95,9 @@ function Opera() {
                 <span className="text-xs font-medium uppercase tracking-wide text-white/80">
                   Cerca questo
                 </span>
-                <h2 className="font-serif text-xl font-semibold text-text">{entity.name}</h2>
+                <h2 className="font-serif text-xl font-semibold text-white">{entity.name}</h2>
                 {entity.artwork_author && (
-                  <p className="text-sm text-text-muted">{entity.artwork_author}</p>
+                  <p className="text-sm text-white/75">{entity.artwork_author}</p>
                 )}
               </div>
             </div>
@@ -127,10 +128,16 @@ function Opera() {
                 Nessuna immagine disponibile
               </div>
             )}
+            {entityLocation?.room && (
+              <span className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full bg-black/70 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-sm">
+                <RoomIcon className="h-3.5 w-3.5" />
+                {entityLocation.room}
+              </span>
+            )}
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent px-5 pb-4 pt-12">
-              <h1 className="font-serif text-2xl font-semibold text-text">{entity.name}</h1>
+              <h1 className="font-serif text-2xl font-semibold text-white">{entity.name}</h1>
               {entity.artwork_author && (
-                <p className="text-sm text-text-muted">{entity.artwork_author}</p>
+                <p className="text-sm text-white/75">{entity.artwork_author}</p>
               )}
             </div>
           </div>
@@ -212,6 +219,12 @@ function Opera() {
           className="fixed inset-0 z-100 flex items-center justify-center bg-black/90 p-4"
           onClick={() => setImageOpen(false)}
         >
+          {entityLocation?.room && (
+            <span className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full bg-black/70 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-sm">
+              <RoomIcon className="h-3.5 w-3.5" />
+              {entityLocation.room}
+            </span>
+          )}
           <button
             type="button"
             onClick={() => setImageOpen(false)}

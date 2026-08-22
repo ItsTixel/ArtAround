@@ -202,6 +202,7 @@ export function VisitProgressProvider({ children }) {
   const entity = step?.entity
   const museum = step?.museum
   const items = useMemo(() => step?.items || [], [step])
+  const entityLocation = useMemo(() => getStepLocation(step), [step])
 
   const availableTones = useMemo(
     () => TONE_ORDER.filter((tone) => items.some((item) => item.tone === tone)),
@@ -819,6 +820,7 @@ export function VisitProgressProvider({ children }) {
     step,
     entity,
     museum,
+    entityLocation,
     announceService,
     goToService,
     pauseNarration,
