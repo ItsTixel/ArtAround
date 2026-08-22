@@ -35,6 +35,7 @@ const museumSchema = new Schema({
   description: { type: String, trim: true, default: '' },
   image_url:   { type: String, trim: true },
   website:     { type: String, trim: true },
+  is_accessible: { type: Boolean, default: false },
   address: {
     street:  { type: String, trim: true, required: true },
     city:    { type: String, trim: true, required: true },
@@ -44,6 +45,13 @@ const museumSchema = new Schema({
   // Maps a service name (e.g. "Toilette", "Uscita", or any museum-specific
   // extra like "Guardaroba") to the phrase read aloud to indicate where it is.
   services: {
+    type: Map,
+    of: { type: String, trim: true },
+    default: {}
+  },
+  // Maps an accessibility feature name (e.g. "Accesso", "Ascensore") to a
+  // free-text description of it, at the creator's discretion.
+  accessibility_info: {
     type: Map,
     of: { type: String, trim: true },
     default: {}

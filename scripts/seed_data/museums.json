@@ -19,6 +19,13 @@
       "Uscita": "L'uscita si trova al piano terra, seguendo le indicazioni per il Corridoio Vasariano.",
       "Bookshop": "Il bookshop è al piano terra, vicino all'ingresso principale."
     },
+    "is_accessible": true,
+    "accessibility_info": {
+      "Accesso": "Ingresso dedicato con rampa a 5° di inclinazione, accanto alla biglietteria.",
+      "Ascensore": "Presente in tutti i piani, dimensioni 140x110 cm.",
+      "Servizi igienici": "Bagno per persone con disabilità al primo piano, vicino alla Sala di Botticelli.",
+      "Sedie a rotelle": "Disponibili gratuitamente su richiesta al guardaroba."
+    },
     "opening_hours": {
       "Lunedì": "Chiuso",
       "Martedì": "8:15–18:50",
@@ -94,6 +101,11 @@
       "Bookshop": "All'entrata",
       "Sala Convegni": "Verso l'uscita, dentro la sala 3",
       "Sala Lettura": "Al terzo piano, prosegui per la sala 2 e gira a destra"
+    },
+    "is_accessible": false,
+    "accessibility_info": {
+      "Accesso": "L'ingresso storico ha tre gradini; non è presente una rampa.",
+      "Ascensore": "Assente: le sale superiori sono raggiungibili solo tramite scale."
     },
     "opening_hours": {
       "Lunedì": "Chiuso",
