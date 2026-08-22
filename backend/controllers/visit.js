@@ -93,6 +93,13 @@ async function getAll(req, res) {
       conditions.push({ is_group: { $ne: true } });
     }
 
+    /* ── Tipo di visita: forza singola/gruppo esplicitamente, in AND con
+       la regola sopra (usato dalla landing page, che non deve mai
+       mostrare visite di gruppo neanche al loro autore) ──────── */
+    if (req.query.is_group !== undefined) {
+      conditions.push(req.query.is_group === 'true' ? { is_group: true } : { is_group: { $ne: true } });
+    }
+
     /* ── Autore ─────────────────────────────────────────────── */
     if (req.query.author) conditions.push({ author: req.query.author });
 

@@ -36,6 +36,7 @@ async function fetchVisits() {
     pageSize: PAGE_SIZE,
     page:     state.page,
     sort:     state.sort,
+    is_group: false,
   });
 
   if (state.title)            params.set('title',       state.title);
