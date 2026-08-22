@@ -150,38 +150,6 @@
     0 4px 18px rgba(15, 23, 42, 0.18);
 }
 
-/* Bottone play/pausa: sfera lucida "fisica" (stile pulsante hardware), con
-   specularità netta in alto a sinistra (::before). In dark è una sfera
-   scura con alone blu, per profondità sullo sfondo ossidiana; in light lo
-   stesso trattamento tradotto in una sfera perlata/metallica chiara, così
-   il pulsante resta un oggetto lucido invece di sparire scuro-su-scuro
-   com'era quando le due varianti condividevano lo stesso gradiente. */
-.play-orb {
-  position: relative;
-  background: radial-gradient(circle at 30% 24%, #64748b 0%, #1e293b 34%, #0f172a 62%, #020617 100%);
-  box-shadow: inset 0 3px 4px rgba(255, 255, 255, 0.35), inset 0 -12px 18px -6px rgba(0, 0, 0, 0.75),
-    0 8px 20px -4px rgba(0, 0, 0, 0.55);
-}
-
-:root[data-theme="light"] .play-orb {
-  background: radial-gradient(circle at 30% 24%, #ffffff 0%, #e2e8f0 32%, #94a3b8 68%, #64748b 100%);
-  box-shadow: inset 0 3px 4px rgba(255, 255, 255, 0.9), inset 0 -12px 18px -6px rgba(15, 23, 42, 0.35),
-    0 8px 20px -6px rgba(15, 23, 42, 0.3);
-}
-
-.play-orb::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(circle at 32% 22%, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0) 45%);
-  pointer-events: none;
-}
-
-:root[data-theme="light"] .play-orb::before {
-  background: radial-gradient(circle at 32% 22%, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0) 45%);
-}
-
 /* Slider di riproduzione della PlayerBar: pallino pieno + traccia
    bicolore (percorsa/rimanente) via --seek-percent, stessa idea di un
    player audio nativo ma disegnata a mano perché lo stile di default
