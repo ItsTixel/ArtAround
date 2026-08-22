@@ -9,6 +9,7 @@ async function getAll(req, res) {
     if (req.query.country) filter['address.country'] = req.query.country;
     if (req.query.name)    filter.name = new RegExp(req.query.name, 'i');
     if (req.query.is_accessible !== undefined) filter.is_accessible = req.query.is_accessible === 'true';
+    if (req.query.added_by) filter.added_by = req.query.added_by;
 
     const allowedSortFields = ['name', 'address.city', 'address.country'];
     const rawSort = req.query.sort || 'name';

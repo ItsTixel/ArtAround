@@ -12,6 +12,7 @@ import { normalizeEntity } from '/marketplace/js/entity-utils.js';
 const API_VISITS   = '/api/visits';
 const API_ITEMS    = '/api/items';
 const API_ENTITIES = '/api/entities';
+const API_MUSEUMS  = '/api/museums';
 const API_USERS    = '/api/users';
 const API_ORDERS   = '/api/orders';
 const LOGIN_URL    = '/marketplace/login.html';
@@ -26,10 +27,13 @@ let activeOrdersSub = 'purchases';
 let activeOpereSub = 'create';
 let activeOperePhysical = 'all'; // 'all' | 'true' | 'false'
 let descriptionsLoaded = false;
+let museiLoaded = false;
 let visiteQuery = '';
 let opereQuery = '';
 let descrizioniQuery = '';
+let museiQuery = '';
 let descriptionsCache = null;
+let museiCache = null;
 const visitsCache = { create: null, adopted: null, favorites: null };
 const ordersCache = { purchases: null, sales: null };
 const operesCache = { create: null, favorites: null };
@@ -432,6 +436,51 @@ async function loadOpereSub(sub) {
   }
 }
 
+/* ---- Musei creati ---- */
+
+function renderMuseiGrid(museums, emptyMessage) {
+  const grid = document.getElementById('musei-grid');
+  grid.innerHTML = '';
+  if (!museums.length) {
+    grid.innerHTML = `<p class="empty">${emptyMessage}</p>`;
+    return;
+  }
+  museums.forEach(museum => {
+    const card = document.createElement('museum-card');
+    card.setAttribute('museum-id', museum._id);
+    card.setAttribute('name', museum.name);
+    card.setAttribute('city', museum.address?.city ?? '');
+    card.setAttribute('country', museum.address?.country ?? '');
+    if (museum.image_url) card.setAttribute('image', museum.image_url);
+    if (museum.opening_hours && Object.keys(museum.opening_hours).length) {
+      card.setAttribute('opening-hours', JSON.stringify(museum.opening_hours));
+    }
+    if (museum.is_accessible) card.setAttribute('is-accessible', '');
+    grid.appendChild(card);
+  });
+}
+
+function renderFilteredMusei() {
+  const list = museiCache || [];
+  const filtered = filterByText(list, museiQuery, m => m.name || '');
+  renderMuseiGrid(filtered, withSearchEmptyMessage(list, filtered, museiQuery, 'Non hai ancora creato nessun museo.'));
+}
+
+async function loadMusei() {
+  const grid = document.getElementById('musei-grid');
+  grid.innerHTML = '<p class="loading"></p>';
+  try {
+    const res = await fetch(`${API_MUSEUMS}?added_by=${currentUser._id}&pageSize=100`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const { data } = await res.json();
+    museiCache = data;
+    renderFilteredMusei();
+  } catch (e) {
+    grid.innerHTML = '<p class="empty">Errore nel caricamento. Riprova più tardi.</p>';
+    console.error('Errore nel caricamento dei musei:', e);
+  }
+}
+
 /* ---- Impostazioni ---- */
 
 function updateHeroAvatar(user) {
@@ -579,6 +628,10 @@ function activateTab(tab) {
       descriptionsLoaded = true;
       loadDescriptions();
     }
+    if (tab === 'musei' && !museiLoaded) {
+      museiLoaded = true;
+      loadMusei();
+    }
   }
 }
 
@@ -589,7 +642,7 @@ function activateTab(tab) {
  * Opere, ma qui contano solo se la tab dell'hash è quella giusta. */
 function parseHash() {
   const [rawTab, rawSub] = location.hash.slice(1).split(':');
-  const validTabs = ['visite', 'descrizioni', 'opere', 'vendite', 'impostazioni'];
+  const validTabs = ['visite', 'descrizioni', 'opere', 'musei', 'vendite', 'impostazioni'];
   return {
     tab:       validTabs.includes(rawTab) ? rawTab : 'visite',
     sub:       (rawTab === 'visite' && SUB_CONFIG[rawSub]) ? rawSub : null,
@@ -613,6 +666,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   /* Le opera-card aprono il popup con i dettagli dell'opera */
   document.addEventListener('open-opera', (e) => {
     document.querySelector('opera-modal')?.open(e.detail.id);
+  });
+
+  /* Le museum-card aprono il popup con i dettagli del museo */
+  document.addEventListener('open-museum-info', (e) => {
+    document.querySelector('museum-modal')?.open(e.detail.id);
   });
 
   /* Dopo una modifica riuscita nel popup opera, invalida entrambe le cache
@@ -699,6 +757,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     opereQuery = e.target.value;
     const config = OPERE_SUB_CONFIG[activeOpereSub];
     if (operesCache[activeOpereSub]) renderOperaGrid(operesCache[activeOpereSub], config.empty);
+  });
+  document.getElementById('search-musei')?.addEventListener('input', (e) => {
+    museiQuery = e.target.value;
+    if (museiCache) renderFilteredMusei();
   });
   document.getElementById('opere-type-toggle')?.addEventListener('click', (e) => {
     const btn = e.target.closest('button[data-type]');
