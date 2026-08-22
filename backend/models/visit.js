@@ -72,10 +72,11 @@ const visitSchema = new Schema({
     sparse: true
   },
 
+  // Facoltativo anche per le visite di gruppo: l'autore può scegliere di
+  // non aggiungerlo in fase di creazione (o toglierlo/aggiungerlo in seguito).
   quiz: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Quiz',
-    required: function () { return this.is_group === true; }
+    ref: 'Quiz'
   },
 
   live_session: { type: liveSessionSchema, default: () => ({}) }

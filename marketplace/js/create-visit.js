@@ -1,10 +1,13 @@
 /* ============================================================
  *  create-visit.js — Pagina "Crea Visita"
- *  Form a carosello (4 sezioni, l'ultima solo per le visite di
- *  gruppo). La sezione "Sequenza" apre un modale con 3 viste
- *  (Tutto il catalogo / Create da te / Preferiti) per scegliere
- *  le opere da inserire come tappe, ciascuna con museo, opere
- *  (item/descrizioni) e note.
+ *  Form a carosello di 3 sezioni (Tipo, Informazioni, Sequenza).
+ *  La sezione "Sequenza" apre un modale con 3 viste (Tutto il
+ *  catalogo / Create da te / Preferiti) per scegliere le opere da
+ *  inserire come tappe, ciascuna con museo, opere (item/descrizioni)
+ *  e note. Per le visite di gruppo, dopo la Sequenza si chiede se
+ *  aggiungere un quiz finale: solo in caso affermativo il 4° step
+ *  "Quiz" — presente nello stepper ma disabilitato finché non si
+ *  decide — entra nel percorso attivo e diventa raggiungibile.
  * ============================================================ */
 
 import { getCurrentUser } from '/marketplace/js/auth-session.js';
@@ -39,8 +42,19 @@ let confirmedCode = null;
 let codeCheckTimer = null;
 let codeCheckToken = 0;
 
+/* Modalità modifica: il codice che la visita aveva già al caricamento.
+ * GET /code/:code/available la segnalerebbe come "in uso" trovando la
+ * visita stessa, quindi se il campo torna a valere questo codice va
+ * considerato per forza libero, senza richiederlo al backend. */
+let originalCode = null;
+
 /* Sequenza in costruzione. Ogni voce: { entity, museum, items[], introNote, logisticNote } */
 const state = { steps: [], editingIndex: null };
+
+/* Il quiz è facoltativo per le visite di gruppo: si decide con il prompt
+ * mostrato dopo la Sequenza (vedi #quiz-prompt-overlay), non è più uno step
+ * numerato dello stepper. true anche in modifica se la visita ha già un quiz. */
+let wantsQuiz = false;
 
 /* Filtri del modale di selezione opera */
 const pickerState = { tab: 'catalog', search: '', museum: '' };
@@ -62,9 +76,8 @@ function isGroup() {
 }
 
 function getPath() {
-  return isGroup()
-    ? [STEP_TYPE, STEP_INFO, STEP_SEQUENCE, STEP_QUIZ]
-    : [STEP_TYPE, STEP_INFO, STEP_SEQUENCE];
+  const base = [STEP_TYPE, STEP_INFO, STEP_SEQUENCE];
+  return (isGroup() && wantsQuiz) ? [...base, STEP_QUIZ] : base;
 }
 
 function setupBtnGroup(groupId, defaultValue) {
@@ -89,6 +102,12 @@ function syncGroupFields() {
   document.getElementById('price-field').hidden = group;
   document.getElementById('visibility-field').hidden = group;
   document.getElementById('group-info-hint').hidden = !group;
+
+  // Il 4° step "Quiz" riguarda solo le visite di gruppo: per le singole va
+  // nascosto del tutto (non solo sbiadito come quando è di gruppo ma il
+  // quiz non è ancora stato scelto — quello lo gestisce già il wizard).
+  document.getElementById('quiz-step').hidden = !group;
+  document.getElementById('quiz-step-line').hidden = !group;
 
   const codeInput = document.getElementById('visit-code');
   document.getElementById('group-code-field').hidden = !group;
@@ -156,6 +175,13 @@ function onCodeInput(e) {
   if (cleaned.length < 4) {
     input.setCustomValidity(cleaned ? 'Il codice deve avere almeno 4 caratteri.' : 'Scegli un codice per la visita.');
     setCodeStatus('', CODE_DEFAULT_HINT);
+    return;
+  }
+
+  if (originalCode && cleaned === originalCode) {
+    confirmedCode = cleaned;
+    input.setCustomValidity('');
+    setCodeStatus('available', 'Codice disponibile.', 'success');
     return;
   }
 
@@ -567,6 +593,15 @@ function refreshQuizItemSelects() {
   document.querySelectorAll('.question-item').forEach(populateQuestionItemSelect);
 }
 
+/* Entrando nello step Quiz (dal prompt o dallo stepper una volta che il
+ * quiz è stato scelto), la prima domanda va aggiunta se non c'è ancora
+ * nulla, e gli elenchi "Opera collegata" vanno aggiornati con la sequenza
+ * più recente (può essere cambiata dall'ultima visita a questo step). */
+function enterQuizStep() {
+  if (!document.getElementById('quiz-questions-list').children.length) addQuestionRow();
+  refreshQuizItemSelects();
+}
+
 function collectQuiz() {
   const title = document.getElementById('quiz-title').value.trim();
   const questions = [];
@@ -658,11 +693,14 @@ function applyEditingVisitToForm(visit) {
 
   if (visit.is_group) {
     const codeInput = document.getElementById('visit-code');
+    originalCode = visit.code || null;
     codeInput.value = visit.code || '';
     codeInput.setCustomValidity('');
     confirmedCode = visit.code || null;
     setCodeStatus('available', 'Codice disponibile.', 'success');
-    applyQuizToForm(visit.quiz);
+
+    wantsQuiz = Boolean(visit.quiz);
+    if (wantsQuiz) applyQuizToForm(visit.quiz);
   } else {
     document.getElementById('base_price').value = visit.base_price || 0;
   }
@@ -675,6 +713,7 @@ function applyEditingVisitToForm(visit) {
 async function submitVisit() {
   const feedback = document.getElementById('form-feedback');
   const group = isGroup();
+  const editing = Boolean(editVisitId);
 
   if (!state.steps.length) {
     feedback.classList.remove('is-pending', 'is-success');
@@ -716,16 +755,20 @@ async function submitVisit() {
     }
     payload.code = code;
 
-    const quiz = collectQuiz();
-    if (!quiz.questions.length) {
-      feedback.classList.remove('is-pending', 'is-success');
-      feedback.classList.add('is-error');
-      feedback.textContent = 'Aggiungi almeno una domanda valida al quiz (con almeno 2 opzioni e una corretta).';
-      wizard.setSubmitEnabled(true);
-      wizard.goToStep(STEP_QUIZ);
-      return;
-    }
-    payload.quiz = quiz;
+    if (wantsQuiz) {
+      const quiz = collectQuiz();
+      if (!quiz.questions.length) {
+        feedback.classList.remove('is-pending', 'is-success');
+        feedback.classList.add('is-error');
+        feedback.textContent = 'Aggiungi almeno una domanda valida al quiz (con almeno 2 opzioni e una corretta), oppure "Continua senza quiz".';
+        wizard.setSubmitEnabled(true);
+        wizard.goToStep(STEP_QUIZ);
+        return;
+      }
+      payload.quiz = quiz;
+    } else if (editing) {
+      payload.quiz = null; // segnala esplicitamente la rimozione di un quiz già esistente
+    } // altrimenti (creazione senza quiz): il campo resta assente dal payload
   } else {
     payload.base_price = Number(document.getElementById('base_price').value) || 0;
     payload.is_public = currentUser.role === 'author'
@@ -733,7 +776,6 @@ async function submitVisit() {
       : false; // i visitatori possono avere solo visite private
   }
 
-  const editing = Boolean(editVisitId);
   if (editing) delete payload.is_group; // immutabile dopo la creazione: non reinviarlo
 
   feedback.classList.remove('is-success', 'is-error');
@@ -760,6 +802,17 @@ async function submitVisit() {
     feedback.textContent = err.message;
     wizard.setSubmitEnabled(true);
   }
+}
+
+/* Chiamato dal wizard alla fine del percorso attivo (getPath). Per le
+ * visite di gruppo che non hanno ancora deciso sul quiz, intercetta l'invio
+ * e chiede prima se aggiungerlo, invece di creare subito la visita. */
+function handleWizardSubmit() {
+  if (isGroup() && !wantsQuiz) {
+    document.getElementById('quiz-prompt-overlay').hidden = false;
+    return;
+  }
+  submitVisit();
 }
 
 /* ============================================================
@@ -817,6 +870,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   document.querySelectorAll('input[name="visit_type"]').forEach(radio => {
     radio.addEventListener('change', () => {
+      wantsQuiz = false; // si torna a chiedere se cambia il tipo di visita
       syncGroupFields();
       wizard.render();
     });
@@ -857,6 +911,34 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   /* ---- Quiz ---- */
   document.getElementById('add-question').addEventListener('click', addQuestionRow);
+  document.getElementById('remove-quiz').addEventListener('click', () => {
+    // Stesso risultato di "No, concludi senza" nel prompt: scarta il quiz
+    // in corso di compilazione e crea/salva subito la visita senza,
+    // invece di tornare alla Sequenza.
+    wantsQuiz = false;
+    document.getElementById('quiz-title').value = '';
+    document.getElementById('quiz-questions-list').innerHTML = '';
+    wizard.setSubmitEnabled(false);
+    submitVisit();
+  });
+
+  /* ---- Prompt "vuoi aggiungere un quiz?" (solo visite di gruppo, dopo la Sequenza) ---- */
+  document.getElementById('quiz-prompt-yes').addEventListener('click', () => {
+    document.getElementById('quiz-prompt-overlay').hidden = true;
+    wantsQuiz = true;
+    wizard.setSubmitEnabled(true);
+    enterQuizStep();
+    wizard.goToStep(STEP_QUIZ);
+  });
+  document.getElementById('quiz-prompt-no').addEventListener('click', () => {
+    document.getElementById('quiz-prompt-overlay').hidden = true;
+    submitVisit();
+  });
+  document.getElementById('quiz-prompt-overlay').addEventListener('click', (e) => {
+    if (e.target.id !== 'quiz-prompt-overlay') return;
+    e.currentTarget.hidden = true;
+    wizard.setSubmitEnabled(true); // dismesso senza scegliere: si può riaprire ricliccando la conferma
+  });
 
   /* ---- Wizard ---- */
   wizard = createWizard({
@@ -868,20 +950,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     nextBtn: document.getElementById('wizard-next'),
     getPath,
     submitLabel: editingVisit ? 'Salva modifiche' : 'Crea visita',
-    onSubmit: submitVisit,
+    onSubmit: handleWizardSubmit,
   });
 
-  // Entrando nello step Quiz, la prima domanda va aggiunta se non c'è
-  // ancora nulla, e gli elenchi "Opera collegata" vanno aggiornati con
-  // la sequenza più recente. Il cambio di step vero e proprio (currentStep)
-  // avviene dentro il click/submit handler di wizard.js: un setTimeout(0)
-  // rimanda il controllo a dopo quella transizione sincrona.
+  // Se si raggiunge lo step Quiz dallo stepper (quiz già scelto in una
+  // visita in modifica, o tornandoci dopo averlo lasciato), va comunque
+  // garantita almeno una domanda e un elenco "Opera collegata" aggiornato.
+  // Il cambio di step vero e proprio (currentStep) avviene dentro il
+  // click/submit handler di wizard.js: un setTimeout(0) rimanda il
+  // controllo a dopo quella transizione sincrona.
   document.querySelectorAll('.wizard-step, #wizard-next').forEach(el => {
     el.addEventListener('click', () => {
       setTimeout(() => {
         if (wizard.getCurrentStep() !== STEP_QUIZ) return;
-        if (!document.getElementById('quiz-questions-list').children.length) addQuestionRow();
-        refreshQuizItemSelects();
+        enterQuizStep();
       }, 0);
     });
   });

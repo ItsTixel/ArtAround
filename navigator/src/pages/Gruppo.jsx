@@ -170,7 +170,7 @@ function Gruppo() {
 
       {(status === 'active' || status === 'quiz') && (
         <div className="flex gap-3">
-          {status === 'active' && (
+          {status === 'active' && groupVisit?.quiz && (
             <button
               type="button"
               onClick={startQuiz}

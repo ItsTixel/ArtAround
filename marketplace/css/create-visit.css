@@ -16,6 +16,17 @@
   pointer-events: none;
 }
 
+/* Il 4° step "Quiz" esiste nel markup solo per le visite di gruppo (dove
+ * il wizard lo tiene comunque .skipped/disabled finché non si sceglie di
+ * aggiungerlo): per le visite singole va nascosto del tutto, non solo
+ * sbiadito. .wizard-step/.wizard-step-line impostano già un display
+ * proprio (create-content.css), quindi l'attributo hidden da solo non
+ * vincerebbe sulla specificità pari: va forzato esplicitamente. */
+.wizard-step[hidden],
+.wizard-step-line[hidden] {
+  display: none;
+}
+
 /* ── Codice della visita di gruppo, con verifica live di disponibilità ── */
 .code-input-wrap {
   position: relative;
@@ -513,6 +524,52 @@
   cursor: pointer;
 }
 .remove-option:hover { color: var(--color-text); border-color: var(--color-text-muted); }
+
+.quiz-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Rimanda il quiz senza chiudere il form: meno rilevante del "+ Aggiungi
+   domanda" primario, quindi senza bordo. */
+.btn-quiet {
+  align-self: auto;
+  border-color: transparent;
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: 500;
+}
+.btn-quiet:hover { border-color: transparent; text-decoration: underline; }
+
+/* ── Prompt "vuoi aggiungere un quiz?" ───────────────────────── */
+.quiz-prompt-modal {
+  max-width: 420px;
+  padding: 1.75rem;
+  gap: 1rem;
+}
+.quiz-prompt-modal h3 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--color-text);
+  margin: 0;
+}
+.quiz-prompt-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+/* .btn-primary (auth.css) porta un margin-top pensato per i form: qui, in
+   riga accanto a .btn-secondary che non ce l'ha, lo spingeva più in basso. */
+.quiz-prompt-actions .btn-primary {
+  margin-top: 0;
+}
 
 @media (max-width: 640px) {
   .visit-picker-modal { padding: 1.25rem; max-height: 92vh; }

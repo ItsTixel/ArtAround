@@ -228,13 +228,19 @@ async function create(req, res) {
       if (req.user.role !== 'author') {
         return res.status(403).json({ error: 'Solo gli autori possono creare visite di gruppo.' });
       }
-      if (!req.body.quiz || !Array.isArray(req.body.quiz.questions) || req.body.quiz.questions.length === 0) {
-        return res.status(400).json({ error: 'Una visita di gruppo richiede un quiz con almeno una domanda.' });
+      // Il quiz è facoltativo: se fornito deve avere almeno una domanda,
+      // altrimenti la visita di gruppo viene creata senza (si può sempre
+      // aggiungere in seguito modificandola).
+      if (req.body.quiz) {
+        if (!Array.isArray(req.body.quiz.questions) || req.body.quiz.questions.length === 0) {
+          return res.status(400).json({ error: 'Il quiz deve avere almeno una domanda.' });
+        }
+        quizDoc = new Quiz({ title: req.body.quiz.title, questions: req.body.quiz.questions, author: req.user.id });
+        await quizDoc.save();
+        req.body.quiz = quizDoc._id;
+      } else {
+        delete req.body.quiz;
       }
-
-      quizDoc = new Quiz({ title: req.body.quiz.title, questions: req.body.quiz.questions, author: req.user.id });
-      await quizDoc.save();
-      req.body.quiz = quizDoc._id;
 
       // L'autore può scegliere il codice (verificato lato client con
       // GET /code/:code/available mentre digita): qui va comunque
@@ -244,11 +250,11 @@ async function create(req, res) {
         codeWasRequested = true;
         const requestedCode = String(req.body.code).trim().toUpperCase();
         if (!CODE_PATTERN.test(requestedCode)) {
-          await Quiz.findByIdAndDelete(quizDoc._id).catch(() => {});
+          if (quizDoc) await Quiz.findByIdAndDelete(quizDoc._id).catch(() => {});
           return res.status(400).json({ error: 'Il codice deve avere 4-15 caratteri, solo lettere e cifre.' });
         }
         if (await Visit.exists({ code: requestedCode })) {
-          await Quiz.findByIdAndDelete(quizDoc._id).catch(() => {});
+          if (quizDoc) await Quiz.findByIdAndDelete(quizDoc._id).catch(() => {});
           return res.status(409).json({ error: 'Codice già in uso, scegline un altro.' });
         }
         req.body.code = requestedCode;
@@ -324,15 +330,31 @@ async function update(req, res) {
       return res.status(400).json({ error: 'Cannot change visit type after creation.' });
     }
 
-    // Il quiz di una visita di gruppo è 1:1 e non condiviso: un quiz nel
-    // payload sostituisce il contenuto del quiz esistente, non ne cambia
-    // il riferimento.
-    if (visit.is_group && req.body.quiz) {
-      await Quiz.findByIdAndUpdate(visit.quiz, {
-        title: req.body.quiz.title,
-        questions: req.body.quiz.questions
-      }, { runValidators: true });
-      delete req.body.quiz;
+    // Il quiz è facoltativo e, quando c'è, 1:1 e non condiviso: il payload
+    // può aggiungerne uno nuovo, sostituire il contenuto di quello esistente
+    // (stesso riferimento, non ne cambia l'id) o rimuoverlo del tutto con
+    // `quiz: null`. Se il campo è del tutto assente dal payload, il quiz
+    // esistente (se c'è) resta invariato.
+    if (visit.is_group) {
+      if (req.body.quiz === null) {
+        if (visit.quiz) await Quiz.findByIdAndDelete(visit.quiz).catch(() => {});
+        // req.body.quiz resta null: visit.set(...) più sotto svincola il riferimento.
+      } else if (req.body.quiz) {
+        if (!Array.isArray(req.body.quiz.questions) || req.body.quiz.questions.length === 0) {
+          return res.status(400).json({ error: 'Il quiz deve avere almeno una domanda.' });
+        }
+        if (visit.quiz) {
+          await Quiz.findByIdAndUpdate(visit.quiz, {
+            title: req.body.quiz.title,
+            questions: req.body.quiz.questions
+          }, { runValidators: true });
+          delete req.body.quiz;
+        } else {
+          const quizDoc = new Quiz({ title: req.body.quiz.title, questions: req.body.quiz.questions, author: req.user.id });
+          await quizDoc.save();
+          req.body.quiz = quizDoc._id;
+        }
+      }
     }
 
     visit.set(req.body);

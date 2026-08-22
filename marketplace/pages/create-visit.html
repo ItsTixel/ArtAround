@@ -59,8 +59,8 @@
             <span class="wizard-step-circle">3</span>
             <span class="wizard-step-label">Sequenza</span>
           </button>
-          <span class="wizard-step-line"></span>
-          <button type="button" class="wizard-step" data-step="3">
+          <span class="wizard-step-line" id="quiz-step-line" hidden></span>
+          <button type="button" class="wizard-step" data-step="3" id="quiz-step" hidden>
             <span class="wizard-step-circle">4</span>
             <span class="wizard-step-label">Quiz</span>
           </button>
@@ -76,7 +76,7 @@
             <div class="carousel-slide">
               <div class="form-block">
                 <h2>Che tipo di visita è?</h2>
-                <p class="block-hint">Una visita di gruppo è pensata per essere condotta in diretta da te (insegnante/guida): i partecipanti la seguono in sincrono con un codice, e finisce con un quiz.</p>
+                <p class="block-hint">Una visita di gruppo è pensata per essere condotta in diretta da te (insegnante/guida): i partecipanti la seguono in sincrono con un codice, e può concludersi con un quiz facoltativo.</p>
                 <div class="choice-group" id="type-choice">
                   <label class="choice-card">
                     <input type="radio" name="visit_type" value="single" checked>
@@ -89,7 +89,7 @@
                     <input type="radio" name="visit_type" value="group" id="visit-type-group">
                     <span class="choice-card-body">
                       <span class="choice-card-title">Visita di gruppo</span>
-                      <span class="choice-card-sub">Guidata in diretta con un codice, richiede un quiz finale</span>
+                      <span class="choice-card-sub">Guidata in diretta con un codice, con un quiz finale facoltativo</span>
                     </span>
                   </label>
                 </div>
@@ -154,7 +154,7 @@
               </div>
             </div>
 
-            <!-- STEP 3 — Quiz (solo visite di gruppo) -->
+            <!-- STEP FACOLTATIVO — Quiz (solo visite di gruppo, aggiunto su richiesta dopo la Sequenza) -->
             <div class="carousel-slide">
               <div class="form-block">
                 <h2>Quiz finale</h2>
@@ -164,7 +164,10 @@
                   <input id="quiz-title" type="text" placeholder="Es. Metti alla prova la memoria">
                 </div>
                 <div id="quiz-questions-list" class="dynamic-list"></div>
-                <button type="button" id="add-question" class="btn-secondary">+ Aggiungi domanda</button>
+                <div class="quiz-actions-row">
+                  <button type="button" id="add-question" class="btn-secondary">+ Aggiungi domanda</button>
+                  <button type="button" id="remove-quiz" class="btn-secondary btn-quiet">Continua senza quiz</button>
+                </div>
               </div>
             </div>
 
@@ -229,6 +232,18 @@
         <button type="button" class="btn-primary" id="step-confirm">Aggiungi alla sequenza</button>
       </div>
 
+    </div>
+  </div>
+
+  <!-- Prompt facoltativo: chiesto solo per le visite di gruppo, dopo la Sequenza -->
+  <div class="visit-picker-overlay" id="quiz-prompt-overlay" hidden>
+    <div class="visit-picker-modal quiz-prompt-modal" role="dialog" aria-modal="true" aria-label="Aggiungere un quiz finale?">
+      <h3>Vuoi aggiungere un quiz finale?</h3>
+      <p class="block-hint">I partecipanti risponderanno a un breve quiz alla fine della visita. Puoi aggiungerlo anche in seguito, modificando la visita.</p>
+      <div class="quiz-prompt-actions">
+        <button type="button" class="btn-secondary" id="quiz-prompt-no">No, concludi senza</button>
+        <button type="button" class="btn-primary" id="quiz-prompt-yes">Sì, aggiungi quiz</button>
+      </div>
     </div>
   </div>
 
