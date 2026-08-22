@@ -12,6 +12,7 @@ async function getAll(req, res) {
     if (req.query.added_by)    filter.added_by    = req.query.added_by;
     if (req.query.wikidata_id) filter.wikidata_id = req.query.wikidata_id;
     if (req.query.is_physical !== undefined) filter.is_physical = req.query.is_physical === 'true';
+    if (req.query.has_image === 'true') filter.image_url = { $exists: true, $ne: '' };
     if (req.query.name)  filter.name = { $regex: req.query.name, $options: 'i' };
     if (req.query.tags)  filter.tags = { $in: req.query.tags.split(',').map(t => t.trim()) };
     if (req.query.artwork_author) {
