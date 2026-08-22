@@ -176,6 +176,30 @@ html, body {
   background: var(--universal-glass-bg-strong);
 }
 
+.filter-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--universal-glass-border);
+  border-radius: 9999px;
+  background: var(--universal-glass-bg);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition);
+}
+.filter-toggle:hover { border-color: var(--universal-glass-border-strong); background: var(--universal-glass-bg-strong); }
+.filter-toggle input[type="checkbox"] {
+  width: auto;
+  height: auto;
+  padding: 0;
+  accent-color: var(--color-accent);
+  flex-shrink: 0;
+}
+
 .skip-link {
   margin-left: auto;
   font-size: 0.68rem;

@@ -2,7 +2,7 @@ import { GLASS, TRANSITION } from '/marketplace/js/ui-tokens.js';
 
 class MuseumCard extends HTMLElement {
   static get observedAttributes() {
-    return ['museum-id', 'name', 'city', 'country', 'image', 'opening-hours'];
+    return ['museum-id', 'name', 'city', 'country', 'image', 'opening-hours', 'is-accessible'];
   }
 
   connectedCallback() { this._render(); }
@@ -48,6 +48,7 @@ class MuseumCard extends HTMLElement {
     const city    = this.getAttribute('city')      || '';
     const country = this.getAttribute('country')   || '';
     const image   = this.getAttribute('image')     || '';
+    const isAccessible = this.hasAttribute('is-accessible');
     const location = [city, country].filter(Boolean).join(' · ');
     const visitsUrl = `/marketplace/pages/visits.html?museum=${encodeURIComponent(id)}&museumName=${encodeURIComponent(name)}`;
     const todayHours = this._todayHours();
@@ -75,6 +76,11 @@ class MuseumCard extends HTMLElement {
           <span class="inline-flex items-center gap-1.5 w-fit text-[0.68rem] font-medium leading-none px-3 py-1.5 rounded-full ${GLASS} ${todayHours.closed ? 'text-slate-500 dark:text-slate-400' : 'text-slate-800 dark:text-slate-100 font-semibold'}">
             <span class="w-1.5 h-1.5 rounded-full shrink-0 ${todayHours.closed ? 'bg-red-400/80' : 'bg-green-400/80'}" aria-hidden="true"></span>
             <span>${this._escape(todayHours.label)}</span>
+          </span>` : ''}
+          ${isAccessible ? `
+          <span class="inline-flex items-center gap-1.5 w-fit text-[0.68rem] font-medium leading-none px-3 py-1.5 rounded-full ${GLASS} text-slate-800 dark:text-slate-100">
+            <svg class="w-3 h-3 shrink-0 fill-slate-600 dark:fill-slate-300" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm-1 5h6v2h-4.15l3.32 6.15-1.76.95-2.16-4-2.4 3.9H7l3.05-4.95L9 9.5V15H7V9c0-1.1.9-2 2-2h2zM6.5 13a3.5 3.5 0 1 0 3.46 4h1.53a5 5 0 1 1-5-6l.01 2z"/></svg>
+            <span>Accessibile</span>
           </span>` : ''}
           <h2 class="flex-1 text-lg font-semibold leading-snug" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">${this._escape(name)}</h2>
           <div class="flex items-center justify-between gap-3 mt-auto pt-4 border-t border-slate-400/20">

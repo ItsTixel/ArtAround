@@ -91,6 +91,30 @@ class MuseumModal extends HTMLElement {
     `;
   }
 
+  _accessibilityHtml(m) {
+    const details = m.accessibility_info || {};
+    const keys = Object.keys(details);
+    if (!m.is_accessible && !keys.length) return '';
+
+    return `
+      <div class="mb-5 pt-4 border-t border-slate-400/20">
+        <h3 class="text-[0.66rem] font-semibold tracking-[0.16em] uppercase text-slate-500 dark:text-slate-400 mb-3">Accessibilità</h3>
+        <span class="inline-flex items-center gap-1.5 w-fit text-[0.68rem] font-medium leading-none px-3 py-1.5 rounded-full ${GLASS} text-slate-800 dark:text-slate-100 mb-3">
+          <span class="w-1.5 h-1.5 rounded-full shrink-0 ${m.is_accessible ? 'bg-green-400/80' : 'bg-red-400/80'}" aria-hidden="true"></span>
+          <span>${m.is_accessible ? 'Museo accessibile' : 'Museo non accessibile'}</span>
+        </span>
+        ${keys.length ? `
+        <ul class="flex flex-col gap-1.5">
+          ${keys.map((key) => `
+          <li class="text-sm text-slate-500 dark:text-slate-400">
+            <span class="font-semibold text-slate-800 dark:text-slate-100">${this._esc(key)}:</span>
+            <span> ${this._esc(details[key])}</span>
+          </li>`).join('')}
+        </ul>` : ''}
+      </div>
+    `;
+  }
+
   _bodyHtml() {
     const m = this._museum;
     const address = this._addressLine(m.address);
@@ -114,6 +138,7 @@ class MuseumModal extends HTMLElement {
         ${m.description ? `<p class="text-sm leading-relaxed text-slate-500 dark:text-slate-400 mb-5">${this._esc(m.description)}</p>` : ''}
 
         ${this._hoursHtml(m.opening_hours)}
+        ${this._accessibilityHtml(m)}
 
         <ul class="flex flex-col gap-2.5 pt-4 border-t border-slate-400/20">
           ${address ? `

@@ -65,6 +65,11 @@
           <span class="wizard-step-line"></span>
           <button type="button" class="wizard-step" data-step="4">
             <span class="wizard-step-circle">5</span>
+            <span class="wizard-step-label">Accessibilità</span>
+          </button>
+          <span class="wizard-step-line"></span>
+          <button type="button" class="wizard-step" data-step="5">
+            <span class="wizard-step-circle">6</span>
             <span class="wizard-step-label">Mappe</span>
           </button>
         </nav>
@@ -97,6 +102,12 @@
                 <div class="field">
                   <label for="website">Sito web</label>
                   <input id="website" name="website" type="text" placeholder="https://...">
+                </div>
+                <div class="field field-checkbox">
+                  <label for="is_accessible">
+                    <input id="is_accessible" name="is_accessible" type="checkbox">
+                    Museo accessibile
+                  </label>
                 </div>
               </div>
             </div>
@@ -139,6 +150,15 @@
                 <p class="block-hint">Indica dove si trovano servizi come toilette, uscita, guardaroba, ecc.</p>
                 <div id="services-list" class="dynamic-list"></div>
                 <button type="button" id="add-service" class="btn-secondary">+ Aggiungi servizio</button>
+              </div>
+            </div>
+
+            <div class="carousel-slide">
+              <div class="form-block">
+                <h2>Accessibilità</h2>
+                <p class="block-hint">Indica i dettagli sull'accessibilità del museo (es. "Accesso: rampa a 5° di inclinazione", "Ascensore: presente in tutti i piani").</p>
+                <div id="accessibility-list" class="dynamic-list"></div>
+                <button type="button" id="add-accessibility" class="btn-secondary">+ Aggiungi dettaglio</button>
               </div>
             </div>
 

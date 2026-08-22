@@ -1,6 +1,6 @@
 /* ============================================================
  *  create-museum.js — Pagina "Crea Museo"
- *  Form a carosello (4 sezioni) riservato agli autori per
+ *  Form a carosello (6 sezioni) riservato agli autori per
  *  aggiungere un museo al catalogo.
  * ============================================================ */
 
@@ -42,6 +42,19 @@ function addServiceRow() {
   list.appendChild(row);
 }
 
+function addAccessibilityRow() {
+  const list = document.getElementById('accessibility-list');
+  const row = document.createElement('div');
+  row.className = 'dynamic-row kv';
+  row.innerHTML = `
+    <input type="text" class="dynamic-key" placeholder="Es. Accesso">
+    <input type="text" class="dynamic-value" placeholder="Es. Rampa a 5° di inclinazione">
+    <button type="button" class="remove-row" aria-label="Rimuovi dettaglio">✕</button>
+  `;
+  row.querySelector('.remove-row').addEventListener('click', () => row.remove());
+  list.appendChild(row);
+}
+
 function collectOpeningHours() {
   const hours = {};
   document.querySelectorAll('#hours-grid input[data-day]').forEach(input => {
@@ -59,6 +72,16 @@ function collectServices() {
     if (key && value) services[key] = value;
   });
   return services;
+}
+
+function collectAccessibilityInfo() {
+  const accessibility_info = {};
+  document.querySelectorAll('#accessibility-list .dynamic-row').forEach(row => {
+    const key = row.querySelector('.dynamic-key').value.trim();
+    const value = row.querySelector('.dynamic-value').value.trim();
+    if (key && value) accessibility_info[key] = value;
+  });
+  return accessibility_info;
 }
 
 /* ── Mappe: immagine e JSON allegati separatamente ──────────
@@ -269,14 +292,16 @@ async function submitMuseum() {
     description: document.getElementById('description').value.trim(),
     image_url:   image.url,
     website:     document.getElementById('website').value.trim(),
+    is_accessible: document.getElementById('is_accessible').checked,
     address: {
       street:  document.getElementById('street').value.trim(),
       city:    document.getElementById('city').value.trim(),
       zip:     document.getElementById('zip').value.trim(),
       country: document.getElementById('country').value.trim() || 'Italia',
     },
-    opening_hours: collectOpeningHours(),
-    services:      collectServices(),
+    opening_hours:      collectOpeningHours(),
+    services:           collectServices(),
+    accessibility_info: collectAccessibilityInfo(),
   };
 
   // Immagine e JSON restano separati anche nella richiesta: il server
@@ -344,6 +369,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   buildHoursGrid();
   addServiceRow();
   document.getElementById('add-service').addEventListener('click', addServiceRow);
+
+  addAccessibilityRow();
+  document.getElementById('add-accessibility').addEventListener('click', addAccessibilityRow);
 
   imageField = createImageField({});
   document.getElementById('image-field').appendChild(imageField.el);

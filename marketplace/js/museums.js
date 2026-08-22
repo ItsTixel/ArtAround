@@ -6,6 +6,7 @@ const state = {
   name: '',
   city: '',
   sort: 'name',
+  accessible: false,
   total: 0,
 };
 
@@ -20,6 +21,7 @@ async function fetchMuseums() {
   });
   if (state.name) params.set('name', state.name);
   if (state.city) params.set('city', state.city);
+  if (state.accessible) params.set('is_accessible', 'true');
 
   const res = await fetch(`${API}?${params}`);
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -45,6 +47,7 @@ function renderGrid(museums) {
     if (museum.opening_hours && Object.keys(museum.opening_hours).length) {
       card.setAttribute('opening-hours', JSON.stringify(museum.opening_hours));
     }
+    if (museum.is_accessible) card.setAttribute('is-accessible', '');
     grid.appendChild(card);
   });
 }
@@ -127,9 +130,10 @@ async function populateCityDropdown() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const searchInput = document.getElementById('search-input');
-  const cityFilter  = document.getElementById('city-filter');
-  const sortSelect  = document.getElementById('sort-select');
+  const searchInput      = document.getElementById('search-input');
+  const cityFilter       = document.getElementById('city-filter');
+  const sortSelect       = document.getElementById('sort-select');
+  const accessibleFilter = document.getElementById('accessible-filter');
 
   searchInput.addEventListener('input', (e) => {
     clearTimeout(searchTimer);
@@ -146,6 +150,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   sortSelect.addEventListener('change', (e) => {
     state.sort = e.target.value;
+    load(0);
+  });
+
+  accessibleFilter.addEventListener('change', (e) => {
+    state.accessible = e.target.checked;
     load(0);
   });
 
