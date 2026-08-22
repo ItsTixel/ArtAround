@@ -138,8 +138,11 @@ async function adoptVisit(req, res) {
     const visit = await Visit.findById(req.params.visitId);
     if (!visit) return res.status(404).json({ error: 'Visit not found' });
 
-    // Le visite di gruppo non si adottano: ci si unisce con un codice.
-    if (visit.is_group) {
+    // Le visite di gruppo non si adottano tramite questa rotta: ci si
+    // unisce con un codice. L'autore fa eccezione — è già adottata
+    // automaticamente alla creazione (vedi create() in controllers/visit.js),
+    // ma questo gli permette di riadottarla se l'avesse rimossa.
+    if (visit.is_group && visit.author.toString() !== req.user.id) {
       return res.status(403).json({ error: 'Group visits cannot be adopted — join with a code instead.' });
     }
 
@@ -191,10 +194,11 @@ async function bookmarkVisit(req, res) {
   try {
     // A differenza di adoptVisit, questa rotta non aveva finora nessun
     // controllo di visibilità: chiunque conoscesse l'id poteva salvare nei
-    // preferiti una visita di gruppo altrui.
-    const visit = await Visit.findById(req.params.visitId).select('is_group');
+    // preferiti una visita di gruppo altrui. L'autore fa eccezione e può
+    // sempre mettere/togliere tra i preferiti le proprie visite di gruppo.
+    const visit = await Visit.findById(req.params.visitId).select('is_group author');
     if (!visit) return res.status(404).json({ error: 'Visit not found' });
-    if (visit.is_group) {
+    if (visit.is_group && visit.author.toString() !== req.user.id) {
       return res.status(403).json({ error: 'Group visits cannot be bookmarked — join with a code instead.' });
     }
 

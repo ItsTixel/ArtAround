@@ -84,9 +84,14 @@ async function getAll(req, res) {
       conditions.push({ is_public: true });
     }
 
-    /* ── Le visite di gruppo non compaiono mai qui, nemmeno per il
-       proprio autore: sono private, si raggiungono solo via codice ── */
-    conditions.push({ is_group: { $ne: true } });
+    /* ── Le visite di gruppo compaiono qui solo per il proprio autore (usato
+       dalla pagina "Visite create" del marketplace): per tutti gli altri
+       restano private, si raggiungono solo via codice ── */
+    if (req.user) {
+      conditions.push({ $or: [{ is_group: { $ne: true } }, { author: req.user.id }] });
+    } else {
+      conditions.push({ is_group: { $ne: true } });
+    }
 
     /* ── Autore ─────────────────────────────────────────────── */
     if (req.query.author) conditions.push({ author: req.query.author });
