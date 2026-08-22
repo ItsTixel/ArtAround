@@ -11,6 +11,16 @@ const MARKETPLACE_VISITS_URL = '/marketplace/pages/visits.html'
 const LOGIN_URL = '/marketplace/login.html'
 const REGISTER_URL = '/marketplace/register.html'
 
+// Adatta una visita di gruppo completa (fetch di /api/visits/:id, con
+// `live_session.status`) alla stessa forma { code, preview } della preview
+// snella restituita da GET /code/:code (che usa `status` diretto), così può
+// alimentare lo stesso VisitDetailModal groupVisit sia che si arrivi da un
+// codice sia da una visita già raggiunta per altra via (Adottate, QR,
+// ?openVisit=).
+function toGroupPreview(visit) {
+  return { code: visit.code, preview: { ...visit, status: visit.live_session?.status } }
+}
+
 function VisitRow({ visit, isActive, badge, onClick }) {
   const museumNames = (visit.museum || []).map((m) => m.name).join(', ')
   const coverImage = visit.image_url || visit.steps?.[0]?.entity?.image_url
@@ -66,9 +76,18 @@ function Home() {
   const [adoptVisit, setAdoptVisit] = useState(null)
   // Il QR di una visita già adottata arriva qui via navigate('/', { state:
   // { detailVisit } }) per aprire direttamente il suo popup (vedi Qr.jsx).
-  const [detailVisit, setDetailVisit] = useState(() => location.state?.detailVisit || null)
+  // Può capitare anche per una visita di gruppo (l'autore la scansiona da
+  // adottata): in quel caso va in codePreview, non qui, stessa logica di
+  // openGroupVisit più sotto.
+  const [detailVisit, setDetailVisit] = useState(() => {
+    const v = location.state?.detailVisit
+    return v && !v.is_group ? v : null
+  })
   const [visitCode, setVisitCode] = useState('')
-  const [codePreview, setCodePreview] = useState(null) // { code, preview } | null
+  const [codePreview, setCodePreview] = useState(() => {
+    const v = location.state?.detailVisit
+    return v && v.is_group ? toGroupPreview(v) : null
+  }) // { code, preview } | null
   const [codeError, setCodeError] = useState(null)
   // Il professore ha terminato una visita di gruppo in corso: GroupSessionContext
   // riporta qui lo studente via navigate('/', { state: { groupSessionEnded } }).
@@ -128,7 +147,8 @@ function Home() {
       .then((res) => (res.ok ? res.json() : null))
       .then((visit) => {
         if (cancelled || !visit) return
-        setDetailVisit(visit)
+        if (visit.is_group) openGroupVisit(visit)
+        else setDetailVisit(visit)
       })
       .finally(() => {
         if (cancelled) return
@@ -160,12 +180,9 @@ function Home() {
   // Una visita di gruppo può comparire tra le "Adottate" per il suo stesso
   // autore (auto-adottata alla creazione, vedi backend/controllers/visit.js
   // create): va aperta con lo stesso popup/le stesse azioni del flusso da
-  // codice, non con l'attiva/disattiva delle visite singole. La visita qui è
-  // già quella completa (fetch di /api/visits/:id, non la preview snella di
-  // /code/:code), ma ha la stessa forma più `live_session.status` al posto
-  // di `status`: si adatta prima di passarla al modal.
+  // codice, non con l'attiva/disattiva delle visite singole.
   function openGroupVisit(visit) {
-    setCodePreview({ code: visit.code, preview: { ...visit, status: visit.live_session?.status } })
+    setCodePreview(toGroupPreview(visit))
   }
 
   function handleVisitCodeSubmit(e) {
