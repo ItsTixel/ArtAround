@@ -113,7 +113,7 @@ const SUB_CONFIG = {
     hint: 'Le visite che hai creato tu.',
     empty: 'Non hai ancora creato nessuna visita.',
     async load() {
-      const res = await fetch(`${API_VISITS}?author=${currentUser._id}&pageSize=100`);
+      const res = await fetch(`${API_VISITS}?author=${currentUser._id}&pageSize=100`, { credentials: 'include' });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const { data } = await res.json();
       return data;
