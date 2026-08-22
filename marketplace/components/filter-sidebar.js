@@ -12,7 +12,7 @@
  *   }
  *
  * Detail di `filters-change`:
- *   { museumIds[], price, durationMax, tones[], tags[] }
+ *   { museumIds[], price, durationMax, tones[], tags[], accessible }
  */
 
 import { GLASS } from '/marketplace/js/ui-tokens.js';
@@ -29,6 +29,7 @@ class FilterSidebar extends HTMLElement {
       durationMax: 240,
       tones: new Set(),
       tags: new Set(),
+      accessible: false,
     };
     this._data = { museums: [], tones: [], tags: [], maxDurationMin: 240 };
     this._mobileOpen = false;
@@ -61,6 +62,7 @@ class FilterSidebar extends HTMLElement {
         durationMax: this._state.durationMax,
         tones: [...this._state.tones],
         tags: [...this._state.tags],
+        accessible: this._state.accessible,
       },
       bubbles: true, composed: true,
     }));
@@ -74,6 +76,7 @@ class FilterSidebar extends HTMLElement {
       durationMax: this._data.maxDurationMin,
       tones: new Set(),
       tags: new Set(),
+      accessible: false,
     };
     this._render();
     this._emit();
@@ -99,6 +102,14 @@ class FilterSidebar extends HTMLElement {
         <input type="checkbox" name="${name}" value="${value}" ${checked ? 'checked' : ''} class="w-3.5 h-3.5 shrink-0 rounded accent-slate-800 dark:accent-white cursor-pointer ${RING_FOCUS}">
         <span class="label flex-1">${label}</span>
         <span class="count text-[0.7rem] opacity-55 tabular-nums">${count ?? ''}</span>
+      </label>`;
+  }
+
+  _toggle(name, label, checked) {
+    return `
+      <label class="row flex items-center gap-2.5 cursor-pointer text-[0.85rem] text-slate-800 dark:text-slate-100 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
+        <input type="checkbox" name="${name}" ${checked ? 'checked' : ''} class="w-3.5 h-3.5 shrink-0 rounded accent-slate-800 dark:accent-white cursor-pointer ${RING_FOCUS}">
+        <span class="label flex-1">${label}</span>
       </label>`;
   }
 
@@ -182,6 +193,14 @@ class FilterSidebar extends HTMLElement {
 
           <div id="museum-lists">
             ${this._museumListsHTML()}
+          </div>
+        </div>
+
+        <!-- Accessibilità -->
+        <div class="group pt-6 pb-6 border-t border-slate-400/20 first:pt-0 first:border-t-0">
+          <h3 class="text-[0.66rem] font-semibold tracking-[0.16em] uppercase text-slate-500 dark:text-slate-400 mb-4">Accessibilità</h3>
+          <div class="rows flex flex-col gap-2.5" id="accessible-rows">
+            ${this._toggle('accessible', 'Solo musei accessibili', s.accessible)}
           </div>
         </div>
 
@@ -274,6 +293,14 @@ class FilterSidebar extends HTMLElement {
         }
       });
     }
+
+    /* Accessibilità */
+    this.querySelector('#accessible-rows').addEventListener('change', (e) => {
+      if (e.target.name === 'accessible') {
+        this._state.accessible = e.target.checked;
+        this._emit();
+      }
+    });
 
     /* Price */
     this.querySelector('#price-rows').addEventListener('change', (e) => {

@@ -1,4 +1,5 @@
 const Visit = require('../models/visit');
+const Museum = require('../models/museum');
 const Item = require('../models/item');
 const User = require('../models/user');
 const Order = require('../models/order');
@@ -107,6 +108,13 @@ async function getAll(req, res) {
     if (req.query.museum) {
       const ids = req.query.museum.split(',').map(s => s.trim()).filter(Boolean);
       conditions.push({ museum: ids.length === 1 ? ids[0] : { $in: ids } });
+    }
+
+    /* ── Accessibilità (tutti i musei della visita devono essere
+       accessibili) ───────────────────────────────────────────── */
+    if (req.query.accessible === 'true') {
+      const inaccessibleIds = await Museum.distinct('_id', { is_accessible: { $ne: true } });
+      conditions.push({ museum: { $nin: inaccessibleIds } });
     }
 
     /* ── Tag ($in: almeno un tag presente) ──────────────────── */

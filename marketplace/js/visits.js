@@ -21,6 +21,7 @@ const state = {
   durationMax: null,   /* null = nessun filtro; altrimenti minuti */
   tags:        [],
   tones:       [],
+  accessible:  false,
   total:       0,
 };
 
@@ -45,6 +46,7 @@ async function fetchVisits() {
   if (state.durationMax)      params.set('durationMax', state.durationMax);
   if (state.tags.length)      params.set('tags',        state.tags.join(','));
   if (state.tones.length)     params.set('tones',       state.tones.join(','));
+  if (state.accessible)       params.set('accessible',  'true');
 
   const res = await fetch(`${API_VISITS}?${params}`);
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -219,6 +221,7 @@ async function refreshToneCounts() {
   if (state.price !== 'all')  params.set('price',       state.price);
   if (state.durationMax)      params.set('durationMax', state.durationMax);
   if (state.tags.length)      params.set('tags',        state.tags.join(','));
+  if (state.accessible)       params.set('accessible',  'true');
 
   const res = await fetch(`${API_VISITS}?${params}`);
   if (!res.ok) return;
@@ -293,12 +296,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     };
 
     sidebar.addEventListener('filters-change', (e) => {
-      const { museumIds, price, durationMax, tags, tones } = e.detail;
+      const { museumIds, price, durationMax, tags, tones, accessible } = e.detail;
       state.museumIds   = museumIds || [];
       state.price       = price     || 'all';
       state.durationMax = (durationMax && durationMax < maxDurationMin) ? durationMax : null;
       state.tags        = tags      || [];
       state.tones       = tones     || [];
+      state.accessible  = accessible || false;
       load(0);
       refreshToneCounts();
     });
