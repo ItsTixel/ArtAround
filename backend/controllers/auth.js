@@ -210,8 +210,11 @@ async function logout(req, res) {
 
 async function me(req, res) {
   try {
-    // req.user viene popolato dal middleware verifyToken, che ha già
-    // verificato il cookie httpOnly a monte di questa rotta.
+    // req.user viene popolato da optionalAuth se il cookie httpOnly è
+    // presente e valido; niente utente loggato non è un errore, quindi
+    // rispondiamo comunque 200 con null.
+    if (!req.user) return res.json(null);
+
     const user = await User.findById(req.user.id).select('-password');
     if (!user) return res.status(401).json({ error: 'Utente non trovato' });
 
