@@ -18,6 +18,7 @@ const API_VISITS   = '/api/visits';
 const API_USERS    = '/api/users';
 const LOGIN_URL    = '/marketplace/login.html';
 const NAVIGATOR_URL = '/navigator/';
+const EDIT_VISIT_URL = '/marketplace/pages/create-visit.html';
 
 class VisitModal extends HTMLElement {
   constructor() {
@@ -214,6 +215,12 @@ class VisitModal extends HTMLElement {
     }
   }
 
+  _isAuthor() {
+    if (!this._visit || !this._userId) return false;
+    const authorId = this._visit.author?._id || this._visit.author;
+    return String(authorId) === String(this._userId);
+  }
+
   _esc(s) {
     return String(s ?? '')
       .replace(/&/g, '&amp;').replace(/</g, '&lt;')
@@ -252,9 +259,13 @@ class VisitModal extends HTMLElement {
         const copyBtn = this._canCopy()
           ? `<button class="btn ghost ${btnGhost}" id="copy-btn" ${this._copying ? 'disabled' : ''}>${this._copying ? 'Copia in corso…' : 'Copia visita'}</button>`
           : '';
+        const editBtn = this._isAuthor()
+          ? `<button class="btn ghost ${btnGhost}" id="edit-btn">Modifica visita</button>`
+          : '';
         action = `
           <div class="flex flex-col items-stretch gap-2 sm:flex-row sm:items-center">
             ${copyBtn}
+            ${editBtn}
             <button class="btn primary ${btnPrimary}" id="start-btn">Comincia visita</button>
           </div>`;
       }
@@ -306,6 +317,9 @@ class VisitModal extends HTMLElement {
       window.location.href = `${NAVIGATOR_URL}?openVisit=${encodeURIComponent(this._visit._id)}`;
     });
     footer.querySelector('#copy-btn')?.addEventListener('click', () => this._copyVisit());
+    footer.querySelector('#edit-btn')?.addEventListener('click', () => {
+      window.location.href = `${EDIT_VISIT_URL}?edit=${encodeURIComponent(this._visit._id)}`;
+    });
   }
 
   /* ---- Corpo: informazioni generali + lista delle opere ---- */

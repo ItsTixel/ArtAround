@@ -26,6 +26,10 @@ let currentUser = null;
 let wizard = null;
 let allMuseums = [];
 
+/* Modalità modifica: ?edit=<id> nell'URL. Stessa pagina/form della
+ * creazione, ma precompilata con i dati esistenti e che invia PUT invece di POST  */
+const editVisitId = new URLSearchParams(window.location.search).get('edit');
+
 /* Codice della visita di gruppo: il valore per cui l'ultima verifica al
  * backend ha risposto "disponibile". Si azzera a ogni modifica del campo e
  * viene ricontrollato al submit, perché la validità nativa dell'input
@@ -589,6 +593,82 @@ function collectQuiz() {
 }
 
 /* ============================================================
+ *  Modalità modifica: precompilazione del form
+ * ============================================================ */
+
+async function loadVisitForEdit(id) {
+  try {
+    const res = await fetch(`${API_VISITS}/${id}`, { credentials: 'include' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const visit = await res.json();
+    const authorId = visit.author?._id || visit.author;
+    if (String(authorId) !== String(currentUser._id)) throw new Error('not-author');
+    return visit;
+  } catch (e) {
+    console.error('Errore nel caricamento della visita da modificare:', e);
+    window.location.href = '/marketplace/pages/profile.html#visite:create';
+    return null;
+  }
+}
+
+// Forza il tipo di visita e disabilita la modifica.
+function applyVisitTypeToForm(visit) {
+  document.querySelectorAll('input[name="visit_type"]').forEach(radio => {
+    radio.checked = radio.value === (visit.is_group ? 'group' : 'single');
+    radio.disabled = true; // is_group è immutabile dopo la creazione
+  });
+}
+
+// converte visit.steps nel formato interno usato da state.steps
+function applyStepsToForm(visit) {
+  state.steps = (visit.steps || [])
+    .slice()
+    .sort((a, b) => a.order - b.order)
+    .map(s => ({
+      entity: { id: s.entity._id, name: s.entity.name, imageUrl: s.entity.image_url },
+      museum: { id: s.museum._id, name: s.museum.name },
+      items: (s.items || []).map(it => ({ id: it._id })),
+      introNote: s.intro_note || '',
+      logisticNote: s.logistic_note || '',
+    }));
+  renderStepsList();
+}
+
+function applyQuizToForm(quiz) {
+  document.getElementById('quiz-title').value = quiz?.title || '';
+  const container = document.getElementById('quiz-questions-list');
+  container.innerHTML = '';
+  (quiz?.questions || []).forEach(q => {
+    addQuestionRow();
+    const row = container.lastElementChild;
+    row.querySelector('.question-text').value = q.text || '';
+    const optionsList = row.querySelector('.quiz-options-list');
+    optionsList.innerHTML = '';
+    (q.options || []).forEach((opt, idx) => addOptionRow(optionsList, opt, idx === q.correct_option_index));
+    if (q.item) row.querySelector('.question-item').value = q.item._id || q.item;
+  });
+}
+
+function applyEditingVisitToForm(visit) {
+  document.getElementById('title').value = visit.title || '';
+  document.getElementById('description').value = visit.description || '';
+  document.getElementById('image_url').value = visit.image_url || '';
+  document.getElementById('tags').value = (visit.tags || []).join(', ');
+  applyStepsToForm(visit);
+
+  if (visit.is_group) {
+    const codeInput = document.getElementById('visit-code');
+    codeInput.value = visit.code || '';
+    codeInput.setCustomValidity('');
+    confirmedCode = visit.code || null;
+    setCodeStatus('available', 'Codice disponibile.', 'success');
+    applyQuizToForm(visit.quiz);
+  } else {
+    document.getElementById('base_price').value = visit.base_price || 0;
+  }
+}
+
+/* ============================================================
  *  Invio del form
  * ============================================================ */
 
@@ -653,23 +733,26 @@ async function submitVisit() {
       : false; // i visitatori possono avere solo visite private
   }
 
+  const editing = Boolean(editVisitId);
+  if (editing) delete payload.is_group; // immutabile dopo la creazione: non reinviarlo
+
   feedback.classList.remove('is-success', 'is-error');
   feedback.classList.add('is-pending');
-  feedback.textContent = 'Creazione in corso…';
+  feedback.textContent = editing ? 'Salvataggio in corso…' : 'Creazione in corso…';
 
   try {
-    const res = await fetch(API_VISITS, {
-      method: 'POST',
+    const res = await fetch(editing ? `${API_VISITS}/${editVisitId}` : API_VISITS, {
+      method: editing ? 'PUT' : 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     });
     const data = await res.json();
-    if (!res.ok) throw new Error(data.error || 'Errore durante la creazione della visita.');
+    if (!res.ok) throw new Error(data.error || `Errore durante ${editing ? 'il salvataggio' : 'la creazione'} della visita.`);
 
     feedback.classList.remove('is-pending');
     feedback.classList.add('is-success');
-    feedback.textContent = 'Visita creata. Reindirizzamento…';
+    feedback.textContent = editing ? 'Modifiche salvate. Reindirizzamento…' : 'Visita creata. Reindirizzamento…';
     setTimeout(() => { window.location.href = '/marketplace/pages/profile.html#visite:create'; }, 1200);
   } catch (err) {
     feedback.classList.remove('is-pending');
@@ -704,7 +787,7 @@ async function loadMuseumFilterOptions() {
 document.addEventListener('DOMContentLoaded', async () => {
   const user = await getCurrentUser();
   if (!user) {
-    window.location.href = `${LOGIN_URL}?redirect=${encodeURIComponent(window.location.pathname)}`;
+    window.location.href = `${LOGIN_URL}?redirect=${encodeURIComponent(window.location.pathname + window.location.search)}`;
     return;
   }
   currentUser = user;
@@ -717,8 +800,20 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   await loadMuseumFilterOptions();
 
-  setupBtnGroup('visibility-group', 'public');
+  let editingVisit = null;
+  if (editVisitId) {
+    editingVisit = await loadVisitForEdit(editVisitId);
+    if (!editingVisit) return; // proprietario non valido o errore: già reindirizzato
+    applyVisitTypeToForm(editingVisit);
+
+    document.title = 'ArtAround — Modifica Visita';
+    document.querySelector('.page-hero h1').textContent = 'Modifica la tua visita';
+    document.querySelector('.page-hero .hero-sub').textContent = 'Aggiorna le informazioni, la sequenza o il quiz di questa visita';
+  }
+
+  setupBtnGroup('visibility-group', editingVisit && !editingVisit.is_public ? 'private' : 'public');
   syncGroupFields();
+  if (editingVisit) applyEditingVisitToForm(editingVisit);
 
   document.querySelectorAll('input[name="visit_type"]').forEach(radio => {
     radio.addEventListener('change', () => {
@@ -772,7 +867,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     prevBtn: document.getElementById('wizard-prev'),
     nextBtn: document.getElementById('wizard-next'),
     getPath,
-    submitLabel: 'Crea visita',
+    submitLabel: editingVisit ? 'Salva modifiche' : 'Crea visita',
     onSubmit: submitVisit,
   });
 
