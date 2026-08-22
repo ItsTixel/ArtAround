@@ -87,7 +87,7 @@ class VisitCard extends HTMLElement {
     this.innerHTML = `
       <div class="card group ${GLASS} overflow-hidden flex flex-row sm:flex-col h-full cursor-pointer text-slate-800 dark:text-slate-100 ${TRANSITION} hover:-translate-y-1 hover:bg-white/20 hover:border-white/30 hover:shadow-2xl" role="button" tabindex="0" aria-label="${this._esc(v.title)}">
 
-        <div class="relative w-28 shrink-0 self-stretch sm:self-auto sm:w-full sm:h-44 bg-slate-300/20 dark:bg-slate-800/40 flex items-center justify-center overflow-hidden">
+        <div class="relative w-32 shrink-0 self-stretch sm:self-auto sm:w-full sm:h-44 bg-slate-300/20 dark:bg-slate-800/40 flex items-center justify-center overflow-hidden">
           ${images.length
             ? `<div class="hero-scroll absolute inset-0 flex overflow-x-auto snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
                  ${images.map(img => `<img class="w-full h-full shrink-0 snap-center object-cover transition-transform duration-500 group-hover:scale-105" src="${this._esc(img)}" alt="" loading="lazy">`).join('')}
@@ -120,10 +120,10 @@ class VisitCard extends HTMLElement {
             <span class="sm:hidden font-semibold ${owned || isFree ? 'text-slate-800 dark:text-slate-100' : ''}">${owned ? '✓ Posseduta' : this._fmtPrice(v.basePrice)}</span>
           </div>
           <h2 class="text-base sm:text-lg font-semibold leading-snug" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">${this._esc(v.title)}</h2>
-          <p class="text-xs sm:text-sm leading-relaxed text-slate-500 dark:text-slate-400 line-clamp-2">${this._esc(v.description)}</p>
-          ${v.tags?.length ? `<div class="flex flex-wrap gap-1.5">${v.tags.slice(0, 3).map(t => `<span class="${TAG_PILL}">${this._esc(t)}</span>`).join('')}</div>` : ''}
+          <p class="hidden sm:block text-xs sm:text-sm leading-relaxed text-slate-500 dark:text-slate-400 line-clamp-2">${this._esc(v.description)}</p>
+          ${v.tags?.length ? `<div class="hidden sm:flex flex-wrap gap-1.5">${v.tags.slice(0, 3).map(t => `<span class="${TAG_PILL}">${this._esc(t)}</span>`).join('')}</div>` : ''}
           ${v.tones?.length ? `
-          <div class="tones">
+          <div class="tones hidden sm:block">
             <small class="block text-[0.58rem] sm:text-[0.62rem] tracking-[0.12em] uppercase text-slate-500 dark:text-slate-400 mb-1">Linguaggio</small>
             <div class="flex flex-wrap gap-1.5">${v.tones.map(t => `<span class="${TAG_PILL}">${this._esc(TONE_LABELS[t] || t)}</span>`).join('')}</div>
           </div>` : ''}
