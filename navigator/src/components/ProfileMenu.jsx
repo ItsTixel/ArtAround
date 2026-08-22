@@ -244,8 +244,14 @@ function ProfileMenu({ hasPlayer = false }) {
   }
 
   function finishDrag(e) {
-    if (e?.currentTarget?.hasPointerCapture?.(e.pointerId)) {
-      e.currentTarget.releasePointerCapture(e.pointerId)
+    try {
+      if (e?.currentTarget?.hasPointerCapture?.(e.pointerId)) {
+        e.currentTarget.releasePointerCapture(e.pointerId)
+      }
+    } catch {
+      // Alcuni browser invalidano il pointer id prima che hasPointerCapture
+      // se ne accorga (race condition nota della Pointer Events API): senza
+      // il catch l'eccezione interromperebbe il resto della funzione.
     }
     const ds = dragStateRef.current
     dragStateRef.current = null
