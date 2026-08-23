@@ -16,6 +16,36 @@
   pointer-events: none;
 }
 
+/* Popup di blocco (tipo di visita / privatizzazione dopo la creazione):
+ * stesso posizionamento fisso di .item-tooltip (create-item.css), ma
+ * mostrato al click con sparizione automatica invece che all'hover. */
+.lock-popup {
+  position: fixed;
+  max-width: 230px;
+  width: max-content;
+  padding: 0.65rem 0.8rem;
+  background: var(--panel-bg);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid var(--color-danger);
+  border-radius: 10px;
+  box-shadow: var(--universal-glass-shadow);
+  color: var(--color-danger);
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 500;
+  line-height: 1.5;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.18s ease, visibility 0.18s ease;
+  z-index: 1000;
+}
+.lock-popup.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
 /* Il 4° step "Quiz" esiste nel markup solo per le visite di gruppo (dove
  * il wizard lo tiene comunque .skipped/disabled finché non si sceglie di
  * aggiungerlo): per le visite singole va nascosto del tutto, non solo

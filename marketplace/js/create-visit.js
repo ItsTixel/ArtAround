@@ -48,6 +48,12 @@ let codeCheckToken = 0;
  * considerato per forza libero, senza richiederlo al backend. */
 let originalCode = null;
 
+/* Modalità modifica: true se la visita era già pubblica al caricamento.
+ * Una volta pubblica una visita non può tornare privata (il contrario è
+ * invece permesso, anche avanti e indietro finché non si salva): usato da
+ * setupBtnGroup per bloccare l'opzione "Privata" nel gruppo di visibilità. */
+let originalIsPublic = false;
+
 /* Sequenza in costruzione. Ogni voce: { entity, museum, items[], introNote, logisticNote } */
 const state = { steps: [], editingIndex: null };
 
@@ -80,13 +86,53 @@ function getPath() {
   return (isGroup() && wantsQuiz) ? [...base, STEP_QUIZ] : base;
 }
 
-function setupBtnGroup(groupId, defaultValue) {
+/* Popup breve e non bloccante per segnalare un tentativo di modifica non
+ * permesso (privatizzare una visita pubblica, cambiare tipo di visita in
+ * modifica): stesso pattern posizionale del tooltip di create-item.js,
+ * ma mostrato al click invece che all'hover e con sparizione automatica. */
+let lockPopupEl = null;
+let lockPopupTimer = null;
+
+function showLockPopup(anchorEl, text) {
+  if (!lockPopupEl) {
+    lockPopupEl = document.createElement('div');
+    lockPopupEl.className = 'lock-popup';
+    lockPopupEl.setAttribute('role', 'alert');
+    document.body.appendChild(lockPopupEl);
+  }
+  clearTimeout(lockPopupTimer);
+  lockPopupEl.textContent = text;
+  lockPopupEl.classList.add('visible');
+
+  const margin = 12;
+  const rect = anchorEl.getBoundingClientRect();
+  const half = lockPopupEl.offsetWidth / 2;
+  const center = Math.min(
+    Math.max(rect.left + rect.width / 2, half + margin),
+    window.innerWidth - half - margin
+  );
+  lockPopupEl.style.left = `${center}px`;
+  lockPopupEl.style.top = `${rect.top - 10}px`;
+  lockPopupEl.style.transform = 'translate(-50%, -100%)';
+
+  lockPopupTimer = setTimeout(() => lockPopupEl.classList.remove('visible'), 2600);
+}
+
+/* isBlocked(value), se passato, decide per ogni click se il cambio va
+ * impedito: ritornando il messaggio da mostrare nel popup invece del
+ * normale aggiornamento del gruppo. */
+function setupBtnGroup(groupId, defaultValue, isBlocked) {
   const group = document.getElementById(groupId);
   group.dataset.value = defaultValue;
   group.querySelectorAll('.btn-option').forEach(btn => {
     const isDefault = btn.dataset.value === defaultValue;
     btn.setAttribute('aria-checked', String(isDefault));
     btn.addEventListener('click', () => {
+      const blockMessage = isBlocked?.(btn.dataset.value);
+      if (blockMessage) {
+        showLockPopup(btn, blockMessage);
+        return;
+      }
       group.querySelectorAll('.btn-option').forEach(b => b.setAttribute('aria-checked', 'false'));
       btn.setAttribute('aria-checked', 'true');
       group.dataset.value = btn.dataset.value;
@@ -662,6 +708,18 @@ function applyVisitTypeToForm(visit) {
     radio.checked = radio.value === (visit.is_group ? 'group' : 'single');
     radio.disabled = true; // is_group è immutabile dopo la creazione
   });
+
+  // Il radio disabilitato da solo impedisce già il cambio, ma senza alcun
+  // avviso: la label che lo contiene resta cliccabile, quindi ci si aggancia
+  // il popup di blocco (solo quando si prova davvero a cambiare tipo).
+  document.querySelectorAll('#type-choice .choice-card').forEach(card => {
+    const input = card.querySelector('input[name="visit_type"]');
+    card.addEventListener('click', (e) => {
+      if (input.checked) return;
+      e.preventDefault();
+      showLockPopup(card, 'Il tipo di visita non può essere cambiato dopo la creazione.');
+    });
+  });
 }
 
 // converte visit.steps nel formato interno usato da state.steps
@@ -867,6 +925,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (editVisitId) {
     editingVisit = await loadVisitForEdit(editVisitId);
     if (!editingVisit) return; // proprietario non valido o errore: già reindirizzato
+    originalIsPublic = Boolean(editingVisit.is_public);
     applyVisitTypeToForm(editingVisit);
 
     document.title = 'ArtAround — Modifica Visita';
@@ -874,7 +933,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.querySelector('.page-hero .hero-sub').textContent = 'Aggiorna le informazioni, la sequenza o il quiz di questa visita';
   }
 
-  setupBtnGroup('visibility-group', editingVisit && !editingVisit.is_public ? 'private' : 'public');
+  setupBtnGroup(
+    'visibility-group',
+    editingVisit && !editingVisit.is_public ? 'private' : 'public',
+    value => (value === 'private' && originalIsPublic) ? 'Una visita pubblica non può tornare privata.' : null,
+  );
   syncGroupFields();
   if (editingVisit) applyEditingVisitToForm(editingVisit);
 
