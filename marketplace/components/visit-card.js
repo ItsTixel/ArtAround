@@ -93,7 +93,7 @@ class VisitCard extends HTMLElement {
 
         <div class="relative z-[4] w-32 shrink-0 self-stretch sm:self-auto sm:w-full sm:h-44 bg-slate-300/20 dark:bg-slate-800/40 flex items-center justify-center overflow-hidden">
           ${images.length
-            ? `<div class="hero-scroll absolute inset-0 flex overflow-x-auto snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+            ? `<div class="hero-scroll absolute inset-0 flex overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden" style="touch-action: pan-x;">
                  ${images.map(img => `<img class="w-full h-full shrink-0 snap-center object-cover transition-transform duration-500 group-hover:scale-105" src="${this._esc(img.url)}" alt="${this._esc(img.alt || '')}" loading="lazy">`).join('')}
                </div>`
             : `<div class="absolute inset-0" style="background-image: repeating-linear-gradient(135deg, transparent 0 11px, rgba(100,116,139,0.12) 11px 12px);"></div>`
