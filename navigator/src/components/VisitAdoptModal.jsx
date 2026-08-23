@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useAuth } from '../context/AuthContext'
 import VisitInfoBody, { formatPrice } from './VisitInfoBody'
 import FavoriteButton from './FavoriteButton'
 import useEscapeKey from '../hooks/useEscapeKey'
+import useFocusTrap from '../hooks/useFocusTrap'
 
 // Popup mostrato dopo la scansione del QR di una visita che l'utente non ha
 // ancora adottato: propone l'adozione (con conferma se a pagamento) invece
@@ -13,6 +14,8 @@ function VisitAdoptModal({ visit, onAdopted, onClose }) {
   const [confirm, setConfirm] = useState(false)
   const [adding, setAdding] = useState(false)
   const [error, setError] = useState(null)
+  const dialogRef = useRef(null)
+  useFocusTrap(dialogRef)
 
   const price = visit.base_price || 0
   const isFree = !price
@@ -38,9 +41,11 @@ function VisitAdoptModal({ visit, onAdopted, onClose }) {
   return (
     <div className="fixed inset-0 z-100 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4" onClick={onClose}>
       <div
+        ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-label={visit.title}
+        tabIndex={-1}
         className="relative flex max-h-[85vh] w-full max-w-md flex-col rounded-2xl border border-slate-400/20 bg-white/85 dark:bg-slate-900/85 backdrop-blur-2xl shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >

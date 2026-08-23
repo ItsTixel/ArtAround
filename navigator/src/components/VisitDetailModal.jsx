@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import VisitInfoBody from './VisitInfoBody'
 import FavoriteButton from './FavoriteButton'
 import { useAuth } from '../context/AuthContext'
 import { useGroupSession } from '../context/GroupSessionContext'
 import useEscapeKey from '../hooks/useEscapeKey'
+import useFocusTrap from '../hooks/useFocusTrap'
 
 const LOGIN_URL = '/marketplace/login.html'
 const REGISTER_URL = '/marketplace/register.html'
@@ -126,6 +127,8 @@ function GroupVisitFooter({ code, preview }) {
 // corpo e footer). Solo uno di questi due set di props va passato per volta.
 function VisitDetailModal({ visit, isActive, onClose, onActivate, onDeactivate, groupVisit }) {
   const isGroup = Boolean(groupVisit)
+  const dialogRef = useRef(null)
+  useFocusTrap(dialogRef)
 
   useEscapeKey(onClose)
 
@@ -135,9 +138,11 @@ function VisitDetailModal({ visit, isActive, onClose, onActivate, onDeactivate, 
       onClick={onClose}
     >
       <div
+        ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-label={isGroup ? groupVisit.preview.title : visit.title}
+        tabIndex={-1}
         className="relative flex max-h-[85vh] w-full max-w-md flex-col rounded-2xl border border-slate-400/20 bg-white/85 dark:bg-slate-900/85 backdrop-blur-2xl shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >

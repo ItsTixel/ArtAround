@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useGroupSession } from '../context/GroupSessionContext'
 import { ChevronLeftIcon, ChevronRightIcon } from './icons'
+import useFocusTrap from '../hooks/useFocusTrap'
 
 function GroupQuizModal() {
   const { role, status, quiz, ownParticipant, submitQuizAnswers } = useGroupSession()
@@ -11,6 +12,9 @@ function GroupQuizModal() {
   const [dismissed, setDismissed] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState(null)
+  const dialogRef = useRef(null)
+  const isVisible = role === 'student' && status === 'quiz' && Boolean(quiz) && !dismissed
+  useFocusTrap(dialogRef, isVisible)
 
   // Un nuovo oggetto quiz arriva sia al vero avvio (visit:quiz_started) sia
   // al rientro dopo un reload a metà quiz (ack di visit:join). In entrambi i
@@ -27,7 +31,7 @@ function GroupQuizModal() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [quiz])
 
-  if (role !== 'student' || status !== 'quiz' || !quiz || dismissed) return null
+  if (!isVisible) return null
 
   const question = quiz.questions[questionIndex]
   const isLast = questionIndex === quiz.questions.length - 1
@@ -82,7 +86,14 @@ function GroupQuizModal() {
           </>
         )}
 
-        <div className="glass-panel flex max-h-[85vh] w-full flex-col overflow-hidden rounded-2xl">
+        <div
+          ref={dialogRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label={quiz.title || 'Quiz'}
+          tabIndex={-1}
+          className="glass-panel flex max-h-[85vh] w-full flex-col overflow-hidden rounded-2xl"
+        >
           <div className="flex-1 overflow-y-auto p-6">
             {result ? (
               <div className="flex flex-col items-center gap-3 py-6 text-center">

@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useActiveVisit } from '../context/ActiveVisitContext'
 import { useVisitProgress, TONE_LABELS } from '../context/VisitProgressContext'
 import { useGroupSession } from '../context/GroupSessionContext'
 import NoActiveVisit from '../components/NoActiveVisit'
 import { SignpostIcon, MuseumIcon, FloorIcon, RoomIcon } from '../components/icons'
 import useDocumentTitle from '../hooks/useDocumentTitle'
+import useEscapeKey from '../hooks/useEscapeKey'
+import useFocusTrap from '../hooks/useFocusTrap'
 
 const DIRECTIONS_ICONS = {
   museum: MuseumIcon,
@@ -26,6 +28,9 @@ function pillClasses(active, activeClasses) {
 function Opera() {
   useDocumentTitle('Opera')
   const [imageOpen, setImageOpen] = useState(false)
+  const lightboxRef = useRef(null)
+  useFocusTrap(lightboxRef, imageOpen)
+  useEscapeKey(() => setImageOpen(false))
   const { activeVisit } = useActiveVisit()
   const {
     step,
@@ -218,6 +223,11 @@ function Opera() {
 
       {imageOpen && entity.image_url && (
         <div
+          ref={lightboxRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label={entity.alt_text || entity.name}
+          tabIndex={-1}
           className="fixed inset-0 z-100 flex items-center justify-center bg-black/90 p-4"
           onClick={() => setImageOpen(false)}
         >
