@@ -2,15 +2,16 @@
  * <opera-modal>
  * Overlay in sovraimpressione con i dettagli di un'opera (Entity):
  * immagine, autore, descrizione intrinseca, collocazioni nei musei
- * (se fisica) e link esterni. Il tasto "Modifica" — visibile solo a
- * chi ha creato l'opera — trasforma il corpo del popup in un form,
- * sullo stesso schema di <item-modal>.
+ * (se fisica) e link esterni. Il tasto "Modifica" — visibile a chiunque
+ * sia autore (non ai visitatori) — trasforma il corpo del popup in un
+ * form, sullo stesso schema di <item-modal>.
  *
  * A differenza di <item-modal> (aperta solo sulle proprie descrizioni,
  * dal profilo) questo modal si apre anche dal catalogo pubblico su
- * opere di autori diversi dall'utente loggato: il tasto "Modifica" va
- * quindi mostrato solo quando added_by coincide con l'utente corrente
- * (il backend applica comunque lo stesso controllo via isEntityOwner).
+ * opere di autori diversi dall'utente loggato: il tasto "Modifica"
+ * compare comunque per qualunque autore, non solo per chi ha creato
+ * l'opera (il backend, come per i musei, applica solo il controllo di
+ * ruolo, non di proprietà — vedi routes/entities.js).
  *
  * Uso:
  *   document.querySelector('opera-modal').open(entityId);
@@ -111,12 +112,8 @@ class OperaModal extends HTMLElement {
     return this._museums;
   }
 
-  _isOwner() {
-    const u = this._currentUser;
-    const it = this._entity;
-    if (!u || !it) return false;
-    const ownerId = it.added_by?._id || it.added_by;
-    return ownerId && String(ownerId) === String(u._id);
+  _isAuthor() {
+    return this._currentUser?.role === 'author';
   }
 
   async _enterEdit() {
@@ -184,7 +181,7 @@ class OperaModal extends HTMLElement {
   }
 
   _viewFooterHtml() {
-    if (!this._isOwner()) return '';
+    if (!this._isAuthor()) return '';
     const btnBase = `text-[0.72rem] font-semibold tracking-[0.08em] uppercase px-6 py-3 rounded-full border border-transparent cursor-pointer whitespace-nowrap ${TRANSITION}`;
     const btnPrimary = `${btnBase} bg-slate-800 text-white dark:bg-white dark:text-slate-900 hover:opacity-90`;
     return `<button type="button" class="btn primary ${btnPrimary}" id="edit-btn">Modifica</button>`;
