@@ -379,6 +379,7 @@ class VisitModal extends HTMLElement {
       <div class="pt-7 px-5 sm:px-8 pb-7 sm:pb-8">
         ${museumLine ? `<div class="text-[0.66rem] font-semibold tracking-[0.16em] uppercase text-slate-500 dark:text-slate-400 mb-2">${museumLine}</div>` : ''}
         <h2 class="text-2xl font-semibold leading-tight text-slate-800 dark:text-slate-100 mb-3.5" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">${this._esc(v.title)}</h2>
+        ${(v.author?.display_name || v.author?.username) ? `<p class="text-[0.78rem] text-slate-500 dark:text-slate-400 mb-4">A cura di ${this._esc(v.author.display_name || v.author.username)}</p>` : ''}
 
         <div class="flex items-center gap-3 text-[0.78rem] text-slate-500 dark:text-slate-400 pb-4 mb-4 border-b border-slate-400/20">
           <span><strong class="text-slate-800 dark:text-slate-100 font-semibold">${this._fmtDuration(v.estimated_duration_sec)}</strong> durata</span>
