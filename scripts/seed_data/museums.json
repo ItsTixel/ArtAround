@@ -516,7 +516,6 @@
             "icon_type": "service",
             "x": 0.1402,
             "y": 0.7688,
-            "description": "Il guardaroba è all'ingresso principale, prima dei tornelli.",
             "service_key": "Guardaroba"
           },
           {
@@ -524,7 +523,6 @@
             "icon_type": "service",
             "x": 0.3801,
             "y": 0.7688,
-            "description": "I bagni si trovano vicino all'ingresso della Cappella Sistina e nel cortile della Pigna.",
             "service_key": "Toilette"
           },
           {
@@ -532,7 +530,6 @@
             "icon_type": "service",
             "x": 0.6199,
             "y": 0.7688,
-            "description": "Il bookshop principale è vicino all'uscita, accanto alla Scala Elicoidale.",
             "service_key": "Bookshop"
           },
           {
@@ -540,7 +537,6 @@
             "icon_type": "service",
             "x": 0.8598,
             "y": 0.7688,
-            "description": "L'uscita si trova in fondo alla Cappella Sistina, seguendo le indicazioni per la Scala Elicoidale del Bramante.",
             "service_key": "Uscita"
           }
         ]
