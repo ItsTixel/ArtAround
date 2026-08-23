@@ -16,6 +16,7 @@
 import { GLASS_MODAL as GLASS, TRANSITION, TAG_PILL as TAG_CLS } from '/marketplace/js/ui-tokens.js';
 import { setupParagraphList, formatDuration } from '/marketplace/js/paragraph-list.js';
 import { TONE_LABELS } from '/marketplace/js/tone-labels.js';
+import { trapTabKey, focusDialog } from '/marketplace/js/focus-trap.js';
 
 const API_ITEMS    = '/api/items';
 const API_ENTITIES = '/api/entities';
@@ -36,6 +37,7 @@ class ItemModal extends HTMLElement {
     this._mode = 'view'; // 'view' | 'edit'
     this._entities = null;
     this._paragraphList = null;
+    this._previouslyFocused = null;
     this._onKeydown = this._onKeydown.bind(this);
   }
 
@@ -47,10 +49,12 @@ class ItemModal extends HTMLElement {
     this._error = null;
     this._mode = 'view';
 
+    this._previouslyFocused = document.activeElement;
     this.setAttribute('open', '');
     document.body.style.overflow = 'hidden';
     document.addEventListener('keydown', this._onKeydown);
     this._render();
+    focusDialog(this.querySelector('.panel'));
 
     try {
       const res = await fetch(`${API_ITEMS}/${itemId}`, { credentials: 'include' });
@@ -71,10 +75,13 @@ class ItemModal extends HTMLElement {
     document.removeEventListener('keydown', this._onKeydown);
     this._mode = 'view';
     this._render();
+    this._previouslyFocused?.focus?.();
+    this._previouslyFocused = null;
   }
 
   _onKeydown(e) {
-    if (e.key === 'Escape') this.close();
+    if (e.key === 'Escape') { this.close(); return; }
+    trapTabKey(e, () => this.querySelector('.panel'));
   }
 
   _esc(s) {

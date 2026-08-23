@@ -13,6 +13,7 @@
 import { getCurrentUser } from '/marketplace/js/auth-session.js';
 import { GLASS_MODAL as GLASS, TRANSITION } from '/marketplace/js/ui-tokens.js';
 import { TONE_ORDER, TONE_LABELS } from '/marketplace/js/tone-labels.js';
+import { trapTabKey, focusDialog } from '/marketplace/js/focus-trap.js';
 
 const API_VISITS   = '/api/visits';
 const API_USERS    = '/api/users';
@@ -35,6 +36,7 @@ class VisitModal extends HTMLElement {
     this._justAdopted = false;
     this._copying = false;
     this._copyError = null;
+    this._previouslyFocused = null;
     this._onKeydown = this._onKeydown.bind(this);
   }
 
@@ -52,10 +54,12 @@ class VisitModal extends HTMLElement {
     this._copyError = null;
     this._favorited = false;
 
+    this._previouslyFocused = document.activeElement;
     this.setAttribute('open', '');
     document.body.style.overflow = 'hidden';
     document.addEventListener('keydown', this._onKeydown);
     this._render();
+    focusDialog(this.querySelector('.panel'));
 
     try {
       const [visitRes, user] = await Promise.all([
@@ -82,10 +86,13 @@ class VisitModal extends HTMLElement {
     document.body.style.overflow = '';
     document.removeEventListener('keydown', this._onKeydown);
     this._render();
+    this._previouslyFocused?.focus?.();
+    this._previouslyFocused = null;
   }
 
   _onKeydown(e) {
-    if (e.key === 'Escape') this.close();
+    if (e.key === 'Escape') { this.close(); return; }
+    trapTabKey(e, () => this.querySelector('.panel'));
   }
 
   async _loadUserFlags(visitId, userId) {

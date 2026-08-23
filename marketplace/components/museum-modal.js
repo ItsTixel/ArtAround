@@ -9,6 +9,7 @@
  */
 
 import { GLASS_MODAL as GLASS, TRANSITION } from '/marketplace/js/ui-tokens.js';
+import { trapTabKey, focusDialog } from '/marketplace/js/focus-trap.js';
 
 const API_MUSEUMS = '/api/museums';
 const VISITS_URL  = '/marketplace/pages/visits.html';
@@ -19,6 +20,7 @@ class MuseumModal extends HTMLElement {
     this._museum = null;
     this._loading = false;
     this._error = null;
+    this._previouslyFocused = null;
     this._onKeydown = this._onKeydown.bind(this);
   }
 
@@ -29,10 +31,12 @@ class MuseumModal extends HTMLElement {
     this._loading = true;
     this._error = null;
 
+    this._previouslyFocused = document.activeElement;
     this.setAttribute('open', '');
     document.body.style.overflow = 'hidden';
     document.addEventListener('keydown', this._onKeydown);
     this._render();
+    focusDialog(this.querySelector('.panel'));
 
     try {
       const res = await fetch(`${API_MUSEUMS}/${museumId}`);
@@ -52,10 +56,13 @@ class MuseumModal extends HTMLElement {
     document.body.style.overflow = '';
     document.removeEventListener('keydown', this._onKeydown);
     this._render();
+    this._previouslyFocused?.focus?.();
+    this._previouslyFocused = null;
   }
 
   _onKeydown(e) {
-    if (e.key === 'Escape') this.close();
+    if (e.key === 'Escape') { this.close(); return; }
+    trapTabKey(e, () => this.querySelector('.panel'));
   }
 
   _esc(s) {
