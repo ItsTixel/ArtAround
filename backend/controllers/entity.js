@@ -66,7 +66,8 @@ async function create(req, res) {
 
 async function update(req, res) {
   try {
-    const entity = req.entity; // impostato da isEntityOwner
+    const entity = await Entity.findById(req.params.id);
+    if (!entity) return res.status(404).json({ error: 'Entity not found' });
     entity.set(req.body);
     await entity.save();
     const populated = await entity.populate('placements.museum');
@@ -78,7 +79,9 @@ async function update(req, res) {
 
 async function remove(req, res) {
   try {
-    await req.entity.deleteOne(); // req.entity impostato da isEntityOwner
+    const entity = await Entity.findById(req.params.id);
+    if (!entity) return res.status(404).json({ error: 'Entity not found' });
+    await entity.deleteOne();
     res.status(204).send();
   } catch (e) {
     res.status(500).json({ error: e.message });
