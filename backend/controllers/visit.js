@@ -310,7 +310,9 @@ async function create(req, res) {
     await User.findByIdAndUpdate(req.user.id, { $addToSet: { adopted_visits: visit._id } });
 
     // Le visite di gruppo sono sempre gratuite: nessun Order da registrare.
-    if (!visit.is_group) {
+    // L'autore che crea la visita non è un vero acquirente: niente Order
+    // quando acquirente e venditore coinciderebbero.
+    if (!visit.is_group && req.user.id !== visit.author.toString()) {
       await Order.findOneAndUpdate(
         { buyer: req.user.id, visit: visit._id },
         { buyer: req.user.id, visit: visit._id, seller: visit.author, price_paid: visit.base_price },
