@@ -123,7 +123,7 @@ class MuseumModal extends HTMLElement {
     return `
       <div class="relative h-[190px] bg-slate-300/20 dark:bg-slate-800/40 border-b border-slate-400/20 flex items-center justify-center overflow-hidden shrink-0">
         ${m.image_url
-          ? `<img class="absolute inset-0 w-full h-full object-cover" src="${this._esc(m.image_url)}" alt="" loading="lazy">`
+          ? `<img class="absolute inset-0 w-full h-full object-cover" src="${this._esc(m.image_url)}" alt="${this._esc(m.name)}" loading="lazy">`
           : `<div class="absolute inset-0" style="background-image: repeating-linear-gradient(135deg, transparent 0 11px, rgba(100,116,139,0.12) 11px 12px);"></div>
              <svg class="relative w-12 h-12 fill-slate-400 dark:fill-slate-500" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                <path d="M22 11V9L12 2 2 9v2h2v9h5v-5h6v5h5v-9h2z"/>

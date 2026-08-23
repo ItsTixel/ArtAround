@@ -344,7 +344,7 @@ class VisitModal extends HTMLElement {
         <li class="flex gap-3.5 items-start">
           <span class="text-[0.72rem] pt-[0.15rem] shrink-0" style="font-family: var(--font-mono); color: var(--color-accent, #9e7a46);">${String(i + 1).padStart(2, '0')}</span>
           <div class="w-14 h-14 shrink-0 bg-slate-300/20 dark:bg-slate-800/40 border border-slate-400/20 rounded-md overflow-hidden">${entity.image_url
-            ? `<img class="w-full h-full object-cover" src="${this._esc(entity.image_url)}" alt="" loading="lazy">`
+            ? `<img class="w-full h-full object-cover" src="${this._esc(entity.image_url)}" alt="${this._esc(entity.alt_text || entity.name || '')}" loading="lazy">`
             : `<span class="block w-full h-full" style="background-image: repeating-linear-gradient(135deg, transparent 0 6px, rgba(100,116,139,0.12) 6px 7px);"></span>`}
           </div>
           <div class="min-w-0 flex-1">
@@ -358,12 +358,12 @@ class VisitModal extends HTMLElement {
         </li>`;
     }).join('');
 
-    const bannerImage = steps.find(s => s.entity?.image_url)?.entity?.image_url || '';
+    const bannerEntity = steps.find(s => s.entity?.image_url)?.entity;
 
     return `
       <div class="relative h-[190px] bg-slate-300/20 dark:bg-slate-800/40 border-b border-slate-400/20 flex items-center justify-center overflow-hidden shrink-0">
-        ${bannerImage
-          ? `<img class="absolute inset-0 w-full h-full object-cover" src="${this._esc(bannerImage)}" alt="" loading="lazy">`
+        ${bannerEntity
+          ? `<img class="absolute inset-0 w-full h-full object-cover" src="${this._esc(bannerEntity.image_url)}" alt="${this._esc(bannerEntity.alt_text || bannerEntity.name || '')}" loading="lazy">`
           : `<div class="absolute inset-0" style="background-image: repeating-linear-gradient(135deg, transparent 0 11px, rgba(100,116,139,0.12) 11px 12px);"></div>`}
         ${isInfra ? `<span class="absolute top-3 left-3 z-[2] text-[0.62rem] tracking-[0.16em] uppercase rounded-full px-2.5 py-1.5 ${GLASS} text-slate-800 dark:text-slate-100" style="font-family: var(--font-mono);">Inframuseale</span>` : ''}
         <span class="relative z-[1] text-[0.68rem] tracking-[0.14em] uppercase px-3 py-1.5 rounded-full ${GLASS} text-slate-800 dark:text-slate-100 text-center max-w-[80%]" style="font-family: var(--font-mono);">${this._esc(v.title)}</span>

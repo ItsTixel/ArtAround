@@ -68,7 +68,7 @@ function operaImages(steps = []) {
   const images = [];
   for (const s of sorted) {
     const url = s.entity?.image_url;
-    if (url && !seen.has(url)) { seen.add(url); images.push(url); }
+    if (url && !seen.has(url)) { seen.add(url); images.push({ url, alt: s.entity.alt_text || s.entity.name || '' }); }
   }
   return images;
 }
@@ -225,7 +225,7 @@ function normalizeOrderVisit(visit) {
     basePrice: visit.base_price || 0,
     tags: [],
     museumDetails: [],
-    images: visit.image_url ? [visit.image_url] : [],
+    images: visit.image_url ? [{ url: visit.image_url, alt: visit.title || '' }] : [],
     owned: ownedIds.has(id),
     favorited: favoritedIds.has(id),
   };
@@ -333,7 +333,7 @@ function renderDescriptions(items, emptyMessage) {
     card.innerHTML = `
       <div class="relative h-44 bg-slate-300/20 dark:bg-slate-800/40 flex items-center justify-center overflow-hidden">
         ${artwork.image_url
-          ? `<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="${esc(artwork.image_url)}" alt="" loading="lazy">`
+          ? `<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="${esc(artwork.image_url)}" alt="${esc(artwork.alt_text || artwork.name || '')}" loading="lazy">`
           : `<div class="absolute inset-0" style="background-image: repeating-linear-gradient(135deg, transparent 0 11px, rgba(100,116,139,0.12) 11px 12px);"></div>`}
       </div>
       <div class="p-6 flex-1 flex flex-col gap-2.5">
@@ -499,6 +499,7 @@ function updateHeroAvatar(user) {
   if (!img || !initial) return;
   if (user.avatar_url) {
     img.src = user.avatar_url;
+    img.alt = `Foto profilo di ${(user.display_name || user.username || '').trim()}`;
     img.hidden = false;
     initial.hidden = true;
   } else {

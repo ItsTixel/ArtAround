@@ -4,7 +4,8 @@
  *
  * Property `data` (preferita agli attributi, supporta l'intero oggetto):
  *   { id, title, description, durationSec, steps, basePrice,
- *     tags[], tones[], museumDetails[{id, short, name, city}], images[] }
+ *     tags[], tones[], museumDetails[{id, short, name, city}],
+ *     images[{url, alt}] }
  */
 
 import { GLASS, GLASS_STRONG, TRANSITION, TAG_PILL } from '/marketplace/js/ui-tokens.js';
@@ -81,7 +82,9 @@ class VisitCard extends HTMLElement {
     const museums = v.museumDetails || [];
     const isInfra = museums.length > 1;
     const museumLine = this._museumLine(museums);
-    const images = (Array.isArray(v.images) && v.images.length) ? v.images : (v.image ? [v.image] : []);
+    const images = (Array.isArray(v.images) && v.images.length)
+      ? v.images
+      : (v.image ? [{ url: v.image, alt: v.title || '' }] : []);
 
     this.className = 'block h-full';
     this.innerHTML = `
@@ -91,7 +94,7 @@ class VisitCard extends HTMLElement {
         <div class="relative z-[4] w-32 shrink-0 self-stretch sm:self-auto sm:w-full sm:h-44 bg-slate-300/20 dark:bg-slate-800/40 flex items-center justify-center overflow-hidden">
           ${images.length
             ? `<div class="hero-scroll absolute inset-0 flex overflow-x-auto snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-                 ${images.map(img => `<img class="w-full h-full shrink-0 snap-center object-cover transition-transform duration-500 group-hover:scale-105" src="${this._esc(img)}" alt="" loading="lazy">`).join('')}
+                 ${images.map(img => `<img class="w-full h-full shrink-0 snap-center object-cover transition-transform duration-500 group-hover:scale-105" src="${this._esc(img.url)}" alt="${this._esc(img.alt || '')}" loading="lazy">`).join('')}
                </div>`
             : `<div class="absolute inset-0" style="background-image: repeating-linear-gradient(135deg, transparent 0 11px, rgba(100,116,139,0.12) 11px 12px);"></div>`
           }

@@ -60,7 +60,7 @@ class MuseumCard extends HTMLElement {
 
         <div class="relative w-32 shrink-0 self-stretch sm:self-auto sm:w-full sm:h-44 bg-slate-300/20 dark:bg-slate-800/40 flex items-center justify-center overflow-hidden">
           ${image
-            ? `<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="${this._escape(image)}" alt="" loading="lazy">`
+            ? `<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="${this._escape(image)}" alt="${this._escape(name)}" loading="lazy">`
             : `<svg class="relative w-11 h-11 fill-slate-400 dark:fill-slate-500 transition-colors group-hover:fill-slate-600 dark:group-hover:fill-slate-300" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                  <path d="M22 11V9L12 2 2 9v2h2v9h5v-5h6v5h5v-9h2z"/>
                </svg>`}

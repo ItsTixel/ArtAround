@@ -23,7 +23,7 @@ function toVisitCardData(v) {
 	const images = [];
 	for (const step of [...(v.steps || [])].sort((a, b) => a.order - b.order)) {
 		const url = step.entity?.image_url;
-		if (url && !seen.has(url)) { seen.add(url); images.push(url); }
+		if (url && !seen.has(url)) { seen.add(url); images.push({ url, alt: step.entity.alt_text || step.entity.name || '' }); }
 	}
 	return { id: v._id, title: v.title || '', images, museumDetails, durationSec: v.estimated_duration_sec || 0 };
 }
@@ -39,6 +39,7 @@ function entityRow({ rowClass, thumbClass, textClass, entity }) {
 			<div class="meta"></div>
 		</div>`;
 	row.querySelector('img').src = entity.image_url || '';
+	row.querySelector('img').alt = entity.alt_text || entity.name || '';
 	row.querySelector('.name').textContent = entity.name || '';
 	row.querySelector('.meta').textContent = museum?.name || '';
 	return row;

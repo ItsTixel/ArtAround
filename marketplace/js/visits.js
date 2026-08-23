@@ -60,7 +60,7 @@ function operaImages(steps = []) {
   const images = [];
   for (const s of sorted) {
     const url = s.entity?.image_url;
-    if (url && !seen.has(url)) { seen.add(url); images.push(url); }
+    if (url && !seen.has(url)) { seen.add(url); images.push({ url, alt: s.entity.alt_text || s.entity.name || '' }); }
   }
   return images;
 }

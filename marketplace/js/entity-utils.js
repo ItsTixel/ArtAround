@@ -17,6 +17,7 @@ export function normalizeEntity(e, favoritedIds = new Set()) {
     artworkAuthor: e.artwork_author || '',
     description:   e.description || '',
     imageUrl:      e.image_url || '',
+    altText:       e.alt_text || '',
     isPhysical:    !!e.is_physical,
     tags:          e.tags || [],
     museums,

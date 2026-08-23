@@ -246,7 +246,7 @@ function renderPickerCard(entity) {
   btn.type = 'button';
   btn.className = 'picker-card';
   btn.innerHTML = `
-    <div class="picker-card-thumb">${entity.image_url ? `<img src="${esc(entity.image_url)}" alt="" loading="lazy">` : ''}</div>
+    <div class="picker-card-thumb">${entity.image_url ? `<img src="${esc(entity.image_url)}" alt="${esc(entity.alt_text || entity.name || '')}" loading="lazy">` : ''}</div>
     <div class="picker-card-body">
       <span class="picker-card-name">${esc(entity.name)}</span>
       <span class="picker-card-author">${esc(entity.artwork_author || 'Autore sconosciuto')}</span>
@@ -398,7 +398,7 @@ async function openConfigure(entity) {
   document.getElementById('picker-configure').hidden = false;
 
   document.getElementById('picker-configure-entity').innerHTML = `
-    ${entity.image_url ? `<img src="${esc(entity.image_url)}" alt="">` : ''}
+    ${entity.image_url ? `<img src="${esc(entity.image_url)}" alt="${esc(entity.alt_text || entity.name || '')}">` : ''}
     <span class="picker-configure-entity-body">
       <span class="picker-configure-entity-name">${esc(entity.name)}</span>
       <span class="picker-configure-entity-author">${esc(entity.artwork_author || 'Autore sconosciuto')}</span>
@@ -434,7 +434,7 @@ function confirmStep() {
     .map(cb => ({ id: cb.value }));
 
   const stepData = {
-    entity: { id: pickerSelectedEntity._id, name: pickerSelectedEntity.name, imageUrl: pickerSelectedEntity.image_url },
+    entity: { id: pickerSelectedEntity._id, name: pickerSelectedEntity.name, imageUrl: pickerSelectedEntity.image_url, altText: pickerSelectedEntity.alt_text },
     museum: { id: museumId, name: museumOpt.textContent },
     items,
     introNote: document.getElementById('step-intro-note').value.trim(),
@@ -469,7 +469,7 @@ function renderStepsList() {
     row.setAttribute('aria-label', `Modifica tappa ${i + 1}: ${step.entity.name}`);
     row.innerHTML = `
       <span class="step-row-order">${i + 1}</span>
-      <span class="step-row-thumb">${step.entity.imageUrl ? `<img src="${esc(step.entity.imageUrl)}" alt="">` : ''}</span>
+      <span class="step-row-thumb">${step.entity.imageUrl ? `<img src="${esc(step.entity.imageUrl)}" alt="${esc(step.entity.altText || step.entity.name || '')}">` : ''}</span>
       <span class="step-row-body">
         <span class="step-row-name">${esc(step.entity.name)}</span>
         <span class="step-row-meta">${esc(step.museum.name)} · ${step.items.length} descrizion${step.items.length === 1 ? 'e' : 'i'}</span>
@@ -670,7 +670,7 @@ function applyStepsToForm(visit) {
     .slice()
     .sort((a, b) => a.order - b.order)
     .map(s => ({
-      entity: { id: s.entity._id, name: s.entity.name, imageUrl: s.entity.image_url },
+      entity: { id: s.entity._id, name: s.entity.name, imageUrl: s.entity.image_url, altText: s.entity.alt_text },
       museum: { id: s.museum._id, name: s.museum.name },
       items: (s.items || []).map(it => ({ id: it._id })),
       introNote: s.intro_note || '',

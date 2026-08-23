@@ -137,7 +137,7 @@ class OperaModal extends HTMLElement {
     return `
       <div class="relative h-[190px] bg-slate-300/20 dark:bg-slate-800/40 border-b border-slate-400/20 flex items-center justify-center overflow-hidden shrink-0">
         ${it.image_url
-          ? `<img class="absolute inset-0 w-full h-full object-cover" src="${this._esc(it.image_url)}" alt="" loading="lazy">`
+          ? `<img class="absolute inset-0 w-full h-full object-cover" src="${this._esc(it.image_url)}" alt="${this._esc(it.alt_text || it.name || '')}" loading="lazy">`
           : `<div class="absolute inset-0" style="background-image: repeating-linear-gradient(135deg, transparent 0 11px, rgba(100,116,139,0.12) 11px 12px);"></div>`}
       </div>
 
