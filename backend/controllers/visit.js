@@ -345,6 +345,12 @@ async function update(req, res) {
       return res.status(400).json({ error: 'Cannot change visit type after creation.' });
     }
 
+    // Una visita già pubblica non può tornare privata: il contrario resta
+    // permesso (una visita privata può diventare pubblica).
+    if (visit.is_public && req.body.is_public === false) {
+      return res.status(400).json({ error: 'Cannot make a public visit private again.' });
+    }
+
     // Il quiz è facoltativo e, quando c'è, 1:1 e non condiviso: il payload
     // può aggiungerne uno nuovo, sostituire il contenuto di quello esistente
     // (stesso riferimento, non ne cambia l'id) o rimuoverlo del tutto con
