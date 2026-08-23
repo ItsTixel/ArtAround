@@ -216,9 +216,13 @@ function buildMapSlotRow(slot) {
   jsonLabel.style.marginTop = '0.9rem';
   row.appendChild(jsonLabel);
 
+  const jsonStatusId = `json-status-${slot.id}`;
+
   const jsonInput = document.createElement('input');
   jsonInput.type = 'file';
   jsonInput.accept = 'application/json,.json';
+  jsonInput.setAttribute('aria-describedby', jsonStatusId);
+  jsonInput.setAttribute('aria-invalid', String(!!slot.mapDataError));
   jsonInput.addEventListener('change', async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -236,9 +240,11 @@ function buildMapSlotRow(slot) {
   row.appendChild(jsonInput);
 
   const jsonStatus = document.createElement('span');
+  jsonStatus.id = jsonStatusId;
   jsonStatus.style.cssText = 'display:block;font-size:0.78rem;margin-top:0.3rem;';
   if (slot.mapDataError) {
     jsonStatus.style.color = 'red';
+    jsonStatus.setAttribute('role', 'alert');
     jsonStatus.textContent = slot.mapDataError;
     row.appendChild(jsonStatus);
   } else if (slot.mapData) {

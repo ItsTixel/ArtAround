@@ -36,11 +36,17 @@ roleButtons.forEach((btn) => {
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const username = document.getElementById('username').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    const usernameField = document.getElementById('username');
+    const emailField = document.getElementById('email');
+    const passwordField = document.getElementById('password');
+    const username = usernameField.value;
+    const email = emailField.value;
+    const password = passwordField.value;
     const feedbackMessage = document.getElementById('feedbackMessage');
 
+    usernameField.removeAttribute('aria-invalid');
+    emailField.removeAttribute('aria-invalid');
+    passwordField.removeAttribute('aria-invalid');
     feedbackMessage.classList.remove('is-success', 'is-error');
     feedbackMessage.classList.add('is-pending');
     feedbackMessage.textContent = "Registrazione in corso…";
@@ -71,6 +77,9 @@ form.addEventListener('submit', async (e) => {
             feedbackMessage.classList.remove('is-pending');
             feedbackMessage.classList.add('is-error');
             feedbackMessage.textContent = data.message || "Errore durante la registrazione.";
+            usernameField.setAttribute('aria-invalid', 'true');
+            emailField.setAttribute('aria-invalid', 'true');
+            passwordField.setAttribute('aria-invalid', 'true');
         }
     } catch (error) {
         console.error("Errore di rete:", error);

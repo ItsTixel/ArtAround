@@ -171,18 +171,18 @@
                   <code>points</code> (i punti di interesse cliccabili). Il resto lo mette insieme il server.
                 </p>
                 <div id="maps-list" class="dynamic-list"></div>
-                <button type="button" id="add-map" class="btn-secondary">+ Aggiungi mappa</button>
-                <p class="feedback" id="maps-feedback"></p>
+                <button type="button" id="add-map" class="btn-secondary" aria-describedby="maps-feedback">+ Aggiungi mappa</button>
+                <p class="feedback" id="maps-feedback" role="alert"></p>
               </div>
             </div>
 
           </div>
           </div>
 
-          <button type="submit" id="wizard-next" class="carousel-arrow carousel-arrow-next" aria-label="Sezione successiva"></button>
+          <button type="submit" id="wizard-next" class="carousel-arrow carousel-arrow-next" aria-label="Sezione successiva" aria-describedby="form-feedback"></button>
         </div>
 
-        <p class="feedback" id="form-feedback"></p>
+        <p class="feedback" id="form-feedback" role="alert"></p>
       </form>
     </section>
   </main>

@@ -25,10 +25,14 @@ if (redirectParam) {
 log.addEventListener('submit', async (e) => {
     e.preventDefault(); // Blocca il ricaricamento della pagina
 
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const feedbackMessage = document.getElementById('feedbackMessage'); // Il "Password o email errati" sotto il submit 
+    const emailField = document.getElementById('email');
+    const passwordField = document.getElementById('password');
+    const email = emailField.value;
+    const password = passwordField.value;
+    const feedbackMessage = document.getElementById('feedbackMessage'); // Il "Password o email errati" sotto il submit
 
+    emailField.removeAttribute('aria-invalid');
+    passwordField.removeAttribute('aria-invalid');
     feedbackMessage.classList.remove('is-success', 'is-error');
     feedbackMessage.classList.add('is-pending');
     feedbackMessage.textContent = "Connessione in corso…";
@@ -60,6 +64,8 @@ log.addEventListener('submit', async (e) => {
             feedbackMessage.classList.remove('is-pending');
             feedbackMessage.classList.add('is-error');
             feedbackMessage.textContent = data.message || "Credenziali non valide.";
+            emailField.setAttribute('aria-invalid', 'true');
+            passwordField.setAttribute('aria-invalid', 'true');
         }
     } catch (error) {
         console.error("Errore di rete:", error);

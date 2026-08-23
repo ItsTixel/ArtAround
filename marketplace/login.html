@@ -35,11 +35,11 @@
                 <form id="loginForm" class="auth-form">
                     <div class="field">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required autocomplete="email" placeholder="es: autore1@example.com">
+                        <input type="email" id="email" name="email" required autocomplete="email" placeholder="es: autore1@example.com" aria-describedby="feedbackMessage">
                     </div>
                     <div class="field">
                         <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required autocomplete="current-password" placeholder="es: 12345678">
+                        <input type="password" id="password" name="password" required autocomplete="current-password" placeholder="es: 12345678" aria-describedby="feedbackMessage">
                     </div>
                     <button type="submit" class="btn-primary">Entra</button>
                 </form>
@@ -47,7 +47,7 @@
                 <div class="auth-divider">oppure</div>
                 <div class="google-btn-wrap" id="google-signin-btn"></div>
 
-                <p id="feedbackMessage" class="feedback"></p>
+                <p id="feedbackMessage" class="feedback" role="alert"></p>
 
                 <p class="auth-switch">
                     Non hai un account? <a id="switchLink" href="/marketplace/register.html">Registrati</a>
