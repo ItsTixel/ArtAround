@@ -61,6 +61,9 @@ function VisitInfoBody({ visit }) {
           <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-accent">{museumLine}</p>
         )}
         <h2 className="mb-3.5 font-serif text-xl font-semibold text-text">{visit.title}</h2>
+        {(visit.author?.display_name || visit.author?.username) && (
+          <p className="mb-4 text-xs text-text-muted">A cura di {visit.author.display_name || visit.author.username}</p>
+        )}
 
         <div className="mb-4 flex items-center gap-3 border-b border-border pb-4 text-xs text-text-muted">
           {formatDuration(visit.estimated_duration_sec) && (

@@ -33,8 +33,8 @@ function GroupVisitBody({ preview }) {
         {STATUS_LABELS[preview.status] || preview.status}
       </span>
       <h2 className="mt-1 font-serif text-xl font-semibold text-text">{preview.title}</h2>
-      {preview.author?.display_name && (
-        <p className="mt-1 text-sm text-text-muted">A cura di {preview.author.display_name}</p>
+      {(preview.author?.display_name || preview.author?.username) && (
+        <p className="mt-1 text-sm text-text-muted">A cura di {preview.author.display_name || preview.author.username}</p>
       )}
       {preview.description && <p className="mt-3 text-sm text-text">{preview.description}</p>}
     </div>
