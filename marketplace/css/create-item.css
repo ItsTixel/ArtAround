@@ -110,6 +110,29 @@
 
 .paragraph-row.dragging { opacity: 0.5; }
 
+/* Frecce su/giù: alternativa al trascinamento, mostrata solo su
+ * mobile (vedi media query in fondo al file) dove il drag handle
+ * è scomodo da usare col dito. */
+.paragraph-row-arrows {
+  display: none;
+  align-items: center;
+  gap: 0.35rem;
+}
+.paragraph-row-arrows button {
+  flex-shrink: 0;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  width: 26px;
+  height: 26px;
+  line-height: 1;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition);
+}
+.paragraph-row-arrows button:hover:not(:disabled) { color: var(--color-text); border-color: var(--color-text-muted); }
+.paragraph-row-arrows button:disabled { opacity: 0.3; cursor: default; }
+
 .paragraph-index {
   font-family: var(--font-sans);
   font-size: 0.68rem;
@@ -131,4 +154,9 @@
   color: var(--color-text-muted);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .paragraph-drag-handle { display: none; }
+  .paragraph-row-arrows { display: flex; }
 }

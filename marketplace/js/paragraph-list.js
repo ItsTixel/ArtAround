@@ -7,9 +7,10 @@
  *  scrivere; appena ci si scrive dentro, ne viene aggiunto uno nuovo
  *  in coda. Se invece si lascia vuoto un paragrafo e si passa a
  *  un altro (blur), quel paragrafo vuoto viene rimosso. L'ordine dei
- *  paragrafi si può cambiare trascinandoli dalla maniglia (l'ultimo
- *  paragrafo vuoto, essendo solo il posto per scriverne uno nuovo,
- *  resta sempre in fondo e non è trascinabile).
+ *  paragrafi si può cambiare trascinandoli dalla maniglia, o su
+ *  mobile con le frecce su/giù (l'ultimo paragrafo vuoto, essendo
+ *  solo il posto per scriverne uno nuovo, resta sempre in fondo e
+ *  non si può spostare).
  * ============================================================ */
 
 // Velocità media di lettura della sintesi vocale (window.speechSynthesis a
@@ -55,7 +56,30 @@ export function setupParagraphList(container, initialTexts = []) {
       handle.classList.toggle('is-disabled', isPlaceholder);
       handle.setAttribute('aria-hidden', String(isPlaceholder));
       handle.tabIndex = isPlaceholder ? -1 : 0;
+
+      const upBtn = row.querySelector('.paragraph-up');
+      const downBtn = row.querySelector('.paragraph-down');
+      upBtn.hidden = isPlaceholder;
+      downBtn.hidden = isPlaceholder;
+      upBtn.disabled = i === 0;
+      downBtn.disabled = i === r.length - 2;
     });
+  }
+
+  /* Spostamento via frecce (alternativa al trascinamento, usata su
+   * mobile dove il drag non è comodo): sposta il nodo riga stesso,
+   * come il drag, così il testo scritto segue senza perdite. */
+  function moveRow(row, direction) {
+    const r = [...rows()];
+    const idx = r.indexOf(row);
+    const targetIdx = idx + direction;
+    if (targetIdx < 0 || targetIdx >= r.length - 1) return;
+    if (direction < 0) {
+      container.insertBefore(row, r[targetIdx]);
+    } else {
+      container.insertBefore(r[targetIdx], row);
+    }
+    renumber();
   }
 
   function ensureTrailingEmpty() {
@@ -70,6 +94,10 @@ export function setupParagraphList(container, initialTexts = []) {
       <div class="paragraph-row-head">
         <div class="paragraph-row-head-left">
           <span class="paragraph-drag-handle" draggable="true" aria-label="Trascina per riordinare" title="Trascina per riordinare">⠿</span>
+          <span class="paragraph-row-arrows">
+            <button type="button" class="paragraph-up" title="Sposta su" aria-label="Sposta su">↑</button>
+            <button type="button" class="paragraph-down" title="Sposta giù" aria-label="Sposta giù">↓</button>
+          </span>
           <span class="paragraph-index"></span>
         </div>
         <div class="paragraph-row-meta">
@@ -101,6 +129,8 @@ export function setupParagraphList(container, initialTexts = []) {
       renumber();
       ensureTrailingEmpty();
     });
+    row.querySelector('.paragraph-up').addEventListener('click', () => moveRow(row, -1));
+    row.querySelector('.paragraph-down').addEventListener('click', () => moveRow(row, 1));
 
     container.appendChild(row);
     renumber();
