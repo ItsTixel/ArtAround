@@ -18,7 +18,7 @@ router.get('/:id', controller.getById);
 
 // Solo gli autori possono creare/modificare/eliminare musei.
 router.post('/', verifyToken, requireRole('author'), uploadMapImages, controller.create);
-router.put('/:id', verifyToken, requireRole('author'), controller.update);
+router.put('/:id', verifyToken, requireRole('author'), uploadMapImages, controller.update);
 router.delete('/:id', verifyToken, requireRole('author'), controller.remove);
 
 module.exports = router;
