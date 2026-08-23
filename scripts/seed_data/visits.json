@@ -1,10 +1,10 @@
-[   
+[
   {
     "_id": {
       "$oid": "eee000000000000000000090"
     },
     "is_group": true,
-    "code":"1111",
+    "code": "1111",
     "quiz": {
       "$oid": "fee000000000000000000001"
     },
@@ -1142,6 +1142,322 @@
     },
     "updatedAt": {
       "$date": "2026-08-14T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "eee000000000000000000016"
+    },
+    "title": "I capolavori dei Musei Vaticani",
+    "description": "Un percorso tra i tesori più celebri dei Musei Vaticani: dalla volta della Cappella Sistina alle Stanze di Raffaello, dalle sculture classiche del Museo Pio-Clementino alla Galleria delle carte geografiche.",
+    "museum": [
+      {
+        "$oid": "bbb000000000000000000007"
+      }
+    ],
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "steps": [
+      {
+        "_id": {
+          "$oid": "fff000000000000000000121"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000048"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000007"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000146"
+          },
+          {
+            "$oid": "ddd000000000000000000147"
+          },
+          {
+            "$oid": "ddd000000000000000000148"
+          },
+          {
+            "$oid": "ddd000000000000000000149"
+          }
+        ],
+        "logistic_note": "Entra nella Pinacoteca Vaticana e raggiungi la Sala VIII: la grande tavola sulla parete di fondo è l'ultima opera di Raffaello.",
+        "intro_note": "L'ultimo quadro mai dipinto da Raffaello, rimasto incompiuto alla sua morte improvvisa.",
+        "order": 1
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000122"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000049"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000007"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000150"
+          },
+          {
+            "$oid": "ddd000000000000000000151"
+          },
+          {
+            "$oid": "ddd000000000000000000152"
+          },
+          {
+            "$oid": "ddd000000000000000000153"
+          }
+        ],
+        "logistic_note": "Nella Sala IX della Pinacoteca Vaticana, cerca il piccolo dipinto quasi monocromo dedicato a Leonardo da Vinci.",
+        "intro_note": "Un dipinto rimasto a metà: qui puoi vedere come lavorava davvero Leonardo, passo dopo passo.",
+        "order": 2
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000123"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000050"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000007"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000154"
+          },
+          {
+            "$oid": "ddd000000000000000000155"
+          },
+          {
+            "$oid": "ddd000000000000000000156"
+          },
+          {
+            "$oid": "ddd000000000000000000157"
+          }
+        ],
+        "logistic_note": "Esci dalla Pinacoteca e raggiungi il Museo Pio-Clementino: nel Cortile Ottagono, la statua con i serpenti è in una nicchia dedicata.",
+        "intro_note": "Ritrovata per caso sottoterra nel 1506, questa statua fece accorrere subito Michelangelo a vederla.",
+        "order": 3
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000124"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000051"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000007"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000158"
+          },
+          {
+            "$oid": "ddd000000000000000000159"
+          },
+          {
+            "$oid": "ddd000000000000000000160"
+          },
+          {
+            "$oid": "ddd000000000000000000161"
+          }
+        ],
+        "logistic_note": "Nello stesso Cortile Ottagono, di fronte al Laocoonte: la statua che dà il nome a questo intero cortile.",
+        "intro_note": "Per secoli considerata la statua più bella mai scolpita, e origine del nome «Belvedere».",
+        "order": 4
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000125"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000052"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000007"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000162"
+          },
+          {
+            "$oid": "ddd000000000000000000163"
+          },
+          {
+            "$oid": "ddd000000000000000000164"
+          },
+          {
+            "$oid": "ddd000000000000000000165"
+          }
+        ],
+        "logistic_note": "Raggiungi la Sala delle Muse: al centro, su una base rialzata, troverai una statua senza testa né arti.",
+        "intro_note": "Una statua incompleta che Michelangelo si rifiutò di far completare: la trovava già perfetta così.",
+        "order": 5
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000126"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000053"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000007"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000166"
+          },
+          {
+            "$oid": "ddd000000000000000000167"
+          },
+          {
+            "$oid": "ddd000000000000000000168"
+          },
+          {
+            "$oid": "ddd000000000000000000169"
+          }
+        ],
+        "logistic_note": "Dal Museo Pio-Clementino imbocca il lungo corridoio della Galleria delle Carte Geografiche, sulla strada verso le Stanze di Raffaello.",
+        "intro_note": "Attraversa un corridoio-atlante lungo più di cento metri, dipinto quasi cinquecento anni fa.",
+        "order": 6
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000127"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000047"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000007"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000142"
+          },
+          {
+            "$oid": "ddd000000000000000000143"
+          },
+          {
+            "$oid": "ddd000000000000000000144"
+          },
+          {
+            "$oid": "ddd000000000000000000145"
+          }
+        ],
+        "logistic_note": "Dalla Galleria delle Carte Geografiche entra nelle Stanze di Raffaello: nella Stanza di Eliodoro, cerca la parete sopra la finestra.",
+        "intro_note": "Una prigione buia, un angelo di luce, e quattro modi diversi di illuminare la stessa notte.",
+        "order": 7
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000128"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000046"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000007"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000138"
+          },
+          {
+            "$oid": "ddd000000000000000000139"
+          },
+          {
+            "$oid": "ddd000000000000000000140"
+          },
+          {
+            "$oid": "ddd000000000000000000141"
+          }
+        ],
+        "logistic_note": "Prosegui nella stanza accanto, la Stanza della Segnatura: cerca la parete con i filosofi antichi.",
+        "intro_note": "Un'intera sala di filosofi antichi, con qualche volto a te già familiare nascosto tra la folla.",
+        "order": 8
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000129"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000044"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000007"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000130"
+          },
+          {
+            "$oid": "ddd000000000000000000131"
+          },
+          {
+            "$oid": "ddd000000000000000000132"
+          },
+          {
+            "$oid": "ddd000000000000000000133"
+          }
+        ],
+        "logistic_note": "Dalle Stanze di Raffaello raggiungi la Cappella Sistina, il gran finale del percorso: alza lo sguardo verso il centro della volta.",
+        "intro_note": "Il gran finale del percorso: il gesto più celebre della storia dell'arte, due dita che non si toccano ancora.",
+        "order": 9
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000130"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000045"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000007"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000134"
+          },
+          {
+            "$oid": "ddd000000000000000000135"
+          },
+          {
+            "$oid": "ddd000000000000000000136"
+          },
+          {
+            "$oid": "ddd000000000000000000137"
+          }
+        ],
+        "logistic_note": "Concludi la visita guardando la grande parete dietro l'altare, di fronte a te: è l'ultima opera di Michelangelo in questa cappella.",
+        "intro_note": "L'ultima tappa: vent'anni dopo la volta, Michelangelo torna nella stessa cappella per dipingere la fine dei tempi.",
+        "order": 10
+      }
+    ],
+    "base_price": 0,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Transfiguration Raphael.jpg?width=1280",
+    "tags": [
+      "musei-vaticani",
+      "roma",
+      "cappella-sistina",
+      "raffaello",
+      "michelangelo",
+      "scultura-antica"
+    ],
+    "is_public": true,
+    "estimated_duration_sec": 966,
+    "is_group": false,
+    "createdAt": {
+      "$date": "2026-08-23T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-23T00:00:00Z"
     }
   }
 ]

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1480 480" font-family="sans-serif">
+  <rect width="1480" height="480" fill="#f3f1ea"/>
+  <rect x="40" y="58" width="1400" height="270" fill="none" stroke="#8a7a5c" stroke-width="4"/>
+  <text x="170" y="46" text-anchor="middle" font-size="14" font-style="italic" fill="#8a7a5c">Pinacoteca Vaticana</text>
+  <rect x="40" y="58" width="260" height="135" fill="#ffffff" stroke="#b8ab8c" stroke-width="2"/>
+  <text x="170" y="78" text-anchor="middle" font-size="13" fill="#5c5342">Sala VIII</text>
+  <circle cx="170" cy="150" r="9" fill="#3d6b8a"/>
+  <rect x="40" y="201" width="260" height="127" fill="#ffffff" stroke="#b8ab8c" stroke-width="2"/>
+  <text x="170" y="221" text-anchor="middle" font-size="13" fill="#5c5342">Sala IX</text>
+  <circle cx="170" cy="287" r="9" fill="#3d6b8a"/>
+  <text x="490" y="46" text-anchor="middle" font-size="14" font-style="italic" fill="#8a7a5c">Museo Pio-Clementino</text>
+  <rect x="320" y="58" width="340" height="180" fill="#ffffff" stroke="#b8ab8c" stroke-width="2"/>
+  <text x="490" y="78" text-anchor="middle" font-size="13" fill="#5c5342">Cortile Ottagono</text>
+  <circle cx="433" cy="180" r="9" fill="#3d6b8a"/>
+  <circle cx="547" cy="180" r="9" fill="#3d6b8a"/>
+  <rect x="320" y="246" width="340" height="82" fill="#ffffff" stroke="#b8ab8c" stroke-width="2"/>
+  <text x="490" y="266" text-anchor="middle" font-size="13" fill="#5c5342">Sala delle Muse</text>
+  <circle cx="490" cy="302" r="9" fill="#3d6b8a"/>
+  <text x="780" y="46" text-anchor="middle" font-size="14" font-style="italic" fill="#8a7a5c">Galleria delle Carte Geografiche</text>
+  <rect x="680" y="58" width="200" height="270" fill="#ffffff" stroke="#b8ab8c" stroke-width="2"/>
+  <text x="780" y="78" text-anchor="middle" font-size="13" fill="#5c5342">Galleria delle Carte Geografiche</text>
+  <circle cx="780" cy="242" r="9" fill="#3d6b8a"/>
+  <text x="1030" y="46" text-anchor="middle" font-size="14" font-style="italic" fill="#8a7a5c">Stanze di Raffaello</text>
+  <rect x="900" y="58" width="260" height="135" fill="#ffffff" stroke="#b8ab8c" stroke-width="2"/>
+  <text x="1030" y="78" text-anchor="middle" font-size="13" fill="#5c5342">Stanza di Eliodoro</text>
+  <circle cx="1030" cy="150" r="9" fill="#3d6b8a"/>
+  <rect x="900" y="201" width="260" height="127" fill="#ffffff" stroke="#b8ab8c" stroke-width="2"/>
+  <text x="1030" y="221" text-anchor="middle" font-size="13" fill="#5c5342">Stanza della Segnatura</text>
+  <circle cx="1030" cy="287" r="9" fill="#3d6b8a"/>
+  <text x="1310" y="46" text-anchor="middle" font-size="14" font-style="italic" fill="#8a7a5c">Cappella Sistina</text>
+  <rect x="1180" y="58" width="260" height="135" fill="#ffffff" stroke="#b8ab8c" stroke-width="2"/>
+  <text x="1310" y="78" text-anchor="middle" font-size="13" fill="#5c5342">Volta</text>
+  <circle cx="1310" cy="150" r="9" fill="#3d6b8a"/>
+  <rect x="1180" y="201" width="260" height="127" fill="#ffffff" stroke="#b8ab8c" stroke-width="2"/>
+  <text x="1310" y="221" text-anchor="middle" font-size="13" fill="#5c5342">Parete dell'Altare</text>
+  <circle cx="1310" cy="287" r="9" fill="#3d6b8a"/>
+  <rect x="40" y="352" width="335" height="70" fill="#ece6d6" stroke="#b8ab8c" stroke-width="2"/>
+  <text x="208" y="392" text-anchor="middle" font-size="15" fill="#5c5342">Guardaroba</text>
+  <rect x="395" y="352" width="335" height="70" fill="#ece6d6" stroke="#b8ab8c" stroke-width="2"/>
+  <text x="562" y="392" text-anchor="middle" font-size="15" fill="#5c5342">Toilette</text>
+  <rect x="750" y="352" width="335" height="70" fill="#ece6d6" stroke="#b8ab8c" stroke-width="2"/>
+  <text x="918" y="392" text-anchor="middle" font-size="15" fill="#5c5342">Bookshop</text>
+  <rect x="1105" y="352" width="335" height="70" fill="#ece6d6" stroke="#b8ab8c" stroke-width="2"/>
+  <text x="1272" y="392" text-anchor="middle" font-size="15" fill="#5c5342">Uscita</text>
+  <text x="740" y="26" text-anchor="middle" font-size="20" fill="#8a7a5c">Musei Vaticani — Percorso museale (pianta segnaposto)</text>
+</svg>

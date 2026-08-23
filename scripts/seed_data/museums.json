@@ -40,32 +40,136 @@
         "name": "Piano Terra",
         "image_url": "/assets/maps/uffizi-piano-terra-placeholder.svg",
         "points": [
-          { "label": "Atrio d'Ingresso", "icon_type": "generic", "x": 0.19, "y": 0.2357, "description": "Punto di partenza della visita" },
-          { "label": "Bookshop", "icon_type": "service", "x": 0.26, "y": 0.5, "service_key": "Bookshop" },
-          { "label": "Uscita", "icon_type": "service", "x": 0.73, "y": 0.5, "service_key": "Uscita" }
+          {
+            "label": "Atrio d'Ingresso",
+            "icon_type": "generic",
+            "x": 0.19,
+            "y": 0.2357,
+            "description": "Punto di partenza della visita"
+          },
+          {
+            "label": "Bookshop",
+            "icon_type": "service",
+            "x": 0.26,
+            "y": 0.5,
+            "service_key": "Bookshop"
+          },
+          {
+            "label": "Uscita",
+            "icon_type": "service",
+            "x": 0.73,
+            "y": 0.5,
+            "service_key": "Uscita"
+          }
         ]
       },
       {
         "name": "Primo Piano",
         "image_url": "/assets/maps/uffizi-primo-piano-placeholder.svg",
         "points": [
-          { "label": "Venere di Urbino", "icon_type": "entity", "x": 0.314, "y": 0.2357, "entity": { "$oid": "ccc000000000000000000040" } },
-          { "label": "Medusa", "icon_type": "entity", "x": 0.47, "y": 0.214, "entity": { "$oid": "ccc000000000000000000010" } },
-          { "label": "Bacco", "icon_type": "entity", "x": 0.53, "y": 0.271, "entity": { "$oid": "ccc000000000000000000041" } },
-          { "label": "Toilette", "icon_type": "service", "x": 0.5, "y": 0.5, "service_key": "Toilette" }
+          {
+            "label": "Venere di Urbino",
+            "icon_type": "entity",
+            "x": 0.314,
+            "y": 0.2357,
+            "entity": {
+              "$oid": "ccc000000000000000000040"
+            }
+          },
+          {
+            "label": "Medusa",
+            "icon_type": "entity",
+            "x": 0.47,
+            "y": 0.214,
+            "entity": {
+              "$oid": "ccc000000000000000000010"
+            }
+          },
+          {
+            "label": "Bacco",
+            "icon_type": "entity",
+            "x": 0.53,
+            "y": 0.271,
+            "entity": {
+              "$oid": "ccc000000000000000000041"
+            }
+          },
+          {
+            "label": "Toilette",
+            "icon_type": "service",
+            "x": 0.5,
+            "y": 0.5,
+            "service_key": "Toilette"
+          }
         ]
       },
       {
         "name": "Secondo Piano",
         "image_url": "/assets/maps/uffizi-secondo-piano-placeholder.svg",
         "points": [
-          { "label": "Doppio ritratto dei duchi di Urbino", "icon_type": "entity", "x": 0.128, "y": 0.2357, "entity": { "$oid": "ccc000000000000000000009" } },
-          { "label": "Annunciazione", "icon_type": "entity", "x": 0.314, "y": 0.2357, "entity": { "$oid": "ccc000000000000000000002" } },
-          { "label": "Battaglia di San Romano", "icon_type": "entity", "x": 0.5, "y": 0.2357, "entity": { "$oid": "ccc000000000000000000042" } },
-          { "label": "Nascita di Venere", "icon_type": "entity", "x": 0.65, "y": 0.214, "entity": { "$oid": "ccc000000000000000000001" } },
-          { "label": "Primavera", "icon_type": "entity", "x": 0.722, "y": 0.271, "entity": { "$oid": "ccc000000000000000000007" } },
-          { "label": "Tondo Doni", "icon_type": "entity", "x": 0.836, "y": 0.214, "entity": { "$oid": "ccc000000000000000000008" } },
-          { "label": "Madonna del Cardellino", "icon_type": "entity", "x": 0.908, "y": 0.271, "entity": { "$oid": "ccc000000000000000000043" } }
+          {
+            "label": "Doppio ritratto dei duchi di Urbino",
+            "icon_type": "entity",
+            "x": 0.128,
+            "y": 0.2357,
+            "entity": {
+              "$oid": "ccc000000000000000000009"
+            }
+          },
+          {
+            "label": "Annunciazione",
+            "icon_type": "entity",
+            "x": 0.314,
+            "y": 0.2357,
+            "entity": {
+              "$oid": "ccc000000000000000000002"
+            }
+          },
+          {
+            "label": "Battaglia di San Romano",
+            "icon_type": "entity",
+            "x": 0.5,
+            "y": 0.2357,
+            "entity": {
+              "$oid": "ccc000000000000000000042"
+            }
+          },
+          {
+            "label": "Nascita di Venere",
+            "icon_type": "entity",
+            "x": 0.65,
+            "y": 0.214,
+            "entity": {
+              "$oid": "ccc000000000000000000001"
+            }
+          },
+          {
+            "label": "Primavera",
+            "icon_type": "entity",
+            "x": 0.722,
+            "y": 0.271,
+            "entity": {
+              "$oid": "ccc000000000000000000007"
+            }
+          },
+          {
+            "label": "Tondo Doni",
+            "icon_type": "entity",
+            "x": 0.836,
+            "y": 0.214,
+            "entity": {
+              "$oid": "ccc000000000000000000008"
+            }
+          },
+          {
+            "label": "Madonna del Cardellino",
+            "icon_type": "entity",
+            "x": 0.908,
+            "y": 0.271,
+            "entity": {
+              "$oid": "ccc000000000000000000043"
+            }
+          }
         ]
       }
     ],
@@ -121,22 +225,138 @@
         "name": "Piano Primo",
         "image_url": "/assets/maps/pinacoteca-piano-primo-placeholder.svg",
         "points": [
-          { "label": "Polittico di Bologna", "icon_type": "entity", "x": 0.128, "y": 0.236, "entity": { "$oid": "ccc000000000000000000019" } },
-          { "label": "San Giorgio e il drago", "icon_type": "entity", "x": 0.314, "y": 0.236, "entity": { "$oid": "ccc000000000000000000020" } },
-          { "label": "Pala dei Mercanti", "icon_type": "entity", "x": 0.500, "y": 0.236, "entity": { "$oid": "ccc000000000000000000021" } },
-          { "label": "Pala Bentivoglio", "icon_type": "entity", "x": 0.686, "y": 0.236, "entity": { "$oid": "ccc000000000000000000022" } },
-          { "label": "Estasi di Santa Cecilia", "icon_type": "entity", "x": 0.872, "y": 0.236, "entity": { "$oid": "ccc000000000000000000024" } },
-          { "label": "Madonna di Santa Margherita", "icon_type": "entity", "x": 0.128, "y": 0.621, "entity": { "$oid": "ccc000000000000000000025" } },
-          { "label": "Madonna dei Bargellini", "icon_type": "entity", "x": 0.314, "y": 0.621, "entity": { "$oid": "ccc000000000000000000026" } },
-          { "label": "Strage degli Innocenti", "icon_type": "entity", "x": 0.480, "y": 0.610, "entity": { "$oid": "ccc000000000000000000029" } },
-          { "label": "Pietà dei Mendicanti", "icon_type": "entity", "x": 0.520, "y": 0.632, "entity": { "$oid": "ccc000000000000000000030" } },
-          { "label": "Vestizione di San Guglielmo d'Aquitania", "icon_type": "entity", "x": 0.686, "y": 0.621, "entity": { "$oid": "ccc000000000000000000033" } },
-          { "label": "Guardaroba", "icon_type": "service", "x": 0.1125, "y": 0.886, "service_key": "Guardaroba" },
-          { "label": "Bookshop", "icon_type": "service", "x": 0.2675, "y": 0.886, "service_key": "Bookshop" },
-          { "label": "Toilette", "icon_type": "service", "x": 0.4225, "y": 0.886, "service_key": "Toilette" },
-          { "label": "Uscita", "icon_type": "service", "x": 0.5775, "y": 0.886, "service_key": "Uscita" },
-          { "label": "Sala Convegni", "icon_type": "service", "x": 0.7325, "y": 0.886, "service_key": "Sala Convegni" },
-          { "label": "Sala Lettura", "icon_type": "service", "x": 0.8875, "y": 0.886, "service_key": "Sala Lettura" }
+          {
+            "label": "Polittico di Bologna",
+            "icon_type": "entity",
+            "x": 0.128,
+            "y": 0.236,
+            "entity": {
+              "$oid": "ccc000000000000000000019"
+            }
+          },
+          {
+            "label": "San Giorgio e il drago",
+            "icon_type": "entity",
+            "x": 0.314,
+            "y": 0.236,
+            "entity": {
+              "$oid": "ccc000000000000000000020"
+            }
+          },
+          {
+            "label": "Pala dei Mercanti",
+            "icon_type": "entity",
+            "x": 0.5,
+            "y": 0.236,
+            "entity": {
+              "$oid": "ccc000000000000000000021"
+            }
+          },
+          {
+            "label": "Pala Bentivoglio",
+            "icon_type": "entity",
+            "x": 0.686,
+            "y": 0.236,
+            "entity": {
+              "$oid": "ccc000000000000000000022"
+            }
+          },
+          {
+            "label": "Estasi di Santa Cecilia",
+            "icon_type": "entity",
+            "x": 0.872,
+            "y": 0.236,
+            "entity": {
+              "$oid": "ccc000000000000000000024"
+            }
+          },
+          {
+            "label": "Madonna di Santa Margherita",
+            "icon_type": "entity",
+            "x": 0.128,
+            "y": 0.621,
+            "entity": {
+              "$oid": "ccc000000000000000000025"
+            }
+          },
+          {
+            "label": "Madonna dei Bargellini",
+            "icon_type": "entity",
+            "x": 0.314,
+            "y": 0.621,
+            "entity": {
+              "$oid": "ccc000000000000000000026"
+            }
+          },
+          {
+            "label": "Strage degli Innocenti",
+            "icon_type": "entity",
+            "x": 0.48,
+            "y": 0.61,
+            "entity": {
+              "$oid": "ccc000000000000000000029"
+            }
+          },
+          {
+            "label": "Pietà dei Mendicanti",
+            "icon_type": "entity",
+            "x": 0.52,
+            "y": 0.632,
+            "entity": {
+              "$oid": "ccc000000000000000000030"
+            }
+          },
+          {
+            "label": "Vestizione di San Guglielmo d'Aquitania",
+            "icon_type": "entity",
+            "x": 0.686,
+            "y": 0.621,
+            "entity": {
+              "$oid": "ccc000000000000000000033"
+            }
+          },
+          {
+            "label": "Guardaroba",
+            "icon_type": "service",
+            "x": 0.1125,
+            "y": 0.886,
+            "service_key": "Guardaroba"
+          },
+          {
+            "label": "Bookshop",
+            "icon_type": "service",
+            "x": 0.2675,
+            "y": 0.886,
+            "service_key": "Bookshop"
+          },
+          {
+            "label": "Toilette",
+            "icon_type": "service",
+            "x": 0.4225,
+            "y": 0.886,
+            "service_key": "Toilette"
+          },
+          {
+            "label": "Uscita",
+            "icon_type": "service",
+            "x": 0.5775,
+            "y": 0.886,
+            "service_key": "Uscita"
+          },
+          {
+            "label": "Sala Convegni",
+            "icon_type": "service",
+            "x": 0.7325,
+            "y": 0.886,
+            "service_key": "Sala Convegni"
+          },
+          {
+            "label": "Sala Lettura",
+            "icon_type": "service",
+            "x": 0.8875,
+            "y": 0.886,
+            "service_key": "Sala Lettura"
+          }
         ]
       }
     ],
@@ -148,6 +368,192 @@
     },
     "updatedAt": {
       "$date": "2025-03-01T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "bbb000000000000000000007"
+    },
+    "name": "Musei Vaticani",
+    "wikidata_id": "Q182955",
+    "description": "Tra i più grandi complessi museali del mondo, i Musei Vaticani raccolgono le collezioni d'arte accumulate dai papi nei secoli: dalle sculture antiche del Museo Pio-Clementino agli affreschi di Raffaello nelle Stanze Vaticane, fino al capolavoro assoluto di Michelangelo nella Cappella Sistina.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vatican Museums, Musei Vaticani (Ank Kumar, Infosys Limited) 16.jpg?width=1280",
+    "website": "https://www.museivaticani.va",
+    "is_accessible": true,
+    "address": {
+      "street": "Viale Vaticano",
+      "city": "Città del Vaticano",
+      "zip": "00120",
+      "country": "Vaticano"
+    },
+    "services": {
+      "Toilette": "I bagni si trovano vicino all'ingresso della Cappella Sistina e nel cortile della Pigna.",
+      "Uscita": "L'uscita si trova in fondo alla Cappella Sistina, seguendo le indicazioni per la Scala Elicoidale del Bramante.",
+      "Guardaroba": "Il guardaroba è all'ingresso principale, prima dei tornelli.",
+      "Bookshop": "Il bookshop principale è vicino all'uscita, accanto alla Scala Elicoidale."
+    },
+    "accessibility_info": {
+      "Accesso": "Ingresso con rampe dedicate e ascensori lungo tutto il percorso museale, incluso l'accesso alla Cappella Sistina.",
+      "Ascensore": "Ascensori disponibili tra i vari livelli del percorso, compresa la Pinacoteca e il Museo Pio-Clementino.",
+      "Sedie a rotelle": "Disponibili gratuitamente su richiesta presso l'ingresso, fino a esaurimento."
+    },
+    "opening_hours": {
+      "Lunedì": "9:00–18:00",
+      "Martedì": "9:00–18:00",
+      "Mercoledì": "9:00–18:00",
+      "Giovedì": "9:00–18:00",
+      "Venerdì": "9:00–20:00",
+      "Sabato": "9:00–20:00",
+      "Domenica": "Chiuso"
+    },
+    "maps": [
+      {
+        "name": "Percorso museale",
+        "image_url": "/assets/maps/musei-vaticani-percorso-placeholder.svg",
+        "points": [
+          {
+            "label": "Trasfigurazione",
+            "icon_type": "entity",
+            "x": 0.1149,
+            "y": 0.3121,
+            "description": "Ultima opera di Raffaello, dipinta tra il 1518 e il 1520 e rimasta incompiuta alla sua morte, oggi conservata nella Pinacoteca Vaticana: uni",
+            "entity": {
+              "$oid": "ccc000000000000000000048"
+            }
+          },
+          {
+            "label": "San Girolamo penitente",
+            "icon_type": "entity",
+            "x": 0.1149,
+            "y": 0.5987,
+            "description": "Dipinto a olio su tavola incompiuto di Leonardo da Vinci, databile al 1480 circa, conservato nella Pinacoteca Vaticana: raffigura san Girola",
+            "entity": {
+              "$oid": "ccc000000000000000000049"
+            }
+          },
+          {
+            "label": "Gruppo del Laocoonte",
+            "icon_type": "entity",
+            "x": 0.2928,
+            "y": 0.3758,
+            "description": "Celebre gruppo scultoreo in marmo di età ellenistica o romana, ritrovato a Roma nel 1506 e da allora conservato nei Musei Vaticani: raffigur",
+            "entity": {
+              "$oid": "ccc000000000000000000050"
+            }
+          },
+          {
+            "label": "Apollo del Belvedere",
+            "icon_type": "entity",
+            "x": 0.3694,
+            "y": 0.3758,
+            "description": "Statua marmorea raffigurante il dio Apollo, copia romana in marmo di un originale greco bronzeo perduto, considerata per secoli il canone as",
+            "entity": {
+              "$oid": "ccc000000000000000000051"
+            }
+          },
+          {
+            "label": "Torso del Belvedere",
+            "icon_type": "entity",
+            "x": 0.3311,
+            "y": 0.6287,
+            "description": "Frammento scultoreo marmoreo firmato dallo scultore ateniese Apollonio, databile al I secolo a.C., ammirato soprattutto da Michelangelo come",
+            "entity": {
+              "$oid": "ccc000000000000000000052"
+            }
+          },
+          {
+            "label": "Galleria delle carte geografiche",
+            "icon_type": "entity",
+            "x": 0.527,
+            "y": 0.5033,
+            "description": "Lunga galleria dei Palazzi Vaticani, decorata tra il 1580 e il 1585 con quaranta grandi carte geografiche affrescate raffiguranti le regioni",
+            "entity": {
+              "$oid": "ccc000000000000000000053"
+            }
+          },
+          {
+            "label": "Liberazione di san Pietro",
+            "icon_type": "entity",
+            "x": 0.6959,
+            "y": 0.3121,
+            "description": "Affresco di Raffaello del 1513-1514 nella Stanza di Eliodoro, che raffigura l'apostolo Pietro liberato dal carcere per intervento di un ange",
+            "entity": {
+              "$oid": "ccc000000000000000000047"
+            }
+          },
+          {
+            "label": "Scuola di Atene",
+            "icon_type": "entity",
+            "x": 0.6959,
+            "y": 0.5987,
+            "description": "Affresco di Raffaello databile al 1509-1511, situato nella Stanza della Segnatura: raffigura i grandi filosofi dell'antichità riuniti in un ",
+            "entity": {
+              "$oid": "ccc000000000000000000046"
+            }
+          },
+          {
+            "label": "Creazione di Adamo",
+            "icon_type": "entity",
+            "x": 0.8851,
+            "y": 0.3121,
+            "description": "Affresco databile al 1511 circa, al centro della volta della Cappella Sistina: Dio Padre tende la mano verso Adamo per dargli la vita. È una",
+            "entity": {
+              "$oid": "ccc000000000000000000044"
+            }
+          },
+          {
+            "label": "Giudizio Universale",
+            "icon_type": "entity",
+            "x": 0.8851,
+            "y": 0.5987,
+            "description": "Grande affresco realizzato da Michelangelo tra il 1536 e il 1541 sulla parete dietro l'altare della Cappella Sistina, su commissione di papa",
+            "entity": {
+              "$oid": "ccc000000000000000000045"
+            }
+          },
+          {
+            "label": "Guardaroba",
+            "icon_type": "service",
+            "x": 0.1402,
+            "y": 0.7688,
+            "description": "Il guardaroba è all'ingresso principale, prima dei tornelli.",
+            "service_key": "Guardaroba"
+          },
+          {
+            "label": "Toilette",
+            "icon_type": "service",
+            "x": 0.3801,
+            "y": 0.7688,
+            "description": "I bagni si trovano vicino all'ingresso della Cappella Sistina e nel cortile della Pigna.",
+            "service_key": "Toilette"
+          },
+          {
+            "label": "Bookshop",
+            "icon_type": "service",
+            "x": 0.6199,
+            "y": 0.7688,
+            "description": "Il bookshop principale è vicino all'uscita, accanto alla Scala Elicoidale.",
+            "service_key": "Bookshop"
+          },
+          {
+            "label": "Uscita",
+            "icon_type": "service",
+            "x": 0.8598,
+            "y": 0.7688,
+            "description": "L'uscita si trova in fondo alla Cappella Sistina, seguendo le indicazioni per la Scala Elicoidale del Bramante.",
+            "service_key": "Uscita"
+          }
+        ]
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-23T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-23T00:00:00Z"
     }
   }
 ]
