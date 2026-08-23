@@ -200,7 +200,7 @@ html, body {
   flex-shrink: 0;
 }
 
-.skip-link {
+.all-visits-link {
   margin-left: auto;
   font-size: 0.68rem;
   font-weight: 500;
@@ -215,7 +215,7 @@ html, body {
   transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
 }
 
-.skip-link:hover {
+.all-visits-link:hover {
   color: var(--color-text);
   border-color: var(--universal-glass-border-strong);
   background: var(--universal-glass-bg-strong);
@@ -328,7 +328,7 @@ html, body {
     padding: 1rem 1.5rem;
     gap: 1.25rem;
   }
-  .skip-link { margin-left: 0; }
+  .all-visits-link { margin-left: 0; }
   .museums-container { padding: 2rem 1.5rem 4rem; }
   .museums-grid { grid-template-columns: 1fr; gap: 1.25rem; }
 }

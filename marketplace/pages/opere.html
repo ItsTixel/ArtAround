@@ -35,7 +35,7 @@
 
   <app-navbar></app-navbar>
 
-  <main>
+  <main id="main-content">
     <section class="page-hero" aria-label="Opere disponibili">
       <div class="hero-slideshow" data-interval="6000" aria-hidden="true">
         <img src="/marketplace/assets/items/img1.png" class="is-active" alt="">
@@ -56,9 +56,9 @@
 
       <section class="visits-content" aria-label="Lista opere">
         <div class="type-toggle" id="type-toggle" role="tablist" aria-label="Tipo di opera">
-          <button type="button" class="active" data-type="all">Tutte</button>
-          <button type="button" data-type="true">Fisiche</button>
-          <button type="button" data-type="false">Non fisiche</button>
+          <button type="button" class="active" role="tab" aria-selected="true" data-type="all">Tutte</button>
+          <button type="button" role="tab" aria-selected="false" data-type="true">Fisiche</button>
+          <button type="button" role="tab" aria-selected="false" data-type="false">Non fisiche</button>
         </div>
 
         <div class="results-bar">
@@ -81,7 +81,7 @@
         </div>
 
         <div class="opere-grid" id="opere-grid" role="list" aria-label="Opere disponibili"></div>
-        <div class="pagination" id="pagination" aria-label="Navigazione pagine"></div>
+        <nav class="pagination" id="pagination" aria-label="Navigazione pagine"></nav>
       </section>
     </div>
   </main>

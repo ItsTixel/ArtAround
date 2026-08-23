@@ -59,7 +59,7 @@ class AppNavbar extends HTMLElement {
 
     this.className = 'block';
     this.innerHTML = `
-      <div class="fixed top-3 inset-x-2 md:inset-x-4 z-[100]">
+      <header class="fixed top-3 inset-x-2 md:inset-x-4 z-[100]">
         <nav class="relative h-16 px-4 md:px-8 flex items-center justify-between gap-4 rounded-2xl text-slate-800 dark:text-slate-100">
           <div class="absolute inset-0 -z-10 ${GLASS_STRONG}"></div>
           <a class="logo relative z-10 shrink-0 text-lg italic tracking-wide" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);" href="/marketplace">
@@ -91,7 +91,7 @@ class AppNavbar extends HTMLElement {
             </button>
           </div>
         </nav>
-      </div>
+      </header>
     `;
 
     // Come nel commento dentro _wireFluidIndicator: forza subito l'invisibilità di

@@ -5,7 +5,7 @@ class MuseumCard extends HTMLElement {
     return ['museum-id', 'name', 'city', 'country', 'image', 'opening-hours', 'is-accessible'];
   }
 
-  connectedCallback() { this._render(); }
+  connectedCallback() { this.setAttribute('role', 'listitem'); this._render(); }
   attributeChangedCallback() { if (this.innerHTML) this._render(); }
 
   _escape(str) {
@@ -84,7 +84,7 @@ class MuseumCard extends HTMLElement {
           </span>` : ''}
           <h2 class="flex-1 text-base sm:text-lg font-semibold leading-snug" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">${this._escape(name)}</h2>
           <div class="flex items-center justify-between gap-3 mt-auto pt-3 sm:pt-4 border-t border-slate-400/20">
-            <button class="info-btn relative z-[4] text-[0.6rem] sm:text-[0.66rem] font-medium tracking-[0.08em] uppercase text-slate-600 dark:text-slate-300 border border-slate-400/20 rounded-full px-3 sm:px-3.5 py-1.5 sm:py-2 whitespace-nowrap hover:text-slate-900 dark:hover:text-white hover:bg-white/20 hover:border-white/30 ${TRANSITION}" id="info-btn" aria-label="Informazioni su ${this._escape(name)}">Info museo</button>
+            <button class="info-btn relative z-[4] text-[0.6rem] sm:text-[0.66rem] font-medium tracking-[0.08em] uppercase text-slate-600 dark:text-slate-300 border border-slate-400/20 rounded-full px-3 sm:px-3.5 py-1.5 sm:py-2 whitespace-nowrap hover:text-slate-900 dark:hover:text-white hover:bg-white/20 hover:border-white/30 ${TRANSITION}" id="info-btn" aria-label="Info museo: ${this._escape(name)}">Info museo</button>
             <span class="cta inline-flex items-center whitespace-nowrap text-[0.6rem] sm:text-[0.66rem] font-semibold tracking-[0.08em] uppercase px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full bg-slate-800 text-white dark:bg-white dark:text-slate-900 group-hover:opacity-90 ${TRANSITION}">Esplora le visite →</span>
           </div>
         </div>

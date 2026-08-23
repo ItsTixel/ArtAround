@@ -208,6 +208,32 @@ body,
   height: 100%;
 }
 
+/* Indicatore di focus visibile per navigazione da tastiera, assente di
+   default sulle superfici "glass" dell'app (nessuna classe focus: applicata
+   sui componenti). :focus-visible evita l'anello anche sul click col mouse. */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 200;
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
 body {
   font-family: var(--font-sans);
   background: var(--color-bg);

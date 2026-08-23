@@ -26,7 +26,7 @@ class OperaCard extends HTMLElement {
   set data(value) { this._data = value; this._render(); }
   get data() { return this._data; }
 
-  connectedCallback() { this._render(); }
+  connectedCallback() { this.setAttribute('role', 'listitem'); this._render(); }
 
   _esc(s) {
     return String(s ?? '')
@@ -52,7 +52,8 @@ class OperaCard extends HTMLElement {
 
     this.className = 'block h-full';
     this.innerHTML = `
-      <div class="card group opera-card-inner cursor-pointer relative ${GLASS} overflow-hidden flex flex-row sm:flex-col h-full text-slate-800 dark:text-slate-100 ${TRANSITION} hover:-translate-y-1 hover:bg-white/20 hover:border-white/30 hover:shadow-2xl" role="button" tabindex="0" aria-label="${this._esc(o.name)}">
+      <div class="card group opera-card-inner relative ${GLASS} overflow-hidden flex flex-row sm:flex-col h-full text-slate-800 dark:text-slate-100 ${TRANSITION} hover:-translate-y-1 hover:bg-white/20 hover:border-white/30 hover:shadow-2xl">
+        <button type="button" class="card-open-btn absolute inset-0 z-[3] cursor-pointer" aria-label="${this._esc(o.name)}"></button>
         <div class="relative w-32 shrink-0 self-stretch sm:self-auto sm:w-full sm:h-44 bg-slate-300/20 dark:bg-slate-800/40 flex items-center justify-center overflow-hidden">
           ${o.imageUrl
             ? `<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="${this._esc(o.imageUrl)}" alt="" loading="lazy">`
@@ -80,17 +81,12 @@ class OperaCard extends HTMLElement {
       </div>
     `;
 
-    const card = this.querySelector('.opera-card-inner');
     const open = () => this.dispatchEvent(new CustomEvent('open-opera', {
       detail: { id: o.id },
       bubbles: true,
       composed: true,
     }));
-    card.addEventListener('click', open);
-    card.addEventListener('keydown', (e) => {
-      if (e.target !== card) return;
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
-    });
+    this.querySelector('.card-open-btn').addEventListener('click', open);
 
     this.querySelector('.fav-btn')?.addEventListener('click', (e) => {
       e.preventDefault();

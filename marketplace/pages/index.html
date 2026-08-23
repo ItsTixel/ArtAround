@@ -27,7 +27,7 @@
 
   <app-navbar></app-navbar>
 
-  <main>
+  <main id="main-content">
     <section class="page-hero" aria-label="Musei disponibili">
       <div class="hero-slideshow" data-interval="6000" aria-hidden="true">
         <img src="/marketplace/assets/museums/img1.png" class="is-active" alt="">
@@ -68,7 +68,7 @@
           Solo musei accessibili
         </label>
       </div>
-      <a class="skip-link" href="/marketplace/pages/visits.html" title="Vedi tutte le visite senza selezionare un museo">
+      <a class="all-visits-link" href="/marketplace/pages/visits.html" title="Vedi tutte le visite senza selezionare un museo">
         Tutte le visite →
       </a>
     </section>
@@ -78,7 +78,7 @@
         <span class="results-count" id="results-count" aria-live="polite"></span>
       </div>
       <div class="museums-grid" id="museums-grid" role="list" aria-label="Lista musei"></div>
-      <div class="pagination" id="pagination" aria-label="Navigazione pagine"></div>
+      <nav class="pagination" id="pagination" aria-label="Navigazione pagine"></nav>
     </div>
   </main>
 

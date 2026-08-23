@@ -3,6 +3,7 @@ import VisitInfoBody from './VisitInfoBody'
 import FavoriteButton from './FavoriteButton'
 import { useAuth } from '../context/AuthContext'
 import { useGroupSession } from '../context/GroupSessionContext'
+import useEscapeKey from '../hooks/useEscapeKey'
 
 const LOGIN_URL = '/marketplace/login.html'
 const REGISTER_URL = '/marketplace/register.html'
@@ -126,12 +127,17 @@ function GroupVisitFooter({ code, preview }) {
 function VisitDetailModal({ visit, isActive, onClose, onActivate, onDeactivate, groupVisit }) {
   const isGroup = Boolean(groupVisit)
 
+  useEscapeKey(onClose)
+
   return (
     <div
       className="fixed inset-0 z-100 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
       onClick={onClose}
     >
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-label={isGroup ? groupVisit.preview.title : visit.title}
         className="relative flex max-h-[85vh] w-full max-w-md flex-col rounded-2xl border border-slate-400/20 bg-white/85 dark:bg-slate-900/85 backdrop-blur-2xl shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >

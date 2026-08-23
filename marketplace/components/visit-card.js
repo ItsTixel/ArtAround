@@ -45,7 +45,7 @@ class VisitCard extends HTMLElement {
   set data(value) { this._data = value; this._render(); }
   get data() { return this._data; }
 
-  connectedCallback() { this._render(); }
+  connectedCallback() { this.setAttribute('role', 'listitem'); this._render(); }
   disconnectedCallback() { unregisterCarousel(this); }
 
   _esc(s) {
@@ -85,9 +85,10 @@ class VisitCard extends HTMLElement {
 
     this.className = 'block h-full';
     this.innerHTML = `
-      <div class="card group ${GLASS} overflow-hidden flex flex-row sm:flex-col h-full cursor-pointer text-slate-800 dark:text-slate-100 ${TRANSITION} hover:-translate-y-1 hover:bg-white/20 hover:border-white/30 hover:shadow-2xl" role="button" tabindex="0" aria-label="${this._esc(v.title)}">
+      <div class="card group relative ${GLASS} overflow-hidden flex flex-row sm:flex-col h-full text-slate-800 dark:text-slate-100 ${TRANSITION} hover:-translate-y-1 hover:bg-white/20 hover:border-white/30 hover:shadow-2xl">
+        <button type="button" class="card-open-btn absolute inset-0 z-[3] cursor-pointer" aria-label="${this._esc(v.title)}"></button>
 
-        <div class="relative w-32 shrink-0 self-stretch sm:self-auto sm:w-full sm:h-44 bg-slate-300/20 dark:bg-slate-800/40 flex items-center justify-center overflow-hidden">
+        <div class="relative z-[4] w-32 shrink-0 self-stretch sm:self-auto sm:w-full sm:h-44 bg-slate-300/20 dark:bg-slate-800/40 flex items-center justify-center overflow-hidden">
           ${images.length
             ? `<div class="hero-scroll absolute inset-0 flex overflow-x-auto snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
                  ${images.map(img => `<img class="w-full h-full shrink-0 snap-center object-cover transition-transform duration-500 group-hover:scale-105" src="${this._esc(img)}" alt="" loading="lazy">`).join('')}
@@ -144,11 +145,7 @@ class VisitCard extends HTMLElement {
       bubbles: true,
       composed: true,
     }));
-    card.addEventListener('click', open);
-    card.addEventListener('keydown', (e) => {
-      if (e.target !== card) return;
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
-    });
+    this.querySelector('.card-open-btn').addEventListener('click', open);
 
     this.querySelector('.fav-btn')?.addEventListener('click', (e) => {
       e.preventDefault();

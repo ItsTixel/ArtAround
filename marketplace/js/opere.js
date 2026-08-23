@@ -237,7 +237,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('type-toggle').addEventListener('click', (e) => {
     const btn = e.target.closest('button[data-type]');
     if (!btn) return;
-    document.querySelectorAll('#type-toggle button').forEach(b => b.classList.toggle('active', b === btn));
+    document.querySelectorAll('#type-toggle button').forEach(b => {
+      b.classList.toggle('active', b === btn);
+      b.setAttribute('aria-selected', String(b === btn));
+    });
     state.isPhysical = btn.dataset.type;
     load(0);
   });

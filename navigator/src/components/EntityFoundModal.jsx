@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useVisitProgress, TONE_ORDER, TONE_LABELS } from '../context/VisitProgressContext'
 import { PlayIcon, PauseIcon } from './icons'
+import useEscapeKey from '../hooks/useEscapeKey'
 
 function sortDescriptions(item) {
   return [...(item?.descriptions || [])].sort((a, b) => a.duration_sec - b.duration_sec)
@@ -109,9 +110,14 @@ function EntityFoundModal({ entity, matchedStep, onGoToStep, onClose }) {
     onClose()
   }
 
+  useEscapeKey(handleClose)
+
   return (
     <div className="fixed inset-0 z-100 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4" onClick={handleClose}>
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-label={entity.name}
         className="flex max-h-[85vh] w-full max-w-md flex-col rounded-2xl border border-slate-400/20 bg-white/85 dark:bg-slate-900/85 backdrop-blur-2xl shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >

@@ -11,8 +11,9 @@ function AppLayout() {
 
   return (
     <div className="mx-auto flex min-h-dvh max-w-md flex-col bg-bg">
+      <a href="#main-content" className="skip-link">Salta al contenuto principale</a>
       <ProfileMenu hasPlayer={showPlayer} />
-      <main className={`flex-1 overflow-y-auto ${showPlayer ? 'pb-56' : 'pb-20'}`}>
+      <main id="main-content" className={`flex-1 overflow-y-auto ${showPlayer ? 'pb-56' : 'pb-20'}`}>
         <Outlet />
       </main>
       {showPlayer && <PlayerBar />}

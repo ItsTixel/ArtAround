@@ -248,9 +248,15 @@ function renderOrders(orders, config) {
     const counterpart = order[config.counterpartKey] || {};
     const item = document.createElement('div');
     item.className = 'flex flex-col gap-2';
+    // Figlio diretto di #vendite-list (role="list"): l'item della lista è
+    // questo contenitore (card + didascalia dell'ordine), non la <visit-card>
+    // stessa, che qui perde il proprio role="listitem" per non annidare due
+    // listitem uno dentro l'altro.
+    item.setAttribute('role', 'listitem');
 
+    let card = null;
     if (visit._id) {
-      const card = document.createElement('visit-card');
+      card = document.createElement('visit-card');
       card.data = normalizeOrderVisit(visit);
       item.appendChild(card);
     } else {
@@ -266,6 +272,10 @@ function renderOrders(orders, config) {
     item.appendChild(meta);
 
     list.appendChild(item);
+    // connectedCallback di <visit-card> (che si auto-assegna role="listitem")
+    // scatta solo ora, all'inserimento nel documento: va rimosso dopo,
+    // altrimenti resta un listitem annidato dentro quello di `item`.
+    card?.removeAttribute('role');
   });
 }
 
@@ -765,7 +775,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('opere-type-toggle')?.addEventListener('click', (e) => {
     const btn = e.target.closest('button[data-type]');
     if (!btn) return;
-    document.querySelectorAll('#opere-type-toggle button').forEach(b => b.classList.toggle('active', b === btn));
+    document.querySelectorAll('#opere-type-toggle button').forEach(b => {
+      b.classList.toggle('active', b === btn);
+      b.setAttribute('aria-selected', String(b === btn));
+    });
     activeOperePhysical = btn.dataset.type;
     const config = OPERE_SUB_CONFIG[activeOpereSub];
     if (operesCache[activeOpereSub]) renderOperaGrid(operesCache[activeOpereSub], config.empty);
