@@ -2,14 +2,31 @@
  * <museum-modal>
  * Overlay in sovraimpressione con le informazioni di un museo: nome,
  * descrizione, immagine, sito web e indirizzo. In fondo un tasto porta
- * alla lista delle visite di quel museo.
+ * alla lista delle visite di quel museo. Il tasto "Modifica" — visibile
+ * a chiunque sia autore (non ai visitatori) — trasforma il corpo del
+ * popup in un form completo, sullo stesso schema del carosello di
+ * "Crea Museo" (create-museum.js), inclusi orari, servizi, dettagli di
+ * accessibilità e mappe: i campi condivisi vengono da
+ * museum-form-fields.js, così le due UI restano coerenti.
+ *
+ * Come <opera-modal>, questo modal si apre sia dal profilo sia dal
+ * catalogo pubblico (index.html): il tasto "Modifica" compare per
+ * qualunque autore loggato, non solo per chi ha creato il museo (il
+ * backend, per i musei, applica comunque solo il controllo di ruolo,
+ * non di proprietà — vedi routes/museums.js).
  *
  * Uso:
  *   document.querySelector('museum-modal').open(museumId);
+ *
+ * Alla modifica riuscita viene emesso 'museum-updated' (bubbles) con il
+ * nuovo museo in detail.
  */
 
 import { GLASS_MODAL as GLASS, TRANSITION } from '/marketplace/js/ui-tokens.js';
+import { getCurrentUser } from '/marketplace/js/auth-session.js';
 import { trapTabKey, focusDialog } from '/marketplace/js/focus-trap.js';
+import { createImageField } from '/marketplace/js/image-field.js';
+import { setupHoursGrid, setupKvList, setupMapsList } from '/marketplace/js/museum-form-fields.js';
 
 const API_MUSEUMS = '/api/museums';
 const VISITS_URL  = '/marketplace/pages/visits.html';
@@ -20,6 +37,8 @@ class MuseumModal extends HTMLElement {
     this._museum = null;
     this._loading = false;
     this._error = null;
+    this._mode = 'view'; // 'view' | 'edit'
+    this._currentUser = undefined; // undefined = non ancora caricato
     this._previouslyFocused = null;
     this._onKeydown = this._onKeydown.bind(this);
   }
@@ -30,6 +49,7 @@ class MuseumModal extends HTMLElement {
     this._museum = null;
     this._loading = true;
     this._error = null;
+    this._mode = 'view';
 
     this._previouslyFocused = document.activeElement;
     this.setAttribute('open', '');
@@ -39,9 +59,14 @@ class MuseumModal extends HTMLElement {
     focusDialog(this.querySelector('.panel'));
 
     try {
-      const res = await fetch(`${API_MUSEUMS}/${museumId}`);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      this._museum = await res.json();
+      const [museum] = await Promise.all([
+        fetch(`${API_MUSEUMS}/${museumId}`).then(r => {
+          if (!r.ok) throw new Error(`HTTP ${r.status}`);
+          return r.json();
+        }),
+        this._loadCurrentUserOnce(),
+      ]);
+      this._museum = museum;
     } catch (e) {
       console.error('Errore nel caricamento del museo:', e);
       this._error = 'Errore nel caricamento del museo. Riprova più tardi.';
@@ -55,6 +80,7 @@ class MuseumModal extends HTMLElement {
     this.removeAttribute('open');
     document.body.style.overflow = '';
     document.removeEventListener('keydown', this._onKeydown);
+    this._mode = 'view';
     this._render();
     this._previouslyFocused?.focus?.();
     this._previouslyFocused = null;
@@ -69,6 +95,26 @@ class MuseumModal extends HTMLElement {
     return String(s ?? '')
       .replace(/&/g, '&amp;').replace(/</g, '&lt;')
       .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  async _loadCurrentUserOnce() {
+    if (this._currentUser !== undefined) return this._currentUser;
+    this._currentUser = await getCurrentUser();
+    return this._currentUser;
+  }
+
+  _isAuthor() {
+    return this._currentUser?.role === 'author';
+  }
+
+  _enterEdit() {
+    this._mode = 'edit';
+    this._render();
+  }
+
+  _cancelEdit() {
+    this._mode = 'view';
+    this._render();
   }
 
   _addressLine(a = {}) {
@@ -122,7 +168,7 @@ class MuseumModal extends HTMLElement {
     `;
   }
 
-  _bodyHtml() {
+  _viewBodyHtml() {
     const m = this._museum;
     const address = this._addressLine(m.address);
     const cityLine = [m.address?.city, m.address?.country].filter(Boolean).join(' · ');
@@ -167,10 +213,234 @@ class MuseumModal extends HTMLElement {
     `;
   }
 
+  _viewFooterHtml() {
+    const m = this._museum;
+    const visitsUrl = `${VISITS_URL}?museum=${encodeURIComponent(m._id)}&museumName=${encodeURIComponent(m.name)}`;
+    const btnBase = `text-[0.72rem] font-semibold tracking-[0.08em] uppercase px-6 py-3 rounded-full border border-transparent cursor-pointer whitespace-nowrap ${TRANSITION}`;
+    const btnGhost = `${btnBase} bg-transparent border-slate-400/20 text-slate-800 dark:text-slate-100 hover:bg-white/20 hover:border-white/30`;
+    return `
+      ${this._isAuthor() ? `<button type="button" class="btn ghost ${btnGhost}" id="edit-btn">Modifica</button>` : ''}
+      <a class="btn primary inline-block ${btnBase} bg-slate-800 text-white dark:bg-white dark:text-slate-900 hover:opacity-90" id="visits-btn" href="${visitsUrl}">Scopri visite</a>
+    `;
+  }
+
+  _bindView() {
+    this.querySelector('#edit-btn')?.addEventListener('click', () => this._enterEdit());
+  }
+
+  /* ---- Form di modifica ---- */
+
+  _editBodyHtml() {
+    const m = this._museum;
+
+    return `
+      <div class="pt-7 px-5 sm:px-8 pb-7 sm:pb-8">
+        <form id="museum-edit-form" class="create-form" style="gap: 1.4rem;">
+          <div class="field">
+            <label for="edit-name">Nome *</label>
+            <input id="edit-name" type="text" value="${this._esc(m.name)}" required>
+          </div>
+          <div class="field">
+            <label for="edit-wikidata-id">ID Wikidata</label>
+            <input id="edit-wikidata-id" type="text" value="${this._esc(m.wikidata_id)}" placeholder="Es. Q51252">
+          </div>
+          <div class="field">
+            <label for="edit-description">Descrizione</label>
+            <textarea id="edit-description" rows="4">${this._esc(m.description)}</textarea>
+          </div>
+          <div class="field">
+            <label>Immagine</label>
+            <div id="edit-image-field"></div>
+          </div>
+          <div class="field">
+            <label for="edit-website">Sito web</label>
+            <input id="edit-website" type="text" value="${this._esc(m.website)}" placeholder="https://…">
+          </div>
+          <div class="field">
+            <label>Accessibilità</label>
+            <div class="btn-group" id="edit-accessible-group" role="radiogroup" aria-label="Museo accessibile">
+              <button type="button" class="btn-option" role="radio" aria-checked="false" data-value="true">Accessibile</button>
+              <button type="button" class="btn-option" role="radio" aria-checked="false" data-value="false">Non accessibile</button>
+            </div>
+          </div>
+          <div class="field">
+            <label for="edit-street">Via *</label>
+            <input id="edit-street" type="text" value="${this._esc(m.address?.street)}" required>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="edit-city">Città *</label>
+              <input id="edit-city" type="text" value="${this._esc(m.address?.city)}" required>
+            </div>
+            <div class="field">
+              <label for="edit-zip">CAP *</label>
+              <input id="edit-zip" type="text" value="${this._esc(m.address?.zip)}" required>
+            </div>
+            <div class="field">
+              <label for="edit-country">Paese *</label>
+              <input id="edit-country" type="text" value="${this._esc(m.address?.country)}" required>
+            </div>
+          </div>
+          <div class="field">
+            <label>Orari di apertura</label>
+            <div id="edit-hours-grid"></div>
+          </div>
+          <div class="field">
+            <label>Servizi</label>
+            <div id="edit-services-list" class="dynamic-list"></div>
+            <button type="button" id="edit-add-service" class="btn-secondary">+ Aggiungi servizio</button>
+          </div>
+          <div class="field">
+            <label>Dettagli di accessibilità</label>
+            <div id="edit-accessibility-list" class="dynamic-list"></div>
+            <button type="button" id="edit-add-accessibility" class="btn-secondary">+ Aggiungi dettaglio</button>
+          </div>
+          <div class="field">
+            <label>Mappe (piante con punti di interesse)</label>
+            <div id="edit-maps-list" class="dynamic-list"></div>
+            <button type="button" id="edit-add-map" class="btn-secondary" aria-describedby="edit-maps-feedback">+ Aggiungi mappa</button>
+            <p class="feedback" id="edit-maps-feedback"></p>
+          </div>
+          <p class="feedback" id="edit-feedback"></p>
+        </form>
+      </div>
+    `;
+  }
+
+  _editFooterHtml() {
+    const btnBase = `text-[0.72rem] font-semibold tracking-[0.08em] uppercase px-6 py-3 rounded-full border border-transparent cursor-pointer whitespace-nowrap ${TRANSITION}`;
+    const btnPrimary = `${btnBase} bg-slate-800 text-white dark:bg-white dark:text-slate-900 hover:opacity-90 disabled:opacity-50 disabled:cursor-default disabled:hover:opacity-50`;
+    const btnGhost = `${btnBase} bg-transparent border-slate-400/20 text-slate-800 dark:text-slate-100 hover:bg-white/20 hover:border-white/30 disabled:opacity-50 disabled:cursor-default`;
+    return `
+      <button type="button" class="btn ghost ${btnGhost}" id="cancel-edit-btn">Annulla</button>
+      <button type="submit" form="museum-edit-form" class="btn primary ${btnPrimary}" id="save-edit-btn">Salva modifiche</button>
+    `;
+  }
+
+  _setupBtnGroup(groupId, defaultValue) {
+    const group = this.querySelector(`#${groupId}`);
+    group.dataset.value = defaultValue;
+    group.querySelectorAll('.btn-option').forEach(btn => {
+      const isDefault = btn.dataset.value === defaultValue;
+      btn.setAttribute('aria-checked', String(isDefault));
+      btn.addEventListener('click', () => {
+        group.querySelectorAll('.btn-option').forEach(b => b.setAttribute('aria-checked', 'false'));
+        btn.setAttribute('aria-checked', 'true');
+        group.dataset.value = btn.dataset.value;
+      });
+    });
+  }
+
+  _bindEdit() {
+    const m = this._museum;
+    this._setupBtnGroup('edit-accessible-group', String(!!m.is_accessible));
+
+    this._imageField = createImageField({ initialUrl: m.image_url || '' });
+    this.querySelector('#edit-image-field').appendChild(this._imageField.el);
+
+    this._hoursField = setupHoursGrid(this.querySelector('#edit-hours-grid'), m.opening_hours || {});
+
+    this._servicesField = setupKvList(
+      this.querySelector('#edit-services-list'), this.querySelector('#edit-add-service'), m.services || {},
+      { keyPlaceholder: 'Es. Toilette', valuePlaceholder: 'Es. In fondo a destra dopo la biglietteria', removeLabel: 'Rimuovi servizio' }
+    );
+
+    this._accessibilityField = setupKvList(
+      this.querySelector('#edit-accessibility-list'), this.querySelector('#edit-add-accessibility'), m.accessibility_info || {},
+      { keyPlaceholder: 'Es. Accesso', valuePlaceholder: 'Es. Rampa a 5° di inclinazione', removeLabel: 'Rimuovi dettaglio' }
+    );
+
+    this._mapsField = setupMapsList(this.querySelector('#edit-maps-list'), this.querySelector('#edit-add-map'), m.maps || []);
+
+    this.querySelector('#cancel-edit-btn')?.addEventListener('click', () => this._cancelEdit());
+    this.querySelector('#museum-edit-form')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      this._saveEdit();
+    });
+  }
+
+  async _saveEdit() {
+    const feedback = this.querySelector('#edit-feedback');
+    const mapsFeedback = this.querySelector('#edit-maps-feedback');
+    const saveBtn = this.querySelector('#save-edit-btn');
+    const cancelBtn = this.querySelector('#cancel-edit-btn');
+    feedback.style.color = '';
+    feedback.textContent = '';
+    mapsFeedback.style.color = '';
+    mapsFeedback.textContent = '';
+
+    const name = this.querySelector('#edit-name').value.trim();
+    const street = this.querySelector('#edit-street').value.trim();
+    const city = this.querySelector('#edit-city').value.trim();
+    const zip = this.querySelector('#edit-zip').value.trim();
+    const country = this.querySelector('#edit-country').value.trim();
+    if (!name || !street || !city || !zip || !country) {
+      feedback.style.color = 'red';
+      feedback.textContent = 'Nome e indirizzo completo sono obbligatori.';
+      return;
+    }
+
+    const mapsError = this._mapsField.validate();
+    if (mapsError) {
+      mapsFeedback.style.color = 'red';
+      mapsFeedback.textContent = mapsError;
+      return;
+    }
+
+    const image = this._imageField.getValue();
+
+    const basePayload = {
+      name,
+      wikidata_id:   this.querySelector('#edit-wikidata-id').value.trim(),
+      description:   this.querySelector('#edit-description').value.trim(),
+      image_url:     image.url,
+      website:       this.querySelector('#edit-website').value.trim(),
+      is_accessible: this.querySelector('#edit-accessible-group').dataset.value === 'true',
+      address: { street, city, zip, country },
+      opening_hours:      this._hoursField.collect(),
+      services:           this._servicesField.collect(),
+      accessibility_info: this._accessibilityField.collect(),
+    };
+
+    const formData = new FormData();
+    formData.append('data', JSON.stringify(basePayload));
+    this._mapsField.appendToFormData(formData);
+    if (image.file) formData.append('image', image.file);
+
+    saveBtn.disabled = true;
+    saveBtn.textContent = 'Salvataggio…';
+    cancelBtn.disabled = true;
+
+    try {
+      const res = await fetch(`${API_MUSEUMS}/${this._museum._id}`, {
+        method: 'PUT',
+        credentials: 'include',
+        body: formData, // niente Content-Type: lo imposta il browser (multipart/form-data + boundary)
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Errore durante il salvataggio.');
+
+      this._museum = data;
+      this._mode = 'view';
+      this.dispatchEvent(new CustomEvent('museum-updated', { detail: { museum: data }, bubbles: true }));
+      this._render();
+    } catch (err) {
+      feedback.style.color = 'red';
+      feedback.textContent = err.message;
+      saveBtn.disabled = false;
+      saveBtn.textContent = 'Salva modifiche';
+      cancelBtn.disabled = false;
+    }
+  }
+
+  /* ---- Struttura del popup ---- */
+
   _render() {
     const isOpen = this.hasAttribute('open');
     const m = this._museum;
-    const visitsUrl = m ? `${VISITS_URL}?museum=${encodeURIComponent(m._id)}&museumName=${encodeURIComponent(m.name)}` : '#';
+    const isEdit = this._mode === 'edit';
+    const ready = !this._loading && !this._error && m;
+    const footerHtml = ready ? (isEdit ? this._editFooterHtml() : this._viewFooterHtml()) : '';
 
     this.className = isOpen ? '' : 'hidden';
     this.innerHTML = isOpen ? `
@@ -181,12 +451,9 @@ class MuseumModal extends HTMLElement {
           <div class="body-scroll overflow-y-auto flex-1 min-h-0">
             ${this._loading ? '<p class="py-16 px-8 text-center text-slate-500 dark:text-slate-400 text-sm">Caricamento…</p>' : ''}
             ${this._error ? `<p class="py-16 px-8 text-center text-slate-500 dark:text-slate-400 text-sm">${this._esc(this._error)}</p>` : ''}
-            ${(!this._loading && !this._error && m) ? this._bodyHtml() : ''}
+            ${ready ? (isEdit ? this._editBodyHtml() : this._viewBodyHtml()) : ''}
           </div>
-          ${(!this._loading && !this._error && m) ? `
-          <div class="footer shrink-0 flex items-center justify-end gap-4 px-5 py-4 sm:px-8 sm:py-[1.1rem] border-t border-slate-400/20">
-            <a class="btn primary inline-block text-[0.72rem] font-semibold tracking-[0.08em] uppercase px-6 py-3 rounded-full whitespace-nowrap bg-slate-800 text-white dark:bg-white dark:text-slate-900 hover:opacity-90 ${TRANSITION}" id="visits-btn" href="${visitsUrl}">Scopri visite</a>
-          </div>` : ''}
+          ${footerHtml ? `<div class="footer shrink-0 flex items-center justify-end gap-4 px-5 py-4 sm:px-8 sm:py-[1.1rem] border-t border-slate-400/20">${footerHtml}</div>` : ''}
         </div>
       </div>
     ` : '';
@@ -194,6 +461,10 @@ class MuseumModal extends HTMLElement {
     if (isOpen) {
       this.querySelector('.backdrop')?.addEventListener('click', () => this.close());
       this.querySelector('.close-btn')?.addEventListener('click', () => this.close());
+      if (ready) {
+        if (isEdit) this._bindEdit();
+        else this._bindView();
+      }
     }
   }
 }

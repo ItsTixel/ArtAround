@@ -684,6 +684,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.querySelector('museum-modal')?.open(e.detail.id);
   });
 
+  /* Dopo una modifica riuscita nel popup museo, ricarica la griglia Musei */
+  document.querySelector('museum-modal')?.addEventListener('museum-updated', () => {
+    museiLoaded = true;
+    loadMusei();
+  });
+
   /* Dopo una modifica riuscita nel popup opera, invalida entrambe le cache
    * (l'opera modificata può comparire sia tra "Create" sia, se l'autore
    * l'ha salvata lui stesso, tra "Preferiti") e ricarica se il tab Opere

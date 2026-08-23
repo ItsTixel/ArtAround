@@ -7,272 +7,17 @@
 import { getCurrentUser } from '/marketplace/js/auth-session.js';
 import { createWizard } from '/marketplace/js/wizard.js';
 import { createImageField } from '/marketplace/js/image-field.js';
+import { setupHoursGrid, setupKvList, setupMapsList } from '/marketplace/js/museum-form-fields.js';
 
 const API_MUSEUMS = '/api/museums';
 const LOGIN_URL   = '/marketplace/login.html';
-const DAYS = ['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 'Domenica'];
 
 let imageField = null;
+let hoursField = null;
+let servicesField = null;
+let accessibilityField = null;
+let mapsField = null;
 let wizard = null;
-
-function buildHoursGrid() {
-  const grid = document.getElementById('hours-grid');
-  DAYS.forEach(day => {
-    const row = document.createElement('div');
-    row.className = 'hours-row';
-    const id = `hours-${day}`;
-    row.innerHTML = `
-      <label for="${id}">${day}</label>
-      <input id="${id}" data-day="${day}" type="text" placeholder="9:00–19:00 oppure Chiuso">
-    `;
-    grid.appendChild(row);
-  });
-}
-
-function addServiceRow() {
-  const list = document.getElementById('services-list');
-  const row = document.createElement('div');
-  row.className = 'dynamic-row kv';
-  row.innerHTML = `
-    <input type="text" class="dynamic-key" placeholder="Es. Toilette">
-    <input type="text" class="dynamic-value" placeholder="Es. In fondo a destra dopo la biglietteria">
-    <button type="button" class="remove-row" aria-label="Rimuovi servizio">✕</button>
-  `;
-  row.querySelector('.remove-row').addEventListener('click', () => row.remove());
-  list.appendChild(row);
-}
-
-function addAccessibilityRow() {
-  const list = document.getElementById('accessibility-list');
-  const row = document.createElement('div');
-  row.className = 'dynamic-row kv';
-  row.innerHTML = `
-    <input type="text" class="dynamic-key" placeholder="Es. Accesso">
-    <input type="text" class="dynamic-value" placeholder="Es. Rampa a 5° di inclinazione">
-    <button type="button" class="remove-row" aria-label="Rimuovi dettaglio">✕</button>
-  `;
-  row.querySelector('.remove-row').addEventListener('click', () => row.remove());
-  list.appendChild(row);
-}
-
-function collectOpeningHours() {
-  const hours = {};
-  document.querySelectorAll('#hours-grid input[data-day]').forEach(input => {
-    const val = input.value.trim();
-    if (val) hours[input.dataset.day] = val;
-  });
-  return hours;
-}
-
-function collectServices() {
-  const services = {};
-  document.querySelectorAll('#services-list .dynamic-row').forEach(row => {
-    const key = row.querySelector('.dynamic-key').value.trim();
-    const value = row.querySelector('.dynamic-value').value.trim();
-    if (key && value) services[key] = value;
-  });
-  return services;
-}
-
-function collectAccessibilityInfo() {
-  const accessibility_info = {};
-  document.querySelectorAll('#accessibility-list .dynamic-row').forEach(row => {
-    const key = row.querySelector('.dynamic-key').value.trim();
-    const value = row.querySelector('.dynamic-value').value.trim();
-    if (key && value) accessibility_info[key] = value;
-  });
-  return accessibility_info;
-}
-
-/* ── Mappe: immagine e JSON allegati separatamente ──────────
- * Per ogni mappa l'utente allega due cose indipendenti:
- *  - l'immagine della pianta, come file locale oppure come URL;
- *  - un JSON "di indicazione" con name + points (niente image_url:
- *    quello arriva dall'immagine, non dal JSON).
- * Il client non li unisce: manda i due pezzi separati (vedi
- * submitMuseum) ed è il server a comporre Museum.maps. */
-const ALLOWED_ICON_TYPES = ['service', 'entity', 'generic'];
-let mapSlots = [];
-let mapSlotSeq = 0;
-
-function readFileAsJson(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      try {
-        resolve(JSON.parse(reader.result));
-      } catch {
-        reject(new Error(`"${file.name}": il file non è un JSON valido.`));
-      }
-    };
-    reader.onerror = () => reject(new Error(`"${file.name}": impossibile leggere il file.`));
-    reader.readAsText(file);
-  });
-}
-
-function validateMapIndications(data, filename) {
-  if (!data || typeof data !== 'object' || Array.isArray(data)) {
-    throw new Error(`"${filename}": il file deve contenere un oggetto JSON.`);
-  }
-  if (!data.name || typeof data.name !== 'string') {
-    throw new Error(`"${filename}": manca il campo "name".`);
-  }
-  const rawPoints = Array.isArray(data.points) ? data.points : [];
-  const points = rawPoints.map((p, i) => {
-    if (!p || typeof p !== 'object') throw new Error(`"${filename}": il punto ${i + 1} non è un oggetto valido.`);
-    if (!p.label || typeof p.label !== 'string') throw new Error(`"${filename}": il punto ${i + 1} non ha una "label".`);
-    if (typeof p.x !== 'number' || p.x < 0 || p.x > 1) throw new Error(`"${filename}": il punto ${i + 1} ha una "x" non valida (deve essere un numero tra 0 e 1).`);
-    if (typeof p.y !== 'number' || p.y < 0 || p.y > 1) throw new Error(`"${filename}": il punto ${i + 1} ha una "y" non valida (deve essere un numero tra 0 e 1).`);
-    return {
-      label: p.label.trim(),
-      icon_type: ALLOWED_ICON_TYPES.includes(p.icon_type) ? p.icon_type : 'generic',
-      x: p.x,
-      y: p.y,
-      ...(p.service_key ? { service_key: String(p.service_key).trim() } : {}),
-      ...(p.entity ? { entity: String(p.entity).trim() } : {}),
-      ...(p.description ? { description: String(p.description).trim() } : {}),
-    };
-  });
-
-  return { name: data.name.trim(), points };
-}
-
-function addMapSlot() {
-  mapSlots.push({
-    id: mapSlotSeq++,
-    imageMode: 'file',
-    imageFile: null,
-    imageUrl: '',
-    mapData: null,
-    mapDataFilename: '',
-    mapDataError: '',
-  });
-  renderMapsList();
-}
-
-function fieldLabel(text) {
-  const label = document.createElement('span');
-  label.textContent = text;
-  label.style.cssText =
-    'display:block;font-size:0.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:0.3rem;';
-  return label;
-}
-
-function buildMapSlotRow(slot) {
-  const row = document.createElement('div');
-  row.className = 'dynamic-row stack';
-
-  /* Immagine: file locale oppure URL, uno dei due */
-  row.appendChild(fieldLabel('Immagine della pianta'));
-
-  const toggleWrap = document.createElement('div');
-  toggleWrap.style.cssText = 'display:flex;gap:0.5rem;margin-bottom:0.5rem;';
-  const fileBtn = document.createElement('button');
-  fileBtn.type = 'button';
-  fileBtn.className = 'btn-secondary';
-  fileBtn.textContent = 'File locale';
-  const urlBtn = document.createElement('button');
-  urlBtn.type = 'button';
-  urlBtn.className = 'btn-secondary';
-  urlBtn.textContent = 'URL';
-  if (slot.imageMode === 'file') {
-    fileBtn.style.borderColor = 'var(--color-accent)';
-    fileBtn.style.color = 'var(--color-text)';
-  } else {
-    urlBtn.style.borderColor = 'var(--color-accent)';
-    urlBtn.style.color = 'var(--color-text)';
-  }
-  fileBtn.addEventListener('click', () => { slot.imageMode = 'file'; renderMapsList(); });
-  urlBtn.addEventListener('click', () => { slot.imageMode = 'url'; renderMapsList(); });
-  toggleWrap.append(fileBtn, urlBtn);
-  row.appendChild(toggleWrap);
-
-  if (slot.imageMode === 'file') {
-    const fileInput = document.createElement('input');
-    fileInput.type = 'file';
-    fileInput.accept = 'image/*';
-    fileInput.addEventListener('change', (e) => {
-      slot.imageFile = e.target.files[0] || null;
-      renderMapsList();
-    });
-    row.appendChild(fileInput);
-    if (slot.imageFile) {
-      const info = document.createElement('span');
-      info.style.cssText = 'display:block;font-size:0.78rem;color:var(--color-text-muted);margin-top:0.3rem;';
-      info.textContent = `Selezionato: ${slot.imageFile.name}`;
-      row.appendChild(info);
-    }
-  } else {
-    const urlInput = document.createElement('input');
-    urlInput.type = 'text';
-    urlInput.placeholder = 'https://...';
-    urlInput.value = slot.imageUrl;
-    urlInput.addEventListener('input', (e) => { slot.imageUrl = e.target.value; });
-    row.appendChild(urlInput);
-  }
-
-  /* JSON di indicazione: nome pianta + punti di interesse */
-  const jsonLabel = fieldLabel('JSON indicazioni (nome pianta + punti)');
-  jsonLabel.style.marginTop = '0.9rem';
-  row.appendChild(jsonLabel);
-
-  const jsonStatusId = `json-status-${slot.id}`;
-
-  const jsonInput = document.createElement('input');
-  jsonInput.type = 'file';
-  jsonInput.accept = 'application/json,.json';
-  jsonInput.setAttribute('aria-describedby', jsonStatusId);
-  jsonInput.setAttribute('aria-invalid', String(!!slot.mapDataError));
-  jsonInput.addEventListener('change', async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    try {
-      const raw = await readFileAsJson(file);
-      slot.mapData = validateMapIndications(raw, file.name);
-      slot.mapDataFilename = file.name;
-      slot.mapDataError = '';
-    } catch (err) {
-      slot.mapData = null;
-      slot.mapDataError = err.message;
-    }
-    renderMapsList();
-  });
-  row.appendChild(jsonInput);
-
-  const jsonStatus = document.createElement('span');
-  jsonStatus.id = jsonStatusId;
-  jsonStatus.style.cssText = 'display:block;font-size:0.78rem;margin-top:0.3rem;';
-  if (slot.mapDataError) {
-    jsonStatus.style.color = 'red';
-    jsonStatus.setAttribute('role', 'alert');
-    jsonStatus.textContent = slot.mapDataError;
-    row.appendChild(jsonStatus);
-  } else if (slot.mapData) {
-    jsonStatus.style.color = 'var(--color-text-muted)';
-    jsonStatus.textContent =
-      `"${slot.mapData.name}" — ${slot.mapData.points.length} punt${slot.mapData.points.length === 1 ? 'o' : 'i'} di interesse (${slot.mapDataFilename})`;
-    row.appendChild(jsonStatus);
-  }
-
-  const removeBtn = document.createElement('button');
-  removeBtn.type = 'button';
-  removeBtn.className = 'remove-row';
-  removeBtn.setAttribute('aria-label', 'Rimuovi mappa');
-  removeBtn.textContent = '✕';
-  removeBtn.addEventListener('click', () => {
-    mapSlots = mapSlots.filter(s => s.id !== slot.id);
-    renderMapsList();
-  });
-  row.appendChild(removeBtn);
-
-  return row;
-}
-
-function renderMapsList() {
-  const list = document.getElementById('maps-list');
-  list.innerHTML = '';
-  mapSlots.forEach(slot => list.appendChild(buildMapSlotRow(slot)));
-}
 
 async function submitMuseum() {
   const feedback = document.getElementById('form-feedback');
@@ -280,14 +25,12 @@ async function submitMuseum() {
   mapsFeedback.style.color = '';
   mapsFeedback.textContent = '';
 
-  for (const slot of mapSlots) {
-    const hasImage = slot.imageMode === 'file' ? !!slot.imageFile : !!slot.imageUrl.trim();
-    if (!hasImage || !slot.mapData) {
-      mapsFeedback.style.color = 'red';
-      mapsFeedback.textContent = 'Ogni mappa allegata deve avere sia un\'immagine sia un JSON di indicazioni valido (o rimuovila con ✕).';
-      wizard.setSubmitEnabled(true);
-      return;
-    }
+  const mapsError = mapsField.validate();
+  if (mapsError) {
+    mapsFeedback.style.color = 'red';
+    mapsFeedback.textContent = mapsError;
+    wizard.setSubmitEnabled(true);
+    return;
   }
 
   const image = imageField.getValue();
@@ -305,28 +48,17 @@ async function submitMuseum() {
       zip:     document.getElementById('zip').value.trim(),
       country: document.getElementById('country').value.trim() || 'Italia',
     },
-    opening_hours:      collectOpeningHours(),
-    services:           collectServices(),
-    accessibility_info: collectAccessibilityInfo(),
+    opening_hours:      hoursField.collect(),
+    services:           servicesField.collect(),
+    accessibility_info: accessibilityField.collect(),
   };
 
   // Immagine e JSON restano separati anche nella richiesta: il server
   // (controllers/museum.js) è quello che li ricompone in Museum.maps.
-  const mapsMeta = mapSlots.map(slot => ({
-    name: slot.mapData.name,
-    points: slot.mapData.points,
-    image_url: slot.imageMode === 'url' ? slot.imageUrl.trim() : undefined,
-  }));
-
   const formData = new FormData();
   formData.append('data', JSON.stringify(basePayload));
-  formData.append('mapsMeta', JSON.stringify(mapsMeta));
+  mapsField.appendToFormData(formData);
   if (image.file) formData.append('image', image.file);
-  mapSlots.forEach((slot, i) => {
-    if (slot.imageMode === 'file' && slot.imageFile) {
-      formData.append(`mapImage_${i}`, slot.imageFile);
-    }
-  });
 
   feedback.classList.remove('is-success', 'is-error');
   feedback.classList.add('is-pending');
@@ -372,17 +104,24 @@ document.addEventListener('DOMContentLoaded', async () => {
     return;
   }
 
-  buildHoursGrid();
-  addServiceRow();
-  document.getElementById('add-service').addEventListener('click', addServiceRow);
+  hoursField = setupHoursGrid(document.getElementById('hours-grid'));
 
-  addAccessibilityRow();
-  document.getElementById('add-accessibility').addEventListener('click', addAccessibilityRow);
+  servicesField = setupKvList(document.getElementById('services-list'), document.getElementById('add-service'), {}, {
+    keyPlaceholder: 'Es. Toilette',
+    valuePlaceholder: 'Es. In fondo a destra dopo la biglietteria',
+    removeLabel: 'Rimuovi servizio',
+  });
+
+  accessibilityField = setupKvList(document.getElementById('accessibility-list'), document.getElementById('add-accessibility'), {}, {
+    keyPlaceholder: 'Es. Accesso',
+    valuePlaceholder: 'Es. Rampa a 5° di inclinazione',
+    removeLabel: 'Rimuovi dettaglio',
+  });
 
   imageField = createImageField({});
   document.getElementById('image-field').appendChild(imageField.el);
 
-  document.getElementById('add-map').addEventListener('click', addMapSlot);
+  mapsField = setupMapsList(document.getElementById('maps-list'), document.getElementById('add-map'));
 
   wizard = createWizard({
     form: document.getElementById('museum-form'),
