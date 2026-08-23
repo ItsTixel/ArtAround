@@ -6,6 +6,7 @@ import { useGroupSession } from '../context/GroupSessionContext'
 import VisitDetailModal, { PENDING_CODE_KEY } from '../components/VisitDetailModal'
 import VisitAdoptModal from '../components/VisitAdoptModal'
 import { formatDuration, formatPrice } from '../components/VisitInfoBody'
+import useDocumentTitle from '../hooks/useDocumentTitle'
 
 const MARKETPLACE_VISITS_URL = '/marketplace/pages/visits.html'
 const LOGIN_URL = '/marketplace/login.html'
@@ -58,6 +59,7 @@ function VisitRow({ visit, isActive, badge, onClick }) {
 }
 
 function Home() {
+  useDocumentTitle('Home')
   const { user, refresh } = useAuth()
   const { activeVisit, activateVisit, clearActiveVisit } = useActiveVisit()
   const { role: groupRole, lookupCode, leaveSession: leaveGroupSession } = useGroupSession()

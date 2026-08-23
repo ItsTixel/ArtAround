@@ -7,6 +7,7 @@ import { useVisitProgress } from '../context/VisitProgressContext'
 import { useGroupSession } from '../context/GroupSessionContext'
 import EntityFoundModal from '../components/EntityFoundModal'
 import VisitAdoptModal from '../components/VisitAdoptModal'
+import useDocumentTitle from '../hooks/useDocumentTitle'
 
 // Un QR fisico codifica semplicemente "entity:<id>" o "visit:<id>" (l'id
 // Mongo dell'opera/visita) — nessun endpoint dedicato: bastano le rotte
@@ -20,6 +21,7 @@ function parseCode(text) {
 }
 
 function Qr() {
+  useDocumentTitle('Scansiona QR')
   const videoRef = useRef(null)
   const canvasRef = useRef(null)
   const streamRef = useRef(null)

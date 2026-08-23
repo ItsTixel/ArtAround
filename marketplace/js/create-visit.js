@@ -464,6 +464,9 @@ function renderStepsList() {
   state.steps.forEach((step, i) => {
     const row = document.createElement('div');
     row.className = 'step-row';
+    row.setAttribute('role', 'button');
+    row.setAttribute('tabindex', '0');
+    row.setAttribute('aria-label', `Modifica tappa ${i + 1}: ${step.entity.name}`);
     row.innerHTML = `
       <span class="step-row-order">${i + 1}</span>
       <span class="step-row-thumb">${step.entity.imageUrl ? `<img src="${esc(step.entity.imageUrl)}" alt="">` : ''}</span>
@@ -478,8 +481,7 @@ function renderStepsList() {
       </span>
     `;
 
-    row.addEventListener('click', async (e) => {
-      if (e.target.closest('.step-row-actions')) return;
+    const openStepEditor = async () => {
       state.editingIndex = i;
       document.getElementById('picker-overlay').hidden = false;
       document.getElementById('picker-browse').hidden = true;
@@ -494,6 +496,14 @@ function renderStepsList() {
         console.error('Errore nel ricaricamento dell\'opera:', err);
         closePicker();
       }
+    };
+    row.addEventListener('click', (e) => {
+      if (e.target.closest('.step-row-actions')) return;
+      openStepEditor();
+    });
+    row.addEventListener('keydown', (e) => {
+      if (e.target.closest('.step-row-actions')) return;
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openStepEditor(); }
     });
     row.querySelector('.step-up').addEventListener('click', (e) => {
       e.stopPropagation();

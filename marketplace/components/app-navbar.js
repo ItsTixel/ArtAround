@@ -59,6 +59,7 @@ class AppNavbar extends HTMLElement {
 
     this.className = 'block';
     this.innerHTML = `
+      <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[200] focus:px-4 focus:py-2 focus:rounded-xl focus:bg-white focus:text-slate-900 focus:shadow-lg">Salta al contenuto principale</a>
       <header class="fixed top-3 inset-x-2 md:inset-x-4 z-[100]">
         <nav class="relative h-16 px-4 md:px-8 flex items-center justify-between gap-4 rounded-2xl text-slate-800 dark:text-slate-100">
           <div class="absolute inset-0 -z-10 ${GLASS_STRONG}"></div>

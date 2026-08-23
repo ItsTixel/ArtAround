@@ -13,6 +13,7 @@ import {
   ToiletIcon,
   ExitIcon,
 } from '../components/icons'
+import useDocumentTitle from '../hooks/useDocumentTitle'
 
 const STANDARD_SERVICE_KEYS = ['Toilette', 'Uscita']
 
@@ -147,6 +148,7 @@ function ServiceButtonGrid({ labels, onSelect }) {
 }
 
 function Comandi() {
+  useDocumentTitle('Comandi')
   const { activeVisit } = useActiveVisit()
   const {
     entity,

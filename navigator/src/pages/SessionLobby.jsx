@@ -1,8 +1,10 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGroupSession } from '../context/GroupSessionContext'
+import useDocumentTitle from '../hooks/useDocumentTitle'
 
 function SessionLobby() {
+  useDocumentTitle('Sala d\'attesa')
   const navigate = useNavigate()
   const { groupVisit, status, connected, error, leaveSession } = useGroupSession()
 

@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGroupSession } from '../context/GroupSessionContext'
 import { PlayIcon, PauseIcon } from '../components/icons'
+import useDocumentTitle from '../hooks/useDocumentTitle'
 
 const TONE_ABBR = { childish: 'Infan.', simple: 'Elem.', medium: 'Med.', technical: 'Avan.' }
 
@@ -10,6 +11,7 @@ function tileClasses(extra = '') {
 }
 
 function Gruppo() {
+  useDocumentTitle('Gruppo')
   const navigate = useNavigate()
   const {
     groupVisit,

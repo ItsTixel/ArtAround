@@ -4,6 +4,7 @@ import { useActiveVisit } from '../context/ActiveVisitContext'
 import { useVisitProgress } from '../context/VisitProgressContext'
 import NoActiveVisit from '../components/NoActiveVisit'
 import { ToiletIcon, ExitIcon, SignpostIcon, OperaIcon, ZoomInIcon, ZoomOutIcon } from '../components/icons'
+import useDocumentTitle from '../hooks/useDocumentTitle'
 
 function iconForPoint(point) {
   if (point.icon_type === 'entity') return OperaIcon
@@ -229,6 +230,7 @@ function pickDefaultMuseumId(museums, currentMuseumId) {
 }
 
 function Mappa() {
+  useDocumentTitle('Mappa')
   const { activeVisit } = useActiveVisit()
   const { museum: currentMuseum, entity: currentEntity, steps, goToStep } = useVisitProgress()
   const location = useLocation()

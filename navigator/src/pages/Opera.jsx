@@ -4,6 +4,7 @@ import { useVisitProgress, TONE_LABELS } from '../context/VisitProgressContext'
 import { useGroupSession } from '../context/GroupSessionContext'
 import NoActiveVisit from '../components/NoActiveVisit'
 import { SignpostIcon, MuseumIcon, FloorIcon, RoomIcon } from '../components/icons'
+import useDocumentTitle from '../hooks/useDocumentTitle'
 
 const DIRECTIONS_ICONS = {
   museum: MuseumIcon,
@@ -23,6 +24,7 @@ function pillClasses(active, activeClasses) {
 }
 
 function Opera() {
+  useDocumentTitle('Opera')
   const [imageOpen, setImageOpen] = useState(false)
   const { activeVisit } = useActiveVisit()
   const {
