@@ -424,7 +424,12 @@ function Mappa() {
               const Icon = iconForPoint(point)
               const thumbnailUrl = point.icon_type === 'entity' ? point.entity?.image_url : null
               const isActive = activePoint && String(activePoint._id) === String(point._id)
-              const isHiddenEntity = point.icon_type === 'entity' && !entitiesVisible
+              const isCurrentEntity =
+                point.icon_type === 'entity' &&
+                currentEntity &&
+                String(entityIdOf(point)) === String(currentEntity._id)
+              // L'opera attuale resta sempre visibile, anche in vista d'insieme.
+              const isHiddenEntity = point.icon_type === 'entity' && !entitiesVisible && !isCurrentEntity
               return (
                 <button
                   key={point._id}
@@ -440,9 +445,11 @@ function Mappa() {
                   } ${
                     isActive
                       ? 'z-10 border-accent bg-accent text-on-accent ring-4 ring-accent/40 animate-pulse'
-                      : point.icon_type === 'entity'
-                        ? 'border-info bg-info/90 text-on-accent'
-                        : 'border-accent bg-accent/90 text-on-accent'
+                      : isCurrentEntity
+                        ? 'z-10 border-accent bg-accent text-on-accent ring-4 ring-accent/40'
+                        : point.icon_type === 'entity'
+                          ? 'border-info bg-info/90 text-on-accent'
+                          : 'border-accent bg-accent/90 text-on-accent'
                   }`}
                 >
                   {thumbnailUrl ? (
