@@ -528,8 +528,7 @@
       "rinascimento",
       "leonardo",
       "tavola",
-      "sacro",
-      "annunciazione"
+      "sacro"
     ],
     "external_links": [
       {
@@ -693,8 +692,7 @@
       "caravaggio",
       "barocco",
       "mitologia",
-      "scudo",
-      "testa-di-medusa"
+      "scudo"
     ],
     "external_links": [],
     "added_by": {
@@ -779,7 +777,7 @@
     "tags": [
       "caravaggio",
       "barocco",
-      "bacco",
+      "mitologia",
       "natura-morta"
     ],
     "external_links": [
@@ -2077,6 +2075,386 @@
     "name": "urbino",
     "is_physical": false,
     "description": "Città delle Marche che nel Quattrocento, sotto Federico da Montefeltro, fu una delle corti più raffinate del Rinascimento italiano.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000090"
+    },
+    "name": "mitologia",
+    "is_physical": false,
+    "description": "Il complesso dei miti greci e romani — dei, eroi e creature straordinarie — che la pittura rinascimentale e barocca riscopre come repertorio narrativo e come veicolo di significati filosofici e allegorici.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000091"
+    },
+    "name": "tempera",
+    "is_physical": false,
+    "description": "Tecnica pittorica a base di pigmenti naturali legati con tuorlo d'uovo, la tecnica più diffusa in Italia prima della definitiva affermazione dell'olio nel Cinquecento.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000092"
+    },
+    "name": "venere",
+    "is_physical": false,
+    "description": "Venere, dea dell'amore e della bellezza nella mitologia romana (Afrodite per i greci), è una delle figure più raffigurate nella storia dell'arte occidentale.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000093"
+    },
+    "name": "tavola",
+    "is_physical": false,
+    "description": "Il supporto ligneo, generalmente in pioppo nell'Italia centrale, su cui è dipinta la maggior parte della pittura italiana prima della diffusione della tela.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000094"
+    },
+    "name": "sacro",
+    "is_physical": false,
+    "description": "Il genere dell'arte sacra, dedicato a soggetti religiosi cristiani, è il filone dominante della pittura italiana fino al pieno Rinascimento.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000095"
+    },
+    "name": "allegoria",
+    "is_physical": false,
+    "description": "L'allegoria è la rappresentazione visiva di un concetto astratto attraverso figure e simboli, spesso di soggetto mitologico.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000096"
+    },
+    "name": "tondo",
+    "is_physical": false,
+    "description": "Il tondo è un dipinto o rilievo di formato circolare, particolarmente diffuso nella Firenze del secondo Quattrocento per la decorazione domestica.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000097"
+    },
+    "name": "scultoreo",
+    "is_physical": false,
+    "description": "Si definisce 'scultoreo' lo stile pittorico che costruisce le figure per volumi solidi e plastici, quasi fossero statue trasferite sulla superficie dipinta.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000098"
+    },
+    "name": "profilo",
+    "is_physical": false,
+    "description": "Il ritratto di profilo, con il volto raffigurato di lato, è il formato ritrattistico dominante nell'Italia del primo Rinascimento.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000099"
+    },
+    "name": "scudo",
+    "is_physical": false,
+    "description": "Lo scudo cerimoniale, spesso decorato con soggetti apotropaici, è un supporto pittorico insolito derivato dalla tradizione degli oggetti da parata e da collezione.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000100"
+    },
+    "name": "nudo",
+    "is_physical": false,
+    "description": "Il nudo, la rappresentazione del corpo umano privo di vesti, è uno dei generi più antichi e discussi della storia dell'arte occidentale.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000101"
+    },
+    "name": "natura-morta",
+    "is_physical": false,
+    "description": "La natura morta, genere dedicato alla rappresentazione di oggetti inanimati come frutta, fiori o oggetti quotidiani, si afferma come genere autonomo fra Cinque e Seicento.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000102"
+    },
+    "name": "battaglia",
+    "is_physical": false,
+    "description": "La pittura di battaglia, dedicata alla narrazione di scontri militari, celebra spesso vittorie storiche o eventi dinastici di rilievo.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000103"
+    },
+    "name": "prospettiva",
+    "is_physical": false,
+    "description": "La prospettiva lineare, il sistema geometrico che permette di rappresentare la profondità su una superficie piatta, è una delle invenzioni fondanti del Rinascimento fiorentino.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000104"
+    },
+    "name": "madonna",
+    "is_physical": false,
+    "description": "Il tema della Madonna con il Bambino, tra i più raffigurati nell'arte cristiana, occupa un posto centrale nella produzione pittorica del Rinascimento italiano.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000105"
+    },
+    "name": "cardellino",
+    "is_physical": false,
+    "description": "Il cardellino, piccolo uccello dal piumaggio rosso e giallo, è nell'iconografia cristiana un simbolo della Passione di Cristo.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000106"
+    },
+    "name": "uffizi",
+    "is_physical": false,
+    "description": "La Galleria degli Uffizi è oggi uno dei musei più visitati al mondo, con una delle raccolte di pittura rinascimentale più importanti a livello internazionale.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000107"
+    },
+    "name": "medici",
+    "is_physical": false,
+    "description": "La famiglia Medici, dinastia di banchieri e poi di duchi e granduchi di Toscana, è stata per tre secoli il principale motore del mecenatismo artistico fiorentino.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000108"
+    },
+    "name": "introduzione",
+    "is_physical": false,
+    "description": "Suggerimenti pratici su come affrontare la visita di un grande museo come gli Uffizi, per orientarsi fra le sale senza perdere il filo.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000109"
+    },
+    "name": "storia",
+    "is_physical": false,
+    "description": "La ricostruzione della storia di un'opera — chi l'ha commissionata, chi l'ha posseduta, come si è conservata nel tempo — arricchisce la comprensione dell'opera stessa.",
     "tags": [],
     "external_links": [],
     "added_by": {

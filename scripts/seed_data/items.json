@@ -6852,5 +6852,4324 @@
     "updatedAt": {
       "$date": "2026-08-24T00:00:00Z"
     }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000300"
+    },
+    "marketplace_summary": "Guida di livello medio alla Nascita di Venere di Botticelli, tra mito e stile.",
+    "artwork": {
+      "$oid": "ccc000000000000000000001"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Capolavoro di Sandro Botticelli, dipinto a tempera su tela intorno al 1484-1486 per la famiglia Medici."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Venere emerge adulta dal mare dentro una conchiglia, spinta a riva dall'abbraccio di Zefiro e Clori, mentre una delle Ore le porge un manto ricamato di fiori pronto ad avvolgerla. La scena illustra la nascita della dea dalla schiuma del mare secondo il mito classico, filtrato attraverso i versi del poeta Angelo Poliziano."
+      },
+      {
+        "duration_sec": 32,
+        "text": "Botticelli allunga volutamente le proporzioni del corpo di Venere e affida il movimento non ai muscoli ma alla linea sinuosa dei contorni e dei capelli mossi dal vento, una scelta stilistica che privilegia l'eleganza decorativa rispetto al naturalismo anatomico. Il dipinto è oggi accostato, nella stessa sala degli Uffizi, alla Primavera, sebbene le due opere non fossero nate come una coppia."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/El_nacimiento_de_Venus%2C_por_Sandro_Botticelli.jpg?width=1280",
+    "alt_text": "La conchiglia su cui è distesa Venere, sospinta a riva dal soffio dei venti",
+    "tags": [
+      "botticelli",
+      "venere",
+      "mitologia"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000301"
+    },
+    "marketplace_summary": "Racconto per bambini dell'Annunciazione di Leonardo da Vinci.",
+    "artwork": {
+      "$oid": "ccc000000000000000000002"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Un angelo con grandi ali arriva a portare una notizia speciale a una ragazza."
+      },
+      {
+        "duration_sec": 16,
+        "text": "L'angelo si chiama Gabriele e la ragazza si chiama Maria. Gabriele le dice che presto diventerà la mamma di un bambino speciale, Gesù, e le porge un fiore bianco chiamato giglio come segno di purezza."
+      },
+      {
+        "duration_sec": 32,
+        "text": "Guarda bene le ali dell'angelo: Leonardo le ha dipinte studiando davvero le piume degli uccelli, per farle sembrare vere! Dietro a Maria e all'angelo si vede un giardino e, più lontano, un paesaggio azzurro che sembra sparire piano piano nella nebbia: si chiama prospettiva aerea, e serve a far sembrare sfumate le cose lontane, proprio come accade quando guardiamo davvero in lontananza. Leonardo dipinse questo quadro quando era ancora molto giovane, quasi un ragazzo!"
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Annunciation_%28Leonardo_c._1472%E2%80%931476%29.jpg?width=1280",
+    "alt_text": "L'angelo Gabriele porge un giglio bianco a Maria, inginocchiato su un prato fiorito",
+    "tags": [
+      "leonardo",
+      "annunciazione",
+      "bambini"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000302"
+    },
+    "marketplace_summary": "Guida semplice alla Primavera di Botticelli.",
+    "artwork": {
+      "$oid": "ccc000000000000000000007"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Nove figure mitologiche animano un giardino sempre fiorito."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Al centro Venere presiede la scena; a destra Zefiro insegue la ninfa Clori, che si trasforma in Flora, dea della primavera; a sinistra le tre Grazie danzano mentre Mercurio allontana le nuvole con il suo bastone."
+      },
+      {
+        "duration_sec": 33,
+        "text": "Botticelli dipinse l'opera per un ramo della famiglia Medici, forse destinata a una camera nuziale, e vi raffigurò oltre cinquecento specie di fiori diverse, tutte riconoscibili. La lettura più diffusa vede nel quadro un percorso che va dall'amore terreno di Zefiro e Clori fino a quello spirituale custodito da Mercurio, con Venere a fare da tramite fra i due estremi."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli-primavera.jpg?width=1280",
+    "alt_text": "Venere al centro della composizione, sotto un arco di alloro",
+    "tags": [
+      "botticelli",
+      "primavera",
+      "mitologia"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000303"
+    },
+    "marketplace_summary": "Racconto per bambini del Tondo Doni di Michelangelo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000008"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "In questo quadro rotondo una mamma si gira per prendere in braccio il suo bambino."
+      },
+      {
+        "duration_sec": 17,
+        "text": "La mamma si chiama Maria e il bambino è Gesù, che le viene passato dalle mani di Giuseppe, il papà. Il quadro è tondo, non rettangolare come quasi tutti gli altri: per questo si chiama 'tondo'!"
+      },
+      {
+        "duration_sec": 32,
+        "text": "Lo dipinse Michelangelo, che di solito preferiva scolpire statue di marmo piuttosto che dipingere: guarda infatti come sono muscolosi e solidi i corpi, quasi fossero statue vere. Sullo sfondo, oltre un muretto basso, si vedono cinque ragazzi quasi senza vestiti: gli studiosi discutono ancora oggi su chi siano davvero!"
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tondo_Doni_2021.jpg?width=1280",
+    "alt_text": "Maria, Giuseppe e il Bambino al centro del tondo, con i cinque nudi sullo sfondo",
+    "tags": [
+      "michelangelo",
+      "tondo-doni",
+      "bambini"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000304"
+    },
+    "marketplace_summary": "Analisi tecnica del doppio ritratto dei duchi di Urbino per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000009"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Dittico a tempera su tavola, 47x33 cm ciascun pannello, databile al 1465-1472 circa."
+      },
+      {
+        "duration_sec": 19,
+        "text": "Piero della Francesca adotta il formato del ritratto di profilo, derivato dalla ritrattistica monetale antica e diffuso nelle corti dell'Italia centrale, in alternativa al ritratto a tre quarti che si andava affermando altrove sotto influsso fiammingo."
+      },
+      {
+        "duration_sec": 30,
+        "text": "Il paesaggio continuo che si estende dietro le due figure, costruito con la caratteristica luce uniforme e la resa atmosferica lenticolare tipiche del pittore, è stato messo in relazione con la sua conoscenza della pittura fiamminga, mediata probabilmente da opere di Rogier van der Weyden allora presenti nelle collezioni italiane."
+      },
+      {
+        "duration_sec": 46,
+        "text": "Sul retro dei due pannelli, generalmente non esposto, compaiono i Trionfi di Federico e Battista su carri allegorici trainati da unicorni e cavalli bianchi, accompagnati dalle Virtù cardinali e teologali secondo un programma ispirato ai Trionfi di Petrarca. L'analisi radiografica ha permesso di chiarire la sequenza esecutiva delle due tavole e ha confermato che il ritratto di Battista Sforza, morta nel 1472, fu probabilmente completato dopo la sua scomparsa, sulla base di ritratti precedenti o di una maschera funebre, mentre quello di Federico fu eseguito dal vero."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Piero_della_Francesca_044.jpg?width=1280",
+    "alt_text": "I due profili affiancati di Federico da Montefeltro e Battista Sforza",
+    "tags": [
+      "piero-della-francesca",
+      "urbino",
+      "tecnico"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000305"
+    },
+    "marketplace_summary": "Guida di livello medio alla Medusa di Caravaggio, fra mito e collezionismo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000010"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Scudo cerimoniale dipinto da Caravaggio intorno al 1597, con la testa recisa della Gorgone Medusa."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Il mito narra che chiunque guardasse Medusa negli occhi si pietrificasse all'istante: l'eroe Perseo riuscì a decapitarla osservando solo il suo riflesso nello scudo lucido, evitando così lo sguardo diretto. Caravaggio dipinge l'attimo immediatamente successivo al colpo, con il sangue che si trasforma in serpenti."
+      },
+      {
+        "duration_sec": 32,
+        "text": "Il supporto convesso, insolito per un dipinto, amplifica l'illusione di realtà del volto urlante, quasi proiettato verso chi guarda. L'opera fu donata dal cardinale Francesco Maria del Monte, protettore romano di Caravaggio, a Ferdinando I de' Medici, granduca di Toscana, come pezzo da collezione più che come immagine devozionale o puramente mitologica."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Medusa_by_Caravaggio.jpg?width=1280",
+    "alt_text": "Lo scudo convesso su cui è dipinta la testa di Medusa nell'attimo del grido",
+    "tags": [
+      "caravaggio",
+      "medusa",
+      "mitologia"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000306"
+    },
+    "marketplace_summary": "Racconto per bambini della Venere di Urbino di Tiziano.",
+    "artwork": {
+      "$oid": "ccc000000000000000000040"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Una signora è distesa su un letto morbido, con un cagnolino addormentato ai suoi piedi."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Si chiama Venere, come la dea dell'amore, ma Tiziano l'ha dipinta in una stanza vera, non in un mondo fatato: sembra quasi una persona reale che si riposa in camera sua."
+      },
+      {
+        "duration_sec": 32,
+        "text": "Guarda sullo sfondo: due signore stanno frugando dentro un grande baule pieno di vestiti, forse per preparare abiti bellissimi per una sposa. Il cagnolino addormentato non è lì per caso: nelle storie antiche rappresentava la fedeltà, cioè la promessa di volersi sempre bene, proprio come si fa quando ci si sposa. Questo quadro è diventato talmente famoso che tantissimi altri pittori, anche molto tempo dopo, hanno provato a dipingerne uno simile."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tizian%20-%20Venus%20von%20Urbino.jpg?width=1280",
+    "alt_text": "Il cagnolino addormentato ai piedi di Venere, distesa su un letto disfatto",
+    "tags": [
+      "tiziano",
+      "venere",
+      "bambini"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000307"
+    },
+    "marketplace_summary": "Analisi tecnica del Bacco di Caravaggio per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000041"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Olio su tela, 95x85 cm, databile al 1598 circa, opera giovanile eseguita a Roma."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Caravaggio riprende l'iconografia classica del dio del vino, con corona di pampini e calice, ma la traduce in chiave naturalistica estrema: incarnato arrossato, unghie sporche, drappeggio reale e non idealizzato secondo il canone antico."
+      },
+      {
+        "duration_sec": 28,
+        "text": "La natura morta di frutta in primo piano, con mele bacate e foglie ingiallite, è tra le prime prove del genere nella produzione dell'artista e introduce un sottile registro di caducità, coerente con la tradizione nordica della vanitas, insolita nel contesto della pittura romana di fine Cinquecento."
+      },
+      {
+        "duration_sec": 42,
+        "text": "L'opera restò a lungo nei depositi degli Uffizi, catalogata genericamente come opera di scuola, finché lo storico dell'arte Roberto Longhi non la identificò come autografa nel 1916, dopo un primo avvistamento nel 1913: la riscoperta contribuì in modo decisivo alla riabilitazione critica di Caravaggio nella storiografia del Novecento. L'analisi riflettografica ha inoltre rilevato, nel riflesso della caraffa di vetro in primo piano, l'immagine minuscola e distorta di un pittore al cavalletto, forse un autoritratto dell'artista intento a dipingere l'opera stessa."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Baco%2C%20por%20Caravaggio.jpg?width=1280",
+    "alt_text": "La natura morta di frutta in primo piano, con mele bacate e foglie ingiallite",
+    "tags": [
+      "caravaggio",
+      "bacco",
+      "tecnico"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000308"
+    },
+    "marketplace_summary": "Racconto per bambini della Battaglia di San Romano di Paolo Uccello.",
+    "artwork": {
+      "$oid": "ccc000000000000000000042"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Tanti cavalieri con lance lunghissime si scontrano in una grande battaglia dipinta."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Il quadro racconta una vittoria dei soldati di Firenze contro quelli di Siena, tanto tempo fa, vicino a un paese chiamato San Romano. Il comandante sul cavallo bianco, con un grande cappello, si chiama Niccolò da Tolentino."
+      },
+      {
+        "duration_sec": 32,
+        "text": "Paolo Uccello amava tantissimo la prospettiva, cioè il modo di disegnare le cose lontane più piccole di quelle vicine, per far sembrare il disegno vero e profondo: guarda come le lance spezzate a terra puntano tutte verso lo stesso punto lontano! Si racconta che passasse le notti a disegnare linee e punti di fuga, tanto che sua moglie si lamentava perché non andava mai a dormire."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Battle%20of%20San%20Romano%2C%20by%20Paolo%20Uccello%20%28Uffizi%20Gallery%2C%20Florence%29.jpg?width=1280",
+    "alt_text": "Niccolò da Tolentino sul cavallo bianco alla guida della carica",
+    "tags": [
+      "paolo-uccello",
+      "battaglia",
+      "bambini"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000309"
+    },
+    "marketplace_summary": "Guida di livello medio alla Madonna del Cardellino di Raffaello.",
+    "artwork": {
+      "$oid": "ccc000000000000000000043"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Dipinta da Raffaello nel 1505-1506 per le nozze del fiorentino Lorenzo Nasi."
+      },
+      {
+        "duration_sec": 20,
+        "text": "La Madonna, Gesù bambino e il piccolo san Giovanni Battista sono disposti in una composizione piramidale, uno schema appreso da Raffaello osservando le opere di Leonardo da Vinci durante il suo soggiorno fiorentino. Giovannino porge a Gesù un cardellino appena catturato."
+      },
+      {
+        "duration_sec": 32,
+        "text": "Il cardellino, uccello che secondo la tradizione popolare si nutre di spine e cardi, allude simbolicamente alla futura Passione di Cristo. Il dipinto fu gravemente danneggiato nel crollo della casa dei Nasi nel 1547 e ridotto in diciassette frammenti, poi ricomposti da un allievo di Raffaello, Ridolfo del Ghirlandaio, restituendo l'opera quasi integra a distanza di secoli."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raffaello_Sanzio_-_Madonna_del_Cardellino_-_Google_Art_Project.jpg?width=1280",
+    "alt_text": "La composizione piramidale della Madonna con Gesù bambino e san Giovannino",
+    "tags": [
+      "raffaello",
+      "madonna",
+      "cardellino"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000310"
+    },
+    "marketplace_summary": "Racconto per bambini su Leonardo da Vinci.",
+    "artwork": {
+      "$oid": "ccc000000000000000000071"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Leonardo era un signore che sapeva fare praticamente tutto!"
+      },
+      {
+        "duration_sec": 18,
+        "text": "Dipingeva quadri bellissimi, ma studiava anche come volano gli uccelli, come sono fatti i muscoli del corpo e disegnava macchine incredibili, come ali per volare, centinaia di anni prima degli aerei veri. Scriveva persino al contrario, da destra a sinistra, così per leggere i suoi appunti serve uno specchio!"
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000311"
+    },
+    "marketplace_summary": "Guida semplice su Leonardo da Vinci.",
+    "artwork": {
+      "$oid": "ccc000000000000000000071"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Leonardo da Vinci nasce nel 1452 e si forma nella bottega fiorentina del Verrocchio."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Pittore, ma anche scienziato, ingegnere e inventore, Leonardo riempie migliaia di pagine di appunti su anatomia, botanica, ottica e meccanica, spesso scritti al contrario, da destra a sinistra. Nei suoi dipinti perfeziona lo sfumato, la tecnica che ammorbidisce i contorni delle figure senza linee nette."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000312"
+    },
+    "marketplace_summary": "Analisi tecnica su Leonardo da Vinci per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000071"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Leonardo da Vinci (Vinci 1452 - Amboise 1519) si forma nella bottega di Andrea del Verrocchio a Firenze."
+      },
+      {
+        "duration_sec": 20,
+        "text": "La sua ricerca pittorica è inseparabile dagli studi scientifici condotti nei taccuini: l'osservazione diretta dell'anatomia, dell'ottica e del moto dell'acqua confluisce nella definizione dello sfumato, tecnica che elimina il contorno lineare a favore di transizioni tonali progressive fra luce e ombra."
+      },
+      {
+        "duration_sec": 32,
+        "text": "Attivo tra Firenze, Milano, presso la corte sforzesca, e infine la Francia di Francesco I, dove muore nel 1519, lascia un corpus pittorico esiguo ma di enorme influenza, spesso incompiuto o segnato da sperimentazioni tecniche rischiose, come nel caso dell'Ultima Cena milanese, dipinta con una tecnica mista che ne ha compromesso la conservazione fin dal Cinquecento."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000313"
+    },
+    "marketplace_summary": "Racconto per bambini su Piero della Francesca.",
+    "artwork": {
+      "$oid": "ccc000000000000000000072"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Piero era un pittore che amava tantissimo i triangoli e i cerchi!"
+      },
+      {
+        "duration_sec": 18,
+        "text": "Studiava la matematica per capire come disegnare le cose in modo che sembrassero vere e profonde, come se si potesse entrare dentro al quadro. Dipingeva soprattutto in Toscana e alla corte del duca di Urbino, dove fece un ritratto famosissimo di lui e di sua moglie."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000314"
+    },
+    "marketplace_summary": "Guida semplice su Piero della Francesca.",
+    "artwork": {
+      "$oid": "ccc000000000000000000072"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Piero della Francesca nasce a Borgo Sansepolcro intorno al 1412."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Pittore e matematico, applica alla pittura un metodo geometrico rigoroso, spiegato nel suo trattato sulla prospettiva. Lavora fra Toscana, Marche ed Emilia, e alla corte di Urbino dipinge il celebre doppio ritratto dei duchi Federico da Montefeltro e Battista Sforza."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000315"
+    },
+    "marketplace_summary": "Analisi tecnica su Piero della Francesca per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000072"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Piero della Francesca (Borgo Sansepolcro 1412 circa - 1492) è autore anche del trattato teorico De prospectiva pingendi."
+      },
+      {
+        "duration_sec": 20,
+        "text": "La sua pittura applica un metodo matematico rigoroso alla costruzione dello spazio, fondendo la tradizione geometrica di Paolo Uccello con una resa della luce diffusa e uniforme, debitrice della coeva pittura fiamminga circolante nelle corti italiane."
+      },
+      {
+        "duration_sec": 30,
+        "text": "Attivo prevalentemente in Toscana, nelle Marche e in Emilia, lavora a lungo per la corte di Federico da Montefeltro a Urbino, dove realizza, oltre al celebre dittico dei duchi, il ciclo della Leggenda della Vera Croce ad Arezzo, considerato tra i vertici della pittura murale del Quattrocento italiano per rigore compositivo e controllo della luce."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000316"
+    },
+    "marketplace_summary": "Racconto per bambini su Sandro Botticelli.",
+    "artwork": {
+      "$oid": "ccc000000000000000000073"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Botticelli dipingeva dee bellissime circondate da fiori e vento!"
+      },
+      {
+        "duration_sec": 18,
+        "text": "Viveva a Firenze e lavorava per una famiglia molto ricca e potente, i Medici, che gli chiedevano quadri pieni di storie mitologiche antiche. I suoi quadri più famosi, la Nascita di Venere e la Primavera, si trovano proprio agli Uffizi, uno vicino all'altro."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000317"
+    },
+    "marketplace_summary": "Guida semplice su Sandro Botticelli.",
+    "artwork": {
+      "$oid": "ccc000000000000000000073"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Sandro Botticelli nasce a Firenze nel 1445."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Allievo di Filippo Lippi, lavora a lungo sotto la protezione di Lorenzo il Magnifico e della famiglia Medici, per cui dipinge le sue opere più celebri, allegorie mitologiche come la Primavera e la Nascita di Venere. Il suo stile è riconoscibile per il disegno lineare e le figure eleganti e sospese."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000318"
+    },
+    "marketplace_summary": "Analisi tecnica su Sandro Botticelli per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000073"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Sandro Botticelli, Firenze 1445-1510, si forma nella bottega di Filippo Lippi."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Sviluppa un linguaggio pittorico fondato sul primato del disegno di contorno rispetto al modellato chiaroscurale, con figure dal ritmo lineare accentuato, spesso in tensione con la resa anatomica corretta, a favore di un'eleganza decorativa di matrice tardogotica reinterpretata in chiave umanistica."
+      },
+      {
+        "duration_sec": 32,
+        "text": "Per il circolo neoplatonico legato a Lorenzo di Pierfrancesco de' Medici realizza le allegorie mitologiche più celebri, Primavera e Nascita di Venere, elaborate probabilmente con la consulenza letteraria di intellettuali della cerchia di Marsilio Ficino e Angelo Poliziano. Dopo il 1490, sotto l'influenza delle prediche di Girolamo Savonarola, il suo stile si fa più austero e spigoloso, in aperto contrasto con la grazia mitologica della produzione precedente."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000319"
+    },
+    "marketplace_summary": "Racconto per bambini su Michelangelo Buonarroti.",
+    "artwork": {
+      "$oid": "ccc000000000000000000074"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Michelangelo preferiva scolpire statue di marmo piuttosto che dipingere!"
+      },
+      {
+        "duration_sec": 18,
+        "text": "Nasce vicino ad Arezzo nel 1475 e diventa uno degli artisti più famosi di sempre: scolpisce il gigantesco David e dipinge il soffitto della Cappella Sistina, sdraiato su un'impalcatura per anni! Il Tondo Doni, agli Uffizi, è l'unico suo quadro su tavola arrivato fino a noi."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000320"
+    },
+    "marketplace_summary": "Guida semplice su Michelangelo Buonarroti.",
+    "artwork": {
+      "$oid": "ccc000000000000000000074"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Michelangelo Buonarroti nasce a Caprese nel 1475 e si considera innanzitutto uno scultore."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Attivo tra Firenze e Roma, scolpisce capolavori come il David e la Pietà e affresca la volta della Cappella Sistina. Il Tondo Doni, dipinto per le nozze di Agnolo Doni, è il suo unico dipinto su tavola giunto fino a noi, con figure costruite come volumi scultorei."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000321"
+    },
+    "marketplace_summary": "Analisi tecnica su Michelangelo Buonarroti per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000074"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Michelangelo Buonarroti, Caprese 1475 - Roma 1564, si considera innanzitutto scultore, malgrado la vastissima produzione pittorica e architettonica."
+      },
+      {
+        "duration_sec": 20,
+        "text": "La sua concezione della pittura è fortemente condizionata dalla pratica scultorea: le figure sono costruite per volumi netti e torsioni plastiche, secondo un principio, la 'figura serpentinata', che privilegia la resa tridimensionale del corpo rispetto alla costruzione spaziale prospettica."
+      },
+      {
+        "duration_sec": 30,
+        "text": "Il Tondo Doni, unico dipinto su tavola autografo giunto fino a noi, anticipa nella posa avvitata della Sacra Famiglia le soluzioni sviluppate pochi anni dopo negli ignudi della volta della Cappella Sistina (1508-1512), affresco che ridefinisce il linguaggio figurativo del Cinquecento e resta, insieme al Giudizio Universale dipinto oltre vent'anni più tardi, il vertice della sua produzione pittorica monumentale."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000322"
+    },
+    "marketplace_summary": "Racconto per bambini su Raffaello Sanzio.",
+    "artwork": {
+      "$oid": "ccc000000000000000000075"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Raffaello dipingeva mamme dolcissime con i loro bambini in braccio!"
+      },
+      {
+        "duration_sec": 18,
+        "text": "Nasce a Urbino nel 1483 e impara a dipingere osservando i grandi artisti del suo tempo, Leonardo e poi Michelangelo. Le sue Madonne, come quella del Cardellino agli Uffizi, sono famose per i colori delicati e le pose serene."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000323"
+    },
+    "marketplace_summary": "Guida semplice su Raffaello Sanzio.",
+    "artwork": {
+      "$oid": "ccc000000000000000000075"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Raffaello Sanzio nasce a Urbino nel 1483 e si forma nella bottega del Perugino."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Sintetizza la grazia di Leonardo e la forza plastica di Michelangelo in uno stile equilibrato, che lo rende il ritrattista di Madonne più richiesto del suo tempo. Chiamato a Roma da papa Giulio II, affresca le Stanze Vaticane prima di morire a soli trentasette anni, nel 1520."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000324"
+    },
+    "marketplace_summary": "Analisi tecnica su Raffaello Sanzio per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000075"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Raffaello Sanzio, Urbino 1483 - Roma 1520, si forma nella bottega di Pietro Vannucci, detto il Perugino."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Il suo soggiorno fiorentino, fra il 1504 e il 1508, è decisivo per l'assimilazione degli studi compositivi di Leonardo, in particolare lo schema piramidale sperimentato per il cartone della Sant'Anna, ripreso da Raffaello in numerose Madonne, tra cui la Madonna del Cardellino."
+      },
+      {
+        "duration_sec": 28,
+        "text": "A Roma, chiamato da Giulio II, affresca le Stanze Vaticane e in particolare la Scuola di Atene, dove sintetizza equilibrio compositivo, chiarezza spaziale prospettica e un repertorio di figure ispirate alla statuaria antica e alla forza plastica michelangiolesca, definendo un canone di classicismo rinascimentale che resterà modello per l'accademismo europeo nei secoli successivi."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000325"
+    },
+    "marketplace_summary": "Racconto per bambini su Tiziano Vecellio.",
+    "artwork": {
+      "$oid": "ccc000000000000000000076"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Tiziano dipingeva usando tantissimo colore, quasi come se pitturasse con un pennello magico!"
+      },
+      {
+        "duration_sec": 18,
+        "text": "Viveva a Venezia, una città piena di colori riflessi nell'acqua dei canali, e diventò il pittore preferito di re, papi e imperatori. La sua Venere di Urbino, agli Uffizi, è uno dei suoi quadri più famosi."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000326"
+    },
+    "marketplace_summary": "Guida semplice su Tiziano Vecellio.",
+    "artwork": {
+      "$oid": "ccc000000000000000000076"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Tiziano Vecellio nasce nel Cadore verso il 1488 e diventa il pittore più richiesto della Venezia del suo tempo."
+      },
+      {
+        "duration_sec": 18,
+        "text": "A differenza della tradizione fiorentina, fondata sul disegno, Tiziano costruisce le sue immagini con il colore steso a pennellate libere e vibranti. Ritrattista delle maggiori corti europee, dipinge nudi femminili di grande influenza, come la Venere di Urbino."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000327"
+    },
+    "marketplace_summary": "Analisi tecnica su Tiziano Vecellio per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000076"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Tiziano Vecellio, Pieve di Cadore 1488/90 circa - Venezia 1576, si forma nella bottega di Giovanni Bellini."
+      },
+      {
+        "duration_sec": 20,
+        "text": "La sua tecnica pittorica, fondata sul cosiddetto colorito veneziano, privilegia la costruzione dell'immagine per velature sovrapposte di colore steso a pennellate libere, in alternativa al disegno di contorno marcato tipico della tradizione fiorentina."
+      },
+      {
+        "duration_sec": 30,
+        "text": "Ritrattista ufficiale di Carlo V e poi di Filippo II di Spagna, elabora nella maturità una tecnica sempre più libera e materica, con pennellate dense e visibili che nell'Ottocento verranno riconosciute come anticipatrici della pittura moderna. La Venere di Urbino, dipinta nel 1538, fissa uno schema compositivo del nudo femminile disteso in un interno domestico che influenzerà la pittura occidentale fino a Manet."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000328"
+    },
+    "marketplace_summary": "Racconto per bambini su Paolo Uccello.",
+    "artwork": {
+      "$oid": "ccc000000000000000000077"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Paolo Uccello amava talmente tanto la prospettiva da passarci sopra le notti intere!"
+      },
+      {
+        "duration_sec": 18,
+        "text": "Nasce a Firenze nel 1397 e dipinge soprattutto cavalli, lance e battaglie, disegnati con grandissima precisione geometrica. Il suo quadro più famoso agli Uffizi, la Battaglia di San Romano, fa parte di una serie di tre dipinti oggi divisi fra tre musei diversi."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000329"
+    },
+    "marketplace_summary": "Guida semplice su Paolo Uccello.",
+    "artwork": {
+      "$oid": "ccc000000000000000000077"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Paolo Uccello nasce a Firenze nel 1397, in una generazione a cavallo fra gotico e Rinascimento."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Applica con insistenza le nuove regole della prospettiva lineare, scorciando lance, armature e cavalli fino a farne un esercizio geometrico oltre che narrativo. La Battaglia di San Romano, commissionata dai Medici, è oggi divisa fra gli Uffizi, il Louvre e la National Gallery di Londra."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000330"
+    },
+    "marketplace_summary": "Analisi tecnica su Paolo Uccello per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000077"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Paolo Uccello, nome d'arte di Paolo di Dono, Firenze 1397-1475, si forma nella bottega di Lorenzo Ghiberti."
+      },
+      {
+        "duration_sec": 20,
+        "text": "La sua produzione applica in modo quasi sistematico le regole della prospettiva lineare codificate da Filippo Brunelleschi, spingendole talvolta fino a soluzioni geometriche fini a se stesse, in tensione con una permanente componente decorativa di ascendenza tardogotica, evidente nell'uso di colori innaturalistici."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Il ciclo della Battaglia di San Romano, oggi diviso fra Uffizi, Louvre e National Gallery di Londra, applica il reticolo prospettico al genere della pittura di battaglia, con lance a terra usate come linee guida verso un punto di fuga condiviso, in un'opera considerata cerniera fra il Gotico internazionale e il primo Rinascimento fiorentino."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000331"
+    },
+    "marketplace_summary": "Racconto per bambini su Caravaggio.",
+    "artwork": {
+      "$oid": "ccc000000000000000000078"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Caravaggio dipingeva usando la luce come se fosse un faro puntato nel buio!"
+      },
+      {
+        "duration_sec": 18,
+        "text": "Nasce nel 1571 e diventa famoso per i suoi quadri pieni di ombre scure e luci fortissime, dove le persone sembrano quasi vere, con vestiti veri e facce vere, non perfette come nelle statue antiche. Ebbe anche una vita molto avventurosa, piena di litigi e viaggi."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000332"
+    },
+    "marketplace_summary": "Guida semplice su Caravaggio.",
+    "artwork": {
+      "$oid": "ccc000000000000000000078"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Michelangelo Merisi, detto il Caravaggio, nasce nel 1571 e si forma a Milano prima di trasferirsi a Roma."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Rompe con l'idealizzazione rinascimentale dipingendo dal vero, con modelli popolari e una luce drammatica che scolpisce le figure nel buio, il cosiddetto chiaroscuro. Conduce una vita turbolenta, segnata da risse e da un omicidio che lo costringe alla fuga; muore nel 1610, a soli trentotto anni."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000333"
+    },
+    "marketplace_summary": "Analisi tecnica su Caravaggio per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000078"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Michelangelo Merisi, detto il Caravaggio, Milano 1571 - Porto Ercole 1610, si forma in ambito lombardo prima di trasferirsi a Roma nel 1592 circa."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Introduce un naturalismo radicale fondato sullo studio diretto del modello vivente, spesso tratto dal popolo romano, e su un uso drammatico del chiaroscuro, con fasci di luce netta che isolano le figure da fondi scuri privi di dettagli descrittivi, tecnica nota come tenebrismo."
+      },
+      {
+        "duration_sec": 30,
+        "text": "Protetto a Roma dal cardinale Francesco Maria del Monte, sviluppa una tecnica esecutiva rapida, spesso priva di disegno preparatorio esteso, dipingendo direttamente sulla tela con pentimenti visibili in riflettografia. Una vita segnata da violenze, culminata nell'omicidio di Ranuccio Tomassoni nel 1606, lo costringe a una fuga attraverso Napoli, Malta e la Sicilia, durante la quale il suo stile si fa ancora più scarno e drammatico, fino alla morte prematura nel 1610."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000334"
+    },
+    "marketplace_summary": "Racconto per bambini su il Rinascimento.",
+    "artwork": {
+      "$oid": "ccc000000000000000000079"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il Rinascimento è un periodo in cui gli artisti hanno iniziato a dipingere il mondo come lo vediamo davvero."
+      },
+      {
+        "duration_sec": 18,
+        "text": "È cominciato a Firenze tantissimo tempo fa, quando i pittori hanno imparato un trucco chiamato prospettiva, che fa sembrare i quadri profondi come se ci si potesse entrare dentro. In quegli anni la famiglia Medici aiutava tantissimi artisti a lavorare e a diventare famosi."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000335"
+    },
+    "marketplace_summary": "Guida semplice su il Rinascimento.",
+    "artwork": {
+      "$oid": "ccc000000000000000000079"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il Rinascimento nasce a Firenze nel Quattrocento come rinnovato interesse per l'arte e il pensiero dell'antichità classica."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Grazie a scoperte come la prospettiva lineare, teorizzata da Brunelleschi e Alberti, i pittori imparano a costruire uno spazio coerente e misurabile. Sotto il mecenatismo dei Medici, Firenze diventa il centro propulsore di questa nuova visione, diffusa poi in tutta Italia."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000336"
+    },
+    "marketplace_summary": "Analisi tecnica su il Rinascimento per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000079"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il Rinascimento è il movimento culturale e artistico che si sviluppa in Italia fra Quattrocento e Cinquecento."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Fonda la propria estetica sulla riscoperta filologica dell'antichità classica e sull'elaborazione di un sistema prospettico geometrico-matematico, la 'costruzione legittima' teorizzata da Filippo Brunelleschi e codificata da Leon Battista Alberti nel De pictura del 1435."
+      },
+      {
+        "duration_sec": 30,
+        "text": "Convenzionalmente distinto in un primo Rinascimento quattrocentesco, di impronta più lineare e analitica, e in un Rinascimento maturo cinquecentesco, segnato dalla sintesi fra disegno fiorentino e colorito veneziano, il movimento trova negli Uffizi una delle raccolte più complete al mondo, dalle sperimentazioni prospettiche di Paolo Uccello fino al classicismo di Raffaello e al colorismo di Tiziano."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000337"
+    },
+    "marketplace_summary": "Racconto per bambini su il Quattrocento.",
+    "artwork": {
+      "$oid": "ccc000000000000000000080"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il Quattrocento è il nome che si dà agli anni 1400, tanto tempo fa!"
+      },
+      {
+        "duration_sec": 18,
+        "text": "In quel periodo, a Firenze, alcuni artisti hanno inventato nuovi modi di costruire, scolpire e dipingere: hanno imparato a disegnare le cose lontane più piccole di quelle vicine, proprio come le vediamo davvero con i nostri occhi."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000338"
+    },
+    "marketplace_summary": "Guida semplice su il Quattrocento.",
+    "artwork": {
+      "$oid": "ccc000000000000000000080"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il Quattrocento è il secolo in cui, a Firenze, nasce il linguaggio del primo Rinascimento."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Le innovazioni di Brunelleschi in architettura, di Donatello in scultura e di Masaccio in pittura pongono le basi di un'arte fondata sulla prospettiva e sull'osservazione della realtà. Pittori come Paolo Uccello portano questi studi alle estreme conseguenze."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000339"
+    },
+    "marketplace_summary": "Analisi tecnica su il Quattrocento per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000080"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il Quattrocento designa convenzionalmente il XV secolo italiano, corrispondente alla prima fase del Rinascimento."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Si apre a Firenze con le innovazioni di Filippo Brunelleschi in architettura e nella teorizzazione della prospettiva, di Donatello in scultura e di Masaccio in pittura, la cosiddetta 'triade' che pone le basi di un linguaggio fondato sul rigore geometrico e sull'osservazione diretta della realtà."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Nella seconda metà del secolo il linguaggio quattrocentesco si diversifica in botteghe e correnti diverse, dal naturalismo analitico di Paolo Uccello e Piero della Francesca al lirismo lineare di Sandro Botticelli, preparando la sintesi del pieno Rinascimento cinquecentesco rappresentata da Leonardo, Michelangelo e Raffaello."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000340"
+    },
+    "marketplace_summary": "Racconto per bambini su il Barocco.",
+    "artwork": {
+      "$oid": "ccc000000000000000000081"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il Barocco è un modo di dipingere con tantissima luce e tantissimo buio insieme!"
+      },
+      {
+        "duration_sec": 18,
+        "text": "È nato dopo il Rinascimento, nel Seicento, quando alcuni pittori come Caravaggio hanno iniziato a usare la luce come se fosse un riflettore puntato su una scena teatrale, per far sembrare tutto molto emozionante e drammatico."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000341"
+    },
+    "marketplace_summary": "Guida semplice su il Barocco.",
+    "artwork": {
+      "$oid": "ccc000000000000000000081"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il Barocco si afferma nel Seicento come reazione all'equilibrio classico del Rinascimento."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Predilige composizioni dinamiche, contrasti violenti fra luce e ombra e un forte coinvolgimento emotivo dello spettatore. Caravaggio, con il suo naturalismo drammatico e il chiaroscuro netto, è considerato uno dei padri fondatori di questa nuova sensibilità."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000342"
+    },
+    "marketplace_summary": "Analisi tecnica su il Barocco per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000081"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il Barocco si afferma in Italia a partire dai primi decenni del Seicento, in gran parte come linguaggio al servizio della Controriforma cattolica."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Rispetto all'equilibrio statico e alla proporzione ideale del classicismo rinascimentale, predilige composizioni dinamiche costruite su diagonali, un uso teatrale della luce (chiaroscuro e tenebrismo) e un coinvolgimento emotivo diretto dello spettatore, spesso a fini devozionali e persuasivi."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Caravaggio, con il naturalismo radicale e il tenebrismo elaborato a Roma fra Cinque e Seicento, è considerato precursore diretto della sensibilità barocca, diffusasi poi in tutta Europa fino a raggiungere la piena maturità decorativa nel tardo Seicento romano con Gian Lorenzo Bernini e Pietro da Cortona."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000343"
+    },
+    "marketplace_summary": "Racconto per bambini su il ritratto.",
+    "artwork": {
+      "$oid": "ccc000000000000000000082"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Un ritratto è un quadro che mostra il vero volto di una persona vissuta davvero."
+      },
+      {
+        "duration_sec": 18,
+        "text": "A differenza dei quadri con dee e angeli inventati, il ritratto racconta come era fatta per davvero una persona importante, tanti anni fa: un duca, una regina, un mercante. Guardando un ritratto è un po' come vedere una fotografia antichissima!"
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000344"
+    },
+    "marketplace_summary": "Guida semplice su il ritratto.",
+    "artwork": {
+      "$oid": "ccc000000000000000000082"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il ritratto è il genere che fissa l'aspetto di una persona realmente esistita."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Nel primo Rinascimento italiano si afferma dapprima il ritratto di profilo, ripreso dalle monete antiche e diffuso nelle piccole corti come Urbino. Solo più tardi si diffonde il ritratto di tre quarti o frontale, che permette allo sguardo del soggetto di incrociare quello dell'osservatore."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000345"
+    },
+    "marketplace_summary": "Analisi tecnica su il ritratto per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000082"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il ritratto è il genere pittorico dedicato alla resa dell'identità fisica e sociale di un soggetto realmente esistito."
+      },
+      {
+        "duration_sec": 22,
+        "text": "Nel primo Quattrocento italiano prevale il formato di profilo assoluto, mutuato dalla numismatica antica e diffuso soprattutto nelle corti dell'Italia centro-settentrionale, dove assolveva a una funzione dinastica e propagandistica più che introspettiva, come nel caso del dittico dei duchi di Urbino di Piero della Francesca."
+      },
+      {
+        "duration_sec": 30,
+        "text": "L'introduzione del ritratto a tre quarti, favorita dal contatto con la ritrattistica fiamminga e dalle sperimentazioni ottiche di Leonardo da Vinci, permette dalla fine del Quattrocento una resa più psicologica del soggetto, con lo sguardo rivolto verso l'osservatore: un'evoluzione che culmina nel Cinquecento nella ritrattistica di rappresentazione di corte, di cui Tiziano diventa il principale interprete europeo."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000346"
+    },
+    "marketplace_summary": "Racconto per bambini su Urbino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000083"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Urbino è una piccola città su una collina, nelle Marche."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Tanto tempo fa era governata da un duca di nome Federico, che amava i libri e l'arte, e faceva lavorare per lui tantissimi artisti bravissimi. Anche il pittore Raffaello è nato proprio lì!"
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000347"
+    },
+    "marketplace_summary": "Guida semplice su Urbino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000083"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Urbino è una piccola città collinare delle Marche, capitale di un ducato rinascimentale."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Il duca Federico da Montefeltro, condottiero e mecenate, vi raccolse una delle biblioteche più ricche d'Europa e fece costruire il Palazzo Ducale, richiamando alla sua corte artisti e letterati. A Urbino nacque anche il pittore Raffaello Sanzio."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000348"
+    },
+    "marketplace_summary": "Analisi tecnica su Urbino per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000083"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Urbino, nelle Marche, fu capitale di un ducato che sotto Federico da Montefeltro divenne un modello di corte rinascimentale."
+      },
+      {
+        "duration_sec": 22,
+        "text": "Il duca, condottiero al servizio di diverse signorie italiane e raffinato mecenate, promosse la costruzione del Palazzo Ducale su progetto dell'architetto dalmata Luciano Laurana e vi riunì una delle biblioteche più importanti d'Europa, oltre a chiamare a corte pittori come Piero della Francesca e Justus van Gent."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Il ducato passò poi alla famiglia Della Rovere, che ne mantenne il prestigio culturale fino al Seicento; a Urbino, pochi anni dopo la morte di Federico, nacque anche Raffaello Sanzio, figlio del pittore di corte Giovanni Santi, la cui formazione iniziale avvenne probabilmente in un ambiente artistico ancora permeato dalla lezione di Piero della Francesca."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000349"
+    },
+    "marketplace_summary": "Racconto per bambini sulla mitologia nell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000090"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Nella mitologia ci sono dee, dei ed eroi delle storie antiche dei greci e dei romani."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Tantissimi pittori del Rinascimento, come Botticelli, amavano dipingere questi personaggi: Venere, la dea dell'amore, Bacco, il dio del vino, o mostri come Medusa. Erano storie bellissime da raccontare con i colori, anche se nessuno le aveva mai viste per davvero!"
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000350"
+    },
+    "marketplace_summary": "Guida semplice alla mitologia nell'arte rinascimentale.",
+    "artwork": {
+      "$oid": "ccc000000000000000000090"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "La mitologia classica, con le sue divinità ed eroi, è uno dei soggetti preferiti dalla pittura rinascimentale."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Riscoprendo i testi antichi di autori come Ovidio, gli artisti del Quattrocento e Cinquecento dipingono Venere, Bacco, Perseo e altre figure del mito greco-romano, spesso caricandole di significati filosofici legati al pensiero neoplatonico allora diffuso a Firenze."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000351"
+    },
+    "marketplace_summary": "Guida di livello medio alla mitologia nella pittura rinascimentale.",
+    "artwork": {
+      "$oid": "ccc000000000000000000090"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il mito classico torna al centro della pittura italiana a partire dal secondo Quattrocento, grazie alla riscoperta delle fonti antiche."
+      },
+      {
+        "duration_sec": 19,
+        "text": "Opere come la Nascita di Venere e la Primavera di Botticelli traducono in immagini i versi di Ovidio e di Angelo Poliziano, spesso arricchendoli di significati filosofici legati al pensiero neoplatonico fiorentino, secondo cui la bellezza sensibile del mito era immagine di una bellezza più alta e divina."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Nel Cinque e Seicento il repertorio mitologico si allarga: Tiziano ne fa veicolo di un canone di bellezza raffinato ed elegante, come nella Venere di Urbino, mentre Caravaggio, nella Medusa e nel Bacco degli Uffizi, lo interpreta con un realismo fisico quasi contemporaneo, lontano dall'idealizzazione classica."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000352"
+    },
+    "marketplace_summary": "Analisi tecnica sulla mitologia nella pittura rinascimentale per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000090"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "Il soggetto mitologico si afferma nella pittura italiana a partire dal secondo Quattrocento come esito della riscoperta filologica delle fonti classiche."
+      },
+      {
+        "duration_sec": 22,
+        "text": "Testi come le Metamorfosi di Ovidio e le Stanze per la giostra di Angelo Poliziano forniscono il repertorio narrativo a dipinti come la Nascita di Venere e la Primavera di Botticelli, spesso letti dalla critica novecentesca, a partire da Aby Warburg, come traduzioni figurative della filosofia neoplatonica di Marsilio Ficino."
+      },
+      {
+        "duration_sec": 30,
+        "text": "Nel Cinque e Seicento il soggetto mitologico si arricchisce di registri diversi: dal classicismo idealizzato di Raffaello e Tiziano, che ne fanno veicolo di un canone di bellezza normativo, fino al naturalismo di Caravaggio, che nella Medusa e nel Bacco degli Uffizi svuota il mito della sua distanza ideale per restituirlo con un realismo fisico quasi contemporaneo."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000353"
+    },
+    "marketplace_summary": "Racconto per bambini su la tempera.",
+    "artwork": {
+      "$oid": "ccc000000000000000000091"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "La tempera è una specie di colore fatto con il tuorlo dell'uovo!"
+      },
+      {
+        "duration_sec": 16,
+        "text": "Gli antichi pittori mescolavano polvere colorata con l'uovo per creare i colori, invece di usare i tubetti che si comprano oggi nei negozi. Botticelli dipinse così sia la Nascita di Venere sia la Primavera."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000354"
+    },
+    "marketplace_summary": "Guida semplice su la tempera.",
+    "artwork": {
+      "$oid": "ccc000000000000000000091"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "La tempera è una tecnica pittorica che lega i pigmenti con il tuorlo d'uovo."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Fu la tecnica più diffusa in Italia fino al tardo Quattrocento, prima che l'olio, arrivato dalle Fiandre, la sostituisse progressivamente. Asciuga molto rapidamente e richiede pennellate sottili e sovrapposte, senza la possibilità di sfumare i colori a lungo come con l'olio."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000355"
+    },
+    "marketplace_summary": "Guida di livello medio su la tempera.",
+    "artwork": {
+      "$oid": "ccc000000000000000000091"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La tempera all'uovo è la tecnica pittorica dominante in Italia fino alla seconda metà del Quattrocento."
+      },
+      {
+        "duration_sec": 18,
+        "text": "I pigmenti macinati vengono legati con tuorlo d'uovo diluito in acqua, un legante che asciuga rapidamente e obbliga il pittore a lavorare per piccole pennellate sottili e sovrapposte, senza i tempi lunghi di elaborazione consentiti dall'olio."
+      },
+      {
+        "duration_sec": 26,
+        "text": "Botticelli la utilizza per la Nascita di Venere, dipinta però eccezionalmente su tela anziché su tavola, e per la Primavera: la tecnica conferisce ai due capolavori quella luminosità opaca e quei contorni netti tipici della pittura fiorentina di fine Quattrocento, ancora legata al primato del disegno lineare."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000356"
+    },
+    "marketplace_summary": "Analisi tecnica su la tempera per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000091"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La tempera magra all'uovo, legante costituito da tuorlo diluito con acqua o aceto, domina la pittura italiana fino agli anni ottanta del Quattrocento."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Rispetto all'olio, introdotto in Italia sull'esempio della pittura fiamminga, la tempera asciuga quasi istantaneamente, impedendo la fusione morbida dei toni: i pittori ottengono i passaggi chiaroscurali per mezzo di sottilissime pennellate parallele, il cosiddetto tratteggio, sovrapposte a velature successive."
+      },
+      {
+        "duration_sec": 30,
+        "text": "Botticelli resta uno degli ultimi grandi maestri della tempera pura in un'epoca di transizione tecnica: la Nascita di Venere, eseguita su tela — supporto insolito, associato a decorazioni non permanenti da villa — e la Primavera su tavola, mostrano entrambe la tipica luminosità opaca e il disegno di contorno sempre leggibile sotto colore che caratterizzano questa tecnica, presto soppiantata dall'olio anche a Firenze nel corso del primo Cinquecento."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000357"
+    },
+    "marketplace_summary": "Racconto per bambini su Venere.",
+    "artwork": {
+      "$oid": "ccc000000000000000000092"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Venere è la dea dell'amore e della bellezza nelle storie antiche!"
+      },
+      {
+        "duration_sec": 16,
+        "text": "Secondo il mito, nacque già adulta dalla schiuma del mare. I pittori del Rinascimento amavano dipingerla, sia in piedi su una conchiglia come fece Botticelli, sia distesa su un letto come fece Tiziano."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000358"
+    },
+    "marketplace_summary": "Guida semplice su Venere.",
+    "artwork": {
+      "$oid": "ccc000000000000000000092"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Venere è la dea dell'amore e della bellezza nella mitologia romana."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Corrisponde alla greca Afrodite ed è tra le figure mitologiche più raffigurate nell'arte occidentale. Agli Uffizi appare sia nella Nascita di Venere di Botticelli, appena emersa dal mare, sia nella Venere di Urbino di Tiziano, distesa in un interno domestico."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000359"
+    },
+    "marketplace_summary": "Guida di livello medio su Venere.",
+    "artwork": {
+      "$oid": "ccc000000000000000000092"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Venere, dea romana dell'amore e della bellezza, equivale alla greca Afrodite."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Il mito più diffuso ne narra la nascita dalla schiuma del mare fecondata dai genitali recisi di Urano, episodio raffigurato da Botticelli nella Nascita di Venere. Nel corso del Rinascimento la dea diventa anche pretesto iconografico per raffigurare il nudo femminile in chiave allegorica o celebrativa."
+      },
+      {
+        "duration_sec": 27,
+        "text": "Tiziano, nella Venere di Urbino, trasforma la dea mitologica in una figura quasi contemporanea, distesa in un interno domestico anziché in un paesaggio ideale: un modello compositivo che unisce il pretesto mitologico alla celebrazione delle virtù coniugali, e che diventerà un riferimento fondamentale per la pittura del nudo occidentale nei secoli successivi."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000360"
+    },
+    "marketplace_summary": "Analisi tecnica su Venere per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000092"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Venere, dea dell'amore nella mitologia romana, equivalente alla greca Afrodite, è tra i soggetti più ricorrenti della pittura rinascimentale."
+      },
+      {
+        "duration_sec": 20,
+        "text": "La sua iconografia oscilla tra due modelli classici principali: la Venus pudica, che copre il corpo con le mani in gesto di pudore, ripresa da Botticelli nella Nascita di Venere, e la Venus dormiente o distesa, di ascendenza giorgionesca, sviluppata da Tiziano nella Venere di Urbino."
+      },
+      {
+        "duration_sec": 30,
+        "text": "L'interpretazione neoplatonica, elaborata dalla critica novecentesca a partire da Aby Warburg, legge nella figura di Venere una mediazione fra amore terreno e amore celeste, secondo la filosofia di Marsilio Ficino; letture più recenti insistono invece sulla funzione della dea come veicolo per la rappresentazione lecita del nudo femminile in contesti matrimoniali o encomiastici, come nel caso tizianesco legato alle nozze di Guidobaldo della Rovere."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000361"
+    },
+    "marketplace_summary": "Racconto per bambini su la tavola come supporto pittorico.",
+    "artwork": {
+      "$oid": "ccc000000000000000000093"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Tanti quadri antichi non sono dipinti su tela, ma su legno!"
+      },
+      {
+        "duration_sec": 15,
+        "text": "Prima di usare la tela come si fa oggi, i pittori dipingevano spesso su grandi tavole di legno, come fece Leonardo per l'Annunciazione. Il legno doveva essere preparato con cura, altrimenti il colore non si attaccava bene."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000362"
+    },
+    "marketplace_summary": "Guida semplice su la tavola come supporto pittorico.",
+    "artwork": {
+      "$oid": "ccc000000000000000000093"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "La tavola è il supporto ligneo su cui è dipinta gran parte della pittura italiana prima del Cinquecento."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Si usava soprattutto legno di pioppo, ricoperto da uno strato di gesso e colla per creare una superficie liscia e assorbente su cui stendere il colore. Leonardo dipinge su tavola la sua Annunciazione, ancora seguendo questa tradizione."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000363"
+    },
+    "marketplace_summary": "Guida di livello medio su la tavola come supporto pittorico.",
+    "artwork": {
+      "$oid": "ccc000000000000000000093"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La tavola lignea, in genere di pioppo nell'Italia centrale, è il supporto pittorico più diffuso fino al pieno Cinquecento."
+      },
+      {
+        "duration_sec": 17,
+        "text": "La superficie viene preparata con più strati di gesso e colla animale, levigati fino a ottenere una base liscia e assorbente su cui il pittore può stendere disegno preparatorio e colore con grande precisione di dettaglio."
+      },
+      {
+        "duration_sec": 25,
+        "text": "La tela, più economica e leggera, si diffonde a partire dal secondo Cinquecento soprattutto a Venezia, dove il clima umido rende la tavola meno duratura: Leonardo, formatosi a Firenze, dipinge ancora su tavola la sua Annunciazione, mentre pochi decenni dopo Tiziano, veneziano, sceglierà la tela per la Venere di Urbino."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000364"
+    },
+    "marketplace_summary": "Analisi tecnica su la tavola come supporto pittorico per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000093"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il supporto ligneo, in Italia centrale prevalentemente pioppo, domina la pittura su tavola fino al Cinquecento inoltrato."
+      },
+      {
+        "duration_sec": 20,
+        "text": "La preparazione prevede l'applicazione di una o più tele di rinforzo incollate al legno, seguite da strati di gesso e colla animale (la cosiddetta imprimitura a gesso e colla), levigati fino a una superficie liscia capace di ricevere sia il disegno preparatorio sia le successive campiture di colore a tempera o a olio."
+      },
+      {
+        "duration_sec": 30,
+        "text": "Il progressivo abbandono della tavola a favore della tela, completo a Venezia già dalla metà del Cinquecento e più lento nell'Italia centrale, risponde a esigenze pratiche di leggerezza, trasportabilità e minore sensibilità alle variazioni climatiche: le tavole, soggette a fessurazioni per il movimento del legno, richiedono oggi interventi conservativi complessi, spesso risolti con sistemi di parchettatura che ne compensano le deformazioni strutturali."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000365"
+    },
+    "marketplace_summary": "Racconto per bambini su l'arte sacra.",
+    "artwork": {
+      "$oid": "ccc000000000000000000094"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Molti quadri antichi raccontano storie della Bibbia e dei santi."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Si chiamano quadri 'sacri' perché parlano di Dio, di Gesù, di Maria o dei santi. L'Annunciazione di Leonardo, che racconta di un angelo che porta una notizia speciale a Maria, è un esempio di quadro sacro."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000366"
+    },
+    "marketplace_summary": "Guida semplice su l'arte sacra.",
+    "artwork": {
+      "$oid": "ccc000000000000000000094"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "L'arte sacra raffigura soggetti religiosi cristiani: episodi biblici, santi, la Madonna."
+      },
+      {
+        "duration_sec": 16,
+        "text": "È il genere dominante della pittura italiana fino al pieno Rinascimento, quando accanto ai soggetti sacri si diffondono sempre più spesso temi mitologici e ritratti. L'Annunciazione di Leonardo e il Tondo Doni di Michelangelo appartengono entrambi a questo filone."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000367"
+    },
+    "marketplace_summary": "Guida di livello medio su l'arte sacra.",
+    "artwork": {
+      "$oid": "ccc000000000000000000094"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "L'arte sacra, dedicata a episodi biblici e figure religiose, è il genere predominante della pittura italiana fino al Quattrocento inoltrato."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Le committenze religiose, sia ecclesiastiche sia private, richiedono soggetti codificati da una lunga tradizione iconografica: l'Annunciazione, la Natività, la Sacra Famiglia sono tra i temi più raffigurati, spesso destinati a pale d'altare o a devozione privata in ambito domestico."
+      },
+      {
+        "duration_sec": 26,
+        "text": "A partire dalla fine del Quattrocento il genere sacro convive sempre più con soggetti mitologici e ritrattistici, senza però scomparire: il Tondo Doni di Michelangelo, pur essendo un dipinto profano nella destinazione (un dono di nozze), rappresenta pienamente un soggetto sacro, la Sacra Famiglia, dimostrando quanto i due registri, sacro e profano, convivessero nella stessa committenza."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000368"
+    },
+    "marketplace_summary": "Analisi tecnica su l'arte sacra per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000094"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il genere sacro, fondato sull'iconografia cristiana codificata dalla tradizione patristica e dai testi apocrifi, domina la produzione pittorica italiana fino al secondo Quattrocento."
+      },
+      {
+        "duration_sec": 20,
+        "text": "La sua persistenza anche in pieno Rinascimento, in un contesto culturale sempre più permeabile ai soggetti mitologici di ascendenza umanistica, si spiega con la committenza mista, ecclesiastica e privata: l'Annunciazione di Leonardo, di probabile destinazione conventuale, e il Tondo Doni di Michelangelo, commissionato per una ricorrenza matrimoniale privata, mostrano due differenti funzioni sociali di uno stesso soggetto religioso."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Dal punto di vista iconografico, entrambe le opere rielaborano schemi compositivi consolidati — l'Annunciazione con l'angelo genuflesso a sinistra e la Vergine a un leggio a destra, la Sacra Famiglia in composizione piramidale o avvitata — introducendo però soluzioni prospettiche e anatomiche innovative che testimoniano come il genere sacro fosse, nel Rinascimento, tutt'altro che un ambito artisticamente conservativo."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000369"
+    },
+    "marketplace_summary": "Racconto per bambini su l'allegoria.",
+    "artwork": {
+      "$oid": "ccc000000000000000000095"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Un'allegoria è un quadro che racconta un'idea usando personaggi e oggetti come simboli."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Nella Primavera di Botticelli, per esempio, i fiori e le figure mitologiche non servono solo a raccontare una bella storia: rappresentano anche l'arrivo della bella stagione e la nascita dell'amore, come in un indovinello fatto di immagini!"
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000370"
+    },
+    "marketplace_summary": "Guida semplice su l'allegoria.",
+    "artwork": {
+      "$oid": "ccc000000000000000000095"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "L'allegoria è la rappresentazione di un'idea astratta attraverso figure e simboli."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Molto diffusa nella cultura umanistica del Rinascimento fiorentino, l'allegoria permette di comunicare concetti filosofici complessi attraverso immagini comprensibili a un pubblico colto. La Primavera di Botticelli è tra gli esempi più celebri e discussi di questo genere."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000371"
+    },
+    "marketplace_summary": "Guida di livello medio su l'allegoria.",
+    "artwork": {
+      "$oid": "ccc000000000000000000095"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "L'allegoria traduce in immagini un concetto astratto attraverso figure e simboli convenzionali."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Nella cultura umanistica fiorentina del secondo Quattrocento, fortemente influenzata dal pensiero neoplatonico di Marsilio Ficino, l'allegoria diventa un genere prediletto per veicolare idee filosofiche complesse a un pubblico di lettori colti e iniziati."
+      },
+      {
+        "duration_sec": 27,
+        "text": "La Primavera di Botticelli ne è l'esempio più celebre e insieme più dibattuto: la disposizione delle nove figure mitologiche è stata letta come un percorso che va dall'amore sensibile, rappresentato da Zefiro e Clori, fino all'amore razionale custodito da Mercurio, sebbene il significato esatto del programma iconografico resti oggetto di discussione tra gli studiosi."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000372"
+    },
+    "marketplace_summary": "Analisi tecnica su l'allegoria per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000095"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "L'allegoria costituisce, nella cultura figurativa del Rinascimento umanistico, un genere fondato sulla traduzione visiva di concetti filosofici astratti attraverso un apparato simbolico condiviso."
+      },
+      {
+        "duration_sec": 22,
+        "text": "La sua fortuna nella Firenze laurenziana è legata alla diffusione del neoplatonismo ficiniano, che identifica nella bellezza sensibile una via di accesso alla conoscenza intellegibile: la Primavera di Botticelli, il cui programma iconografico è stato variamente ricondotto a fonti letterarie come i Fasti ovidiani e le Stanze del Poliziano, resta il caso di studio più discusso di questa temperie culturale."
+      },
+      {
+        "duration_sec": 30,
+        "text": "L'interpretazione neoplatonica, proposta a partire dagli studi di Aby Warburg ed Ernst Gombrich, non è tuttavia l'unica in campo: letture più recenti hanno enfatizzato il valore dinastico e nuziale dell'allegoria botticelliana, spostando l'accento dalla filosofia alla funzione sociale dell'opera, senza che le due prospettive si escludano necessariamente a vicenda."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000373"
+    },
+    "marketplace_summary": "Racconto per bambini su il formato del tondo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000096"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Un tondo è un quadro rotondo, invece che quadrato o rettangolare!"
+      },
+      {
+        "duration_sec": 15,
+        "text": "A Firenze, tanto tempo fa, era di moda regalare quadri tondi per i matrimoni, da appendere in camera da letto. Il Tondo Doni di Michelangelo è uno dei più famosi, e prende il nome proprio dalla sua forma rotonda."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000374"
+    },
+    "marketplace_summary": "Guida semplice su il formato del tondo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000096"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il tondo è un dipinto di formato circolare, diffuso a Firenze nel secondo Quattrocento."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Era spesso legato a occasioni domestiche e familiari, in particolare ai matrimoni, per cui veniva realizzato come dono da appendere in casa. Il Tondo Doni di Michelangelo, commissionato per le nozze di Agnolo Doni, prende il nome proprio da questo formato."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000375"
+    },
+    "marketplace_summary": "Guida di livello medio su il formato del tondo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000096"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il tondo è un dipinto (o rilievo scultoreo) di formato circolare, particolarmente diffuso nella Firenze del secondo Quattrocento."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Il formato, di origine forse connessa ai piatti decorati o ai deschi da parto (i vassoi celebrativi per la nascita di un figlio), si afferma come genere autonomo legato soprattutto alla committenza domestica e matrimoniale fiorentina."
+      },
+      {
+        "duration_sec": 25,
+        "text": "Il Tondo Doni di Michelangelo, commissionato da Agnolo Doni per le proprie nozze con Maddalena Strozzi, è l'esempio più celebre del genere applicato a un soggetto sacro di grande complessità compositiva, con una cornice lignea intagliata originale ancora conservata insieme al dipinto."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000376"
+    },
+    "marketplace_summary": "Analisi tecnica su il formato del tondo per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000096"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il tondo, formato circolare applicato tanto alla pittura quanto al rilievo scultoreo, si diffonde nella Firenze del secondo Quattrocento in stretta connessione con la committenza domestica privata."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Le origini del formato sono state variamente ricondotte ai deschi da parto, vassoi dipinti offerti in occasione della nascita di un erede, e alla tradizione dei piatti e cofanetti decorati per corredo nuziale, elementi che spiegano la persistente associazione fra tondo e celebrazioni familiari."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Il Tondo Doni di Michelangelo rappresenta un caso limite di sperimentazione compositiva entro un formato tradizionalmente considerato minore: la torsione a spirale della Sacra Famiglia sfida la staticità solitamente associata al cerchio, imponendo allo spettatore una lettura dinamica dell'immagine che anticipa soluzioni scultoree sviluppate dall'artista negli anni immediatamente successivi."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000377"
+    },
+    "marketplace_summary": "Racconto per bambini su lo stile scultoreo in pittura.",
+    "artwork": {
+      "$oid": "ccc000000000000000000097"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Alcuni pittori dipingevano le persone come se fossero statue di marmo!"
+      },
+      {
+        "duration_sec": 15,
+        "text": "Michelangelo, per esempio, prima di essere un pittore era soprattutto uno scultore: per questo, quando dipinge, i corpi sembrano fatti di pietra dura, con muscoli grandi e ben visibili, proprio come le sue statue."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000378"
+    },
+    "marketplace_summary": "Guida semplice su lo stile scultoreo in pittura.",
+    "artwork": {
+      "$oid": "ccc000000000000000000097"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Uno stile pittorico si definisce 'scultoreo' quando costruisce le figure per volumi solidi, come statue."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Michelangelo, formatosi come scultore prima ancora che come pittore, applica questo principio anche alla pittura: nel Tondo Doni le figure hanno contorni netti e corpi massicci, quasi incisi, che sembrano modellati a bassorilievo più che dipinti."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000379"
+    },
+    "marketplace_summary": "Guida di livello medio su lo stile scultoreo in pittura.",
+    "artwork": {
+      "$oid": "ccc000000000000000000097"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Lo stile 'scultoreo' costruisce le figure pittoriche per volumi solidi e plastici, con contorni netti quasi incisi."
+      },
+      {
+        "duration_sec": 17,
+        "text": "È tipico di artisti come Michelangelo, la cui formazione primaria da scultore condiziona profondamente l'approccio alla pittura: i corpi sono trattati come masse tridimensionali definite dal chiaroscuro più che dal colore."
+      },
+      {
+        "duration_sec": 26,
+        "text": "Nel Tondo Doni, la torsione a spirale della Sacra Famiglia e i cinque nudi sullo sfondo mostrano chiaramente questo approccio: le figure sembrano prima modellate nello spazio come sculture e solo in un secondo momento tradotte sulla superficie piatta della tavola, anticipando le soluzioni della volta della Cappella Sistina."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000380"
+    },
+    "marketplace_summary": "Analisi tecnica su lo stile scultoreo in pittura per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000097"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Lo stile 'scultoreo' in pittura privilegia la costruzione volumetrica della figura, definita per masse plastiche e contorni netti, rispetto alla resa cromatica e atmosferica."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Michelangelo ne è l'interprete più radicale: la sua celebre affermazione secondo cui la pittura sarebbe tanto migliore quanto più si avvicina al rilievo scultoreo trova piena applicazione nel Tondo Doni, dove i corpi sono costruiti per contorni incisi e ombreggiature ridotte al minimo necessario a suggerire il volume."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Questo approccio si contrappone dialetticamente al colorismo veneziano, fondato sulla costruzione dell'immagine per velature di colore senza disegno di contorno marcato: la contrapposizione fra disegno fiorentino-romano e colorito veneziano, teorizzata dalla critica cinquecentesca a partire da Giorgio Vasari, ha in Michelangelo e Tiziano, entrambi presenti agli Uffizi, i suoi due poli più rappresentativi."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000381"
+    },
+    "marketplace_summary": "Racconto per bambini su il ritratto di profilo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000098"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Un ritratto 'di profilo' mostra il volto di lato, come sulle monete!"
+      },
+      {
+        "duration_sec": 15,
+        "text": "Prima ancora delle fotografie, esistevano le monete antiche con i volti dei re disegnati di lato: i pittori del Rinascimento, come Piero della Francesca, si sono ispirati proprio a quelle monete per dipingere i loro ritratti."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000382"
+    },
+    "marketplace_summary": "Guida semplice su il ritratto di profilo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000098"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il ritratto di profilo mostra il volto girato di lato ed è il formato più diffuso nel primo Rinascimento italiano."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Deriva dalla tradizione delle monete e delle medaglie antiche, dove i sovrani venivano raffigurati di lato per essere facilmente riconoscibili. Piero della Francesca lo utilizza nel doppio ritratto dei duchi di Urbino."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000383"
+    },
+    "marketplace_summary": "Guida di livello medio su il ritratto di profilo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000098"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il ritratto di profilo, con il volto ripreso interamente di lato, domina la ritrattistica italiana del primo Rinascimento."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Il formato riprende la tradizione della numismatica antica, dove i sovrani venivano raffigurati di profilo su monete e medaglie per garantirne l'immediata riconoscibilità e per associarne l'immagine all'autorità dei governanti classici."
+      },
+      {
+        "duration_sec": 26,
+        "text": "Nel doppio ritratto dei duchi di Urbino, Piero della Francesca sceglie questo formato non solo per convenzione cortigiana, ma anche per necessità pratica: il profilo sinistro di Federico da Montefeltro nascondeva la ferita al volto e la perdita dell'occhio destro subite in un torneo, mostrando come una scelta stilistica potesse rispondere anche a esigenze concrete di rappresentazione del potere."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000384"
+    },
+    "marketplace_summary": "Analisi tecnica su il ritratto di profilo per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000098"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il ritratto di profilo assoluto, con il volto interamente di lato, costituisce il formato ritrattistico dominante in Italia fino agli ultimi decenni del Quattrocento."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Derivato dalla tradizione della numismatica e della glittica antica, il formato si diffonde soprattutto nelle corti dell'Italia centro-settentrionale — Urbino, Ferrara, Rimini — dove assolve a una funzione dinastica e politica di autorappresentazione del potere signorile, più che a un'indagine psicologica del soggetto."
+      },
+      {
+        "duration_sec": 30,
+        "text": "Il progressivo superamento del profilo a favore del ritratto a tre quarti, favorito dal contatto con la ritrattistica fiamminga e dalle sperimentazioni prospettiche di Leonardo da Vinci, permette dalla fine del secolo una resa più naturalistica e introspettiva, con lo sguardo del soggetto rivolto verso l'osservatore: un cambiamento di cui il doppio ritratto dei duchi di Urbino, ancora saldamente ancorato al modello monetale, rappresenta l'ultima grande stagione."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000385"
+    },
+    "marketplace_summary": "Racconto per bambini su lo scudo cerimoniale come supporto pittorico.",
+    "artwork": {
+      "$oid": "ccc000000000000000000099"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Uno scudo di solito serve a proteggersi in battaglia, ma questo era diverso!"
+      },
+      {
+        "duration_sec": 15,
+        "text": "Lo scudo su cui Caravaggio dipinse la Medusa non serviva davvero a combattere: era un oggetto prezioso da collezione, pensato per stupire chi lo guardava, un po' come un'opera d'arte da esporre in una stanza speciale."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000386"
+    },
+    "marketplace_summary": "Guida semplice su lo scudo cerimoniale come supporto pittorico.",
+    "artwork": {
+      "$oid": "ccc000000000000000000099"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Lo scudo cerimoniale è un supporto insolito per la pittura, derivato dagli oggetti da parata e da collezione."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Caravaggio dipinse la sua Medusa proprio su uno scudo convesso di legno, non su una tela piatta: un oggetto pensato non per la battaglia ma per essere ammirato in una collezione di curiosità e oggetti preziosi."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000387"
+    },
+    "marketplace_summary": "Guida di livello medio su lo scudo cerimoniale come supporto pittorico.",
+    "artwork": {
+      "$oid": "ccc000000000000000000099"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Lo scudo cerimoniale, supporto convesso derivato dagli oggetti da parata, era destinato più alla collezione che al combattimento."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Nel Rinascimento e nel primo Barocco, scudi decorati con soggetti mitologici o apotropaici venivano commissionati come pezzi da esposizione, spesso destinati alle wunderkammer, le 'camere delle meraviglie' in cui i collezionisti raccoglievano oggetti rari e straordinari."
+      },
+      {
+        "duration_sec": 26,
+        "text": "La Medusa di Caravaggio, dipinta su uno scudo convesso e donata dal cardinale Del Monte a Ferdinando I de' Medici, richiama la tradizione classica dello scudo di Atena decorato con la testa di Gorgone, la Gorgoneion, qui reinterpretata in chiave naturalistica e drammatica."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000388"
+    },
+    "marketplace_summary": "Analisi tecnica su lo scudo cerimoniale come supporto pittorico per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000099"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Lo scudo cerimoniale, supporto convesso di derivazione militare ma di destinazione collezionistica, ha una lunga tradizione nell'arte apotropaica occidentale."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Il modello classico di riferimento è lo scudo di Atena decorato con la Gorgoneion, la testa di Medusa, ripreso in epoca rinascimentale e barocca come soggetto ideale per oggetti destinati alle wunderkammer principesche, raccolte di meraviglie naturali e artificiali."
+      },
+      {
+        "duration_sec": 28,
+        "text": "La Medusa di Caravaggio, eseguita su tela applicata a uno scudo di legno convesso e donata dal cardinale Francesco Maria del Monte a Ferdinando I de' Medici, sfrutta la curvatura del supporto per amplificare l'illusione tridimensionale del volto reciso, trasformando un oggetto di tradizione militare in un pezzo di virtuosismo pittorico destinato all'ammirazione da collezione più che alla funzione apotropaica originaria."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000389"
+    },
+    "marketplace_summary": "Racconto per bambini su il nudo nell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000100"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Nell'arte, il 'nudo' è quando un pittore dipinge una persona senza vestiti."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Gli artisti lo facevano già nell'antica Grecia, scolpendo statue di persone senza vestiti per mostrare quanto fossero bravi a disegnare i muscoli e le forme del corpo. Il Rinascimento riscoprì questa idea: la Venere di Urbino di Tiziano ne è un esempio famoso."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000390"
+    },
+    "marketplace_summary": "Guida semplice su il nudo nell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000100"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il nudo è la rappresentazione del corpo umano privo di vesti, uno dei generi più antichi dell'arte occidentale."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Nasce nella scultura greca come studio ideale delle proporzioni del corpo e viene riscoperto nel Rinascimento, spesso attraverso il pretesto mitologico. La Venere di Urbino di Tiziano è tra gli esempi più influenti di nudo femminile del Cinquecento."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000391"
+    },
+    "marketplace_summary": "Guida di livello medio su il nudo nell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000100"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il nudo, rappresentazione del corpo umano senza vesti, affonda le radici nella statuaria classica greca e romana."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Nel Rinascimento il nudo torna centrale grazie alla riscoperta dell'arte antica, spesso legittimato da un soggetto mitologico o religioso che ne giustificasse culturalmente la raffigurazione, evitando l'accusa di semplice compiacimento sensuale."
+      },
+      {
+        "duration_sec": 27,
+        "text": "La Venere di Urbino di Tiziano segna un passaggio decisivo: la dea mitologica è ambientata in un interno domestico contemporaneo anziché in un paesaggio ideale, rendendo il nudo più prossimo alla realtà quotidiana e ponendo le basi per un genere che, nei secoli successivi, si allontanerà progressivamente dal pretesto mitologico."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000392"
+    },
+    "marketplace_summary": "Analisi tecnica su il nudo nell'arte per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000100"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il nudo costituisce, dalla statuaria greca classica in avanti, uno dei generi fondativi della tradizione figurativa occidentale."
+      },
+      {
+        "duration_sec": 20,
+        "text": "La sua riscoperta rinascimentale è mediata dal recupero filologico dell'arte antica e trova nella figura mitologica — Venere in particolare — il principale espediente di legittimazione culturale, capace di sottrarre la rappresentazione del corpo nudo all'accusa di mera sensualità priva di contenuto ideale."
+      },
+      {
+        "duration_sec": 30,
+        "text": "La Venere di Urbino di Tiziano, ambientando la dea in un interno domestico contemporaneo con lo sguardo rivolto verso l'osservatore, compie un passo decisivo verso l'autonomia del genere dal pretesto mitologico: uno schema compositivo ripreso esplicitamente da Édouard Manet in Olympia (1863), opera che, spogliando la posa tizianesca di ogni riferimento allegorico, ne rivela la carica erotica diretta, scandalizzando il pubblico parigino del proprio tempo."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000393"
+    },
+    "marketplace_summary": "Racconto per bambini su la natura morta.",
+    "artwork": {
+      "$oid": "ccc000000000000000000101"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Una natura morta è un quadro che dipinge frutta, fiori o oggetti, invece di persone."
+      },
+      {
+        "duration_sec": 15,
+        "text": "Nel Bacco di Caravaggio, per esempio, accanto al ragazzo con il vino c'è un cesto di frutta dipinto così bene che sembra vera: se guardi bene, però, alcuni frutti sono ammaccati, proprio come capita nella realtà!"
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000394"
+    },
+    "marketplace_summary": "Guida semplice su la natura morta.",
+    "artwork": {
+      "$oid": "ccc000000000000000000101"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "La natura morta rappresenta oggetti inanimati, come frutta o fiori, ed è un genere pittorico a sé stante."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Si afferma come genere autonomo fra Cinque e Seicento, dopo essere stata a lungo un dettaglio secondario all'interno di scene più grandi. Il cesto di frutta nel Bacco di Caravaggio, con mele bacate e foglie ingiallite, è un esempio precoce del genere."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000395"
+    },
+    "marketplace_summary": "Guida di livello medio su la natura morta.",
+    "artwork": {
+      "$oid": "ccc000000000000000000101"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La natura morta, dedicata a oggetti inanimati come frutta, fiori o utensili, si afferma come genere autonomo tra Cinque e Seicento."
+      },
+      {
+        "duration_sec": 17,
+        "text": "In precedenza gli elementi di natura morta comparivano quasi sempre come dettagli accessori all'interno di scene religiose o mitologiche, con funzione simbolica più che descrittiva; solo gradualmente conquistano un valore autonomo, indipendente dal soggetto principale."
+      },
+      {
+        "duration_sec": 26,
+        "text": "Il cesto di frutta nel Bacco di Caravaggio, con mele bacate e foglie ingiallite dipinte con crudo realismo, è tra le prime prove del genere nella pittura caravaggesca e introduce un sottile richiamo alla caducità delle cose, un tema noto come vanitas, che ricorda come bellezza e piacere siano condizioni transitorie."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000396"
+    },
+    "marketplace_summary": "Analisi tecnica su la natura morta per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000101"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La natura morta, genere dedicato alla rappresentazione di oggetti inanimati, raggiunge piena autonomia stilistica fra la fine del Cinquecento e il Seicento."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Prima di allora, elementi di natura morta compaiono quasi esclusivamente come dettagli accessori a valore simbolico all'interno di composizioni sacre o mitologiche più ampie, secondo una tradizione che affonda le radici nella pittura fiamminga del Quattrocento."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Il cesto di frutta nel Bacco di Caravaggio, con mele bacate, foglie ingiallite e chicchi d'uva secchi, anticipa la tradizione della vanitas che si svilupperà pienamente nel Seicento nordico ed è considerato tra i precedenti diretti della natura morta caravaggesca autonoma, culminata pochi anni dopo nella celebre Canestra di frutta oggi all'Ambrosiana di Milano."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000397"
+    },
+    "marketplace_summary": "Racconto per bambini su la pittura di battaglia.",
+    "artwork": {
+      "$oid": "ccc000000000000000000102"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Un quadro di 'battaglia' racconta uno scontro fra due eserciti."
+      },
+      {
+        "duration_sec": 15,
+        "text": "La Battaglia di San Romano di Paolo Uccello racconta una vera battaglia combattuta tanto tempo fa fra i soldati di Firenze e quelli di Siena, con cavalli, lance e bandiere dipinti tutti insieme in una grande scena."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000398"
+    },
+    "marketplace_summary": "Guida semplice su la pittura di battaglia.",
+    "artwork": {
+      "$oid": "ccc000000000000000000102"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "La pittura di battaglia racconta uno scontro militare, spesso per celebrare una vittoria storica."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Era un genere molto apprezzato dalle famiglie potenti, che commissionavano questi dipinti per ricordare le proprie vittorie ed esibirle come propaganda politica. La Battaglia di San Romano di Paolo Uccello fu commissionata dai Medici proprio con questo scopo."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000399"
+    },
+    "marketplace_summary": "Guida di livello medio su la pittura di battaglia.",
+    "artwork": {
+      "$oid": "ccc000000000000000000102"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La pittura di battaglia, dedicata alla narrazione di scontri militari, celebra spesso vittorie storiche di rilievo politico."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Il genere fiorisce nella Firenze del Quattrocento come strumento di propaganda per le famiglie al potere, che commissionano opere celebrative in grado di fissare per sempre nella memoria pubblica i propri successi militari."
+      },
+      {
+        "duration_sec": 26,
+        "text": "La Battaglia di San Romano di Paolo Uccello, commissionata probabilmente dai Medici per celebrare la vittoria fiorentina del 1432 su Siena, applica alla narrazione bellica un rigore prospettico quasi geometrico, trasformando lance spezzate e cavalli in un esercizio di costruzione spaziale oltre che in un racconto storico."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000400"
+    },
+    "marketplace_summary": "Analisi tecnica su la pittura di battaglia per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000102"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La pittura di battaglia, dedicata alla narrazione di scontri militari storici, assume nel Quattrocento fiorentino una funzione celebrativa e politica esplicita."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Le grandi imprese militari cittadine, come la vittoria su Siena a San Romano nel 1432, diventano soggetto di cicli decorativi destinati a palazzi privati, spesso commissionati dalle famiglie di maggior peso politico come i Medici, con funzione di legittimazione dinastica oltre che celebrativa."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Il ciclo di Paolo Uccello sulla Battaglia di San Romano applica al genere un rigore prospettico inedito, subordinando la resa narrativa dell'evento storico a una costruzione geometrica quasi didattica dello spazio, un approccio che resterà isolato nel panorama della pittura di battaglia italiana, più orientata, nei secoli successivi, a un racconto dinamico e teatrale dello scontro piuttosto che alla sua analisi geometrica."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000401"
+    },
+    "marketplace_summary": "Racconto per bambini su la prospettiva.",
+    "artwork": {
+      "$oid": "ccc000000000000000000103"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "La prospettiva è un trucco per far sembrare i disegni davvero profondi!"
+      },
+      {
+        "duration_sec": 16,
+        "text": "Funziona così: le cose vicine si disegnano grandi, quelle lontane piccole, e tutte le linee sembrano incontrarsi in un unico punto lontano lontano. Paolo Uccello amava tantissimo questo trucco e lo usò in tutta la Battaglia di San Romano."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000402"
+    },
+    "marketplace_summary": "Guida semplice su la prospettiva.",
+    "artwork": {
+      "$oid": "ccc000000000000000000103"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "La prospettiva lineare è il sistema geometrico che permette di rappresentare la profondità su una superficie piatta."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Fu messa a punto a Firenze all'inizio del Quattrocento dall'architetto Filippo Brunelleschi e poi teorizzata da Leon Battista Alberti. Paolo Uccello ne fu un appassionato sperimentatore, applicandola con rigore quasi ossessivo nella Battaglia di San Romano."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000403"
+    },
+    "marketplace_summary": "Guida di livello medio su la prospettiva.",
+    "artwork": {
+      "$oid": "ccc000000000000000000103"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La prospettiva lineare è il sistema geometrico, elaborato a Firenze nel primo Quattrocento, che rappresenta la profondità su una superficie piatta."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Messa a punto da Filippo Brunelleschi attraverso celebri esperimenti ottici e codificata da Leon Battista Alberti nel trattato De pictura (1435), si fonda sulla convergenza delle linee verso uno o più punti di fuga posti su una linea d'orizzonte."
+      },
+      {
+        "duration_sec": 27,
+        "text": "Paolo Uccello la applica con quasi ossessiva coerenza nella Battaglia di San Romano, dove le lance spezzate a terra convergono verso un punto di fuga condiviso, trasformando la scena di battaglia in un esercizio geometrico oltre che narrativo, un approccio che colpì già i contemporanei per il suo rigore quasi scientifico."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000404"
+    },
+    "marketplace_summary": "Analisi tecnica su la prospettiva per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000103"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La prospettiva lineare, sistema di rappresentazione geometrica dello spazio tridimensionale su un piano bidimensionale, nasce a Firenze nei primi decenni del Quattrocento."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Gli esperimenti ottici di Filippo Brunelleschi, condotti davanti al Battistero di Firenze intorno al 1415-1420, dimostrano empiricamente il principio della convergenza delle rette verso un punto di fuga, principio poi sistematizzato in forma trattatistica da Leon Battista Alberti."
+      },
+      {
+        "duration_sec": 30,
+        "text": "Paolo Uccello, tra i primi e più radicali sperimentatori del metodo, lo applica nella Battaglia di San Romano fino a soluzioni al limite dell'astrazione geometrica, con lance e oggetti sparsi sul terreno usati come reticolo di riferimento: un rigore che la storiografia vasariana giudicò già nel Cinquecento come un'ossessione capace di sacrificare la resa naturalistica alla pura dimostrazione matematica, letta oggi invece come testimonianza di un'autentica ricerca scientifica applicata all'arte."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000405"
+    },
+    "marketplace_summary": "Racconto per bambini su il tema della Madonna con il Bambino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000104"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Tantissimi quadri antichi mostrano una mamma, Maria, con il suo bambino, Gesù."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Questo tipo di quadro si chiama 'Madonna', dalla parola italiana antica per dire 'mia signora'. Raffaello ne dipinse moltissime, tra cui la Madonna del Cardellino, con Maria seduta insieme a Gesù e al suo cuginetto Giovannino."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000406"
+    },
+    "marketplace_summary": "Guida semplice su il tema della Madonna con il Bambino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000104"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "La Madonna con il Bambino è tra i soggetti più raffigurati dell'arte cristiana."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Il termine 'Madonna' deriva dall'italiano antico 'mia donna', usato come titolo di rispetto per Maria. Raffaello è tra i pittori che più hanno reinterpretato il tema, come nella Madonna del Cardellino, oggi agli Uffizi."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000407"
+    },
+    "marketplace_summary": "Guida di livello medio su il tema della Madonna con il Bambino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000104"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il tema della Madonna con il Bambino è tra i soggetti più raffigurati dell'intera storia dell'arte cristiana."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Il termine 'Madonna' deriva dal titolo onorifico 'mia donna' con cui, nell'italiano medievale, ci si rivolgeva a Maria. Nel corso dei secoli il tema è stato reinterpretato con infinite varianti compositive, spesso arricchito da altri personaggi come i santi bambini."
+      },
+      {
+        "duration_sec": 27,
+        "text": "Raffaello è tra gli artisti che più hanno rinnovato il genere: nella Madonna del Cardellino dispone le figure in una composizione piramidale appresa da Leonardo, introducendo il piccolo san Giovanni Battista come tramite narrativo fra la sacralità della scena e la sua naturalezza quasi domestica."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000408"
+    },
+    "marketplace_summary": "Analisi tecnica su il tema della Madonna con il Bambino per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000104"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il tema della Madonna con il Bambino, tra i più diffusi nell'iconografia cristiana occidentale, conosce nel Rinascimento italiano una straordinaria varietà di soluzioni compositive."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Dallo schema bizantino della Hodegetria, di impostazione rigidamente frontale e gerarchica, si passa progressivamente, nel corso del Quattrocento, a composizioni più naturalistiche e affettive, in cui il rapporto fisico e psicologico fra madre e figlio assume un rilievo narrativo crescente."
+      },
+      {
+        "duration_sec": 30,
+        "text": "Raffaello sintetizza questa evoluzione nella Madonna del Cardellino, dove la composizione piramidale, derivata dagli studi fiorentini di Leonardo per la Sant'Anna, colloca le tre figure sacre in un paesaggio naturale che le rende quasi una scena di vita quotidiana, pur mantenendo intatto, attraverso il simbolismo del cardellino, il rimando alla futura Passione di Cristo."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000409"
+    },
+    "marketplace_summary": "Racconto per bambini su il simbolo del cardellino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000105"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il cardellino è un piccolo uccello con le piume rosse e gialle."
+      },
+      {
+        "duration_sec": 15,
+        "text": "Nei quadri antichi non compare mai per caso: secondo un'antica leggenda, questo uccellino si nutre di spine, e per questo i pittori lo usavano per ricordare la corona di spine di Gesù, come nella Madonna del Cardellino di Raffaello."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000410"
+    },
+    "marketplace_summary": "Guida semplice su il simbolo del cardellino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000105"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il cardellino, uccellino dal piumaggio rosso e giallo, è un simbolo cristiano della Passione di Cristo."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Secondo la tradizione popolare si nutre di spine e cardi, ed è per questo diventato un'allusione alla corona di spine e alla futura sofferenza di Gesù. Raffaello lo raffigura nella Madonna del Cardellino, in mano al piccolo Giovannino."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000411"
+    },
+    "marketplace_summary": "Guida di livello medio su il simbolo del cardellino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000105"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il cardellino, uccellino dal piumaggio rosso sul capo e giallo sulle ali, è un simbolo ricorrente nell'iconografia cristiana."
+      },
+      {
+        "duration_sec": 17,
+        "text": "La tradizione popolare gli attribuisce l'abitudine di nutrirsi di spine e cardi, un dettaglio naturalistico che diventa allusione simbolica alla corona di spine e alla Passione di Cristo, un presagio inserito spesso in scene altrimenti serene di infanzia."
+      },
+      {
+        "duration_sec": 26,
+        "text": "Nella Madonna del Cardellino di Raffaello, il piccolo san Giovanni Battista porge l'uccellino a Gesù bambino: un gesto apparentemente innocente che introduce, nel cuore di una scena familiare e affettuosa, il tema della sofferenza futura del Cristo, secondo un procedimento narrativo molto amato dalla pittura rinascimentale."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000412"
+    },
+    "marketplace_summary": "Analisi tecnica su il simbolo del cardellino per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000105"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il cardellino (Carduelis carduelis) è, nell'iconografia cristiana occidentale, uno dei più diffusi simboli animali della Passione di Cristo."
+      },
+      {
+        "duration_sec": 20,
+        "text": "L'attribuzione simbolica si fonda sulla convinzione, di matrice popolare più che scientifica, che l'uccello si nutra di piante spinose come i cardi, da cui il nome stesso: un'associazione che ne fa un presagio visivo della corona di spine, spesso inserito in scene di Madonna con Bambino a partire dal tardo Trecento."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Raffaello, nella Madonna del Cardellino, affida all'uccellino, porto da san Giovannino a Gesù, il compito di introdurre il tema della Passione all'interno di una composizione altrimenti dominata da una naturalezza quasi domestica, un contrasto fra serenità apparente e destino tragico che costituisce uno dei procedimenti narrativi più raffinati della pittura devozionale rinascimentale."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000413"
+    },
+    "marketplace_summary": "Racconto per bambini su gli Uffizi oggi.",
+    "artwork": {
+      "$oid": "ccc000000000000000000106"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Gli Uffizi sono uno dei musei più famosi del mondo intero!"
+      },
+      {
+        "duration_sec": 16,
+        "text": "Ogni anno arrivano qui milioni di persone da tutti i continenti per ammirare i capolavori di Botticelli, Leonardo, Michelangelo e tanti altri grandi artisti, tutti raccolti in un unico, lunghissimo edificio a forma di U."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000414"
+    },
+    "marketplace_summary": "Guida semplice su gli Uffizi oggi.",
+    "artwork": {
+      "$oid": "ccc000000000000000000106"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "La Galleria degli Uffizi è oggi uno dei musei più visitati al mondo."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Ospita una delle raccolte di pittura rinascimentale più importanti a livello internazionale, distribuita lungo i corridoi di un edificio a forma di U che si affaccia sull'Arno, nel cuore di Firenze."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000415"
+    },
+    "marketplace_summary": "Guida di livello medio su gli Uffizi oggi.",
+    "artwork": {
+      "$oid": "ccc000000000000000000106"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La Galleria degli Uffizi è oggi uno dei musei più visitati al mondo, con milioni di visitatori ogni anno."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Il percorso museale occupa il secondo e il terzo piano dello storico edificio vasariano, articolato lungo lunghi corridoi affacciati su un cortile centrale, decorati fin dal Cinquecento con statue antiche e ritratti di uomini illustri."
+      },
+      {
+        "duration_sec": 26,
+        "text": "La collezione, oltre ai grandi capolavori rinascimentali, comprende sculture antiche, arazzi, disegni e un'importante raccolta di autoritratti di artisti: nel tempo il museo si è ampliato anche al primo piano e ha aperto nuovi percorsi espositivi per assorbire l'enorme afflusso di pubblico che lo rende oggi una delle mete turistiche e culturali più ambite d'Italia."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000416"
+    },
+    "marketplace_summary": "Analisi tecnica su gli Uffizi oggi per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000106"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La Galleria degli Uffizi conserva oggi una delle raccolte di pittura italiana rinascimentale più significative a livello mondiale, distribuita su un percorso museale in continua evoluzione."
+      },
+      {
+        "duration_sec": 20,
+        "text": "L'ordinamento attuale, esito di riallestimenti novecenteschi e di recenti ampliamenti (fra cui l'apertura di nuove sale al primo piano nell'ambito del progetto 'Nuovi Uffizi'), organizza le opere secondo un criterio in gran parte cronologico e per scuole regionali, dal primo Trecento fiorentino fino al Seicento."
+      },
+      {
+        "duration_sec": 28,
+        "text": "La pressione dei flussi turistici, che nell'ultimo decennio ha reso necessaria l'introduzione di un sistema di prenotazione a fasce orarie e percorsi di visita differenziati, pone oggi al museo sfide di conservazione preventiva e di gestione degli spazi che ne influenzano direttamente le scelte di allestimento, dalla protezione climatica delle opere più fragili alla distribuzione dei visitatori lungo il percorso."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000417"
+    },
+    "marketplace_summary": "Racconto per bambini su la famiglia Medici come mecenati.",
+    "artwork": {
+      "$oid": "ccc000000000000000000107"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "I Medici erano una famiglia ricchissima e potentissima di Firenze!"
+      },
+      {
+        "duration_sec": 16,
+        "text": "Con i loro soldi aiutavano tantissimi artisti a lavorare, comprando i loro quadri e le loro statue. Quasi tutte le opere che vedi agli Uffizi sono arrivate qui proprio grazie a loro, che le hanno raccolte per centinaia di anni."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000418"
+    },
+    "marketplace_summary": "Guida semplice su la famiglia Medici come mecenati.",
+    "artwork": {
+      "$oid": "ccc000000000000000000107"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "I Medici furono una famiglia di banchieri, poi duchi e granduchi, che governò Firenze per secoli."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Furono i principali mecenati dell'arte fiorentina, finanziando artisti come Botticelli e Michelangelo. Quasi tutte le opere conservate agli Uffizi provengono dalla loro straordinaria collezione, accumulata nel corso di generazioni."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000419"
+    },
+    "marketplace_summary": "Guida di livello medio su la famiglia Medici come mecenati.",
+    "artwork": {
+      "$oid": "ccc000000000000000000107"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "I Medici, dinastia di banchieri fiorentini divenuti poi duchi e granduchi di Toscana, dominarono la vita politica e culturale di Firenze per tre secoli."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Il loro mecenatismo, avviato da Cosimo il Vecchio nel Quattrocento e proseguito da figure come Lorenzo il Magnifico, protettore di Botticelli, sostenne generazioni di artisti e rese Firenze il principale laboratorio artistico d'Europa."
+      },
+      {
+        "duration_sec": 27,
+        "text": "La quasi totalità delle opere oggi esposte agli Uffizi proviene dalle collezioni accumulate dalla famiglia nel corso di tre secoli: un patrimonio che l'ultima discendente, Anna Maria Luisa de' Medici, vincolò per sempre alla città di Firenze con il Patto di Famiglia del 1737, impedendone la dispersione dopo l'estinzione della dinastia."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000420"
+    },
+    "marketplace_summary": "Analisi tecnica su la famiglia Medici come mecenati per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000107"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La famiglia Medici, ascesa dal ceto bancario fiorentino a dinastia di duchi e poi granduchi di Toscana, costituisce per tre secoli il principale motore del mecenatismo artistico cittadino."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Il mecenatismo mediceo attraversa fasi diverse: dal patronato quattrocentesco di Cosimo il Vecchio e Lorenzo il Magnifico, orientato al sostegno diretto di botteghe e artisti come Botticelli, al collezionismo granducale cinquecentesco di Cosimo I e Francesco I, che dà origine al primo nucleo museale degli Uffizi nella Tribuna buontalentiana."
+      },
+      {
+        "duration_sec": 30,
+        "text": "Il Patto di Famiglia stipulato nel 1737 da Anna Maria Luisa de' Medici, elettrice palatina e ultima discendente diretta della dinastia, vincolò l'intero patrimonio artistico granducale al territorio fiorentino in perpetuo, impedendone l'alienazione o il trasferimento fuori Firenze: una clausola che ha reso possibile la conservazione unitaria, fino a oggi, di una delle raccolte d'arte più importanti al mondo."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000421"
+    },
+    "marketplace_summary": "Racconto per bambini su come affrontare la visita.",
+    "artwork": {
+      "$oid": "ccc000000000000000000108"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Prima di iniziare la visita, ecco qualche consiglio utile!"
+      },
+      {
+        "duration_sec": 16,
+        "text": "Un museo grande come gli Uffizi ha tantissime sale: non serve vederle tutte di corsa, meglio scegliere qualche opera che ti incuriosisce di più e guardarla con calma, magari fermandoti a indovinare i dettagli nascosti nei quadri."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000422"
+    },
+    "marketplace_summary": "Guida semplice su come affrontare la visita.",
+    "artwork": {
+      "$oid": "ccc000000000000000000108"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Prima di iniziare la visita, qualche consiglio pratico per orientarsi in un museo grande come gli Uffizi."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Con decine di sale e migliaia di opere esposte, è utile scegliere in anticipo un percorso o alcune tappe principali, piuttosto che cercare di vedere tutto: guardare con calma poche opere resta più efficace di un percorso frettoloso."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000423"
+    },
+    "marketplace_summary": "Guida di livello medio su come affrontare la visita.",
+    "artwork": {
+      "$oid": "ccc000000000000000000108"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Affrontare la visita di un museo esteso come gli Uffizi richiede qualche accorgimento pratico per orientarsi senza affaticarsi."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Con oltre cento sale distribuite su due piani, conviene individuare in anticipo un percorso tematico o cronologico, magari concentrandosi su un periodo o un gruppo di artisti, piuttosto che tentare di percorrere l'intero museo in una sola visita."
+      },
+      {
+        "duration_sec": 26,
+        "text": "Alternare momenti di osservazione ravvicinata, per cogliere i dettagli tecnici e simbolici di un'opera, a pause più rilassate aiuta a mantenere l'attenzione viva; molti visitatori trovano utile tornare più volte sulla stessa opera durante il percorso, invece di limitarsi a un unico sguardo frettoloso."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000424"
+    },
+    "marketplace_summary": "Analisi tecnica su come affrontare la visita per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000108"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La pianificazione della visita in un museo di grandi dimensioni come gli Uffizi beneficia di alcuni criteri metodologici essenziali."
+      },
+      {
+        "duration_sec": 20,
+        "text": "La letteratura sulla fruizione museale suggerisce di limitare il numero di opere osservate con attenzione in una singola visita, poiché l'affaticamento visivo e cognitivo, un fenomeno talvolta definito 'fatica da museo', riduce progressivamente la capacità di concentrazione oltre una certa soglia di stimoli."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Strutturare la visita per nuclei tematici — un artista, un periodo, un genere — anziché per mero ordine cronologico o topografico consente inoltre di costruire connessioni interpretative fra le opere osservate, un approccio alla fruizione che privilegia la qualità dell'esperienza rispetto alla quantità di opere attraversate."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000425"
+    },
+    "marketplace_summary": "Racconto per bambini su la storia di un'opera.",
+    "artwork": {
+      "$oid": "ccc000000000000000000109"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Ogni quadro antico ha anche una sua storia, oltre a quella che racconta il disegno!"
+      },
+      {
+        "duration_sec": 16,
+        "text": "Prima di arrivare in un museo, un'opera può aver cambiato tante case e tanti proprietari, essere stata dimenticata in un magazzino, o persino danneggiata e poi riparata, come è successo al quadro di Bacco di Caravaggio, ritrovato dopo tanti anni negli scantinati degli Uffizi."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000426"
+    },
+    "marketplace_summary": "Guida semplice su la storia di un'opera.",
+    "artwork": {
+      "$oid": "ccc000000000000000000109"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Ogni opera d'arte ha anche una propria storia, fatta di committenti, proprietari e vicende di conservazione."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Sapere chi ha commissionato un'opera, a chi è appartenuta nel tempo e cosa le è successo aiuta a capirla meglio. Il Bacco di Caravaggio, per esempio, restò dimenticato per anni nei depositi degli Uffizi prima di essere riconosciuto come autentico."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000427"
+    },
+    "marketplace_summary": "Guida di livello medio su la storia di un'opera.",
+    "artwork": {
+      "$oid": "ccc000000000000000000109"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La ricostruzione della storia di un'opera, dalla committenza fino all'arrivo in museo, ne arricchisce sensibilmente la comprensione."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Conoscere chi ha commissionato un dipinto, per quale occasione, e attraverso quali passaggi di proprietà è giunto fino a noi permette di collocarlo nel proprio contesto originario, spesso molto diverso da quello in cui lo vediamo esposto oggi."
+      },
+      {
+        "duration_sec": 26,
+        "text": "Il caso del Bacco di Caravaggio è emblematico: rimasto per decenni nei depositi degli Uffizi, catalogato come opera di scuola generica, fu riconosciuto come autografo solo nel 1913-1916 dallo storico dell'arte Roberto Longhi, un episodio che mostra quanto la storia di un'opera possa restare nascosta anche a lungo dopo la sua creazione."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000428"
+    },
+    "marketplace_summary": "Analisi tecnica su la storia di un'opera per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000109"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La ricostruzione della provenienza di un'opera, dalla committenza originaria fino all'attuale collocazione museale, costituisce un ambito di ricerca noto come storia del collezionismo."
+      },
+      {
+        "duration_sec": 20,
+        "text": "L'analisi dei passaggi di proprietà, spesso documentata da inventari, atti notarili e corrispondenza d'epoca, permette di chiarire non solo la cronologia esecutiva di un'opera ma anche il contesto culturale e sociale della sua fruizione originaria, spesso profondamente diverso da quello museale contemporaneo."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Il caso del Bacco di Caravaggio, riconosciuto come autografo solo nel 1913-1916 dallo storico dell'arte Roberto Longhi dopo decenni di oblio nei depositi degli Uffizi, dimostra come le lacune nella storia di un'opera possano protrarsi ben oltre la sua creazione, e come la ricerca storico-artistica resti tuttora uno strumento attivo di riscoperta del patrimonio già catalogato."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
   }
 ]
