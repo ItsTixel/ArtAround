@@ -105,7 +105,7 @@ function ServiceButtonGrid({ labels, onSelect }) {
   let globalIndex = -1
 
   return (
-    <div ref={containerRef} className="relative w-full">
+    <div ref={containerRef} className="relative w-full overflow-hidden">
       <div
         aria-hidden="true"
         className="pointer-events-none invisible absolute left-0 top-0 flex gap-2"
