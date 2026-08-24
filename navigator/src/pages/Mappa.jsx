@@ -385,10 +385,34 @@ function Mappa() {
     setSelectedMuseumId(museum._id)
 
     if (highlightRequest?.serviceKey) {
-      const mapIndex = museum.maps.findIndex((map) =>
-        map.points.some((p) => p.icon_type === 'service' && p.service_key === highlightRequest.serviceKey)
-      )
-      if (mapIndex !== -1) {
+      const candidateIndexes = museum.maps.reduce((acc, map, index) => {
+        if (map.points.some((p) => p.icon_type === 'service' && p.service_key === highlightRequest.serviceKey)) {
+          acc.push(index)
+        }
+        return acc
+      }, [])
+
+      if (candidateIndexes.length) {
+        // Piano dell'opera che si sta visitando: se c'è un servizio omonimo
+        // proprio su quel piano si preferisce sempre quello; altrimenti si
+        // sceglie il candidato più vicino nell'ordine dell'array `maps`.
+        const currentEntityMapIndex = currentEntity
+          ? museum.maps.findIndex((map) =>
+              map.points.some(
+                (p) => p.icon_type === 'entity' && String(entityIdOf(p)) === String(currentEntity._id)
+              )
+            )
+          : -1
+
+        const mapIndex =
+          currentEntityMapIndex !== -1
+            ? candidateIndexes.reduce((closest, index) =>
+                Math.abs(index - currentEntityMapIndex) < Math.abs(closest - currentEntityMapIndex)
+                  ? index
+                  : closest
+              )
+            : candidateIndexes[0]
+
         setSelectedMapIndex(mapIndex)
         const point = museum.maps[mapIndex].points.find(
           (p) => p.icon_type === 'service' && p.service_key === highlightRequest.serviceKey
@@ -401,7 +425,7 @@ function Mappa() {
     setSelectedMapIndex(0)
     setActivePoint(null)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [highlightRequest, museumsWithMaps])
+  }, [highlightRequest, museumsWithMaps, currentEntity])
 
   if (!activeVisit) return <NoActiveVisit />
 
