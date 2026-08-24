@@ -8,6 +8,9 @@ import { getCurrentUser, resetCurrentUser } from '/marketplace/js/auth-session.j
 import { createImageField } from '/marketplace/js/image-field.js';
 import { GLASS, TRANSITION, TAG_PILL } from '/marketplace/js/ui-tokens.js';
 import { normalizeEntity } from '/marketplace/js/entity-utils.js';
+import { TONE_LABELS } from '/marketplace/js/tone-labels.js';
+
+const LICENSE_LABELS = { Public: 'Pubblica', Reserved: 'Riservata', Private: 'Privata' };
 
 const API_VISITS   = '/api/visits';
 const API_ITEMS    = '/api/items';
@@ -323,7 +326,7 @@ function renderDescriptions(items, emptyMessage) {
   items.forEach(item => {
     const artwork = item.artwork || {};
     const card = document.createElement('div');
-    card.className = `card group desc-card cursor-pointer ${GLASS} overflow-hidden flex flex-col h-full text-slate-800 dark:text-slate-100 ${TRANSITION} hover:-translate-y-1 hover:bg-white/20 hover:border-white/30 hover:shadow-2xl`;
+    card.className = `card group desc-card cursor-pointer ${GLASS} overflow-hidden flex flex-row sm:flex-col h-full text-slate-800 dark:text-slate-100 ${TRANSITION} hover:-translate-y-1 hover:bg-white/20 hover:border-white/30 hover:shadow-2xl`;
     card.setAttribute('role', 'button');
     card.setAttribute('tabindex', '0');
     card.dataset.itemId = item._id;
@@ -331,18 +334,18 @@ function renderDescriptions(items, emptyMessage) {
     const licenseStyle = LICENSE_STYLE[licenseKey] || LICENSE_STYLE.public;
     const tagCls = TAG_PILL;
     card.innerHTML = `
-      <div class="relative h-44 bg-slate-300/20 dark:bg-slate-800/40 flex items-center justify-center overflow-hidden">
+      <div class="relative w-32 shrink-0 self-stretch sm:self-auto sm:w-full sm:h-44 bg-slate-300/20 dark:bg-slate-800/40 flex items-center justify-center overflow-hidden">
         ${artwork.image_url
           ? `<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="${esc(artwork.image_url)}" alt="${esc(artwork.alt_text || artwork.name || '')}" loading="lazy">`
           : `<div class="absolute inset-0" style="background-image: repeating-linear-gradient(135deg, transparent 0 11px, rgba(100,116,139,0.12) 11px 12px);"></div>`}
       </div>
-      <div class="p-6 flex-1 flex flex-col gap-2.5">
-        <div class="text-[0.66rem] font-semibold tracking-[0.14em] uppercase text-slate-500 dark:text-slate-400">${esc(artwork.name || 'Opera')}</div>
-        <p class="text-base italic leading-snug" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">${esc(item.marketplace_summary)}</p>
+      <div class="min-w-0 p-3.5 sm:p-6 flex-1 flex flex-col gap-1.5 sm:gap-2.5">
+        <div class="text-[0.6rem] sm:text-[0.66rem] font-semibold tracking-[0.14em] uppercase text-slate-500 dark:text-slate-400">${esc(artwork.name || 'Opera')}</div>
+        <p class="text-sm sm:text-base italic leading-snug" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">${esc(item.marketplace_summary)}</p>
         <div class="flex flex-wrap gap-1.5 mt-auto pt-1">
-          <span class="${tagCls} ${licenseStyle}">${esc(item.license)}</span>
-          <span class="${tagCls}">${esc(item.tone)}</span>
-          ${(item.tags || []).slice(0, 3).map(t => `<span class="${tagCls}">${esc(t)}</span>`).join('')}
+          <span class="${tagCls} ${licenseStyle}">${esc(LICENSE_LABELS[item.license] || item.license)}</span>
+          <span class="${tagCls} hidden sm:inline-block">${esc(TONE_LABELS[item.tone] || item.tone)}</span>
+          ${(item.tags || []).slice(0, 3).map(t => `<span class="${tagCls} hidden sm:inline-block">${esc(t)}</span>`).join('')}
         </div>
       </div>
     `;
