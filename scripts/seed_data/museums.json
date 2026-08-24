@@ -15,9 +15,10 @@
       "country": "Italia"
     },
     "services": {
-      "Toilette": "I bagni si trovano al primo piano, subito dopo la Sala di Botticelli, sulla sinistra.",
-      "Uscita": "L'uscita si trova al piano terra, seguendo le indicazioni per il Corridoio Vasariano.",
-      "Bookshop": "Il bookshop è al piano terra, vicino all'ingresso principale."
+      "Toilette": "I bagni si trovano al Primo Piano, vicino alla Sala 68; al Secondo Piano si trovano invece in fondo al Terzo Corridoio, vicino alla Sala 45.",
+      "Uscita": "L'uscita si trova al Primo Piano vicino alla Sala 100, oppure al Secondo Piano tramite la Scala Buontalenti.",
+      "Scale": "Al Primo Piano le scale si trovano vicino alla Sala 75 e vicino alla Sala 63; al Secondo Piano sono presenti sia vicino all'ingresso della Sala 1, sia in fondo al Terzo Corridoio vicino alla Sala 45.",
+      "Ascensore": "Al Primo Piano l'ascensore si trova vicino alla Sala 56; al Secondo Piano è presente sia vicino all'ingresso della Sala 1, sia in fondo al Terzo Corridoio vicino alla Sala 45."
     },
     "is_accessible": true,
     "accessibility_info": {
@@ -37,41 +38,14 @@
     },
     "maps": [
       {
-        "name": "Piano Terra",
-        "image_url": "/assets/maps/uffizi-piano-terra-placeholder.svg",
-        "points": [
-          {
-            "label": "Atrio d'Ingresso",
-            "icon_type": "generic",
-            "x": 0.19,
-            "y": 0.2357,
-            "description": "Punto di partenza della visita"
-          },
-          {
-            "label": "Bookshop",
-            "icon_type": "service",
-            "x": 0.26,
-            "y": 0.5,
-            "service_key": "Bookshop"
-          },
-          {
-            "label": "Uscita",
-            "icon_type": "service",
-            "x": 0.73,
-            "y": 0.5,
-            "service_key": "Uscita"
-          }
-        ]
-      },
-      {
         "name": "Primo Piano",
-        "image_url": "/assets/maps/uffizi-primo-piano-placeholder.svg",
+        "image_url": "/assets/maps/Uffizi_Piano1.png",
         "points": [
           {
             "label": "Venere di Urbino",
             "icon_type": "entity",
-            "x": 0.314,
-            "y": 0.2357,
+            "x": 0.545,
+            "y": 0.237,
             "entity": {
               "$oid": "ccc000000000000000000040"
             }
@@ -79,8 +53,8 @@
           {
             "label": "Medusa",
             "icon_type": "entity",
-            "x": 0.47,
-            "y": 0.214,
+            "x": 0.345,
+            "y": 0.13,
             "entity": {
               "$oid": "ccc000000000000000000010"
             }
@@ -88,8 +62,8 @@
           {
             "label": "Bacco",
             "icon_type": "entity",
-            "x": 0.53,
-            "y": 0.271,
+            "x": 0.355,
+            "y": 0.145,
             "entity": {
               "$oid": "ccc000000000000000000041"
             }
@@ -97,21 +71,49 @@
           {
             "label": "Toilette",
             "icon_type": "service",
-            "x": 0.5,
-            "y": 0.5,
+            "x": 0.657,
+            "y": 0.49,
             "service_key": "Toilette"
+          },
+          {
+            "label": "Uscita",
+            "icon_type": "service",
+            "x": 0.279,
+            "y": 0.388,
+            "service_key": "Uscita"
+          },
+          {
+            "label": "Scale",
+            "icon_type": "service",
+            "x": 0.76,
+            "y": 0.38,
+            "service_key": "Scale"
+          },
+          {
+            "label": "Scale",
+            "icon_type": "service",
+            "x": 0.7,
+            "y": 0.833,
+            "service_key": "Scale"
+          },
+          {
+            "label": "Ascensore",
+            "icon_type": "service",
+            "x": 0.844,
+            "y": 0.852,
+            "service_key": "Ascensore"
           }
         ]
       },
       {
         "name": "Secondo Piano",
-        "image_url": "/assets/maps/uffizi-secondo-piano-placeholder.svg",
+        "image_url": "/assets/maps/Uffizi_Piano2.png",
         "points": [
           {
             "label": "Doppio ritratto dei duchi di Urbino",
             "icon_type": "entity",
-            "x": 0.128,
-            "y": 0.2357,
+            "x": 0.126,
+            "y": 0.667,
             "entity": {
               "$oid": "ccc000000000000000000009"
             }
@@ -119,8 +121,8 @@
           {
             "label": "Annunciazione",
             "icon_type": "entity",
-            "x": 0.314,
-            "y": 0.2357,
+            "x": 0.252,
+            "y": 0.592,
             "entity": {
               "$oid": "ccc000000000000000000002"
             }
@@ -128,8 +130,8 @@
           {
             "label": "Battaglia di San Romano",
             "icon_type": "entity",
-            "x": 0.5,
-            "y": 0.2357,
+            "x": 0.189,
+            "y": 0.588,
             "entity": {
               "$oid": "ccc000000000000000000042"
             }
@@ -137,8 +139,8 @@
           {
             "label": "Nascita di Venere",
             "icon_type": "entity",
-            "x": 0.65,
-            "y": 0.214,
+            "x": 0.17,
+            "y": 0.46,
             "entity": {
               "$oid": "ccc000000000000000000001"
             }
@@ -146,8 +148,8 @@
           {
             "label": "Primavera",
             "icon_type": "entity",
-            "x": 0.722,
-            "y": 0.271,
+            "x": 0.22,
+            "y": 0.49,
             "entity": {
               "$oid": "ccc000000000000000000007"
             }
@@ -155,8 +157,8 @@
           {
             "label": "Tondo Doni",
             "icon_type": "entity",
-            "x": 0.836,
-            "y": 0.214,
+            "x": 0.6,
+            "y": 0.42,
             "entity": {
               "$oid": "ccc000000000000000000008"
             }
@@ -164,11 +166,53 @@
           {
             "label": "Madonna del Cardellino",
             "icon_type": "entity",
-            "x": 0.908,
-            "y": 0.271,
+            "x": 0.625,
+            "y": 0.445,
             "entity": {
               "$oid": "ccc000000000000000000043"
             }
+          },
+          {
+            "label": "Uscita",
+            "icon_type": "service",
+            "x": 0.611,
+            "y": 0.385,
+            "service_key": "Uscita"
+          },
+          {
+            "label": "Toilette",
+            "icon_type": "service",
+            "x": 0.71,
+            "y": 0.87,
+            "service_key": "Toilette"
+          },
+          {
+            "label": "Scale",
+            "icon_type": "service",
+            "x": 0.09,
+            "y": 0.83,
+            "service_key": "Scale"
+          },
+          {
+            "label": "Scale",
+            "icon_type": "service",
+            "x": 0.664,
+            "y": 0.873,
+            "service_key": "Scale"
+          },
+          {
+            "label": "Ascensore",
+            "icon_type": "service",
+            "x": 0.249,
+            "y": 0.863,
+            "service_key": "Ascensore"
+          },
+          {
+            "label": "Ascensore",
+            "icon_type": "service",
+            "x": 0.805,
+            "y": 0.865,
+            "service_key": "Ascensore"
           }
         ]
       }
