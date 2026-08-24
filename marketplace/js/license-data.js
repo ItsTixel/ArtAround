@@ -5,6 +5,8 @@
  * negli hero delle pagine (assets/museums, assets/items, assets/visits).
  *
  * Campi:
+ *   category   — pagina a cui appartiene l'immagine: 'museums' | 'opere' | 'visits'
+ *                (il modal "Licenze" mostra solo le voci della pagina corrente)
  *   title      — titolo dell'opera/foto su Commons
  *   sourceUrl  — link alla pagina File: su Commons
  *   author     — nome dell'autore/fotografo
@@ -15,6 +17,7 @@
 export const LICENSES = [
 // Link alle opere
   {
+    category: 'opere',
     title: 'Apollo & Daphne, September 2015',
     sourceUrl: 'https://it.wikipedia.org/wiki/File:Apollo_&_Daphne_September_2015-1a.jpg',
     author: 'Alvesgaspar',
@@ -23,6 +26,7 @@ export const LICENSES = [
     licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/deed.it',
   },
   {
+    category: 'opere',
     title: 'Mona Lisa, Galerie Médicis, Louvre Museum, Paris',
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:Mona_Lisa,_Galerie_M%C3%A9dicis,_Louvre_Museum,_Paris_25_September_2019.jpg',
     author: 'Cheng-en Cheng',
@@ -31,6 +35,7 @@ export const LICENSES = [
     licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/deed.en',
   },
   {
+    category: 'opere',
     title: 'Elgin Marbles, East Pediment',
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:Elgin_Marbles_east_pediment.jpg',
     author: 'Andrew Dunn',
@@ -39,6 +44,7 @@ export const LICENSES = [
     licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/deed.en',
   },
   {
+    category: 'opere',
     title: 'Beyond Van Gogh, Immersive Experience, Egypt',
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:Beyond_Van_Gogh,_Immersive_Experience,_Egypt_28.jpg',
     author: 'Hassan Hamdy wahidy',
@@ -47,6 +53,7 @@ export const LICENSES = [
     licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/deed.it',
   },
   {
+    category: 'opere',
     title: 'The Townley Collection',
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:Franz_Manfred_Seifert_-_The_Townley_Collection.jpg',
     author: 'Franz Manfred Seifert',
@@ -55,6 +62,7 @@ export const LICENSES = [
     licenseUrl: 'https://creativecommons.org/licenses/by-sa/3.0/de/deed.en',
   },
   {
+    category: 'opere',
     title: "Gustav Klimt - d'or et du couleurs",
     sourceUrl: "https://commons.wikimedia.org/wiki/File:Gustav_Klimt_-_d'or_et_du_couleurs.jpg",
     author: 'Immersivearteditor',
@@ -63,6 +71,7 @@ export const LICENSES = [
     licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/deed.it',
   },
   {
+    category: 'opere',
     title: 'Royal Ontario Museum, Eaton Gallery of Rome - Roman busts',
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:Royal_Ontario_Museum,_Eaton_Gallery_of_Rome_-_Roman_busts.jpg',
     author: 'Jason Zhang',
@@ -72,6 +81,7 @@ export const LICENSES = [
   },
 // Link ai musei
   {
+    category: 'museums',
     title: 'Archeological Museum of Macedonia by night',
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:Archeological_Museum_of_Macedonia_by_night.jpg',
     author: 'Pudelek',
@@ -80,6 +90,7 @@ export const LICENSES = [
     licenseUrl: 'https://creativecommons.org/licenses/by-sa/3.0/deed.en',
   },
   {
+    category: 'museums',
     title: 'Art museum and lagoon',
     sourceUrl: 'https://commons.wikimedia.org/wiki/Cleveland_Museum_of_Art#/media/File:Art_museum_and_lagoon.jpg',
     author: 'Erik Drost',
@@ -88,6 +99,7 @@ export const LICENSES = [
     licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
   },
   {
+    category: 'museums',
     title: 'Dallas Womens Museum exterior 1',
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:Dallas_Womens_Museum_exterior_1.jpg',
     author: 'Andreas Praefcke',
@@ -96,6 +108,7 @@ export const LICENSES = [
     licenseUrl: 'https://creativecommons.org/licenses/by/3.0/deed.en',
   },
   {
+    category: 'museums',
     title: 'Cincinnati Art Museum 2015',
     sourceUrl: 'https://commons.wikimedia.org/wiki/Category:Cincinnati_Art_Museum#/media/File:Cincinnati_Art_Museum_2015.jpg',
     author: '5chw4r7z',
@@ -104,6 +117,7 @@ export const LICENSES = [
     licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/deed.en',
   },
   {
+    category: 'museums',
     title: 'National Museum of Natural History, Manila',
     sourceUrl: 'https://commons.wikimedia.org/wiki/Category:Exterior_of_the_National_Museum_of_Natural_History_(Manila)#/media/File:9415National_Museum_of_Natural_History_06.jpg',
     author: 'Judgefloro',
@@ -112,6 +126,7 @@ export const LICENSES = [
     licenseUrl: 'https://creativecommons.org/publicdomain/zero/1.0/deed.en',
   },
   {
+    category: 'museums',
     title: 'The MET',
     sourceUrl: 'https://commons.wikimedia.org/wiki/Category:Metropolitan_Museum_of_Art_-_Main_Building#/media/File:The_MET_(48059130731).jpg',
     author: 'Ajay Suresh',
@@ -120,6 +135,7 @@ export const LICENSES = [
     licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
   },
   {
+    category: 'museums',
     title: 'Archäologisches Nationalmuseum Athen',
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:Arch%C3%A4ologisches_Nationalmuseum_Athen.jpg',
     author: 'Thomas Wolf',
@@ -129,6 +145,7 @@ export const LICENSES = [
   },
 // Link alle visite
   {
+    category: 'visits',
     title: 'Armor room, Cleveland Museum of Art',
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:Armor_room_-_Cleveland_Museum_of_Art_-_DSC08980.JPG',
     author: 'Daderot',
@@ -137,6 +154,7 @@ export const LICENSES = [
     licenseUrl: 'https://creativecommons.org/publicdomain/zero/1.0/deed.en',
   },
   {
+    category: 'visits',
     title: 'Cleveland museum of art, un salone',
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:Cleveland_museum_of_art,_un_salone.jpg',
     author: 'Sailko',
@@ -145,6 +163,7 @@ export const LICENSES = [
     licenseUrl: 'https://creativecommons.org/licenses/by/3.0/deed.en',
   },
   {
+    category: 'visits',
     title: 'Justizpalast Wien, Iustitia di Emanuel Pendl',
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:AT_50473_Justizpalast_Wien,_Iustitia_-_Emanuel_Pendl_4388-HDR.jpg',
     author: 'Hubertl',
@@ -153,6 +172,7 @@ export const LICENSES = [
     licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/deed.it',
   },
   {
+    category: 'visits',
     title: 'Musei Vaticani, Braccio Nuovo',
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:Musei_Vaticani._Braccio_Nuovo.JPG',
     author: 'Jesús Moreno',
@@ -161,6 +181,7 @@ export const LICENSES = [
     licenseUrl: 'https://creativecommons.org/licenses/by-sa/3.0/deed.en',
   },
   {
+    category: 'visits',
     title: 'Staircase to Hall of Armor, Cleveland Museum of Art',
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:Staircase_to_Hall_of_Armor_-_Cleveland_Museum_of_Art_-_2014-11-26_(17755856811).jpg',
     author: 'Tim Evanson',
@@ -169,6 +190,7 @@ export const LICENSES = [
     licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/deed.en',
   },
   {
+    category: 'visits',
     title: 'Croquis 2',
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:Croquis_2.jpg',
     author: 'Nben54',
@@ -177,6 +199,7 @@ export const LICENSES = [
     licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/deed.it',
   },
   {
+    category: 'visits',
     title: 'Auguste Rodin, Grande Ombre',
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:Auguste_Rodin,_Grande_Ombre,.jpg',
     author: 'Sdegroisse',

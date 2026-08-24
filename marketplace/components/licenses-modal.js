@@ -3,6 +3,10 @@
  * Overlay con l'elenco delle attribuzioni Creative Commons delle
  * immagini hero (Wikimedia Commons), lette da js/license-data.js.
  *
+ * Mostra solo le attribuzioni della pagina corrente (musei/opere/visite),
+ * dedotta dall'URL come in app-navbar.js; sulle pagine senza un hero
+ * dedicato (landing, profilo, pagine di creazione...) mostra tutto.
+ *
  * Uso:
  *   document.querySelector('licenses-modal').open();
  */
@@ -10,6 +14,20 @@
 import { GLASS_MODAL as GLASS, TRANSITION } from '/marketplace/js/ui-tokens.js';
 import { trapTabKey, focusDialog } from '/marketplace/js/focus-trap.js';
 import { LICENSES } from '/marketplace/js/license-data.js';
+
+const CATEGORY_LABELS = {
+  museums: 'Musei',
+  opere:   'Opere',
+  visits:  'Visite',
+};
+
+function currentCategory() {
+  const p = window.location.pathname;
+  if (p === '/marketplace' || p.endsWith('/marketplace/') || p.endsWith('index.html')) return 'museums';
+  if (p.endsWith('/opere.html'))  return 'opere';
+  if (p.endsWith('/visits.html')) return 'visits';
+  return null;
+}
 
 class LicensesModal extends HTMLElement {
   constructor() {
@@ -55,13 +73,15 @@ class LicensesModal extends HTMLElement {
   }
 
   _bodyHtml() {
-    if (!LICENSES.length) {
+    const category = currentCategory();
+    const licenses = category ? LICENSES.filter(l => l.category === category) : LICENSES;
+    if (!licenses.length) {
       return `<p class="py-16 px-8 text-center text-slate-500 dark:text-slate-400 text-sm">Nessuna attribuzione registrata.</p>`;
     }
     return `
       <div class="pt-7 px-5 sm:px-8 pb-7 sm:pb-8">
         <ul class="flex flex-col gap-4">
-          ${LICENSES.map((l) => `
+          ${licenses.map((l) => `
           <li class="text-sm leading-relaxed text-slate-500 dark:text-slate-400 pb-4 border-b border-slate-400/20 last:border-0 last:pb-0">
             "${this._linkHtml(l.title, l.sourceUrl)}"
             di ${this._linkHtml(l.author, l.authorUrl)}
@@ -82,8 +102,8 @@ class LicensesModal extends HTMLElement {
           <button class="liquid-glass-pill close-btn absolute top-3 right-3 z-10 w-9 h-9 rounded-full border border-slate-400/20 backdrop-blur-lg flex items-center justify-center text-lg leading-none hover:bg-white/20 hover:border-white/30 ${TRANSITION}" aria-label="Chiudi">×</button>
           <div class="body-scroll overflow-y-auto flex-1 min-h-0">
             <div class="pt-7 px-5 sm:px-8">
-              <h2 class="text-2xl font-semibold leading-tight text-slate-800 dark:text-slate-100 mb-1" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">Licenze</h2>
-              <p class="text-sm text-slate-500 dark:text-slate-400 mb-2">Attribuzioni delle immagini da Wikimedia Commons usate nel sito.</p>
+              <h2 class="text-2xl font-semibold leading-tight text-slate-800 dark:text-slate-100 mb-1" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">Licenze${currentCategory() ? ` — ${CATEGORY_LABELS[currentCategory()]}` : ''}</h2>
+              <p class="text-sm text-slate-500 dark:text-slate-400 mb-2">Attribuzioni delle immagini da Wikimedia Commons usate ${currentCategory() ? 'in questa pagina' : 'nel sito'}.</p>
             </div>
             ${this._bodyHtml()}
           </div>
