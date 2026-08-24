@@ -3,7 +3,16 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useActiveVisit } from '../context/ActiveVisitContext'
 import { useVisitProgress } from '../context/VisitProgressContext'
 import NoActiveVisit from '../components/NoActiveVisit'
-import { ToiletIcon, ExitIcon, SignpostIcon, OperaIcon, ZoomInIcon, ZoomOutIcon } from '../components/icons'
+import {
+  ToiletIcon,
+  ExitIcon,
+  SignpostIcon,
+  OperaIcon,
+  ZoomInIcon,
+  ZoomOutIcon,
+  FullscreenIcon,
+  FullscreenExitIcon,
+} from '../components/icons'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 
 function iconForPoint(point) {
@@ -36,13 +45,31 @@ function distanceBetween(a, b) {
   return Math.hypot(a.x - b.x, a.y - b.y)
 }
 
+// Calcola i limiti di tx/ty per un dato scale: se il contenuto (a quello
+// scale) è più piccolo del contenitore su un asse resta centrato e bloccato
+// su quell'asse (min===max); altrimenti può scorrere fra i due bordi.
+function boundsFor(rect, base, scale) {
+  const scaledW = base.width * scale
+  const scaledH = base.height * scale
+  const centerX = (rect.width - scaledW) / 2
+  const centerY = (rect.height - scaledH) / 2
+  return {
+    minX: scaledW <= rect.width ? centerX : rect.width - scaledW,
+    maxX: scaledW <= rect.width ? centerX : 0,
+    minY: scaledH <= rect.height ? centerY : rect.height - scaledH,
+    maxY: scaledH <= rect.height ? centerY : 0,
+  }
+}
+
 // Mantiene la pianta ancorata: usa pan/zoom con pizzico a due dita,
 // rotellina/trackpad, doppio tap e pulsanti +/-. La trasformazione (CSS
 // transform, che è puramente visiva) è applicata al contenuto interno; il
-// contenitore esterno mantiene invece le dimensioni naturali dell'immagine
-// (i transform non influenzano il layout) e ritaglia con overflow-hidden —
-// quindi non serve misurare l'aspect ratio dell'immagine a parte.
-function useMapZoomPan(viewportRef) {
+// contenitore esterno (viewportRef) può avere dimensioni indipendenti dal
+// contenuto — es. a schermo intero è alto quanto lo schermo, non quanto
+// l'immagine — quindi le dimensioni "naturali" del contenuto (base) si
+// leggono da contentRef via offsetWidth/Height (non influenzate dal
+// transform) invece di assumere che coincidano col rect del contenitore.
+function useMapZoomPan(viewportRef, contentRef) {
   const [scale, setScale] = useState(1)
   const [tx, setTx] = useState(0)
   const [ty, setTy] = useState(0)
@@ -54,14 +81,30 @@ function useMapZoomPan(viewportRef) {
   const pinchStart = useRef(null) // {dist, scale, tx, ty, midX, midY} per il pizzico
   const draggedRef = useRef(false)
 
+  function getBase() {
+    const el = contentRef.current
+    return { width: el?.offsetWidth || 0, height: el?.offsetHeight || 0 }
+  }
+
+  // Riporta a scale neutro, centrando il contenuto nel contenitore (utile
+  // sia al cambio museo/piano sia all'ingresso/uscita da schermo intero,
+  // dove le dimensioni del contenitore cambiano bruscamente).
   function reset() {
+    const rect = viewportRef.current?.getBoundingClientRect()
+    const base = getBase()
     setScale(1)
-    setTx(0)
-    setTy(0)
+    if (rect) {
+      setTx((rect.width - base.width) / 2)
+      setTy((rect.height - base.height) / 2)
+    } else {
+      setTx(0)
+      setTy(0)
+    }
   }
 
   function applyZoomAt(cx, cy, targetScale) {
     const rect = viewportRef.current?.getBoundingClientRect()
+    const base = getBase()
     if (!rect) return
     const { scale: s, tx: curTx, ty: curTy } = stateRef.current
     const newScale = clamp(targetScale, MIN_SCALE, MAX_SCALE)
@@ -69,11 +112,10 @@ function useMapZoomPan(viewportRef) {
     const contentY = (cy - curTy) / s
     const rawTx = cx - contentX * newScale
     const rawTy = cy - contentY * newScale
-    const minX = Math.min(0, rect.width - rect.width * newScale)
-    const minY = Math.min(0, rect.height - rect.height * newScale)
+    const { minX, maxX, minY, maxY } = boundsFor(rect, base, newScale)
     setScale(newScale)
-    setTx(clamp(rawTx, minX, 0))
-    setTy(clamp(rawTy, minY, 0))
+    setTx(clamp(rawTx, minX, maxX))
+    setTy(clamp(rawTy, minY, maxY))
   }
 
   function zoomByStep(factor) {
@@ -124,16 +166,15 @@ function useMapZoomPan(viewportRef) {
     updatePointer(e)
     const pts = [...pointers.current.values()]
     const rect = viewportRef.current.getBoundingClientRect()
+    const base = getBase()
 
     if (pts.length === 1 && dragStart.current) {
       const dx = pts[0].x - dragStart.current.x
       const dy = pts[0].y - dragStart.current.y
       if (Math.hypot(dx, dy) > DRAG_THRESHOLD_PX) draggedRef.current = true
-      if (stateRef.current.scale <= 1) return
-      const minX = Math.min(0, rect.width - rect.width * stateRef.current.scale)
-      const minY = Math.min(0, rect.height - rect.height * stateRef.current.scale)
-      setTx(clamp(dragStart.current.tx + dx, minX, 0))
-      setTy(clamp(dragStart.current.ty + dy, minY, 0))
+      const { minX, maxX, minY, maxY } = boundsFor(rect, base, stateRef.current.scale)
+      setTx(clamp(dragStart.current.tx + dx, minX, maxX))
+      setTy(clamp(dragStart.current.ty + dy, minY, maxY))
     } else if (pts.length === 2 && pinchStart.current) {
       draggedRef.current = true
       const dist = distanceBetween(pts[0], pts[1])
@@ -143,11 +184,10 @@ function useMapZoomPan(viewportRef) {
       const midY = (pts[0].y + pts[1].y) / 2 - rect.top
       const contentX = (pinchStart.current.midX - pinchStart.current.tx) / pinchStart.current.scale
       const contentY = (pinchStart.current.midY - pinchStart.current.ty) / pinchStart.current.scale
-      const minX = Math.min(0, rect.width - rect.width * newScale)
-      const minY = Math.min(0, rect.height - rect.height * newScale)
+      const { minX, maxX, minY, maxY } = boundsFor(rect, base, newScale)
       setScale(newScale)
-      setTx(clamp(midX - contentX * newScale, minX, 0))
-      setTy(clamp(midY - contentY * newScale, minY, 0))
+      setTx(clamp(midX - contentX * newScale, minX, maxX))
+      setTy(clamp(midY - contentY * newScale, minY, maxY))
     }
   }
 
@@ -220,6 +260,31 @@ function useMapZoomPan(viewportRef) {
   }
 }
 
+// Fullscreen sull'elemento passato: tiene lo stato sincronizzato anche
+// quando si esce senza passare dal bottone (es. tasto Esc).
+function useFullscreen(elementRef) {
+  const [isFullscreen, setIsFullscreen] = useState(false)
+
+  useEffect(() => {
+    function handleChange() {
+      setIsFullscreen(document.fullscreenElement === elementRef.current)
+    }
+    document.addEventListener('fullscreenchange', handleChange)
+    return () => document.removeEventListener('fullscreenchange', handleChange)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  function toggle() {
+    if (document.fullscreenElement) {
+      document.exitFullscreen()
+    } else {
+      elementRef.current?.requestFullscreen()
+    }
+  }
+
+  return { isFullscreen, toggle }
+}
+
 // Sceglie di default il museo dello step corrente (se ha almeno una mappa),
 // altrimenti il primo museo della visita che ne ha una.
 function pickDefaultMuseumId(museums, currentMuseumId) {
@@ -249,15 +314,52 @@ function Mappa() {
   const [selectedMapIndex, setSelectedMapIndex] = useState(0)
   const [activePoint, setActivePoint] = useState(null)
   const [hintDismissed, setHintDismissed] = useState(false)
+  // Dimensioni intrinseche dell'immagine e dimensioni del contenitore: usate
+  // solo a schermo intero (vedi `fit` più sotto) per calcolare un "contain"
+  // fit che non tagli mai la mappa quando è tutta dezoomata — in pagina
+  // normale il contenitore si adatta già all'immagine (mai tagliata) quindi
+  // non servono.
+  const [naturalSize, setNaturalSize] = useState(null)
+  const [containerSize, setContainerSize] = useState(null)
 
   const viewportRef = useRef(null)
-  const zoomPan = useMapZoomPan(viewportRef)
+  const contentRef = useRef(null)
+  const zoomPan = useMapZoomPan(viewportRef, contentRef)
+  const fullscreen = useFullscreen(viewportRef)
 
-  // Riparte da zoom neutro ogni volta che si cambia museo o piano.
+  // Nessun array di dipendenze: come per il listener wheel più sotto,
+  // viewportRef.current va riletto ad ogni render (monta un render dopo
+  // quello iniziale). Copre sia il cambio piano/museo sia l'ingresso/uscita
+  // da schermo intero, l'orientamento del device, ecc.
+  useEffect(() => {
+    const el = viewportRef.current
+    if (!el) return
+    const observer = new ResizeObserver(([entry]) => {
+      setContainerSize({ width: entry.contentRect.width, height: entry.contentRect.height })
+    })
+    observer.observe(el)
+    return () => observer.disconnect()
+  })
+
+  const fit =
+    fullscreen.isFullscreen && containerSize && naturalSize
+      ? (() => {
+          const scale = Math.min(
+            containerSize.width / naturalSize.width,
+            containerSize.height / naturalSize.height
+          )
+          return { width: naturalSize.width * scale, height: naturalSize.height * scale }
+        })()
+      : null
+
+  // Riparte da zoom neutro ogni volta che si cambia museo o piano, o che
+  // cambia il fit del contenuto (schermo intero attivato/disattivato,
+  // ridimensionamento): le dimensioni del contenitore/contenuto cambiano di
+  // colpo, quindi il centraggio va ricalcolato.
   useEffect(() => {
     zoomPan.reset()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedMuseumId, selectedMapIndex])
+  }, [selectedMuseumId, selectedMapIndex, fit?.width, fit?.height])
 
   // Chiudere l'avviso lo nasconde solo finché le opere restano nascoste: se
   // si torna a ingrandire e poi si rimpicciolisce di nuovo, ricompare.
@@ -389,7 +491,9 @@ function Mappa() {
       {selectedMap && (
         <div
           ref={viewportRef}
-          className="glass-panel relative w-full touch-none select-none overflow-hidden rounded-2xl"
+          className={`glass-panel relative w-full touch-none select-none overflow-hidden ${
+            fullscreen.isFullscreen ? '' : 'rounded-2xl'
+          }`}
           style={{ cursor: zoomPan.scale > 1 ? 'grab' : 'default' }}
           {...zoomPan.handlers}
         >
@@ -408,7 +512,9 @@ function Mappa() {
           )}
 
           <div
+            ref={contentRef}
             style={{
+              ...(fit ? { width: fit.width, height: fit.height } : null),
               transform: `translate(${zoomPan.tx}px, ${zoomPan.ty}px) scale(${zoomPan.scale})`,
               transformOrigin: '0 0',
             }}
@@ -416,7 +522,8 @@ function Mappa() {
             <img
               src={selectedMap.image_url}
               alt={`Pianta — ${selectedMap.name}`}
-              className="pointer-events-none block w-full"
+              onLoad={(e) => setNaturalSize({ width: e.target.naturalWidth, height: e.target.naturalHeight })}
+              className={`pointer-events-none block ${fit ? 'h-full w-full' : 'w-full'}`}
               draggable={false}
             />
 
@@ -467,6 +574,19 @@ function Mappa() {
               )
             })}
           </div>
+
+          <button
+            type="button"
+            onClick={fullscreen.toggle}
+            aria-label={fullscreen.isFullscreen ? 'Esci da schermo intero' : 'Schermo intero'}
+            className="absolute right-2 top-2 z-20 flex h-9 w-9 items-center justify-center rounded-full border border-slate-400/20 bg-white/85 dark:bg-slate-900/85 backdrop-blur-lg text-text shadow-lg shadow-black/10 dark:shadow-black/30"
+          >
+            {fullscreen.isFullscreen ? (
+              <FullscreenExitIcon className="h-5 w-5" aria-hidden="true" />
+            ) : (
+              <FullscreenIcon className="h-5 w-5" aria-hidden="true" />
+            )}
+          </button>
 
           <div className="absolute bottom-2 right-2 z-20 flex flex-col gap-1">
             <button

@@ -278,6 +278,28 @@ export function ZoomOutIcon(props) {
   )
 }
 
+export function FullscreenIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <path d="M4 9V5a1 1 0 0 1 1-1h4" />
+      <path d="M20 9V5a1 1 0 0 0-1-1h-4" />
+      <path d="M4 15v4a1 1 0 0 0 1 1h4" />
+      <path d="M20 15v4a1 1 0 0 1-1 1h-4" />
+    </svg>
+  )
+}
+
+export function FullscreenExitIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <path d="M9 4v3a1 1 0 0 1-1 1H5" />
+      <path d="M15 4v3a1 1 0 0 0 1 1h3" />
+      <path d="M9 20v-3a1 1 0 0 0-1-1H5" />
+      <path d="M15 20v-3a1 1 0 0 1 1-1h3" />
+    </svg>
+  )
+}
+
 export function SunIcon(props) {
   return (
     <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
