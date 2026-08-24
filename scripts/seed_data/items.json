@@ -5298,5 +5298,181 @@
     "updatedAt": {
       "$date": "2026-08-24T00:00:00Z"
     }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000170"
+    },
+    "marketplace_summary": "Racconto per bambini sulla nascita degli Uffizi: da uffici del Granduca a museo di tutti.",
+    "artwork": {
+      "$oid": "ccc000000000000000000054"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Prima di vedere i quadri, scopri un segreto: questo palazzo non è nato per essere un museo!"
+      },
+      {
+        "duration_sec": 15,
+        "text": "Più di 450 anni fa il Granduca Cosimo I de' Medici chiese all'architetto Giorgio Vasari di costruire un grande edificio per riunire in un solo posto tutti gli uffici del governo di Firenze: ecco perché si chiama 'Uffizi'!"
+      },
+      {
+        "duration_sec": 30,
+        "text": "Con il tempo i Medici iniziarono a portare qui le loro opere d'arte preferite. Quando la famiglia si estinse, l'ultima principessa, Anna Maria Luisa, decise di regalare tutto alla città di Firenze per sempre, a patto che nessuno lo portasse mai via. Da quel giorno chiunque può venire a vedere questi tesori, proprio come stai facendo tu oggi!"
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Florence%2C_Italy_-_panoramio_%28125%29.jpg?width=1280",
+    "alt_text": "La facciata del Palazzo degli Uffizi vista dal cortile porticato, con le statue degli uomini illustri fiorentini lungo i due bracci e la Torre di Palazzo Vecchio sullo sfondo",
+    "tags": [
+      "uffizi",
+      "introduzione",
+      "storia",
+      "medici"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000171"
+    },
+    "marketplace_summary": "Guida semplice alla storia degli Uffizi, dal palazzo del Granduca al museo pubblico.",
+    "artwork": {
+      "$oid": "ccc000000000000000000054"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il Palazzo degli Uffizi nasce a Firenze a metà del Cinquecento, per volere del Granduca Cosimo I de' Medici."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Cosimo I incaricò l'architetto Giorgio Vasari di progettare un edificio che ospitasse in un unico luogo le tredici magistrature e gli uffici amministrativi dello stato fiorentino: da qui il nome 'Uffizi'."
+      },
+      {
+        "duration_sec": 34,
+        "text": "Nel 1737 l'ultima discendente della famiglia, Anna Maria Luisa de' Medici, stabilì con il celebre 'Patto di Famiglia' che l'intera collezione non avrebbe mai lasciato Firenze; nel 1765 gli Uffizi furono aperti stabilmente al pubblico, diventando uno dei primi musei moderni d'Europa."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Florence%2C_Italy_-_panoramio_%28125%29.jpg?width=1280",
+    "alt_text": "La facciata del Palazzo degli Uffizi vista dal cortile porticato, con le statue degli uomini illustri fiorentini lungo i due bracci e la Torre di Palazzo Vecchio sullo sfondo",
+    "tags": [
+      "uffizi",
+      "introduzione",
+      "storia",
+      "medici"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000172"
+    },
+    "marketplace_summary": "Storia del Palazzo degli Uffizi: dalla nascita come sede amministrativa alla trasformazione in museo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000054"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "Il complesso degli Uffizi occupa uno stretto edificio a U che si affaccia sull'Arno, costruito a partire dal 1560 su commissione del Granduca Cosimo I de' Medici."
+      },
+      {
+        "duration_sec": 20,
+        "text": "L'incarico fu affidato a Giorgio Vasari, pittore e architetto già al servizio dei Medici, che progettò un edificio destinato a riunire le tredici magistrature dello stato fiorentino: da qui il nome 'Uffizi', cioè uffici."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Già nei decenni successivi alla costruzione, i piani superiori furono destinati a ospitare la collezione medicea di dipinti, sculture antiche, arazzi e strumenti scientifici, dando origine a quella che oggi è considerata una delle prime gallerie museali moderne."
+      },
+      {
+        "duration_sec": 32,
+        "text": "Nel 1737 il Patto di Famiglia stipulato da Anna Maria Luisa de' Medici, ultima erede della dinastia, vincolò l'intera collezione alla città di Firenze in perpetuo; nel 1765 la Galleria fu aperta stabilmente al pubblico, ponendo le basi per il museo che si sta per visitare."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Florence%2C_Italy_-_panoramio_%28125%29.jpg?width=1280",
+    "alt_text": "La facciata del Palazzo degli Uffizi vista dal cortile porticato, con le statue degli uomini illustri fiorentini lungo i due bracci e la Torre di Palazzo Vecchio sullo sfondo",
+    "tags": [
+      "uffizi",
+      "introduzione",
+      "storia",
+      "medici"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000173"
+    },
+    "marketplace_summary": "Approfondimento storico-architettonico sul Palazzo degli Uffizi e sulla formazione della collezione granducale.",
+    "artwork": {
+      "$oid": "ccc000000000000000000054"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 7,
+        "text": "Il Palazzo degli Uffizi costituisce un unicum nell'architettura del secondo Cinquecento fiorentino per la sua funzione originaria di edificio amministrativo unitario, concepito su un impianto planimetrico a U aperto verso l'Arno."
+      },
+      {
+        "duration_sec": 30,
+        "text": "I lavori, avviati nel 1560 su commissione di Cosimo I de' Medici, furono diretti da Giorgio Vasari fino alla sua morte nel 1574 e proseguiti da Alfonso Parigi il Vecchio e Bernardo Buontalenti, che completarono l'edificio destinato ad accogliere le tredici magistrature dello stato fiorentino, da cui la denominazione 'Uffizi'."
+      },
+      {
+        "duration_sec": 34,
+        "text": "Sotto Francesco I de' Medici, successore di Cosimo, il secondo piano dell'edificio fu progressivamente convertito in spazio espositivo per la collezione di famiglia, includendo la celebre Tribuna ottagonale realizzata da Buontalenti nel 1584 per accogliere i capolavori antichi e rinascimentali ritenuti di maggior pregio, secondo un ordinamento museografico tra i più antichi documentati in Europa."
+      },
+      {
+        "duration_sec": 42,
+        "text": "La consistenza attuale della raccolta è in larga parte esito del Patto di Famiglia stipulato nel 1737 da Anna Maria Luisa de' Medici, elettrice palatina e ultima discendente diretta della dinastia, che vincolò le collezioni granducali al territorio fiorentino in perpetuo, escludendone l'alienazione o il trasferimento fuori Firenze. L'apertura continuativa al pubblico, convenzionalmente datata al 1765 sotto il granducato lorenese, segna il passaggio della Galleria da collezione dinastica a istituzione museale nel senso moderno del termine."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Florence%2C_Italy_-_panoramio_%28125%29.jpg?width=1280",
+    "alt_text": "La facciata del Palazzo degli Uffizi vista dal cortile porticato, con le statue degli uomini illustri fiorentini lungo i due bracci e la Torre di Palazzo Vecchio sullo sfondo",
+    "tags": [
+      "uffizi",
+      "introduzione",
+      "storia",
+      "medici"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
   }
 ]

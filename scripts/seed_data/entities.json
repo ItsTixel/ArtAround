@@ -1340,5 +1340,43 @@
     "updatedAt": {
       "$date": "2026-08-23T00:00:00Z"
     }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000054"
+    },
+    "name": "Benvenuti agli Uffizi",
+    "is_physical": false,
+    "description": "Un'introduzione al percorso: prima di incontrare le opere esposte, la storia del palazzo e della collezione che le custodisce, dagli uffici granducali di Cosimo I de' Medici alla nascita di uno dei primi musei pubblici d'Europa.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Florence%2C_Italy_-_panoramio_%28125%29.jpg?width=1280",
+    "alt_text": "La facciata del Palazzo degli Uffizi vista dal cortile porticato, con le statue degli uomini illustri fiorentini lungo i due bracci e la Torre di Palazzo Vecchio sullo sfondo",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        }
+      }
+    ],
+    "tags": [
+      "uffizi",
+      "introduzione",
+      "storia",
+      "medici"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/Galleria_degli_Uffizi"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
   }
 ]
