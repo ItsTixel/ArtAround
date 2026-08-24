@@ -478,7 +478,9 @@
   flex-shrink: 0;
 }
 .step-item-row-body { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
+.step-item-row-title { display: flex; align-items: baseline; gap: 0.4rem; flex-wrap: wrap; }
 .step-item-row-summary { font-size: 0.8rem; color: var(--color-text); }
+.step-item-row-author { font-size: 0.68rem; color: var(--color-text-muted); font-style: italic; }
 .step-item-row-meta { font-size: 0.66rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--color-text-muted); }
 .step-item-expand-btn {
   flex-shrink: 0;

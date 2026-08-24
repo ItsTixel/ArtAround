@@ -4469,5 +4469,834 @@
     "updatedAt": {
       "$date": "2026-08-23T00:00:00Z"
     }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000170"
+    },
+    "marketplace_summary": "Racconto per bambini del Polittico di Bologna di Giotto.",
+    "artwork": {
+      "$oid": "ccc000000000000000000019"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000005"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "Guarda come brilla questo quadro dorato: una volta, per farlo splendere così, si usava vera foglia d'oro, sottile come un velo!"
+      },
+      {
+        "duration_sec": 16,
+        "text": "Al centro c'è la mamma di Gesù seduta su un trono, con il suo bambino in braccio; intorno a loro ci sono santi e angeli vestiti con colori vivaci, come in una grande festa."
+      },
+      {
+        "duration_sec": 32,
+        "text": "Questo quadro lo ha dipinto un pittore molto famoso di tanti anni fa, di nome Giotto: veniva da Firenze, ma ha lavorato anche qui a Bologna. Se guardi bene sulla cornice dorata, puoi ancora trovare il suo nome scritto in piccolo, come una firma segreta lasciata per chi sa cercarla."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giotto._Polyptych._1330-35._91x340cm._Pinacoteca%2C_Bologna..jpg?width=1280",
+    "alt_text": "Dettaglio della firma di Giotto sulla cornice del polittico",
+    "tags": [
+      "giotto",
+      "polittico",
+      "trecento",
+      "bologna"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000171"
+    },
+    "marketplace_summary": "Analisi tecnica di San Giorgio e il drago di Vitale da Bologna.",
+    "artwork": {
+      "$oid": "ccc000000000000000000020"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 7,
+        "text": "Tempera su tavola datata al 1330-1340 circa, attribuita a Vitale da Bologna, tra i massimi esponenti della scuola pittorica bolognese del Trecento."
+      },
+      {
+        "duration_sec": 20,
+        "text": "La composizione mostra un'impaginazione dinamica non ancora vincolata alla prospettiva geometrica, con il cavallo reso in uno scorcio ardito per l'epoca e panneggi che seguono i ritmi lineari tipici del gotico internazionale."
+      },
+      {
+        "duration_sec": 45,
+        "text": "Le indagini diagnostiche condotte in occasione degli ultimi restauri hanno rivelato una preparazione a gesso e colla animale con disegno preparatorio a sinopia, tecnica consueta nelle botteghe trecentesche bolognesi, oltre a tracce di pigmenti a base di lapislazzuli nel manto della principessa, segno di una committenza di rilievo."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vitale%20da%20bologna%2C%20san%20giorgio%20libera%20la%20principessa%2C%201330-35%20ca.%2C%2001.jpg?width=1280",
+    "alt_text": "Dettaglio del cavaliere San Giorgio che trafigge il drago",
+    "tags": [
+      "vitale-da-bologna",
+      "san-giorgio",
+      "trecento",
+      "bologna",
+      "tecnico"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000172"
+    },
+    "marketplace_summary": "Racconto per bambini della Pala dei Mercanti di Francesco del Cossa.",
+    "artwork": {
+      "$oid": "ccc000000000000000000021"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000005"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "Questa pala si chiama così perché tanto tempo fa furono i mercanti di Bologna a farla dipingere per la loro chiesetta!"
+      },
+      {
+        "duration_sec": 17,
+        "text": "Guarda quanti dettagli: fiori, animali e vestiti coloratissimi. Il pittore, Francesco del Cossa, amava disegnare ogni piccola cosa con grandissima cura, come in un'illustrazione piena di sorprese da scoprire."
+      },
+      {
+        "duration_sec": 34,
+        "text": "In basso ci sono dei santi che sembrano quasi guardarci: uno di loro tiene in mano un piccolo modellino della città di Bologna, con tutte le sue torri, proprio come un plastico da gioco costruito nei minimi dettagli."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francesco_del_Cossa_025.jpg?width=1280",
+    "alt_text": "Dettaglio del san Petronio con in mano il modellino della città di Bologna",
+    "tags": [
+      "francesco-del-cossa",
+      "rinascimento",
+      "bologna"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000173"
+    },
+    "marketplace_summary": "Guida semplice alla Pala Bentivoglio di Francesco Francia.",
+    "artwork": {
+      "$oid": "ccc000000000000000000022"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "Questa grande pala fu voluta dalla famiglia Bentivoglio, che a lungo governò Bologna, per la cappella di famiglia in San Giacomo Maggiore."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Francesco Francia dipinge la Madonna in trono con il Bambino, circondata da santi, in una composizione ordinata e serena, tipica del suo stile pacato."
+      },
+      {
+        "duration_sec": 30,
+        "text": "Ai lati compaiono i membri della famiglia committente, inginocchiati in preghiera: un modo per mostrare insieme la propria devozione religiosa e il proprio prestigio a chiunque entrasse nella cappella."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Francesco_Francia_-_Adoration_of_the_Child_-_WGA08169.jpg?width=1280",
+    "alt_text": "Dettaglio dei committenti Bentivoglio inginocchiati a lato della scena",
+    "tags": [
+      "francesco-francia",
+      "bentivoglio",
+      "rinascimento",
+      "bologna"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000174"
+    },
+    "marketplace_summary": "Racconto per bambini dell'Estasi di Santa Cecilia di Raffaello.",
+    "artwork": {
+      "$oid": "ccc000000000000000000024"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000005"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "Santa Cecilia è la protagonista di questo quadro: si dice che amasse tantissimo la musica, ed è per questo che è considerata ancora oggi la protettrice dei musicisti!"
+      },
+      {
+        "duration_sec": 15,
+        "text": "Guarda per terra: ci sono strumenti musicali abbandonati, come se Cecilia li avesse appena lasciati cadere per ascoltare qualcosa di ancora più bello che arriva dal cielo."
+      },
+      {
+        "duration_sec": 30,
+        "text": "In alto, tra le nuvole, un piccolo coro di angeli canta: Raffaello li ha dipinti così bene che, guardandoli, sembra quasi di poter sentire la loro musica uscire dal quadro."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint_Cecilia_by_Raphael.jpg?width=1280",
+    "alt_text": "Dettaglio del volto di santa Cecilia in estasi, con gli strumenti musicali ai suoi piedi",
+    "tags": [
+      "raffaello",
+      "santa-cecilia",
+      "rinascimento",
+      "bologna"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000175"
+    },
+    "marketplace_summary": "Racconto per bambini della Madonna di Santa Margherita di Parmigianino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000025"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "In questo quadro la Madonna tiene in braccio Gesù Bambino, mentre alcuni santi le fanno compagnia, come a una piccola festa tutta per loro."
+      },
+      {
+        "duration_sec": 15,
+        "text": "Il pittore si chiamava Parmigianino, e gli piaceva allungare un po' le figure, rendendole eleganti e slanciate come piccole statuine."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Guarda Santa Margherita, la santa vestita di rosso: ha vicino a sé un piccolo drago, che secondo la leggenda lei stessa era riuscita a sconfiggere grazie al solo coraggio e alla fede."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Parmigianino_-_Madonna_and_Child_with_Saints_Margaret%2C_Jerome%2C_Petronius_and_Michael.jpg?width=1280",
+    "alt_text": "Dettaglio della santa Margherita con il drago simbolo del suo martirio",
+    "tags": [
+      "parmigianino",
+      "manierismo",
+      "bologna"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000176"
+    },
+    "marketplace_summary": "Racconto per bambini della Madonna dei Bargellini di Ludovico Carracci.",
+    "artwork": {
+      "$oid": "ccc000000000000000000026"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000005"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "Anche questa pala prende il nome dalla famiglia che l'ha voluta, i Bargellini, proprio come altre opere di questa sala."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Ludovico Carracci dipinge la Madonna in alto, tra le nuvole, mentre più in basso, sulla terra, ci sono santi e persone comuni: sembra quasi che il cielo si apra per mostrarsi a chi guarda dal basso."
+      },
+      {
+        "duration_sec": 30,
+        "text": "Prova a contare quante persone ci sono nel quadro: a Carracci piaceva riempire le sue scene con tanti personaggi, ognuno con un'espressione diversa sul viso."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Carracci_Ludovico_Madonna_Bargellini.jpg?width=1280",
+    "alt_text": "Dettaglio della committente Cecilia Bargellini inginocchiata in preghiera",
+    "tags": [
+      "ludovico-carracci",
+      "barocco",
+      "bargellini",
+      "bologna"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000177"
+    },
+    "marketplace_summary": "Racconto per bambini della Strage degli Innocenti di Guido Reni.",
+    "artwork": {
+      "$oid": "ccc000000000000000000029"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 8,
+        "text": "Questo quadro racconta una storia molto antica e triste, tratta da un racconto del Vangelo, in cui un re troppo spaventato di perdere il potere ordina qualcosa di terribile."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Guido Reni non mostra la scena in modo crudo: preferisce raccontare il movimento e le emozioni dei protagonisti, come le mamme che cercano con tutte le loro forze di proteggere i loro bambini."
+      },
+      {
+        "duration_sec": 32,
+        "text": "Nonostante il tema difficile, nota come i colori e la composizione restino equilibrati ed eleganti: è lo stile classico e armonioso tipico di Guido Reni, capace di raccontare anche le storie più forti con grazia e misura."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Guido_Reni_-_Massacre_of_the_Innocents.jpg?width=1280",
+    "alt_text": "Dettaglio di una madre che tenta di proteggere il proprio bambino dalla spada del soldato",
+    "tags": [
+      "guido-reni",
+      "barocco",
+      "strage-degli-innocenti",
+      "bologna"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000178"
+    },
+    "marketplace_summary": "Racconto per bambini della Pietà dei Mendicanti di Guido Reni.",
+    "artwork": {
+      "$oid": "ccc000000000000000000030"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000005"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "Questo quadro mostra un momento triste ma anche molto pieno d'amore: la Madonna che tiene tra le braccia Gesù, circondata da santi che le stanno vicino per sostenerla."
+      },
+      {
+        "duration_sec": 15,
+        "text": "Guido Reni usa colori delicati e pose piene di dolcezza, per far sentire a chi guarda tutta la tenerezza di questo abbraccio, anche nel momento più difficile."
+      },
+      {
+        "duration_sec": 26,
+        "text": "Il quadro si chiama 'dei Mendicanti' perché si trovava nella chiesa dell'ospedale dei Mendicanti a Bologna, un luogo che accoglieva e curava le persone più povere della città."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Guido_Reni%2C_Piet%C3%A0_dei_Mendicanti.jpg?width=1280",
+    "alt_text": "Dettaglio del Cristo morto sorretto dagli angeli nella parte superiore della pala",
+    "tags": [
+      "guido-reni",
+      "barocco",
+      "pieta",
+      "bologna"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000179"
+    },
+    "marketplace_summary": "Analisi tecnica della Vestizione di San Guglielmo d'Aquitania di Guercino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000033"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 7,
+        "text": "Olio su tela di grandi dimensioni realizzato da Guercino nel 1620 per la chiesa di San Gregorio a Bologna, oggi conservato alla Pinacoteca Nazionale."
+      },
+      {
+        "duration_sec": 20,
+        "text": "L'opera è costruita su una diagonale luminosa che collega la figura di san Guglielmo, inginocchiato, a quella di san Bernardo che gli porge l'abito monastico, in un gioco di chiaroscuro tipico della fase bolognese giovanile dell'artista."
+      },
+      {
+        "duration_sec": 42,
+        "text": "I documenti d'archivio associano la commissione all'ordine cistercense, mentre le analisi stilistiche evidenziano l'influenza di Ludovico Carracci nella resa naturalistica dei panneggi e nella costruzione spaziale della scena, ancora debitrice del naturalismo emiliano di primo Seicento."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vestizione_di_san_Guglielmo_d%27Aquitania.jpg?width=1280",
+    "alt_text": "Dettaglio del cavaliere inginocchiato che riceve l'abito monastico",
+    "tags": [
+      "guercino",
+      "barocco",
+      "bologna",
+      "tecnico"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000180"
+    },
+    "marketplace_summary": "Guida di livello medio alla Nascita di Venere di Sandro Botticelli, tra mito e Rinascimento fiorentino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000001"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "Venere nasce già adulta dalla schiuma del mare e approda su una conchiglia spinta dal vento verso la riva di Cipro."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Botticelli dipinge il mito classico della nascita di Venere raccontato dai poeti antichi, riletto alla luce della cultura neoplatonica coltivata alla corte di Lorenzo il Magnifico, che vedeva nella bellezza della dea un riflesso della bellezza divina."
+      },
+      {
+        "duration_sec": 34,
+        "text": "L'opera fu probabilmente commissionata dalla famiglia Medici per una villa di campagna e per secoli rimase un unicum nella pittura del tempo: un nudo femminile di grandi dimensioni ispirato non a un modello sacro ma a una divinità pagana, reso possibile proprio dal clima culturale umanistico che permetteva di riscoprire e reinterpretare liberamente i miti dell'antichità classica."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/El_nacimiento_de_Venus%2C_por_Sandro_Botticelli.jpg?width=1280",
+    "alt_text": "Dettaglio del volto di Venere con capelli dorati mossi dal vento",
+    "tags": [
+      "botticelli",
+      "venere",
+      "rinascimento"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000181"
+    },
+    "marketplace_summary": "Racconto per bambini dell'Annunciazione di Leonardo da Vinci.",
+    "artwork": {
+      "$oid": "ccc000000000000000000002"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "In questo quadro un angelo, di nome Gabriele, porta un messaggio speciale a Maria: le dice che diventerà la mamma di Gesù!"
+      },
+      {
+        "duration_sec": 15,
+        "text": "Guarda le ali dell'angelo: Leonardo le ha dipinte studiando davvero le ali degli uccelli, per farle sembrare vere e capaci di volare."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Maria è seduta vicino a un leggio con un libro aperto, in un giardino pieno di fiori e alberi: dietro di loro si vede anche un paesaggio con montagne che sfumano in lontananza, quasi come se si perdessero nella nebbia."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Annunciation_%28Leonardo_c._1472%E2%80%931476%29.jpg?width=1280",
+    "alt_text": "L'angelo Gabriele inginocchiato su un prato fiorito davanti a Maria",
+    "tags": [
+      "leonardo",
+      "annunciazione",
+      "rinascimento"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000182"
+    },
+    "marketplace_summary": "Guida semplice alla Primavera di Sandro Botticelli.",
+    "artwork": {
+      "$oid": "ccc000000000000000000007"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "Il quadro mostra un giardino incantato con tanti personaggi della mitologia, riuniti in un unico grande prato fiorito."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Al centro c'è Venere, la dea dell'amore, mentre a destra il vento Zefiro insegue la ninfa Clori, che si trasforma in Flora, la dea della primavera, coperta di fiori."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Sulla sinistra danzano le tre Grazie, mentre Mercurio, con il suo bastone alato, sembra allontanare le nuvole dal cielo: un'allegoria della bellezza e del rinnovarsi della natura."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli-primavera.jpg?width=1280",
+    "alt_text": "Le tre Grazie che danzano a sinistra della composizione",
+    "tags": [
+      "botticelli",
+      "primavera",
+      "rinascimento"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000183"
+    },
+    "marketplace_summary": "Racconto per bambini del Tondo Doni di Michelangelo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000008"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Questo quadro è tondo, non rettangolare come tanti altri: per questo si chiama 'tondo'!"
+      },
+      {
+        "duration_sec": 16,
+        "text": "Al centro vedi la Sacra Famiglia: Maria si gira all'indietro per prendere in braccio Gesù Bambino, che Giuseppe le sta porgendo con delicatezza."
+      },
+      {
+        "duration_sec": 27,
+        "text": "Michelangelo era soprattutto uno scultore, e si vede: i corpi sembrano quasi di marmo, pieni di muscoli e movimento, come se stessero per uscire fuori dal quadro."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tondo_Doni_2021.jpg?width=1280",
+    "alt_text": "Maria si volta all'indietro per ricevere il Bambino dalle mani di Giuseppe",
+    "tags": [
+      "michelangelo",
+      "tondo-doni",
+      "rinascimento"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000184"
+    },
+    "marketplace_summary": "Analisi tecnica del Doppio ritratto dei duchi di Urbino di Piero della Francesca.",
+    "artwork": {
+      "$oid": "ccc000000000000000000009"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 8,
+        "text": "Dittico a tempera su tavola, databile al 1465-1472 circa, raffigurante Federico da Montefeltro e Battista Sforza in rigoroso profilo, secondo una convenzione ritrattistica di ascendenza medaglistica e fiamminga."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Piero della Francesca applica con rigore i propri studi di prospettiva e proporzione anche al paesaggio di sfondo, costruito su un punto di vista elevato che permette di leggere con precisione quasi cartografica la campagna umbro-marchigiana retrostante."
+      },
+      {
+        "duration_sec": 38,
+        "text": "Sul verso delle due tavole sono raffigurati i Trionfi dei duchi su carri, accompagnati da iscrizioni latine encomiastiche: un apparato allegorico-celebrativo che colloca l'opera nella tradizione umanistica della glorificazione del principe attraverso le arti."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Piero_della_Francesca_044.jpg?width=1280",
+    "alt_text": "Dettaglio del profilo di Federico da Montefeltro con il naso aquilino",
+    "tags": [
+      "piero-della-francesca",
+      "urbino",
+      "tecnico"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000185"
+    },
+    "marketplace_summary": "Guida di livello medio alla Medusa di Caravaggio, tra mito e sperimentazione pittorica.",
+    "artwork": {
+      "$oid": "ccc000000000000000000010"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "Caravaggio dipinge il momento esatto in cui la testa di Medusa, appena mozzata da Perseo, grida ancora, con gli occhi spalancati e i serpenti che si agitano al posto dei capelli."
+      },
+      {
+        "duration_sec": 18,
+        "text": "L'opera è realizzata su uno scudo convesso, proprio come quello che Perseo usò per riflettere lo sguardo pietrificante della Gorgone senza guardarla direttamente, rendendo il supporto stesso parte del racconto mitologico."
+      },
+      {
+        "duration_sec": 34,
+        "text": "Si tratta di un tour de force tecnico: dipingere su una superficie curva senza distorcere l'immagine richiedeva un controllo prospettico non banale, e l'espressione di orrore quasi fotografico di Medusa è considerata una delle prime prove del naturalismo drammatico che renderà celebre Caravaggio."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Medusa_by_Caravaggio.jpg?width=1280",
+    "alt_text": "Dettaglio della bocca spalancata di Medusa nell'attimo del grido",
+    "tags": [
+      "caravaggio",
+      "medusa",
+      "manierismo"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000186"
+    },
+    "marketplace_summary": "Racconto per bambini della Venere di Urbino di Tiziano.",
+    "artwork": {
+      "$oid": "ccc000000000000000000040"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "In questo quadro vediamo Venere, la dea della bellezza, sdraiata comodamente su un letto morbido."
+      },
+      {
+        "duration_sec": 14,
+        "text": "Ai suoi piedi dorme tranquillo un piccolo cagnolino, che nell'arte rappresenta la fedeltà: un modo per dire che l'amore vero dura nel tempo."
+      },
+      {
+        "duration_sec": 26,
+        "text": "Sullo sfondo, due dame frugano dentro un grande baule: probabilmente stanno cercando l'abito da far indossare a Venere, come in una scena di vita quotidiana in una casa rinascimentale."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tizian%20-%20Venus%20von%20Urbino.jpg?width=1280",
+    "alt_text": "Il cagnolino addormentato ai piedi di Venere, simbolo di fedeltà",
+    "tags": [
+      "tiziano",
+      "venere",
+      "urbino"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000187"
+    },
+    "marketplace_summary": "Analisi tecnica del Bacco di Caravaggio.",
+    "artwork": {
+      "$oid": "ccc000000000000000000041"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 7,
+        "text": "Olio su tela dipinto attorno al 1598, oggi identificato come una delle prime opere della piena maturità caravaggesca, caratterizzata da un naturalismo acceso e da una resa quasi tattile della materia."
+      },
+      {
+        "duration_sec": 19,
+        "text": "La natura morta in primo piano, con la caraffa di vetro e il cesto di frutta in parte avvizzita, dimostra la straordinaria capacità dell'artista di rendere superfici diverse - vetro, ceramica, buccia, foglia - con un unico linguaggio pittorico fondato sull'osservazione diretta del vero."
+      },
+      {
+        "duration_sec": 36,
+        "text": "Le analisi radiografiche condotte sull'opera hanno rivelato un pentimento nella posizione del braccio destro del Bacco, segno di un processo compositivo costruito direttamente sulla tela, senza un disegno preparatorio rigido, in linea con il metodo di lavoro 'dal vero' che Caravaggio andava elaborando in quegli anni."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Baco%2C%20por%20Caravaggio.jpg?width=1280",
+    "alt_text": "Il cesto di frutta accanto a Bacco, dipinto con grande realismo",
+    "tags": [
+      "caravaggio",
+      "bacco",
+      "tecnico"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000188"
+    },
+    "marketplace_summary": "Racconto per bambini della Battaglia di San Romano di Paolo Uccello.",
+    "artwork": {
+      "$oid": "ccc000000000000000000042"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "Questo quadro racconta una vera battaglia combattuta tanto tempo fa vicino a un paese di nome San Romano, in Toscana."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Guarda quante lance! Sono tutte allineate e puntano verso un unico punto lontano: Paolo Uccello le ha disegnate così perché era innamorato della prospettiva, la tecnica che fa sembrare le cose vicine o lontane su un foglio piatto."
+      },
+      {
+        "duration_sec": 28,
+        "text": "I cavalli sembrano quasi di legno, come giocattoli, e i colori del cielo sono strani, con un rosa acceso: probabilmente col tempo alcuni colori sono cambiati, ma resta comunque un quadro pieno di energia e movimento."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Battle%20of%20San%20Romano%2C%20by%20Paolo%20Uccello%20%28Uffizi%20Gallery%2C%20Florence%29.jpg?width=1280",
+    "alt_text": "Niccolò da Tolentino sul cavallo bianco alla guida della carica",
+    "tags": [
+      "paolo-uccello",
+      "battaglia",
+      "quattrocento"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000189"
+    },
+    "marketplace_summary": "Guida di livello medio alla Madonna del Cardellino di Raffaello, tra dolcezza formale e tragedia annunciata.",
+    "artwork": {
+      "$oid": "ccc000000000000000000043"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "Raffaello dipinge Maria seduta in un prato, mentre Gesù Bambino e il piccolo San Giovanni Battista giocano insieme con un cardellino, uccellino che nella tradizione simboleggia la futura passione di Cristo."
+      },
+      {
+        "duration_sec": 18,
+        "text": "La composizione è costruita secondo uno schema piramidale perfettamente equilibrato, ispirato ai modelli di Leonardo, con le tre figure legate da sguardi e gesti che creano un movimento circolare armonioso all'interno del quadro."
+      },
+      {
+        "duration_sec": 36,
+        "text": "Il dipinto, commissionato per le nozze di un amico dell'artista, fu gravemente danneggiato nel 1547 dal crollo della casa in cui si trovava e ricomposto da oltre diciassette frammenti: un intervento di restauro che ancora oggi lascia leggere, a un occhio attento, le linee di frattura sulla superficie pittorica."
+      }
+    ],
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raffaello_Sanzio_-_Madonna_del_Cardellino_-_Google_Art_Project.jpg?width=1280",
+    "alt_text": "Il piccolo Giovannino che porge un cardellino a Gesù bambino",
+    "tags": [
+      "raffaello",
+      "madonna",
+      "rinascimento"
+    ],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
   }
 ]

@@ -347,11 +347,15 @@ function renderStepItemRow(container, it) {
   const row = document.createElement('div');
   row.className = 'step-item-row';
   const totalSec = (it.descriptions || []).reduce((sum, d) => sum + (d.duration_sec || 0), 0);
+  const authorName = it.author?.display_name || it.author?.username || 'Autore sconosciuto';
   row.innerHTML = `
     <label class="step-item-row-select">
       <input type="checkbox" value="${it._id}" data-tone="${it.tone}">
       <span class="step-item-row-body">
-        <span class="step-item-row-summary">${esc(it.marketplace_summary)}</span>
+        <span class="step-item-row-title">
+          <span class="step-item-row-summary">${esc(it.marketplace_summary)}</span>
+          <span class="step-item-row-author">${esc(authorName)}</span>
+        </span>
         <span class="step-item-row-meta">${esc(it.license)}${totalSec ? ` · ${totalSec}s` : ''}</span>
       </span>
     </label>
