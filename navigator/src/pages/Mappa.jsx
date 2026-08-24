@@ -8,6 +8,11 @@ import {
   ExitIcon,
   SignpostIcon,
   OperaIcon,
+  BookshopIcon,
+  ElevatorIcon,
+  StairsIcon,
+  CloakroomIcon,
+  InfoIcon,
   ZoomInIcon,
   ZoomOutIcon,
   FullscreenIcon,
@@ -15,11 +20,19 @@ import {
 } from '../components/icons'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 
+const SERVICE_ICONS = {
+  Toilette: ToiletIcon,
+  Uscita: ExitIcon,
+  Bookshop: BookshopIcon,
+  Ascensore: ElevatorIcon,
+  Scale: StairsIcon,
+  Guardaroba: CloakroomIcon,
+  Info: InfoIcon,
+}
+
 function iconForPoint(point) {
   if (point.icon_type === 'entity') return OperaIcon
-  if (point.service_key === 'Toilette') return ToiletIcon
-  if (point.service_key === 'Uscita') return ExitIcon
-  return SignpostIcon
+  return SERVICE_ICONS[point.service_key] ?? SignpostIcon
 }
 
 // point.entity è l'opera collegata al punto: un oggetto (con image_url) se

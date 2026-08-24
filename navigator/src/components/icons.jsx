@@ -327,6 +327,64 @@ export function ExitIcon(props) {
   )
 }
 
+export function BookshopIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <path
+        d="M12 6.8c-1.6-1.3-3.7-2-5.8-2a1 1 0 0 0-1 1v11.4a1 1 0 0 0 1 1c2.1 0 4.2.7 5.8 2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M12 6.8c1.6-1.3 3.7-2 5.8-2a1 1 0 0 1 1 1v11.4a1 1 0 0 1-1 1c-2.1 0-4.2.7-5.8 2"
+        strokeLinejoin="round"
+      />
+      <path d="M12 6.8v13.4" />
+    </svg>
+  )
+}
+
+export function ElevatorIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <rect x="5" y="3.5" width="14" height="17" rx="1.5" />
+      <path d="M9.5 10.5 12 8l2.5 2.5" strokeLinejoin="round" />
+      <path d="M9.5 13.5 12 16l2.5-2.5" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+export function StairsIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <path d="M3 20h6v-6.5h6V7h6" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+export function CloakroomIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <circle cx="12" cy="5" r="1.3" />
+      <path d="M12 6.3v2" />
+      <path
+        d="M12 8.3 4 13.5a1.2 1.2 0 0 0 .6 2.2h14.8a1.2 1.2 0 0 0 .6-2.2L12 8.3Z"
+        strokeLinejoin="round"
+      />
+      <path d="M5 19.5h14" />
+    </svg>
+  )
+}
+
+export function InfoIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 11v5.5" />
+      <circle cx="12" cy="7.8" r="0.2" fill="currentColor" stroke="currentColor" strokeWidth="2.4" />
+    </svg>
+  )
+}
+
 export function ChevronLeftIcon(props) {
   return (
     <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
