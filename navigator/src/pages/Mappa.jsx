@@ -535,8 +535,9 @@ function Mappa() {
                 point.icon_type === 'entity' &&
                 currentEntity &&
                 String(entityIdOf(point)) === String(currentEntity._id)
-              // L'opera attuale resta sempre visibile, anche in vista d'insieme.
-              const isHiddenEntity = point.icon_type === 'entity' && !entitiesVisible && !isCurrentEntity
+              // L'opera attuale e quella selezionata restano sempre visibili, anche in vista d'insieme.
+              const isHiddenEntity =
+                point.icon_type === 'entity' && !entitiesVisible && !isCurrentEntity && !isActive
               return (
                 <button
                   key={point._id}
