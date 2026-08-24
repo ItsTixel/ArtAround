@@ -1487,7 +1487,8 @@
       "michelangelo",
       "cinquecento",
       "non-finito",
-      "prigioni"
+      "prigioni",
+      "marmo"
     ],
     "external_links": [],
     "added_by": {
@@ -1527,7 +1528,8 @@
       "michelangelo",
       "cinquecento",
       "non-finito",
-      "prigioni"
+      "prigioni",
+      "marmo"
     ],
     "external_links": [],
     "added_by": {
@@ -1567,7 +1569,8 @@
       "michelangelo",
       "cinquecento",
       "non-finito",
-      "prigioni"
+      "prigioni",
+      "marmo"
     ],
     "external_links": [],
     "added_by": {
@@ -1607,7 +1610,8 @@
       "michelangelo",
       "cinquecento",
       "non-finito",
-      "prigioni"
+      "prigioni",
+      "marmo"
     ],
     "external_links": [],
     "added_by": {
@@ -1690,7 +1694,7 @@
     ],
     "tags": [
       "michelangelo",
-      "david",
+      "nudo",
       "cinquecento",
       "marmo",
       "capolavoro"
@@ -1822,7 +1826,9 @@
       "lo-scheggia",
       "quattrocento",
       "cassone",
-      "pinacoteca"
+      "pinacoteca",
+      "tempera",
+      "tavola"
     ],
     "external_links": [
       {
@@ -2465,6 +2471,329 @@
     },
     "updatedAt": {
       "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000110"
+    },
+    "name": "accademia",
+    "is_physical": false,
+    "description": "La Galleria dell'Accademia di Firenze, nata come raccolta didattica per gli allievi di belle arti, è oggi celebre soprattutto per ospitare il David di Michelangelo.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000111"
+    },
+    "name": "capolavoro",
+    "is_physical": false,
+    "description": "Il termine 'capolavoro' indica un'opera che per qualità tecnica, originalità e influenza storica è considerata un vertice assoluto della produzione di un artista o di un'epoca.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000112"
+    },
+    "name": "cassone",
+    "is_physical": false,
+    "description": "Il cassone nuziale, cofano decorato destinato a contenere il corredo della sposa, è un mobile domestico che nel Quattrocento fiorentino diventa anche un importante supporto pittorico.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000113"
+    },
+    "name": "cinquecento",
+    "is_physical": false,
+    "description": "Il Cinquecento, il XVI secolo in Italia, corrisponde alla fase matura del Rinascimento e ai suoi sviluppi verso il Manierismo.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000114"
+    },
+    "name": "firenze",
+    "is_physical": false,
+    "description": "Firenze, culla del Rinascimento italiano, deve la propria centralità artistica al mecenatismo di famiglie come i Medici e alla concentrazione di botteghe e accademie d'arte senza pari in Europa.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000115"
+    },
+    "name": "gesso",
+    "is_physical": false,
+    "description": "Il gesso, materiale usato per realizzare modelli e calchi preparatori, è uno strumento fondamentale nella pratica scultorea, sia come studio compositivo sia come mezzo di riproduzione.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000116"
+    },
+    "name": "giambologna",
+    "is_physical": false,
+    "description": "Jean de Boulogne, detto Giambologna (Douai 1529 - Firenze 1608), scultore fiammingo attivo a Firenze, è il maggiore rappresentante della scultura manierista alla corte medicea.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000117"
+    },
+    "name": "lo-scheggia",
+    "is_physical": false,
+    "description": "Giovanni di Ser Giovanni Guidi, detto Lo Scheggia (San Giovanni Valdarno 1406 - Firenze 1486), fratello minore di Masaccio, fu specializzato nella decorazione di mobili domestici come cassoni e deschi da parto.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000118"
+    },
+    "name": "marmo",
+    "is_physical": false,
+    "description": "Il marmo, pietra calcarea pregiata per la sua compattezza e luminosità, è il materiale scultoreo per eccellenza della tradizione classica e rinascimentale italiana.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000119"
+    },
+    "name": "non-finito",
+    "is_physical": false,
+    "description": "Il 'non finito' è la condizione di un'opera scultorea lasciata volutamente o involontariamente incompleta, divenuta con Michelangelo un valore estetico a sé stante.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000120"
+    },
+    "name": "oro",
+    "is_physical": false,
+    "description": "La foglia d'oro, applicata su fondi e aureole dei dipinti medievali e trecenteschi, conferiva alle immagini sacre una luce simbolica non naturalistica, propria della tradizione bizantina.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000121"
+    },
+    "name": "pacino-di-bonaguida",
+    "is_physical": false,
+    "description": "Pacino di Bonaguida (attivo a Firenze fra il 1302 e il 1340 circa) è tra i più importanti miniatori e pittori fiorentini della prima metà del Trecento.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000122"
+    },
+    "name": "pietà",
+    "is_physical": false,
+    "description": "La Pietà, iconografia cristiana che raffigura il corpo di Cristo morto sorretto dalla Vergine Maria, è tra i soggetti più intensi e diffusi della scultura e pittura devozionale europea.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000123"
+    },
+    "name": "pinacoteca",
+    "is_physical": false,
+    "description": "La pinacoteca della Galleria dell'Accademia raccoglie dipinti fiorentini fra Trecento e Cinquecento, una sezione meno nota delle celebri sculture di Michelangelo ma di grande interesse storico-artistico.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000124"
+    },
+    "name": "prigioni",
+    "is_physical": false,
+    "description": "I Prigioni, quattro statue non finite di Michelangelo destinate al monumento funebre di papa Giulio II, sono fra le opere più discusse e influenti della sua produzione scultorea.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000125"
+    },
+    "name": "salone-ottocento",
+    "is_physical": false,
+    "description": "Il Salone dell'Ottocento raccoglie gessi, dipinti e sculture realizzati dagli allievi dell'Accademia di Belle Arti fiorentina nel corso del XIX secolo, testimonianza della vocazione didattica originaria del museo.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000126"
+    },
+    "name": "trecento",
+    "is_physical": false,
+    "description": "Il Trecento, il XIV secolo in Italia, è il periodo in cui, sulla scia di Giotto, la pittura italiana comincia ad allontanarsi dalla tradizione bizantina verso una maggiore naturalezza.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
     }
   }
 ]

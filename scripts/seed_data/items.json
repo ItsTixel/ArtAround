@@ -11171,5 +11171,2249 @@
     "updatedAt": {
       "$date": "2026-08-24T00:00:00Z"
     }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000429"
+    },
+    "marketplace_summary": "Racconto per bambini su la Galleria dell'Accademia oggi.",
+    "artwork": {
+      "$oid": "ccc000000000000000000110"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "La Galleria dell'Accademia è un museo di Firenze famosissimo per una statua altissima: il David!"
+      },
+      {
+        "duration_sec": 16,
+        "text": "Tantissime persone vengono da tutto il mondo apposta per vederlo, ma il museo custodisce anche altre sculture di Michelangelo rimaste incompiute, oltre a quadri antichi dipinti su tavole di legno."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000430"
+    },
+    "marketplace_summary": "Guida semplice su la Galleria dell'Accademia oggi.",
+    "artwork": {
+      "$oid": "ccc000000000000000000110"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "La Galleria dell'Accademia di Firenze è oggi celebre soprattutto per ospitare il David di Michelangelo."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Nacque come raccolta didattica per gli allievi dell'Accademia di Belle Arti, ma nel 1873 il trasferimento del David dalla piazza pubblica trasformò il museo in una delle mete turistiche più visitate al mondo."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000431"
+    },
+    "marketplace_summary": "Guida di livello medio su la Galleria dell'Accademia oggi.",
+    "artwork": {
+      "$oid": "ccc000000000000000000110"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La Galleria dell'Accademia di Firenze è oggi uno dei musei più visitati al mondo, celebre soprattutto per il David di Michelangelo."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Nata nell'Ottocento come raccolta didattica per gli allievi dell'Accademia di Belle Arti fiorentina, cambiò natura nel 1873, quando il David venne trasferito qui dalla piazza pubblica per proteggerlo dagli agenti atmosferici."
+      },
+      {
+        "duration_sec": 26,
+        "text": "Oltre al David, il percorso museale comprende la Galleria dei Prigioni, con le sculture incompiute di Michelangelo destinate alla tomba di Giulio II, una pinacoteca di dipinti fra Trecento e Cinquecento, e una sezione di modelli in gesso di scultori ottocenteschi, testimonianza della sua vocazione originaria di scuola d'arte."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000432"
+    },
+    "marketplace_summary": "Analisi tecnica su la Galleria dell'Accademia oggi per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000110"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La Galleria dell'Accademia di Firenze nasce nel 1784 come raccolta didattica annessa all'Accademia di Belle Arti, riorganizzata da Pietro Leopoldo di Lorena."
+      },
+      {
+        "duration_sec": 20,
+        "text": "La sua trasformazione in museo di rilievo internazionale è legata al trasferimento del David di Michelangelo dalla piazza della Signoria nel 1873, decisione motivata dalla necessità di proteggere la statua dal deterioramento causato dall'esposizione agli agenti atmosferici e da un episodio di vandalismo subito nel 1527."
+      },
+      {
+        "duration_sec": 28,
+        "text": "L'allestimento attuale conserva ancora tracce della sua funzione originaria di scuola d'arte, in particolare nel Salone dell'Ottocento, che raccoglie gessi preparatori e opere di allievi dell'Accademia realizzate come esercizi accademici o prove per concorsi, offrendo un percorso raro sulla didattica artistica ottocentesca oltre che sui grandi capolavori rinascimentali."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000433"
+    },
+    "marketplace_summary": "Racconto per bambini su cosa rende un'opera un capolavoro.",
+    "artwork": {
+      "$oid": "ccc000000000000000000111"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Un capolavoro è un'opera così bella e speciale da essere ricordata per sempre!"
+      },
+      {
+        "duration_sec": 15,
+        "text": "Il David di Michelangelo è considerato un capolavoro perché è difficilissimo da scolpire, è bellissimo da guardare, ed è rimasto famoso e amato per centinaia e centinaia di anni, fino a oggi."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000434"
+    },
+    "marketplace_summary": "Guida semplice su cosa rende un'opera un capolavoro.",
+    "artwork": {
+      "$oid": "ccc000000000000000000111"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Un capolavoro è un'opera considerata un vertice assoluto per qualità e importanza storica."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Non basta essere bella: un capolavoro deve mostrare anche una grandissima abilità tecnica e aver influenzato altri artisti nel tempo. Il David di Michelangelo riunisce tutte queste qualità, ed è per questo celebrato da oltre cinquecento anni."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000435"
+    },
+    "marketplace_summary": "Guida di livello medio su cosa rende un'opera un capolavoro.",
+    "artwork": {
+      "$oid": "ccc000000000000000000111"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il termine 'capolavoro' indica un'opera considerata un vertice assoluto di qualità e di importanza storica."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Storicamente il termine derivava dal 'lavoro' che un artigiano doveva presentare per essere ammesso a una corporazione come maestro: nel tempo il significato si è spostato verso l'idea di un'opera che sintetizza al massimo grado le capacità di un artista o di un'epoca."
+      },
+      {
+        "duration_sec": 25,
+        "text": "Il David di Michelangelo è considerato un capolavoro non solo per la perfezione anatomica e la difficoltà tecnica dell'esecuzione, ma anche per il suo impatto storico duraturo: divenne subito simbolo civico di Firenze e resta, oltre cinquecento anni dopo, uno dei riferimenti più citati della scultura occidentale."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000436"
+    },
+    "marketplace_summary": "Analisi tecnica su cosa rende un'opera un capolavoro per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000111"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il termine 'capolavoro', dal francese medievale chef-d'œuvre, designava originariamente l'opera che un apprendista doveva realizzare per essere ammesso come maestro in una corporazione artigiana."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Nel corso dell'Ottocento, con l'affermarsi della storia dell'arte come disciplina critica, il termine assume il significato moderno di opera-vertice, capace di sintetizzare al massimo grado le qualità tecniche e concettuali di un artista o di un'intera epoca storica."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Il David di Michelangelo è considerato paradigmatico del concetto proprio perché unisce eccellenza esecutiva, con la risoluzione di un blocco di marmo già danneggiato e giudicato inutilizzabile da altri scultori, a un impatto simbolico immediato: fu accolto dalla città di Firenze come emblema della propria libertà repubblicana, un valore aggiunto rispetto alla sola perizia tecnica che la critica considera oggi parte costitutiva della nozione stessa di capolavoro."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000437"
+    },
+    "marketplace_summary": "Racconto per bambini su il cassone nuziale.",
+    "artwork": {
+      "$oid": "ccc000000000000000000112"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Un cassone è un grande baule di legno decorato, usato tanto tempo fa per i matrimoni."
+      },
+      {
+        "duration_sec": 15,
+        "text": "Quando una ragazza si sposava, la sua famiglia riempiva un cassone come questo con vestiti, gioielli e lenzuola, e lo faceva dipingere con scene bellissime, come il corteo di nozze dipinto sul Cassone Adimari."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000438"
+    },
+    "marketplace_summary": "Guida semplice su il cassone nuziale.",
+    "artwork": {
+      "$oid": "ccc000000000000000000112"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il cassone nuziale è un cofano decorato destinato a contenere il corredo della sposa."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Nel Quattrocento fiorentino i pannelli frontali dei cassoni venivano spesso affidati a pittori affermati, diventando un vero e proprio supporto pittorico. Il Cassone Adimari, dipinto da Lo Scheggia, ne è un esempio celebre per la ricchezza dei dettagli."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000439"
+    },
+    "marketplace_summary": "Guida di livello medio su il cassone nuziale.",
+    "artwork": {
+      "$oid": "ccc000000000000000000112"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il cassone nuziale, cofano decorato per il corredo della sposa, diventa nel Quattrocento fiorentino un importante supporto pittorico."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Realizzato in coppia per celebrare un matrimonio, veniva spesso decorato con scene di vita cittadina, cortei nuziali o soggetti allegorici e mitologici, commissionate a pittori anche di rilievo come esercizio di narrazione della vita fiorentina."
+      },
+      {
+        "duration_sec": 26,
+        "text": "Il Cassone Adimari, dipinto da Lo Scheggia intorno al 1450, raffigura un corteo nuziale che sfila davanti al Battistero di Firenze: al di là del valore artistico, costituisce una fonte preziosa per la storia del costume e della vita civica fiorentina del tempo, con abiti, musici e architetture documentati con precisione quasi fotografica."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000440"
+    },
+    "marketplace_summary": "Analisi tecnica su il cassone nuziale per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000112"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il cassone nuziale, mobile ligneo destinato al corredo della sposa, costituisce nel Quattrocento fiorentino uno dei principali veicoli della pittura profana destinata all'ambito domestico."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Realizzati generalmente in coppia e destinati alla camera nuziale, i pannelli frontali venivano decorati con scene di vita civica, cortei, tornei o soggetti tratti dalla letteratura classica e cortese, spesso eseguiti da botteghe specializzate distinte da quelle della grande pittura devozionale."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Il Cassone Adimari, attribuito a Lo Scheggia, fratello minore di Masaccio, è considerato un unicum per la ricchezza documentaria della scena rappresentata: al di là del valore artistico, costituisce una fonte iconografica di primo piano per la storia del costume e della vita civica fiorentina del secondo quarto del Quattrocento, un genere di pittura 'minore' spesso trascurato dalla storiografia rispetto ai soggetti religiosi o mitologici di maggiore prestigio."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000441"
+    },
+    "marketplace_summary": "Racconto per bambini su il Cinquecento.",
+    "artwork": {
+      "$oid": "ccc000000000000000000113"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il Cinquecento è il nome che si dà agli anni 1500, tanto tempo fa!"
+      },
+      {
+        "duration_sec": 16,
+        "text": "In quegli anni vivevano e lavoravano alcuni fra i più grandi artisti di sempre, come Michelangelo, che proprio in quel periodo scolpì il David e le altre statue che vedi qui alla Galleria dell'Accademia."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000442"
+    },
+    "marketplace_summary": "Guida semplice su il Cinquecento.",
+    "artwork": {
+      "$oid": "ccc000000000000000000113"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il Cinquecento è il XVI secolo, il periodo del Rinascimento maturo in Italia."
+      },
+      {
+        "duration_sec": 16,
+        "text": "È l'epoca in cui Michelangelo realizza il David e le sculture per la tomba di papa Giulio II, oggi conservate all'Accademia. Rispetto al secolo precedente, gli artisti cercano forme sempre più grandiose e drammatiche."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000443"
+    },
+    "marketplace_summary": "Guida di livello medio su il Cinquecento.",
+    "artwork": {
+      "$oid": "ccc000000000000000000113"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il Cinquecento, il XVI secolo, corrisponde in Italia alla fase matura del Rinascimento e ai suoi sviluppi successivi."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Rispetto al Quattrocento, più analitico e legato alla sperimentazione prospettica, il Cinquecento sviluppa forme più grandiose, dinamiche e talvolta drammatiche, con artisti come Michelangelo che spingono l'anatomia e la composizione verso soluzioni sempre più ambiziose."
+      },
+      {
+        "duration_sec": 26,
+        "text": "Il David e i Prigioni di Michelangelo, tutti databili al Cinquecento, mostrano bene questa evoluzione: dalla perfezione classica ed equilibrata del David, scolpito fra il 1501 e il 1504, alla tensione drammatica e volutamente incompiuta dei Prigioni, realizzati un quarto di secolo più tardi per la tomba di Giulio II."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000444"
+    },
+    "marketplace_summary": "Analisi tecnica su il Cinquecento per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000113"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il Cinquecento designa convenzionalmente il XVI secolo italiano, comprendente la fase matura del Rinascimento e la successiva stagione manierista."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Il secolo si apre con la piena maturità dei linguaggi elaborati nel Quattrocento — prospettiva, anatomia, composizione — e li porta a un livello di ambizione formale senza precedenti, per poi evolvere, dopo il Sacco di Roma del 1527, verso soluzioni manieriste più tese e sperimentali."
+      },
+      {
+        "duration_sec": 28,
+        "text": "La produzione di Michelangelo conservata all'Accademia attraversa quasi per intero questa parabola: dal classicismo equilibrato del David (1501-1504) alla drammaticità irrisolta dei Prigioni per la tomba di Giulio II (1525-1530 circa), la cui condizione non finita è stata letta dalla critica novecentesca anche come anticipazione di sensibilità espressive pienamente moderne."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000445"
+    },
+    "marketplace_summary": "Racconto per bambini su Firenze culla del Rinascimento.",
+    "artwork": {
+      "$oid": "ccc000000000000000000114"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Firenze è la città dove sono nati moltissimi capolavori dell'arte!"
+      },
+      {
+        "duration_sec": 15,
+        "text": "Qui hanno vissuto e lavorato artisti come Michelangelo, Botticelli e Leonardo, che hanno reso questa città uno dei posti più importanti al mondo per l'arte, ancora oggi pieno di musei bellissimi da visitare."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000446"
+    },
+    "marketplace_summary": "Guida semplice su Firenze culla del Rinascimento.",
+    "artwork": {
+      "$oid": "ccc000000000000000000114"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Firenze è considerata la culla del Rinascimento italiano."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Grazie al mecenatismo di famiglie come i Medici e alla presenza di numerose botteghe d'arte, la città concentrò fra Quattrocento e Cinquecento una quantità di artisti e capolavori senza pari in Europa, un'eredità visibile ancora oggi nei suoi musei."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000447"
+    },
+    "marketplace_summary": "Guida di livello medio su Firenze culla del Rinascimento.",
+    "artwork": {
+      "$oid": "ccc000000000000000000114"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Firenze è universalmente considerata la culla del Rinascimento italiano, punto di partenza di gran parte delle innovazioni artistiche del Quattro e Cinquecento."
+      },
+      {
+        "duration_sec": 17,
+        "text": "La concentrazione straordinaria di botteghe artistiche, il mecenatismo di famiglie come i Medici e la vivace cultura umanistica cittadina crearono le condizioni per la formazione di generazioni di artisti fondamentali, da Brunelleschi a Michelangelo."
+      },
+      {
+        "duration_sec": 25,
+        "text": "Nel 1563 nasce proprio a Firenze l'Accademia delle Arti del Disegno, la prima accademia artistica d'Europa promossa da Cosimo I de' Medici e da Giorgio Vasari: da questa tradizione didattica discende, oltre due secoli più tardi, la stessa Galleria dell'Accademia che oggi ospita il David."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000448"
+    },
+    "marketplace_summary": "Analisi tecnica su Firenze culla del Rinascimento per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000114"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Firenze costituisce, fra Trecento e Cinquecento, il principale laboratorio artistico e intellettuale del Rinascimento italiano."
+      },
+      {
+        "duration_sec": 20,
+        "text": "La città unisce una solida tradizione corporativa di botteghe artigiane, un sistema di committenza laica ed ecclesiastica particolarmente attivo e un ambiente umanistico che promuove il confronto diretto fra artisti, letterati e filosofi, condizioni che favoriscono un ritmo di innovazione tecnica e concettuale senza equivalenti in Europa."
+      },
+      {
+        "duration_sec": 28,
+        "text": "La fondazione dell'Accademia delle Arti del Disegno nel 1563, promossa da Cosimo I de' Medici su impulso di Giorgio Vasari, istituzionalizza per la prima volta l'insegnamento artistico come disciplina autonoma dalla pratica di bottega: un modello didattico che, rifondato nel 1784 come Accademia di Belle Arti, darà origine alla Galleria dell'Accademia, erede diretta di questa lunga tradizione fiorentina di formazione artistica."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000449"
+    },
+    "marketplace_summary": "Racconto per bambini su il gesso come tecnica scultorea.",
+    "artwork": {
+      "$oid": "ccc000000000000000000115"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il gesso è un materiale bianco che gli scultori usano per fare delle prove!"
+      },
+      {
+        "duration_sec": 15,
+        "text": "Prima di scolpire una statua enorme nel marmo vero, che è carissimo e difficile da lavorare, gli artisti spesso costruivano un modello in gesso, più semplice da correggere, come fece Giambologna per il Ratto delle Sabine."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000450"
+    },
+    "marketplace_summary": "Guida semplice su il gesso come tecnica scultorea.",
+    "artwork": {
+      "$oid": "ccc000000000000000000115"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il gesso è un materiale usato dagli scultori per realizzare modelli e calchi preparatori."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Permette di studiare in anteprima le proporzioni e i diversi punti di vista di una statua, prima di affrontare il costoso e faticoso lavoro sul marmo definitivo. Giambologna lo utilizzò per progettare il Ratto delle Sabine."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000451"
+    },
+    "marketplace_summary": "Guida di livello medio su il gesso come tecnica scultorea.",
+    "artwork": {
+      "$oid": "ccc000000000000000000115"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il gesso è un materiale scultoreo usato per realizzare modelli preparatori e calchi, più economico e rapido da lavorare del marmo."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Permette allo scultore di verificare in scala reale le proporzioni, l'equilibrio e i molteplici punti di vista di una composizione complessa, prima di affrontare l'esecuzione definitiva in un materiale più costoso e difficile da correggere come il marmo o il bronzo."
+      },
+      {
+        "duration_sec": 26,
+        "text": "Il modello in gesso del Ratto delle Sabine, realizzato da Giambologna fra il 1579 e il 1580, è un caso esemplare: nato come puro studio compositivo pensato per essere osservato da più angolazioni, senza un soggetto né una commissione precisi, divenne poi il progetto per il gruppo marmoreo definitivo esposto sotto la Loggia dei Lanzi."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000452"
+    },
+    "marketplace_summary": "Analisi tecnica su il gesso come tecnica scultorea per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000115"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il gesso da modellazione, ottenuto dalla cottura e macinazione della pietra gessosa, è materiale d'elezione per la modellistica scultorea preparatoria fin dal Rinascimento."
+      },
+      {
+        "duration_sec": 20,
+        "text": "La sua rapidità di presa e la relativa economicità, rispetto al marmo o al bronzo, lo rendono ideale per verificare in scala reale soluzioni compositive complesse, specialmente nelle opere concepite per essere viste a tutto tondo da più punti di vista, come i gruppi scultorei manieristi."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Il modello in gesso del Ratto delle Sabine di Giambologna, alto oltre quattro metri, è considerato un caso fondativo della scultura a serpentinata destinata alla visione multipla: nato senza soggetto né commissione, come puro esercizio compositivo, precede di alcuni anni la versione marmorea definitiva, offrendo oggi una rara testimonianza diretta del processo creativo dello scultore, normalmente perduto una volta completata l'opera finale."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000453"
+    },
+    "marketplace_summary": "Racconto per bambini su Giambologna.",
+    "artwork": {
+      "$oid": "ccc000000000000000000116"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Giambologna era uno scultore che veniva da molto lontano, dal nord Europa!"
+      },
+      {
+        "duration_sec": 16,
+        "text": "Arrivò in Italia da giovane per studiare l'arte antica e alla fine si stabilì a Firenze, dove lavorò per i Medici per tantissimi anni, diventando famoso per le sue statue che si possono guardare da tutti i lati, girandoci intorno."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000454"
+    },
+    "marketplace_summary": "Guida semplice su Giambologna.",
+    "artwork": {
+      "$oid": "ccc000000000000000000116"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Giambologna, nato Jean de Boulogne nelle Fiandre nel 1529, fu il principale scultore alla corte medicea."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Si trasferì in Italia per studiare la scultura antica e si stabilì definitivamente a Firenze, lavorando per tre granduchi Medici in successione. È celebre soprattutto per gruppi scultorei complessi, pensati per essere osservati da più punti di vista, come il Ratto delle Sabine."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000455"
+    },
+    "marketplace_summary": "Guida di livello medio su Giambologna.",
+    "artwork": {
+      "$oid": "ccc000000000000000000116"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Giambologna, nome italianizzato di Jean de Boulogne, nasce nelle Fiandre nel 1529 e muore a Firenze nel 1608."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Formatosi ad Anversa, si trasferisce in Italia per approfondire lo studio della statuaria antica e, dopo un soggiorno romano, si stabilisce definitivamente a Firenze, dove diventa lo scultore di riferimento della corte medicea per tre generazioni di granduchi."
+      },
+      {
+        "duration_sec": 27,
+        "text": "È il principale interprete della cosiddetta figura serpentinata, una composizione a spirale ascendente pensata per essere osservata da più angolazioni senza un punto di vista privilegiato: il Ratto delle Sabine, di cui l'Accademia conserva il modello preparatorio in gesso, ne è l'esempio più celebre e influente."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000456"
+    },
+    "marketplace_summary": "Analisi tecnica su Giambologna per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000116"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Giambologna (Jean de Boulogne), Douai 1529 - Firenze 1608, è il principale esponente della scultura manierista alla corte granducale medicea."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Dopo la formazione fiamminga e un soggiorno romano dedicato allo studio diretto della statuaria classica, si stabilisce a Firenze intorno al 1553, dove sviluppa un linguaggio scultoreo fondato sulla figura serpentinata, composizione a spirale multipla priva di un punto di vista frontale privilegiato."
+      },
+      {
+        "duration_sec": 30,
+        "text": "Il Ratto delle Sabine, il cui modello in gesso preparatorio è oggi all'Accademia, rappresenta la sintesi più matura di questo principio compositivo: tre figure intrecciate in una torsione ascendente continua, concepite fin dall'origine come studio di composizione autonomo, privo di soggetto e commissione precisi, e solo in seguito tradotte nella versione marmorea monumentale collocata sotto la Loggia dei Lanzi nel 1583."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000457"
+    },
+    "marketplace_summary": "Racconto per bambini su Lo Scheggia.",
+    "artwork": {
+      "$oid": "ccc000000000000000000117"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Lo Scheggia era il fratello minore di un pittore ancora più famoso: Masaccio!"
+      },
+      {
+        "duration_sec": 16,
+        "text": "A differenza del fratello, che dipingeva grandi affreschi religiosi, Lo Scheggia si specializzò in oggetti per la casa, come i cassoni per i matrimoni, dipingendoli con scene piene di dettagli sulla vita di ogni giorno a Firenze."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000458"
+    },
+    "marketplace_summary": "Guida semplice su Lo Scheggia.",
+    "artwork": {
+      "$oid": "ccc000000000000000000117"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Lo Scheggia, al secolo Giovanni di Ser Giovanni Guidi, fu il fratello minore del pittore Masaccio."
+      },
+      {
+        "duration_sec": 17,
+        "text": "A differenza del fratello, celebre per i grandi affreschi religiosi, Lo Scheggia si specializzò nella decorazione di mobili domestici come cassoni nuziali e deschi da parto, con scene di vita quotidiana fiorentina ricche di dettagli documentari."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000459"
+    },
+    "marketplace_summary": "Guida di livello medio su Lo Scheggia.",
+    "artwork": {
+      "$oid": "ccc000000000000000000117"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Giovanni di Ser Giovanni Guidi, detto Lo Scheggia, nasce nel 1406 e muore a Firenze nel 1486, fratello minore del pittore Masaccio."
+      },
+      {
+        "duration_sec": 17,
+        "text": "A differenza del fratello, autore di grandi cicli ad affresco di soggetto religioso, Lo Scheggia si specializza nella decorazione di manufatti domestici, in particolare cassoni nuziali e deschi da parto, un genere considerato minore ma commercialmente fiorente nella Firenze del Quattrocento."
+      },
+      {
+        "duration_sec": 27,
+        "text": "Il Cassone Adimari, oggi alla Galleria dell'Accademia, è la sua opera più celebre: raffigura un corteo nuziale davanti al Battistero di Firenze con una precisione quasi documentaria negli abiti e nelle architetture, offrendo oggi agli storici una fonte visiva preziosa sulla vita civica fiorentina del tempo, altrimenti scarsamente documentata dalla pittura 'maggiore' di soggetto religioso."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000460"
+    },
+    "marketplace_summary": "Analisi tecnica su Lo Scheggia per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000117"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Giovanni di Ser Giovanni Guidi, detto Lo Scheggia, San Giovanni Valdarno 1406 - Firenze 1486, fratello minore di Tommaso di Ser Giovanni detto Masaccio, opera prevalentemente nell'ambito della produzione di arredi domestici dipinti."
+      },
+      {
+        "duration_sec": 20,
+        "text": "La sua bottega si specializza nella decorazione di cassoni nuziali, deschi da parto e altri manufatti destinati alla committenza privata fiorentina, un settore produttivo distinto da quello della grande pittura devozionale o pubblica, ma non meno rilevante dal punto di vista commerciale e sociale."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Il Cassone Adimari, databile al 1450 circa, è considerato il suo capolavoro e uno dei documenti figurativi più importanti sul costume fiorentino del secondo Quattrocento: la scena del corteo nuziale davanti al Battistero, con l'accuratezza quasi fotografica di abiti, strumenti musicali e architetture, ha permesso agli storici del costume di ricostruire dettagli altrimenti perduti della vita cittadina del tempo."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000461"
+    },
+    "marketplace_summary": "Racconto per bambini su il marmo come tecnica scultorea.",
+    "artwork": {
+      "$oid": "ccc000000000000000000118"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il marmo è una pietra bianca e liscia, perfetta per scolpire statue bellissime!"
+      },
+      {
+        "duration_sec": 16,
+        "text": "Michelangelo diceva che dentro ogni blocco di marmo c'è già nascosta una statua, e che lo scultore deve solo togliere il marmo in più per farla uscire. Il David, alto più di cinque metri, è scolpito in un unico enorme blocco."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000462"
+    },
+    "marketplace_summary": "Guida semplice su il marmo come tecnica scultorea.",
+    "artwork": {
+      "$oid": "ccc000000000000000000118"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il marmo è la pietra scultorea per eccellenza della tradizione classica e rinascimentale."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Estratto soprattutto dalle cave di Carrara, in Toscana, è apprezzato per la sua compattezza e per la luminosità che assume una volta levigato. Michelangelo lo scelse per quasi tutte le sue sculture, dal David ai Prigioni."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000463"
+    },
+    "marketplace_summary": "Guida di livello medio su il marmo come tecnica scultorea.",
+    "artwork": {
+      "$oid": "ccc000000000000000000118"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il marmo, pietra calcarea pregiata per compattezza e luminosità, è il materiale scultoreo per eccellenza della tradizione italiana."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Estratto principalmente dalle cave di Carrara, richiede una lavorazione lenta e progressiva per sottrazione, dal blocco grezzo fino alla superficie finita e levigata: un processo irreversibile che non ammette correzioni, a differenza della modellazione in creta o gesso."
+      },
+      {
+        "duration_sec": 27,
+        "text": "Michelangelo lo elesse a materiale quasi esclusivo della propria produzione scultorea, scegliendo spesso personalmente i blocchi alle cave: il David fu ricavato da un blocco già sbozzato e giudicato inutilizzabile da altri scultori decenni prima, mentre i Prigioni, rimasti non finiti, mostrano ancora oggi le tracce degli strumenti usati nelle diverse fasi di sgrossatura del blocco."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000464"
+    },
+    "marketplace_summary": "Analisi tecnica su il marmo come tecnica scultorea per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000118"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il marmo, roccia metamorfica calcarea apprezzata per compattezza, resistenza e capacità di ricevere una levigatura translucida, è il materiale scultoreo egemone della tradizione classica e rinascimentale."
+      },
+      {
+        "duration_sec": 20,
+        "text": "La lavorazione procede per sottrazione progressiva con strumenti diversi — subbia, gradina, scalpello, infine raspa e abrasivi per la finitura — un processo che, a differenza della modellazione additiva in creta o gesso, non consente correzioni sostanziali una volta rimossa la pietra."
+      },
+      {
+        "duration_sec": 30,
+        "text": "Le sculture di Michelangelo conservate all'Accademia documentano l'intero spettro di questo processo: dal David, portato a compimento con levigatura pressoché completa, ai Prigioni e al San Matteo, bloccati in fasi diverse di sgrossatura, dove restano visibili i segni della subbia e della gradina, offrendo una testimonianza diretta e rara del metodo di lavoro dello scultore, normalmente cancellato dalla finitura delle opere completate."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000465"
+    },
+    "marketplace_summary": "Racconto per bambini su il 'non finito' di Michelangelo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000119"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Alcune statue di Michelangelo non sono mai state finite del tutto!"
+      },
+      {
+        "duration_sec": 16,
+        "text": "Guarda i Prigioni: sembrano ancora intrappolati dentro il blocco di marmo, come se stessero cercando di liberarsi. Per tanto tempo si è pensato che fosse un problema, ma oggi piacciono moltissimo proprio così, incompiute."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000466"
+    },
+    "marketplace_summary": "Guida semplice su il 'non finito' di Michelangelo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000119"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il 'non finito' è la condizione di una scultura lasciata volutamente o involontariamente incompleta."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Molte opere di Michelangelo, come i quattro Prigioni e il San Matteo, restano non finite: le figure sembrano ancora imprigionate nel blocco di marmo grezzo. Oggi questa condizione è apprezzata quasi quanto le opere completate, per la sua forza espressiva."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000467"
+    },
+    "marketplace_summary": "Guida di livello medio su il 'non finito' di Michelangelo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000119"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il 'non finito' è la condizione di un'opera scultorea rimasta volutamente o involontariamente incompleta."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Nel caso di Michelangelo, le cause furono spesso pratiche — commissioni interrotte, cambi di priorità, la scomparsa dei committenti — ma la critica ha a lungo dibattuto se in alcuni casi l'artista scegliesse deliberatamente di lasciare le opere in questo stato per ragioni espressive."
+      },
+      {
+        "duration_sec": 27,
+        "text": "I quattro Prigioni e il San Matteo, tutti conservati all'Accademia, mostrano le figure ancora parzialmente imprigionate nel blocco grezzo di marmo, in diverse fasi di liberazione: un effetto che dal Novecento in avanti è stato reinterpretato non come un difetto ma come una potente metafora visiva della lotta fra lo spirito e la materia."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000468"
+    },
+    "marketplace_summary": "Analisi tecnica su il 'non finito' di Michelangelo per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000119"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il 'non finito' designa la condizione di un'opera scultorea interrotta prima del completamento della superficie levigata."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Nel caso michelangiolesco, la critica ha proposto letture non alternative ma complementari: cause contingenti, quali l'interruzione di commissioni come quella per la tomba di Giulio II, si intrecciano con una possibile scelta espressiva deliberata, coerente con la concezione neoplatonica dell'opera d'arte come forma che lotta per liberarsi dalla materia grezza."
+      },
+      {
+        "duration_sec": 30,
+        "text": "I Prigioni, destinati in origine al monumento funebre di Giulio II poi drasticamente ridimensionato, e il San Matteo, unico sopravvissuto abbozzato di un ciclo di dodici apostoli mai completato, restano i casi più studiati del fenomeno: la loro fortuna critica moderna, culminata nell'apprezzamento novecentesco per l'opera 'aperta' e processuale, ha capovolto il giudizio rinascimentale, che considerava il non finito un'opera mancata più che un valore estetico autonomo."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000469"
+    },
+    "marketplace_summary": "Racconto per bambini su la foglia d'oro in pittura.",
+    "artwork": {
+      "$oid": "ccc000000000000000000120"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "In alcuni quadri antichissimi il fondo non è dipinto, è ricoperto d'oro vero!"
+      },
+      {
+        "duration_sec": 15,
+        "text": "Si chiama 'foglia d'oro' ed è sottilissima, quasi come carta velina: gli artisti la applicavano con grande pazienza per far brillare i quadri, come nell'Albero della Vita, tutto scintillante."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000470"
+    },
+    "marketplace_summary": "Guida semplice su la foglia d'oro in pittura.",
+    "artwork": {
+      "$oid": "ccc000000000000000000120"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "La foglia d'oro è un sottilissimo strato di oro applicato sui dipinti medievali, soprattutto sui fondi."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Serviva a dare alle immagini sacre una luce simbolica, non naturale, che rimandava alla luce divina più che a quella del sole. L'Albero della Vita di Pacino di Bonaguida ne è un esempio ricchissimo."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000471"
+    },
+    "marketplace_summary": "Guida di livello medio su la foglia d'oro in pittura.",
+    "artwork": {
+      "$oid": "ccc000000000000000000120"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La foglia d'oro, sottilissimo strato di oro battuto applicato su fondi e aureole, è tecnica caratteristica della pittura sacra medievale."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Il fondo dorato, diffuso nella tradizione bizantina e poi in quella gotica italiana, non intende rappresentare uno spazio naturale ma una luce simbolica e trascendente, propria del mondo divino rispetto a quello terreno delle figure."
+      },
+      {
+        "duration_sec": 26,
+        "text": "Nell'Albero della Vita di Pacino di Bonaguida, la foglia d'oro ricopre gran parte del fondo e impreziosisce dettagli come le aureole e gli elementi decorativi, un uso ancora legato alla tradizione bizantina che nel corso del Trecento e Quattrocento sarà progressivamente sostituita dalla resa naturalistica dello spazio prospettico."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000472"
+    },
+    "marketplace_summary": "Analisi tecnica su la foglia d'oro in pittura per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000120"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La foglia d'oro, ottenuta battendo l'oro fino a spessori di pochi micron, è applicata su un fondo preparatorio a bolo armeno per garantirne l'adesione e la brillantezza."
+      },
+      {
+        "duration_sec": 20,
+        "text": "La tecnica, ereditata dalla tradizione musiva e pittorica bizantina, mira a costruire uno spazio simbolico anziché illusionistico: la luce che si riflette sull'oro non ha una sorgente naturale identificabile, ma allude a una luce metafisica, propria della sfera divina rappresentata."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Nell'Albero della Vita di Pacino di Bonaguida, la doratura, insieme alla tempera, contribuisce a una lettura gerarchica dello spazio pittorico: le zone dorate isolano e sacralizzano le figure principali rispetto alle scene narrative circostanti, secondo un principio compositivo che sarà progressivamente abbandonato dalla pittura toscana successiva, orientata verso la costruzione prospettica di uno spazio unificato e naturalistico."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000473"
+    },
+    "marketplace_summary": "Racconto per bambini su Pacino di Bonaguida.",
+    "artwork": {
+      "$oid": "ccc000000000000000000121"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Pacino di Bonaguida dipingeva tantissimo tempo fa, quasi settecento anni fa!"
+      },
+      {
+        "duration_sec": 16,
+        "text": "Era bravissimo a dipingere piccoli disegni pieni di dettagli, come quelli nei libri antichi scritti a mano. Il suo quadro più famoso, l'Albero della Vita, racconta la storia di Gesù come fosse un grande albero disegnato."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000474"
+    },
+    "marketplace_summary": "Guida semplice su Pacino di Bonaguida.",
+    "artwork": {
+      "$oid": "ccc000000000000000000121"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Pacino di Bonaguida fu un pittore e miniatore fiorentino attivo nella prima metà del Trecento."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Fu tra i protagonisti della pittura fiorentina immediatamente successiva a Giotto, noto soprattutto per la sua produzione di miniature per manoscritti. La sua opera più celebre, l'Albero della Vita, è oggi conservata all'Accademia."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000475"
+    },
+    "marketplace_summary": "Guida di livello medio su Pacino di Bonaguida.",
+    "artwork": {
+      "$oid": "ccc000000000000000000121"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Pacino di Bonaguida, attivo a Firenze fra il 1302 e il 1340 circa, è tra i principali pittori e miniatori fiorentini della prima metà del Trecento."
+      },
+      {
+        "duration_sec": 17,
+        "text": "La sua attività si colloca nella generazione immediatamente successiva a Giotto, di cui riprende alcuni elementi compositivi pur mantenendo una spiccata sensibilità per il dettaglio minuto, tipica della sua parallela produzione di miniature per manoscritti."
+      },
+      {
+        "duration_sec": 26,
+        "text": "L'Albero della Vita, la sua opera più celebre, traduce in immagini il trattato Lignum Vitae del francescano Bonaventura da Bagnoregio: un grande albero simbolico con Cristo crocifisso al centro, circondato da decine di piccole scene bibliche, un capolavoro di narrazione per immagini che riflette la sua formazione da miniatore."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000476"
+    },
+    "marketplace_summary": "Analisi tecnica su Pacino di Bonaguida per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000121"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Pacino di Bonaguida, documentato a Firenze fra il 1302 e il 1340 circa, è considerato tra i maggiori esponenti della pittura fiorentina post-giottesca nella prima metà del Trecento."
+      },
+      {
+        "duration_sec": 20,
+        "text": "La sua produzione, che comprende sia tavole di grande formato sia una consistente attività di miniatura libraria, mostra un'attenzione al dettaglio narrativo minuto che lo distingue dalla monumentalità della pittura giottesca in senso stretto, avvicinandolo piuttosto alla tradizione dell'illustrazione manoscritta coeva."
+      },
+      {
+        "duration_sec": 28,
+        "text": "L'Albero della Vita, tavola ispirata al Lignum Vitae di san Bonaventura, organizza oltre quaranta piccole scene narrative attorno alla figura centrale del Cristo crocifisso, secondo uno schema arboreo che unisce rigore teologico francescano e gusto narrativo minuzioso: un'opera che testimonia la persistenza, nella Firenze pre-rinascimentale, di modelli compositivi simbolici distanti dalla costruzione spaziale unificata che si affermerà solo un secolo più tardi."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000477"
+    },
+    "marketplace_summary": "Racconto per bambini su il tema della Pietà.",
+    "artwork": {
+      "$oid": "ccc000000000000000000122"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Una 'Pietà' è un quadro o una statua che mostra la mamma di Gesù che lo tiene fra le braccia dopo la sua morte."
+      },
+      {
+        "duration_sec": 15,
+        "text": "È una scena molto triste e delicata, e per questo tantissimi artisti l'hanno scolpita o dipinta nel corso dei secoli. Anche Michelangelo ne fece diverse, ognuna un po' diversa dalle altre."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000478"
+    },
+    "marketplace_summary": "Guida semplice su il tema della Pietà.",
+    "artwork": {
+      "$oid": "ccc000000000000000000122"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "La Pietà raffigura il corpo di Cristo morto sorretto dalla Vergine Maria."
+      },
+      {
+        "duration_sec": 16,
+        "text": "È uno dei soggetti più diffusi della scultura e pittura religiosa europea. Michelangelo affrontò il tema più volte nella sua vita: la Pietà di Palestrina, oggi all'Accademia, si distingue perché mostra Cristo in posizione eretta e non disteso in grembo, come nella tradizione."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000479"
+    },
+    "marketplace_summary": "Guida di livello medio su il tema della Pietà.",
+    "artwork": {
+      "$oid": "ccc000000000000000000122"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La Pietà è l'iconografia cristiana che raffigura il corpo di Cristo morto sorretto dalla Vergine Maria dopo la deposizione dalla croce."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Diffusasi soprattutto nell'arte nordeuropea del tardo Medioevo prima di affermarsi in Italia, privilegia l'intensità emotiva del dolore materno rispetto alla narrazione storica dell'evento, diventando uno dei soggetti più intensi della devozione cristiana."
+      },
+      {
+        "duration_sec": 26,
+        "text": "Michelangelo tornò più volte su questo tema nel corso della vita, sperimentando soluzioni sempre diverse: la Pietà di Palestrina, di attribuzione discussa fra gli studiosi, si distingue dalla tradizione per mostrare Cristo sorretto in posizione eretta anziché disteso in grembo alla Vergine, come nella celebre Pietà vaticana giovanile."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000480"
+    },
+    "marketplace_summary": "Analisi tecnica su il tema della Pietà per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000122"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La Pietà, iconografia incentrata sul compianto della Vergine sul corpo di Cristo deposto, si sviluppa nell'arte nordeuropea del XIV secolo prima di diffondersi nella scultura e pittura italiana."
+      },
+      {
+        "duration_sec": 20,
+        "text": "A differenza del Compianto, che coinvolge più figure in una scena corale, la Pietà isola il rapporto diadico fra madre e figlio, privilegiando l'intensità emotiva su un impianto compositivo spesso piramidale o, come in questo caso, verticale ed eretto."
+      },
+      {
+        "duration_sec": 28,
+        "text": "La Pietà di Palestrina, la cui attribuzione a Michelangelo resta dibattuta fra gli studiosi anche per la qualità disomogenea dell'esecuzione, si discosta radicalmente dallo schema della Pietà vaticana giovanile: la posizione eretta di Cristo, sorretto quasi in un abbraccio verticale, è stata letta come un possibile esperimento tardo dell'artista verso soluzioni compositive più essenziali e spoglie, coerenti con la sua produzione scultorea estrema degli ultimi anni."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000481"
+    },
+    "marketplace_summary": "Racconto per bambini su la pinacoteca dell'Accademia.",
+    "artwork": {
+      "$oid": "ccc000000000000000000123"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Oltre alle statue di Michelangelo, questo museo ha anche una sezione piena di quadri antichi!"
+      },
+      {
+        "duration_sec": 15,
+        "text": "Si chiama 'pinacoteca', una parola che significa proprio 'raccolta di quadri'. Qui si trovano dipinti bellissimi come l'Albero della Vita e il Cassone Adimari, meno famosi del David ma altrettanto interessanti."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000482"
+    },
+    "marketplace_summary": "Guida semplice su la pinacoteca dell'Accademia.",
+    "artwork": {
+      "$oid": "ccc000000000000000000123"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "La pinacoteca dell'Accademia raccoglie dipinti fiorentini fra Trecento e Cinquecento."
+      },
+      {
+        "duration_sec": 16,
+        "text": "È una sezione meno nota rispetto alle celebri sculture di Michelangelo, ma custodisce opere di grande interesse, come l'Albero della Vita di Pacino di Bonaguida e il Cassone Adimari di Lo Scheggia."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000483"
+    },
+    "marketplace_summary": "Guida di livello medio su la pinacoteca dell'Accademia.",
+    "artwork": {
+      "$oid": "ccc000000000000000000123"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La pinacoteca della Galleria dell'Accademia raccoglie dipinti fiorentini compresi fra Trecento e Cinquecento."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Meno conosciuta rispetto alle celebri sculture di Michelangelo, che attirano la maggior parte dei visitatori, questa sezione custodisce opere di grande rilievo storico-artistico, spesso trascurate da chi visita il museo solo per il David."
+      },
+      {
+        "duration_sec": 26,
+        "text": "Fra le opere principali figurano l'Albero della Vita di Pacino di Bonaguida, esempio di pittura trecentesca ancora legata alla tradizione bizantina del fondo oro, e il Cassone Adimari di Lo Scheggia, prezioso documento sulla vita civica fiorentina del Quattrocento: due testimonianze di generi pittorici diversi da quelli, sacri o mitologici, più celebrati altrove."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000484"
+    },
+    "marketplace_summary": "Analisi tecnica su la pinacoteca dell'Accademia per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000123"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La pinacoteca della Galleria dell'Accademia riunisce un nucleo di dipinti fiorentini compresi fra il primo Trecento e il Cinquecento, sezione meno frequentata rispetto al percorso scultoreo michelangiolesco."
+      },
+      {
+        "duration_sec": 20,
+        "text": "La raccolta comprende opere di generi diversi, dalla tavola devozionale di ascendenza tardo-gotica, come l'Albero della Vita di Pacino di Bonaguida, alla pittura profana da arredo domestico, come il Cassone Adimari di Lo Scheggia, testimoniando la varietà della produzione fiorentina al di là dei grandi cicli religiosi o mitologici."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Questa sezione, di formazione più eterogenea e stratificata rispetto al nucleo scultoreo, riflette in parte la storia collezionistica dello stesso museo, nato come raccolta didattica per l'Accademia di Belle Arti: molte delle opere qui conservate provengono da soppressioni conventuali ottocentesche più che da una collezione granducale organica, un'origine diversa rispetto al nucleo mediceo che caratterizza musei come gli Uffizi."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000485"
+    },
+    "marketplace_summary": "Racconto per bambini su i Prigioni di Michelangelo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000124"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "I Prigioni sono quattro statue di uomini che sembrano intrappolati dentro il marmo!"
+      },
+      {
+        "duration_sec": 16,
+        "text": "Michelangelo li scolpì per la tomba di un papa molto importante, Giulio II, ma il progetto della tomba cambiò così tante volte che alla fine questi quattro non furono mai finiti del tutto."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000486"
+    },
+    "marketplace_summary": "Guida semplice su i Prigioni di Michelangelo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000124"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "I Prigioni sono quattro statue non finite di Michelangelo, destinate alla tomba di papa Giulio II."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Il progetto originario della tomba prevedeva decine di statue, ma fu ridimensionato più volte nel corso degli anni per problemi economici e politici, lasciando molte figure, fra cui questi quattro prigioni, non finite o del tutto abbandonate."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000487"
+    },
+    "marketplace_summary": "Guida di livello medio su i Prigioni di Michelangelo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000124"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "I Prigioni sono quattro statue non finite realizzate da Michelangelo per il monumento funebre di papa Giulio II."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Il progetto originario della tomba, commissionato nel 1505, prevedeva oltre quaranta statue e una struttura architettonica monumentale, ma fu drasticamente ridimensionato in più fasi nei decenni successivi, per ragioni economiche e per i mutati rapporti fra Michelangelo e gli eredi del papa."
+      },
+      {
+        "duration_sec": 26,
+        "text": "I quattro Prigioni, comunemente interpretati come simboli delle arti liberali o delle province soggiogate dal papato, restano bloccati in diverse fasi di lavorazione: la loro condizione non finita, un tempo considerata un semplice abbandono, è oggi letta come una delle testimonianze più potenti della lotta fra forma e materia al centro della poetica michelangiolesca."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000488"
+    },
+    "marketplace_summary": "Analisi tecnica su i Prigioni di Michelangelo per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000124"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "I Prigioni (o Schiavi) sono quattro statue non finite realizzate da Michelangelo fra il 1520 e il 1534 circa per il monumento funebre di Giulio II."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Il progetto della tomba, commissionato nel 1505 in una versione monumentale con oltre quaranta statue, subì almeno cinque revisioni contrattuali nel corso di quattro decenni, per contrasti economici con gli eredi del papa della Rovere e per i concomitanti impegni di Michelangelo presso i Medici e la Cappella Sistina."
+      },
+      {
+        "duration_sec": 30,
+        "text": "L'interpretazione iconografica dei quattro Prigioni resta dibattuta: le letture tradizionali li identificano come le province soggiogate dal potere papale o come le arti liberali private del proprio protettore con la morte di Giulio II, mentre la critica novecentesca ha insistito piuttosto sul valore autonomo della loro condizione non finita, letta come metafora visiva della materia che resiste alla forma, un tema centrale nella riflessione neoplatonica di Michelangelo sulla natura della creazione artistica."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000489"
+    },
+    "marketplace_summary": "Racconto per bambini su il Salone dell'Ottocento.",
+    "artwork": {
+      "$oid": "ccc000000000000000000125"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "C'è una grande sala piena di statue bianche fatte di gesso: il Salone dell'Ottocento!"
+      },
+      {
+        "duration_sec": 15,
+        "text": "Qui sono conservati i lavori fatti dagli studenti della scuola d'arte di Firenze tanti anni fa, quando questo museo era ancora soprattutto una scuola per imparare a disegnare e scolpire."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000490"
+    },
+    "marketplace_summary": "Guida semplice su il Salone dell'Ottocento.",
+    "artwork": {
+      "$oid": "ccc000000000000000000125"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il Salone dell'Ottocento raccoglie gessi e opere realizzati dagli allievi dell'Accademia di Belle Arti nel corso del XIX secolo."
+      },
+      {
+        "duration_sec": 16,
+        "text": "È la sala che meglio racconta la funzione originaria del museo, nato come scuola d'arte prima ancora che come galleria di capolavori: qui è esposto anche il modello in gesso del Ratto delle Sabine di Giambologna."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000491"
+    },
+    "marketplace_summary": "Guida di livello medio su il Salone dell'Ottocento.",
+    "artwork": {
+      "$oid": "ccc000000000000000000125"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il Salone dell'Ottocento raccoglie gessi, dipinti e sculture realizzati dagli allievi dell'Accademia di Belle Arti fiorentina nel corso del XIX secolo."
+      },
+      {
+        "duration_sec": 17,
+        "text": "La sala testimonia la funzione originaria dell'istituzione, nata nel 1784 come scuola d'arte prima ancora che come museo: gli studenti vi realizzavano copie in gesso di statue antiche e opere per i concorsi accademici, secondo la prassi didattica tradizionale delle accademie europee."
+      },
+      {
+        "duration_sec": 26,
+        "text": "Fra le opere qui esposte spicca il modello in gesso del Ratto delle Sabine di Giambologna, non realizzato da un allievo ma collocato in questa sala per il suo valore di studio compositivo: un accostamento che rende esplicito il legame fra pratica didattica accademica e grande tradizione scultorea fiorentina."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000492"
+    },
+    "marketplace_summary": "Analisi tecnica su il Salone dell'Ottocento per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000125"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il Salone dell'Ottocento riunisce la produzione didattica degli allievi dell'Accademia di Belle Arti fiorentina realizzata nel corso del XIX secolo, fra gessi da concorso, copie dall'antico e opere di diploma."
+      },
+      {
+        "duration_sec": 20,
+        "text": "La sala documenta il funzionamento delle accademie artistiche ottocentesche, fondate su un percorso didattico strutturato per fasi — disegno dal vero, copia della statuaria classica, composizione originale per i concorsi — un modello pedagogico oggi in gran parte superato ma fondamentale per la formazione degli artisti del secolo."
+      },
+      {
+        "duration_sec": 28,
+        "text": "La presenza in questa sala del modello in gesso del Ratto delle Sabine di Giambologna, opera di altissimo livello estraneo alla produzione studentesca, sottolinea la funzione duplice della sala: non solo archivio della didattica ottocentesca, ma anche spazio che collega esplicitamente la pratica accademica di modellazione in gesso alla grande tradizione scultorea fiorentina di cui Giambologna è uno dei massimi rappresentanti."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000493"
+    },
+    "marketplace_summary": "Racconto per bambini su il Trecento.",
+    "artwork": {
+      "$oid": "ccc000000000000000000126"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il Trecento è il nome che si dà agli anni 1300, tantissimo tempo fa!"
+      },
+      {
+        "duration_sec": 16,
+        "text": "In quel periodo i quadri avevano ancora tanto oro sullo sfondo, come nell'Albero della Vita, ma gli artisti cominciavano già a disegnare le persone in modo un po' più naturale, meno rigido di prima."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000494"
+    },
+    "marketplace_summary": "Guida semplice su il Trecento.",
+    "artwork": {
+      "$oid": "ccc000000000000000000126"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il Trecento è il XIV secolo, il periodo in cui la pittura italiana comincia ad allontanarsi dalla tradizione bizantina."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Sulla scia delle innovazioni di Giotto, gli artisti iniziano a cercare figure più naturali e volumi più solidi, pur mantenendo ancora elementi della tradizione precedente, come i fondi dorati. L'Albero della Vita di Pacino di Bonaguida appartiene a questo periodo."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000495"
+    },
+    "marketplace_summary": "Guida di livello medio su il Trecento.",
+    "artwork": {
+      "$oid": "ccc000000000000000000126"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il Trecento, il XIV secolo, è il periodo in cui la pittura italiana comincia ad allontanarsi dalla tradizione bizantina."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Sulla scia delle innovazioni introdotte da Giotto, che per primo dà ai propri personaggi volume e presenza fisica credibile, gli artisti toscani del secolo sviluppano un linguaggio a metà strada fra la tradizione simbolica precedente e una nuova attenzione alla naturalezza."
+      },
+      {
+        "duration_sec": 26,
+        "text": "L'Albero della Vita di Pacino di Bonaguida, databile al 1310-1315 circa, appartiene proprio a questa fase di transizione: mantiene il fondo dorato e l'impianto simbolico della tradizione bizantina, ma organizza le sue numerose scene narrative con una chiarezza compositiva che riflette già la lezione giottesca."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000496"
+    },
+    "marketplace_summary": "Analisi tecnica su il Trecento per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000126"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il Trecento designa il XIV secolo italiano, avviato dalla rivoluzione figurativa di Giotto e caratterizzato da una progressiva, non lineare, transizione dalla tradizione bizantina verso soluzioni spaziali più naturalistiche."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Le diverse scuole regionali del secolo — fiorentina, senese, riminese — elaborano risposte differenti alla lezione giottesca, mantenendo spesso, come nel caso fiorentino di ambito post-giottesco, un uso ancora esteso della doratura simbolica accanto a soluzioni compositive più mature."
+      },
+      {
+        "duration_sec": 28,
+        "text": "L'Albero della Vita di Pacino di Bonaguida, con il suo impianto arboreo simbolico derivato dal Lignum Vitae di san Bonaventura, esemplifica bene questa fase intermedia: il fondo oro e l'organizzazione gerarchica dello spazio restano di ascendenza bizantina, mentre la costruzione narrativa per scene multiple, ciascuna leggibile autonomamente, riflette una sensibilità narrativa già debitrice della rivoluzione giottesca di inizio secolo."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-25T00:00:00Z"
+    }
   }
 ]
