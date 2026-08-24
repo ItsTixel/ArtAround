@@ -1,12 +1,14 @@
 import { useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useActiveVisit } from '../context/ActiveVisitContext'
-import { useVisitProgress, TONE_LABELS } from '../context/VisitProgressContext'
+import { useVisitProgress, TONE_LABELS, insightCandidateTags } from '../context/VisitProgressContext'
 import { useGroupSession } from '../context/GroupSessionContext'
 import NoActiveVisit from '../components/NoActiveVisit'
-import { SignpostIcon, MuseumIcon, FloorIcon, RoomIcon } from '../components/icons'
+import { SignpostIcon, MuseumIcon, FloorIcon, RoomIcon, CommandsIcon } from '../components/icons'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 import useEscapeKey from '../hooks/useEscapeKey'
 import useFocusTrap from '../hooks/useFocusTrap'
+import useVerifiedInsightTags from '../hooks/useVerifiedInsightTags'
 
 const DIRECTIONS_ICONS = {
   museum: MuseumIcon,
@@ -46,6 +48,8 @@ function Opera() {
     entityLocation,
   } = useVisitProgress()
   const { role, status: groupStatus, isReady, setReady } = useGroupSession()
+  const navigate = useNavigate()
+  const verifiedInsightTags = useVerifiedInsightTags(insightCandidateTags(entity))
 
   if (!activeVisit) return <NoActiveVisit />
 
@@ -201,6 +205,19 @@ function Opera() {
               {currentDescription?.text || 'Nessuna descrizione disponibile.'}
             </p>
           </div>
+
+          {verifiedInsightTags.length > 0 && (
+            <div className="px-6">
+              <button
+                type="button"
+                onClick={() => navigate('/comandi')}
+                className="flex w-full items-center justify-center gap-2 rounded-md border border-border px-4 py-2.5 text-sm font-medium text-text"
+              >
+                <CommandsIcon className="h-4 w-4" aria-hidden="true" />
+                Approfondimenti disponibili
+              </button>
+            </div>
+          )}
         </>
       )}
 

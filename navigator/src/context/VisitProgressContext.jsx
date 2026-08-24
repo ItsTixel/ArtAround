@@ -113,9 +113,11 @@ const INSIGHT_TRIGGER_PATTERNS = [
   'approfondisci',
   'approfondimento',
   'parlami di',
+  'parlami del',
   'raccontami di',
-  'dimmi di piu su',
+  'raccontami del',
   'cosa mi dici di',
+  'cosa mi dici del',
 ]
 
 function matchInsightTag(transcript, tags) {

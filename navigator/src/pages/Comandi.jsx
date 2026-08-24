@@ -1,6 +1,6 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import { useActiveVisit } from '../context/ActiveVisitContext'
-import { useVisitProgress, TONE_LABELS, insightCandidateTags, exactNameQuery } from '../context/VisitProgressContext'
+import { useVisitProgress, TONE_LABELS, insightCandidateTags } from '../context/VisitProgressContext'
 import { useGroupSession } from '../context/GroupSessionContext'
 import NoActiveVisit from '../components/NoActiveVisit'
 import {
@@ -14,6 +14,7 @@ import {
   ExitIcon,
 } from '../components/icons'
 import useDocumentTitle from '../hooks/useDocumentTitle'
+import useVerifiedInsightTags from '../hooks/useVerifiedInsightTags'
 
 const STANDARD_SERVICE_KEYS = ['Toilette', 'Uscita']
 
@@ -145,39 +146,6 @@ function ServiceButtonGrid({ labels, onSelect }) {
       </div>
     </div>
   )
-}
-
-// Verifica quali tag hanno un'opera-approfondimento associata (un'opera,
-// anche non fisica, il cui nome coincide col tag — vedi InsightModal), così
-// i bottoni si mostrano solo per i tag che hanno davvero contenuti. Usa
-// richieste HEAD: il backend espone il conteggio totale nell'header
-// X-Total-Count (vedi controllers/entity.js), quindi basta leggere gli
-// header senza scaricare il body di ogni risposta.
-function useVerifiedInsightTags(tags) {
-  const [verifiedTags, setVerifiedTags] = useState([])
-  const tagsKey = (tags || []).join('|')
-
-  useEffect(() => {
-    if (!tagsKey) {
-      setVerifiedTags([])
-      return
-    }
-    let cancelled = false
-    Promise.all(
-      tagsKey.split('|').map((tag) =>
-        fetch(`/api/entities?name=${encodeURIComponent(exactNameQuery(tag))}&pageSize=1`, { method: 'HEAD' })
-          .then((res) => (parseInt(res.headers.get('X-Total-Count') || '0', 10) > 0 ? tag : null))
-          .catch(() => null)
-      )
-    ).then((results) => {
-      if (!cancelled) setVerifiedTags(results.filter(Boolean))
-    })
-    return () => {
-      cancelled = true
-    }
-  }, [tagsKey])
-
-  return verifiedTags
 }
 
 function Comandi() {
