@@ -1815,5 +1815,630 @@
       }
     ],
     "estimated_duration_sec": 613.75
+  },
+  {
+    "_id": {
+      "$oid": "eee000000000000000000101"
+    },
+    "title": "Da Michelangelo a Botticelli: dagli Uffizi all'Accademia",
+    "description": "Visita infra-museale che collega il Rinascimento fiorentino della Galleria degli Uffizi al David e alle sculture non finite di Michelangelo conservate alla Galleria dell'Accademia, un percorso a piedi nel cuore di Firenze.",
+    "museum": [
+      {
+        "$oid": "bbb000000000000000000001"
+      },
+      {
+        "$oid": "bbb000000000000000000010"
+      }
+    ],
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "base_price": 0,
+    "steps": [
+      {
+        "_id": {
+          "$oid": "fff000000000000000000301"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000054"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000170"
+          },
+          {
+            "$oid": "ddd000000000000000000171"
+          },
+          {
+            "$oid": "ddd000000000000000000172"
+          },
+          {
+            "$oid": "ddd000000000000000000173"
+          }
+        ],
+        "logistic_note": "Fermati un attimo nel cortile o all'ingresso, prima di salire alle sale: qui inizia la storia del museo che stai per visitare.",
+        "intro_note": "Un palazzo che non è nato per essere un museo: scopri perché si chiama 'Uffizi' prima di incontrare il primo capolavoro.",
+        "order": 1
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000302"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000002"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000103"
+          },
+          {
+            "$oid": "ddd000000000000000000104"
+          },
+          {
+            "$oid": "ddd000000000000000000105"
+          }
+        ],
+        "logistic_note": "Sala 8, ala est del secondo piano: comincia dall'Annunciazione di Leonardo.",
+        "intro_note": "Parti da qui: un'opera giovanile che mostra già l'occhio scientifico del futuro genio universale.",
+        "order": 2
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000303"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000009"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000112"
+          },
+          {
+            "$oid": "ddd000000000000000000113"
+          },
+          {
+            "$oid": "ddd000000000000000000114"
+          }
+        ],
+        "logistic_note": "Prosegui nella Sala 7, dedicata a Piero della Francesca.",
+        "intro_note": "Due profili che si guardano da secoli: cerca il segno della ferita sul volto del duca.",
+        "order": 3
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000304"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000001"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000100"
+          },
+          {
+            "$oid": "ddd000000000000000000101"
+          },
+          {
+            "$oid": "ddd000000000000000000102"
+          }
+        ],
+        "logistic_note": "Raggiungi la Sala 10-14, dedicata a Botticelli.",
+        "intro_note": "Una delle immagini più celebri al mondo: osserva come Venere sembri fluttuare invece che stare in piedi.",
+        "order": 4
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000305"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000007"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000106"
+          },
+          {
+            "$oid": "ddd000000000000000000107"
+          },
+          {
+            "$oid": "ddd000000000000000000108"
+          }
+        ],
+        "logistic_note": "Resta nella stessa sala, accanto alla Nascita di Venere.",
+        "intro_note": "Prova a contare i fiori dipinti sul prato: sono più di cinquecento specie diverse.",
+        "order": 5
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000306"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000008"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000109"
+          },
+          {
+            "$oid": "ddd000000000000000000110"
+          },
+          {
+            "$oid": "ddd000000000000000000111"
+          }
+        ],
+        "logistic_note": "Sali alla Sala 41, dedicata a Michelangelo e ai fiorentini.",
+        "intro_note": "L'unico dipinto su tavola di Michelangelo che possediamo con certezza: guarda la posa a spirale della Madonna.",
+        "order": 6
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000307"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000043"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000127"
+          },
+          {
+            "$oid": "ddd000000000000000000128"
+          },
+          {
+            "$oid": "ddd000000000000000000129"
+          }
+        ],
+        "logistic_note": "Resta nella sala di Raffaello, poco distante.",
+        "intro_note": "Cerca il piccolo cardellino tra le mani di Giovannino: nasconde un presagio.",
+        "order": 7
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000308"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000040"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000118"
+          },
+          {
+            "$oid": "ddd000000000000000000119"
+          },
+          {
+            "$oid": "ddd000000000000000000120"
+          }
+        ],
+        "logistic_note": "Scendi alla Sala 83, la sala dedicata a Tiziano.",
+        "intro_note": "Uno sguardo diretto che ha attraversato i secoli: molti pittori dopo Tiziano hanno reinterpretato questa posa.",
+        "order": 8
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000309"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000042"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000124"
+          },
+          {
+            "$oid": "ddd000000000000000000125"
+          },
+          {
+            "$oid": "ddd000000000000000000126"
+          }
+        ],
+        "logistic_note": "Raggiungi le Sale 8-9, dedicate al primo Rinascimento fiorentino.",
+        "intro_note": "Conta le lance spezzate a terra: sono disposte apposta per guidare il tuo sguardo verso l'orizzonte.",
+        "order": 9
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000310"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000010"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000115"
+          },
+          {
+            "$oid": "ddd000000000000000000116"
+          },
+          {
+            "$oid": "ddd000000000000000000117"
+          }
+        ],
+        "logistic_note": "Scendi al primo piano, Sala 90, la sala del Caravaggio.",
+        "intro_note": "Uno scudo, non un quadro: nota come la superficie curva renda la scena ancora più inquietante.",
+        "order": 10
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000311"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000041"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000121"
+          },
+          {
+            "$oid": "ddd000000000000000000122"
+          },
+          {
+            "$oid": "ddd000000000000000000123"
+          }
+        ],
+        "logistic_note": "Resta nella stessa sala per l'ultima tappa fiorentina agli Uffizi, poi esci e incamminati verso la Galleria dell'Accademia: circa 20 minuti a piedi attraversando il centro di Firenze.",
+        "intro_note": "Chiudi la visita con un brindisi silenzioso: un dipinto dimenticato per secoli e poi riscoperto per caso.",
+        "order": 11
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000312"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000060"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000200"
+          },
+          {
+            "$oid": "ddd000000000000000000201"
+          },
+          {
+            "$oid": "ddd000000000000000000202"
+          },
+          {
+            "$oid": "ddd000000000000000000203"
+          }
+        ],
+        "logistic_note": "Arrivato alla Galleria dell'Accademia, fermati un attimo prima di entrare per un breve benvenuto.",
+        "intro_note": "Un museo nato come scuola per artisti, oggi casa del David.",
+        "order": 12
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000313"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000061"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000204"
+          },
+          {
+            "$oid": "ddd000000000000000000205"
+          },
+          {
+            "$oid": "ddd000000000000000000206"
+          },
+          {
+            "$oid": "ddd000000000000000000207"
+          }
+        ],
+        "logistic_note": "Entra e imbocca subito il corridoio che porta verso la Tribuna del David.",
+        "intro_note": "La prima statua non finita di Michelangelo che incontri: un apostolo mai completato.",
+        "order": 13
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000314"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000062"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000208"
+          },
+          {
+            "$oid": "ddd000000000000000000209"
+          },
+          {
+            "$oid": "ddd000000000000000000210"
+          },
+          {
+            "$oid": "ddd000000000000000000211"
+          }
+        ],
+        "logistic_note": "Prosegui lungo il corridoio: è il primo dei quattro Prigioni.",
+        "intro_note": "Un corpo che sembra ancora lottare per uscire dalla pietra.",
+        "order": 14
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000315"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000063"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000212"
+          },
+          {
+            "$oid": "ddd000000000000000000213"
+          },
+          {
+            "$oid": "ddd000000000000000000214"
+          },
+          {
+            "$oid": "ddd000000000000000000215"
+          }
+        ],
+        "logistic_note": "Continua lungo il corridoio.",
+        "intro_note": "Il più 'imprigionato' dei quattro: la testa è ancora dentro il blocco.",
+        "order": 15
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000316"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000064"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000216"
+          },
+          {
+            "$oid": "ddd000000000000000000217"
+          },
+          {
+            "$oid": "ddd000000000000000000218"
+          },
+          {
+            "$oid": "ddd000000000000000000219"
+          }
+        ],
+        "logistic_note": "Prosegui ancora lungo il corridoio.",
+        "intro_note": "Il più completo dei Prigioni: guarda le mani, ancora non finite.",
+        "order": 16
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000317"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000065"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000220"
+          },
+          {
+            "$oid": "ddd000000000000000000221"
+          },
+          {
+            "$oid": "ddd000000000000000000222"
+          },
+          {
+            "$oid": "ddd000000000000000000223"
+          }
+        ],
+        "logistic_note": "Sei quasi alla fine del corridoio.",
+        "intro_note": "L'ultimo Prigione, come se si stesse svegliando da un lungo sonno.",
+        "order": 17
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000318"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000066"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000224"
+          },
+          {
+            "$oid": "ddd000000000000000000225"
+          },
+          {
+            "$oid": "ddd000000000000000000226"
+          },
+          {
+            "$oid": "ddd000000000000000000227"
+          }
+        ],
+        "logistic_note": "Prima di entrare nella Tribuna, ferma un attimo qui.",
+        "intro_note": "Un Cristo sorretto in piedi, non disteso: un'iconografia insolita.",
+        "order": 18
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000319"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000067"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000228"
+          },
+          {
+            "$oid": "ddd000000000000000000229"
+          },
+          {
+            "$oid": "ddd000000000000000000230"
+          },
+          {
+            "$oid": "ddd000000000000000000231"
+          }
+        ],
+        "logistic_note": "Entra nella Tribuna: il David ti aspetta al centro.",
+        "intro_note": "Il capolavoro assoluto della galleria, alto oltre cinque metri.",
+        "order": 19
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000320"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000068"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000232"
+          },
+          {
+            "$oid": "ddd000000000000000000233"
+          },
+          {
+            "$oid": "ddd000000000000000000234"
+          },
+          {
+            "$oid": "ddd000000000000000000235"
+          }
+        ],
+        "logistic_note": "Dalla Tribuna, dirigiti verso il grande salone con la volta a botte.",
+        "intro_note": "Un gigante di gesso: il modello preparatorio del Ratto delle Sabine.",
+        "order": 20
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000321"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000069"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000236"
+          },
+          {
+            "$oid": "ddd000000000000000000237"
+          },
+          {
+            "$oid": "ddd000000000000000000238"
+          },
+          {
+            "$oid": "ddd000000000000000000239"
+          }
+        ],
+        "logistic_note": "Raggiungi le sale con le tavole dorate del Trecento.",
+        "intro_note": "Un albero dipinto pieno di storie bibliche, tutto in oro e tempera.",
+        "order": 21
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000322"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000070"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000240"
+          },
+          {
+            "$oid": "ddd000000000000000000241"
+          },
+          {
+            "$oid": "ddd000000000000000000242"
+          },
+          {
+            "$oid": "ddd000000000000000000243"
+          }
+        ],
+        "logistic_note": "Sali al primo piano tramite le scale o l'ascensore, per raggiungere la Pinacoteca.",
+        "intro_note": "Un corteo di nozze fiorentino dipinto quasi 600 anni fa.",
+        "order": 22
+      }
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Oswald_Achenbach_-_View_of_Florence.jpg/960px-Oswald_Achenbach_-_View_of_Florence.jpg",
+    "tags": [
+      "firenze",
+      "uffizi",
+      "accademia",
+      "rinascimento",
+      "michelangelo",
+      "botticelli",
+      "infra-museale"
+    ],
+    "is_public": true,
+    "estimated_duration_sec": 2520,
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
   }
 ]
