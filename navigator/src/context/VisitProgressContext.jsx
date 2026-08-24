@@ -300,6 +300,13 @@ export function VisitProgressProvider({ children }) {
     utterance.onend = () => {
       if (utteranceRef.current !== utterance) return
       stopProgressTimer()
+      // The wall-clock timer only estimates progress from an assumed TTS
+      // speed, so it rarely lands exactly on 1 when the browser's actual
+      // speech engine finishes reading. Snap to complete here so the seek
+      // bar always reaches 100% once the text has actually been read,
+      // regardless of how the browser's TTS speed compared to the estimate.
+      resumeCharRef.current = text.length
+      setProgress(1)
       setPlaybackState('idle')
       latestScheduleAutoListenRef.current?.()
     }
