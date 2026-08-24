@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useActiveVisit } from '../context/ActiveVisitContext'
 import { useVisitProgress } from '../context/VisitProgressContext'
 import NoActiveVisit from '../components/NoActiveVisit'
+import EntityFoundModal from '../components/EntityFoundModal'
 import {
   ToiletIcon,
   ExitIcon,
@@ -470,9 +471,21 @@ function Mappa() {
 
   const servicePhrase =
     activePoint?.icon_type === 'service' ? selectedMuseum?.services?.[activePoint.service_key] : null
-  const canGoToEntity =
-    activePoint?.icon_type === 'entity' &&
-    steps.some((s) => String(s.entity?._id) === String(entityIdOf(activePoint)))
+  const matchedStepForActivePoint =
+    activePoint?.icon_type === 'entity'
+      ? steps.find((s) => String(s.entity?._id) === String(entityIdOf(activePoint))) || null
+      : null
+  // point.entity è popolato solo con name/image_url (vedi entityIdOf sopra):
+  // se per qualche motivo arriva come id grezzo, si ricostruisce un oggetto
+  // minimo con label della mappa come nome, così EntityFoundModal ha sempre
+  // un _id valido per la fetch di /api/items.
+  const activeEntity =
+    activePoint?.icon_type === 'entity'
+      ? (typeof activePoint.entity === 'object' && activePoint.entity) || {
+          _id: entityIdOf(activePoint),
+          name: activePoint.label,
+        }
+      : null
 
   return (
     <div className="flex flex-col gap-4 p-6 pb-10">
@@ -649,7 +662,16 @@ function Mappa() {
         </div>
       )}
 
-      {activePoint && (
+      {activePoint && activePoint.icon_type === 'entity' && (
+        <EntityFoundModal
+          entity={activeEntity}
+          matchedStep={matchedStepForActivePoint}
+          onGoToStep={() => handleGoToEntity(activePoint)}
+          onClose={() => setActivePoint(null)}
+        />
+      )}
+
+      {activePoint && activePoint.icon_type !== 'entity' && (
         <div className="glass-panel flex flex-col gap-3 rounded-2xl p-4">
           <div className="flex items-start justify-between gap-3">
             <h2 className="font-serif text-lg font-semibold text-text">{activePoint.label}</h2>
@@ -665,16 +687,6 @@ function Mappa() {
 
           {activePoint.description && <p className="text-sm text-text-muted">{activePoint.description}</p>}
           {servicePhrase && <p className="text-sm text-text-muted">{servicePhrase}</p>}
-
-          {canGoToEntity && (
-            <button
-              type="button"
-              onClick={() => handleGoToEntity(activePoint)}
-              className="self-start rounded-md bg-gradient-to-br from-accent to-accent-hover px-4 py-2.5 text-sm font-medium text-on-accent shadow-lg shadow-black/10 dark:shadow-black/30"
-            >
-              Vai a quest'opera
-            </button>
-          )}
         </div>
       )}
     </div>
