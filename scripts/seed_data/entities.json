@@ -1378,5 +1378,468 @@
     "updatedAt": {
       "$date": "2026-08-24T00:00:00Z"
     }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000060"
+    },
+    "name": "Benvenuti alla Galleria dell'Accademia",
+    "is_physical": false,
+    "description": "Un'introduzione alla galleria che custodisce il David: la storia di una collezione nata per insegnare agli allievi dell'Accademia di Belle Arti e diventata uno dei musei più visitati al mondo.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Galleria%20dell%27accademia%2C%20firenze.JPG?width=1280",
+    "alt_text": "La facciata della Galleria dell'Accademia in via Ricasoli a Firenze",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        }
+      }
+    ],
+    "tags": [
+      "accademia",
+      "introduzione",
+      "storia",
+      "firenze"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/Galleria_dell%27Accademia"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000061"
+    },
+    "wikidata_id": "Q2500541",
+    "name": "San Matteo",
+    "is_physical": true,
+    "artwork_author": "Michelangelo Buonarroti",
+    "description": "Statua marmorea non finita, iniziata da Michelangelo nel 1506 su commissione dell'Opera del Duomo di Firenze, che nel 1503 gli aveva affidato dodici apostoli da collocare sui piloni della cattedrale. Fu l'unico dei dodici a essere anche solo abbozzato, prima che il Papa Giulio II richiamasse l'artista a Roma.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo%20buonarroti%2C%20san%20matteo%2C%201503%2C%2002.JPG?width=1280",
+    "alt_text": "Statua non finita di San Matteo, la figura emerge appena dal blocco di marmo grezzo",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "location": {
+          "room": "Galleria dei Prigioni",
+          "floor": "0",
+          "note": "All'inizio del corridoio che conduce alla Tribuna del David"
+        }
+      }
+    ],
+    "tags": [
+      "michelangelo",
+      "cinquecento",
+      "non-finito",
+      "marmo"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/San_Matteo_(Michelangelo)"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000062"
+    },
+    "wikidata_id": "Q3177994",
+    "name": "Prigione Giovane",
+    "is_physical": true,
+    "artwork_author": "Michelangelo Buonarroti",
+    "description": "Una delle quattro statue non finite, databile al 1525-1530 circa, realizzate da Michelangelo per la tomba di papa Giulio II e mai completate. La figura sembra ancora imprigionata nel blocco di marmo da cui è stata solo parzialmente liberata.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo%20buonarroti%2C%20Schiavo%20giovane%2C%201525-30%20ca.%2001.jpg?width=1280",
+    "alt_text": "Figura maschile scolpita che emerge parzialmente dal blocco di marmo, con il volto quasi liscio",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "location": {
+          "room": "Galleria dei Prigioni",
+          "floor": "0",
+          "note": "Lungo il corridoio verso la Tribuna del David"
+        }
+      }
+    ],
+    "tags": [
+      "michelangelo",
+      "cinquecento",
+      "non-finito",
+      "prigioni"
+    ],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000063"
+    },
+    "wikidata_id": "Q3057930",
+    "name": "Prigione Atlante",
+    "is_physical": true,
+    "artwork_author": "Michelangelo Buonarroti",
+    "description": "Detto Atlante per la posa che ricorda il titano costretto a reggere la volta celeste, questo prigione (1525-1530 circa) è il più imprigionato nella pietra fra i quattro: la testa è ancora sepolta nel marmo squadrato del blocco originario.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo%20-%20Atlas.jpg?width=1280",
+    "alt_text": "Figura scolpita curva sotto un peso invisibile, con la testa ancora inglobata nel blocco di marmo",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "location": {
+          "room": "Galleria dei Prigioni",
+          "floor": "0",
+          "note": "Lungo il corridoio verso la Tribuna del David"
+        }
+      }
+    ],
+    "tags": [
+      "michelangelo",
+      "cinquecento",
+      "non-finito",
+      "prigioni"
+    ],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000064"
+    },
+    "wikidata_id": "Q768337",
+    "name": "Prigione Barbuto",
+    "is_physical": true,
+    "artwork_author": "Michelangelo Buonarroti",
+    "description": "Il più rifinito dei quattro Prigioni (1525-1530 circa): il corpo è quasi interamente liberato dal marmo, mentre restano non finite solo le mani e parte di un braccio, forse destinati a reggere un drappo.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Prisoner%2C%20called%20Bearded%20Slave%20%28Schiavo%20barbuto%29%2C%20Galleria%20dell%27Accademia%2C%20Florence%20%2826404402460%29.jpg?width=1280",
+    "alt_text": "Figura maschile barbuta quasi interamente scolpita, con le mani ancora abbozzate nel marmo",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "location": {
+          "room": "Galleria dei Prigioni",
+          "floor": "0",
+          "note": "Lungo il corridoio verso la Tribuna del David"
+        }
+      }
+    ],
+    "tags": [
+      "michelangelo",
+      "cinquecento",
+      "non-finito",
+      "prigioni"
+    ],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000065"
+    },
+    "wikidata_id": "Q3057936",
+    "name": "Prigione che si Risveglia",
+    "is_physical": true,
+    "artwork_author": "Michelangelo Buonarroti",
+    "description": "L'ultimo dei quattro Prigioni lungo il corridoio (1525-1530 circa), interpretato come una figura che lotta per emergere dal sonno, o dalla materia stessa: il corpo si contorce mentre la pietra grezza lo trattiene ancora quasi per intero.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo%20buonarroti%2C%20Schiavo%20che%20si%20ridesta%2C%201525-30%20ca.%2001.jpg?width=1280",
+    "alt_text": "Figura scolpita in torsione, quasi interamente ancora imprigionata nel blocco di marmo grezzo",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "location": {
+          "room": "Galleria dei Prigioni",
+          "floor": "0",
+          "note": "All'estremità del corridoio, verso la Tribuna del David"
+        }
+      }
+    ],
+    "tags": [
+      "michelangelo",
+      "cinquecento",
+      "non-finito",
+      "prigioni"
+    ],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000066"
+    },
+    "wikidata_id": "Q2255664",
+    "name": "Pietà di Palestrina",
+    "is_physical": true,
+    "artwork_author": "Attribuita a Michelangelo Buonarroti (attribuzione discussa)",
+    "description": "Gruppo marmoreo proveniente dalla chiesa di Santa Rosalia a Palestrina, con Cristo morto sorretto in posizione eretta invece che disteso in grembo alla Vergine, come nella tradizionale iconografia della Pietà. L'attribuzione a Michelangelo resta controversa fra gli studiosi.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo-Piet%C3%A0%20di%20Palestrina-Galleria%20dell%27Accademia%20%28Florence%29.jpg?width=1280",
+    "alt_text": "Gruppo scultoreo con il corpo di Cristo sorretto in verticale da due figure",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "location": {
+          "room": "Galleria dei Prigioni",
+          "floor": "0",
+          "note": "Alla fine del corridoio, poco prima della Tribuna del David"
+        }
+      }
+    ],
+    "tags": [
+      "michelangelo",
+      "pietà",
+      "marmo",
+      "cinquecento"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/Piet%C3%A0_di_Palestrina"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000067"
+    },
+    "wikidata_id": "Q179900",
+    "name": "David",
+    "is_physical": true,
+    "artwork_author": "Michelangelo Buonarroti",
+    "description": "Colosso marmoreo alto oltre cinque metri, scolpito da Michelangelo fra il 1501 e il 1504 da un blocco di marmo già sbozzato e abbandonato da altri scultori decenni prima. Fu collocato in piazza della Signoria e vi rimase fino al 1873, quando venne trasferito alla Galleria dell'Accademia per proteggerlo dagli agenti atmosferici.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo%27s%20David%20-%20right%20view%202.jpg?width=1280",
+    "alt_text": "Statua marmorea del David, nudo, in piedi, con la fionda sulla spalla sinistra",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "location": {
+          "room": "Tribuna del David",
+          "floor": "0",
+          "note": "Nell'abside affrescata in fondo alla Galleria dei Prigioni"
+        }
+      }
+    ],
+    "tags": [
+      "michelangelo",
+      "david",
+      "cinquecento",
+      "marmo",
+      "capolavoro"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/David_(Michelangelo)"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000068"
+    },
+    "name": "Ratto delle Sabine (modello in gesso)",
+    "is_physical": true,
+    "artwork_author": "Giambologna (Jean de Boulogne)",
+    "description": "Modello in gesso alto oltre quattro metri, realizzato da Giambologna fra il 1579 e il 1580 senza una commissione né un soggetto preciso: nacque come studio di composizione a più punti di vista, prima di diventare il gruppo marmoreo esposto sotto la Loggia dei Lanzi in piazza della Signoria dal 1583.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ratto%20Sabina%203.JPG?width=1280",
+    "alt_text": "Grande gruppo scultoreo in gesso con tre figure intrecciate: un giovane solleva una donna mentre un vecchio è accovacciato ai loro piedi",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "location": {
+          "room": "Salone dell'Ottocento",
+          "floor": "0",
+          "note": "Al centro della sala, di fronte all'ingresso"
+        }
+      }
+    ],
+    "tags": [
+      "giambologna",
+      "cinquecento",
+      "gesso",
+      "salone-ottocento"
+    ],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000069"
+    },
+    "wikidata_id": "Q3608002",
+    "name": "Albero della Vita",
+    "is_physical": true,
+    "artwork_author": "Pacino di Bonaguida",
+    "description": "Tavola a tempera e oro (1310-1315 circa) proveniente dal convento fiorentino di Monticelli, ispirata al trattato Lignum Vitae del francescano Bonaventura da Bagnoregio: un grande albero simbolico, con il Cristo crocifisso al centro, circondato da scene della Genesi e della vita di Gesù.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pacino%20di%20bonaguida%2C%20albero%20della%20vita%2C%201310-15%2C%20da%20monticelli%2C%20fi%2000.JPG?width=1280",
+    "alt_text": "Pannello dorato con un grande albero stilizzato, il Cristo crocifisso al centro e piccole scene bibliche nei rami e intorno",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "location": {
+          "room": "Sale fiorentine del Trecento",
+          "floor": "0",
+          "note": ""
+        }
+      }
+    ],
+    "tags": [
+      "pacino-di-bonaguida",
+      "trecento",
+      "tempera",
+      "oro"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/Albero_della_vita_(Pacino_di_Bonaguida)"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000070"
+    },
+    "wikidata_id": "Q3662022",
+    "name": "Cassone Adimari",
+    "is_physical": true,
+    "artwork_author": "Lo Scheggia (Giovanni di Ser Giovanni Guidi)",
+    "description": "Pannello frontale di un cassone nuziale, dipinto intorno al 1450 dal fratello minore di Masaccio: raffigura un corteo di nozze fiorentino che sfila davanti al Battistero di San Giovanni, con abiti, musici e architetture dipinti con straordinaria cura documentaria.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cassone%20adimari.jpg?width=1280",
+    "alt_text": "Pannello dipinto con un lungo corteo nuziale in costumi quattrocenteschi davanti a un edificio ottagonale",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "location": {
+          "room": "Pinacoteca",
+          "floor": "1",
+          "note": "Sale del Quattrocento fiorentino, al primo piano"
+        }
+      }
+    ],
+    "tags": [
+      "lo-scheggia",
+      "quattrocento",
+      "cassone",
+      "pinacoteca"
+    ],
+    "external_links": [
+      {
+        "label": "Wikipedia",
+        "url": "https://it.wikipedia.org/wiki/Cassone_Adimari"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
   }
 ]

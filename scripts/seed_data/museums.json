@@ -314,7 +314,7 @@
           {
             "label": "Madonna di Santa Margherita",
             "icon_type": "entity",
-            "x": 0.1650,
+            "x": 0.165,
             "y": 0.1537,
             "entity": {
               "$oid": "ccc000000000000000000025"
@@ -323,7 +323,7 @@
           {
             "label": "Madonna dei Bargellini",
             "icon_type": "entity",
-            "x": 0.1650,
+            "x": 0.165,
             "y": 0.3624,
             "entity": {
               "$oid": "ccc000000000000000000026"
@@ -381,10 +381,9 @@
             "label": "Uscita",
             "icon_type": "service",
             "x": 0.8314,
-            "y": 0.2380,
+            "y": 0.238,
             "service_key": "Uscita"
-          }
-          ,
+          },
           {
             "label": "Auditorium",
             "icon_type": "service",
@@ -585,6 +584,205 @@
     },
     "updatedAt": {
       "$date": "2026-08-23T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "bbb000000000000000000010"
+    },
+    "name": "Galleria dell'Accademia di Firenze",
+    "wikidata_id": "Q10855544",
+    "description": "Il museo che custodisce il David di Michelangelo, insieme ad altre sue sculture non finite, a una pinacoteca di pittura fiorentina dal Duecento al Cinquecento e a una collezione di strumenti musicali appartenuti ai Medici.",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Galleria%20dell%27accademia%2C%20firenze.JPG?width=1280",
+    "website": "https://www.galleriaaccademiafirenze.it",
+    "is_accessible": true,
+    "address": {
+      "street": "Via Ricasoli 58-60",
+      "city": "Firenze",
+      "zip": "50122",
+      "country": "Italia"
+    },
+    "services": {
+      "Toilette": "I bagni si trovano al piano terra, in fondo al corridoio a sinistra rispetto all'ingresso, vicino all'ascensore.",
+      "Bagno disabili": "Il bagno per persone con disabilità si trova al piano terra, accanto ai bagni comuni e all'ascensore.",
+      "Uscita": "L'uscita si trova al piano terra, tornando verso l'atrio d'ingresso.",
+      "Ascensore": "L'ascensore per raggiungere la Pinacoteca al primo piano si trova al piano terra, vicino alle scale.",
+      "Scale": "Le scale che collegano il piano terra al primo piano, dove si trova la Pinacoteca, si trovano vicino all'ascensore."
+    },
+    "accessibility_info": {
+      "Accesso": "L'ingresso è privo di gradini ed è accessibile alle sedie a rotelle.",
+      "Ascensore": "Un ascensore collega il piano terra al primo piano, dove si trova la Pinacoteca."
+    },
+    "opening_hours": {
+      "Lunedì": "Chiuso",
+      "Martedì": "8:15–18:50",
+      "Mercoledì": "8:15–18:50",
+      "Giovedì": "8:15–18:50",
+      "Venerdì": "8:15–18:50",
+      "Sabato": "8:15–18:50",
+      "Domenica": "8:15–18:50"
+    },
+    "maps": [
+      {
+        "name": "Piano Terra",
+        "image_url": "/assets/maps/accademia-firenze-piano0.png",
+        "points": [
+          {
+            "label": "San Matteo",
+            "icon_type": "entity",
+            "x": 0.39,
+            "y": 0.7,
+            "entity": {
+              "$oid": "ccc000000000000000000061"
+            }
+          },
+          {
+            "label": "Prigione Giovane",
+            "icon_type": "entity",
+            "x": 0.43,
+            "y": 0.62,
+            "entity": {
+              "$oid": "ccc000000000000000000062"
+            }
+          },
+          {
+            "label": "Prigione Atlante",
+            "icon_type": "entity",
+            "x": 0.39,
+            "y": 0.53,
+            "entity": {
+              "$oid": "ccc000000000000000000063"
+            }
+          },
+          {
+            "label": "Prigione Barbuto",
+            "icon_type": "entity",
+            "x": 0.43,
+            "y": 0.44,
+            "entity": {
+              "$oid": "ccc000000000000000000064"
+            }
+          },
+          {
+            "label": "Prigione che si Risveglia",
+            "icon_type": "entity",
+            "x": 0.39,
+            "y": 0.35,
+            "entity": {
+              "$oid": "ccc000000000000000000065"
+            }
+          },
+          {
+            "label": "Pietà di Palestrina",
+            "icon_type": "entity",
+            "x": 0.43,
+            "y": 0.26,
+            "entity": {
+              "$oid": "ccc000000000000000000066"
+            }
+          },
+          {
+            "label": "David",
+            "icon_type": "entity",
+            "x": 0.41,
+            "y": 0.12,
+            "entity": {
+              "$oid": "ccc000000000000000000067"
+            }
+          },
+          {
+            "label": "Ratto delle Sabine",
+            "icon_type": "entity",
+            "x": 0.09,
+            "y": 0.3,
+            "entity": {
+              "$oid": "ccc000000000000000000068"
+            }
+          },
+          {
+            "label": "Albero della Vita",
+            "icon_type": "entity",
+            "x": 0.248,
+            "y": 0.278,
+            "entity": {
+              "$oid": "ccc000000000000000000069"
+            }
+          },
+          {
+            "label": "Bagni",
+            "icon_type": "service",
+            "x": 0.44,
+            "y": 0.77,
+            "service_key": "Toilette"
+          },
+          {
+            "label": "Bagno disabili",
+            "icon_type": "service",
+            "x": 0.328,
+            "y": 0.635,
+            "service_key": "Bagno disabili"
+          },
+          {
+            "label": "Ascensore",
+            "icon_type": "service",
+            "x": 0.316,
+            "y": 0.704,
+            "service_key": "Ascensore"
+          },
+          {
+            "label": "Scale",
+            "icon_type": "service",
+            "x": 0.316,
+            "y": 0.752,
+            "service_key": "Scale"
+          },
+          {
+            "label": "Uscita",
+            "icon_type": "service",
+            "x": 0.406,
+            "y": 0.939,
+            "service_key": "Uscita"
+          }
+        ]
+      },
+      {
+        "name": "Piano Primo",
+        "image_url": "/assets/maps/accademia-firenze-piano1.png",
+        "points": [
+          {
+            "label": "Cassone Adimari",
+            "icon_type": "entity",
+            "x": 0.49,
+            "y": 0.37,
+            "entity": {
+              "$oid": "ccc000000000000000000070"
+            }
+          },
+          {
+            "label": "Bagni",
+            "icon_type": "service",
+            "x": 0.339,
+            "y": 0.691,
+            "service_key": "Toilette"
+          },
+          {
+            "label": "Scale",
+            "icon_type": "service",
+            "x": 0.31,
+            "y": 0.752,
+            "service_key": "Scale"
+          }
+        ]
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
     }
   }
 ]

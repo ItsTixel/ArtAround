@@ -1488,5 +1488,332 @@
     "updatedAt": {
       "$date": "2026-08-23T00:00:00Z"
     }
+  },
+  {
+    "_id": {
+      "$oid": "eee000000000000000000100"
+    },
+    "title": "Alla scoperta della Galleria dell'Accademia",
+    "description": "Un percorso completo alla Galleria dell'Accademia di Firenze, dal David di Michelangelo ai quattro Prigioni non finiti, fino al Salone dell'Ottocento e alla Pinacoteca al primo piano.",
+    "museum": [
+      {
+        "$oid": "bbb000000000000000000010"
+      }
+    ],
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "base_price": 0,
+    "steps": [
+      {
+        "_id": {
+          "$oid": "fff000000000000000000201"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000060"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000200"
+          },
+          {
+            "$oid": "ddd000000000000000000201"
+          },
+          {
+            "$oid": "ddd000000000000000000202"
+          },
+          {
+            "$oid": "ddd000000000000000000203"
+          }
+        ],
+        "logistic_note": "Prima di iniziare, un breve benvenuto alla galleria.",
+        "intro_note": "Un museo nato come scuola per artisti, oggi casa del David.",
+        "order": 1
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000202"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000061"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000204"
+          },
+          {
+            "$oid": "ddd000000000000000000205"
+          },
+          {
+            "$oid": "ddd000000000000000000206"
+          },
+          {
+            "$oid": "ddd000000000000000000207"
+          }
+        ],
+        "logistic_note": "Entra e imbocca subito il corridoio che porta verso la Tribuna del David.",
+        "intro_note": "La prima statua non finita di Michelangelo che incontri: un apostolo mai completato.",
+        "order": 2
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000203"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000062"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000208"
+          },
+          {
+            "$oid": "ddd000000000000000000209"
+          },
+          {
+            "$oid": "ddd000000000000000000210"
+          },
+          {
+            "$oid": "ddd000000000000000000211"
+          }
+        ],
+        "logistic_note": "Prosegui lungo il corridoio: è il primo dei quattro Prigioni.",
+        "intro_note": "Un corpo che sembra ancora lottare per uscire dalla pietra.",
+        "order": 3
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000204"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000063"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000212"
+          },
+          {
+            "$oid": "ddd000000000000000000213"
+          },
+          {
+            "$oid": "ddd000000000000000000214"
+          },
+          {
+            "$oid": "ddd000000000000000000215"
+          }
+        ],
+        "logistic_note": "Continua lungo il corridoio.",
+        "intro_note": "Il più 'imprigionato' dei quattro: la testa è ancora dentro il blocco.",
+        "order": 4
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000205"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000064"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000216"
+          },
+          {
+            "$oid": "ddd000000000000000000217"
+          },
+          {
+            "$oid": "ddd000000000000000000218"
+          },
+          {
+            "$oid": "ddd000000000000000000219"
+          }
+        ],
+        "logistic_note": "Prosegui ancora lungo il corridoio.",
+        "intro_note": "Il più completo dei Prigioni: guarda le mani, ancora non finite.",
+        "order": 5
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000206"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000065"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000220"
+          },
+          {
+            "$oid": "ddd000000000000000000221"
+          },
+          {
+            "$oid": "ddd000000000000000000222"
+          },
+          {
+            "$oid": "ddd000000000000000000223"
+          }
+        ],
+        "logistic_note": "Sei quasi alla fine del corridoio.",
+        "intro_note": "L'ultimo Prigione, come se si stesse svegliando da un lungo sonno.",
+        "order": 6
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000207"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000066"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000224"
+          },
+          {
+            "$oid": "ddd000000000000000000225"
+          },
+          {
+            "$oid": "ddd000000000000000000226"
+          },
+          {
+            "$oid": "ddd000000000000000000227"
+          }
+        ],
+        "logistic_note": "Prima di entrare nella Tribuna, ferma un attimo qui.",
+        "intro_note": "Un Cristo sorretto in piedi, non disteso: un'iconografia insolita.",
+        "order": 7
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000208"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000067"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000228"
+          },
+          {
+            "$oid": "ddd000000000000000000229"
+          },
+          {
+            "$oid": "ddd000000000000000000230"
+          },
+          {
+            "$oid": "ddd000000000000000000231"
+          }
+        ],
+        "logistic_note": "Entra nella Tribuna: il David ti aspetta al centro.",
+        "intro_note": "Il capolavoro assoluto della galleria, alto oltre cinque metri.",
+        "order": 8
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000209"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000068"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000232"
+          },
+          {
+            "$oid": "ddd000000000000000000233"
+          },
+          {
+            "$oid": "ddd000000000000000000234"
+          },
+          {
+            "$oid": "ddd000000000000000000235"
+          }
+        ],
+        "logistic_note": "Dalla Tribuna, dirigiti verso il grande salone con la volta a botte.",
+        "intro_note": "Un gigante di gesso: il modello preparatorio del Ratto delle Sabine.",
+        "order": 9
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000210"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000069"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000236"
+          },
+          {
+            "$oid": "ddd000000000000000000237"
+          },
+          {
+            "$oid": "ddd000000000000000000238"
+          },
+          {
+            "$oid": "ddd000000000000000000239"
+          }
+        ],
+        "logistic_note": "Raggiungi le sale con le tavole dorate del Trecento.",
+        "intro_note": "Un albero dipinto pieno di storie bibliche, tutto in oro e tempera.",
+        "order": 10
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000211"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000070"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000240"
+          },
+          {
+            "$oid": "ddd000000000000000000241"
+          },
+          {
+            "$oid": "ddd000000000000000000242"
+          },
+          {
+            "$oid": "ddd000000000000000000243"
+          }
+        ],
+        "logistic_note": "Sali al primo piano tramite le scale o l'ascensore, per raggiungere la Pinacoteca.",
+        "intro_note": "Un corteo di nozze fiorentino dipinto quasi 600 anni fa.",
+        "order": 11
+      }
+    ],
+    "estimated_duration_sec": 613.75
   }
 ]
