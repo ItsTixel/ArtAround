@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useActiveVisit } from '../context/ActiveVisitContext'
 import { useVisitProgress } from '../context/VisitProgressContext'
 import NoActiveVisit from '../components/NoActiveVisit'
-import EntityFoundModal from '../components/EntityFoundModal'
+import EntityListenPanel from '../components/EntityListenPanel'
 import {
   ToiletIcon,
   ExitIcon,
@@ -327,6 +327,11 @@ function Mappa() {
   const [selectedMuseumId, setSelectedMuseumId] = useState(null)
   const [selectedMapIndex, setSelectedMapIndex] = useState(0)
   const [activePoint, setActivePoint] = useState(null)
+  // true quando, nel pannello dell'opera attiva, si è scelto di ascoltarne
+  // le informazioni invece di andare al punto della visita. Va resettato ad
+  // ogni cambio di activePoint, altrimenti resterebbe attivo passando da
+  // un'opera all'altra.
+  const [listening, setListening] = useState(false)
   const [hintDismissed, setHintDismissed] = useState(false)
   // Dimensioni intrinseche dell'immagine e dimensioni del contenitore: usate
   // solo a schermo intero (vedi `fit` più sotto) per calcolare un "contain"
@@ -374,6 +379,10 @@ function Mappa() {
     zoomPan.reset()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedMuseumId, selectedMapIndex, fit?.width, fit?.height])
+
+  useEffect(() => {
+    setListening(false)
+  }, [activePoint])
 
   // Chiudere l'avviso lo nasconde solo finché le opere restano nascoste: se
   // si torna a ingrandire e poi si rimpicciolisce di nuovo, ricompare.
@@ -475,18 +484,6 @@ function Mappa() {
     activePoint?.icon_type === 'entity'
       ? steps.find((s) => String(s.entity?._id) === String(entityIdOf(activePoint))) || null
       : null
-  // point.entity è popolato solo con name/image_url (vedi entityIdOf sopra):
-  // se per qualche motivo arriva come id grezzo, si ricostruisce un oggetto
-  // minimo con label della mappa come nome, così EntityFoundModal ha sempre
-  // un _id valido per la fetch di /api/items.
-  const activeEntity =
-    activePoint?.icon_type === 'entity'
-      ? (typeof activePoint.entity === 'object' && activePoint.entity) || {
-          _id: entityIdOf(activePoint),
-          name: activePoint.label,
-        }
-      : null
-
   return (
     <div className="flex flex-col gap-4 p-6 pb-10">
       <div>
@@ -662,16 +659,7 @@ function Mappa() {
         </div>
       )}
 
-      {activePoint && activePoint.icon_type === 'entity' && (
-        <EntityFoundModal
-          entity={activeEntity}
-          matchedStep={matchedStepForActivePoint}
-          onGoToStep={() => handleGoToEntity(activePoint)}
-          onClose={() => setActivePoint(null)}
-        />
-      )}
-
-      {activePoint && activePoint.icon_type !== 'entity' && (
+      {activePoint && (
         <div className="glass-panel flex flex-col gap-3 rounded-2xl p-4">
           <div className="flex items-start justify-between gap-3">
             <h2 className="font-serif text-lg font-semibold text-text">{activePoint.label}</h2>
@@ -687,6 +675,30 @@ function Mappa() {
 
           {activePoint.description && <p className="text-sm text-text-muted">{activePoint.description}</p>}
           {servicePhrase && <p className="text-sm text-text-muted">{servicePhrase}</p>}
+
+          {activePoint.icon_type === 'entity' && matchedStepForActivePoint && (
+            <button
+              type="button"
+              onClick={() => handleGoToEntity(activePoint)}
+              className="self-start rounded-md bg-gradient-to-br from-accent to-accent-hover px-4 py-2.5 text-sm font-medium text-on-accent shadow-lg shadow-black/10 dark:shadow-black/30"
+            >
+              Vai a quest'opera
+            </button>
+          )}
+
+          {activePoint.icon_type === 'entity' && !matchedStepForActivePoint && !listening && (
+            <button
+              type="button"
+              onClick={() => setListening(true)}
+              className="self-start rounded-md bg-gradient-to-br from-accent to-accent-hover px-4 py-2.5 text-sm font-medium text-on-accent shadow-lg shadow-black/10 dark:shadow-black/30"
+            >
+              Ascolta informazioni su quest'opera
+            </button>
+          )}
+
+          {activePoint.icon_type === 'entity' && !matchedStepForActivePoint && listening && (
+            <EntityListenPanel entityId={entityIdOf(activePoint)} seedItems={null} />
+          )}
         </div>
       )}
     </div>
