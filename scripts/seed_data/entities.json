@@ -1841,5 +1841,252 @@
     "updatedAt": {
       "$date": "2026-08-24T00:00:00Z"
     }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000071"
+    },
+    "name": "leonardo",
+    "is_physical": false,
+    "description": "Pittore, scienziato e ingegnere toscano (Vinci 1452 - Amboise 1519), tra le figure più complete del Rinascimento italiano.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000072"
+    },
+    "name": "piero-della-francesca",
+    "is_physical": false,
+    "description": "Pittore e matematico toscano (Borgo Sansepolcro 1412 circa - 1492), noto per il rigore geometrico e lo studio scientifico della prospettiva.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000073"
+    },
+    "name": "botticelli",
+    "is_physical": false,
+    "description": "Pittore fiorentino (1445-1510), allievo di Filippo Lippi e protetto della famiglia Medici, celebre per le sue allegorie mitologiche.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000074"
+    },
+    "name": "michelangelo",
+    "is_physical": false,
+    "description": "Scultore, pittore e architetto fiorentino (1475-1564), considerato tra i massimi artisti del Rinascimento.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000075"
+    },
+    "name": "raffaello",
+    "is_physical": false,
+    "description": "Pittore urbinate (1483-1520), allievo del Perugino, celebre per l'equilibrio e l'armonia delle sue composizioni.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000076"
+    },
+    "name": "tiziano",
+    "is_physical": false,
+    "description": "Massimo esponente della pittura veneziana del Cinquecento (1488/90 circa - 1576), maestro del colore.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000077"
+    },
+    "name": "paolo-uccello",
+    "is_physical": false,
+    "description": "Pittore fiorentino (1397-1475), ossessionato dallo studio della prospettiva lineare.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000078"
+    },
+    "name": "caravaggio",
+    "is_physical": false,
+    "description": "Pittore lombardo (Milano 1571 - Porto Ercole 1610), rivoluzionario per il naturalismo crudo e il forte chiaroscuro.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000079"
+    },
+    "name": "rinascimento",
+    "is_physical": false,
+    "description": "Movimento culturale e artistico fiorito in Italia fra Quattrocento e Cinquecento, fondato sulla riscoperta dell'antichità classica.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000080"
+    },
+    "name": "quattrocento",
+    "is_physical": false,
+    "description": "Il XV secolo in Italia, corrispondente alla prima fase del Rinascimento, segnata dalle scoperte di Brunelleschi, Donatello e Masaccio.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000081"
+    },
+    "name": "barocco",
+    "is_physical": false,
+    "description": "Stile artistico del Seicento europeo, caratterizzato da forti contrasti di luce, movimento ed enfasi emotiva.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000082"
+    },
+    "name": "ritratto",
+    "is_physical": false,
+    "description": "Genere pittorico dedicato a fissare l'aspetto e l'identità di una persona reale, spesso a fini dinastici, politici o commemorativi.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000083"
+    },
+    "name": "urbino",
+    "is_physical": false,
+    "description": "Città delle Marche che nel Quattrocento, sotto Federico da Montefeltro, fu una delle corti più raffinate del Rinascimento italiano.",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
   }
 ]

@@ -104,6 +104,53 @@ function matchVoiceCommand(transcript) {
   return match?.key || null
 }
 
+// Frasi che introducono una richiesta di approfondimento ("parlami del
+// Rinascimento", "approfondisci Botticelli"...). A differenza degli altri
+// comandi vocali, quello che segue non è una chiave fissa ma va cercato fra i
+// tag dell'opera attuale — per questo resta una funzione a parte invece di
+// una entry in VOICE_COMMAND_PATTERNS.
+const INSIGHT_TRIGGER_PATTERNS = [
+  'approfondisci',
+  'approfondimento',
+  'parlami di',
+  'raccontami di',
+  'dimmi di piu su',
+  'cosa mi dici di',
+]
+
+function matchInsightTag(transcript, tags) {
+  const normalized = normalizeVoiceText(transcript)
+  if (!normalized || !tags?.length) return null
+  const hasTrigger = INSIGHT_TRIGGER_PATTERNS.some((p) => normalized.includes(p))
+  if (!hasTrigger) return null
+  return tags.find((tag) => normalized.includes(normalizeVoiceText(tag))) || null
+}
+
+// Some entities list their own name among their tags (a keyword, not a
+// pointer to a deep-dive topic) — e.g. "Annunciazione" tagged with
+// "annunciazione". Left in, that tag would resolve back to the very entity
+// already on screen, offering a pointless "approfondisci" into itself.
+// Shared by the voice matcher above and Comandi.jsx's button list, so both
+// agree on which tags are real insight candidates.
+export function insightCandidateTags(entity) {
+  const ownName = (entity?.name || '').trim().toLowerCase()
+  return (entity?.tags || []).filter((tag) => tag.trim().toLowerCase() !== ownName)
+}
+
+// GET /api/entities?name= matches any entity whose name CONTAINS the query
+// (it's built for free-text search) — a bare tag like "ritratto" or
+// "urbino" would then fuzzy-match an unrelated opera's name (e.g. "Doppio
+// ritratto dei duchi di Urbino", "Venere di Urbino") and reopen it as its
+// own "approfondimento", duplicating that opera's own content instead of
+// adding new content. Anchoring the tag into ^...$ turns it into an exact
+// (still case-insensitive) match, so a tag only ever resolves to a
+// deliberately-curated topic entity named after it — never to an opera
+// that merely happens to contain the same word. Shared by Comandi.jsx's
+// existence check and InsightModal's fetch, so both look up the same way.
+export function exactNameQuery(name) {
+  return `^${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`
+}
+
 // Maps SpeechRecognition's onerror event.error codes to a friendly Italian
 // message for the listening popup. 'no-speech' (silence timeout) and
 // 'aborted' (user cancelled via the mic button) are expected, unremarkable
@@ -140,6 +187,7 @@ export function VisitProgressProvider({ children }) {
   const [micTranscript, setMicTranscript] = useState('') // live/final speech heard during the current listen, for the "listening" popup
   const [micError, setMicError] = useState(null) // friendly message flashed in the listening popup when recognition fails (denied permission, insecure origin, no mic, ...)
   const micErrorTimeoutRef = useRef(null)
+  const [activeInsightTag, setActiveInsightTag] = useState(null) // tag string | null — apre InsightModal (AppLayout) quando valorizzato, da bottone Comandi.jsx o comando vocale
   const [micAutoEnabled, setMicAutoEnabled] = useState(true)
   const micAutoEnabledRef = useRef(true) // mirrors micAutoEnabled for onend callbacks created before a later toggle
   micAutoEnabledRef.current = micAutoEnabled
@@ -534,6 +582,23 @@ export function VisitProgressProvider({ children }) {
     return phrase
   }
 
+  // Opens the tag-insight popup (InsightModal, mounted in AppLayout so it
+  // works from any page) and silences mic/narration first — same "whoever
+  // grabs the audio channel gets it exclusively" rule as the functions
+  // below. Shared by the Comandi.jsx button and the "approfondisci ..."
+  // voice command, so there's one place deciding what happens.
+  function requestInsight(tag) {
+    if (!tag) return
+    stopListening()
+    window.speechSynthesis.cancel()
+    setActiveInsightTag(tag)
+  }
+
+  function closeInsight() {
+    window.speechSynthesis.cancel()
+    setActiveInsightTag(null)
+  }
+
   // Pauses the main narration (if playing) without speaking anything, so an
   // unrelated one-off narration (e.g. a QR-scanned opera outside the visit's
   // steps) can use speechSynthesis without fighting over it. Keeps the
@@ -683,6 +748,16 @@ export function VisitProgressProvider({ children }) {
   // retry.
   function handleVoiceCommand(transcript) {
     const key = matchVoiceCommand(transcript)
+    // Checked before the fixed patterns' switch: the target tag is dynamic
+    // (the current opera's tags), so it can't be a VOICE_COMMAND_PATTERNS
+    // entry like the others.
+    if (!key) {
+      const tag = matchInsightTag(transcript, insightCandidateTags(entity))
+      if (tag) {
+        requestInsight(tag)
+        return
+      }
+    }
     switch (key) {
       case 'previousStep':
         callStepNav('handlePreviousStep', requestPreviousStep)
@@ -736,6 +811,7 @@ export function VisitProgressProvider({ children }) {
     setSelectedTone(null)
     setSelectedDescIndex(0)
     setDirections(null)
+    setActiveInsightTag(null)
     lastPhysicalLocationRef.current = null
     lastStepIndexRef.current = null
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -831,6 +907,9 @@ export function VisitProgressProvider({ children }) {
     announceService,
     goToService,
     pauseNarration,
+    activeInsightTag,
+    requestInsight,
+    closeInsight,
     micListening,
     micTranscript,
     micError,

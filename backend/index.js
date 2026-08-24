@@ -20,7 +20,11 @@ const server = http.createServer(app);
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors())
+// exposedHeaders: X-Total-Count serve al navigator per verificare via HEAD
+// (solo header, niente body) se esistono risultati per un dato filtro, es.
+// gli approfondimenti per tag di un'opera — senza questo, fetch() non
+// potrebbe leggerlo su richieste cross-origin.
+app.use(cors({ exposedHeaders: ['X-Total-Count'] }))
 
 app.use('/',             require('./routes/landing'));
 app.use('/api/auth',     require('./routes/auth'));

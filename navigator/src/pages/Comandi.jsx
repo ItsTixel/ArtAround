@@ -1,6 +1,6 @@
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useActiveVisit } from '../context/ActiveVisitContext'
-import { useVisitProgress, TONE_LABELS } from '../context/VisitProgressContext'
+import { useVisitProgress, TONE_LABELS, insightCandidateTags, exactNameQuery } from '../context/VisitProgressContext'
 import { useGroupSession } from '../context/GroupSessionContext'
 import NoActiveVisit from '../components/NoActiveVisit'
 import {
@@ -147,6 +147,39 @@ function ServiceButtonGrid({ labels, onSelect }) {
   )
 }
 
+// Verifica quali tag hanno un'opera-approfondimento associata (un'opera,
+// anche non fisica, il cui nome coincide col tag — vedi InsightModal), così
+// i bottoni si mostrano solo per i tag che hanno davvero contenuti. Usa
+// richieste HEAD: il backend espone il conteggio totale nell'header
+// X-Total-Count (vedi controllers/entity.js), quindi basta leggere gli
+// header senza scaricare il body di ogni risposta.
+function useVerifiedInsightTags(tags) {
+  const [verifiedTags, setVerifiedTags] = useState([])
+  const tagsKey = (tags || []).join('|')
+
+  useEffect(() => {
+    if (!tagsKey) {
+      setVerifiedTags([])
+      return
+    }
+    let cancelled = false
+    Promise.all(
+      tagsKey.split('|').map((tag) =>
+        fetch(`/api/entities?name=${encodeURIComponent(exactNameQuery(tag))}&pageSize=1`, { method: 'HEAD' })
+          .then((res) => (parseInt(res.headers.get('X-Total-Count') || '0', 10) > 0 ? tag : null))
+          .catch(() => null)
+      )
+    ).then((results) => {
+      if (!cancelled) setVerifiedTags(results.filter(Boolean))
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [tagsKey])
+
+  return verifiedTags
+}
+
 function Comandi() {
   useDocumentTitle('Comandi')
   const { activeVisit } = useActiveVisit()
@@ -166,12 +199,14 @@ function Comandi() {
     requestPreviousParagraph,
     requestNextParagraph,
     directionsParts,
+    requestInsight,
   } = useVisitProgress()
   // Precedente/Prossimo come funzione: la stessa che usa PlayerBar.jsx e la
   // stessa che risolvono i comandi vocali — un solo posto decide cosa fanno
   // e quando sono permessi, non una copia per canale di input.
   const { handlePreviousStep, handleNextStep, previousStepDisabled, nextStepDisabled } = useGroupSession()
   const [serviceMessage, setServiceMessage] = useState(null)
+  const verifiedInsightTags = useVerifiedInsightTags(insightCandidateTags(entity))
 
   if (!activeVisit) return <NoActiveVisit />
 
@@ -307,6 +342,18 @@ function Comandi() {
           </p>
         )}
       </section>
+
+      {verifiedInsightTags.length > 0 && (
+        <section aria-labelledby="comandi-approfondimenti-heading" className="flex flex-col gap-3">
+          <h2
+            id="comandi-approfondimenti-heading"
+            className="text-xs font-medium uppercase tracking-wide text-text-muted"
+          >
+            Approfondimenti
+          </h2>
+          <ServiceButtonGrid labels={verifiedInsightTags} onSelect={requestInsight} />
+        </section>
+      )}
     </div>
   )
 }

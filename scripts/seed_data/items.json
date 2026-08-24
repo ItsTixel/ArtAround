@@ -6449,5 +6449,408 @@
     "updatedAt": {
       "$date": "2026-08-24T00:00:00Z"
     }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000244"
+    },
+    "marketplace_summary": "Approfondimento su leonardo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000071"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "Leonardo da Vinci nasce a Vinci nel 1452 e si forma nella bottega fiorentina del Verrocchio."
+      },
+      {
+        "duration_sec": 22,
+        "text": "Pittore, scienziato, ingegnere e inventore, unisce nei suoi dipinti l'osservazione della natura allo studio della luce e della prospettiva, perfezionando lo sfumato, il passaggio impercettibile fra le tinte che ammorbidisce i contorni delle figure. Dopo Firenze lavora per gli Sforza a Milano e infine alla corte di Francesco I di Francia, dove muore nel 1519."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000245"
+    },
+    "marketplace_summary": "Approfondimento su piero-della-francesca.",
+    "artwork": {
+      "$oid": "ccc000000000000000000072"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 7,
+        "text": "Piero della Francesca nasce a Borgo Sansepolcro intorno al 1412 e lavora fra Toscana, Marche ed Emilia."
+      },
+      {
+        "duration_sec": 19,
+        "text": "Pittore e matematico, applica alla pittura un rigoroso metodo geometrico, teorizzato nel trattato De prospectiva pingendi. Alla corte di Urbino ritrae i duchi Federico da Montefeltro e Battista Sforza in un doppio ritratto di profilo che unisce l'osservazione fisionomica più minuziosa a un paesaggio costruito con precisione scientifica."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000246"
+    },
+    "marketplace_summary": "Approfondimento su botticelli.",
+    "artwork": {
+      "$oid": "ccc000000000000000000073"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 7,
+        "text": "Sandro Botticelli nasce a Firenze nel 1445 e lavora a lungo sotto la protezione di Lorenzo il Magnifico."
+      },
+      {
+        "duration_sec": 24,
+        "text": "Allievo di Filippo Lippi, sviluppa uno stile riconoscibile per il disegno lineare e le figure eleganti e sospese. Per la famiglia Medici dipinge le sue opere più celebri, la Primavera e la Nascita di Venere, allegorie mitologiche cariche di significati filosofici. Negli ultimi anni, sotto l'influenza delle prediche di Savonarola, il suo stile si fa più austero e drammatico."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000247"
+    },
+    "marketplace_summary": "Approfondimento su michelangelo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000074"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Michelangelo Buonarroti nasce a Caprese nel 1475 e si considera innanzitutto uno scultore."
+      },
+      {
+        "duration_sec": 22,
+        "text": "Attivo tra Firenze e Roma, affresca la volta della Cappella Sistina e scolpisce capolavori come il David e la Pietà. Il Tondo Doni, dipinto per le nozze di Agnolo Doni, è il suo unico dipinto su tavola giunto fino a noi: le figure, costruite come volumi scultorei, anticipano la torsione plastica delle sue opere successive."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000248"
+    },
+    "marketplace_summary": "Approfondimento su raffaello.",
+    "artwork": {
+      "$oid": "ccc000000000000000000075"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "Raffaello Sanzio nasce a Urbino nel 1483 e si forma nella bottega del Perugino."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Sintetizza la grazia di Leonardo e la forza plastica di Michelangelo in uno stile equilibrato e armonioso, che lo rende il ritrattista di Madonne più richiesto del suo tempo. Chiamato a Roma da papa Giulio II, affresca le Stanze Vaticane prima di morire prematuramente nel 1520, a soli trentasette anni."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000249"
+    },
+    "marketplace_summary": "Approfondimento su tiziano.",
+    "artwork": {
+      "$oid": "ccc000000000000000000076"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 8,
+        "text": "Tiziano Vecellio nasce nel Cadore verso il 1488 e diventa il pittore più richiesto della Venezia del suo tempo."
+      },
+      {
+        "duration_sec": 19,
+        "text": "A differenza della tradizione fiorentina, fondata sul disegno, Tiziano costruisce le sue immagini per mezzo del colore steso a pennellate libere e vibranti. Ritrattista delle maggiori corti europee, dipinge nudi femminili di grande influenza, come la Venere di Urbino, che fissa un modello iconografico ripreso per secoli."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000250"
+    },
+    "marketplace_summary": "Approfondimento su paolo-uccello.",
+    "artwork": {
+      "$oid": "ccc000000000000000000077"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "Paolo Uccello nasce a Firenze nel 1397, in una generazione a cavallo fra gotico e Rinascimento."
+      },
+      {
+        "duration_sec": 21,
+        "text": "Applica con quasi maniacale insistenza le nuove regole della prospettiva lineare, scorciando lance, armature e cavalli fino a farne un esercizio geometrico oltre che narrativo. La Battaglia di San Romano, commissionata dai Medici per celebrare una vittoria fiorentina, è oggi divisa fra gli Uffizi, il Louvre e la National Gallery di Londra."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000251"
+    },
+    "marketplace_summary": "Approfondimento su caravaggio.",
+    "artwork": {
+      "$oid": "ccc000000000000000000078"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 7,
+        "text": "Michelangelo Merisi, detto il Caravaggio, nasce nel 1571 e si forma a Milano prima di trasferirsi a Roma."
+      },
+      {
+        "duration_sec": 22,
+        "text": "Rompe con l'idealizzazione rinascimentale dipingendo dal vero, con modelli popolari e una luce drammatica che scolpisce le figure nel buio, il cosiddetto chiaroscuro. Protetto dal cardinale Del Monte, conduce una vita turbolenta segnata da risse e da un omicidio che lo costringe alla fuga; muore nel 1610, a soli trentotto anni, nei pressi di Porto Ercole."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000252"
+    },
+    "marketplace_summary": "Approfondimento su rinascimento.",
+    "artwork": {
+      "$oid": "ccc000000000000000000079"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 7,
+        "text": "Il Rinascimento nasce a Firenze nel Quattrocento come rinnovato interesse per l'arte e il pensiero dell'antichità classica."
+      },
+      {
+        "duration_sec": 21,
+        "text": "Grazie a scoperte come la prospettiva lineare, teorizzata da Brunelleschi e Alberti, i pittori imparano a costruire uno spazio coerente e misurabile. Sotto il mecenatismo della famiglia Medici, Firenze diventa il centro propulsore di questa nuova visione, che nel Cinquecento si diffonde in tutta Italia con artisti come Leonardo, Michelangelo e Raffaello."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000253"
+    },
+    "marketplace_summary": "Approfondimento su quattrocento.",
+    "artwork": {
+      "$oid": "ccc000000000000000000080"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "Il Quattrocento è il secolo in cui, a Firenze, nasce il linguaggio del primo Rinascimento."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Le innovazioni di Brunelleschi in architettura, di Donatello in scultura e di Masaccio in pittura pongono le basi di un'arte fondata sulla prospettiva e sull'osservazione della realtà. Pittori come Paolo Uccello portano questi studi alle estreme conseguenze, trasformando battaglie e paesaggi in esercizi di geometria applicata."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000254"
+    },
+    "marketplace_summary": "Approfondimento su barocco.",
+    "artwork": {
+      "$oid": "ccc000000000000000000081"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il Barocco si afferma nel Seicento come reazione all'equilibrio classico del Rinascimento."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Predilige composizioni dinamiche, contrasti violenti fra luce e ombra e un forte coinvolgimento emotivo dello spettatore, spesso al servizio della propaganda religiosa della Controriforma. Caravaggio, con il suo naturalismo drammatico e il chiaroscuro netto, è considerato uno dei padri fondatori di questa nuova sensibilità, diffusasi da Roma in tutta Europa."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000255"
+    },
+    "marketplace_summary": "Approfondimento su ritratto.",
+    "artwork": {
+      "$oid": "ccc000000000000000000082"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 8,
+        "text": "Il ritratto è il genere che fissa l'aspetto di una persona realmente esistita, distinguendosi così dai soggetti religiosi o mitologici."
+      },
+      {
+        "duration_sec": 34,
+        "text": "Nel primo Rinascimento italiano si afferma dapprima il ritratto di profilo, un formato ripreso dalle monete e dalle medaglie antiche e diffuso soprattutto nelle piccole corti come Urbino, Ferrara e Rimini, dove serviva a fissare l'immagine ufficiale del signore. Solo più tardi, sotto l'influsso della ritrattistica fiamminga e delle sperimentazioni di Leonardo, si diffonde in Italia il ritratto di tre quarti o frontale, che permette allo sguardo del soggetto di incrociare quello dell'osservatore e apre la strada a una resa più psicologica del carattere."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000256"
+    },
+    "marketplace_summary": "Approfondimento su urbino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000083"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 8,
+        "text": "Urbino è una piccola città collinare delle Marche, capitale di un ducato che nel Quattrocento divenne un modello di corte rinascimentale."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Il duca Federico da Montefeltro, condottiero e mecenate, vi raccolse una delle biblioteche più ricche d'Europa e fece costruire il Palazzo Ducale dall'architetto Luciano Laurana, richiamando alla sua corte artisti, letterati e scienziati. Il ducato passò poi alla famiglia Della Rovere, che ne mantenne il prestigio culturale fino al Seicento; a Urbino, qualche anno dopo la morte di Federico, nacque anche Raffaello Sanzio, figlio del pittore di corte Giovanni Santi."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-24T00:00:00Z"
+    }
   }
 ]

@@ -27,6 +27,11 @@ async function getAll(req, res) {
 
     const totalItems = await Entity.countDocuments(filter);
     const entities = await Entity.find(filter).populate('placements.museum').sort(sort).skip(pageSize * page).limit(pageSize);
+    // Esposto come header (oltre che nel body) così un client interessato solo
+    // all'esistenza di risultati (es. il navigator che verifica quali tag di
+    // un'opera hanno approfondimenti) può usare una richiesta HEAD e leggere
+    // solo gli header, senza scaricare il body.
+    res.set('X-Total-Count', String(totalItems));
     res.json({ totalItems, pageSize, page, data: entities });
   } catch (e) {
     res.status(500).json({ error: e.message });
