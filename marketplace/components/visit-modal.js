@@ -414,8 +414,8 @@ class VisitModal extends HTMLElement {
     this.className = isOpen ? '' : 'hidden';
     this.innerHTML = isOpen ? `
       <div class="backdrop fixed inset-0 z-[1000] bg-black/70 backdrop-blur-sm"></div>
-      <div class="fixed inset-0 z-[1000] flex items-start sm:items-center justify-center p-0 sm:p-6" style="pointer-events: none;">
-        <div class="panel relative w-screen min-w-0 h-screen sm:w-[min(720px,92vw)] sm:h-auto sm:max-h-[92vh] rounded-none sm:rounded-2xl overflow-hidden flex flex-col ${GLASS} text-slate-800 dark:text-slate-100" style="pointer-events: auto;" role="dialog" aria-modal="true" aria-label="${this._visit ? this._esc(this._visit.title) : 'Dettagli visita'}">
+      <div class="fixed inset-0 z-[1000] flex items-center justify-center p-4 sm:p-6" style="pointer-events: none;">
+        <div class="panel relative w-full max-w-md min-w-0 max-h-[85vh] sm:w-[min(720px,92vw)] sm:max-w-none sm:max-h-[92vh] rounded-2xl overflow-hidden flex flex-col ${GLASS} text-slate-800 dark:text-slate-100" style="pointer-events: auto;" role="dialog" aria-modal="true" aria-label="${this._visit ? this._esc(this._visit.title) : 'Dettagli visita'}">
           <button class="liquid-glass-pill close-btn absolute top-3 right-3 z-10 w-9 h-9 rounded-full border border-slate-400/20 backdrop-blur-lg flex items-center justify-center text-lg leading-none hover:bg-white/20 hover:border-white/30 ${TRANSITION}" aria-label="Chiudi">×</button>
           ${(!this._loading && !this._error && this._visit) ? `
           <button class="liquid-glass-pill fav-btn absolute top-3 right-14 z-10 w-9 h-9 rounded-full border border-slate-400/20 backdrop-blur-lg flex items-center justify-center hover:bg-white/20 hover:border-white/30 ${TRANSITION}" aria-pressed="${this._favorited}" aria-label="${this._favorited ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti'}">

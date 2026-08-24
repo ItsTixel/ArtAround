@@ -445,8 +445,8 @@ class OperaModal extends HTMLElement {
     this.className = isOpen ? '' : 'hidden';
     this.innerHTML = isOpen ? `
       <div class="backdrop fixed inset-0 z-[1000] bg-black/70 backdrop-blur-sm"></div>
-      <div class="fixed inset-0 z-[1000] flex items-start sm:items-center justify-center p-0 sm:p-6" style="pointer-events: none;">
-        <div class="panel relative w-screen min-w-0 h-screen sm:w-[min(680px,92vw)] sm:h-auto sm:max-h-[92vh] rounded-none sm:rounded-2xl overflow-hidden flex flex-col ${GLASS} text-slate-800 dark:text-slate-100" style="pointer-events: auto;" role="dialog" aria-modal="true" aria-label="${it ? this._esc(it.name) : "Dettagli opera"}">
+      <div class="fixed inset-0 z-[1000] flex items-center justify-center p-4 sm:p-6" style="pointer-events: none;">
+        <div class="panel relative w-full max-w-md min-w-0 max-h-[85vh] sm:w-[min(680px,92vw)] sm:max-w-none sm:max-h-[92vh] rounded-2xl overflow-hidden flex flex-col ${GLASS} text-slate-800 dark:text-slate-100" style="pointer-events: auto;" role="dialog" aria-modal="true" aria-label="${it ? this._esc(it.name) : "Dettagli opera"}">
           <button class="liquid-glass-pill close-btn absolute top-3 right-3 z-10 w-9 h-9 rounded-full border border-slate-400/20 backdrop-blur-lg flex items-center justify-center text-lg leading-none hover:bg-white/20 hover:border-white/30 ${TRANSITION}" aria-label="Chiudi">×</button>
           <div class="body-scroll overflow-y-auto flex-1 min-h-0">
             ${this._loading ? '<p class="py-16 px-8 text-center text-slate-500 dark:text-slate-400 text-sm">Caricamento…</p>' : ''}
