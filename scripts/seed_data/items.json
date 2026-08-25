@@ -35,7 +35,7 @@
     "tags": [
       "giotto",
       "polittico",
-      "trecento",
+      "Trecento",
       "bologna"
     ],
     "createdAt": {
@@ -77,7 +77,7 @@
     "tags": [
       "vitale-da-bologna",
       "san-giorgio",
-      "trecento",
+      "Trecento",
       "bologna"
     ],
     "createdAt": {
@@ -122,7 +122,7 @@
     "alt_text": "Dettaglio del san Petronio con in mano il modellino della città di Bologna",
     "tags": [
       "francesco-del-cossa",
-      "rinascimento",
+      "Rinascimento",
       "bologna"
     ],
     "createdAt": {
@@ -168,7 +168,7 @@
     "tags": [
       "francesco-francia",
       "bentivoglio",
-      "rinascimento",
+      "Rinascimento",
       "bologna"
     ],
     "createdAt": {
@@ -212,9 +212,9 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint_Cecilia_by_Raphael.jpg?width=1280",
     "alt_text": "Dettaglio del volto di santa Cecilia in estasi, con gli strumenti musicali ai suoi piedi",
     "tags": [
-      "raffaello",
+      "Raffaello",
       "santa-cecilia",
-      "rinascimento",
+      "Rinascimento",
       "bologna",
       "tecnico"
     ],
@@ -305,7 +305,7 @@
     "alt_text": "Dettaglio della committente Cecilia Bargellini inginocchiata in preghiera",
     "tags": [
       "ludovico-carracci",
-      "barocco",
+      "Barocco",
       "bargellini",
       "bologna",
       "tecnico"
@@ -352,7 +352,7 @@
     "alt_text": "Dettaglio di una madre che tenta di proteggere il proprio bambino dalla spada del soldato",
     "tags": [
       "guido-reni",
-      "barocco",
+      "Barocco",
       "strage-degli-innocenti",
       "bologna",
       "tecnico"
@@ -399,7 +399,7 @@
     "alt_text": "Dettaglio del Cristo morto sorretto dagli angeli nella parte superiore della pala",
     "tags": [
       "guido-reni",
-      "barocco",
+      "Barocco",
       "pieta",
       "bologna"
     ],
@@ -441,7 +441,7 @@
     "alt_text": "Dettaglio del cavaliere inginocchiato che riceve l'abito monastico",
     "tags": [
       "guercino",
-      "barocco",
+      "Barocco",
       "bologna"
     ],
     "createdAt": {
@@ -484,7 +484,7 @@
       "bologna",
       "giotto",
       "polittico",
-      "trecento"
+      "Trecento"
     ],
     "createdAt": {
       "$date": "2026-08-11T00:00:00Z"
@@ -531,7 +531,7 @@
       "giotto",
       "polittico",
       "tecnico",
-      "trecento"
+      "Trecento"
     ],
     "createdAt": {
       "$date": "2026-08-11T00:00:00Z"
@@ -573,7 +573,7 @@
       "bambini",
       "bologna",
       "san-giorgio",
-      "trecento"
+      "Trecento"
     ],
     "createdAt": {
       "$date": "2026-08-11T00:00:00Z"
@@ -618,7 +618,7 @@
     "tags": [
       "bologna",
       "san-giorgio",
-      "trecento",
+      "Trecento",
       "vitale-da-bologna"
     ],
     "createdAt": {
@@ -660,7 +660,7 @@
     "tags": [
       "bologna",
       "pala-dei-mercanti",
-      "rinascimento"
+      "Rinascimento"
     ],
     "createdAt": {
       "$date": "2026-08-11T00:00:00Z"
@@ -705,7 +705,7 @@
     "tags": [
       "bologna",
       "pala-dei-mercanti",
-      "rinascimento",
+      "Rinascimento",
       "tecnico"
     ],
     "createdAt": {
@@ -748,7 +748,7 @@
       "bambini",
       "bologna",
       "pala-bentivoglio",
-      "rinascimento"
+      "Rinascimento"
     ],
     "createdAt": {
       "$date": "2026-08-11T00:00:00Z"
@@ -793,7 +793,7 @@
     "tags": [
       "bologna",
       "pala-bentivoglio",
-      "rinascimento",
+      "Rinascimento",
       "tecnico"
     ],
     "createdAt": {
@@ -834,8 +834,8 @@
     "alt_text": "Dettaglio del volto di santa Cecilia in estasi, con gli strumenti musicali ai suoi piedi",
     "tags": [
       "bologna",
-      "raffaello",
-      "rinascimento",
+      "Raffaello",
+      "Rinascimento",
       "santa-cecilia"
     ],
     "createdAt": {
@@ -880,8 +880,8 @@
     "alt_text": "Dettaglio del volto di santa Cecilia in estasi, con gli strumenti musicali ai suoi piedi",
     "tags": [
       "bologna",
-      "raffaello",
-      "rinascimento",
+      "Raffaello",
+      "Rinascimento",
       "santa-cecilia"
     ],
     "createdAt": {
@@ -1008,7 +1008,7 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Carracci_Ludovico_Madonna_Bargellini.jpg?width=1280",
     "alt_text": "Dettaglio della committente Cecilia Bargellini inginocchiata in preghiera",
     "tags": [
-      "barocco",
+      "Barocco",
       "bologna",
       "madonna-bargellini"
     ],
@@ -1053,7 +1053,7 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Carracci_Ludovico_Madonna_Bargellini.jpg?width=1280",
     "alt_text": "Dettaglio della committente Cecilia Bargellini inginocchiata in preghiera",
     "tags": [
-      "barocco",
+      "Barocco",
       "bologna",
       "madonna-bargellini"
     ],
@@ -1094,7 +1094,7 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Guido_Reni_-_Massacre_of_the_Innocents.jpg?width=1280",
     "alt_text": "Dettaglio di una madre che tenta di proteggere il proprio bambino dalla spada del soldato",
     "tags": [
-      "barocco",
+      "Barocco",
       "bologna",
       "strage-degli-innocenti"
     ],
@@ -1139,7 +1139,7 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Guido_Reni_-_Massacre_of_the_Innocents.jpg?width=1280",
     "alt_text": "Dettaglio di una madre che tenta di proteggere il proprio bambino dalla spada del soldato",
     "tags": [
-      "barocco",
+      "Barocco",
       "bologna",
       "strage-degli-innocenti"
     ],
@@ -1180,7 +1180,7 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Guido_Reni%2C_Piet%C3%A0_dei_Mendicanti.jpg?width=1280",
     "alt_text": "Dettaglio del Cristo morto sorretto dagli angeli nella parte superiore della pala",
     "tags": [
-      "barocco",
+      "Barocco",
       "bologna",
       "pieta-dei-mendicanti"
     ],
@@ -1225,7 +1225,7 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Guido_Reni%2C_Piet%C3%A0_dei_Mendicanti.jpg?width=1280",
     "alt_text": "Dettaglio del Cristo morto sorretto dagli angeli nella parte superiore della pala",
     "tags": [
-      "barocco",
+      "Barocco",
       "bologna",
       "pieta-dei-mendicanti",
       "tecnico"
@@ -1268,7 +1268,7 @@
     "alt_text": "Dettaglio del cavaliere inginocchiato che riceve l'abito monastico",
     "tags": [
       "bambini",
-      "barocco",
+      "Barocco",
       "bologna",
       "san-guglielmo"
     ],
@@ -1313,7 +1313,7 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vestizione_di_san_Guglielmo_d%27Aquitania.jpg?width=1280",
     "alt_text": "Dettaglio del cavaliere inginocchiato che riceve l'abito monastico",
     "tags": [
-      "barocco",
+      "Barocco",
       "bologna",
       "san-guglielmo"
     ],
@@ -1354,8 +1354,8 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/El_nacimiento_de_Venus%2C_por_Sandro_Botticelli.jpg?width=1280",
     "alt_text": "Dettaglio del volto di Venere con capelli dorati mossi dal vento",
     "tags": [
-      "botticelli",
-      "venere",
+      "Botticelli",
+      "Venere",
       "bambini"
     ],
     "createdAt": {
@@ -1395,10 +1395,10 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/El_nacimiento_de_Venus%2C_por_Sandro_Botticelli.jpg?width=1280",
     "alt_text": "Venere in piedi sulla conchiglia, spinta a riva dai venti",
     "tags": [
-      "botticelli",
-      "venere",
-      "mitologia",
-      "rinascimento"
+      "Botticelli",
+      "Venere",
+      "Mitologia",
+      "Rinascimento"
     ],
     "createdAt": {
       "$date": "2026-08-14T00:00:00Z"
@@ -1441,8 +1441,8 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/El_nacimiento_de_Venus%2C_por_Sandro_Botticelli.jpg?width=1280",
     "alt_text": "Dettaglio delle onde stilizzate e della conchiglia su cui poggia Venere",
     "tags": [
-      "botticelli",
-      "venere",
+      "Botticelli",
+      "Venere",
       "tecnico",
       "neoplatonismo"
     ],
@@ -1483,9 +1483,9 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Annunciation_%28Leonardo_c._1472%E2%80%931476%29.jpg?width=1280",
     "alt_text": "L'angelo Gabriele inginocchiato su un prato fiorito davanti a Maria",
     "tags": [
-      "leonardo",
+      "Leonardo",
       "annunciazione",
-      "rinascimento"
+      "Rinascimento"
     ],
     "createdAt": {
       "$date": "2026-08-14T00:00:00Z"
@@ -1528,7 +1528,7 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Annunciation_%28Leonardo_c._1472%E2%80%931476%29.jpg?width=1280",
     "alt_text": "Il leggio marmoreo con la mano della Vergine e la balaustra merlata sullo sfondo",
     "tags": [
-      "leonardo",
+      "Leonardo",
       "annunciazione",
       "verrocchio"
     ],
@@ -1573,10 +1573,10 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Annunciation_%28Leonardo_c._1472%E2%80%931476%29.jpg?width=1280",
     "alt_text": "Particolare del paesaggio sfumato sullo sfondo, esempio di prospettiva aerea",
     "tags": [
-      "leonardo",
+      "Leonardo",
       "annunciazione",
       "tecnico",
-      "prospettiva"
+      "Prospettiva"
     ],
     "createdAt": {
       "$date": "2026-08-14T00:00:00Z"
@@ -1615,7 +1615,7 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli-primavera.jpg?width=1280",
     "alt_text": "Le tre Grazie che danzano a sinistra della composizione",
     "tags": [
-      "botticelli",
+      "Botticelli",
       "primavera",
       "bambini"
     ],
@@ -1660,9 +1660,9 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli-primavera.jpg?width=1280",
     "alt_text": "Zefiro insegue la ninfa Clori, che si trasforma in Flora, sulla destra della composizione",
     "tags": [
-      "botticelli",
+      "Botticelli",
       "primavera",
-      "mitologia",
+      "Mitologia",
       "neoplatonismo"
     ],
     "createdAt": {
@@ -1706,7 +1706,7 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli-primavera.jpg?width=1280",
     "alt_text": "Dettaglio del prato fiorito con le numerose specie botaniche identificabili",
     "tags": [
-      "botticelli",
+      "Botticelli",
       "primavera",
       "tecnico"
     ],
@@ -1747,9 +1747,9 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tondo_Doni_2021.jpg?width=1280",
     "alt_text": "Maria si volta all'indietro per ricevere il Bambino dalle mani di Giuseppe",
     "tags": [
-      "michelangelo",
+      "Michelangelo",
       "tondo-doni",
-      "rinascimento"
+      "Rinascimento"
     ],
     "createdAt": {
       "$date": "2026-08-14T00:00:00Z"
@@ -1792,7 +1792,7 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tondo_Doni_2021.jpg?width=1280",
     "alt_text": "I cinque nudi sullo sfondo, oltre il muretto che li separa dalla Sacra Famiglia",
     "tags": [
-      "michelangelo",
+      "Michelangelo",
       "tondo-doni",
       "cappella-sistina"
     ],
@@ -1837,7 +1837,7 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tondo_Doni_2021.jpg?width=1280",
     "alt_text": "Dettaglio della cornice lignea originale intagliata con teste a tuttotondo",
     "tags": [
-      "michelangelo",
+      "Michelangelo",
       "tondo-doni",
       "tecnico"
     ],
@@ -1878,8 +1878,8 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Piero_della_Francesca_044.jpg?width=1280",
     "alt_text": "Dettaglio del profilo di Federico da Montefeltro con il naso aquilino",
     "tags": [
-      "piero-della-francesca",
-      "urbino",
+      "Piero Della Francesca",
+      "Urbino",
       "bambini"
     ],
     "createdAt": {
@@ -1919,9 +1919,9 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Piero_della_Francesca_044.jpg?width=1280",
     "alt_text": "I due pannelli affiancati con i ritratti di Federico e Battista",
     "tags": [
-      "piero-della-francesca",
-      "urbino",
-      "ritratto"
+      "Piero Della Francesca",
+      "Urbino",
+      "Ritratto"
     ],
     "createdAt": {
       "$date": "2026-08-14T00:00:00Z"
@@ -1964,8 +1964,8 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Piero_della_Francesca_044.jpg?width=1280",
     "alt_text": "Il paesaggio collinare che continua senza interruzioni dietro le due figure",
     "tags": [
-      "piero-della-francesca",
-      "urbino",
+      "Piero Della Francesca",
+      "Urbino",
       "montefeltro"
     ],
     "createdAt": {
@@ -2005,7 +2005,7 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Medusa_by_Caravaggio.jpg?width=1280",
     "alt_text": "Dettaglio della bocca spalancata di Medusa nell'attimo del grido",
     "tags": [
-      "caravaggio",
+      "Caravaggio",
       "medusa",
       "bambini"
     ],
@@ -2046,9 +2046,9 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Medusa_by_Caravaggio.jpg?width=1280",
     "alt_text": "Lo scudo cerimoniale convesso su cui è dipinta la testa di Medusa",
     "tags": [
-      "caravaggio",
+      "Caravaggio",
       "medusa",
-      "barocco"
+      "Barocco"
     ],
     "createdAt": {
       "$date": "2026-08-14T00:00:00Z"
@@ -2091,7 +2091,7 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Medusa_by_Caravaggio.jpg?width=1280",
     "alt_text": "Dettaglio dei serpenti attorcigliati che formano i capelli di Medusa",
     "tags": [
-      "caravaggio",
+      "Caravaggio",
       "medusa",
       "tecnico"
     ],
@@ -2132,9 +2132,9 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tizian%20-%20Venus%20von%20Urbino.jpg?width=1280",
     "alt_text": "Il cagnolino addormentato ai piedi di Venere, simbolo di fedeltà",
     "tags": [
-      "tiziano",
-      "venere",
-      "urbino"
+      "Tiziano",
+      "Venere",
+      "Urbino"
     ],
     "createdAt": {
       "$date": "2026-08-14T00:00:00Z"
@@ -2177,8 +2177,8 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tizian%20-%20Venus%20von%20Urbino.jpg?width=1280",
     "alt_text": "Le due ancelle sullo sfondo che frugano in un cassone nuziale",
     "tags": [
-      "tiziano",
-      "venere",
+      "Tiziano",
+      "Venere",
       "manet"
     ],
     "createdAt": {
@@ -2222,8 +2222,8 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tizian%20-%20Venus%20von%20Urbino.jpg?width=1280",
     "alt_text": "Dettaglio della resa pittorica della pelle, costruita per velature sovrapposte",
     "tags": [
-      "tiziano",
-      "venere",
+      "Tiziano",
+      "Venere",
       "tecnico"
     ],
     "createdAt": {
@@ -2263,7 +2263,7 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Baco%2C%20por%20Caravaggio.jpg?width=1280",
     "alt_text": "Il cesto di frutta accanto a Bacco, dipinto con grande realismo",
     "tags": [
-      "caravaggio",
+      "Caravaggio",
       "bacco",
       "bambini"
     ],
@@ -2304,9 +2304,9 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Baco%2C%20por%20Caravaggio.jpg?width=1280",
     "alt_text": "Le mani di Bacco con le unghie sporche, dettaglio tipico del realismo caravaggesco",
     "tags": [
-      "caravaggio",
+      "Caravaggio",
       "bacco",
-      "natura-morta"
+      "Natura Morta"
     ],
     "createdAt": {
       "$date": "2026-08-14T00:00:00Z"
@@ -2349,7 +2349,7 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Baco%2C%20por%20Caravaggio.jpg?width=1280",
     "alt_text": "La natura morta di frutta con mele bacate e foglie ingiallite",
     "tags": [
-      "caravaggio",
+      "Caravaggio",
       "bacco",
       "longhi"
     ],
@@ -2390,9 +2390,9 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Battle%20of%20San%20Romano%2C%20by%20Paolo%20Uccello%20%28Uffizi%20Gallery%2C%20Florence%29.jpg?width=1280",
     "alt_text": "Niccolò da Tolentino sul cavallo bianco alla guida della carica",
     "tags": [
-      "paolo-uccello",
-      "battaglia",
-      "quattrocento"
+      "Paolo Uccello",
+      "Battaglia",
+      "Quattrocento"
     ],
     "createdAt": {
       "$date": "2026-08-14T00:00:00Z"
@@ -2435,9 +2435,9 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Battle%20of%20San%20Romano%2C%20by%20Paolo%20Uccello%20%28Uffizi%20Gallery%2C%20Florence%29.jpg?width=1280",
     "alt_text": "Le lance spezzate a terra, disposte secondo linee prospettiche convergenti",
     "tags": [
-      "paolo-uccello",
-      "battaglia",
-      "prospettiva"
+      "Paolo Uccello",
+      "Battaglia",
+      "Prospettiva"
     ],
     "createdAt": {
       "$date": "2026-08-14T00:00:00Z"
@@ -2480,8 +2480,8 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Battle%20of%20San%20Romano%2C%20by%20Paolo%20Uccello%20%28Uffizi%20Gallery%2C%20Florence%29.jpg?width=1280",
     "alt_text": "Dettaglio dei colori innaturalistici usati per i cavalli, rosa e blu su fondo scuro",
     "tags": [
-      "paolo-uccello",
-      "battaglia",
+      "Paolo Uccello",
+      "Battaglia",
       "tecnico"
     ],
     "createdAt": {
@@ -2521,8 +2521,8 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raffaello_Sanzio_-_Madonna_del_Cardellino_-_Google_Art_Project.jpg?width=1280",
     "alt_text": "Il piccolo Giovannino che porge un cardellino a Gesù bambino",
     "tags": [
-      "raffaello",
-      "madonna",
+      "Raffaello",
+      "Madonna",
       "bambini"
     ],
     "createdAt": {
@@ -2562,9 +2562,9 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raffaello_Sanzio_-_Madonna_del_Cardellino_-_Google_Art_Project.jpg?width=1280",
     "alt_text": "La composizione piramidale della Madonna con i due bambini",
     "tags": [
-      "raffaello",
-      "madonna",
-      "cardellino"
+      "Raffaello",
+      "Madonna",
+      "Cardellino"
     ],
     "createdAt": {
       "$date": "2026-08-14T00:00:00Z"
@@ -2607,8 +2607,8 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raffaello_Sanzio_-_Madonna_del_Cardellino_-_Google_Art_Project.jpg?width=1280",
     "alt_text": "Dettaglio delle giunture visibili in riflettografia, esito del restauro cinquecentesco",
     "tags": [
-      "raffaello",
-      "madonna",
+      "Raffaello",
+      "Madonna",
       "tecnico"
     ],
     "createdAt": {
@@ -2652,10 +2652,10 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Creación de Adán.jpg?width=1280",
     "alt_text": "Dio, avvolto in un manto rosso e circondato da angeli, tende il braccio verso Adamo disteso, con le dita indice quasi a toccarsi",
     "tags": [
-      "michelangelo",
+      "Michelangelo",
       "cappella-sistina",
       "affresco",
-      "rinascimento"
+      "Rinascimento"
     ],
     "createdAt": {
       "$date": "2026-08-23T00:00:00Z"
@@ -2698,10 +2698,10 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Creación de Adán.jpg?width=1280",
     "alt_text": "Dio, avvolto in un manto rosso e circondato da angeli, tende il braccio verso Adamo disteso, con le dita indice quasi a toccarsi",
     "tags": [
-      "michelangelo",
+      "Michelangelo",
       "cappella-sistina",
       "affresco",
-      "rinascimento"
+      "Rinascimento"
     ],
     "createdAt": {
       "$date": "2026-08-23T00:00:00Z"
@@ -2744,10 +2744,10 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Creación de Adán.jpg?width=1280",
     "alt_text": "Dio, avvolto in un manto rosso e circondato da angeli, tende il braccio verso Adamo disteso, con le dita indice quasi a toccarsi",
     "tags": [
-      "michelangelo",
+      "Michelangelo",
       "cappella-sistina",
       "affresco",
-      "rinascimento"
+      "Rinascimento"
     ],
     "createdAt": {
       "$date": "2026-08-23T00:00:00Z"
@@ -2790,10 +2790,10 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Creación de Adán.jpg?width=1280",
     "alt_text": "Dio, avvolto in un manto rosso e circondato da angeli, tende il braccio verso Adamo disteso, con le dita indice quasi a toccarsi",
     "tags": [
-      "michelangelo",
+      "Michelangelo",
       "cappella-sistina",
       "affresco",
-      "rinascimento"
+      "Rinascimento"
     ],
     "createdAt": {
       "$date": "2026-08-23T00:00:00Z"
@@ -2836,10 +2836,10 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo, Giudizio Universale 02.jpg?width=1280",
     "alt_text": "Cristo giudice al centro di un vortice di figure nude, tra beati che ascendono al cielo e dannati travolti verso l'inferno",
     "tags": [
-      "michelangelo",
+      "Michelangelo",
       "cappella-sistina",
       "affresco",
-      "rinascimento",
+      "Rinascimento",
       "manierismo"
     ],
     "createdAt": {
@@ -2883,10 +2883,10 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo, Giudizio Universale 02.jpg?width=1280",
     "alt_text": "Cristo giudice al centro di un vortice di figure nude, tra beati che ascendono al cielo e dannati travolti verso l'inferno",
     "tags": [
-      "michelangelo",
+      "Michelangelo",
       "cappella-sistina",
       "affresco",
-      "rinascimento",
+      "Rinascimento",
       "manierismo"
     ],
     "createdAt": {
@@ -2930,10 +2930,10 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo, Giudizio Universale 02.jpg?width=1280",
     "alt_text": "Cristo giudice al centro di un vortice di figure nude, tra beati che ascendono al cielo e dannati travolti verso l'inferno",
     "tags": [
-      "michelangelo",
+      "Michelangelo",
       "cappella-sistina",
       "affresco",
-      "rinascimento",
+      "Rinascimento",
       "manierismo"
     ],
     "createdAt": {
@@ -2977,10 +2977,10 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo, Giudizio Universale 02.jpg?width=1280",
     "alt_text": "Cristo giudice al centro di un vortice di figure nude, tra beati che ascendono al cielo e dannati travolti verso l'inferno",
     "tags": [
-      "michelangelo",
+      "Michelangelo",
       "cappella-sistina",
       "affresco",
-      "rinascimento",
+      "Rinascimento",
       "manierismo"
     ],
     "createdAt": {
@@ -3024,10 +3024,10 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/\"The School of Athens\" by Raffaello Sanzio da Urbino.jpg?width=1280",
     "alt_text": "Filosofi antichi radunati sotto grandi archi classici, con Platone e Aristotele al centro in cima a una scalinata",
     "tags": [
-      "raffaello",
+      "Raffaello",
       "stanze-vaticane",
       "affresco",
-      "rinascimento",
+      "Rinascimento",
       "filosofia"
     ],
     "createdAt": {
@@ -3071,10 +3071,10 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/\"The School of Athens\" by Raffaello Sanzio da Urbino.jpg?width=1280",
     "alt_text": "Filosofi antichi radunati sotto grandi archi classici, con Platone e Aristotele al centro in cima a una scalinata",
     "tags": [
-      "raffaello",
+      "Raffaello",
       "stanze-vaticane",
       "affresco",
-      "rinascimento",
+      "Rinascimento",
       "filosofia"
     ],
     "createdAt": {
@@ -3118,10 +3118,10 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/\"The School of Athens\" by Raffaello Sanzio da Urbino.jpg?width=1280",
     "alt_text": "Filosofi antichi radunati sotto grandi archi classici, con Platone e Aristotele al centro in cima a una scalinata",
     "tags": [
-      "raffaello",
+      "Raffaello",
       "stanze-vaticane",
       "affresco",
-      "rinascimento",
+      "Rinascimento",
       "filosofia"
     ],
     "createdAt": {
@@ -3165,10 +3165,10 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/\"The School of Athens\" by Raffaello Sanzio da Urbino.jpg?width=1280",
     "alt_text": "Filosofi antichi radunati sotto grandi archi classici, con Platone e Aristotele al centro in cima a una scalinata",
     "tags": [
-      "raffaello",
+      "Raffaello",
       "stanze-vaticane",
       "affresco",
-      "rinascimento",
+      "Rinascimento",
       "filosofia"
     ],
     "createdAt": {
@@ -3212,10 +3212,10 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Deliveranceofstpeter.jpg?width=1280",
     "alt_text": "Un angelo luminoso libera san Pietro incatenato in una cella buia, mentre le guardie dormono; sullo sfondo soldati con torce",
     "tags": [
-      "raffaello",
+      "Raffaello",
       "stanze-vaticane",
       "affresco",
-      "rinascimento"
+      "Rinascimento"
     ],
     "createdAt": {
       "$date": "2026-08-23T00:00:00Z"
@@ -3258,10 +3258,10 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Deliveranceofstpeter.jpg?width=1280",
     "alt_text": "Un angelo luminoso libera san Pietro incatenato in una cella buia, mentre le guardie dormono; sullo sfondo soldati con torce",
     "tags": [
-      "raffaello",
+      "Raffaello",
       "stanze-vaticane",
       "affresco",
-      "rinascimento"
+      "Rinascimento"
     ],
     "createdAt": {
       "$date": "2026-08-23T00:00:00Z"
@@ -3304,10 +3304,10 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Deliveranceofstpeter.jpg?width=1280",
     "alt_text": "Un angelo luminoso libera san Pietro incatenato in una cella buia, mentre le guardie dormono; sullo sfondo soldati con torce",
     "tags": [
-      "raffaello",
+      "Raffaello",
       "stanze-vaticane",
       "affresco",
-      "rinascimento"
+      "Rinascimento"
     ],
     "createdAt": {
       "$date": "2026-08-23T00:00:00Z"
@@ -3350,10 +3350,10 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Deliveranceofstpeter.jpg?width=1280",
     "alt_text": "Un angelo luminoso libera san Pietro incatenato in una cella buia, mentre le guardie dormono; sullo sfondo soldati con torce",
     "tags": [
-      "raffaello",
+      "Raffaello",
       "stanze-vaticane",
       "affresco",
-      "rinascimento"
+      "Rinascimento"
     ],
     "createdAt": {
       "$date": "2026-08-23T00:00:00Z"
@@ -3396,10 +3396,10 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Transfiguration Raphael.jpg?width=1280",
     "alt_text": "Cristo trasfigurato fluttua in una nube luminosa in alto, mentre in basso una folla concitata circonda un ragazzo indemoniato",
     "tags": [
-      "raffaello",
+      "Raffaello",
       "pinacoteca-vaticana",
       "dipinto",
-      "rinascimento"
+      "Rinascimento"
     ],
     "createdAt": {
       "$date": "2026-08-23T00:00:00Z"
@@ -3442,10 +3442,10 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Transfiguration Raphael.jpg?width=1280",
     "alt_text": "Cristo trasfigurato fluttua in una nube luminosa in alto, mentre in basso una folla concitata circonda un ragazzo indemoniato",
     "tags": [
-      "raffaello",
+      "Raffaello",
       "pinacoteca-vaticana",
       "dipinto",
-      "rinascimento"
+      "Rinascimento"
     ],
     "createdAt": {
       "$date": "2026-08-23T00:00:00Z"
@@ -3488,10 +3488,10 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Transfiguration Raphael.jpg?width=1280",
     "alt_text": "Cristo trasfigurato fluttua in una nube luminosa in alto, mentre in basso una folla concitata circonda un ragazzo indemoniato",
     "tags": [
-      "raffaello",
+      "Raffaello",
       "pinacoteca-vaticana",
       "dipinto",
-      "rinascimento"
+      "Rinascimento"
     ],
     "createdAt": {
       "$date": "2026-08-23T00:00:00Z"
@@ -3534,10 +3534,10 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Transfiguration Raphael.jpg?width=1280",
     "alt_text": "Cristo trasfigurato fluttua in una nube luminosa in alto, mentre in basso una folla concitata circonda un ragazzo indemoniato",
     "tags": [
-      "raffaello",
+      "Raffaello",
       "pinacoteca-vaticana",
       "dipinto",
-      "rinascimento"
+      "Rinascimento"
     ],
     "createdAt": {
       "$date": "2026-08-23T00:00:00Z"
@@ -3583,7 +3583,7 @@
       "leonardo-da-vinci",
       "pinacoteca-vaticana",
       "dipinto",
-      "rinascimento",
+      "Rinascimento",
       "incompiuto"
     ],
     "createdAt": {
@@ -3630,7 +3630,7 @@
       "leonardo-da-vinci",
       "pinacoteca-vaticana",
       "dipinto",
-      "rinascimento",
+      "Rinascimento",
       "incompiuto"
     ],
     "createdAt": {
@@ -3677,7 +3677,7 @@
       "leonardo-da-vinci",
       "pinacoteca-vaticana",
       "dipinto",
-      "rinascimento",
+      "Rinascimento",
       "incompiuto"
     ],
     "createdAt": {
@@ -3724,7 +3724,7 @@
       "leonardo-da-vinci",
       "pinacoteca-vaticana",
       "dipinto",
-      "rinascimento",
+      "Rinascimento",
       "incompiuto"
     ],
     "createdAt": {
@@ -3771,7 +3771,7 @@
       "scultura",
       "museo-pio-clementino",
       "ellenismo",
-      "mitologia"
+      "Mitologia"
     ],
     "createdAt": {
       "$date": "2026-08-23T00:00:00Z"
@@ -3817,7 +3817,7 @@
       "scultura",
       "museo-pio-clementino",
       "ellenismo",
-      "mitologia"
+      "Mitologia"
     ],
     "createdAt": {
       "$date": "2026-08-23T00:00:00Z"
@@ -3863,7 +3863,7 @@
       "scultura",
       "museo-pio-clementino",
       "ellenismo",
-      "mitologia"
+      "Mitologia"
     ],
     "createdAt": {
       "$date": "2026-08-23T00:00:00Z"
@@ -3909,7 +3909,7 @@
       "scultura",
       "museo-pio-clementino",
       "ellenismo",
-      "mitologia"
+      "Mitologia"
     ],
     "createdAt": {
       "$date": "2026-08-23T00:00:00Z"
@@ -3955,7 +3955,7 @@
       "scultura",
       "museo-pio-clementino",
       "classicismo",
-      "mitologia"
+      "Mitologia"
     ],
     "createdAt": {
       "$date": "2026-08-23T00:00:00Z"
@@ -4001,7 +4001,7 @@
       "scultura",
       "museo-pio-clementino",
       "classicismo",
-      "mitologia"
+      "Mitologia"
     ],
     "createdAt": {
       "$date": "2026-08-23T00:00:00Z"
@@ -4047,7 +4047,7 @@
       "scultura",
       "museo-pio-clementino",
       "classicismo",
-      "mitologia"
+      "Mitologia"
     ],
     "createdAt": {
       "$date": "2026-08-23T00:00:00Z"
@@ -4093,7 +4093,7 @@
       "scultura",
       "museo-pio-clementino",
       "classicismo",
-      "mitologia"
+      "Mitologia"
     ],
     "createdAt": {
       "$date": "2026-08-23T00:00:00Z"
@@ -4322,7 +4322,7 @@
     "tags": [
       "affresco",
       "cartografia",
-      "cinquecento",
+      "Cinquecento",
       "palazzi-vaticani"
     ],
     "createdAt": {
@@ -4368,7 +4368,7 @@
     "tags": [
       "affresco",
       "cartografia",
-      "cinquecento",
+      "Cinquecento",
       "palazzi-vaticani"
     ],
     "createdAt": {
@@ -4414,7 +4414,7 @@
     "tags": [
       "affresco",
       "cartografia",
-      "cinquecento",
+      "Cinquecento",
       "palazzi-vaticani"
     ],
     "createdAt": {
@@ -4460,7 +4460,7 @@
     "tags": [
       "affresco",
       "cartografia",
-      "cinquecento",
+      "Cinquecento",
       "palazzi-vaticani"
     ],
     "createdAt": {
@@ -4500,10 +4500,10 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Florence%2C_Italy_-_panoramio_%28125%29.jpg?width=1280",
     "alt_text": "La facciata del Palazzo degli Uffizi vista dal cortile porticato, con le statue degli uomini illustri fiorentini lungo i due bracci e la Torre di Palazzo Vecchio sullo sfondo",
     "tags": [
-      "uffizi",
-      "introduzione",
-      "storia",
-      "medici"
+      "Uffizi",
+      "Introduzione",
+      "Storia",
+      "Medici"
     ],
     "createdAt": {
       "$date": "2026-08-24T00:00:00Z"
@@ -4542,10 +4542,10 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Florence%2C_Italy_-_panoramio_%28125%29.jpg?width=1280",
     "alt_text": "La facciata del Palazzo degli Uffizi vista dal cortile porticato, con le statue degli uomini illustri fiorentini lungo i due bracci e la Torre di Palazzo Vecchio sullo sfondo",
     "tags": [
-      "uffizi",
-      "introduzione",
-      "storia",
-      "medici"
+      "Uffizi",
+      "Introduzione",
+      "Storia",
+      "Medici"
     ],
     "createdAt": {
       "$date": "2026-08-24T00:00:00Z"
@@ -4588,10 +4588,10 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Florence%2C_Italy_-_panoramio_%28125%29.jpg?width=1280",
     "alt_text": "La facciata del Palazzo degli Uffizi vista dal cortile porticato, con le statue degli uomini illustri fiorentini lungo i due bracci e la Torre di Palazzo Vecchio sullo sfondo",
     "tags": [
-      "uffizi",
-      "introduzione",
-      "storia",
-      "medici"
+      "Uffizi",
+      "Introduzione",
+      "Storia",
+      "Medici"
     ],
     "createdAt": {
       "$date": "2026-08-24T00:00:00Z"
@@ -4634,10 +4634,10 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Florence%2C_Italy_-_panoramio_%28125%29.jpg?width=1280",
     "alt_text": "La facciata del Palazzo degli Uffizi vista dal cortile porticato, con le statue degli uomini illustri fiorentini lungo i due bracci e la Torre di Palazzo Vecchio sullo sfondo",
     "tags": [
-      "uffizi",
-      "introduzione",
-      "storia",
-      "medici"
+      "Uffizi",
+      "Introduzione",
+      "Storia",
+      "Medici"
     ],
     "createdAt": {
       "$date": "2026-08-24T00:00:00Z"
@@ -6883,9 +6883,9 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/El_nacimiento_de_Venus%2C_por_Sandro_Botticelli.jpg?width=1280",
     "alt_text": "La conchiglia su cui è distesa Venere, sospinta a riva dal soffio dei venti",
     "tags": [
-      "botticelli",
-      "venere",
-      "mitologia"
+      "Botticelli",
+      "Venere",
+      "Mitologia"
     ],
     "createdAt": {
       "$date": "2026-08-24T00:00:00Z"
@@ -6924,7 +6924,7 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Annunciation_%28Leonardo_c._1472%E2%80%931476%29.jpg?width=1280",
     "alt_text": "L'angelo Gabriele porge un giglio bianco a Maria, inginocchiato su un prato fiorito",
     "tags": [
-      "leonardo",
+      "Leonardo",
       "annunciazione",
       "bambini"
     ],
@@ -6965,9 +6965,9 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Botticelli-primavera.jpg?width=1280",
     "alt_text": "Venere al centro della composizione, sotto un arco di alloro",
     "tags": [
-      "botticelli",
+      "Botticelli",
       "primavera",
-      "mitologia"
+      "Mitologia"
     ],
     "createdAt": {
       "$date": "2026-08-24T00:00:00Z"
@@ -7006,7 +7006,7 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tondo_Doni_2021.jpg?width=1280",
     "alt_text": "Maria, Giuseppe e il Bambino al centro del tondo, con i cinque nudi sullo sfondo",
     "tags": [
-      "michelangelo",
+      "Michelangelo",
       "tondo-doni",
       "bambini"
     ],
@@ -7051,8 +7051,8 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Piero_della_Francesca_044.jpg?width=1280",
     "alt_text": "I due profili affiancati di Federico da Montefeltro e Battista Sforza",
     "tags": [
-      "piero-della-francesca",
-      "urbino",
+      "Piero Della Francesca",
+      "Urbino",
       "tecnico"
     ],
     "createdAt": {
@@ -7092,9 +7092,9 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Medusa_by_Caravaggio.jpg?width=1280",
     "alt_text": "Lo scudo convesso su cui è dipinta la testa di Medusa nell'attimo del grido",
     "tags": [
-      "caravaggio",
+      "Caravaggio",
       "medusa",
-      "mitologia"
+      "Mitologia"
     ],
     "createdAt": {
       "$date": "2026-08-24T00:00:00Z"
@@ -7133,8 +7133,8 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tizian%20-%20Venus%20von%20Urbino.jpg?width=1280",
     "alt_text": "Il cagnolino addormentato ai piedi di Venere, distesa su un letto disfatto",
     "tags": [
-      "tiziano",
-      "venere",
+      "Tiziano",
+      "Venere",
       "bambini"
     ],
     "createdAt": {
@@ -7178,7 +7178,7 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Baco%2C%20por%20Caravaggio.jpg?width=1280",
     "alt_text": "La natura morta di frutta in primo piano, con mele bacate e foglie ingiallite",
     "tags": [
-      "caravaggio",
+      "Caravaggio",
       "bacco",
       "tecnico"
     ],
@@ -7219,8 +7219,8 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Battle%20of%20San%20Romano%2C%20by%20Paolo%20Uccello%20%28Uffizi%20Gallery%2C%20Florence%29.jpg?width=1280",
     "alt_text": "Niccolò da Tolentino sul cavallo bianco alla guida della carica",
     "tags": [
-      "paolo-uccello",
-      "battaglia",
+      "Paolo Uccello",
+      "Battaglia",
       "bambini"
     ],
     "createdAt": {
@@ -7260,9 +7260,9 @@
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raffaello_Sanzio_-_Madonna_del_Cardellino_-_Google_Art_Project.jpg?width=1280",
     "alt_text": "La composizione piramidale della Madonna con Gesù bambino e san Giovannino",
     "tags": [
-      "raffaello",
-      "madonna",
-      "cardellino"
+      "Raffaello",
+      "Madonna",
+      "Cardellino"
     ],
     "createdAt": {
       "$date": "2026-08-24T00:00:00Z"

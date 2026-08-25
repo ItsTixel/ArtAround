@@ -273,7 +273,7 @@
     ],
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d4/CUTriTeam.jpg",
     "tags": [
-      "pinacoteca",
+      "Pinacoteca",
       "bologna",
       "principianti",
       "famiglie",
@@ -557,7 +557,7 @@
     ],
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vitale%20da%20bologna%2C%20san%20giorgio%20libera%20la%20principessa%2C%201330-35%20ca.%2C%2001.jpg?width=1280",
     "tags": [
-      "pinacoteca",
+      "Pinacoteca",
       "bologna",
       "principianti",
       "famiglie",
@@ -869,13 +869,13 @@
     ],
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/El_nacimiento_de_Venus%2C_por_Sandro_Botticelli.jpg?width=1280",
     "tags": [
-      "uffizi",
-      "firenze",
-      "rinascimento",
-      "botticelli",
-      "leonardo",
-      "raffaello",
-      "introduzione"
+      "Uffizi",
+      "Firenze",
+      "Rinascimento",
+      "Botticelli",
+      "Leonardo",
+      "Raffaello",
+      "Introduzione"
     ],
     "is_public": true,
     "estimated_duration_sec": 706,
@@ -1158,11 +1158,11 @@
     ],
     "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Annunciation_%28Leonardo_c._1472%E2%80%931476%29.jpg?width=1280",
     "tags": [
-      "firenze",
+      "Firenze",
       "bologna",
       "infra-museale",
-      "rinascimento",
-      "barocco"
+      "Rinascimento",
+      "Barocco"
     ],
     "is_public": true,
     "estimated_duration_sec": 589,
@@ -1475,8 +1475,8 @@
       "musei-vaticani",
       "roma",
       "cappella-sistina",
-      "raffaello",
-      "michelangelo",
+      "Raffaello",
+      "Michelangelo",
       "scultura-antica"
     ],
     "is_public": true,
@@ -2424,12 +2424,12 @@
     ],
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Oswald_Achenbach_-_View_of_Florence.jpg/960px-Oswald_Achenbach_-_View_of_Florence.jpg",
     "tags": [
-      "firenze",
-      "uffizi",
-      "accademia",
-      "rinascimento",
-      "michelangelo",
-      "botticelli",
+      "Firenze",
+      "Uffizi",
+      "Accademia",
+      "Rinascimento",
+      "Michelangelo",
+      "Botticelli",
       "infra-museale"
     ],
     "is_public": true,
