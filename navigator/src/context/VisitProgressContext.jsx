@@ -143,9 +143,19 @@ function matchInsightTag(transcript, tags) {
 // already on screen, offering a pointless "approfondisci" into itself.
 // Shared by the voice matcher above and Comandi.jsx's button list, so both
 // agree on which tags are real insight candidates.
-export function insightCandidateTags(entity) {
+// item is the currently narrated Item (tone-specific: a description's own
+// tags), whose tags supplement the entity's — deduped since both lists are
+// curated independently and can overlap.
+export function insightCandidateTags(entity, item) {
   const ownName = (entity?.name || '').trim().toLowerCase()
-  return (entity?.tags || []).filter((tag) => tag.trim().toLowerCase() !== ownName)
+  const merged = [...(entity?.tags || []), ...(item?.tags || [])]
+  const seen = new Set()
+  return merged.filter((tag) => {
+    const normalized = tag.trim().toLowerCase()
+    if (normalized === ownName || seen.has(normalized)) return false
+    seen.add(normalized)
+    return true
+  })
 }
 
 // GET /api/entities?name= matches any entity whose name CONTAINS the query
@@ -772,7 +782,7 @@ export function VisitProgressProvider({ children }) {
     // (the current opera's tags), so it can't be a VOICE_COMMAND_PATTERNS
     // entry like the others.
     if (!key) {
-      const tag = matchInsightTag(transcript, insightCandidateTags(entity))
+      const tag = matchInsightTag(transcript, insightCandidateTags(entity, currentItem))
       if (tag) {
         requestInsight(tag)
         return
