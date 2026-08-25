@@ -62,8 +62,17 @@ const state = { steps: [], editingIndex: null };
  * numerato dello stepper. true anche in modifica se la visita ha già un quiz. */
 let wantsQuiz = false;
 
-/* Filtri del modale di selezione opera */
-const pickerState = { tab: 'catalog', search: '', museum: '' };
+/* Filtri del modale di selezione opera. physicalFilter parte da 'all': le
+ * opere non fisiche sono scelte legittime per una tappa quanto quelle
+ * fisiche, il filtro è solo un'opzione per chi vuole restringere la ricerca.
+ * Il tasto #picker-physical-toggle cicla tra i tre stati in quest'ordine. */
+const PHYSICAL_FILTER_STATES = ['all', 'physical', 'nonphysical'];
+const PHYSICAL_FILTER_LABELS = {
+  all: 'Tutte le opere',
+  physical: 'Solo opere fisiche',
+  nonphysical: 'Solo opere non fisiche',
+};
+const pickerState = { tab: 'catalog', search: '', museum: '', physicalFilter: 'all' };
 let pickerSelectedEntity = null; // opera scelta nel browse, in attesa di configurazione
 let pickerSearchTimer = null;
 
@@ -261,7 +270,8 @@ function closePicker() {
 }
 
 async function fetchPickerEntities() {
-  const params = new URLSearchParams({ pageSize: 100, sort: 'name', is_physical: 'true' });
+  const params = new URLSearchParams({ pageSize: 100, sort: 'name' });
+  if (pickerState.physicalFilter !== 'all') params.set('is_physical', String(pickerState.physicalFilter === 'physical'));
   if (pickerState.search) params.set('name', pickerState.search);
   if (pickerState.museum) params.set('museum', pickerState.museum);
   if (pickerState.tab === 'created') params.set('added_by', currentUser._id);
@@ -983,6 +993,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
   document.getElementById('picker-museum').addEventListener('change', (e) => {
     pickerState.museum = e.target.value;
+    loadPickerGrid();
+  });
+  document.getElementById('picker-physical-toggle').addEventListener('click', (e) => {
+    const nextIndex = (PHYSICAL_FILTER_STATES.indexOf(pickerState.physicalFilter) + 1) % PHYSICAL_FILTER_STATES.length;
+    pickerState.physicalFilter = PHYSICAL_FILTER_STATES[nextIndex];
+    e.target.dataset.state = pickerState.physicalFilter;
+    e.target.textContent = PHYSICAL_FILTER_LABELS[pickerState.physicalFilter];
     loadPickerGrid();
   });
 

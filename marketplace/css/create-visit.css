@@ -225,6 +225,17 @@
   overflow: hidden;
 }
 
+/* Con la vista browse aperta l'altezza è fissa (invece che auto sul
+ * contenuto): senza questo, ogni ricarica della griglia (ricerca, filtro
+ * museo/fisiche, cambio tab) fa passare .picker-grid per uno stato
+ * temporaneo con un solo messaggio "Caricamento…", e il modale si
+ * restringe e poi si riallarga di scatto per un frame. Con l'altezza
+ * fissa è solo la griglia (flex: 1 + scroll proprio, sotto) a cambiare
+ * contenuto, il resto del modale non si muove. */
+.visit-picker-modal:has(> .picker-browse:not([hidden])) {
+  height: min(85vh, 720px);
+}
+
 .visit-picker-header {
   display: flex;
   align-items: center;
@@ -271,8 +282,13 @@
   flex-direction: column;
   gap: 1.1rem;
   min-height: 0;
-  overflow-y: auto;
 }
+
+/* .picker-configure resta ad altezza automatica sul contenuto (nessun
+ * bisogno di scroll interno): solo .picker-browse ha altezza fissa
+ * (vedi .visit-picker-modal:has sopra), quindi è .picker-grid a scorrere
+ * al suo interno invece che l'intera vista. */
+.picker-configure { overflow-y: auto; }
 
 #picker-tabs { margin: 0; }
 
@@ -305,6 +321,25 @@
   color: var(--color-text);
   outline: none;
 }
+.picker-toggle {
+  flex-shrink: 0;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: border-color var(--transition), color var(--transition), background var(--transition);
+}
+.picker-toggle:hover { border-color: var(--universal-glass-border-strong); color: var(--color-text); }
+.picker-toggle:not([data-state="all"]) {
+  border-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 14%, transparent);
+  color: var(--color-accent);
+}
 
 /* Il modale vive fuori da .create-form (è appeso al <body>), quindi non
  * eredita lo stile di .create-form select/textarea (create-content.css):
@@ -333,6 +368,7 @@
   grid-auto-rows: min-content;
   align-content: start;
   gap: 0.9rem;
+  flex: 1;
   min-height: 120px;
   overflow-y: auto;
   padding: 0.15rem;
