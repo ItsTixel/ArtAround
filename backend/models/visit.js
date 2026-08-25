@@ -33,6 +33,39 @@ const liveSessionSchema = new Schema({
   participants: { type: [liveParticipantSchema], default: [] }
 }, { _id: false });
 
+// Include anche la forma a 8 cifre (#RRGGBBAA): il bordo "vetro" (vedi
+// glass_border sotto) è nativamente traslucido, un hex senza alpha lo
+// renderebbe un anello opaco invece del filo di luce che ci si aspetta.
+const HEX_COLOR_PATTERN = /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/;
+// Nome famiglia Google Fonts: lettere/cifre/spazi, niente virgolette o
+// caratteri che potrebbero rompere l'URL o la dichiarazione CSS generata lato client.
+const FONT_FAMILY_PATTERN = /^[A-Za-z0-9 ]{1,60}$/;
+
+const themePaletteSchema = new Schema({
+  accent: { type: String, trim: true, match: HEX_COLOR_PATTERN },
+  accent_hover: { type: String, trim: true, match: HEX_COLOR_PATTERN },
+  on_accent: { type: String, trim: true, match: HEX_COLOR_PATTERN },
+  bg: { type: String, trim: true, match: HEX_COLOR_PATTERN },
+  surface: { type: String, trim: true, match: HEX_COLOR_PATTERN },
+  text: { type: String, trim: true, match: HEX_COLOR_PATTERN },
+  text_muted: { type: String, trim: true, match: HEX_COLOR_PATTERN },
+  border: { type: String, trim: true, match: HEX_COLOR_PATTERN },
+  // Bordo delle superfici "vetro" (glass-panel/glass-capsule/glass-pill),
+  // distinto da `border` (bordo generico degli altri elementi UI).
+  glass_border: { type: String, trim: true, match: HEX_COLOR_PATTERN }
+}, { _id: false });
+
+// Aspetto personalizzato per la visita: palette chiara/scura (seguono lo
+// stesso toggle tema dell'app) e font, applicati solo lato Navigator mentre
+// la visita è attiva (vedi navigator/src/hooks/useVisitTheme.js). Ogni
+// chiave è facoltativa: quelle assenti restano ai default dell'app.
+const visitThemeSchema = new Schema({
+  light: themePaletteSchema,
+  dark: themePaletteSchema,
+  font_serif: { type: String, trim: true, maxLength: 60, match: FONT_FAMILY_PATTERN },
+  font_sans: { type: String, trim: true, maxLength: 60, match: FONT_FAMILY_PATTERN }
+}, { _id: false });
+
 const visitSchema = new Schema({
   title: { type: String, required: true, trim: true, maxLength: 200 },
   description: { type: String, trim: true, default: '' },
@@ -53,6 +86,8 @@ const visitSchema = new Schema({
 
   image_url: { type: String, trim: true },
   tags: { type: [String], default: [] },
+
+  theme: visitThemeSchema,
 
   is_public: { type: Boolean, default: true },
 

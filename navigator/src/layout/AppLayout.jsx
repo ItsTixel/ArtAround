@@ -5,12 +5,15 @@ import PlayerBar from '../components/PlayerBar'
 import InsightModal from '../components/InsightModal'
 import { useActiveVisit } from '../context/ActiveVisitContext'
 import { useVisitProgress } from '../context/VisitProgressContext'
+import useVisitTheme from '../hooks/useVisitTheme'
 
 function AppLayout() {
   const location = useLocation()
   const { activeVisit } = useActiveVisit()
   const { activeInsightTag, closeInsight } = useVisitProgress()
   const showPlayer = location.pathname !== '/' && Boolean(activeVisit)
+
+  useVisitTheme(activeVisit)
 
   return (
     <div className="mx-auto flex min-h-dvh max-w-md flex-col bg-bg">

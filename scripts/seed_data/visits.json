@@ -877,6 +877,31 @@
       "Raffaello",
       "Introduzione"
     ],
+    "theme": {
+      "light": {
+        "accent": "#a6742c",
+        "accent_hover": "#8a5d1f",
+        "on_accent": "#fdf6e3",
+        "bg": "#f4ecd8",
+        "surface": "#fffaf0",
+        "text": "#2b1c0e",
+        "text_muted": "#7a6a55",
+        "border": "#d8c9a3",
+        "glass_border": "#a6742c80"
+      },
+      "dark": {
+        "accent": "#d4af37",
+        "accent_hover": "#b8942a",
+        "on_accent": "#241208",
+        "bg": "#1a0e0a",
+        "surface": "#2b1512",
+        "text": "#f0e6d2",
+        "text_muted": "#b3a082",
+        "border": "#4a2f26",
+        "glass_border": "#d4af3780"
+      },
+      "font_serif": "Cormorant Garamond"
+    },
     "is_public": true,
     "estimated_duration_sec": 706,
     "createdAt": {
