@@ -6,7 +6,7 @@
     "name": "Galleria degli Uffizi",
     "wikidata_id": "Q51252",
     "description": "Uno dei musei d'arte più importanti al mondo, ospita la più grande raccolta di pittura medievale e rinascimentale italiana.",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Florence%2C_Italy_-_panoramio_%28125%29.jpg?width=1280",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Florence%2C_Italy_-_panoramio_%28125%29.jpg/1280px-Florence%2C_Italy_-_panoramio_%28125%29.jpg",
     "website": "https://www.uffizi.it",
     "address": {
       "street": "Piazzale degli Uffizi 6",
@@ -234,7 +234,7 @@
     "name": "Pinacoteca Nazionale di Bologna",
     "wikidata_id": "Q1103550",
     "description": "Il principale museo di pittura di Bologna, con opere dal Duecento al Barocco: dai polittici trecenteschi della scuola bolognese ai capolavori di Raffaello, Carracci e Guido Reni.",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bologna_%E2%80%94_Pinacoteca_nazionale_di_Bologna_(outside).jpg?width=1280",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Bologna_%E2%80%94_Pinacoteca_nazionale_di_Bologna_%28outside%29.jpg/1280px-Bologna_%E2%80%94_Pinacoteca_nazionale_di_Bologna_%28outside%29.jpg",
     "website": "https://pinacotecabologna.beniculturali.it",
     "address": {
       "street": "Via delle Belle Arti 56",
@@ -411,7 +411,7 @@
     "name": "Musei Vaticani",
     "wikidata_id": "Q182955",
     "description": "Tra i più grandi complessi museali del mondo, i Musei Vaticani raccolgono le collezioni d'arte accumulate dai papi nei secoli: dalle sculture antiche del Museo Pio-Clementino agli affreschi di Raffaello nelle Stanze Vaticane, fino al capolavoro assoluto di Michelangelo nella Cappella Sistina.",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vatican Museums, Musei Vaticani (Ank Kumar, Infosys Limited) 16.jpg?width=1280",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Vatican_Museums%2C_Musei_Vaticani_%28Ank_Kumar%2C_Infosys_Limited%29_16.jpg/1280px-Vatican_Museums%2C_Musei_Vaticani_%28Ank_Kumar%2C_Infosys_Limited%29_16.jpg",
     "website": "https://www.museivaticani.va",
     "is_accessible": true,
     "address": {
