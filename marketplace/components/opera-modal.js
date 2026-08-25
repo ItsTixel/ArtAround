@@ -23,6 +23,7 @@
 import { GLASS_MODAL as GLASS, TRANSITION, TAG_PILL as TAG_CLS } from '/marketplace/js/ui-tokens.js';
 import { getCurrentUser } from '/marketplace/js/auth-session.js';
 import { trapTabKey, focusDialog } from '/marketplace/js/focus-trap.js';
+import { qrThumbHtml } from '/marketplace/js/qr-code.js';
 
 const API_ENTITIES = '/api/entities';
 const API_MUSEUMS  = '/api/museums';
@@ -143,6 +144,7 @@ class OperaModal extends HTMLElement {
         ${it.image_url
           ? `<img class="absolute inset-0 w-full h-full object-cover" src="${this._esc(it.image_url)}" alt="${this._esc(it.alt_text || it.name || '')}" loading="lazy">`
           : `<div class="absolute inset-0" style="background-image: repeating-linear-gradient(135deg, transparent 0 11px, rgba(100,116,139,0.12) 11px 12px);"></div>`}
+        ${qrThumbHtml('entity', it._id, 'opera')}
       </div>
 
       <div class="pt-7 px-5 sm:px-8 pb-7 sm:pb-8">

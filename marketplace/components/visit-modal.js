@@ -14,6 +14,7 @@ import { getCurrentUser } from '/marketplace/js/auth-session.js';
 import { GLASS_MODAL as GLASS, TRANSITION } from '/marketplace/js/ui-tokens.js';
 import { TONE_ORDER, TONE_LABELS } from '/marketplace/js/tone-labels.js';
 import { trapTabKey, focusDialog } from '/marketplace/js/focus-trap.js';
+import { qrThumbHtml } from '/marketplace/js/qr-code.js';
 
 const API_VISITS   = '/api/visits';
 const API_USERS    = '/api/users';
@@ -374,6 +375,7 @@ class VisitModal extends HTMLElement {
           : `<div class="absolute inset-0" style="background-image: repeating-linear-gradient(135deg, transparent 0 11px, rgba(100,116,139,0.12) 11px 12px);"></div>`}
         ${isInfra ? `<span class="absolute top-3 left-3 z-[2] text-[0.62rem] tracking-[0.16em] uppercase rounded-full px-2.5 py-1.5 ${GLASS} text-slate-800 dark:text-slate-100" style="font-family: var(--font-mono);">Inframuseale</span>` : ''}
         <span class="relative z-[1] text-[0.68rem] tracking-[0.14em] uppercase px-3 py-1.5 rounded-full ${GLASS} text-slate-800 dark:text-slate-100 text-center max-w-[80%]" style="font-family: var(--font-mono);">${this._esc(v.title)}</span>
+        ${qrThumbHtml('visit', v._id, 'visita')}
       </div>
 
       <div class="pt-7 px-5 sm:px-8 pb-7 sm:pb-8">
