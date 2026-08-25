@@ -16,6 +16,15 @@ function sortDescriptions(item) {
   return [...(item?.descriptions || [])].sort((a, b) => a.duration_sec - b.duration_sec)
 }
 
+// tones is assumed sorted in TONE_ORDER order (as availableTones is).
+function closestToneAtMost(tones, targetTone) {
+  const targetIdx = TONE_ORDER.indexOf(targetTone)
+  for (let i = tones.length - 1; i >= 0; i--) {
+    if (TONE_ORDER.indexOf(tones[i]) <= targetIdx) return tones[i]
+  }
+  return tones[0]
+}
+
 const TTS_WORDS_PER_MINUTE = 150
 
 function estimateDurationSec(text) {
@@ -259,7 +268,16 @@ export function VisitProgressProvider({ children }) {
     [items]
   )
 
-  const activeTone = availableTones.includes(selectedTone) ? selectedTone : availableTones[0]
+  // Sticky tone across opere: keep the previously selected tone when the new
+  // opera offers it too. Otherwise fall back to the closest tone that's no
+  // harder than the one selected — availableTones is already in TONE_ORDER
+  // order, so the last entry at or below the target index is the closest
+  // easier (or equal) one.
+  const activeTone = availableTones.includes(selectedTone)
+    ? selectedTone
+    : selectedTone
+      ? closestToneAtMost(availableTones, selectedTone)
+      : availableTones[0]
   const currentItem = items.find((item) => item.tone === activeTone)
 
   const sortedDescriptions = useMemo(() => sortDescriptions(currentItem), [currentItem])
@@ -395,7 +413,6 @@ export function VisitProgressProvider({ children }) {
     const clamped = Math.max(0, Math.min(index, sortedSteps.length - 1))
     if (clamped === activeStepIndex) return
     stopSpeech()
-    setSelectedTone(null)
     setSelectedDescIndex(0)
     setActiveInsightTag(null)
     if (skipDirections) skipNextDirectionsRef.current = true
