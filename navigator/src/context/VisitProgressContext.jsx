@@ -397,6 +397,7 @@ export function VisitProgressProvider({ children }) {
     stopSpeech()
     setSelectedTone(null)
     setSelectedDescIndex(0)
+    setActiveInsightTag(null)
     if (skipDirections) skipNextDirectionsRef.current = true
     setStepIndex(clamped)
   }
@@ -863,11 +864,18 @@ export function VisitProgressProvider({ children }) {
       // null with no previous location to compare from.
       if (movedForward || isInitialMount) {
         const currentLocation = getStepLocation(step)
-        const suppressDirections = skipNextDirectionsRef.current
+        // Also true for a group-session landing (join, or rejoin after
+        // reload): GroupSessionContext calls goToStep({ skipDirections: true })
+        // to place the student/host on the group's current step without
+        // treating it as a real physical move — same reasoning applies to
+        // autoplay below, since it isn't the initial-mount run (previousStepIndex
+        // isn't null there) but is still just as much "you're being placed,
+        // not actually walking forward" and must not speak on its own either.
+        const suppressExtras = skipNextDirectionsRef.current
         skipNextDirectionsRef.current = false
         let newDirections = null
         if (currentLocation) {
-          if (!suppressDirections) {
+          if (!suppressExtras) {
             newDirections = buildDirections(lastPhysicalLocationRef.current, currentLocation)
           }
           lastPhysicalLocationRef.current = currentLocation
@@ -878,9 +886,11 @@ export function VisitProgressProvider({ children }) {
           textRef.current = newDirections.text
           activeDurationRef.current = estimateDurationSec(newDirections.text)
           resumeCharRef.current = 0
-          if (autoplayEnabled && !isInitialMount) speakFromChar(0)
+          if (autoplayEnabled && !isInitialMount && !suppressExtras) speakFromChar(0)
           return
         }
+
+        if (suppressExtras) return
       } else {
         setDirections(null)
       }
