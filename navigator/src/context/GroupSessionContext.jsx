@@ -19,6 +19,7 @@ export function GroupSessionProvider({ children }) {
     playbackState: localPlaybackState,
     activeInsightTag,
     insightState,
+    closeInsight,
     registerGroupNav,
     requestPreviousStep,
     requestNextStep,
@@ -133,14 +134,6 @@ export function GroupSessionProvider({ children }) {
           insightTone: p.insight_tone,
           insightParagraphIndex: p.insight_paragraph_index,
           insightPlaybackState: p.insight_playback_state,
-          // Risposte/punteggio del quiz già inviati prima di un refresh della
-          // pagina (l'ack di visit:join per l'host porta live_session per
-          // intero, non sanificato): senza questo il roster ripartirebbe
-          // vuoto per ogni studente, mostrando di nuovo "In corso…" anche per
-          // chi aveva già risposto. quizTotal si ricava dalla lunghezza di
-          // quiz_answers stesso (validata lato server contro le domande del
-          // quiz) invece che da groupVisit, che a questo punto della
-          // closure potrebbe non essere ancora aggiornato.
           quizScore: p.quiz_score,
           quizTotal: p.quiz_answers?.length > 0 ? p.quiz_answers.length : undefined,
           quizAnswers: p.quiz_answers,
@@ -460,6 +453,17 @@ export function GroupSessionProvider({ children }) {
   const wasActiveRef = useRef(false)
   useEffect(() => {
     if (status === 'active' || status === 'quiz') wasActiveRef.current = true
+  }, [status])
+
+  // Il quiz va mostrato subito appena il professore lo avvia: se chi guarda
+  // (studente o professore stesso, che può seguire la visita come un
+  // partecipante) aveva un approfondimento aperto, chiuderlo esplicitamente
+  // invece di lasciarlo sopra il modale del quiz finché non viene chiuso a
+  // mano. Copre sia l'evento live (visit:quiz_started) sia il rientro dopo
+  // reload quando status arriva già 'quiz' dall'ack di visit:join.
+  useEffect(() => {
+    if (status === 'quiz') closeInsight()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status])
 
   useEffect(() => {
