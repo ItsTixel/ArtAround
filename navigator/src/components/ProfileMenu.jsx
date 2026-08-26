@@ -3,8 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { useActiveVisit } from '../context/ActiveVisitContext'
 import { useGroupSession } from '../context/GroupSessionContext'
+import { useVisitProgress } from '../context/VisitProgressContext'
 import { PersonIcon, LogoutIcon, ExitIcon, SunIcon, MoonIcon } from './icons'
 import { getTheme, toggleTheme } from '../theme'
+import { museumVisitPath } from '../utils/museumVisit'
 
 const MARKETPLACE_PROFILE_URL = '/marketplace/pages/profile.html'
 
@@ -131,6 +133,7 @@ function ProfileMenu({ hasPlayer = false }) {
   const { user, refresh } = useAuth()
   const { activeVisit, clearActiveVisit } = useActiveVisit()
   const { role: groupRole, leaveSession: leaveGroupSession } = useGroupSession()
+  const { museum } = useVisitProgress()
   const navigate = useNavigate()
 
   const bottomClearance = hasPlayer ? BOTTOM_CLEARANCE_WITH_PLAYER : BOTTOM_CLEARANCE_NO_PLAYER
@@ -344,9 +347,12 @@ function ProfileMenu({ hasPlayer = false }) {
 
   function handleLeaveVisit() {
     closeMenu()
+    // Preso prima di leaveGroupSession()/clearActiveVisit(): entrambe
+    // azzerano la visita attiva, da cui museum è derivato.
+    const path = museumVisitPath(museum)
     if (groupRole) leaveGroupSession()
     else clearActiveVisit()
-    navigate('/visite')
+    navigate(path)
   }
 
   function handleToggleTheme() {

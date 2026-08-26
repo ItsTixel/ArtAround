@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useGroupSession } from '../context/GroupSessionContext'
 import { PlayIcon, PauseIcon, InfoIcon } from '../components/icons'
 import useDocumentTitle from '../hooks/useDocumentTitle'
+import { museumVisitPath } from '../utils/museumVisit'
 
 const TONE_ABBR = { childish: 'Infan.', simple: 'Elem.', medium: 'Med.', technical: 'Avan.' }
 
@@ -92,8 +93,11 @@ function Gruppo() {
   }
 
   function handleExit() {
+    // Presa prima di leaveSession(): quella pulisce groupVisit, da cui
+    // activeStep (e il suo museo) è derivato.
+    const path = museumVisitPath(activeStep?.museum)
     leaveSession()
-    navigate('/visite')
+    navigate(path)
   }
 
   return (

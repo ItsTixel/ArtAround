@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { io } from 'socket.io-client'
 import { useActiveVisit } from './ActiveVisitContext'
 import { useVisitProgress } from './VisitProgressContext'
+import { museumVisitPath } from '../utils/museumVisit'
 
 const STORAGE_KEY = 'navigator_group_session'
 
@@ -24,6 +25,7 @@ export function GroupSessionProvider({ children }) {
     canGoPreviousStep,
     canGoNextStep,
     directionsText,
+    museum,
   } = useVisitProgress()
 
   const [role, setRole] = useState(null) // 'host' | 'student' | null
@@ -326,6 +328,10 @@ export function GroupSessionProvider({ children }) {
   async function endSession() {
     if (!visitId) return
     await fetch(`/api/visits/${visitId}/session/end`, { method: 'POST', credentials: 'include' })
+    // Il professore ha terminato la visita: non è più "attiva" per lui da
+    // subito, prima ancora di uscire dalla tab Gruppo (che nel frattempo
+    // mostra ancora il riepilogo tramite groupVisit, non toccato qui).
+    clearActiveVisit()
   }
 
   // Solo il professore. Lo stato aggiornato (status='quiz' + le domande
@@ -431,8 +437,9 @@ export function GroupSessionProvider({ children }) {
     if (status !== 'finished') return
     if (!wasActiveRef.current) return
     wasActiveRef.current = false
+    const path = museumVisitPath(museum)
     leaveSession()
-    navigate('/visite', { state: { groupSessionEnded: true } })
+    navigate(path, { state: { groupSessionEnded: true } })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [role, status])
 
