@@ -105,7 +105,7 @@ async function init() {
 		const [museums, entities, featuredEntities, visits] = await Promise.all([
 			fetchJson('/api/museums?pageSize=1'),
 			fetchJson('/api/entities?pageSize=1'),
-			fetchJson('/api/entities?has_image=true&sort=createdAt&pageSize=3'),
+			fetchJson('/api/entities?has_image=true&is_physical=true&sort=createdAt&pageSize=3'),
 			fetchJson('/api/visits?sort=createdAt&pageSize=3&is_group=false'),
 		]);
 
