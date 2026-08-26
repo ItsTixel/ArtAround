@@ -225,6 +225,12 @@ export function VisitProgressProvider({ children }) {
   // già per l'opera principale, anche quando lo studente sta ascoltando un
   // approfondimento invece dello step di visita.
   const [insightState, setInsightState] = useState({ tone: null, paragraphIndex: null, playbackState: null })
+  // True while the "visita terminata" popup is shown — GroupSessionContext
+  // opens it from handleNextStep only for a plain individual visit (no group
+  // session, role === null) once Prossimo is pressed on the last opera. A
+  // group visit's ending is a separate, already-working path (the professor's
+  // own "Termina visita"/endSession), so this state never applies there.
+  const [showEndPrompt, setShowEndPrompt] = useState(false)
   const [micAutoEnabled, setMicAutoEnabled] = useState(true)
   const micAutoEnabledRef = useRef(true) // mirrors micAutoEnabled for onend callbacks created before a later toggle
   micAutoEnabledRef.current = micAutoEnabled
@@ -656,6 +662,19 @@ export function VisitProgressProvider({ children }) {
     setInsightState({ tone: null, paragraphIndex: null, playbackState: null })
   }
 
+  // Opens the end-of-visit popup: silences mic/narration first, same
+  // "whoever grabs the audio channel gets it exclusively" rule as
+  // requestInsight above.
+  function openEndPrompt() {
+    stopListening()
+    window.speechSynthesis.cancel()
+    setShowEndPrompt(true)
+  }
+
+  function closeEndPrompt() {
+    setShowEndPrompt(false)
+  }
+
   // Chiamato dall'EntityListenPanel voiceControlled a ogni cambio di
   // tono/paragrafo/playback mentre l'utente sta ascoltando un approfondimento.
   function reportInsightState(partial) {
@@ -911,6 +930,7 @@ export function VisitProgressProvider({ children }) {
     setSelectedDescIndex(0)
     setDirections(null)
     setActiveInsightTag(null)
+    setShowEndPrompt(false)
     lastPhysicalLocationRef.current = null
     lastStepIndexRef.current = null
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -1021,6 +1041,9 @@ export function VisitProgressProvider({ children }) {
     requestInsight,
     closeInsight,
     registerInsightNav,
+    showEndPrompt,
+    openEndPrompt,
+    closeEndPrompt,
     micListening,
     micTranscript,
     micError,

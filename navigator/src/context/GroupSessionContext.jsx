@@ -26,6 +26,7 @@ export function GroupSessionProvider({ children }) {
     canGoNextStep,
     directionsText,
     museum,
+    openEndPrompt,
   } = useVisitProgress()
 
   const [role, setRole] = useState(null) // 'host' | 'student' | null
@@ -60,6 +61,15 @@ export function GroupSessionProvider({ children }) {
       requestNextStep()
       return
     }
+    // Visita individuale (nessuna sessione di gruppo) arrivata all'ultima
+    // opera: invece di restare disabilitato, Prossimo apre il popup di fine
+    // visita — "Termina visita"/"Rimani nella visita attuale" (VisitEndModal,
+    // montata in AppLayout). Le visite di gruppo hanno già un modo dedicato
+    // di terminare (endSession/leaveSession) e non passano di qui.
+    if (role === null && !canGoNextStep) {
+      openEndPrompt()
+      return
+    }
     if (isRestrictedStudent || !canGoNextStep) return
     if (isHostControlling) {
       setActiveStep(currentStepIndex + 1)
@@ -69,7 +79,9 @@ export function GroupSessionProvider({ children }) {
   }
 
   const previousStepDisabled = isRestrictedStudent || !canGoPreviousStep
-  const nextStepDisabled = !directionsText && (isRestrictedStudent || !canGoNextStep)
+  // Stessa eccezione di handleNextStep: in una visita individuale sull'ultima
+  // opera il tasto resta premibile (apre il popup) invece di disabilitarsi.
+  const nextStepDisabled = role === null ? false : !directionsText && (isRestrictedStudent || !canGoNextStep)
 
   // VisitProgressContext can't consume this context back (it depends on
   // VisitProgressContext itself — goToStep above — so importing it here
