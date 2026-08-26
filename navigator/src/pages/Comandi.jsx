@@ -179,15 +179,6 @@ function Comandi() {
 
   if (!activeVisit) return <NoActiveVisit />
 
-  // A visit can span more than one museum (es. "Leonardo tra Firenze e
-  // Milano"): show one section per museum, with the museum of the step
-  // currently on screen listed first.
-  const currentMuseumId = museum?._id
-  const visitMuseums = (activeVisit.museum || [])
-    .filter((m) => m && typeof m === 'object')
-    .slice()
-    .sort((a, b) => (a._id === currentMuseumId ? -1 : b._id === currentMuseumId ? 1 : 0))
-
   function handleService(museumForService, label) {
     const phrase = goToService(museumForService, label)
     if (!phrase) {
@@ -268,42 +259,40 @@ function Comandi() {
           Posizioni e Servizi
         </h2>
 
-        {visitMuseums.length === 0 && (
+        {!museum && (
           <p className="text-sm text-text-muted">Nessuna informazione disponibile.</p>
         )}
 
-        {visitMuseums.map((visitMuseum) => {
-          const extraServiceLabels = Object.keys(visitMuseum.services || {}).filter(
-            (key) => !STANDARD_SERVICE_KEYS.includes(key)
-          )
-          return (
-            <div key={visitMuseum._id} className="flex flex-col gap-3">
-              {visitMuseums.length > 1 && (
-                <h3 className="text-sm font-semibold text-text">{visitMuseum.name}</h3>
-              )}
-              <div className="grid grid-cols-2 gap-3">
-                <CommandButton
-                  label="Toilette"
-                  Icon={ToiletIcon}
-                  onClick={() => handleService(visitMuseum, 'Toilette')}
-                  colorClasses="bg-violet-600 text-white"
-                />
-                <CommandButton
-                  label="Uscita"
-                  Icon={ExitIcon}
-                  onClick={() => handleService(visitMuseum, 'Uscita')}
-                  colorClasses="bg-teal-600 text-white"
-                />
+        {museum &&
+          (() => {
+            const extraServiceLabels = Object.keys(museum.services || {}).filter(
+              (key) => !STANDARD_SERVICE_KEYS.includes(key)
+            )
+            return (
+              <div className="flex flex-col gap-3">
+                <div className="grid grid-cols-2 gap-3">
+                  <CommandButton
+                    label="Toilette"
+                    Icon={ToiletIcon}
+                    onClick={() => handleService(museum, 'Toilette')}
+                    colorClasses="bg-violet-600 text-white"
+                  />
+                  <CommandButton
+                    label="Uscita"
+                    Icon={ExitIcon}
+                    onClick={() => handleService(museum, 'Uscita')}
+                    colorClasses="bg-teal-600 text-white"
+                  />
+                </div>
+                {extraServiceLabels.length > 0 && (
+                  <ServiceButtonGrid
+                    labels={extraServiceLabels}
+                    onSelect={(label) => handleService(museum, label)}
+                  />
+                )}
               </div>
-              {extraServiceLabels.length > 0 && (
-                <ServiceButtonGrid
-                  labels={extraServiceLabels}
-                  onSelect={(label) => handleService(visitMuseum, label)}
-                />
-              )}
-            </div>
-          )
-        })}
+            )
+          })()}
 
         {serviceMessage && (
           <p role="status" aria-live="polite" className="text-sm text-text-muted">
