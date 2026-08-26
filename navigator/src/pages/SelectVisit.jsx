@@ -290,10 +290,10 @@ function SelectVisit() {
             id="visit-code"
             type="text"
             value={visitCode}
-            onChange={(e) => setVisitCode(e.target.value)}
+            onChange={(e) => setVisitCode(e.target.value.toUpperCase())}
             placeholder="Es. ABC123"
             autoComplete="off"
-            className="flex-1 rounded-xl bg-transparent px-3 py-2 text-sm text-text placeholder:text-text-muted focus:outline-none"
+            className="flex-1 rounded-xl bg-transparent px-3 py-2 text-sm uppercase text-text placeholder:text-text-muted focus:outline-none"
           />
           <button
             type="submit"
