@@ -1853,6 +1853,8 @@
     "name": "Leonardo",
     "is_physical": false,
     "description": "Pittore, scienziato e ingegnere toscano (Vinci 1452 - Amboise 1519), tra le figure più complete del Rinascimento italiano.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Leonardo_da_Vinci_-_presumed_self-portrait_-_WGA12798.jpg/960px-Leonardo_da_Vinci_-_presumed_self-portrait_-_WGA12798.jpg",
+    "alt_text": "Presunto autoritratto di Leonardo da Vinci, volto di uomo anziano con lunga barba",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -1872,6 +1874,8 @@
     "name": "Piero Della Francesca",
     "is_physical": false,
     "description": "Pittore e matematico toscano (Borgo Sansepolcro 1412 circa - 1492), noto per il rigore geometrico e lo studio scientifico della prospettiva.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/38/Autoritratto_Piero_della_Francesca.jpg",
+    "alt_text": "Presunto autoritratto di Piero della Francesca",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -1891,6 +1895,8 @@
     "name": "Botticelli",
     "is_physical": false,
     "description": "Pittore fiorentino (1445-1510), allievo di Filippo Lippi e protetto della famiglia Medici, celebre per le sue allegorie mitologiche.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/65/Sandro_Botticelli_-_The_Adoration_of_the_Magi_%28detail%29_-_WGA2704.jpg",
+    "alt_text": "Presunto autoritratto di Sandro Botticelli, dettaglio dall'Adorazione dei Magi",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -1910,6 +1916,8 @@
     "name": "Michelangelo",
     "is_physical": false,
     "description": "Scultore, pittore e architetto fiorentino (1475-1564), considerato tra i massimi artisti del Rinascimento.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Michelangelo_Daniele_da_Volterra_%28dettaglio%29.jpg/960px-Michelangelo_Daniele_da_Volterra_%28dettaglio%29.jpg",
+    "alt_text": "Ritratto di Michelangelo Buonarroti attribuito a Daniele da Volterra",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -1929,6 +1937,8 @@
     "name": "Raffaello",
     "is_physical": false,
     "description": "Pittore urbinate (1483-1520), allievo del Perugino, celebre per l'equilibrio e l'armonia delle sue composizioni.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Raffaello%2C_autoritratto%2C_1506_ca.jpg/960px-Raffaello%2C_autoritratto%2C_1506_ca.jpg",
+    "alt_text": "Autoritratto di Raffaello Sanzio, 1506 circa, Uffizi",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -1948,6 +1958,8 @@
     "name": "Tiziano",
     "is_physical": false,
     "description": "Massimo esponente della pittura veneziana del Cinquecento (1488/90 circa - 1576), maestro del colore.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Titian_-_Self-Portrait_-_WGA22973.jpg",
+    "alt_text": "Autoritratto di Tiziano Vecellio",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -1967,6 +1979,8 @@
     "name": "Paolo Uccello",
     "is_physical": false,
     "description": "Pittore fiorentino (1397-1475), ossessionato dallo studio della prospettiva lineare.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Five_Masters_of_the_Florentine_Renaissance_%28Giotto%2C_Uccello%2C_Donatello%2C_Manetti%2C_Brunelleschi%29%2C_anonymous%2C_mid-16th_ct%2C_Louvre_%28Inv.267%29.jpg/960px-Five_Masters_of_the_Florentine_Renaissance_%28Giotto%2C_Uccello%2C_Donatello%2C_Manetti%2C_Brunelleschi%29%2C_anonymous%2C_mid-16th_ct%2C_Louvre_%28Inv.267%29.jpg",
+    "alt_text": "Ritratto di Paolo Uccello nel dipinto 'Cinque maestri del Rinascimento fiorentino', Louvre",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -1986,6 +2000,8 @@
     "name": "Caravaggio",
     "is_physical": false,
     "description": "Pittore lombardo (Milano 1571 - Porto Ercole 1610), rivoluzionario per il naturalismo crudo e il forte chiaroscuro.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Bild-Ottavio_Leoni%2C_Caravaggio.jpg/960px-Bild-Ottavio_Leoni%2C_Caravaggio.jpg",
+    "alt_text": "Ritratto di Michelangelo Merisi da Caravaggio, disegno di Ottavio Leoni",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2005,6 +2021,8 @@
     "name": "Rinascimento",
     "is_physical": false,
     "description": "Movimento culturale e artistico fiorito in Italia fra Quattrocento e Cinquecento, fondato sulla riscoperta dell'antichità classica.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Da_Vinci_Vitruve_Luc_Viatour.jpg/960px-Da_Vinci_Vitruve_Luc_Viatour.jpg",
+    "alt_text": "L'Uomo Vitruviano di Leonardo da Vinci, simbolo dell'armonia rinascimentale tra arte e scienza",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2024,6 +2042,8 @@
     "name": "Quattrocento",
     "is_physical": false,
     "description": "Il XV secolo in Italia, corrispondente alla prima fase del Rinascimento, segnata dalle scoperte di Brunelleschi, Donatello e Masaccio.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Domenico_ghirlandaio%2C_ritratto_di_nonno_con_nipote.jpg/960px-Domenico_ghirlandaio%2C_ritratto_di_nonno_con_nipote.jpg",
+    "alt_text": "Ritratto di nonno e nipote di Domenico Ghirlandaio, dipinto simbolo della pittura del Quattrocento fiorentino",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2043,6 +2063,8 @@
     "name": "Barocco",
     "is_physical": false,
     "description": "Stile artistico del Seicento europeo, caratterizzato da forti contrasti di luce, movimento ed enfasi emotiva.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Apollo_and_Daphne_%28Bernini%29_%28cropped%29.jpg/960px-Apollo_and_Daphne_%28Bernini%29_%28cropped%29.jpg",
+    "alt_text": "Apollo e Dafne di Gian Lorenzo Bernini, esempio di scultura barocca",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2062,6 +2084,8 @@
     "name": "Ritratto",
     "is_physical": false,
     "description": "Genere pittorico dedicato a fissare l'aspetto e l'identità di una persona reale, spesso a fini dinastici, politici o commemorativi.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Piero_della_Francesca_-_Portraits_of_the_Duke_and_Duchess_of_Urbino%2C_Federico_da_Montefeltro_and_Battista_Sforza_-_Google_Art_Project.jpg/960px-Piero_della_Francesca_-_Portraits_of_the_Duke_and_Duchess_of_Urbino%2C_Federico_da_Montefeltro_and_Battista_Sforza_-_Google_Art_Project.jpg",
+    "alt_text": "Dittico dei duchi di Urbino, Federico da Montefeltro e Battista Sforza, di Piero della Francesca",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2081,6 +2105,8 @@
     "name": "Urbino",
     "is_physical": false,
     "description": "Città delle Marche che nel Quattrocento, sotto Federico da Montefeltro, fu una delle corti più raffinate del Rinascimento italiano.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Urbino_Palazzo_Ducale_facciata_del_Laurana.JPG/960px-Urbino_Palazzo_Ducale_facciata_del_Laurana.JPG",
+    "alt_text": "Facciata del Palazzo Ducale di Urbino",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2100,6 +2126,8 @@
     "name": "Mitologia",
     "is_physical": false,
     "description": "Il complesso dei miti greci e romani — dei, eroi e creature straordinarie — che la pittura rinascimentale e barocca riscopre come repertorio narrativo e come veicolo di significati filosofici e allegorici.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Pallade_col_Centauro%2C_Sandro_Botticelli_%281482%29.jpg/960px-Pallade_col_Centauro%2C_Sandro_Botticelli_%281482%29.jpg",
+    "alt_text": "Pallade e il Centauro di Sandro Botticelli, soggetto mitologico allegorico",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2119,6 +2147,8 @@
     "name": "Tempera",
     "is_physical": false,
     "description": "Tecnica pittorica a base di pigmenti naturali legati con tuorlo d'uovo, la tecnica più diffusa in Italia prima della definitiva affermazione dell'olio nel Cinquecento.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Duccio_di_Buoninsegna%2C_Rucellai_Madonna%2C_after_1285%2C_Uffiz.jpg/960px-Duccio_di_Buoninsegna%2C_Rucellai_Madonna%2C_after_1285%2C_Uffiz.jpg",
+    "alt_text": "Maestà Rucellai di Duccio di Buoninsegna, dipinta a tempera su tavola",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2138,6 +2168,8 @@
     "name": "Venere",
     "is_physical": false,
     "description": "Venere, dea dell'amore e della bellezza nella mitologia romana (Afrodite per i greci), è una delle figure più raffigurate nella storia dell'arte occidentale.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg/960px-Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg",
+    "alt_text": "La Nascita di Venere di Sandro Botticelli, Uffizi",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2157,6 +2189,8 @@
     "name": "Tavola",
     "is_physical": false,
     "description": "Il supporto ligneo, generalmente in pioppo nell'Italia centrale, su cui è dipinta la maggior parte della pittura italiana prima della diffusione della tela.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Meliore%2C_dossale_col_redentore%2C_la_maodnna%2C_s._giovanni_e_i_ss._pietro_e_paolo%2C_1271%2C_01.jpg/960px-Meliore%2C_dossale_col_redentore%2C_la_maodnna%2C_s._giovanni_e_i_ss._pietro_e_paolo%2C_1271%2C_01.jpg",
+    "alt_text": "Dossale dipinto su tavola di Meliore, 1271, esempio di supporto ligneo medievale",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2176,6 +2210,8 @@
     "name": "Sacro",
     "is_physical": false,
     "description": "Il genere dell'arte sacra, dedicato a soggetti religiosi cristiani, è il filone dominante della pittura italiana fino al pieno Rinascimento.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Beato_Angelico%2C_Annunciazione_di_San_Giovanni_Valdarno%2C_1432_ca.%2C_01.jpg/960px-Beato_Angelico%2C_Annunciazione_di_San_Giovanni_Valdarno%2C_1432_ca.%2C_01.jpg",
+    "alt_text": "Annunciazione di Beato Angelico, esempio di arte sacra rinascimentale",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2195,6 +2231,8 @@
     "name": "Allegoria",
     "is_physical": false,
     "description": "L'allegoria è la rappresentazione visiva di un concetto astratto attraverso figure e simboli, spesso di soggetto mitologico.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Angelo_Bronzino_-_Venus%2C_Cupid%2C_Folly_and_Time_-_National_Gallery%2C_London.jpg/960px-Angelo_Bronzino_-_Venus%2C_Cupid%2C_Folly_and_Time_-_National_Gallery%2C_London.jpg",
+    "alt_text": "Venere, Cupido, la Follia e il Tempo di Bronzino, celebre allegoria manierista",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2214,6 +2252,8 @@
     "name": "Tondo",
     "is_physical": false,
     "description": "Il tondo è un dipinto o rilievo di formato circolare, particolarmente diffuso nella Firenze del secondo Quattrocento per la decorazione domestica.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Sandro_Botticelli_-_Madonna_del_Magnificat_-_Google_Art_Project.jpg/960px-Sandro_Botticelli_-_Madonna_del_Magnificat_-_Google_Art_Project.jpg",
+    "alt_text": "Madonna del Magnificat di Sandro Botticelli, dipinto di formato circolare (tondo)",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2233,6 +2273,8 @@
     "name": "Scultoreo",
     "is_physical": false,
     "description": "Si definisce 'scultoreo' lo stile pittorico che costruisce le figure per volumi solidi e plastici, quasi fossero statue trasferite sulla superficie dipinta.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Piero_della_francesca_resurrection_guard.jpg",
+    "alt_text": "Dettaglio del soldato dormiente nella Resurrezione di Piero della Francesca, esempio di figura dal volume scultoreo",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2252,6 +2294,8 @@
     "name": "Profilo",
     "is_physical": false,
     "description": "Il ritratto di profilo, con il volto raffigurato di lato, è il formato ritrattistico dominante nell'Italia del primo Rinascimento.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Piero_del_Pollaiuolo_-_Profile_Portrait_of_a_Young_Lady_-_Gem%C3%A4ldegalerie_Berlin_-_Google_Art_Project.jpg/960px-Piero_del_Pollaiuolo_-_Profile_Portrait_of_a_Young_Lady_-_Gem%C3%A4ldegalerie_Berlin_-_Google_Art_Project.jpg",
+    "alt_text": "Ritratto di profilo di giovane dama, Piero del Pollaiolo",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2271,6 +2315,8 @@
     "name": "Scudo",
     "is_physical": false,
     "description": "Lo scudo cerimoniale, spesso decorato con soggetti apotropaici, è un supporto pittorico insolito derivato dalla tradizione degli oggetti da parata e da collezione.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Caravaggio_-_Medusa_-_Google_Art_Project.jpg/960px-Caravaggio_-_Medusa_-_Google_Art_Project.jpg",
+    "alt_text": "Medusa di Caravaggio, dipinta su uno scudo cerimoniale, Uffizi",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2290,6 +2336,8 @@
     "name": "Nudo",
     "is_physical": false,
     "description": "Il nudo, la rappresentazione del corpo umano privo di vesti, è uno dei generi più antichi e discussi della storia dell'arte occidentale.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Tiziano_-_Venere_di_Urbino_-_Google_Art_Project.jpg/960px-Tiziano_-_Venere_di_Urbino_-_Google_Art_Project.jpg",
+    "alt_text": "Venere di Urbino di Tiziano, celebre nudo femminile rinascimentale",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2309,6 +2357,8 @@
     "name": "Natura Morta",
     "is_physical": false,
     "description": "La natura morta, genere dedicato alla rappresentazione di oggetti inanimati come frutta, fiori o oggetti quotidiani, si afferma come genere autonomo fra Cinque e Seicento.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Canestra_di_frutta_%28Caravaggio%29.jpg/960px-Canestra_di_frutta_%28Caravaggio%29.jpg",
+    "alt_text": "Canestra di frutta di Caravaggio, esempio fondativo della natura morta italiana",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2328,6 +2378,8 @@
     "name": "Battaglia",
     "is_physical": false,
     "description": "La pittura di battaglia, dedicata alla narrazione di scontri militari, celebra spesso vittorie storiche o eventi dinastici di rilievo.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Paolo_Uccello%2C_The_Battle_of_San_Romano%2C_c1436-40%2C_Uffizi%2C_detail1.jpg/960px-Paolo_Uccello%2C_The_Battle_of_San_Romano%2C_c1436-40%2C_Uffizi%2C_detail1.jpg",
+    "alt_text": "La Battaglia di San Romano di Paolo Uccello, Uffizi",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2347,6 +2399,8 @@
     "name": "Prospettiva",
     "is_physical": false,
     "description": "La prospettiva lineare, il sistema geometrico che permette di rappresentare la profondità su una superficie piatta, è una delle invenzioni fondanti del Rinascimento fiorentino.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Formerly_Piero_della_Francesca_-_Ideal_City_-_Galleria_Nazionale_delle_Marche_Urbino_2.jpg/960px-Formerly_Piero_della_Francesca_-_Ideal_City_-_Galleria_Nazionale_delle_Marche_Urbino_2.jpg",
+    "alt_text": "La Città Ideale, esempio di applicazione rigorosa della prospettiva lineare rinascimentale",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2366,6 +2420,8 @@
     "name": "Madonna",
     "is_physical": false,
     "description": "Il tema della Madonna con il Bambino, tra i più raffigurati nell'arte cristiana, occupa un posto centrale nella produzione pittorica del Rinascimento italiano.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Raffaello_%281483-1520%29_-_La_Madonna_del_Granduca_-_178_-_Galleria_Palatina.jpg/960px-Raffaello_%281483-1520%29_-_La_Madonna_del_Granduca_-_178_-_Galleria_Palatina.jpg",
+    "alt_text": "Madonna del Granduca di Raffaello",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2385,6 +2441,8 @@
     "name": "Cardellino",
     "is_physical": false,
     "description": "Il cardellino, piccolo uccello dal piumaggio rosso e giallo, è nell'iconografia cristiana un simbolo della Passione di Cristo.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/European_Goldfinch_%28Carduelis_carduelis%291.jpg/960px-European_Goldfinch_%28Carduelis_carduelis%291.jpg",
+    "alt_text": "Un cardellino (Carduelis carduelis), uccello simbolo della Passione nell'iconografia cristiana",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2404,6 +2462,8 @@
     "name": "Uffizi",
     "is_physical": false,
     "description": "La Galleria degli Uffizi è oggi uno dei musei più visitati al mondo, con una delle raccolte di pittura rinascimentale più importanti a livello internazionale.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Piazzale_degli_Uffizi_perspective_view%2C_Florence%2C_Italy%2C_August_2025.jpg/960px-Piazzale_degli_Uffizi_perspective_view%2C_Florence%2C_Italy%2C_August_2025.jpg",
+    "alt_text": "Veduta del Piazzale degli Uffizi a Firenze",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2423,6 +2483,8 @@
     "name": "Medici",
     "is_physical": false,
     "description": "La famiglia Medici, dinastia di banchieri e poi di duchi e granduchi di Toscana, è stata per tre secoli il principale motore del mecenatismo artistico fiorentino.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bronzino_Cosimo_de%27_Medici.jpg/960px-Bronzino_Cosimo_de%27_Medici.jpg",
+    "alt_text": "Ritratto di Cosimo I de' Medici in armatura, di Bronzino",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2442,6 +2504,8 @@
     "name": "Introduzione",
     "is_physical": false,
     "description": "Suggerimenti pratici su come affrontare la visita di un grande museo come gli Uffizi, per orientarsi fra le sale senza perdere il filo.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Firenze_-_Florence_-_Uffizi_Courtyard_-_View_SSW_on_%27Equit%C3%A0_e_Rigore%27_1564-1566_by_Vincenzo_Danti.jpg/960px-Firenze_-_Florence_-_Uffizi_Courtyard_-_View_SSW_on_%27Equit%C3%A0_e_Rigore%27_1564-1566_by_Vincenzo_Danti.jpg",
+    "alt_text": "Il cortile degli Uffizi con le statue dei loggiati, punto di partenza per orientarsi nel museo",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2461,6 +2525,8 @@
     "name": "Storia",
     "is_physical": false,
     "description": "La ricostruzione della storia di un'opera — chi l'ha commissionata, chi l'ha posseduta, come si è conservata nel tempo — arricchisce la comprensione dell'opera stessa.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/91/GIORGIO-VASARI-RITRATTO-1566-68.jpg",
+    "alt_text": "Ritratto di Giorgio Vasari, storiografo dell'arte rinascimentale, 1566-68",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2480,6 +2546,8 @@
     "name": "Accademia",
     "is_physical": false,
     "description": "La Galleria dell'Accademia di Firenze, nata come raccolta didattica per gli allievi di belle arti, è oggi celebre soprattutto per ospitare il David di Michelangelo.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Firenze%2C_galleria_dell%27accademia%2C_tribuna_del_david_01.jpg/960px-Firenze%2C_galleria_dell%27accademia%2C_tribuna_del_david_01.jpg",
+    "alt_text": "La Tribuna del David nella Galleria dell'Accademia di Firenze",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2499,6 +2567,8 @@
     "name": "Capolavoro",
     "is_physical": false,
     "description": "Il termine 'capolavoro' indica un'opera che per qualità tecnica, originalità e influenza storica è considerata un vertice assoluto della produzione di un artista o di un'epoca.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Michelangelo%27s_David_2015.jpg/960px-Michelangelo%27s_David_2015.jpg",
+    "alt_text": "Il David di Michelangelo, celebre capolavoro del Rinascimento",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2518,6 +2588,8 @@
     "name": "Cassone",
     "is_physical": false,
     "description": "Il cassone nuziale, cofano decorato destinato a contenere il corredo della sposa, è un mobile domestico che nel Quattrocento fiorentino diventa anche un importante supporto pittorico.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Cassone_adimari.jpg/960px-Cassone_adimari.jpg",
+    "alt_text": "Il Cassone Adimari, cassone nuziale fiorentino del Quattrocento",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2537,6 +2609,8 @@
     "name": "Cinquecento",
     "is_physical": false,
     "description": "Il Cinquecento, il XVI secolo in Italia, corrisponde alla fase matura del Rinascimento e ai suoi sviluppi verso il Manierismo.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/%27Adam%27s_Creation_Sistine_Chapel_ceiling%27_by_Michelangelo_JBU33cut.jpg/960px-%27Adam%27s_Creation_Sistine_Chapel_ceiling%27_by_Michelangelo_JBU33cut.jpg",
+    "alt_text": "La Creazione di Adamo di Michelangelo, Cappella Sistina, capolavoro del Cinquecento",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2556,6 +2630,8 @@
     "name": "Firenze",
     "is_physical": false,
     "description": "Firenze, culla del Rinascimento italiano, deve la propria centralità artistica al mecenatismo di famiglie come i Medici e alla concentrazione di botteghe e accademie d'arte senza pari in Europa.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/View_of_Florence%2C_Italy_from_top_of_Brunelleschi_Cupola_%2828109647429%29.jpg/960px-View_of_Florence%2C_Italy_from_top_of_Brunelleschi_Cupola_%2828109647429%29.jpg",
+    "alt_text": "Veduta di Firenze dalla cupola del Brunelleschi",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2575,6 +2651,8 @@
     "name": "Gesso",
     "is_physical": false,
     "description": "Il gesso, materiale usato per realizzare modelli e calchi preparatori, è uno strumento fondamentale nella pratica scultorea, sia come studio compositivo sia come mezzo di riproduzione.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Carrara%2C_accademia%2C_interno%2C_sala_multimediale_studenti_con_gessi_e_fregio_01.jpg/960px-Carrara%2C_accademia%2C_interno%2C_sala_multimediale_studenti_con_gessi_e_fregio_01.jpg",
+    "alt_text": "Sala con calchi in gesso in un'accademia di belle arti",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2594,6 +2672,8 @@
     "name": "Giambologna",
     "is_physical": false,
     "description": "Jean de Boulogne, detto Giambologna (Douai 1529 - Firenze 1608), scultore fiammingo attivo a Firenze, è il maggiore rappresentante della scultura manierista alla corte medicea.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Mercurio_volante%2C_Giambologna%2C_Bargello_Florenz-01.jpg/960px-Mercurio_volante%2C_Giambologna%2C_Bargello_Florenz-01.jpg",
+    "alt_text": "Mercurio volante di Giambologna, Museo del Bargello, Firenze",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2613,6 +2693,8 @@
     "name": "Lo Scheggia",
     "is_physical": false,
     "description": "Giovanni di Ser Giovanni Guidi, detto Lo Scheggia (San Giovanni Valdarno 1406 - Firenze 1486), fratello minore di Masaccio, fu specializzato nella decorazione di mobili domestici come cassoni e deschi da parto.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Lo_scheggia%2C_trionfo_della_fama%2C_1450_ca._01.JPG/960px-Lo_scheggia%2C_trionfo_della_fama%2C_1450_ca._01.JPG",
+    "alt_text": "Trionfo della Fama di Lo Scheggia, 1450 circa",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2632,6 +2714,8 @@
     "name": "Marmo",
     "is_physical": false,
     "description": "Il marmo, pietra calcarea pregiata per la sua compattezza e luminosità, è il materiale scultoreo per eccellenza della tradizione classica e rinascimentale italiana.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Marble_Quarry_near_Carrera.jpg/960px-Marble_Quarry_near_Carrera.jpg",
+    "alt_text": "Cava di marmo di Carrara",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2651,6 +2735,8 @@
     "name": "Non Finito",
     "is_physical": false,
     "description": "Il 'non finito' è la condizione di un'opera scultorea lasciata volutamente o involontariamente incompleta, divenuta con Michelangelo un valore estetico a sé stante.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Michelangelo%2C_schiavo_detto_atlante_%28dettaglio%29.jpg/960px-Michelangelo%2C_schiavo_detto_atlante_%28dettaglio%29.jpg",
+    "alt_text": "Dettaglio dello Schiavo detto Atlante di Michelangelo, esempio di scultura non finita",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2670,6 +2756,8 @@
     "name": "Oro",
     "is_physical": false,
     "description": "La foglia d'oro, applicata su fondi e aureole dei dipinti medievali e trecenteschi, conferiva alle immagini sacre una luce simbolica non naturalistica, propria della tradizione bizantina.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Gentile_da_fabriano%2C_adorazione_dei_magi.jpg/960px-Gentile_da_fabriano%2C_adorazione_dei_magi.jpg",
+    "alt_text": "Adorazione dei Magi di Gentile da Fabriano, con fondo e decorazioni in foglia d'oro",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2689,6 +2777,8 @@
     "name": "Pacino Di Bonaguida",
     "is_physical": false,
     "description": "Pacino di Bonaguida (attivo a Firenze fra il 1302 e il 1340 circa) è tra i più importanti miniatori e pittori fiorentini della prima metà del Trecento.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Pacino_di_buonaguida%2C_albero_della_vita%2C_00.jpg/960px-Pacino_di_buonaguida%2C_albero_della_vita%2C_00.jpg",
+    "alt_text": "L'Albero della Vita di Pacino di Bonaguida, Galleria dell'Accademia",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2708,6 +2798,8 @@
     "name": "Pietà",
     "is_physical": false,
     "description": "La Pietà, iconografia cristiana che raffigura il corpo di Cristo morto sorretto dalla Vergine Maria, è tra i soggetti più intensi e diffusi della scultura e pittura devozionale europea.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Michelangelo%27s_Pieta_5450_cropncleaned_edit.jpg/960px-Michelangelo%27s_Pieta_5450_cropncleaned_edit.jpg",
+    "alt_text": "La Pietà di Michelangelo, Basilica di San Pietro",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2727,6 +2819,8 @@
     "name": "Pinacoteca",
     "is_physical": false,
     "description": "La pinacoteca della Galleria dell'Accademia raccoglie dipinti fiorentini fra Trecento e Cinquecento, una sezione meno nota delle celebri sculture di Michelangelo ma di grande interesse storico-artistico.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Inside_view_of_the_Vasari_Corridor_%28corridoio_vasariano%29_in_Florence%2C_Italy_%282%29.jpg/960px-Inside_view_of_the_Vasari_Corridor_%28corridoio_vasariano%29_in_Florence%2C_Italy_%282%29.jpg",
+    "alt_text": "Interno del Corridoio Vasariano, con dipinti esposti lungo le pareti",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2746,6 +2840,8 @@
     "name": "Prigioni",
     "is_physical": false,
     "description": "I Prigioni, quattro statue non finite di Michelangelo destinate al monumento funebre di papa Giulio II, sono fra le opere più discusse e influenti della sua produzione scultorea.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Michelangelo_buonarroti%2C_schiavo_detto_atlante%2C_1525-30_ca.%2C_01.jpg/960px-Michelangelo_buonarroti%2C_schiavo_detto_atlante%2C_1525-30_ca.%2C_01.jpg",
+    "alt_text": "Uno dei Prigioni di Michelangelo, Galleria dell'Accademia di Firenze",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2765,6 +2861,8 @@
     "name": "Salone Ottocento",
     "is_physical": false,
     "description": "Il Salone dell'Ottocento raccoglie gessi, dipinti e sculture realizzati dagli allievi dell'Accademia di Belle Arti fiorentina nel corso del XIX secolo, testimonianza della vocazione didattica originaria del museo.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Accademia_di_san_luca%2C_sala_dei_gessi.JPG/960px-Accademia_di_san_luca%2C_sala_dei_gessi.JPG",
+    "alt_text": "Sala con calchi in gesso di un'accademia di belle arti ottocentesca",
     "tags": [],
     "external_links": [],
     "added_by": {
@@ -2784,6 +2882,8 @@
     "name": "Trecento",
     "is_physical": false,
     "description": "Il Trecento, il XIV secolo in Italia, è il periodo in cui, sulla scia di Giotto, la pittura italiana comincia ad allontanarsi dalla tradizione bizantina verso una maggiore naturalezza.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Cimabue_-_Maest%C3%A0_di_Santa_Trinita_-_Google_Art_Project.jpg/960px-Cimabue_-_Maest%C3%A0_di_Santa_Trinita_-_Google_Art_Project.jpg",
+    "alt_text": "Maestà di Santa Trinita di Cimabue, capolavoro del Trecento",
     "tags": [],
     "external_links": [],
     "added_by": {
