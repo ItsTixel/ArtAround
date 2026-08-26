@@ -82,6 +82,12 @@ const PHYSICAL_FILTER_LABELS = {
   nonphysical: 'Solo opere non fisiche',
 };
 const pickerState = { tab: 'catalog', search: '', museum: '', physicalFilter: 'all' };
+const PICKER_PAGE_SIZE = 100;
+/* page/hasMore riguardano la pagina "grezza" lato server (prima dei filtri
+ * client-side su placements/preferiti), così "altre opere disponibili" resta
+ * corretto anche nel tab Preferiti, dove il filtro reale è client-side. */
+let pickerPage = 0;
+let pickerHasMore = false;
 let pickerSelectedEntity = null; // opera scelta nel browse, in attesa di configurazione
 let pickerSearchTimer = null;
 
@@ -355,8 +361,8 @@ function closePicker() {
   document.getElementById('picker-overlay').hidden = true;
 }
 
-async function fetchPickerEntities() {
-  const params = new URLSearchParams({ pageSize: 100, sort: 'name' });
+async function fetchPickerEntities(page) {
+  const params = new URLSearchParams({ pageSize: PICKER_PAGE_SIZE, page, sort: 'name' });
   if (pickerState.physicalFilter !== 'all') params.set('is_physical', String(pickerState.physicalFilter === 'physical'));
   if (pickerState.search) params.set('name', pickerState.search);
   if (pickerState.museum) params.set('museum', pickerState.museum);
@@ -364,7 +370,8 @@ async function fetchPickerEntities() {
 
   const res = await fetch(`${API_ENTITIES}?${params}`);
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  const { data } = await res.json();
+  const { data, totalItems } = await res.json();
+  pickerHasMore = (page + 1) * PICKER_PAGE_SIZE < totalItems;
 
   // Solo le opere collocabili in almeno un museo possono diventare una tappa.
   let list = data.filter(e => (e.placements || []).length > 0);
@@ -399,20 +406,46 @@ function renderPickerCard(entity) {
   return btn;
 }
 
+function updatePickerLoadMoreButton() {
+  document.getElementById('picker-load-more').hidden = !pickerHasMore;
+}
+
 async function loadPickerGrid() {
+  pickerPage = 0;
   const grid = document.getElementById('picker-grid');
   grid.innerHTML = '<p class="picker-message">Caricamento…</p>';
+  document.getElementById('picker-load-more').hidden = true;
   try {
-    const entities = await fetchPickerEntities();
+    const entities = await fetchPickerEntities(pickerPage);
     grid.innerHTML = '';
     if (!entities.length) {
       grid.innerHTML = '<p class="picker-message">Nessuna opera trovata con questi filtri.</p>';
+      updatePickerLoadMoreButton();
       return;
     }
     entities.forEach(e => grid.appendChild(renderPickerCard(e)));
+    updatePickerLoadMoreButton();
   } catch (e) {
     grid.innerHTML = '<p class="picker-message">Errore nel caricamento. Riprova più tardi.</p>';
     console.error('Errore nel caricamento delle opere:', e);
+  }
+}
+
+async function loadMorePickerEntities() {
+  const btn = document.getElementById('picker-load-more');
+  btn.disabled = true;
+  btn.textContent = 'Caricamento…';
+  try {
+    pickerPage += 1;
+    const entities = await fetchPickerEntities(pickerPage);
+    const grid = document.getElementById('picker-grid');
+    entities.forEach(e => grid.appendChild(renderPickerCard(e)));
+    updatePickerLoadMoreButton();
+  } catch (e) {
+    console.error('Errore nel caricamento di altre opere:', e);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Carica altre opere';
   }
 }
 
@@ -1091,6 +1124,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     e.target.textContent = PHYSICAL_FILTER_LABELS[pickerState.physicalFilter];
     loadPickerGrid();
   });
+  document.getElementById('picker-load-more').addEventListener('click', loadMorePickerEntities);
 
   /* ---- Quiz ---- */
   document.getElementById('add-question').addEventListener('click', addQuestionRow);

@@ -374,6 +374,11 @@
   padding: 0.15rem;
 }
 
+.picker-load-more {
+  align-self: center;
+  flex-shrink: 0;
+}
+
 .picker-card {
   display: flex;
   flex-direction: column;
