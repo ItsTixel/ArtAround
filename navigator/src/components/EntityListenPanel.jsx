@@ -35,6 +35,7 @@ function EntityListenPanel({ entityId, seedItems, voiceControlled = false }) {
     scheduleAutoListen,
     autoplayEnabled,
     activeTone: mainActiveTone,
+    reportInsightState,
   } = useVisitProgress()
   const [items, setItems] = useState(seedItems || null)
   const [loadingItems, setLoadingItems] = useState(!seedItems)
@@ -136,6 +137,16 @@ function EntityListenPanel({ entityId, seedItems, voiceControlled = false }) {
     return () => registerInsightNav(null)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [voiceControlled])
+
+  // Riporta tono/paragrafo/playback di questo approfondimento a
+  // VisitProgressContext (e da lì, in sessione di gruppo, al professore) —
+  // stesso principio del reporting dell'opera principale in
+  // GroupSessionContext, ma per il contenuto mostrato in sovraimpressione.
+  useEffect(() => {
+    if (!voiceControlled) return
+    reportInsightState({ tone: activeTone, paragraphIndex: activeDescIndex, playbackState })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [voiceControlled, activeTone, activeDescIndex, playbackState])
 
   function stopSpeech() {
     window.speechSynthesis.cancel()

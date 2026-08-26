@@ -84,9 +84,15 @@ module.exports = function registerVisitSessionHandlers(io, socket) {
     }
   });
 
-  // Solo lo studente: aggiorna il proprio tono/paragrafo/playback/pronto
-  // locale. Nessun campo stepIndex qui — lo studente non naviga tra le opere.
-  socket.on('visit:update_state', async ({ visitId, tone, paragraphIndex, playbackState, ready }, ack) => {
+  // Solo lo studente: aggiorna il proprio tono/paragrafo/playback/pronto/
+  // approfondimento locale. Nessun campo stepIndex qui — lo studente non
+  // naviga tra le opere. insightTag può essere una stringa (apertura di un
+  // approfondimento) o null (chiusura): entrambi vanno distinti da
+  // "non inviato" (undefined), quindi il controllo è sempre !== undefined.
+  socket.on('visit:update_state', async ({
+    visitId, tone, paragraphIndex, playbackState, ready,
+    insightTag, insightTone, insightParagraphIndex, insightPlaybackState
+  }, ack) => {
     try {
       const visit = await Visit.findById(visitId).select('live_session');
       const isParticipant = visit?.live_session.participants.some(p => p.user.toString() === socket.user.id);
@@ -102,16 +108,26 @@ module.exports = function registerVisitSessionHandlers(io, socket) {
       if (paragraphIndex !== undefined) set['live_session.participants.$[elem].paragraph_index'] = paragraphIndex;
       if (playbackState !== undefined) set['live_session.participants.$[elem].playback_state'] = playbackState;
       if (ready !== undefined) set['live_session.participants.$[elem].ready'] = ready;
+      if (insightTag !== undefined) set['live_session.participants.$[elem].active_insight_tag'] = insightTag;
+      if (insightTone !== undefined) set['live_session.participants.$[elem].insight_tone'] = insightTone;
+      if (insightParagraphIndex !== undefined) set['live_session.participants.$[elem].insight_paragraph_index'] = insightParagraphIndex;
+      if (insightPlaybackState !== undefined) set['live_session.participants.$[elem].insight_playback_state'] = insightPlaybackState;
       if (Object.keys(set).length === 0) return ack?.({ ok: true });
+
+      const update = { $set: set };
+      if (insightTag) {
+        update.$addToSet = { 'live_session.participants.$[elem].insight_tags_viewed': insightTag };
+      }
 
       await Visit.updateOne(
         { _id: visitId },
-        { $set: set },
+        update,
         { arrayFilters: [{ 'elem.user': socket.user.id }], runValidators: true }
       );
 
       io.to(hostRoom(visitId)).emit('visit:participant_state_changed', {
-        userId: socket.user.id, tone, paragraphIndex, playbackState, ready
+        userId: socket.user.id, tone, paragraphIndex, playbackState, ready,
+        insightTag, insightTone, insightParagraphIndex, insightPlaybackState
       });
       ack?.({ ok: true });
     } catch (e) {

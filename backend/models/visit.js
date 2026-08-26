@@ -20,6 +20,18 @@ const liveParticipantSchema = new Schema({
   paragraph_index: { type: Number, default: 0 },
   playback_state: { type: String, enum: ['playing', 'paused'], default: 'playing' },
   ready: { type: Boolean, default: false },
+  // Tag dell'approfondimento (Entity) attualmente aperto nella InsightModal
+  // dello studente, null quando non ne ha nessuno aperto. insight_tags_viewed
+  // è lo storico (deduplicato) di tutti i tag aperti durante la sessione,
+  // usato dal professore per vedere quali approfondimenti ha ascoltato.
+  // insight_tone/insight_paragraph_index/insight_playback_state rispecchiano
+  // per l'approfondimento in corso lo stesso dettaglio (tono/paragrafo/pausa)
+  // già tracciato per l'opera principale.
+  active_insight_tag: { type: String, default: null },
+  insight_tags_viewed: { type: [String], default: [] },
+  insight_tone: { type: String, enum: ['childish', 'simple', 'medium', 'technical'], default: null },
+  insight_paragraph_index: { type: Number, default: null },
+  insight_playback_state: { type: String, enum: ['playing', 'paused'], default: null },
   quiz_answers: { type: [Number], default: [] },
   quiz_score: { type: Number, default: null }
 }, { _id: false });

@@ -16,6 +16,8 @@ export function GroupSessionProvider({ children }) {
     activeTone,
     activeDescIndex,
     playbackState: localPlaybackState,
+    activeInsightTag,
+    insightState,
     registerGroupNav,
     requestPreviousStep,
     requestNextStep,
@@ -112,6 +114,11 @@ export function GroupSessionProvider({ children }) {
           paragraphIndex: p.paragraph_index,
           playbackState: p.playback_state,
           ready: p.ready,
+          insightTag: p.active_insight_tag,
+          insightTagsViewed: p.insight_tags_viewed || [],
+          insightTone: p.insight_tone,
+          insightParagraphIndex: p.insight_paragraph_index,
+          insightPlaybackState: p.insight_playback_state,
         }))
       )
     } else {
@@ -189,6 +196,15 @@ export function GroupSessionProvider({ children }) {
           if (payload.paragraphIndex !== undefined) next.paragraphIndex = payload.paragraphIndex
           if (payload.playbackState !== undefined) next.playbackState = payload.playbackState
           if (payload.ready !== undefined) next.ready = payload.ready
+          if (payload.insightTag !== undefined) {
+            next.insightTag = payload.insightTag
+            if (payload.insightTag && !(next.insightTagsViewed || []).includes(payload.insightTag)) {
+              next.insightTagsViewed = [...(next.insightTagsViewed || []), payload.insightTag]
+            }
+          }
+          if (payload.insightTone !== undefined) next.insightTone = payload.insightTone
+          if (payload.insightParagraphIndex !== undefined) next.insightParagraphIndex = payload.insightParagraphIndex
+          if (payload.insightPlaybackState !== undefined) next.insightPlaybackState = payload.insightPlaybackState
           return next
         })
       )
@@ -485,6 +501,33 @@ export function GroupSessionProvider({ children }) {
     updateOwnState({ tone: activeTone, paragraphIndex: activeDescIndex, playbackState: localPlaybackState })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [role, status, activeTone, activeDescIndex, localPlaybackState])
+
+  // Segnala al professore l'apertura/chiusura di un approfondimento (tag) e,
+  // mentre è aperto, lo stesso dettaglio tono/paragrafo/playback già inviato
+  // per l'opera principale — così il monitor può mostrare non solo a che
+  // punto della visita è lo studente ma anche se sta seguendo un
+  // approfondimento, quale, a che punto è arrivato e quali ha già ascoltato
+  // (storico tenuto server-side, vedi insight_tags_viewed). A differenza
+  // della narrazione principale, tono/paragrafo vengono inviati subito
+  // (EntityListenPanel li sceglie in automatico all'apertura, prima ancora
+  // di premere "Ascolta"): uno studente che si limita a leggere il testo
+  // senza mai avviare la sintesi vocale non deve restare invisibile al
+  // professore. Solo il playback resta 'idle' → null, perché lo schema del
+  // server accetta solo 'playing'/'paused'.
+  useEffect(() => {
+    if (role !== 'student' || status !== 'active') return
+    if (!activeInsightTag) {
+      updateOwnState({ insightTag: null, insightTone: null, insightParagraphIndex: null, insightPlaybackState: null })
+      return
+    }
+    updateOwnState({
+      insightTag: activeInsightTag,
+      insightTone: insightState.tone,
+      insightParagraphIndex: insightState.paragraphIndex,
+      insightPlaybackState: insightState.playbackState === 'idle' ? null : insightState.playbackState,
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [role, status, activeInsightTag, insightState])
 
   // "Pronto" è legato all'opera corrente: quando il professore ne cambia una
   // (currentStepIndex cambia) il proprio segnale locale si azzera, così lo

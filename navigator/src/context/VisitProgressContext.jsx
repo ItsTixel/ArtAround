@@ -217,6 +217,13 @@ export function VisitProgressProvider({ children }) {
   const [micError, setMicError] = useState(null) // friendly message flashed in the listening popup when recognition fails (denied permission, insecure origin, no mic, ...)
   const micErrorTimeoutRef = useRef(null)
   const [activeInsightTag, setActiveInsightTag] = useState(null) // tag string | null — apre InsightModal (AppLayout) quando valorizzato, da bottone Comandi.jsx o comando vocale
+  // Tono/paragrafo/playback dell'opera-approfondimento mostrata in
+  // sovraimpressione, riportati dall'EntityListenPanel voiceControlled dentro
+  // InsightModal (vedi reportInsightState) — usati da GroupSessionContext per
+  // mostrare al professore lo stesso dettaglio (tono/paragrafo/pausa) che ha
+  // già per l'opera principale, anche quando lo studente sta ascoltando un
+  // approfondimento invece dello step di visita.
+  const [insightState, setInsightState] = useState({ tone: null, paragraphIndex: null, playbackState: null })
   const [micAutoEnabled, setMicAutoEnabled] = useState(true)
   const micAutoEnabledRef = useRef(true) // mirrors micAutoEnabled for onend callbacks created before a later toggle
   micAutoEnabledRef.current = micAutoEnabled
@@ -637,11 +644,19 @@ export function VisitProgressProvider({ children }) {
     stopListening()
     window.speechSynthesis.cancel()
     setActiveInsightTag(tag)
+    setInsightState({ tone: null, paragraphIndex: null, playbackState: null })
   }
 
   function closeInsight() {
     window.speechSynthesis.cancel()
     setActiveInsightTag(null)
+    setInsightState({ tone: null, paragraphIndex: null, playbackState: null })
+  }
+
+  // Chiamato dall'EntityListenPanel voiceControlled a ogni cambio di
+  // tono/paragrafo/playback mentre l'utente sta ascoltando un approfondimento.
+  function reportInsightState(partial) {
+    setInsightState((prev) => ({ ...prev, ...partial }))
   }
 
   // Pauses the main narration (if playing) without speaking anything, so an
@@ -998,6 +1013,8 @@ export function VisitProgressProvider({ children }) {
     goToService,
     pauseNarration,
     activeInsightTag,
+    insightState,
+    reportInsightState,
     requestInsight,
     closeInsight,
     registerInsightNav,

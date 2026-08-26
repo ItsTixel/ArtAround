@@ -1,13 +1,42 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGroupSession } from '../context/GroupSessionContext'
-import { PlayIcon, PauseIcon } from '../components/icons'
+import { PlayIcon, PauseIcon, InfoIcon } from '../components/icons'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 
 const TONE_ABBR = { childish: 'Infan.', simple: 'Elem.', medium: 'Med.', technical: 'Avan.' }
 
 function tileClasses(extra = '') {
   return `glass-pill flex h-8 min-w-9 items-center justify-center rounded-md px-2 text-xs font-medium text-text-muted ${extra}`
+}
+
+// Tono/paragrafo/playback: stesso trio di indicatori usato sia per l'opera
+// principale che, dentro il pannello approfondimenti, per quello attivo.
+function StatusPills({ tone, paragraphIndex, total, playbackState, ready }) {
+  return (
+    <div className="flex shrink-0 items-center gap-1.5">
+      <span className={tileClasses()} title="Tono">
+        {tone ? TONE_ABBR[tone] : '–'}
+      </span>
+      <span className={tileClasses()} title="Paragrafo">
+        {paragraphIndex != null ? `${paragraphIndex + 1}${total ? `/${total}` : ''}` : '–'}
+      </span>
+      <span className={tileClasses()} title={playbackState === 'playing' ? 'In ascolto' : playbackState === 'paused' ? 'In pausa' : 'Playback'}>
+        {playbackState === 'playing' ? (
+          <PlayIcon className="h-3.5 w-3.5" />
+        ) : playbackState === 'paused' ? (
+          <PauseIcon className="h-3.5 w-3.5" />
+        ) : (
+          '–'
+        )}
+      </span>
+      {ready !== undefined && (
+        <span className={tileClasses(ready ? 'border-info! bg-info! text-on-accent!' : '')} title="Pronto">
+          {ready ? '✓' : '–'}
+        </span>
+      )}
+    </div>
+  )
 }
 
 function Gruppo() {
@@ -26,6 +55,19 @@ function Gruppo() {
     startQuiz,
     leaveSession,
   } = useGroupSession()
+
+  // Riga(he) del roster con il pannello "approfondimenti ascoltati" aperto
+  // (più di uno studente alla volta, per confrontarli senza doverli riaprire).
+  const [expandedInsightIds, setExpandedInsightIds] = useState(() => new Set())
+
+  function toggleInsightPanel(userId) {
+    setExpandedInsightIds((prev) => {
+      const next = new Set(prev)
+      if (next.has(userId)) next.delete(userId)
+      else next.add(userId)
+      return next
+    })
+  }
 
   const sortedSteps = useMemo(() => {
     if (!groupVisit?.steps?.length) return []
@@ -76,44 +118,62 @@ function Gruppo() {
           <ul className="flex flex-col gap-2">
             {roster.map((p) => {
               const total = paragraphTotal(p.tone)
+              const hasInsights = p.insightTagsViewed?.length > 0
+              const isExpanded = expandedInsightIds.has(p.userId)
               return (
-                <li key={p.userId} className="glass-panel flex items-center justify-between gap-3 rounded-xl px-4 py-2.5 text-sm text-text">
-                  <span className="min-w-0 truncate">{p.display_name || p.username}</span>
-                  {status === 'active' && (
-                    <div className="flex shrink-0 items-center gap-1.5">
-                      <span className={tileClasses()} title="Tono">
-                        {p.tone ? TONE_ABBR[p.tone] : '–'}
-                      </span>
-                      <span className={tileClasses()} title="Paragrafo">
-                        {p.paragraphIndex != null ? `${p.paragraphIndex + 1}${total ? `/${total}` : ''}` : '–'}
-                      </span>
-                      <span className={tileClasses()} title={p.playbackState === 'playing' ? 'In ascolto' : p.playbackState === 'paused' ? 'In pausa' : 'Playback'}>
-                        {p.playbackState === 'playing' ? (
-                          <PlayIcon className="h-3.5 w-3.5" />
-                        ) : p.playbackState === 'paused' ? (
-                          <PauseIcon className="h-3.5 w-3.5" />
-                        ) : (
-                          '–'
-                        )}
-                      </span>
-                      <span
-                        className={tileClasses(p.ready ? 'border-info! bg-info! text-on-accent!' : '')}
-                        title="Pronto"
-                      >
-                        {p.ready ? '✓' : '–'}
-                      </span>
+                <li key={p.userId} className="glass-panel flex flex-col gap-2 rounded-xl px-4 py-2.5 text-sm text-text">
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex min-w-0 items-center gap-1.5">
+                      <span className="min-w-0 truncate">{p.display_name || p.username}</span>
+                      {status === 'active' && hasInsights && (
+                        <button
+                          type="button"
+                          onClick={() => toggleInsightPanel(p.userId)}
+                          aria-expanded={isExpanded}
+                          className={tileClasses(`shrink-0 gap-1 ${p.insightTag ? 'border-info! bg-info! text-on-accent!' : ''}`)}
+                          title={p.insightTag ? `Sta ascoltando l'approfondimento "${p.insightTag}"` : 'Approfondimenti ascoltati'}
+                        >
+                          <InfoIcon className="h-3.5 w-3.5" />
+                          {p.insightTagsViewed.length}
+                        </button>
+                      )}
                     </div>
-                  )}
-                  {status === 'quiz' && (
-                    <span
-                      className={`shrink-0 rounded-full border px-2.5 py-1 text-xs font-medium ${
-                        p.quizScore != null
-                          ? 'border-info bg-info text-on-accent'
-                          : 'glass-pill text-text-muted'
-                      }`}
-                    >
-                      {p.quizScore != null ? `${p.quizScore}/${p.quizTotal}` : 'In corso…'}
-                    </span>
+                    {status === 'active' && (
+                      <StatusPills tone={p.tone} paragraphIndex={p.paragraphIndex} total={total} playbackState={p.playbackState} ready={p.ready} />
+                    )}
+                    {status === 'quiz' && (
+                      <span
+                        className={`shrink-0 rounded-full border px-2.5 py-1 text-xs font-medium ${
+                          p.quizScore != null
+                            ? 'border-info bg-info text-on-accent'
+                            : 'glass-pill text-text-muted'
+                        }`}
+                      >
+                        {p.quizScore != null ? `${p.quizScore}/${p.quizTotal}` : 'In corso…'}
+                      </span>
+                    )}
+                  </div>
+
+                  {status === 'active' && hasInsights && isExpanded && (
+                    <div className="flex flex-col gap-1.5 rounded-lg border border-border bg-surface p-2.5 text-xs">
+                      <span className="font-medium uppercase tracking-wide text-text-muted">Approfondimenti ascoltati</span>
+                      <ul className="flex flex-col gap-1.5">
+                        {p.insightTagsViewed.map((tag) => {
+                          const isActive = tag === p.insightTag
+                          return (
+                            <li key={tag} className="flex items-center justify-between gap-2">
+                              <span className={`min-w-0 truncate ${isActive ? 'font-semibold text-text' : 'text-text-muted'}`}>
+                                {isActive ? '● ' : ''}
+                                {tag}
+                              </span>
+                              {isActive && (
+                                <StatusPills tone={p.insightTone} paragraphIndex={p.insightParagraphIndex} playbackState={p.insightPlaybackState} />
+                              )}
+                            </li>
+                          )
+                        })}
+                      </ul>
+                    </div>
                   )}
                 </li>
               )
