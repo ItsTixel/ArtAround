@@ -445,6 +445,24 @@ function Mappa() {
       }
     }
 
+    // Comando vocale "vai alla mappa": punta il pannello sull'opera che si
+    // sta visitando in quel momento, sul piano che la contiene.
+    if (highlightRequest?.entityId) {
+      const mapIndex = museum.maps.findIndex((map) =>
+        map.points.some(
+          (p) => p.icon_type === 'entity' && String(entityIdOf(p)) === String(highlightRequest.entityId)
+        )
+      )
+      if (mapIndex !== -1) {
+        setSelectedMapIndex(mapIndex)
+        const point = museum.maps[mapIndex].points.find(
+          (p) => p.icon_type === 'entity' && String(entityIdOf(p)) === String(highlightRequest.entityId)
+        )
+        setActivePoint(point || null)
+        return
+      }
+    }
+
     setSelectedMapIndex(0)
     setActivePoint(null)
     // eslint-disable-next-line react-hooks/exhaustive-deps

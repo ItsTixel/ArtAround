@@ -90,9 +90,12 @@ function buildDirections(prev, curr) {
 // won't say the exact Comandi.jsx button label.
 const VOICE_COMMAND_PATTERNS = [
   { key: 'previousStep', patterns: ['precedente', 'indietro'] },
-  { key: 'nextStep', patterns: ['prossimo', 'successivo', 'avanti'] },
+  // Deve precedere nextStep: quel gruppo include il pattern generico 'vai',
+  // che altrimenti intercetterebbe "vai alla mappa" prima di arrivare qui.
+  { key: 'goToMap', patterns: ['vai alla mappa', 'apri la mappa', 'mostra la mappa', 'dove sono'] },
+  { key: 'nextStep', patterns: ['prossimo', 'successivo', 'avanti', 'continua la visita','procedi','vai'] },
   { key: 'lessDetails', patterns: ['meno dettagli', 'meno particolari'] },
-  { key: 'moreDetails', patterns: ['dimmi di piu', 'piu dettagli', 'continua'] },
+  { key: 'moreDetails', patterns: ['dimmi di piu', 'piu dettagli', 'continua','ancora'] },
   { key: 'simplerTone', patterns: ['piu semplice', 'troppo difficile', 'troppo complesso', 'semplifica'] },
   { key: 'complexTone', patterns: ['piu complesso', 'troppo semplice', 'piu difficile', 'complica'] },
   { key: 'toilette', patterns: ['bagno', 'toilette'] },
@@ -130,6 +133,7 @@ const INSIGHT_TRIGGER_PATTERNS = [
   'raccontami del',
   'cosa mi dici di',
   'cosa mi dici del',
+  'spiegami'
 ]
 
 function matchInsightTag(transcript, tags) {
@@ -861,6 +865,9 @@ export function VisitProgressProvider({ children }) {
         if (!phrase) speakEphemeral("L'uscita non è disponibile per questo museo.")
         break
       }
+      case 'goToMap':
+        navigate('/mappa', { state: { museumId: museum?._id, entityId: entity?._id } })
+        break
       default:
         speakEphemeral('Non ho capito, puoi ripetere?')
     }
