@@ -421,7 +421,7 @@ function SelectVisit() {
       </div>
 
       <a
-        href={MARKETPLACE_VISITS_URL}
+        href={museumName ? `${MARKETPLACE_VISITS_URL}/${slugify(museumName)}` : MARKETPLACE_VISITS_URL}
         className="text-center text-sm text-accent underline-offset-4 hover:underline"
       >
         Vuoi altre visite? Vai al marketplace
