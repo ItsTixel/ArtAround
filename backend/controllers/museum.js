@@ -1,5 +1,20 @@
 const Museum = require('../models/museum');
 
+function escapeRegex(str) {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+// Verifica che nessun altro museo abbia già lo stesso nome (case-insensitive:
+// serve anche a evitare collisioni negli slug dell'URL del navigator, che
+// normalizzano maiuscole/minuscole — vedi navigator/src/utils/slug.js).
+// `excludeId` esclude il documento stesso durante un update.
+async function findDuplicateName(name, excludeId) {
+  if (!name) return null;
+  const filter = { name: new RegExp(`^${escapeRegex(name.trim())}$`, 'i') };
+  if (excludeId) filter._id = { $ne: excludeId };
+  return Museum.findOne(filter);
+}
+
 async function getAll(req, res) {
   try {
     const pageSize = Math.min(parseInt(req.query.pageSize) || 10, 100);
@@ -67,8 +82,23 @@ async function create(req, res) {
   try {
     const payload = parseMultipartPayload(req);
     payload.added_by = req.user.id;
+
+    if (await findDuplicateName(payload.name)) {
+      return res.status(409).json({ error: 'Esiste già un museo con questo nome' });
+    }
+
     const museum = new Museum(payload);
-    await museum.save();
+    try {
+      await museum.save();
+    } catch (saveErr) {
+      // Race sul nome (rarissima, ma l'unique index del db è l'ultima rete
+      // di sicurezza dopo il pre-check sopra): stesso pattern di visit.js
+      // per il codice duplicato.
+      if (saveErr.code === 11000 && /name/.test(saveErr.message)) {
+        return res.status(409).json({ error: 'Esiste già un museo con questo nome' });
+      }
+      throw saveErr;
+    }
     res.status(201).json(museum);
   } catch (e) {
     res.status(400).json({ error: e.message });
@@ -78,7 +108,20 @@ async function create(req, res) {
 async function update(req, res) {
   try {
     const payload = parseMultipartPayload(req);
-    const museum = await Museum.findByIdAndUpdate(req.params.id, payload, { new: true, runValidators: true });
+
+    if (await findDuplicateName(payload.name, req.params.id)) {
+      return res.status(409).json({ error: 'Esiste già un museo con questo nome' });
+    }
+
+    let museum;
+    try {
+      museum = await Museum.findByIdAndUpdate(req.params.id, payload, { new: true, runValidators: true });
+    } catch (saveErr) {
+      if (saveErr.code === 11000 && /name/.test(saveErr.message)) {
+        return res.status(409).json({ error: 'Esiste già un museo con questo nome' });
+      }
+      throw saveErr;
+    }
     if (!museum) return res.status(404).json({ error: 'Museum not found' });
     res.json(museum);
   } catch (e) {

@@ -30,7 +30,7 @@ const museumMapSchema = new Schema({
 });
 
 const museumSchema = new Schema({
-  name:        { type: String, required: true, trim: true },
+  name:        { type: String, required: true, trim: true, unique: true },
   wikidata_id: { type: String, trim: true },
   description: { type: String, trim: true, default: '' },
   image_url:   { type: String, trim: true },
