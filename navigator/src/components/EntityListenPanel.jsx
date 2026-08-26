@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { useVisitProgress, TONE_ORDER, TONE_LABELS } from '../context/VisitProgressContext'
+import { useVisitProgress, TONE_ORDER, TONE_LABELS, closestToneAtMost } from '../context/VisitProgressContext'
 import { PlayIcon, PauseIcon } from './icons'
 
 function sortDescriptions(item) {
@@ -22,9 +22,20 @@ function pillClasses(active, activeClasses) {
 // decide il contenitore (modale in EntityFoundModal, pannello inline in
 // Mappa.jsx). seedItems sono gli item già noti (es. da uno step di visita:
 // niente fetch); se null/undefined si recuperano al volo gli item pubblici
-// dell'opera.
-function EntityListenPanel({ entityId, seedItems }) {
-  const { pauseNarration } = useVisitProgress()
+// dell'opera. voiceControlled (usato da InsightModal, l'unico contenitore in
+// cui l'utente può ancora parlare mentre il pannello è aperto) registra le
+// proprie funzioni di navigazione in VisitProgressContext così i comandi
+// vocali "più dettagli"/"più semplice"/... agiscono su quest'opera in
+// sovraimpressione invece che sullo step di visita sottostante — vedi
+// insightNavRef in VisitProgressContext.
+function EntityListenPanel({ entityId, seedItems, voiceControlled = false }) {
+  const {
+    pauseNarration,
+    registerInsightNav,
+    scheduleAutoListen,
+    autoplayEnabled,
+    activeTone: mainActiveTone,
+  } = useVisitProgress()
   const [items, setItems] = useState(seedItems || null)
   const [loadingItems, setLoadingItems] = useState(!seedItems)
   const [itemsError, setItemsError] = useState(null)
@@ -66,11 +77,65 @@ function EntityListenPanel({ entityId, seedItems }) {
     () => TONE_ORDER.filter((tone) => (items || []).some((item) => item.tone === tone)),
     [items]
   )
-  const activeTone = availableTones.includes(selectedTone) ? selectedTone : availableTones[0]
+  // Sticky tone come nell'opera principale (VisitProgressContext.activeTone):
+  // finché l'utente non ne sceglie uno esplicitamente in questo pannello,
+  // parte dal tono già attivo nella visita, o dal più vicino non più
+  // difficile se l'approfondimento non lo offre.
+  const activeTone = availableTones.includes(selectedTone)
+    ? selectedTone
+    : selectedTone
+      ? closestToneAtMost(availableTones, selectedTone)
+      : closestToneAtMost(availableTones, mainActiveTone)
   const currentItem = (items || []).find((item) => item.tone === activeTone)
   const sortedDescriptions = useMemo(() => sortDescriptions(currentItem), [currentItem])
   const activeDescIndex = Math.min(selectedDescIndex, Math.max(sortedDescriptions.length - 1, 0))
   const currentDescription = sortedDescriptions[activeDescIndex]
+
+  const toneIndex = availableTones.indexOf(activeTone)
+  const canGoSimplerTone = toneIndex > 0
+  const canGoComplexTone = toneIndex !== -1 && toneIndex < availableTones.length - 1
+  const canGoPreviousDesc = activeDescIndex > 0
+  const canGoNextDesc = activeDescIndex < sortedDescriptions.length - 1
+
+  function goToPreviousDesc() {
+    if (!canGoPreviousDesc) return
+    handleDescSelect(activeDescIndex - 1)
+  }
+
+  function goToNextDesc() {
+    if (!canGoNextDesc) return
+    handleDescSelect(activeDescIndex + 1)
+  }
+
+  function goToSimplerTone() {
+    if (!canGoSimplerTone) return
+    handleToneSelect(availableTones[toneIndex - 1])
+  }
+
+  function goToComplexTone() {
+    if (!canGoComplexTone) return
+    handleToneSelect(availableTones[toneIndex + 1])
+  }
+
+  // Re-seated every render (fresh closures over this opera's state), same
+  // pattern GroupSessionContext uses for registerGroupNav — VisitProgressContext
+  // calls into whichever function is currently registered here, no separate
+  // implementation to drift out of sync with. Cleared on unmount so a voice
+  // command after this panel closes can't call into a stale closure.
+  if (voiceControlled) {
+    registerInsightNav({
+      lessDetails: goToPreviousDesc,
+      moreDetails: goToNextDesc,
+      simplerTone: goToSimplerTone,
+      complexTone: goToComplexTone,
+    })
+  }
+
+  useEffect(() => {
+    if (!voiceControlled) return undefined
+    return () => registerInsightNav(null)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [voiceControlled])
 
   function stopSpeech() {
     window.speechSynthesis.cancel()
@@ -80,15 +145,43 @@ function EntityListenPanel({ entityId, seedItems }) {
 
   useEffect(() => stopSpeech, [])
 
+  // Stessa logica di changeTonePreservingParagraph in VisitProgressContext:
+  // resta sullo stesso indice di paragrafo quando il nuovo tono ne ha
+  // abbastanza, altrimenti clampa all'ultimo — invece di ripartire sempre dal
+  // primo paragrafo come per un cambio d'opera.
   function handleToneSelect(tone) {
+    if (!tone || tone === activeTone) return
+    const targetItem = (items || []).find((item) => item.tone === tone)
+    const targetDescriptions = sortDescriptions(targetItem)
+    const newIndex = Math.min(activeDescIndex, Math.max(targetDescriptions.length - 1, 0))
     stopSpeech()
     setSelectedTone(tone)
-    setSelectedDescIndex(0)
+    setSelectedDescIndex(newIndex)
   }
 
   function handleDescSelect(index) {
     stopSpeech()
     setSelectedDescIndex(index)
+  }
+
+  function speak(text) {
+    pauseNarration()
+    window.speechSynthesis.cancel()
+    const utterance = new SpeechSynthesisUtterance(text)
+    utterance.lang = 'it-IT'
+    utterance.onend = () => {
+      if (utteranceRef.current !== utterance) return
+      setPlaybackState('idle')
+      if (voiceControlled) scheduleAutoListen()
+    }
+    utterance.onerror = () => {
+      if (utteranceRef.current !== utterance) return
+      setPlaybackState('idle')
+      if (voiceControlled) scheduleAutoListen()
+    }
+    utteranceRef.current = utterance
+    window.speechSynthesis.speak(utterance)
+    setPlaybackState('playing')
   }
 
   function handlePlayStop() {
@@ -97,22 +190,20 @@ function EntityListenPanel({ entityId, seedItems }) {
       return
     }
     if (!currentDescription?.text) return
-    pauseNarration()
-    window.speechSynthesis.cancel()
-    const utterance = new SpeechSynthesisUtterance(currentDescription.text)
-    utterance.lang = 'it-IT'
-    utterance.onend = () => {
-      if (utteranceRef.current !== utterance) return
-      setPlaybackState('idle')
-    }
-    utterance.onerror = () => {
-      if (utteranceRef.current !== utterance) return
-      setPlaybackState('idle')
-    }
-    utteranceRef.current = utterance
-    window.speechSynthesis.speak(utterance)
-    setPlaybackState('playing')
+    speak(currentDescription.text)
   }
+
+  // Parità con la narrazione principale (l'effect di autoplay in
+  // VisitProgressContext): quando è mostrato in sovraimpressione e Autoplay è
+  // attivo, ogni testo nuovo — apertura del pannello, cambio tono, cambio
+  // paragrafo, che siano da tap o da comando vocale — parte da sé invece di
+  // aspettare "Ascolta".
+  useEffect(() => {
+    if (!voiceControlled || !autoplayEnabled) return
+    if (!currentDescription?.text) return
+    speak(currentDescription.text)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentDescription?.text, voiceControlled, autoplayEnabled])
 
   return (
     <div className="flex flex-col gap-4">

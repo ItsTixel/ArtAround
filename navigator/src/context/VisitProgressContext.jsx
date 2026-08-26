@@ -17,7 +17,10 @@ function sortDescriptions(item) {
 }
 
 // tones is assumed sorted in TONE_ORDER order (as availableTones is).
-function closestToneAtMost(tones, targetTone) {
+// Exported for EntityListenPanel, which mirrors this same "sticky tone,
+// fall back to the closest easier one" rule against the main visit's
+// activeTone instead of a previously selected tone.
+export function closestToneAtMost(tones, targetTone) {
   const targetIdx = TONE_ORDER.indexOf(targetTone)
   for (let i = tones.length - 1; i >= 0; i--) {
     if (TONE_ORDER.indexOf(tones[i]) <= targetIdx) return tones[i]
@@ -247,6 +250,13 @@ export function VisitProgressProvider({ children }) {
   // same functions a tap does instead of a second implementation of the
   // same group-session rules that could drift out of sync.
   const groupNavRef = useRef(null)
+  // { lessDetails, moreDetails, simplerTone, complexTone } | null — registered
+  // every render by the EntityListenPanel instance shown inside InsightModal
+  // (voiceControlled prop) while activeInsightTag is set. Lets "più dettagli"/
+  // "più semplice"/... act on the opera shown in that overlay instead of the
+  // underlying visit step — see the activeInsightTag branch in
+  // handleVoiceCommand below. Same ref-reseating bridge as groupNavRef.
+  const insightNavRef = useRef(null)
   // Set by goToStep({ skipDirections: true }) — e.g. a QR jump, where you're
   // already standing at the opera, so walking directions would be nonsense.
   // Consumed (and cleared) by the very next directions computation.
@@ -682,6 +692,11 @@ export function VisitProgressProvider({ children }) {
     micErrorTimeoutRef.current = setTimeout(() => setMicError(null), 3500)
   }
 
+  // Also exposed on the context (below): EntityListenPanel's own utterances
+  // (the "approfondimento" overlay's playback) run outside speakFromChar/
+  // speakEphemeral, so it calls this directly from its own onend/onerror to
+  // get the same "reopen the mic if Auto Mic is on" behavior after its TTS
+  // finishes.
   function scheduleAutoListen() {
     if (!micAutoEnabledRef.current) return
     startListening()
@@ -759,6 +774,11 @@ export function VisitProgressProvider({ children }) {
     groupNavRef.current = nav
   }
 
+  // See insightNavRef above. Passed null on unmount by EntityListenPanel.
+  function registerInsightNav(nav) {
+    insightNavRef.current = nav
+  }
+
   // Precedente/Prossimo go through whatever GroupSessionProvider registered
   // (group-gated) when it's available, and straight to the ungated request
   // function on the very first renders before it has (there's no group
@@ -789,6 +809,16 @@ export function VisitProgressProvider({ children }) {
         return
       }
     }
+    // While the approfondimento overlay (InsightModal) is open, Prossimo/
+    // Precedente dismiss it instead of navigating the visit step underneath —
+    // "next/previous opera" doesn't make sense for an overlay that's showing
+    // a single opera on demand. The other narration commands stay meaningful
+    // there, so they're routed to whatever EntityListenPanel registered for
+    // itself (insightNavRef) instead of the main step's request* functions.
+    if (activeInsightTag && (key === 'previousStep' || key === 'nextStep')) {
+      closeInsight()
+      return
+    }
     switch (key) {
       case 'previousStep':
         callStepNav('handlePreviousStep', requestPreviousStep)
@@ -797,16 +827,20 @@ export function VisitProgressProvider({ children }) {
         callStepNav('handleNextStep', requestNextStep)
         break
       case 'lessDetails':
-        requestPreviousParagraph()
+        if (activeInsightTag) insightNavRef.current?.lessDetails?.()
+        else requestPreviousParagraph()
         break
       case 'moreDetails':
-        requestNextParagraph()
+        if (activeInsightTag) insightNavRef.current?.moreDetails?.()
+        else requestNextParagraph()
         break
       case 'simplerTone':
-        requestSimplerTone()
+        if (activeInsightTag) insightNavRef.current?.simplerTone?.()
+        else requestSimplerTone()
         break
       case 'complexTone':
-        requestComplexTone()
+        if (activeInsightTag) insightNavRef.current?.complexTone?.()
+        else requestComplexTone()
         break
       case 'toilette': {
         const phrase = goToService(museum, 'Toilette')
@@ -950,6 +984,7 @@ export function VisitProgressProvider({ children }) {
     activeInsightTag,
     requestInsight,
     closeInsight,
+    registerInsightNav,
     micListening,
     micTranscript,
     micError,
@@ -957,6 +992,7 @@ export function VisitProgressProvider({ children }) {
     micSupported,
     handleMicToggle,
     toggleMicAuto,
+    scheduleAutoListen,
     registerGroupNav,
     canGoPreviousStep,
     canGoNextStep,

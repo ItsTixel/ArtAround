@@ -89,7 +89,7 @@ function InsightModal({ tag, onClose }) {
           {error === 'fetch' && (
             <p className="text-sm text-[color:var(--color-error)]">Errore nel caricamento dell'approfondimento.</p>
           )}
-          {entity && <EntityListenPanel entityId={entity._id} seedItems={null} />}
+          {entity && <EntityListenPanel entityId={entity._id} seedItems={null} voiceControlled />}
         </div>
       </div>
     </div>
