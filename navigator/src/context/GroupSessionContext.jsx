@@ -133,6 +133,17 @@ export function GroupSessionProvider({ children }) {
           insightTone: p.insight_tone,
           insightParagraphIndex: p.insight_paragraph_index,
           insightPlaybackState: p.insight_playback_state,
+          // Risposte/punteggio del quiz già inviati prima di un refresh della
+          // pagina (l'ack di visit:join per l'host porta live_session per
+          // intero, non sanificato): senza questo il roster ripartirebbe
+          // vuoto per ogni studente, mostrando di nuovo "In corso…" anche per
+          // chi aveva già risposto. quizTotal si ricava dalla lunghezza di
+          // quiz_answers stesso (validata lato server contro le domande del
+          // quiz) invece che da groupVisit, che a questo punto della
+          // closure potrebbe non essere ancora aggiornato.
+          quizScore: p.quiz_score,
+          quizTotal: p.quiz_answers?.length > 0 ? p.quiz_answers.length : undefined,
+          quizAnswers: p.quiz_answers,
         }))
       )
     } else {
