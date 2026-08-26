@@ -130,6 +130,9 @@ function EntityListenPanel({ entityId, seedItems, voiceControlled = false }) {
       moreDetails: goToNextDesc,
       simplerTone: goToSimplerTone,
       complexTone: goToComplexTone,
+      canGoNextDesc,
+      canGoSimplerTone,
+      canGoComplexTone,
     })
   }
 

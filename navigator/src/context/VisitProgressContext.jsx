@@ -90,11 +90,10 @@ function buildDirections(prev, curr) {
 // sentence like "puoi dirmi dov'è il bagno" still matches "bagno" — users
 // won't say the exact Comandi.jsx button label.
 const VOICE_COMMAND_PATTERNS = [
-  { key: 'previousStep', patterns: ['precedente', 'indietro'] },
-  // Deve precedere nextStep: quel gruppo include il pattern generico 'vai',
-  // che altrimenti intercetterebbe "vai alla mappa" prima di arrivare qui.
+  { key: 'previousStep', patterns: ['precedente', 'opera precedente', 'indietro'] },
+
   { key: 'goToMap', patterns: ['vai alla mappa', 'apri la mappa', 'mostra la mappa', 'dove sono'] },
-  { key: 'nextStep', patterns: ['prossimo', 'successivo', 'avanti', 'continua la visita','procedi','vai'] },
+  { key: 'nextStep', patterns: ['prossimo', 'prossima opera', 'opera successiva', 'successivo', 'avanti', 'continua la visita', 'procedi', 'vai'] },
   { key: 'lessDetails', patterns: ['meno dettagli', 'meno particolari'] },
   { key: 'moreDetails', patterns: ['dimmi di piu', 'piu dettagli', 'continua','ancora'] },
   { key: 'simplerTone', patterns: ['piu semplice', 'troppo difficile', 'troppo complesso', 'semplifica'] },
@@ -833,11 +832,13 @@ export function VisitProgressProvider({ children }) {
   // Resolves one recognized phrase to its Comandi.jsx/PlayerBar.jsx button
   // equivalent, calling the exact same function the button's onClick does —
   // so a blocked command does nothing, same as tapping a disabled button.
-  // The service commands are the one exception: their button never
-  // disables (always speaks the phrase or shows why not), so an unavailable
-  // service is voiced too instead of silently doing nothing. Unrecognized
-  // speech has no button equivalent at all, so that one alone prompts a
-  // retry.
+  // simplerTone/complexTone/moreDetails are the exception: unlike a disabled button (only
+  // ever seen alongside its enabled siblings, so the reason is visually
+  // obvious), a spoken "più semplice"/"dimmi di più" that can't go any
+  // further gets a spoken reason instead of silence, since there's no screen
+  // to look at for why nothing happened. Same reasoning as the service
+  // commands below, which never stay silent either. Unrecognized speech has
+  // no button equivalent at all, so that one alone prompts a retry.
   function handleVoiceCommand(transcript) {
     const key = matchVoiceCommand(transcript)
     // Checked before the fixed patterns' switch: the target tag is dynamic
@@ -881,16 +882,34 @@ export function VisitProgressProvider({ children }) {
         else requestPreviousParagraph()
         break
       case 'moreDetails':
-        if (activeInsightTag) insightNavRef.current?.moreDetails?.()
-        else requestNextParagraph()
+        if (activeInsightTag) {
+          if (insightNavRef.current?.canGoNextDesc) insightNavRef.current.moreDetails()
+          else speakEphemeral("Non ho altro da aggiungere su quest'opera.")
+        } else if (canGoNextParagraph) {
+          requestNextParagraph()
+        } else {
+          speakEphemeral("Non ho altro da aggiungere su quest'opera.")
+        }
         break
       case 'simplerTone':
-        if (activeInsightTag) insightNavRef.current?.simplerTone?.()
-        else requestSimplerTone()
+        if (activeInsightTag) {
+          if (insightNavRef.current?.canGoSimplerTone) insightNavRef.current.simplerTone()
+          else speakEphemeral('Sei già al livello più semplice disponibile.')
+        } else if (canGoSimplerTone) {
+          requestSimplerTone()
+        } else {
+          speakEphemeral('Sei già al livello più semplice disponibile.')
+        }
         break
       case 'complexTone':
-        if (activeInsightTag) insightNavRef.current?.complexTone?.()
-        else requestComplexTone()
+        if (activeInsightTag) {
+          if (insightNavRef.current?.canGoComplexTone) insightNavRef.current.complexTone()
+          else speakEphemeral('Sei già al livello più complesso disponibile.')
+        } else if (canGoComplexTone) {
+          requestComplexTone()
+        } else {
+          speakEphemeral('Sei già al livello più complesso disponibile.')
+        }
         break
       case 'toilette': {
         const phrase = goToService(museum, 'Toilette')
