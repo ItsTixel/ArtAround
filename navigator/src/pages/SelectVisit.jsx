@@ -10,8 +10,6 @@ import useDocumentTitle from '../hooks/useDocumentTitle'
 import { ChevronLeftIcon } from '../components/icons'
 
 const MARKETPLACE_VISITS_URL = '/marketplace/pages/visits.html'
-const LOGIN_URL = '/marketplace/login.html'
-const REGISTER_URL = '/marketplace/register.html'
 
 // Adatta una visita di gruppo completa (fetch di /api/visits/:id, con
 // `live_session.status`) alla stessa forma { code, preview } della preview
@@ -256,28 +254,6 @@ function SelectVisit() {
           >
             ×
           </button>
-        </div>
-      )}
-
-      {!user && (
-        <div className="glass-panel flex flex-col gap-2 rounded-2xl p-4 text-center outline outline-1 outline-accent/30 outline-offset-[-1px]">
-          <p className="text-sm text-text">
-            Accedi o registrati per adottare visite e salvare i tuoi progressi.
-          </p>
-          <div className="flex justify-center gap-3">
-            <a
-              href={`${LOGIN_URL}?redirect=${encodeURIComponent(window.location.pathname + window.location.search)}`}
-              className="rounded-full bg-gradient-to-br from-accent to-accent-hover px-4 py-2 text-sm font-medium text-on-accent shadow-lg shadow-black/10 dark:shadow-black/30"
-            >
-              Accedi
-            </a>
-            <a
-              href={`${REGISTER_URL}?redirect=${encodeURIComponent(window.location.pathname + window.location.search)}`}
-              className="glass-pill rounded-full px-4 py-2 text-sm font-medium text-text"
-            >
-              Registrati
-            </a>
-          </div>
         </div>
       )}
 
