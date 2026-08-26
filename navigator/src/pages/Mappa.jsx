@@ -142,6 +142,24 @@ function useMapZoomPan(viewportRef, contentRef) {
     pointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY })
   }
 
+  // pointermove/up/cancel restano su window invece che su onPointerX +
+  // setPointerCapture sull'elemento: su iOS Safari il pointer capture è
+  // noto per smettere di instradare gli eventi non appena il dito esce dai
+  // bordi dell'elemento durante il gesto (da cui il drag che "si blocca"
+  // panando una mappa ingrandita). window li riceve comunque, ovunque sia
+  // il dito.
+  function attachWindowListeners() {
+    window.addEventListener('pointermove', handlePointerMove)
+    window.addEventListener('pointerup', handlePointerUp)
+    window.addEventListener('pointercancel', handlePointerUp)
+  }
+
+  function detachWindowListeners() {
+    window.removeEventListener('pointermove', handlePointerMove)
+    window.removeEventListener('pointerup', handlePointerUp)
+    window.removeEventListener('pointercancel', handlePointerUp)
+  }
+
   function handlePointerDown(e) {
     // Ogni nuovo gesto riparte "pulito": senza questo, un tocco che atterra
     // proprio su un'icona subito dopo un pan/pizzico (che aveva lasciato
@@ -150,11 +168,9 @@ function useMapZoomPan(viewportRef, contentRef) {
     draggedRef.current = false
 
     // Un dito/mouse che parte su un bottone (icona di un punto, +/-) non deve
-    // avviare pan/pizzico: setPointerCapture sul contenitore altrimenti
-    // "ruba" il target del click successivo, che finirebbe sul contenitore
-    // invece che sul bottone, e il bottone non riceverebbe mai l'evento.
+    // avviare pan/pizzico, altrimenti il bottone non riceverebbe mai il click.
     if (e.target.closest('button')) return
-    e.currentTarget.setPointerCapture(e.pointerId)
+    if (pointers.current.size === 0) attachWindowListeners()
     updatePointer(e)
     draggedRef.current = pointers.current.size > 1
     const pts = [...pointers.current.values()]
@@ -215,6 +231,7 @@ function useMapZoomPan(viewportRef, contentRef) {
       dragStart.current = null
       pinchStart.current = null
     }
+    if (pointers.current.size === 0) detachWindowListeners()
   }
 
   function handleDoubleClick(e) {
@@ -231,6 +248,11 @@ function useMapZoomPan(viewportRef, contentRef) {
     draggedRef.current = false
     return was
   }
+
+  // Rete di sicurezza se il componente smonta (cambio pagina) a metà gesto:
+  // altrimenti i listener su window resterebbero agganciati per sempre.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => detachWindowListeners, [])
 
   // React registra i listener onWheel come passive: preventDefault() lì
   // dentro verrebbe ignorato (e loggherebbe un warning), quindi lo scroll
@@ -256,6 +278,21 @@ function useMapZoomPan(viewportRef, contentRef) {
     return () => el.removeEventListener('wheel', handleWheel)
   })
 
+  // Safari non rispetta touch-action:none quando l'elemento è annidato in
+  // un antenato scrollabile (il <main overflow-y-auto> di AppLayout): lo
+  // scroll nativo della pagina può comunque rubare il gesto a metà drag.
+  // Come per il wheel sopra, onTouchMove di React è passive: serve un
+  // listener nativo non-passive per il preventDefault().
+  useEffect(() => {
+    const el = viewportRef.current
+    if (!el) return
+    function handleTouchMove(e) {
+      e.preventDefault()
+    }
+    el.addEventListener('touchmove', handleTouchMove, { passive: false })
+    return () => el.removeEventListener('touchmove', handleTouchMove)
+  })
+
   return {
     scale,
     tx,
@@ -265,10 +302,6 @@ function useMapZoomPan(viewportRef, contentRef) {
     consumeWasDragging,
     handlers: {
       onPointerDown: handlePointerDown,
-      onPointerMove: handlePointerMove,
-      onPointerUp: handlePointerUp,
-      onPointerCancel: handlePointerUp,
-      onPointerLeave: handlePointerUp,
       onDoubleClick: handleDoubleClick,
     },
   }
@@ -278,25 +311,47 @@ function useMapZoomPan(viewportRef, contentRef) {
 // quando si esce senza passare dal bottone (es. tasto Esc).
 function useFullscreen(elementRef) {
   const [isFullscreen, setIsFullscreen] = useState(false)
+  // iPhone Safari non implementa il Fullscreen API per elementi generici
+  // (solo <video>), né con prefisso né senza — non basta un fallback di
+  // sintassi. Unica via lì: un fullscreen "finto" via overlay CSS.
+  const [fakeFullscreen, setFakeFullscreen] = useState(false)
 
   useEffect(() => {
     function handleChange() {
-      setIsFullscreen(document.fullscreenElement === elementRef.current)
+      const fsElement = document.fullscreenElement || document.webkitFullscreenElement
+      setIsFullscreen(fsElement === elementRef.current)
     }
     document.addEventListener('fullscreenchange', handleChange)
-    return () => document.removeEventListener('fullscreenchange', handleChange)
+    document.addEventListener('webkitfullscreenchange', handleChange)
+    return () => {
+      document.removeEventListener('fullscreenchange', handleChange)
+      document.removeEventListener('webkitfullscreenchange', handleChange)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  // Safari desktop (pre-16.4) espone solo le varianti webkit* — stesso
+  // fallback già usato per webkitSpeechRecognition. Se mancano entrambe
+  // (iPhone) si passa al fullscreen finto sopra.
   function toggle() {
-    if (document.fullscreenElement) {
-      document.exitFullscreen()
+    const el = elementRef.current
+    const supportsApi = Boolean(el?.requestFullscreen || el?.webkitRequestFullscreen)
+    if (!supportsApi) {
+      setFakeFullscreen((v) => !v)
+      return
+    }
+    const fsElement = document.fullscreenElement || document.webkitFullscreenElement
+    if (fsElement) {
+      if (document.exitFullscreen) document.exitFullscreen()
+      else document.webkitExitFullscreen?.()
+    } else if (el.requestFullscreen) {
+      el.requestFullscreen()
     } else {
-      elementRef.current?.requestFullscreen()
+      el.webkitRequestFullscreen()
     }
   }
 
-  return { isFullscreen, toggle }
+  return { isFullscreen: isFullscreen || fakeFullscreen, toggle }
 }
 
 // Sceglie di default il museo dello step corrente (se ha almeno una mappa),
@@ -556,10 +611,20 @@ function Mappa() {
       {selectedMap && (
         <div
           ref={viewportRef}
-          className={`glass-panel relative w-full touch-none select-none overflow-hidden ${
-            fullscreen.isFullscreen ? '' : 'rounded-2xl'
+          className={`glass-panel w-full touch-none select-none overflow-hidden ${
+            // "relative" e "fixed" vanno mutuamente esclusive: nel CSS
+            // compilato da Tailwind .relative viene dopo .fixed, quindi a
+            // parità di specificità vincerebbe sempre .relative (inset-0
+            // non sposterebbe nulla), qualunque ordine scriviamo qui. Copre
+            // sia il fullscreen reale sia quello "finto" di iPhone Safari.
+            fullscreen.isFullscreen ? 'fixed inset-0 z-[70]' : 'relative rounded-2xl'
           }`}
-          style={{ cursor: zoomPan.scale > 1 ? 'grab' : 'default' }}
+          style={{
+            cursor: zoomPan.scale > 1 ? 'grab' : 'default',
+            // Evita che un tocco prolungato apra il menu "Salva immagine"
+            // nativo di iOS Safari a metà gesto.
+            WebkitTouchCallout: 'none',
+          }}
           {...zoomPan.handlers}
         >
           {hasHiddenEntities && (
@@ -590,6 +655,7 @@ function Mappa() {
               onLoad={(e) => setNaturalSize({ width: e.target.naturalWidth, height: e.target.naturalHeight })}
               className={`pointer-events-none block ${fit ? 'h-full w-full' : 'w-full'}`}
               draggable={false}
+              style={{ WebkitUserDrag: 'none', WebkitTouchCallout: 'none' }}
             />
 
             {selectedMap.points.map((point) => {

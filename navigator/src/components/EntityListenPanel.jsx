@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useVisitProgress, TONE_ORDER, TONE_LABELS, closestToneAtMost } from '../context/VisitProgressContext'
 import { PlayIcon, PauseIcon } from './icons'
+import { applyItalianVoice } from '../utils/speechVoice'
 
 function sortDescriptions(item) {
   return [...(item?.descriptions || [])].sort((a, b) => a.duration_sec - b.duration_sec)
@@ -180,6 +181,7 @@ function EntityListenPanel({ entityId, seedItems, voiceControlled = false }) {
     window.speechSynthesis.cancel()
     const utterance = new SpeechSynthesisUtterance(text)
     utterance.lang = 'it-IT'
+    applyItalianVoice(utterance)
     utterance.onend = () => {
       if (utteranceRef.current !== utterance) return
       setPlaybackState('idle')

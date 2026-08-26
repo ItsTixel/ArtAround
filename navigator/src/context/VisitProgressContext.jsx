@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useActiveVisit } from './ActiveVisitContext'
+import { applyItalianVoice } from '../utils/speechVoice'
 
 export const TONE_ORDER = ['childish', 'simple', 'medium', 'technical']
 export const TONE_LABELS = {
@@ -392,6 +393,7 @@ export function VisitProgressProvider({ children }) {
 
     const utterance = new SpeechSynthesisUtterance(remaining)
     utterance.lang = 'it-IT'
+    applyItalianVoice(utterance)
     // cancel() fires the outgoing utterance's onend/onerror asynchronously,
     // after a newer utterance may already be playing (e.g. seeking again
     // while the previous cancel is still settling). Ignore callbacks from an
@@ -596,6 +598,7 @@ export function VisitProgressProvider({ children }) {
     window.speechSynthesis.cancel()
     const utterance = new SpeechSynthesisUtterance(text)
     utterance.lang = 'it-IT'
+    applyItalianVoice(utterance)
     promptUtteranceRef.current = utterance
     const finish = () => {
       if (promptUtteranceRef.current !== utterance) return
