@@ -423,6 +423,11 @@ html, body {
 @media (max-width: 980px) {
   .lp-hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
   .lp-feature-grid { grid-template-columns: repeat(2, 1fr); }
+  .lp-feature-grid .lp-feature-card:last-child:nth-child(9) {
+    grid-column: 1 / -1;
+    max-width: 60%;
+    margin: 0 auto;
+  }
   .lp-modes-grid { grid-template-columns: 1fr; }
 }
 
@@ -433,6 +438,7 @@ html, body {
   .lp-section { padding: 3.5rem 1.5rem; }
   .lp-section-head { flex-direction: column; align-items: flex-start; }
   .lp-feature-grid { grid-template-columns: 1fr; }
+  .lp-feature-grid .lp-feature-card:last-child:nth-child(9) { max-width: none; }
   .lp-cta-band { padding: 3rem 1.5rem; border-radius: 1.5rem; margin-bottom: 3.5rem; }
   .lp-cta-band h2 { font-size: 1.75rem; }
 }
