@@ -51,7 +51,7 @@ function Gruppo() {
 
   function handleExit() {
     leaveSession()
-    navigate('/')
+    navigate('/visite')
   }
 
   return (

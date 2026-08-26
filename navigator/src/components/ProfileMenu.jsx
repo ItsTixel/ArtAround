@@ -346,7 +346,7 @@ function ProfileMenu({ hasPlayer = false }) {
     closeMenu()
     if (groupRole) leaveGroupSession()
     else clearActiveVisit()
-    navigate('/')
+    navigate('/visite')
   }
 
   function handleToggleTheme() {

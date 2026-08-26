@@ -8,6 +8,7 @@ import AppLayout from './layout/AppLayout'
 import GroupQuizModal from './components/GroupQuizModal'
 
 const Home = lazy(() => import('./pages/Home'))
+const SelectVisit = lazy(() => import('./pages/SelectVisit'))
 const Mappa = lazy(() => import('./pages/Mappa'))
 const Opera = lazy(() => import('./pages/Opera'))
 const Comandi = lazy(() => import('./pages/Comandi'))
@@ -43,6 +44,7 @@ function App() {
                 <Route path="sessione" element={<SessionLobby />} />
                 <Route element={<AppLayout />}>
                   <Route index element={<Home />} />
+                  <Route path="visite" element={<SelectVisit />} />
                   <Route path="mappa" element={<Mappa />} />
                   <Route path="opera" element={<Opera />} />
                   <Route path="comandi" element={<Comandi />} />

@@ -255,7 +255,7 @@ export function GroupSessionProvider({ children }) {
       if (finalStatus === 'active' || finalStatus === 'quiz') navigate('/opera')
       else if (finalStatus === 'finished') {
         setError('Questa visita è terminata.')
-        navigate('/')
+        navigate('/visite')
       } else {
         navigate('/sessione')
       }
@@ -416,7 +416,7 @@ export function GroupSessionProvider({ children }) {
     if (!wasActiveRef.current) return
     wasActiveRef.current = false
     leaveSession()
-    navigate('/', { state: { groupSessionEnded: true } })
+    navigate('/visite', { state: { groupSessionEnded: true } })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [role, status])
 

@@ -39,7 +39,7 @@ function SessionLobby() {
           type="button"
           onClick={() => {
             leaveSession()
-            navigate('/')
+            navigate('/visite')
           }}
           className="text-sm text-text-muted underline-offset-4 hover:underline"
         >
@@ -57,7 +57,7 @@ function SessionLobby() {
               type="button"
               onClick={() => {
                 leaveSession()
-                navigate('/')
+                navigate('/visite')
               }}
               className="rounded-md bg-gradient-to-br from-accent to-accent-hover px-4 py-2 text-sm font-medium text-on-accent"
             >

@@ -199,7 +199,7 @@ function Qr() {
   useEffect(() => {
     if (!isVisitAdopted) return
     pauseNarration()
-    navigate('/', { state: { detailVisit: visitLookup.visit } })
+    navigate('/visite', { state: { detailVisit: visitLookup.visit } })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isVisitAdopted])
 
@@ -375,7 +375,7 @@ function Qr() {
           onAdopted={async () => {
             pauseNarration()
             await refresh()
-            navigate('/', { state: { detailVisit: visitLookup.visit } })
+            navigate('/visite', { state: { detailVisit: visitLookup.visit } })
           }}
           onClose={startCamera}
         />

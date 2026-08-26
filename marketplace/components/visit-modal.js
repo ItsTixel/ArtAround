@@ -322,7 +322,7 @@ class VisitModal extends HTMLElement {
     });
     footer.querySelector('#confirm-yes')?.addEventListener('click', () => this._addToLibrary());
     footer.querySelector('#start-btn')?.addEventListener('click', () => {
-      window.location.href = `${NAVIGATOR_URL}?openVisit=${encodeURIComponent(this._visit._id)}`;
+      window.location.href = `${NAVIGATOR_URL}visite?openVisit=${encodeURIComponent(this._visit._id)}`;
     });
     footer.querySelector('#copy-btn')?.addEventListener('click', () => this._copyVisit());
     footer.querySelector('#edit-btn')?.addEventListener('click', () => {
