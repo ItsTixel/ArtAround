@@ -810,13 +810,22 @@ export function VisitProgressProvider({ children }) {
       }
     }
     // While the approfondimento overlay (InsightModal) is open, Prossimo/
-    // Precedente dismiss it instead of navigating the visit step underneath —
-    // "next/previous opera" doesn't make sense for an overlay that's showing
-    // a single opera on demand. The other narration commands stay meaningful
-    // there, so they're routed to whatever EntityListenPanel registered for
-    // itself (insightNavRef) instead of the main step's request* functions.
+    // Precedente both dismiss it and get the user back into the tour by
+    // moving the current opera's narration forward one paragraph (same
+    // tone) — same as "dimmi di più" — instead of literally jumping to a
+    // new/previous opera; autoplayEnabled decides on its own, through the
+    // usual paragraph-change effect, whether that actually starts speaking.
+    // Precedente collapses to the same "move forward" behavior here: there's
+    // no meaningful "previous approfondimento" to go back to. Only once
+    // there's no next paragraph left does moving on mean actually advancing
+    // to the next opera, same path the ungated nextStep case below takes.
+    // The other narration commands stay meaningful for the overlay itself,
+    // so they're routed to whatever EntityListenPanel registered for itself
+    // (insightNavRef) instead of the main step's request* functions.
     if (activeInsightTag && (key === 'previousStep' || key === 'nextStep')) {
       closeInsight()
+      if (canGoNextParagraph) requestNextParagraph()
+      else callStepNav('handleNextStep', requestNextStep)
       return
     }
     switch (key) {
