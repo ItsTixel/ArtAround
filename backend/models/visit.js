@@ -144,6 +144,7 @@ visitSchema.pre('save', async function () {
 
   const Entity = mongoose.model('Entity');
   const Item = mongoose.model('Item');
+  const Museum = mongoose.model('Museum');
 
   const entityIds = this.steps.map(s => s.entity);
   const allItemIds = this.steps.flatMap(s => s.items);
@@ -156,11 +157,27 @@ visitSchema.pre('save', async function () {
   const entityMap = new Map(entities.map(e => [e._id.toString(), e]));
   const itemMap = new Map(items.map(i => [i._id.toString(), i]));
 
-  // 1. Validate step.museum is a placement of step.entity
+  // 1. Validate step.museum: must be a placement of step.entity, unless the
+  // entity has no placements at all (e.g. an "approfondimento" entity) — in
+  // that case the author picks the step's museum manually, so we only check
+  // it refers to a real museum instead of one of the (nonexistent) placements.
+  const unplacedEntityIds = this.steps
+    .map(s => s.entity.toString())
+    .filter(id => (entityMap.get(id)?.placements || []).length === 0);
+  const validMuseumIds = unplacedEntityIds.length
+    ? new Set((await Museum.find({ _id: { $in: this.steps.map(s => s.museum) } }).select('_id').lean()).map(m => m._id.toString()))
+    : null;
+
   for (const step of this.steps) {
     const entity = entityMap.get(step.entity.toString());
     if (!entity) throw new Error(`Entity ${step.entity} not found`);
-    const inPlacements = entity.placements.some(p => p.museum.toString() === step.museum.toString());
+    if ((entity.placements || []).length === 0) {
+      if (!validMuseumIds.has(step.museum.toString())) {
+        throw new Error(`Museum ${step.museum} does not exist`);
+      }
+      continue;
+    }
+    const inPlacements = (entity.placements || []).some(p => p.museum.toString() === step.museum.toString());
     if (!inPlacements) {
       throw new Error(`Museum ${step.museum} is not a placement of entity ${step.entity}`);
     }

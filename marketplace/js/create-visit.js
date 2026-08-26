@@ -373,8 +373,7 @@ async function fetchPickerEntities(page) {
   const { data, totalItems } = await res.json();
   pickerHasMore = (page + 1) * PICKER_PAGE_SIZE < totalItems;
 
-  // Solo le opere collocabili in almeno un museo possono diventare una tappa.
-  let list = data.filter(e => (e.placements || []).length > 0);
+  let list = data;
 
   if (pickerState.tab === 'favorites') {
     const favIds = new Set((currentUser.bookmarked_entities || []).map(String));
@@ -451,12 +450,28 @@ async function loadMorePickerEntities() {
 
 /* ---- Configurazione della tappa (museo, opere/item, note) ---- */
 
+/* Un'opera senza placements (es. le entità "approfondimento", mai collocate
+ * in un museo) non impone un museo alla tappa: l'autore lo sceglie a mano
+ * tra tutti i musei, con l'ultimo usato in sequenza come default comodo. */
 function populateStepMuseumSelect(entity) {
   const select = document.getElementById('step-museum');
-  select.innerHTML = (entity.placements || [])
-    .filter(p => p.museum)
-    .map(p => `<option value="${p.museum._id}">${esc(p.museum.name)}</option>`)
+  const hint = document.getElementById('step-museum-hint');
+  const placements = (entity.placements || []).filter(p => p.museum);
+
+  if (placements.length > 0) {
+    hint.hidden = true;
+    select.innerHTML = placements
+      .map(p => `<option value="${p.museum._id}">${esc(p.museum.name)}</option>`)
+      .join('');
+    return;
+  }
+
+  hint.hidden = false;
+  select.innerHTML = allMuseums
+    .map(m => `<option value="${m._id}">${esc(m.name)}</option>`)
     .join('');
+  const lastUsed = state.steps.length ? state.steps[state.steps.length - 1].museum.id : null;
+  if (lastUsed && allMuseums.some(m => m._id === lastUsed)) select.value = lastUsed;
 }
 
 /* Ogni tono può contribuire al massimo una descrizione alla tappa (vedi
@@ -606,7 +621,7 @@ function backToBrowse() {
 
 function confirmStep() {
   const museumId = document.getElementById('step-museum').value;
-  if (!museumId) return; // nessun museo disponibile per questa opera (non dovrebbe succedere: filtrata a monte)
+  if (!museumId) return; // nessun museo disponibile (non dovrebbe succedere: c'è sempre almeno un museo tra allMuseums)
   const museumOpt = document.getElementById('step-museum').selectedOptions[0];
 
   const items = Array.from(document.querySelectorAll('#step-items-list input[type="checkbox"]:checked'))
