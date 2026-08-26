@@ -143,12 +143,13 @@ function matchInsightTag(transcript, tags) {
 // already on screen, offering a pointless "approfondisci" into itself.
 // Shared by the voice matcher above and Comandi.jsx's button list, so both
 // agree on which tags are real insight candidates.
-// item is the currently narrated Item (tone-specific: a description's own
-// tags), whose tags supplement the entity's — deduped since both lists are
-// curated independently and can overlap.
-export function insightCandidateTags(entity, item) {
+// items are every Item of the current opera (one per tone), whose tags
+// supplement the entity's — deduped since both lists are curated
+// independently and can overlap, and different tones can carry different
+// tags for the same opera.
+export function insightCandidateTags(entity, items) {
   const ownName = (entity?.name || '').trim().toLowerCase()
-  const merged = [...(entity?.tags || []), ...(item?.tags || [])]
+  const merged = [...(entity?.tags || []), ...(items || []).flatMap((item) => item?.tags || [])]
   const seen = new Set()
   return merged.filter((tag) => {
     const normalized = tag.trim().toLowerCase()
@@ -782,7 +783,7 @@ export function VisitProgressProvider({ children }) {
     // (the current opera's tags), so it can't be a VOICE_COMMAND_PATTERNS
     // entry like the others.
     if (!key) {
-      const tag = matchInsightTag(transcript, insightCandidateTags(entity, currentItem))
+      const tag = matchInsightTag(transcript, insightCandidateTags(entity, items))
       if (tag) {
         requestInsight(tag)
         return
@@ -966,6 +967,7 @@ export function VisitProgressProvider({ children }) {
     requestNextStep,
     availableTones,
     activeTone,
+    items,
     currentItem,
     handleToneSelect,
     canGoSimplerTone,

@@ -153,7 +153,7 @@ function Comandi() {
   const { activeVisit } = useActiveVisit()
   const {
     entity,
-    currentItem,
+    items,
     museum,
     goToService,
     activeTone,
@@ -175,7 +175,7 @@ function Comandi() {
   // e quando sono permessi, non una copia per canale di input.
   const { handlePreviousStep, handleNextStep, previousStepDisabled, nextStepDisabled } = useGroupSession()
   const [serviceMessage, setServiceMessage] = useState(null)
-  const verifiedInsightTags = useVerifiedInsightTags(insightCandidateTags(entity, currentItem))
+  const verifiedInsightTags = useVerifiedInsightTags(insightCandidateTags(entity, items))
 
   if (!activeVisit) return <NoActiveVisit />
 

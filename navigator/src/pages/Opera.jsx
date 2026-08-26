@@ -37,7 +37,7 @@ function Opera() {
   const {
     step,
     entity,
-    currentItem,
+    items,
     availableTones,
     activeTone,
     handleToneSelect,
@@ -50,7 +50,7 @@ function Opera() {
   } = useVisitProgress()
   const { role, status: groupStatus, isReady, setReady } = useGroupSession()
   const navigate = useNavigate()
-  const verifiedInsightTags = useVerifiedInsightTags(insightCandidateTags(entity, currentItem))
+  const verifiedInsightTags = useVerifiedInsightTags(insightCandidateTags(entity, items))
 
   if (!activeVisit) return <NoActiveVisit />
 
