@@ -619,7 +619,7 @@ async function submitQuizAnswers(req, res) {
     );
 
     emitToHost(req, req.visit._id, 'visit:quiz_result', {
-      userId: req.user.id, score, totalQuestions: quiz.questions.length
+      userId: req.user.id, score, totalQuestions: quiz.questions.length, answers
     });
 
     res.json({ score, totalQuestions: quiz.questions.length });

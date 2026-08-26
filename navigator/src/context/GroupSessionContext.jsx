@@ -223,10 +223,17 @@ export function GroupSessionProvider({ children }) {
         })
       )
     })
-    // Solo lato host: uno studente ha inviato le risposte del quiz.
+    // Solo lato host: uno studente ha inviato le risposte del quiz. answers
+    // è l'array degli indici di opzione scelti, nello stesso ordine di
+    // groupVisit.quiz.questions — permette al professore di rivedere ogni
+    // risposta confrontandola con q.correct_option_index.
     socket.on('visit:quiz_result', (payload) => {
       setRoster((prev) =>
-        prev.map((p) => (p.userId === payload.userId ? { ...p, quizScore: payload.score, quizTotal: payload.totalQuestions } : p))
+        prev.map((p) =>
+          p.userId === payload.userId
+            ? { ...p, quizScore: payload.score, quizTotal: payload.totalQuestions, quizAnswers: payload.answers }
+            : p
+        )
       )
     })
     socketRef.current = socket

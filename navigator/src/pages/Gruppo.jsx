@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGroupSession } from '../context/GroupSessionContext'
-import { PlayIcon, PauseIcon, InfoIcon } from '../components/icons'
+import { PlayIcon, PauseIcon, InfoIcon, CheckIcon, CrossIcon } from '../components/icons'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 import { museumVisitPath } from '../utils/museumVisit'
 
@@ -60,9 +60,20 @@ function Gruppo() {
   // Riga(he) del roster con il pannello "approfondimenti ascoltati" aperto
   // (più di uno studente alla volta, per confrontarli senza doverli riaprire).
   const [expandedInsightIds, setExpandedInsightIds] = useState(() => new Set())
+  // Stesso pattern, per il pannello "risposte al quiz" di ciascuno studente.
+  const [expandedAnswersIds, setExpandedAnswersIds] = useState(() => new Set())
 
   function toggleInsightPanel(userId) {
     setExpandedInsightIds((prev) => {
+      const next = new Set(prev)
+      if (next.has(userId)) next.delete(userId)
+      else next.add(userId)
+      return next
+    })
+  }
+
+  function toggleAnswersPanel(userId) {
+    setExpandedAnswersIds((prev) => {
       const next = new Set(prev)
       if (next.has(userId)) next.delete(userId)
       else next.add(userId)
@@ -145,7 +156,17 @@ function Gruppo() {
                     {status === 'active' && (
                       <StatusPills tone={p.tone} paragraphIndex={p.paragraphIndex} total={total} playbackState={p.playbackState} ready={p.ready} />
                     )}
-                    {status === 'quiz' && (
+                    {status === 'quiz' && p.quizScore != null && p.quizAnswers?.length > 0 && (
+                      <button
+                        type="button"
+                        onClick={() => toggleAnswersPanel(p.userId)}
+                        aria-expanded={expandedAnswersIds.has(p.userId)}
+                        className="shrink-0 rounded-full border border-info bg-info px-2.5 py-1 text-xs font-medium text-on-accent"
+                      >
+                        {`${p.quizScore}/${p.quizTotal}`}
+                      </button>
+                    )}
+                    {status === 'quiz' && (p.quizScore == null || !(p.quizAnswers?.length > 0)) && (
                       <span
                         className={`shrink-0 rounded-full border px-2.5 py-1 text-xs font-medium ${
                           p.quizScore != null
@@ -157,6 +178,36 @@ function Gruppo() {
                       </span>
                     )}
                   </div>
+
+                  {status === 'quiz' && p.quizAnswers?.length > 0 && expandedAnswersIds.has(p.userId) && (
+                    <div className="flex flex-col gap-2 rounded-lg border border-border bg-surface p-2.5 text-xs">
+                      <span className="font-medium uppercase tracking-wide text-text-muted">Risposte al quiz</span>
+                      <ul className="flex flex-col gap-2">
+                        {groupVisit.quiz.questions.map((q, i) => {
+                          const givenIndex = p.quizAnswers[i]
+                          const isCorrect = givenIndex === q.correct_option_index
+                          return (
+                            <li key={q._id || i} className="flex items-start gap-2">
+                              {isCorrect ? (
+                                <CheckIcon className="mt-0.5 h-3.5 w-3.5 shrink-0 text-info" />
+                              ) : (
+                                <CrossIcon className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[color:var(--color-error)]" />
+                              )}
+                              <div className="flex min-w-0 flex-col">
+                                <span className="text-text">{q.text}</span>
+                                <span className="text-text-muted">
+                                  Risposta: {givenIndex != null ? q.options[givenIndex] : '—'}
+                                </span>
+                                {!isCorrect && (
+                                  <span className="text-text-muted">Corretta: {q.options[q.correct_option_index]}</span>
+                                )}
+                              </div>
+                            </li>
+                          )
+                        })}
+                      </ul>
+                    </div>
+                  )}
 
                   {status === 'active' && hasInsights && isExpanded && (
                     <div className="flex flex-col gap-1.5 rounded-lg border border-border bg-surface p-2.5 text-xs">

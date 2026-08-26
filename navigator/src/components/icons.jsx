@@ -401,6 +401,23 @@ export function ChevronRightIcon(props) {
   )
 }
 
+export function CheckIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <path d="M4.5 12.5 9.5 17.5 19.5 6.5" />
+    </svg>
+  )
+}
+
+export function CrossIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <path d="M6 6 18 18" />
+      <path d="M18 6 6 18" />
+    </svg>
+  )
+}
+
 export function GroupIcon(props) {
   return (
     <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
