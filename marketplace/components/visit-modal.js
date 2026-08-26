@@ -322,7 +322,13 @@ class VisitModal extends HTMLElement {
     });
     footer.querySelector('#confirm-yes')?.addEventListener('click', () => this._addToLibrary());
     footer.querySelector('#start-btn')?.addEventListener('click', () => {
-      window.location.href = `${NAVIGATOR_URL}visite?openVisit=${encodeURIComponent(this._visit._id)}`;
+      const museum = (this._visit.museum || [])[0];
+      const params = new URLSearchParams({ openVisit: this._visit._id });
+      if (museum?._id) {
+        params.set('museum', museum._id);
+        params.set('museumName', museum.name || '');
+      }
+      window.location.href = `${NAVIGATOR_URL}visite?${params}`;
     });
     footer.querySelector('#copy-btn')?.addEventListener('click', () => this._copyVisit());
     footer.querySelector('#edit-btn')?.addEventListener('click', () => {
