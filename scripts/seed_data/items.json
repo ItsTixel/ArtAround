@@ -13456,5 +13456,2381 @@
     "updatedAt": {
       "$date": "2026-08-26T00:00:00Z"
     }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000498"
+    },
+    "marketplace_summary": "Racconto per bambini su Giotto.",
+    "artwork": {
+      "$oid": "ccc000000000000000000128"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Giotto è stato un pittore bravissimo che viveva tantissimo tempo fa, più di 700 anni fa!"
+      },
+      {
+        "duration_sec": 16,
+        "text": "Prima di lui i pittori disegnavano facce sempre uguali e senza espressione, come maschere. Giotto invece ha iniziato a far sembrare le persone vere, con occhi tristi o felici, proprio come nella realtà."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000499"
+    },
+    "marketplace_summary": "Guida semplice su Giotto.",
+    "artwork": {
+      "$oid": "ccc000000000000000000128"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Giotto (1267 circa - 1337) è considerato il primo grande pittore della storia dell'arte italiana."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Ha rotto con la tradizione bizantina, fatta di figure piatte e rigide, dando ai suoi personaggi volume, peso ed emozioni umane riconoscibili, come nei celebri affreschi della Cappella degli Scrovegni a Padova."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000500"
+    },
+    "marketplace_summary": "Guida di livello medio su Giotto.",
+    "artwork": {
+      "$oid": "ccc000000000000000000128"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Giotto di Bondone (1267 circa - 1337) è considerato il fondatore della pittura italiana moderna."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Allievo, secondo la tradizione, di Cimabue, superò il linguaggio bizantino fatto di figure ieratiche e bidimensionali introducendo volumi solidi, spazialità credibile ed espressioni emotive individuali."
+      },
+      {
+        "duration_sec": 26,
+        "text": "Attivo tra Firenze, Assisi, Padova, Napoli e Milano, la sua fama fu enorme già in vita: Dante lo cita nella Divina Commedia, e la firma \"OPUS MAGISTRI IOCTI\" su alcune opere, come il Polittico di Bologna, ne attesta il prestigio di autore riconosciuto in un'epoca in cui i pittori restavano perlopiù anonimi."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000501"
+    },
+    "marketplace_summary": "Analisi tecnica su Giotto per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000128"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Giotto di Bondone (1267 circa - 1337) segna la cesura fondamentale fra la maniera greca bizantina e la nuova pittura naturalistica italiana."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Nei suoi cicli - dagli Scrovegni ad Assisi - sostituisce la frontalità simbolica con un'organizzazione spaziale coerente, figure dal volume plastico e una recitazione dei gesti calibrata sulla narrazione, anticipando questioni di composizione centrali nel Rinascimento."
+      },
+      {
+        "duration_sec": 28,
+        "text": "La sua bottega fu tra le più influenti del Trecento italiano, e la sua lezione, filtrata da allievi come Taddeo Gaddi, orientò per due generazioni la pittura toscana verso un naturalismo misurato, prima della svolta gotica internazionale di fine secolo."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000502"
+    },
+    "marketplace_summary": "Racconto per bambini su Vitale da Bologna.",
+    "artwork": {
+      "$oid": "ccc000000000000000000129"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Vitale era un pittore di Bologna che amava disegnare scene piene di movimento, come cavalieri e draghi!"
+      },
+      {
+        "duration_sec": 15,
+        "text": "Le sue figure sembrano quasi ballare, con mantelli che svolazzano e colori vivaci: per questo i suoi quadri sono facilissimi da riconoscere."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000503"
+    },
+    "marketplace_summary": "Guida semplice su Vitale da Bologna.",
+    "artwork": {
+      "$oid": "ccc000000000000000000129"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Vitale da Bologna (1309 circa - 1359 circa) fu il più importante pittore della scuola bolognese del Trecento."
+      },
+      {
+        "duration_sec": 16,
+        "text": "È noto per uno stile molto vivace ed espressivo, con figure in movimento e colori brillanti, ben diverso dalla pittura più composta della vicina Firenze."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000504"
+    },
+    "marketplace_summary": "Guida di livello medio su Vitale da Bologna.",
+    "artwork": {
+      "$oid": "ccc000000000000000000129"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Vitale da Bologna (1309 circa - 1359 circa) è considerato il fondatore della scuola pittorica bolognese del Trecento."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Il suo stile si distingue per un dinamismo quasi \"gotico-espressionista\", con panneggi mossi, gesti concitati e una gamma cromatica squillante che si allontana dalla misura più classica di Giotto."
+      },
+      {
+        "duration_sec": 25,
+        "text": "Lavorò molto per le chiese e i conventi bolognesi, ma la sua influenza si estese anche in Romagna e nelle Marche, contribuendo a diffondere un linguaggio pittorico autonomo rispetto ai grandi centri toscani."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000505"
+    },
+    "marketplace_summary": "Analisi tecnica su Vitale da Bologna per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000129"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Vitale da Bologna (1309 circa - 1359 circa) rappresenta il punto più alto della scuola pittorica bolognese trecentesca."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Il suo linguaggio, spesso definito \"gotico-espressionista\", si caratterizza per una torsione dinamica delle figure, panneggi a pieghe spezzate e una tavolozza cromatica intensa, in dialettica sia con Giotto sia con la miniatura bolognese coeva."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Opere come il San Giorgio e il drago della Pinacoteca di Bologna mostrano una libertà narrativa e una vivacità aneddotica che anticipano soluzioni compositive riprese, decenni dopo, dalla pittura tardogotica emiliana e romagnola."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000506"
+    },
+    "marketplace_summary": "Racconto per bambini su Francesco del Cossa.",
+    "artwork": {
+      "$oid": "ccc000000000000000000130"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Francesco viveva a Ferrara e dipingeva quadri pieni di dettagli, come se fosse un fumetto antico!"
+      },
+      {
+        "duration_sec": 15,
+        "text": "Amava disegnare scene con tanti personaggi, animali e paesaggi tutti insieme, pieni di colori vivaci."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000507"
+    },
+    "marketplace_summary": "Guida semplice su Francesco del Cossa.",
+    "artwork": {
+      "$oid": "ccc000000000000000000130"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Francesco del Cossa (1436 circa - 1478) fu un pittore ferrarese attivo nella seconda metà del Quattrocento."
+      },
+      {
+        "duration_sec": 16,
+        "text": "È famoso soprattutto per gli affreschi di Palazzo Schifanoia a Ferrara, ricchi di dettagli e colori brillanti, tipici della scuola ferrarese."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000508"
+    },
+    "marketplace_summary": "Guida di livello medio su Francesco del Cossa.",
+    "artwork": {
+      "$oid": "ccc000000000000000000130"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Francesco del Cossa (1436 circa - 1478) fu, insieme a Cosmè Tura ed Ercole de' Roberti, uno dei protagonisti della scuola pittorica ferrarese del secondo Quattrocento."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Il suo stile unisce la linea aguzza e \"scultorea\" derivata da Cosmè Tura a una luce più naturalistica appresa dalla pittura fiamminga e da Piero della Francesca."
+      },
+      {
+        "duration_sec": 25,
+        "text": "Si trasferì a Bologna negli ultimi anni di vita, dove eseguì opere come la Pala dei Mercanti, portando nella città felsinea gli sviluppi più aggiornati della pittura ferrarese."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000509"
+    },
+    "marketplace_summary": "Analisi tecnica su Francesco del Cossa per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000130"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Francesco del Cossa (1436 circa - 1478) è tra i massimi interpreti della scuola ferrarese del secondo Quattrocento."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Nella sua formazione confluiscono la matrice \"lapidea\" di Cosmè Tura, memore della cultura tardogotica e nordica, e un più aggiornato naturalismo prospettico di ascendenza pierfrancescana, evidente nella resa volumetrica delle figure."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Il trasferimento a Bologna, testimoniato dalla celebre lettera di protesta indirizzata al duca Borso d'Este per il compenso ricevuto a Schifanoia, segna l'ultima fase della sua attività, di cui la Pala dei Mercanti è la testimonianza più significativa."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000510"
+    },
+    "marketplace_summary": "Racconto per bambini su Francesco Francia.",
+    "artwork": {
+      "$oid": "ccc000000000000000000131"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Francesco Francia prima faceva gioielli d'oro, poi ha iniziato a dipingere quadri bellissimi!"
+      },
+      {
+        "duration_sec": 15,
+        "text": "Era così bravo che è diventato il pittore più famoso di Bologna ai suoi tempi."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000511"
+    },
+    "marketplace_summary": "Guida semplice su Francesco Francia.",
+    "artwork": {
+      "$oid": "ccc000000000000000000131"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Francesco Francia (1447 circa - 1517) fu pittore, orafo e medaglista, tra i fondatori della scuola pittorica bolognese rinascimentale."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Iniziò la carriera come orafo, per poi dedicarsi alla pittura in età matura, sviluppando uno stile armonioso e sereno ispirato a Perugino e Raffaello."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000512"
+    },
+    "marketplace_summary": "Guida di livello medio su Francesco Francia.",
+    "artwork": {
+      "$oid": "ccc000000000000000000131"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Francesco Francia (1447 circa - 1517) è considerato il fondatore della scuola pittorica bolognese di età rinascimentale."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Formatosi come orafo e medaglista - mestiere che praticò per tutta la vita - si avvicinò alla pittura solo dopo i quarant'anni, elaborando uno stile equilibrato e devoto vicino a quello di Perugino."
+      },
+      {
+        "duration_sec": 25,
+        "text": "Fu molto legato alla famiglia Bentivoglio, signori di Bologna, per cui realizzò diverse pale d'altare, tra cui la celebre Pala Bentivoglio, oggi nella Pinacoteca Nazionale."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000513"
+    },
+    "marketplace_summary": "Analisi tecnica su Francesco Francia per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000131"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Francesco Francia (1447 circa - 1517), originariamente orafo e medaglista, è la figura che introduce a Bologna un linguaggio pittorico pienamente rinascimentale."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Il suo stile, debitore della grazia compositiva di Pietro Perugino e per breve tempo in dialogo con il giovane Raffaello, si distingue per un equilibrio devozionale misurato, distante dal dinamismo espressivo della precedente tradizione bolognese di Vitale."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Il legame con Giovanni II Bentivoglio, signore de facto di Bologna, gli garantì numerose committenze pubbliche e private; la caduta della famiglia nel 1506 segnò l'inizio del declino della sua fortuna."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000514"
+    },
+    "marketplace_summary": "Racconto per bambini su Parmigianino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000132"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il Parmigianino si è disegnato guardandosi in uno specchio tondo e curvo, tutto storto e buffo!"
+      },
+      {
+        "duration_sec": 15,
+        "text": "Le persone nei suoi quadri hanno il collo lunghissimo e sembrano eleganti come principesse."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000515"
+    },
+    "marketplace_summary": "Guida semplice su Parmigianino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000132"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Girolamo Francesco Maria Mazzola, detto il Parmigianino (1503-1540), fu pittore parmense tra i maggiori esponenti del Manierismo."
+      },
+      {
+        "duration_sec": 16,
+        "text": "È famoso per figure allungate ed eleganti, come nella celebre Madonna dal collo lungo, e per l'autoritratto dipinto guardandosi in uno specchio convesso."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000516"
+    },
+    "marketplace_summary": "Guida di livello medio su Parmigianino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000132"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Girolamo Francesco Maria Mazzola, detto il Parmigianino (1503-1540), fu tra i maggiori interpreti del Manierismo emiliano."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Formatosi sull'esempio di Correggio, sviluppò uno stile riconoscibile per l'eleganza sofisticata, le proporzioni allungate e le pose serpentinate delle figure, spesso definito \"grazia manierista\"."
+      },
+      {
+        "duration_sec": 26,
+        "text": "Lavorò a Roma, Bologna e Parma, ma gli ultimi anni furono segnati da difficoltà economiche e legali legate a una committenza rimasta incompiuta; morì a soli 37 anni, lasciando comunque un'influenza duratura sulla pittura successiva."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000517"
+    },
+    "marketplace_summary": "Analisi tecnica su Parmigianino per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000132"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Girolamo Francesco Maria Mazzola, detto il Parmigianino (1503-1540), incarna la fase più raffinata del primo Manierismo emiliano."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Muovendo dal correggismo di formazione, elabora un canone figurativo caratterizzato da elongazione delle proporzioni, contrapposto serpentinato e una luce morbida che smaterializza i contorni, come si osserva nella Madonna di Santa Margherita bolognese."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Il soggiorno romano post-1524, interrotto dal Sacco di Roma del 1527, lo mise a contatto diretto con Raffaello e Michelangelo, la cui lezione filtrò in una maniera personalissima poi codificata come cifra stilistica del Manierismo \"colto\"."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000518"
+    },
+    "marketplace_summary": "Racconto per bambini su Ludovico Carracci.",
+    "artwork": {
+      "$oid": "ccc000000000000000000133"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Ludovico e i suoi due cugini Agostino e Annibale hanno aperto una scuola di pittura tutti insieme a Bologna!"
+      },
+      {
+        "duration_sec": 15,
+        "text": "In quella scuola si imparava a disegnare guardando bene la realtà, non solo copiando altri quadri."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000519"
+    },
+    "marketplace_summary": "Guida semplice su Ludovico Carracci.",
+    "artwork": {
+      "$oid": "ccc000000000000000000133"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Ludovico Carracci (1555-1619) fu pittore bolognese e, con i cugini Agostino e Annibale, fondatore dell'Accademia degli Incamminati."
+      },
+      {
+        "duration_sec": 16,
+        "text": "La loro scuola proponeva un ritorno allo studio diretto della natura e dei grandi maestri del Rinascimento, in reazione alla pittura manierista dell'epoca."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000520"
+    },
+    "marketplace_summary": "Guida di livello medio su Ludovico Carracci.",
+    "artwork": {
+      "$oid": "ccc000000000000000000133"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Ludovico Carracci (1555-1619), insieme ai cugini Agostino e Annibale, fondò a Bologna l'Accademia degli Incamminati intorno al 1582."
+      },
+      {
+        "duration_sec": 17,
+        "text": "L'accademia promuoveva lo studio del disegno dal vero e la riscoperta della lezione di Raffaello, Correggio e Tiziano, in contrapposizione all'artificiosità della pittura tardo-manierista."
+      },
+      {
+        "duration_sec": 25,
+        "text": "A differenza dei cugini, che si trasferirono a Roma, Ludovico rimase quasi sempre a Bologna, diventando il punto di riferimento della scuola locale e maestro di allievi come Guido Reni e Guercino."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000521"
+    },
+    "marketplace_summary": "Analisi tecnica su Ludovico Carracci per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000133"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Ludovico Carracci (1555-1619) fu, con i cugini Agostino e Annibale, l'artefice della riforma classicista bolognese di fine Cinquecento."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Rimasto a Bologna mentre i cugini si affermavano a Roma, sviluppò uno stile personale caratterizzato da un chiaroscuro drammatico e da un'intensità emotiva che lo avvicinano per certi versi al naturalismo caravaggesco, pur restando ancorato a un impianto compositivo classicista."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Come didatta dell'Accademia degli Incamminati formò l'intera generazione di pittori bolognesi del primo Seicento - Guido Reni, Domenichino, Guercino - determinando per decenni l'identità della scuola pittorica bolognese."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000522"
+    },
+    "marketplace_summary": "Racconto per bambini su Guido Reni.",
+    "artwork": {
+      "$oid": "ccc000000000000000000134"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Guido Reni dipingeva santi e madonne con facce dolcissime e colori chiarissimi, quasi come nuvole!"
+      },
+      {
+        "duration_sec": 15,
+        "text": "Era così apprezzato che i ricchi signori di tutta Europa volevano un suo quadro in casa."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000523"
+    },
+    "marketplace_summary": "Guida semplice su Guido Reni.",
+    "artwork": {
+      "$oid": "ccc000000000000000000134"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Guido Reni (1575-1642) fu pittore bolognese, allievo dei Carracci e tra i maggiori maestri del classicismo barocco."
+      },
+      {
+        "duration_sec": 16,
+        "text": "È noto per figure idealizzate, colori chiari e luminosi e composizioni equilibrate, molto diverse dal naturalismo drammatico di Caravaggio."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000524"
+    },
+    "marketplace_summary": "Guida di livello medio su Guido Reni.",
+    "artwork": {
+      "$oid": "ccc000000000000000000134"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Guido Reni (1575-1642) fu allievo di Ludovico Carracci e divenne uno dei pittori più celebrati e pagati d'Europa nella prima metà del Seicento."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Il suo stile, detto \"classicismo barocco\", privilegia l'idealizzazione delle figure, una luce diffusa e chiara e un forte equilibrio compositivo, in dialogo critico con il naturalismo di Caravaggio."
+      },
+      {
+        "duration_sec": 25,
+        "text": "Attivo tra Bologna e Roma, realizzò numerose pale d'altare per le chiese bolognesi, tra cui la Strage degli Innocenti e la Pietà dei Mendicanti, oggi conservate nella Pinacoteca Nazionale."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000525"
+    },
+    "marketplace_summary": "Analisi tecnica su Guido Reni per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000134"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Guido Reni (1575-1642), formatosi nell'Accademia degli Incamminati di Ludovico Carracci, sviluppa un classicismo di grande fortuna europea."
+      },
+      {
+        "duration_sec": 20,
+        "text": "La sua ricerca di un ideale di bellezza \"più bella del vero\", debitrice di Raffaello e della statuaria antica, si traduce in una tavolozza rischiarata e in composizioni piramidali di grande chiarezza narrativa, in polemica implicita con il tenebrismo caravaggesco."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Opere come la Strage degli Innocenti, costruita su un movimento coreografico di figure quasi danzanti, mostrano come Reni trasformi anche i soggetti più drammatici in esercizi di armonia formale, un approccio che gli valse critiche di freddezza ma anche fama immensa presso le corti europee."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000526"
+    },
+    "marketplace_summary": "Racconto per bambini su Guercino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000135"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il Guercino aveva un occhio un po' storto fin da piccolo, e per questo tutti lo chiamavano così!"
+      },
+      {
+        "duration_sec": 15,
+        "text": "All'inizio dipingeva con ombre scure e forti, poi da grande ha iniziato a usare colori più chiari."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000527"
+    },
+    "marketplace_summary": "Guida semplice su Guercino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000135"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Giovanni Francesco Barbieri, detto il Guercino per uno strabismo (1591-1666), fu pittore centese attivo tra Bologna e Roma."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Nella prima fase della carriera dipinse con forti contrasti di luce e ombra, poi, influenzato da Guido Reni, adottò uno stile più chiaro e classico."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000528"
+    },
+    "marketplace_summary": "Guida di livello medio su Guercino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000135"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Giovanni Francesco Barbieri, detto il Guercino per uno strabismo giovanile (1591-1666), fu tra i maggiori pittori barocchi emiliani."
+      },
+      {
+        "duration_sec": 17,
+        "text": "La sua prima produzione, di grande forza naturalistica e forti contrasti luministici, cede dagli anni Venti del Seicento a uno stile più composto e luminoso, sotto l'influenza di Guido Reni e del clima classicista romano."
+      },
+      {
+        "duration_sec": 25,
+        "text": "Autodidatta di formazione, si affermò rapidamente grazie a committenze papali e nobiliari; opere come la Vestizione di San Guglielmo mostrano bene la fase matura, più equilibrata, della sua pittura."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000529"
+    },
+    "marketplace_summary": "Analisi tecnica su Guercino per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000135"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Giovanni Francesco Barbieri, detto il Guercino (1591-1666), rappresenta l'evoluzione più significativa del naturalismo barocco emiliano verso il classicismo."
+      },
+      {
+        "duration_sec": 20,
+        "text": "La produzione giovanile, segnata da un tenebrismo vigoroso e da tagli compositivi audaci - debitori più della tradizione lombarda e ferrarese che dei Carracci - si stempera progressivamente dopo il soggiorno romano del 1621-23 in favore di una luce diffusa e di un disegno più controllato."
+      },
+      {
+        "duration_sec": 28,
+        "text": "La Vestizione di San Guglielmo d'Aquitania, con la sua composizione piramidale e la palette rischiarata, appartiene a questa fase matura, in cui Guercino concilia l'eredità naturalistica giovanile con le istanze classiciste apprese da Guido Reni e dall'ambiente romano."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000530"
+    },
+    "marketplace_summary": "Racconto per bambini su Gotico.",
+    "artwork": {
+      "$oid": "ccc000000000000000000136"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il gotico è uno stile antico dove le chiese hanno guglie altissime e vetrate colorate bellissime!"
+      },
+      {
+        "duration_sec": 15,
+        "text": "Anche i quadri di quel periodo hanno tanto oro e i personaggi sembrano un po' allungati e magri."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000531"
+    },
+    "marketplace_summary": "Guida semplice su Gotico.",
+    "artwork": {
+      "$oid": "ccc000000000000000000136"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il Gotico è uno stile artistico nato in Francia intorno alla metà del XII secolo e diffuso in Europa fino al Quattrocento."
+      },
+      {
+        "duration_sec": 16,
+        "text": "In pittura si riconosce da fondi dorati, linee sinuose ed eleganti e una scarsa attenzione alla prospettiva realistica, tipica invece del Rinascimento successivo."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000532"
+    },
+    "marketplace_summary": "Guida di livello medio su Gotico.",
+    "artwork": {
+      "$oid": "ccc000000000000000000136"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il Gotico è lo stile artistico e architettonico sviluppatosi in Francia a metà del XII secolo e diffuso in tutta Europa fino al primo Quattrocento."
+      },
+      {
+        "duration_sec": 17,
+        "text": "In pittura si caratterizza per fondi oro simbolici, linee sinuose, figure allungate e un'attenzione più decorativa che spaziale, in continuità con la tradizione bizantina ma con crescente ricerca narrativa."
+      },
+      {
+        "duration_sec": 25,
+        "text": "In Italia convive a lungo con le innovazioni di Giotto, dando vita a un \"gotico italiano\" peculiare, prima gradualmente superato dalle conquiste prospettiche del Rinascimento fiorentino nel corso del Quattrocento."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000533"
+    },
+    "marketplace_summary": "Analisi tecnica su Gotico per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000136"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il termine \"Gotico\", coniato in epoca rinascimentale con accezione dispregiativa, designa lo stile artistico europeo fra la metà del XII e il primo Quattrocento."
+      },
+      {
+        "duration_sec": 20,
+        "text": "In ambito pittorico italiano si manifesta come sintesi fra la tradizione bizantina - fondi oro, ieraticità - e le istanze narrative introdotte da Giotto, evolvendo poi verso il cosiddetto Gotico internazionale, di gusto cortese e decorativo."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Opere come il Polittico di Bologna di Giotto o il San Giorgio e il drago di Vitale da Bologna testimoniano proprio questa fase di transizione, in cui la struttura compositiva gotica convive con una crescente ricerca di naturalismo e dinamismo narrativo."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000534"
+    },
+    "marketplace_summary": "Racconto per bambini su Manierismo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000137"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Dopo Michelangelo e Raffaello, alcuni pittori hanno iniziato a fare quadri sempre più strani e originali."
+      },
+      {
+        "duration_sec": 15,
+        "text": "Le persone nei quadri manieristi hanno pose complicate e corpi allungati, quasi come acrobati!"
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000535"
+    },
+    "marketplace_summary": "Guida semplice su Manierismo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000137"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il Manierismo è una corrente artistica sviluppatasi in Italia nel corso del Cinquecento, dopo la piena maturità del Rinascimento."
+      },
+      {
+        "duration_sec": 16,
+        "text": "È caratterizzato da figure allungate, pose complesse ed eleganti e una certa ricerca di virtuosismo tecnico e artificio, invece della naturalezza classica."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000536"
+    },
+    "marketplace_summary": "Guida di livello medio su Manierismo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000137"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il Manierismo è la corrente artistica italiana sviluppatasi nel corso del Cinquecento a partire dalla piena maturità di Raffaello e Michelangelo."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Gli artisti manieristi, invece di imitare direttamente la natura come i maestri rinascimentali, elaborano una \"maniera\" personale fatta di figure allungate, pose serpentinate e composizioni volutamente complesse e sofisticate."
+      },
+      {
+        "duration_sec": 26,
+        "text": "Il movimento nasce a Firenze e Roma per poi diffondersi in tutta Italia ed Europa, coinvolgendo pittori come Parmigianino e Pontormo e, nella sua fase finale, lo stesso Michelangelo del Giudizio Universale."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000537"
+    },
+    "marketplace_summary": "Analisi tecnica su Manierismo per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000137"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il Manierismo designa la fase artistica italiana successiva alla piena maturità rinascimentale, convenzionalmente compresa fra il 1520 e la fine del Cinquecento."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Superata l'imitazione diretta della natura codificata dal classicismo di Raffaello, gli artisti manieristi elaborano una \"maniera\" soggettiva fondata su figure serpentinate, elongazione delle proporzioni, spazi compressi e un uso espressivo del colore."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Il termine, di origine vasariana e per lungo tempo usato con accezione riduttiva di \"pittura di maniera\", è stato rivalutato dalla storiografia novecentesca, che vede nel Giudizio Universale di Michelangelo in Cappella Sistina uno dei suoi atti fondativi."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000538"
+    },
+    "marketplace_summary": "Racconto per bambini su Ellenismo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000138"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Tantissimo tempo fa, dopo un re molto famoso di nome Alessandro Magno, l'arte greca è cambiata tantissimo!"
+      },
+      {
+        "duration_sec": 15,
+        "text": "Le statue di quel periodo mostrano persone che si muovono e si sforzano, non più tranquille e perfette come prima."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000539"
+    },
+    "marketplace_summary": "Guida semplice su Ellenismo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000138"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "L'Ellenismo è il periodo della storia greca compreso fra la morte di Alessandro Magno (323 a.C.) e la conquista romana dell'Egitto (31 a.C.)."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Nella scultura di questo periodo le figure diventano più dinamiche e drammatiche rispetto alla misura e alla calma dell'arte greca classica precedente."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000540"
+    },
+    "marketplace_summary": "Guida di livello medio su Ellenismo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000138"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "L'Ellenismo è il periodo della civiltà greca compreso fra la morte di Alessandro Magno, nel 323 a.C., e la conquista romana dell'Egitto tolemaico nel 31 a.C."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Rispetto all'equilibrio composto dell'arte classica del V-IV secolo a.C., la scultura ellenistica esplora il movimento estremo e l'emozione intensa, come nel celebre gruppo del Laocoonte."
+      },
+      {
+        "duration_sec": 25,
+        "text": "Le corti ellenistiche di Pergamo, Alessandria e Rodi furono grandi centri di produzione artistica, la cui eredità fu poi assorbita e reinterpretata dai collezionisti romani, che ne copiarono in gran numero le opere."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000541"
+    },
+    "marketplace_summary": "Analisi tecnica su Ellenismo per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000138"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "L'Ellenismo designa la fase della civiltà greca compresa fra la morte di Alessandro Magno (323 a.C.) e la battaglia di Azio (31 a.C.)."
+      },
+      {
+        "duration_sec": 20,
+        "text": "In scultura si assiste al superamento del canone classico attraverso una ricerca di patetismo e movimento accentuato - il cosiddetto \"barocco ellenistico\" - visibile in opere come il Laocoonte, tradizionalmente riferito alla scuola scultorea rodia."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Gran parte della statuaria ellenistica oggi nota è tramandata attraverso copie e rielaborazioni di età romana, come il Torso del Belvedere, firmato dall'ateniese Apollonio, che pone complessi problemi filologici di distinzione fra originale ellenistico e reinterpretazione di età imperiale."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000542"
+    },
+    "marketplace_summary": "Racconto per bambini su Cappella Sistina.",
+    "artwork": {
+      "$oid": "ccc000000000000000000139"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "La Cappella Sistina è una grandissima stanza in Vaticano con il soffitto tutto dipinto da Michelangelo!"
+      },
+      {
+        "duration_sec": 15,
+        "text": "Ci ha messo quattro anni, sdraiato su un'impalcatura altissima, per dipingere centinaia di figure."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000543"
+    },
+    "marketplace_summary": "Guida semplice su Cappella Sistina.",
+    "artwork": {
+      "$oid": "ccc000000000000000000139"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "La Cappella Sistina è la principale cappella del Palazzo Apostolico in Vaticano, costruita fra il 1475 e il 1481 per volere di papa Sisto IV."
+      },
+      {
+        "duration_sec": 16,
+        "text": "È celebre soprattutto per la volta e per il Giudizio Universale, entrambi affrescati da Michelangelo, rispettivamente fra il 1508-1512 e il 1536-1541."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000544"
+    },
+    "marketplace_summary": "Guida di livello medio su Cappella Sistina.",
+    "artwork": {
+      "$oid": "ccc000000000000000000139"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La Cappella Sistina, costruita fra il 1475 e il 1481 per volere di papa Sisto IV, è la principale cappella del Palazzo Apostolico vaticano."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Le pareti laterali furono affrescate negli anni Ottanta del Quattrocento da un gruppo di grandi maestri, tra cui Botticelli, Perugino e Ghirlandaio, prima ancora dell'intervento di Michelangelo."
+      },
+      {
+        "duration_sec": 25,
+        "text": "Fra il 1508 e il 1512 Michelangelo affrescò la volta su commissione di Giulio II, e oltre vent'anni dopo, fra il 1536 e il 1541, tornò per dipingere il Giudizio Universale sulla parete d'altare, voluto da Clemente VII e Paolo III."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000545"
+    },
+    "marketplace_summary": "Analisi tecnica su Cappella Sistina per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000139"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La Cappella Sistina, edificata fra il 1475 e il 1481 su progetto di Baccio Pontelli per volere di Sisto IV, è oggi il fulcro visivo dei Musei Vaticani."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Il ciclo delle pareti laterali, affidato negli anni Ottanta del Quattrocento a Perugino, Botticelli, Ghirlandaio e Cosimo Rosselli, costituisce un manifesto della pittura umbro-toscana prima ancora dell'intervento michelangiolesco."
+      },
+      {
+        "duration_sec": 28,
+        "text": "La volta (1508-1512) e il Giudizio Universale (1536-1541), entrambi di Michelangelo ma separati da oltre due decenni e da un mutato clima storico-religioso segnato dal Sacco di Roma e dalla Riforma, rappresentano rispettivamente l'apice del classicismo rinascimentale e l'apertura verso la tensione manierista."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000546"
+    },
+    "marketplace_summary": "Racconto per bambini su Stanze di Raffaello.",
+    "artwork": {
+      "$oid": "ccc000000000000000000140"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Le Stanze di Raffaello sono quattro grandi stanze del Vaticano tutte dipinte da lui e dai suoi aiutanti!"
+      },
+      {
+        "duration_sec": 15,
+        "text": "Dentro c'è anche la Scuola di Atene, un affresco pieno di filosofi e scienziati famosi tutti insieme."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000547"
+    },
+    "marketplace_summary": "Guida semplice su Stanze di Raffaello.",
+    "artwork": {
+      "$oid": "ccc000000000000000000140"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Le Stanze di Raffaello sono quattro sale dei Palazzi Vaticani affrescate da Raffaello Sanzio e dalla sua bottega fra il 1508 e il 1524."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Furono commissionate da papa Giulio II come suo nuovo appartamento privato; la più celebre è la Stanza della Segnatura, con la Scuola di Atene."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000548"
+    },
+    "marketplace_summary": "Guida di livello medio su Stanze di Raffaello.",
+    "artwork": {
+      "$oid": "ccc000000000000000000140"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Le Stanze di Raffaello sono quattro sale dei Palazzi Vaticani affrescate da Raffaello Sanzio e dalla sua bottega fra il 1508 e il 1524."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Vennero commissionate da papa Giulio II, che scelse di trasferirvi il proprio appartamento privato invece di occupare quello del predecessore Alessandro VI Borgia."
+      },
+      {
+        "duration_sec": 25,
+        "text": "La più celebre delle quattro sale è la Stanza della Segnatura, decorata per prima e destinata a biblioteca privata del pontefice, che ospita la Scuola di Atene insieme alla Disputa del Sacramento."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000549"
+    },
+    "marketplace_summary": "Analisi tecnica su Stanze di Raffaello per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000140"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Le Stanze di Raffaello sono il complesso di quattro sale dei Palazzi Apostolici vaticani affrescate da Raffaello e bottega fra il 1508 e il 1524."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Commissionate da Giulio II in alternativa all'appartamento Borgia, giudicato ingombrante per motivi politico-simbolici, le Stanze segnano il passaggio della grande decorazione murale romana dal linguaggio umbro-peruginesco a un classicismo di respiro monumentale."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Nella Stanza della Segnatura, il programma iconografico - Teologia, Filosofia, Poesia e Giustizia rappresentate rispettivamente dalla Disputa, dalla Scuola di Atene, dal Parnaso e dalle Virtù Cardinali - riflette l'ideale umanistico di conciliazione fra sapere classico e rivelazione cristiana proprio della cultura di Giulio II."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000550"
+    },
+    "marketplace_summary": "Racconto per bambini su Museo Pio-Clementino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000141"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il Museo Pio-Clementino è la parte dei Musei Vaticani dove sono conservate le statue antiche più famose!"
+      },
+      {
+        "duration_sec": 15,
+        "text": "Il nome viene da due papi, Clemente e Pio, che l'hanno fatto costruire tanto tempo fa."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000551"
+    },
+    "marketplace_summary": "Guida semplice su Museo Pio-Clementino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000141"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il Museo Pio-Clementino è la sezione dei Musei Vaticani dedicata alla scultura classica greca e romana."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Fu fondato da papa Clemente XIV e ampliato da papa Pio VI alla fine del Settecento; ospita capolavori come il Laocoonte e l'Apollo del Belvedere."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000552"
+    },
+    "marketplace_summary": "Guida di livello medio su Museo Pio-Clementino.",
+    "artwork": {
+      "$oid": "ccc000000000000000000141"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il Museo Pio-Clementino è la sezione dei Musei Vaticani dedicata alla scultura antica, fondata da papa Clemente XIV nel 1771 e ampliata dal successore Pio VI."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Prende il nome dai due pontefici e raccoglie una delle più importanti collezioni al mondo di scultura greca, ellenistica e romana, in gran parte proveniente da scavi condotti a Roma e nel Lazio."
+      },
+      {
+        "duration_sec": 25,
+        "text": "Il suo nucleo storico si trova nel Cortile del Belvedere, dove già dal primo Cinquecento papa Giulio II aveva iniziato a esporre statue antiche come l'Apollo e, poco dopo, il Laocoonte, appena scoperto."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000553"
+    },
+    "marketplace_summary": "Analisi tecnica su Museo Pio-Clementino per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000141"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Il Museo Pio-Clementino, istituito da Clemente XIV nel 1771 e ampliato da Pio VI, costituisce il nucleo più antico della collezione di antichità classiche dei Musei Vaticani."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Il suo allestimento riprende e sistematizza il precedente nucleo cinquecentesco del Cortile del Belvedere, avviato da Giulio II con l'acquisizione dell'Apollo e, dal 1506, del Laocoonte, ritrovato negli scavi romani presso le Terme di Traiano."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Concepito secondo i criteri neoclassici dell'epoca, con sale a pianta centrale e percorsi tematici, il museo fu tra i primi al mondo a organizzare la scultura antica secondo un intento sia estetico sia storico-critico, influenzando profondamente l'allestimento museale europeo successivo."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000554"
+    },
+    "marketplace_summary": "Racconto per bambini su Affresco.",
+    "artwork": {
+      "$oid": "ccc000000000000000000142"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "L'affresco è un modo di dipingere direttamente sul muro, quando l'intonaco è ancora bagnato!"
+      },
+      {
+        "duration_sec": 15,
+        "text": "Il pittore deve essere velocissimo, perché appena l'intonaco si asciuga il colore rimane lì per sempre."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000555"
+    },
+    "marketplace_summary": "Guida semplice su Affresco.",
+    "artwork": {
+      "$oid": "ccc000000000000000000142"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "L'affresco è una tecnica pittorica murale che consiste nello stendere i colori sull'intonaco ancora fresco."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Il pigmento si lega chimicamente alla parete mentre l'intonaco asciuga, diventando parte inseparabile del muro: per questo gli affreschi possono durare secoli."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000556"
+    },
+    "marketplace_summary": "Guida di livello medio su Affresco.",
+    "artwork": {
+      "$oid": "ccc000000000000000000142"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "L'affresco è una tecnica pittorica murale eseguita stendendo i colori, diluiti in acqua, sull'intonaco ancora umido."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Durante l'asciugatura, la calce dell'intonaco reagisce chimicamente con l'aria formando un sottile strato cristallino che intrappola il pigmento, rendendolo estremamente durevole nel tempo."
+      },
+      {
+        "duration_sec": 25,
+        "text": "Il metodo richiede grande velocità e pianificazione: la superficie viene intonacata a piccole porzioni giornaliere, dette \"giornate\", ancora oggi individuabili a occhio nudo osservando da vicino un affresco antico."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000557"
+    },
+    "marketplace_summary": "Analisi tecnica su Affresco per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000142"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "L'affresco è la tecnica pittorica murale del \"buon fresco\", eseguita su intonaco di calce ancora umido."
+      },
+      {
+        "duration_sec": 20,
+        "text": "La carbonatazione della calce durante l'essiccazione forma un film di carbonato di calcio che incorpora il pigmento nella struttura del muro, garantendo una notevole resistenza chimica e temporale rispetto alle tecniche a secco."
+      },
+      {
+        "duration_sec": 28,
+        "text": "L'organizzazione del lavoro per \"giornate\" - porzioni di intonaco stese e dipinte nell'arco di una sola giornata prima che asciughi - è oggi uno strumento diagnostico fondamentale per gli storici dell'arte, utilizzato per ricostruire tempi, metodo e talvolta la mano di più collaboratori in un cantiere."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000558"
+    },
+    "marketplace_summary": "Racconto per bambini su Filosofia.",
+    "artwork": {
+      "$oid": "ccc000000000000000000143"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "La filosofia è quando ci si fa tante domande grandi, tipo \"cos'è il mondo?\" o \"cos'è giusto?\"."
+      },
+      {
+        "duration_sec": 15,
+        "text": "È nata tantissimo tempo fa in Grecia, con pensatori come Platone e Aristotele, che vedi anche nella Scuola di Atene."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000559"
+    },
+    "marketplace_summary": "Guida semplice su Filosofia.",
+    "artwork": {
+      "$oid": "ccc000000000000000000143"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "La filosofia è la riflessione critica e razionale sull'esistenza, la conoscenza e i valori."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Nacque nella Grecia antica con i primi pensatori presocratici e trovò in Platone e Aristotele, protagonisti della Scuola di Atene di Raffaello, i suoi massimi esponenti classici."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000560"
+    },
+    "marketplace_summary": "Guida di livello medio su Filosofia.",
+    "artwork": {
+      "$oid": "ccc000000000000000000143"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La filosofia, dal greco \"amore per la sapienza\", è l'indagine razionale sulla realtà, la conoscenza, l'etica e l'esistenza umana."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Nata in Grecia nel VI secolo a.C. con i filosofi presocratici, raggiunse un momento fondativo con Socrate, Platone e Aristotele, la cui eredità ha attraversato duemila anni di pensiero occidentale."
+      },
+      {
+        "duration_sec": 25,
+        "text": "Raffaello raffigura questa tradizione nella Scuola di Atene riunendo idealmente pensatori di epoche diverse - da Pitagora a Euclide - in un solo spazio architettonico, come metafora del dialogo continuo fra le generazioni del sapere."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000561"
+    },
+    "marketplace_summary": "Analisi tecnica su Filosofia per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000143"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La filosofia occidentale nasce in Grecia nel VI secolo a.C. come indagine razionale, distinta dal mito, sulla natura della realtà e della conoscenza."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Il suo momento fondativo classico è rappresentato dalla triade Socrate-Platone-Aristotele, le cui posizioni - rispettivamente il dialogo maieutico, la teoria delle idee e la logica empirica - definiscono le coordinate del pensiero occidentale successivo."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Nella Scuola di Atene, Raffaello traduce questa genealogia in un dispositivo iconografico preciso: Platone indica il cielo, sede delle idee, mentre Aristotele apre la mano verso il basso, verso il mondo sensibile, sintetizzando in un solo gesto la contrapposizione fra idealismo ed empirismo."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000562"
+    },
+    "marketplace_summary": "Racconto per bambini su Cartografia.",
+    "artwork": {
+      "$oid": "ccc000000000000000000144"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "La cartografia è l'arte di disegnare mappe per capire come è fatto il mondo intorno a noi!"
+      },
+      {
+        "duration_sec": 15,
+        "text": "In Vaticano c'è una galleria lunghissima con tantissime mappe dell'Italia dipinte sui muri, tutte diverse!"
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000563"
+    },
+    "marketplace_summary": "Guida semplice su Cartografia.",
+    "artwork": {
+      "$oid": "ccc000000000000000000144"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "La cartografia è la disciplina che studia e realizza le carte geografiche."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Nel Cinquecento, oltre a scopi pratici e politici, le mappe erano anche opere d'arte, come nella Galleria delle carte geografiche dei Musei Vaticani, con le regioni italiane dipinte a grandezza monumentale."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000564"
+    },
+    "marketplace_summary": "Guida di livello medio su Cartografia.",
+    "artwork": {
+      "$oid": "ccc000000000000000000144"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La cartografia è la disciplina scientifica e artistica che studia e rappresenta lo spazio geografico su carte e mappe."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Nel Rinascimento, con la riscoperta della geografia tolemaica e le grandi esplorazioni, la cartografia divenne anche uno strumento di prestigio politico, oltre che di conoscenza scientifica."
+      },
+      {
+        "duration_sec": 25,
+        "text": "Il cosmografo domenicano Ignazio Danti fu tra i massimi cartografi dell'epoca: ideò il programma scientifico della Galleria delle carte geografiche vaticana, dove ogni regione italiana è raffigurata con grande precisione topografica."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000565"
+    },
+    "marketplace_summary": "Analisi tecnica su Cartografia per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000144"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La cartografia rinascimentale coniuga rigore scientifico e finalità rappresentativa, in un momento di forte rinnovamento delle conoscenze geografiche europee."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Ignazio Danti, matematico, astronomo e cosmografo pontificio, applicò tecniche di rilevamento aggiornate alla realizzazione delle carte regionali della Galleria vaticana, commissionata da Gregorio XIII fra il 1580 e il 1585."
+      },
+      {
+        "duration_sec": 28,
+        "text": "L'impianto scenografico della galleria, in cui le carte sono orientate secondo la disposizione geografica reale dell'Italia lungo l'Appennino, unisce l'accuratezza scientifica del rilievo alla componente celebrativa tipica delle grandi imprese decorative di committenza papale."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000566"
+    },
+    "marketplace_summary": "Racconto per bambini su Anatomia.",
+    "artwork": {
+      "$oid": "ccc000000000000000000145"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "L'anatomia è lo studio di come è fatto il corpo, dentro: ossa, muscoli e tutto il resto!"
+      },
+      {
+        "duration_sec": 15,
+        "text": "Gli artisti del Rinascimento studiavano l'anatomia per disegnare corpi che sembrassero veri e vivi."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000567"
+    },
+    "marketplace_summary": "Guida semplice su Anatomia.",
+    "artwork": {
+      "$oid": "ccc000000000000000000145"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "L'anatomia è lo studio della struttura del corpo umano, in particolare di ossa e muscoli."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Gli artisti rinascimentali la studiarono a fondo, spesso osservando corpi reali, per rappresentare con maggiore verità i movimenti e le forme del corpo umano nelle loro opere."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000568"
+    },
+    "marketplace_summary": "Guida di livello medio su Anatomia.",
+    "artwork": {
+      "$oid": "ccc000000000000000000145"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "L'anatomia artistica è lo studio della struttura muscolare e scheletrica del corpo umano applicato alla rappresentazione figurativa."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Nel Rinascimento diversi artisti, tra cui Leonardo da Vinci e Michelangelo, praticarono personalmente la dissezione di cadaveri per comprendere a fondo la meccanica del corpo umano."
+      },
+      {
+        "duration_sec": 25,
+        "text": "Sculture antiche di grande realismo muscolare, come il Torso del Belvedere, furono studiate a lungo dagli artisti rinascimentali proprio come modelli per la resa anatomica delle figure in movimento o sotto sforzo."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000569"
+    },
+    "marketplace_summary": "Analisi tecnica su Anatomia per appassionati di storia dell'arte.",
+    "artwork": {
+      "$oid": "ccc000000000000000000145"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000002"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Lo studio anatomico applicato alle arti figurative si intensifica nel Rinascimento italiano come strumento per una resa più verosimile del corpo umano."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Leonardo da Vinci e Michelangelo condussero dissezioni dirette su cadaveri, producendo studi e disegni che coniugavano osservazione scientifica e resa espressiva, mentre altri artisti si affidarono principalmente allo studio di modelli antichi."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Il Torso del Belvedere, privo di testa, braccia e gambe ma di straordinaria resa muscolare, fu secondo la tradizione oggetto di studio prolungato da parte di Michelangelo, al punto da essere considerato una fonte diretta per l'anatomia sovraccarica delle figure della volta sistina."
+      }
+    ],
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
   }
 ]

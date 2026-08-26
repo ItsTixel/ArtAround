@@ -23,11 +23,10 @@
       }
     ],
     "tags": [
+      "Giotto",
       "Trecento",
-      "giotto",
-      "polittico",
-      "bologna",
-      "gotico"
+      "Gotico",
+      "Oro"
     ],
     "external_links": [
       {
@@ -42,7 +41,7 @@
       "$date": "2025-03-05T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2025-03-05T00:00:00Z"
+      "$date": "2026-08-26T00:00:00Z"
     }
   },
   {
@@ -69,11 +68,10 @@
       }
     ],
     "tags": [
+      "Vitale da Bologna",
       "Trecento",
-      "vitale-da-bologna",
-      "san-giorgio",
-      "bologna",
-      "gotico"
+      "Gotico",
+      "Sacro"
     ],
     "external_links": [
       {
@@ -88,7 +86,7 @@
       "$date": "2025-03-05T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2025-03-05T00:00:00Z"
+      "$date": "2026-08-26T00:00:00Z"
     }
   },
   {
@@ -115,10 +113,10 @@
       }
     ],
     "tags": [
+      "Francesco del Cossa",
       "Rinascimento",
-      "francesco-del-cossa",
-      "bologna",
-      "Quattrocento"
+      "Quattrocento",
+      "Sacro"
     ],
     "external_links": [
       {
@@ -133,7 +131,7 @@
       "$date": "2025-03-05T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2025-03-05T00:00:00Z"
+      "$date": "2026-08-26T00:00:00Z"
     }
   },
   {
@@ -160,10 +158,10 @@
       }
     ],
     "tags": [
+      "Francesco Francia",
       "Rinascimento",
-      "francesco-francia",
-      "bentivoglio",
-      "bologna"
+      "Quattrocento",
+      "Sacro"
     ],
     "external_links": [
       {
@@ -178,7 +176,7 @@
       "$date": "2025-03-05T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2025-03-05T00:00:00Z"
+      "$date": "2026-08-26T00:00:00Z"
     }
   },
   {
@@ -205,10 +203,10 @@
       }
     ],
     "tags": [
-      "Rinascimento",
       "Raffaello",
-      "santa-cecilia",
-      "bologna"
+      "Rinascimento",
+      "Cinquecento",
+      "Sacro"
     ],
     "external_links": [
       {
@@ -223,7 +221,7 @@
       "$date": "2025-03-05T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2025-03-05T00:00:00Z"
+      "$date": "2026-08-26T00:00:00Z"
     }
   },
   {
@@ -250,10 +248,10 @@
       }
     ],
     "tags": [
-      "manierismo",
-      "parmigianino",
-      "bologna",
-      "Cinquecento"
+      "Parmigianino",
+      "Manierismo",
+      "Cinquecento",
+      "Madonna"
     ],
     "external_links": [
       {
@@ -268,7 +266,7 @@
       "$date": "2025-03-05T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2025-03-05T00:00:00Z"
+      "$date": "2026-08-26T00:00:00Z"
     }
   },
   {
@@ -295,10 +293,10 @@
       }
     ],
     "tags": [
+      "Ludovico Carracci",
       "Barocco",
-      "ludovico-carracci",
-      "bargellini",
-      "bologna"
+      "Madonna",
+      "Sacro"
     ],
     "external_links": [
       {
@@ -313,7 +311,7 @@
       "$date": "2025-03-05T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2025-03-05T00:00:00Z"
+      "$date": "2026-08-26T00:00:00Z"
     }
   },
   {
@@ -340,10 +338,9 @@
       }
     ],
     "tags": [
+      "Guido Reni",
       "Barocco",
-      "guido-reni",
-      "strage-degli-innocenti",
-      "bologna"
+      "Sacro"
     ],
     "external_links": [
       {
@@ -358,7 +355,7 @@
       "$date": "2025-03-05T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2025-03-05T00:00:00Z"
+      "$date": "2026-08-26T00:00:00Z"
     }
   },
   {
@@ -385,10 +382,9 @@
       }
     ],
     "tags": [
+      "Guido Reni",
       "Barocco",
-      "guido-reni",
-      "pieta",
-      "bologna"
+      "Pietà"
     ],
     "external_links": [
       {
@@ -403,7 +399,7 @@
       "$date": "2025-03-05T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2025-03-05T00:00:00Z"
+      "$date": "2026-08-26T00:00:00Z"
     }
   },
   {
@@ -430,10 +426,9 @@
       }
     ],
     "tags": [
+      "Guercino",
       "Barocco",
-      "guercino",
-      "bologna",
-      "monastico"
+      "Sacro"
     ],
     "external_links": [
       {
@@ -448,7 +443,7 @@
       "$date": "2025-03-05T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2025-03-05T00:00:00Z"
+      "$date": "2026-08-26T00:00:00Z"
     }
   },
   {
@@ -911,8 +906,8 @@
     ],
     "tags": [
       "Michelangelo",
-      "cappella-sistina",
-      "affresco",
+      "Cappella Sistina",
+      "Affresco",
       "Rinascimento"
     ],
     "external_links": [
@@ -928,7 +923,7 @@
       "$date": "2026-08-23T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2026-08-23T00:00:00Z"
+      "$date": "2026-08-26T00:00:00Z"
     }
   },
   {
@@ -956,10 +951,9 @@
     ],
     "tags": [
       "Michelangelo",
-      "cappella-sistina",
-      "affresco",
-      "Rinascimento",
-      "manierismo"
+      "Cappella Sistina",
+      "Affresco",
+      "Manierismo"
     ],
     "external_links": [
       {
@@ -974,7 +968,7 @@
       "$date": "2026-08-23T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2026-08-23T00:00:00Z"
+      "$date": "2026-08-26T00:00:00Z"
     }
   },
   {
@@ -1002,10 +996,9 @@
     ],
     "tags": [
       "Raffaello",
-      "stanze-vaticane",
-      "affresco",
-      "Rinascimento",
-      "filosofia"
+      "Stanze di Raffaello",
+      "Affresco",
+      "Filosofia"
     ],
     "external_links": [
       {
@@ -1020,7 +1013,7 @@
       "$date": "2026-08-23T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2026-08-23T00:00:00Z"
+      "$date": "2026-08-26T00:00:00Z"
     }
   },
   {
@@ -1048,9 +1041,9 @@
     ],
     "tags": [
       "Raffaello",
-      "stanze-vaticane",
-      "affresco",
-      "Rinascimento"
+      "Stanze di Raffaello",
+      "Affresco",
+      "Sacro"
     ],
     "external_links": [
       {
@@ -1065,7 +1058,7 @@
       "$date": "2026-08-23T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2026-08-23T00:00:00Z"
+      "$date": "2026-08-26T00:00:00Z"
     }
   },
   {
@@ -1093,9 +1086,9 @@
     ],
     "tags": [
       "Raffaello",
-      "pinacoteca-vaticana",
-      "dipinto",
-      "Rinascimento"
+      "Rinascimento",
+      "Sacro",
+      "Tavola"
     ],
     "external_links": [
       {
@@ -1110,7 +1103,7 @@
       "$date": "2026-08-23T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2026-08-23T00:00:00Z"
+      "$date": "2026-08-26T00:00:00Z"
     }
   },
   {
@@ -1137,11 +1130,10 @@
       }
     ],
     "tags": [
-      "leonardo-da-vinci",
-      "pinacoteca-vaticana",
-      "dipinto",
+      "Leonardo",
       "Rinascimento",
-      "incompiuto"
+      "Non Finito",
+      "Sacro"
     ],
     "external_links": [
       {
@@ -1156,7 +1148,7 @@
       "$date": "2026-08-23T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2026-08-23T00:00:00Z"
+      "$date": "2026-08-26T00:00:00Z"
     }
   },
   {
@@ -1183,10 +1175,10 @@
       }
     ],
     "tags": [
-      "scultura",
-      "museo-pio-clementino",
-      "ellenismo",
-      "Mitologia"
+      "Museo Pio-Clementino",
+      "Ellenismo",
+      "Mitologia",
+      "Marmo"
     ],
     "external_links": [
       {
@@ -1201,7 +1193,7 @@
       "$date": "2026-08-23T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2026-08-23T00:00:00Z"
+      "$date": "2026-08-26T00:00:00Z"
     }
   },
   {
@@ -1228,10 +1220,9 @@
       }
     ],
     "tags": [
-      "scultura",
-      "museo-pio-clementino",
-      "classicismo",
-      "Mitologia"
+      "Museo Pio-Clementino",
+      "Mitologia",
+      "Marmo"
     ],
     "external_links": [
       {
@@ -1246,7 +1237,7 @@
       "$date": "2026-08-23T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2026-08-23T00:00:00Z"
+      "$date": "2026-08-26T00:00:00Z"
     }
   },
   {
@@ -1273,10 +1264,10 @@
       }
     ],
     "tags": [
-      "scultura",
-      "museo-pio-clementino",
-      "ellenismo",
-      "anatomia"
+      "Museo Pio-Clementino",
+      "Ellenismo",
+      "Marmo",
+      "Anatomia"
     ],
     "external_links": [
       {
@@ -1291,7 +1282,7 @@
       "$date": "2026-08-23T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2026-08-23T00:00:00Z"
+      "$date": "2026-08-26T00:00:00Z"
     }
   },
   {
@@ -1318,10 +1309,9 @@
       }
     ],
     "tags": [
-      "affresco",
-      "cartografia",
       "Cinquecento",
-      "palazzi-vaticani"
+      "Affresco",
+      "Cartografia"
     ],
     "external_links": [
       {
@@ -1336,7 +1326,7 @@
       "$date": "2026-08-23T00:00:00Z"
     },
     "updatedAt": {
-      "$date": "2026-08-23T00:00:00Z"
+      "$date": "2026-08-26T00:00:00Z"
     }
   },
   {
@@ -2919,6 +2909,384 @@
     ],
     "added_by": {
       "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000128"
+    },
+    "name": "Giotto",
+    "is_physical": false,
+    "description": "Pittore e architetto fiorentino (Colle di Vespignano 1267 circa - Firenze 1337), considerato il padre della pittura italiana moderna per aver superato la rigidità delle figure bizantine.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Cinque_maestri_del_rinascimento_fiorentino%2C_XVI_sec%2C_giotto.JPG/960px-Cinque_maestri_del_rinascimento_fiorentino%2C_XVI_sec%2C_giotto.JPG",
+    "alt_text": "Ritratto di Giotto, dettaglio dal dipinto cinquecentesco Cinque maestri del Rinascimento fiorentino",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000129"
+    },
+    "name": "Vitale da Bologna",
+    "is_physical": false,
+    "description": "Pittore bolognese (1309 circa - 1359 circa), il maggiore esponente della scuola pittorica trecentesca bolognese, noto per la vivacità narrativa e cromatica delle sue opere.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/VitaledaBologna.jpg/960px-VitaledaBologna.jpg",
+    "alt_text": "Presunto ritratto di Vitale da Bologna",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000130"
+    },
+    "name": "Francesco del Cossa",
+    "is_physical": false,
+    "description": "Pittore ferrarese (1436 circa - 1478), tra i protagonisti della scuola pittorica ferrarese del secondo Quattrocento insieme a Cosmè Tura ed Ercole de' Roberti.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Cossa%2C_Francesco_del_-_Allegory_of_April-_Triumph_of_Venus_%28detail%29_-_1476-84.jpg/960px-Cossa%2C_Francesco_del_-_Allegory_of_April-_Triumph_of_Venus_%28detail%29_-_1476-84.jpg",
+    "alt_text": "Dettaglio dell'affresco Trionfo di Venere di Francesco del Cossa a Palazzo Schifanoia, Ferrara",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000131"
+    },
+    "name": "Francesco Francia",
+    "is_physical": false,
+    "description": "Pittore, orafo e medaglista bolognese (1447 circa - 1517), fondatore della scuola pittorica bolognese del Rinascimento.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Ritratto_di_Francesco_Francia.jpg/960px-Ritratto_di_Francesco_Francia.jpg",
+    "alt_text": "Ritratto di Francesco Francia",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000132"
+    },
+    "name": "Parmigianino",
+    "is_physical": false,
+    "description": "Girolamo Francesco Maria Mazzola, detto il Parmigianino, pittore parmense (1503-1540), tra i massimi interpreti del Manierismo emiliano per l'eleganza allungata e sofisticata delle sue figure.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Parmigianino_Selfportrait.jpg/960px-Parmigianino_Selfportrait.jpg",
+    "alt_text": "Autoritratto entro uno specchio convesso di Parmigianino",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000133"
+    },
+    "name": "Ludovico Carracci",
+    "is_physical": false,
+    "description": "Pittore bolognese (1555-1619), cugino di Agostino e Annibale Carracci, con cui fondò l'Accademia degli Incamminati che rinnovò la pittura bolognese in senso naturalistico e classicista.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Ludovico_Carracci_by_Emilian_School%2C_17th_Century.jpg/960px-Ludovico_Carracci_by_Emilian_School%2C_17th_Century.jpg",
+    "alt_text": "Ritratto di Ludovico Carracci di scuola emiliana del XVII secolo",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000134"
+    },
+    "name": "Guido Reni",
+    "is_physical": false,
+    "description": "Pittore bolognese (1575-1642), allievo di Ludovico Carracci e tra i maggiori maestri del classicismo barocco, noto per figure idealizzate e composizioni luminose ed equilibrate.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Guido_Reni_-_Self-portrait_2.jpg/960px-Guido_Reni_-_Self-portrait_2.jpg",
+    "alt_text": "Autoritratto di Guido Reni",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000135"
+    },
+    "name": "Guercino",
+    "is_physical": false,
+    "description": "Giovanni Francesco Barbieri, detto il Guercino per uno strabismo giovanile, pittore centese (1591-1666) attivo tra Bologna e Roma, noto per il forte naturalismo luministico della sua prima produzione.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Self-portrait_by_Guercino.jpg/960px-Self-portrait_by_Guercino.jpg",
+    "alt_text": "Autoritratto del Guercino",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000136"
+    },
+    "name": "Gotico",
+    "is_physical": false,
+    "description": "Stile artistico e architettonico nato in Francia a metà del XII secolo e diffuso in Europa fino al Quattrocento, caratterizzato in pittura da fondi oro, linee sinuose e assenza di prospettiva.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Sainte_Chapelle_Interior_Stained_Glass.jpg/960px-Sainte_Chapelle_Interior_Stained_Glass.jpg",
+    "alt_text": "Vetrate policrome della Sainte-Chapelle di Parigi, esempio dell'arte gotica",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000137"
+    },
+    "name": "Manierismo",
+    "is_physical": false,
+    "description": "Corrente artistica sviluppatasi in Italia nel corso del Cinquecento a partire dalla piena maturità di Raffaello e Michelangelo, caratterizzata da figure allungate, pose complesse e artificio compositivo.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Giorgio_Vasari_002.jpg/960px-Giorgio_Vasari_002.jpg",
+    "alt_text": "Ritratto di Giorgio Vasari, pittore e storiografo manierista",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000138"
+    },
+    "name": "Ellenismo",
+    "is_physical": false,
+    "description": "Periodo della storia della Grecia e del Mediterraneo orientale compreso fra la morte di Alessandro Magno (323 a.C.) e la conquista romana dell'Egitto (31 a.C.), in cui la scultura sviluppa un linguaggio più drammatico e dinamico.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Nike_of_Samothrake_Louvre_Ma2369_n4.jpg/960px-Nike_of_Samothrake_Louvre_Ma2369_n4.jpg",
+    "alt_text": "La Nike di Samotracia, celebre scultura del periodo ellenistico",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000139"
+    },
+    "name": "Cappella Sistina",
+    "is_physical": false,
+    "description": "Cappella del Palazzo Apostolico in Vaticano, costruita fra il 1475 e il 1481 per volere di papa Sisto IV, celebre per la volta e il Giudizio Universale affrescati da Michelangelo.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Chapelle_sixtine2.jpg/960px-Chapelle_sixtine2.jpg",
+    "alt_text": "Interno della Cappella Sistina con la volta affrescata da Michelangelo",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000140"
+    },
+    "name": "Stanze di Raffaello",
+    "is_physical": false,
+    "description": "Quattro sale dei Palazzi Vaticani affrescate da Raffaello Sanzio e dalla sua bottega fra il 1508 e il 1524 per volere di papa Giulio II, fra cui la celebre Stanza della Segnatura.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Raffael_Stanza_della_Segnatura.jpg/960px-Raffael_Stanza_della_Segnatura.jpg",
+    "alt_text": "La Stanza della Segnatura affrescata da Raffaello nei Palazzi Vaticani",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000141"
+    },
+    "name": "Museo Pio-Clementino",
+    "is_physical": false,
+    "description": "Sezione dei Musei Vaticani dedicata alla scultura classica, fondata da papa Clemente XIV e ampliata da Pio VI alla fine del Settecento, che ospita capolavori come il Laocoonte e l'Apollo del Belvedere.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Museos_Vaticanos%2C_Ciudad_del_Vaticano%2C_2022-09-14%2C_DD_40.jpg/960px-Museos_Vaticanos%2C_Ciudad_del_Vaticano%2C_2022-09-14%2C_DD_40.jpg",
+    "alt_text": "Sale del Museo Pio-Clementino nei Musei Vaticani",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000142"
+    },
+    "name": "Affresco",
+    "is_physical": false,
+    "description": "Tecnica pittorica murale eseguita stendendo i colori sull'intonaco fresco di una parete: il pigmento vi si lega chimicamente e vi resta incorporato per un tempo pressoché illimitato.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Michelangelo_Buonarroti_-_Il_Giudizio_Universale.jpg/960px-Michelangelo_Buonarroti_-_Il_Giudizio_Universale.jpg",
+    "alt_text": "Il Giudizio Universale di Michelangelo, celebre esempio di pittura ad affresco",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000143"
+    },
+    "name": "Filosofia",
+    "is_physical": false,
+    "description": "La filosofia, dal greco \"amore per la sapienza\", è la riflessione critica e razionale sulla realtà, la conoscenza e i valori, nata nella Grecia antica e proseguita fino a oggi.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Tetradrachm_Athens_450_reverse_CdM_Paris-transparent.png/960px-Tetradrachm_Athens_450_reverse_CdM_Paris-transparent.png",
+    "alt_text": "Tetradracma ateniese con la civetta, simbolo di Atena e della sapienza",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000144"
+    },
+    "name": "Cartografia",
+    "is_physical": false,
+    "description": "Disciplina scientifica e artistica che studia e rappresenta lo spazio geografico su carte e mappe; nel Rinascimento fu anche strumento di prestigio politico, come nella Galleria delle carte geografiche vaticana.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/IgnazioDanti.jpg/960px-IgnazioDanti.jpg",
+    "alt_text": "Ritratto di Ignazio Danti, il cosmografo che ideò il programma della Galleria delle carte geografiche vaticana",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
+    },
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000145"
+    },
+    "name": "Anatomia",
+    "is_physical": false,
+    "description": "Studio della struttura del corpo umano, praticato dagli artisti rinascimentali attraverso la dissezione e l'osservazione diretta per raffigurare muscoli e movimento con maggiore verosimiglianza.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Anatomia_del_corpo_humano.jpg/960px-Anatomia_del_corpo_humano.jpg",
+    "alt_text": "Illustrazione anatomica da un trattato storico",
+    "tags": [],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000001"
     },
     "createdAt": {
       "$date": "2026-08-26T00:00:00Z"
