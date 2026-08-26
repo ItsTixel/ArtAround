@@ -57,6 +57,15 @@ let originalIsPublic = false;
 /* Sequenza in costruzione. Ogni voce: { entity, museum, items[], introNote, logisticNote } */
 const state = { steps: [], editingIndex: null };
 
+/* Stile personalizzato caricato da JSON (campo "Stile personalizzato" in
+ * Informazioni generali). null finché non è stato caricato/validato un file:
+ * in quel caso il campo `theme` resta assente dal payload, così in modifica
+ * uno stile già presente sulla visita non viene toccato (vedi visit.set in
+ * backend/controllers/visit.js, che sovrascrive `theme` solo se la chiave è
+ * nel body). Quando invece un file valido viene caricato, sostituisce per
+ * intero l'eventuale tema precedente. */
+let uploadedTheme = null;
+
 /* Il quiz è facoltativo per le visite di gruppo: si decide con il prompt
  * mostrato dopo la Sequenza (vedi #quiz-prompt-overlay), non è più uno step
  * numerato dello stepper. true anche in modifica se la visita ha già un quiz. */
@@ -250,6 +259,83 @@ function collectTags() {
     .split(',')
     .map(t => t.trim())
     .filter(Boolean);
+}
+
+/* ============================================================
+ *  Stile personalizzato (JSON)
+ * ============================================================ */
+
+/* Stessi pattern e stessa forma di visitThemeSchema in
+ * backend/models/visit.js (che li rivalida comunque server-side): la
+ * validazione qui serve solo a dare un riscontro immediato all'utente. */
+const THEME_HEX_PATTERN = /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/;
+const THEME_FONT_PATTERN = /^[A-Za-z0-9 ]{1,60}$/;
+const THEME_PALETTE_KEYS = ['accent', 'accent_hover', 'on_accent', 'info', 'bg', 'surface', 'text', 'text_muted', 'border', 'glass_border'];
+
+function validateThemePalette(palette, label) {
+  if (typeof palette !== 'object' || palette === null || Array.isArray(palette)) {
+    throw new Error(`"${label}" deve essere un oggetto.`);
+  }
+  const out = {};
+  for (const key of Object.keys(palette)) {
+    if (!THEME_PALETTE_KEYS.includes(key)) throw new Error(`"${label}.${key}" non è un colore riconosciuto.`);
+    const value = palette[key];
+    if (typeof value !== 'string' || !THEME_HEX_PATTERN.test(value)) {
+      throw new Error(`"${label}.${key}" deve essere un colore esadecimale valido (es. #RRGGBB).`);
+    }
+    out[key] = value;
+  }
+  return out;
+}
+
+function validateThemeJson(raw) {
+  if (typeof raw !== 'object' || raw === null || Array.isArray(raw)) {
+    throw new Error('Il file deve contenere un oggetto JSON.');
+  }
+  const allowedKeys = ['light', 'dark', 'font_serif', 'font_sans'];
+  for (const key of Object.keys(raw)) {
+    if (!allowedKeys.includes(key)) throw new Error(`Campo "${key}" non riconosciuto.`);
+  }
+
+  const theme = {};
+  if (raw.light !== undefined) theme.light = validateThemePalette(raw.light, 'light');
+  if (raw.dark !== undefined) theme.dark = validateThemePalette(raw.dark, 'dark');
+  for (const fontKey of ['font_serif', 'font_sans']) {
+    if (raw[fontKey] === undefined) continue;
+    if (typeof raw[fontKey] !== 'string' || !THEME_FONT_PATTERN.test(raw[fontKey])) {
+      throw new Error(`"${fontKey}" deve essere un nome di font valido (lettere, numeri, spazi, max 60 caratteri).`);
+    }
+    theme[fontKey] = raw[fontKey];
+  }
+
+  if (Object.keys(theme).length === 0) throw new Error('Il file non contiene nessuno stile riconosciuto.');
+  return theme;
+}
+
+const THEME_DEFAULT_HINT = 'Facoltativo: carica un JSON con palette e font della visita. In modifica, il file sostituisce interamente lo stile già impostato.';
+
+function setThemeStatus(hintText, hintState) {
+  const hint = document.getElementById('theme-json-hint');
+  hint.className = 'block-hint' + (hintState ? ` is-${hintState}` : '');
+  hint.textContent = hintText;
+}
+
+async function onThemeFileInput(e) {
+  const file = e.target.files[0];
+  if (!file) {
+    uploadedTheme = null;
+    setThemeStatus(THEME_DEFAULT_HINT);
+    return;
+  }
+  try {
+    const parsed = JSON.parse(await file.text());
+    uploadedTheme = validateThemeJson(parsed);
+    setThemeStatus('Stile valido: verrà applicato al salvataggio.', 'success');
+  } catch (err) {
+    uploadedTheme = null;
+    e.target.value = '';
+    setThemeStatus(err instanceof SyntaxError ? 'Il file non è un JSON valido.' : err.message, 'error');
+  }
 }
 
 /* ============================================================
@@ -822,6 +908,8 @@ async function submitVisit() {
     })),
   };
 
+  if (uploadedTheme) payload.theme = uploadedTheme;
+
   if (group) {
     payload.is_public = false;
     payload.base_price = 0;
@@ -963,6 +1051,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
   document.getElementById('visit-code').addEventListener('input', onCodeInput);
+  document.getElementById('theme-json').addEventListener('change', onThemeFileInput);
 
   renderStepsList();
 

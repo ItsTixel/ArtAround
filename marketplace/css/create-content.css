@@ -251,6 +251,8 @@
   color: var(--color-text-muted);
   line-height: 1.5;
 }
+.block-hint.is-error { color: var(--color-danger); }
+.block-hint.is-success { color: var(--color-success); }
 
 .field-row {
   display: grid;
