@@ -45,6 +45,7 @@ function App() {
                 <Route element={<AppLayout />}>
                   <Route index element={<Home />} />
                   <Route path="visite" element={<SelectVisit />} />
+                  <Route path="visite/:museumSlug" element={<SelectVisit />} />
                   <Route path="mappa" element={<Mappa />} />
                   <Route path="opera" element={<Opera />} />
                   <Route path="comandi" element={<Comandi />} />

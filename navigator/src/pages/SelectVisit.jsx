@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { useActiveVisit } from '../context/ActiveVisitContext'
 import { useGroupSession } from '../context/GroupSessionContext'
@@ -8,6 +8,7 @@ import VisitAdoptModal from '../components/VisitAdoptModal'
 import { formatDuration, formatPrice } from '../components/VisitInfoBody'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 import { ChevronLeftIcon } from '../components/icons'
+import { slugify } from '../utils/slug'
 
 const MARKETPLACE_VISITS_URL = '/marketplace/pages/visits.html'
 
@@ -65,13 +66,16 @@ function SelectVisit() {
   const navigate = useNavigate()
   const location = useLocation()
   const [searchParams, setSearchParams] = useSearchParams()
-  // Museo scelto nella schermata precedente (Home): se presente, le liste
-  // sotto vengono filtrate a solo le visite che lo includono. Assente per i
-  // deep link diretti a una visita (?openVisit=, QR, codice) o quando si
-  // torna qui da un flusso senza contesto museo: in quel caso si mostra la
-  // lista completa, come prima dell'introduzione della selezione museo.
-  const museumId = searchParams.get('museum')
-  const museumName = searchParams.get('museumName')
+  // Museo scelto nella schermata precedente (Home), nel path come slug del
+  // nome (/visite/:museumSlug, vedi utils/museumVisit.js) invece che come id
+  // in query string: se presente, le liste sotto vengono filtrate a solo le
+  // visite che lo includono. Assente per i deep link diretti a una visita
+  // (?openVisit=, QR, codice) o quando si torna qui da un flusso senza
+  // contesto museo: in quel caso si mostra la lista completa, come prima
+  // dell'introduzione della selezione museo.
+  const { museumSlug } = useParams()
+  const [museumId, setMuseumId] = useState(null)
+  const [museumName, setMuseumName] = useState(null)
   const [visits, setVisits] = useState([])
   const [favoriteVisits, setFavoriteVisits] = useState([])
   const [loading, setLoading] = useState(true)
@@ -100,6 +104,40 @@ function SelectVisit() {
   // Il professore ha terminato una visita di gruppo in corso: GroupSessionContext
   // riporta qui lo studente via navigate('/visite', { state: { groupSessionEnded } }).
   const [groupSessionEnded, setGroupSessionEnded] = useState(() => Boolean(location.state?.groupSessionEnded))
+
+  // L'URL porta solo lo slug del nome (leggibile, non l'id): si risolve qui
+  // al museo vero (id incluso, serve per filtrare le liste sotto) con una
+  // GET sulla lista musei, cercando quello il cui nome slugificato coincide.
+  useEffect(() => {
+    if (!museumSlug) {
+      setMuseumId(null)
+      setMuseumName(null)
+      return
+    }
+    let cancelled = false
+    // Il primo segmento dello slug come filtro `name` (ricerca parziale
+    // case-insensitive lato backend, vedi controllers/museum.js) restringe
+    // i risultati prima del confronto esatto sullo slug completo.
+    const searchTerm = museumSlug.split('-')[0]
+    const params = new URLSearchParams({ name: searchTerm, pageSize: '100' })
+    fetch(`/api/museums?${params}`)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((body) => {
+        if (cancelled) return
+        const match = (body?.data || []).find((m) => slugify(m.name) === museumSlug)
+        setMuseumId(match?._id || null)
+        setMuseumName(match?.name || null)
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setMuseumId(null)
+          setMuseumName(null)
+        }
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [museumSlug])
 
   useEffect(() => {
     let cancelled = false

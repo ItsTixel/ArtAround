@@ -5,6 +5,7 @@ import { MuseumIcon } from '../components/icons'
 import { useAuth } from '../context/AuthContext'
 import { useGroupSession } from '../context/GroupSessionContext'
 import VisitDetailModal, { PENDING_CODE_KEY } from '../components/VisitDetailModal'
+import { museumVisitPath } from '../utils/museumVisit'
 
 const SEARCH_DEBOUNCE_MS = 300
 const LOGIN_URL = '/marketplace/login.html'
@@ -77,8 +78,7 @@ function Home() {
   }, [query])
 
   function selectMuseum(museum) {
-    const params = new URLSearchParams({ museum: museum._id, museumName: museum.name })
-    navigate(`/visite?${params}`)
+    navigate(museumVisitPath(museum))
   }
 
   async function openCodePreview(code) {
