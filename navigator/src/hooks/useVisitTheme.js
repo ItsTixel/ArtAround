@@ -11,6 +11,7 @@ const COLOR_VAR_MAP = {
   accent: '--color-accent',
   accent_hover: '--color-accent-hover',
   on_accent: '--color-on-accent',
+  info: '--color-info',
   bg: '--color-bg',
   surface: '--color-surface',
   text: '--color-text',

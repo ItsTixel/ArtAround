@@ -45,6 +45,9 @@ const themePaletteSchema = new Schema({
   accent: { type: String, trim: true, match: HEX_COLOR_PATTERN },
   accent_hover: { type: String, trim: true, match: HEX_COLOR_PATTERN },
   on_accent: { type: String, trim: true, match: HEX_COLOR_PATTERN },
+  // Secondo colore di selezione, distinto da `accent` (usato per le pillole
+  // durata/tono, le tessere "pronto" in Gruppo, il punto attivo in Mappa).
+  info: { type: String, trim: true, match: HEX_COLOR_PATTERN },
   bg: { type: String, trim: true, match: HEX_COLOR_PATTERN },
   surface: { type: String, trim: true, match: HEX_COLOR_PATTERN },
   text: { type: String, trim: true, match: HEX_COLOR_PATTERN },
