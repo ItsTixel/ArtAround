@@ -13415,5 +13415,46 @@
     "updatedAt": {
       "$date": "2026-08-25T00:00:00Z"
     }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000497"
+    },
+    "marketplace_summary": "Benvenuto alla classe in visita di gruppo, con le regole da rispettare e l'annuncio del quiz finale.",
+    "artwork": {
+      "$oid": "ccc000000000000000000127"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "Benvenuta classe alla Pinacoteca Nazionale di Bologna!"
+      },
+      {
+        "duration_sec": 13,
+        "text": "Stiamo per attraversare insieme dieci sale, dal Trecento dorato al Barocco: comportatevi bene, restate vicini al gruppo e ascoltate con attenzione le guide lungo il percorso."
+      },
+      {
+        "duration_sec": 10,
+        "text": "Un ultimo avviso prima di partire: alla fine della visita vi aspetta un quiz, quindi tenete gli occhi ben aperti su ogni opera!"
+      }
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Bologna_%E2%80%94_Pinacoteca_nazionale_di_Bologna_%28outside%29.jpg/1280px-Bologna_%E2%80%94_Pinacoteca_nazionale_di_Bologna_%28outside%29.jpg",
+    "alt_text": "La facciata della Pinacoteca Nazionale di Bologna",
+    "tags": [
+      "Pinacoteca",
+      "Introduzione",
+      "Gruppo"
+    ],
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
   }
 ]

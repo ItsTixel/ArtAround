@@ -2795,5 +2795,36 @@
     "updatedAt": {
       "$date": "2026-08-25T00:00:00Z"
     }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000127"
+    },
+    "name": "Benvenuto alla visita di gruppo",
+    "is_physical": false,
+    "description": "Un saluto alla classe prima di cominciare il percorso tra le sale della Pinacoteca, con qualche indicazione su come comportarsi durante la visita e l'annuncio del quiz finale.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Bologna_%E2%80%94_Pinacoteca_nazionale_di_Bologna_%28outside%29.jpg/1280px-Bologna_%E2%80%94_Pinacoteca_nazionale_di_Bologna_%28outside%29.jpg",
+    "alt_text": "La facciata della Pinacoteca Nazionale di Bologna",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        }
+      }
+    ],
+    "tags": [
+      "Pinacoteca",
+      "Introduzione",
+      "Gruppo"
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-26T00:00:00Z"
+    }
   }
 ]
