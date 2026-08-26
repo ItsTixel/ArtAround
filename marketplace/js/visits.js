@@ -5,6 +5,7 @@
 
 import { getCurrentUser } from '/marketplace/js/auth-session.js';
 import { TONE_ORDER, TONE_LABELS } from '/marketplace/js/tone-labels.js';
+import { slugify } from '/marketplace/js/slug.js';
 
 const API_VISITS  = '/api/visits';
 const API_MUSEUMS = '/api/museums';
@@ -327,22 +328,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     load(0);
   });
 
-  /* URL param ?museum=<ObjectId> → pre-seleziona il museo nella sidebar */
-  const params   = new URLSearchParams(location.search);
-  const urlMusId = params.get('museum');
-  if (urlMusId && allMuseums.length) {
-    let matchedId = allMuseums.find(m => m._id === urlMusId)?._id || null;
-    if (!matchedId) {
-      const hint = (params.get('museumName') || '').toLowerCase();
-      if (hint) {
-        const found = allMuseums.find(m =>
-          m.name.toLowerCase().includes(hint) || hint.includes(m.name.toLowerCase())
-        );
-        if (found) matchedId = found._id;
-      }
-    }
-    if (matchedId) {
-      document.querySelector('filter-sidebar').setMuseumSelection([matchedId]);
+  /* Path /visits.html/<slug-del-nome> → pre-seleziona il museo nella sidebar
+     (slug generato al volo dal nome, nessun campo slug nel DB: stesso
+     pattern del navigator, vedi navigator/src/utils/slug.js). */
+  const museumSlug = decodeURIComponent(location.pathname.split('/visits.html/')[1] || '').replace(/\/+$/, '');
+  if (museumSlug && allMuseums.length) {
+    const matched = allMuseums.find(m => slugify(m.name) === museumSlug);
+    if (matched) {
+      document.querySelector('filter-sidebar').setMuseumSelection([matched._id]);
       return;
     }
   }

@@ -27,6 +27,7 @@ import { getCurrentUser } from '/marketplace/js/auth-session.js';
 import { trapTabKey, focusDialog } from '/marketplace/js/focus-trap.js';
 import { createImageField } from '/marketplace/js/image-field.js';
 import { setupHoursGrid, setupKvList, setupMapsList } from '/marketplace/js/museum-form-fields.js';
+import { slugify } from '/marketplace/js/slug.js';
 
 const API_MUSEUMS = '/api/museums';
 const VISITS_URL  = '/marketplace/pages/visits.html';
@@ -215,7 +216,8 @@ class MuseumModal extends HTMLElement {
 
   _viewFooterHtml() {
     const m = this._museum;
-    const visitsUrl = `${VISITS_URL}?museum=${encodeURIComponent(m._id)}&museumName=${encodeURIComponent(m.name)}`;
+    const slug = slugify(m.name);
+    const visitsUrl = slug ? `${VISITS_URL}/${slug}` : VISITS_URL;
     const btnBase = `text-[0.72rem] font-semibold tracking-[0.08em] uppercase px-6 py-3 rounded-full border border-transparent cursor-pointer whitespace-nowrap ${TRANSITION}`;
     const btnGhost = `${btnBase} bg-transparent border-slate-400/20 text-slate-800 dark:text-slate-100 hover:bg-white/20 hover:border-white/30`;
     return `

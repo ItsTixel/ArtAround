@@ -1,4 +1,5 @@
 import { GLASS, TRANSITION } from '/marketplace/js/ui-tokens.js';
+import { slugify } from '/marketplace/js/slug.js';
 
 class MuseumCard extends HTMLElement {
   static get observedAttributes() {
@@ -50,7 +51,8 @@ class MuseumCard extends HTMLElement {
     const image   = this.getAttribute('image')     || '';
     const isAccessible = this.hasAttribute('is-accessible');
     const location = [city, country].filter(Boolean).join(' · ');
-    const visitsUrl = `/marketplace/pages/visits.html?museum=${encodeURIComponent(id)}&museumName=${encodeURIComponent(name)}`;
+    const slug = slugify(name);
+    const visitsUrl = slug ? `/marketplace/pages/visits.html/${slug}` : '/marketplace/pages/visits.html';
     const todayHours = this._todayHours();
 
     this.className = 'block h-full';

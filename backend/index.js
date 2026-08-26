@@ -104,6 +104,9 @@ app.get('/dev', async function (req, res) {
 });
 app.use('/assets', express.static(path.join(__dirname, '../assets')));
 app.use('/marketplace', express.static(path.join(__dirname, '../marketplace'), { "index": 'pages/index.html' }));
+app.get('/marketplace/pages/visits.html/*', (req, res) => {
+	res.sendFile(path.join(__dirname, '../marketplace/pages/visits.html'));
+});
 app.use('/navigator', express.static(path.join(__dirname, '../navigator/dist')));
 app.get(/^\/navigator\/.*/, (req, res) => {
 	res.sendFile(path.join(__dirname, '../navigator/dist/index.html'));

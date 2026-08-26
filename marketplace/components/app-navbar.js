@@ -43,7 +43,7 @@ class AppNavbar extends HTMLElement {
     const p = window.location.pathname;
     const isMuseums = p === '/marketplace' || p.endsWith('/marketplace/') || p.endsWith('index.html');
     const isOpere   = p.endsWith('/opere.html');
-    const isVisits  = p.endsWith('/visits.html');
+    const isVisits  = p.includes('/visits.html');
     const isProfile  = p.endsWith('profile.html');
     const isLogin    = p.endsWith('login.html');
     const isRegister = p.endsWith('register.html');
