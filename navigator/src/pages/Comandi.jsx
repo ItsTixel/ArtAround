@@ -1,6 +1,11 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 import { useActiveVisit } from '../context/ActiveVisitContext'
-import { useVisitProgress, TONE_LABELS, insightCandidateTags } from '../context/VisitProgressContext'
+import {
+  useVisitProgress,
+  TONE_LABELS,
+  insightCandidateTags,
+  STANDARD_SERVICE_KEYS,
+} from '../context/VisitProgressContext'
 import { useGroupSession } from '../context/GroupSessionContext'
 import NoActiveVisit from '../components/NoActiveVisit'
 import {
@@ -15,8 +20,6 @@ import {
 } from '../components/icons'
 import useDocumentTitle from '../hooks/useDocumentTitle'
 import useVerifiedInsightTags from '../hooks/useVerifiedInsightTags'
-
-const STANDARD_SERVICE_KEYS = ['Toilette', 'Uscita']
 
 // Cycled through in order for the extra service buttons of each museum
 // section — button N gets EXTRA_SERVICE_COLORS[N % length], wrapping around.

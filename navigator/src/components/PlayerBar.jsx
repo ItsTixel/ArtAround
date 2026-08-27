@@ -1,8 +1,11 @@
+import { useState } from 'react'
+import { createPortal } from 'react-dom'
 import { useActiveVisit } from '../context/ActiveVisitContext'
 import { useVisitProgress } from '../context/VisitProgressContext'
 import { useGroupSession } from '../context/GroupSessionContext'
-import { PreviousIcon, NextIcon, PlayIcon, PauseIcon, MicrophoneIcon } from './icons'
+import { PreviousIcon, NextIcon, PlayIcon, PauseIcon, MicrophoneIcon, InfoIcon } from './icons'
 import MicListeningIndicator from './MicListeningIndicator'
+import CommandsHelpModal from './CommandsHelpModal'
 
 function formatTime(sec) {
   const total = Math.max(0, Math.floor(sec || 0))
@@ -54,6 +57,7 @@ function PlayerBar() {
   // stessa che risolvono i comandi vocali — un solo posto decide cosa fanno
   // e quando sono permessi, non una copia per canale di input.
   const { handlePreviousStep, handleNextStep, previousStepDisabled, nextStepDisabled } = useGroupSession()
+  const [helpOpen, setHelpOpen] = useState(false)
 
   if (!activeVisit) return null
 
@@ -135,17 +139,28 @@ function PlayerBar() {
         </button>
 
         <div className="flex items-center justify-between">
-          <button
-            type="button"
-            aria-label={autoplayEnabled ? 'Disattiva lettura automatica' : 'Attiva lettura automatica'}
-            aria-pressed={autoplayEnabled}
-            onClick={toggleAutoplay}
-            className={toggleLabelClasses(autoplayEnabled)}
-          >
-            Auto
-            <br />
-            Play
-          </button>
+          <div className="flex items-center gap-2.5">
+            <button
+              type="button"
+              aria-label={autoplayEnabled ? 'Disattiva lettura automatica' : 'Attiva lettura automatica'}
+              aria-pressed={autoplayEnabled}
+              onClick={toggleAutoplay}
+              className={toggleLabelClasses(autoplayEnabled)}
+            >
+              Auto
+              <br />
+              Play
+            </button>
+            <button
+              type="button"
+              aria-label="Frasi e comandi vocali disponibili"
+              aria-haspopup="dialog"
+              onClick={() => setHelpOpen(true)}
+              className={iconButtonClasses(false, { inline: true })}
+            >
+              <InfoIcon className="h-5 w-5" />
+            </button>
+          </div>
           <button
             type="button"
             aria-label="Prossimo"
@@ -157,6 +172,13 @@ function PlayerBar() {
           </button>
         </div>
       </div>
+
+      {/* Portale su body: la PlayerBar ha backdrop-filter, che crea un
+          containing block anche per i figli `fixed` — senza portale il
+          modale resterebbe ritagliato dentro la barra invece di coprire
+          lo schermo. */}
+      {helpOpen &&
+        createPortal(<CommandsHelpModal onClose={() => setHelpOpen(false)} />, document.body)}
     </div>
   )
 }

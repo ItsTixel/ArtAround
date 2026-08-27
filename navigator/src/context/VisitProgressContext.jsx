@@ -85,22 +85,35 @@ function buildDirections(prev, curr) {
   return { text: `Procedi ${sentenceBits.join(', ')}.`, parts }
 }
 
-// Voice command phrase → action key. Patterns are matched as substrings of
-// the normalized (lowercased, accent-stripped) transcript, so a full
-// sentence like "puoi dirmi dov'è il bagno" still matches "bagno" — users
-// won't say the exact Comandi.jsx button label.
-const VOICE_COMMAND_PATTERNS = [
-  { key: 'previousStep', patterns: ['precedente', 'opera precedente', 'indietro'] },
+// Servizi presenti in ogni museo, resi sia come pulsanti fissi (Comandi.jsx)
+// sia come comandi vocali dedicati qui sotto. Gli altri servizi sono
+// specifici del museo e si gestiscono a parte (matchMuseumService).
+export const STANDARD_SERVICE_KEYS = ['Toilette', 'Uscita']
 
-  { key: 'goToMap', patterns: ['vai alla mappa', 'apri la mappa', 'mostra la mappa', 'dove sono'] },
-  { key: 'nextStep', patterns: ['prossimo', 'prossima opera', 'opera successiva', 'successivo', 'avanti', 'continua la visita', 'procedi', 'vai'] },
-  { key: 'lessDetails', patterns: ['meno dettagli', 'meno particolari'] },
-  { key: 'moreDetails', patterns: ['dimmi di piu', 'piu dettagli', 'continua','ancora'] },
-  { key: 'simplerTone', patterns: ['piu semplice', 'troppo difficile', 'troppo complesso', 'semplifica'] },
-  { key: 'complexTone', patterns: ['piu complesso', 'troppo semplice', 'piu difficile', 'complica'] },
-  { key: 'toilette', patterns: ['bagno', 'toilette'] },
-  { key: 'uscita', patterns: ['uscita', 'come esco'] },
+// Comandi vocali disponibili: unica fonte di verità, condivisa dal matcher
+// qui sotto e dal popup di aiuto (CommandsHelpModal), così la lista di frasi
+// mostrata all'utente e quella davvero riconosciuta non possono divergere.
+// Le `phrases` sono confrontate come sottostringhe del transcript
+// normalizzato (minuscolo, senza accenti/punteggiatura), così una frase
+// intera come "puoi dirmi dov'è il bagno" combacia comunque con "bagno" —
+// l'utente non pronuncerà l'etichetta esatta del pulsante. `section`
+// raggruppa i comandi nel popup: 'opera' | 'servizi'.
+export const VOICE_COMMANDS = [
+  { key: 'previousStep', section: 'opera', label: 'Opera precedente', phrases: ['precedente', 'indietro'] },
+  { key: 'nextStep', section: 'opera', label: 'Prossima opera', phrases: ['prossimo', 'avanti', 'continua'] },
+  { key: 'lessDetails', section: 'opera', label: 'Meno dettagli', phrases: ['meno dettagli'] },
+  { key: 'moreDetails', section: 'opera', label: 'Dimmi di più', phrases: ['dimmi di piu', 'piu dettagli'] },
+  { key: 'simplerTone', section: 'opera', label: 'Più semplice', phrases: ['piu semplice', 'semplifica'] },
+  { key: 'complexTone', section: 'opera', label: 'Più complesso', phrases: ['piu complesso', 'piu difficile'] },
+  { key: 'goToMap', section: 'servizi', label: 'Mostra la mappa', phrases: ['apri la mappa', 'dove sono'] },
+  { key: 'toilette', section: 'servizi', label: 'Toilette', phrases: ['bagno', 'toilette'] },
+  { key: 'uscita', section: 'servizi', label: 'Uscita', phrases: ['uscita', 'come esco'] },
 ]
+
+// Tabella usata dal matcher: stesso ordine di VOICE_COMMANDS (prima frase
+// combaciante vince). Nessuna frase è sottostringa di quella di un altro
+// comando, quindi il raggruppamento per sezione non cambia gli esiti.
+const VOICE_COMMAND_PATTERNS = VOICE_COMMANDS.map(({ key, phrases }) => ({ key, patterns: phrases }))
 
 function normalizeVoiceText(text) {
   return (text || '')
@@ -119,6 +132,21 @@ function matchVoiceCommand(transcript) {
   return match?.key || null
 }
 
+// Servizi "extra" del museo (oltre a Toilette/Uscita): non hanno un comando
+// fisso in VOICE_COMMANDS perché cambiano da museo a museo, quindi si prova a
+// riconoscerli pronunciandone direttamente il nome ("guardaroba", "bookshop"
+// ...). Solo quelli del museo dell'opera in ascolto, come i pulsanti in
+// Comandi.jsx.
+function matchMuseumService(transcript, museumForService) {
+  const normalized = normalizeVoiceText(transcript)
+  if (!normalized) return null
+  return (
+    Object.keys(museumForService?.services || {}).find(
+      (key) => !STANDARD_SERVICE_KEYS.includes(key) && normalized.includes(normalizeVoiceText(key))
+    ) || null
+  )
+}
+
 // Frasi che introducono una richiesta di approfondimento ("parlami del
 // Rinascimento", "approfondisci Botticelli"...). A differenza degli altri
 // comandi vocali, quello che segue non è una chiave fissa ma va cercato fra i
@@ -126,14 +154,11 @@ function matchVoiceCommand(transcript) {
 // una entry in VOICE_COMMAND_PATTERNS.
 const INSIGHT_TRIGGER_PATTERNS = [
   'approfondisci',
-  'approfondimento',
   'parlami di',
   'parlami del',
   'raccontami di',
   'raccontami del',
-  'cosa mi dici di',
-  'cosa mi dici del',
-  'spiegami'
+  'spiegami',
 ]
 
 function matchInsightTag(transcript, tags) {
@@ -857,6 +882,18 @@ export function VisitProgressProvider({ children }) {
       const tag = matchInsightTag(transcript, insightCandidateTags(entity, items))
       if (tag) {
         requestInsight(tag)
+        return
+      }
+    }
+    // Un servizio del museo corrente nominato per esteso ("guardaroba",
+    // "bagno disabili"...) ha la precedenza sui comandi generici: è più
+    // specifico e non ha una entry fissa in VOICE_COMMANDS. Saltato mentre è
+    // aperto un approfondimento, che reinterpreta i comandi a modo suo più
+    // sotto.
+    if (!activeInsightTag) {
+      const serviceKey = matchMuseumService(transcript, museum)
+      if (serviceKey) {
+        goToService(museum, serviceKey)
         return
       }
     }
