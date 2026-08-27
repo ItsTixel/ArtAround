@@ -29,9 +29,18 @@ const liveParticipantSchema = new Schema({
   // già tracciato per l'opera principale.
   active_insight_tag: { type: String, default: null },
   insight_tags_viewed: { type: [String], default: [] },
-  insight_tone: { type: String, enum: ['childish', 'simple', 'medium', 'technical'], default: null },
+  // null è un valore ammesso (approfondimento chiuso / mai avviato): va tenuto
+  // esplicitamente nell'enum perché i validatori di update di Mongoose — a
+  // differenza della validazione del documento — rifiutano null se non è
+  // elencato, facendo fallire l'intero visit:update_state e con esso il
+  // broadcast al professore (che resterebbe "in ascolto"/evidenziato).
+  insight_tone: { type: String, enum: ['childish', 'simple', 'medium', 'technical', null], default: null },
   insight_paragraph_index: { type: Number, default: null },
-  insight_playback_state: { type: String, enum: ['playing', 'paused'], default: null },
+  // Totale paragrafi dell'opera-approfondimento col tono corrente: il
+  // professore non ha gli item dell'approfondimento (Entity separata, non
+  // embeddata nella visita), quindi il totale glielo manda lo studente.
+  insight_paragraph_total: { type: Number, default: null },
+  insight_playback_state: { type: String, enum: ['playing', 'paused', null], default: null },
   quiz_answers: { type: [Number], default: [] },
   quiz_score: { type: Number, default: null }
 }, { _id: false });

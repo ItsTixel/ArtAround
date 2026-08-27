@@ -248,7 +248,7 @@ export function VisitProgressProvider({ children }) {
   // mostrare al professore lo stesso dettaglio (tono/paragrafo/pausa) che ha
   // già per l'opera principale, anche quando lo studente sta ascoltando un
   // approfondimento invece dello step di visita.
-  const [insightState, setInsightState] = useState({ tone: null, paragraphIndex: null, playbackState: null })
+  const [insightState, setInsightState] = useState({ tone: null, paragraphIndex: null, paragraphTotal: null, playbackState: null })
   // True while the "visita terminata" popup is shown — GroupSessionContext
   // opens it from handleNextStep only for a plain individual visit (no group
   // session, role === null) once Prossimo is pressed on the last opera. A
@@ -686,13 +686,13 @@ export function VisitProgressProvider({ children }) {
     stopListening()
     window.speechSynthesis.cancel()
     setActiveInsightTag(tag)
-    setInsightState({ tone: null, paragraphIndex: null, playbackState: null })
+    setInsightState({ tone: null, paragraphIndex: null, paragraphTotal: null, playbackState: null })
   }
 
   function closeInsight() {
     window.speechSynthesis.cancel()
     setActiveInsightTag(null)
-    setInsightState({ tone: null, paragraphIndex: null, playbackState: null })
+    setInsightState({ tone: null, paragraphIndex: null, paragraphTotal: null, playbackState: null })
   }
 
   // Opens the end-of-visit popup: silences mic/narration first, same

@@ -148,14 +148,23 @@ function EntityListenPanel({ entityId, seedItems, voiceControlled = false }) {
   // GroupSessionContext, ma per il contenuto mostrato in sovraimpressione.
   useEffect(() => {
     if (!voiceControlled) return
-    reportInsightState({ tone: activeTone, paragraphIndex: activeDescIndex, playbackState })
+    reportInsightState({
+      tone: activeTone,
+      paragraphIndex: activeDescIndex,
+      paragraphTotal: sortedDescriptions.length,
+      playbackState,
+    })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [voiceControlled, activeTone, activeDescIndex, playbackState])
+  }, [voiceControlled, activeTone, activeDescIndex, sortedDescriptions.length, playbackState])
 
-  function stopSpeech() {
+  // paused=true quando è l'utente a fermare la lettura in corso ("Interrompi"):
+  // il professore deve vederlo "in pausa", non "in ascolto". La fine naturale
+  // dell'utterance e i cambi di tono/paragrafo restano 'idle' (nessun ascolto
+  // attivo, non una pausa volontaria).
+  function stopSpeech({ paused = false } = {}) {
     window.speechSynthesis.cancel()
     utteranceRef.current = null
-    setPlaybackState('idle')
+    setPlaybackState(paused ? 'paused' : 'idle')
   }
 
   useEffect(() => stopSpeech, [])
@@ -202,7 +211,7 @@ function EntityListenPanel({ entityId, seedItems, voiceControlled = false }) {
 
   function handlePlayStop() {
     if (playbackState === 'playing') {
-      stopSpeech()
+      stopSpeech({ paused: true })
       return
     }
     if (!currentDescription?.text) return

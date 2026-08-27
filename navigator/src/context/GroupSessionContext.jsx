@@ -140,6 +140,7 @@ export function GroupSessionProvider({ children }) {
           insightTagsViewed: p.insight_tags_viewed || [],
           insightTone: p.insight_tone,
           insightParagraphIndex: p.insight_paragraph_index,
+          insightParagraphTotal: p.insight_paragraph_total,
           insightPlaybackState: p.insight_playback_state,
           quizScore: p.quiz_score,
           quizTotal: p.quiz_answers?.length > 0 ? p.quiz_answers.length : undefined,
@@ -230,6 +231,7 @@ export function GroupSessionProvider({ children }) {
           }
           if (payload.insightTone !== undefined) next.insightTone = payload.insightTone
           if (payload.insightParagraphIndex !== undefined) next.insightParagraphIndex = payload.insightParagraphIndex
+          if (payload.insightParagraphTotal !== undefined) next.insightParagraphTotal = payload.insightParagraphTotal
           if (payload.insightPlaybackState !== undefined) next.insightPlaybackState = payload.insightPlaybackState
           return next
         })
@@ -581,13 +583,20 @@ export function GroupSessionProvider({ children }) {
   useEffect(() => {
     if (role !== 'student' || status !== 'active') return
     if (!activeInsightTag) {
-      updateOwnState({ insightTag: null, insightTone: null, insightParagraphIndex: null, insightPlaybackState: null })
+      updateOwnState({
+        insightTag: null,
+        insightTone: null,
+        insightParagraphIndex: null,
+        insightParagraphTotal: null,
+        insightPlaybackState: null,
+      })
       return
     }
     updateOwnState({
       insightTag: activeInsightTag,
       insightTone: insightState.tone,
       insightParagraphIndex: insightState.paragraphIndex,
+      insightParagraphTotal: insightState.paragraphTotal,
       insightPlaybackState: insightState.playbackState === 'idle' ? null : insightState.playbackState,
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps

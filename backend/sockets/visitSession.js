@@ -28,6 +28,19 @@ module.exports = function registerVisitSessionHandlers(io, socket) {
         return ack?.({ live_session: visit.live_session });
       }
 
+      // Ri-annuncia lo studente al professore a ogni (ri)connessione socket,
+      // non solo alla join REST: se il professore aveva perso l'evento
+      // originale (riconnessione, race con la propria join) il roster lato
+      // host aggiungerebbe la riga solo a un resync completo — visit:update_state
+      // fa merge sulle righe esistenti, non ne crea. Il client deduplica per
+      // userId, quindi è idempotente.
+      io.to(hostRoom(visitId)).emit('visit:participant_joined', {
+        userId: socket.user.id,
+        username: own.user?.username,
+        display_name: own.user?.display_name,
+        joined_at: own.joined_at
+      });
+
       // Uno studente che entra (o rientra dopo un reload) a quiz già avviato
       // deve poter ricevere le domande — visit:quiz_started è già passato e
       // non verrà ripetuto. Stessa sanificazione di startQuiz: mai
@@ -91,7 +104,7 @@ module.exports = function registerVisitSessionHandlers(io, socket) {
   // "non inviato" (undefined), quindi il controllo è sempre !== undefined.
   socket.on('visit:update_state', async ({
     visitId, tone, paragraphIndex, playbackState, ready,
-    insightTag, insightTone, insightParagraphIndex, insightPlaybackState
+    insightTag, insightTone, insightParagraphIndex, insightParagraphTotal, insightPlaybackState
   }, ack) => {
     try {
       const visit = await Visit.findById(visitId).select('live_session');
@@ -111,6 +124,7 @@ module.exports = function registerVisitSessionHandlers(io, socket) {
       if (insightTag !== undefined) set['live_session.participants.$[elem].active_insight_tag'] = insightTag;
       if (insightTone !== undefined) set['live_session.participants.$[elem].insight_tone'] = insightTone;
       if (insightParagraphIndex !== undefined) set['live_session.participants.$[elem].insight_paragraph_index'] = insightParagraphIndex;
+      if (insightParagraphTotal !== undefined) set['live_session.participants.$[elem].insight_paragraph_total'] = insightParagraphTotal;
       if (insightPlaybackState !== undefined) set['live_session.participants.$[elem].insight_playback_state'] = insightPlaybackState;
       if (Object.keys(set).length === 0) return ack?.({ ok: true });
 
@@ -127,7 +141,7 @@ module.exports = function registerVisitSessionHandlers(io, socket) {
 
       io.to(hostRoom(visitId)).emit('visit:participant_state_changed', {
         userId: socket.user.id, tone, paragraphIndex, playbackState, ready,
-        insightTag, insightTone, insightParagraphIndex, insightPlaybackState
+        insightTag, insightTone, insightParagraphIndex, insightParagraphTotal, insightPlaybackState
       });
       ack?.({ ok: true });
     } catch (e) {

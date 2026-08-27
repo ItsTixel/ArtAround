@@ -222,7 +222,12 @@ function Gruppo() {
                                 {tag}
                               </span>
                               {isActive && (
-                                <StatusPills tone={p.insightTone} paragraphIndex={p.insightParagraphIndex} playbackState={p.insightPlaybackState} />
+                                <StatusPills
+                                  tone={p.insightTone}
+                                  paragraphIndex={p.insightParagraphIndex}
+                                  total={p.insightParagraphTotal}
+                                  playbackState={p.insightPlaybackState}
+                                />
                               )}
                             </li>
                           )
