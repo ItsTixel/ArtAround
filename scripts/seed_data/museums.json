@@ -102,6 +102,24 @@
             "x": 0.844,
             "y": 0.852,
             "service_key": "Ascensore"
+          },
+          {
+            "label": "Madonna dal collo lungo",
+            "icon_type": "entity",
+            "x": 0.52,
+            "y": 0.4,
+            "entity": {
+              "$oid": "ccc000000000000000000159"
+            }
+          },
+          {
+            "label": "Giuditta che decapita Oloferne",
+            "icon_type": "entity",
+            "x": 0.3,
+            "y": 0.13,
+            "entity": {
+              "$oid": "ccc000000000000000000160"
+            }
           }
         ]
       },
@@ -213,6 +231,24 @@
             "x": 0.805,
             "y": 0.865,
             "service_key": "Ascensore"
+          },
+          {
+            "label": "Adorazione dei Magi (Gentile da Fabriano)",
+            "icon_type": "entity",
+            "x": 0.15,
+            "y": 0.635,
+            "entity": {
+              "$oid": "ccc000000000000000000157"
+            }
+          },
+          {
+            "label": "Adorazione dei Magi (Leonardo)",
+            "icon_type": "entity",
+            "x": 0.15,
+            "y": 0.43,
+            "entity": {
+              "$oid": "ccc000000000000000000158"
+            }
           }
         ]
       }
@@ -596,6 +632,15 @@
             "x": 0.406,
             "y": 0.939,
             "service_key": "Uscita"
+          },
+          {
+            "label": "La Fiducia in Dio",
+            "icon_type": "entity",
+            "x": 0.09,
+            "y": 0.44,
+            "entity": {
+              "$oid": "ccc000000000000000000162"
+            }
           }
         ]
       },
@@ -625,6 +670,42 @@
             "x": 0.31,
             "y": 0.752,
             "service_key": "Scale"
+          },
+          {
+            "label": "Pietà (Giovanni da Milano)",
+            "icon_type": "entity",
+            "x": 0.42,
+            "y": 0.68,
+            "entity": {
+              "$oid": "ccc000000000000000000164"
+            }
+          },
+          {
+            "label": "Deposizione dalla croce (Filippino Lippi e Perugino)",
+            "icon_type": "entity",
+            "x": 0.42,
+            "y": 0.52,
+            "entity": {
+              "$oid": "ccc000000000000000000161"
+            }
+          },
+          {
+            "label": "Madonna del Mare",
+            "icon_type": "entity",
+            "x": 0.56,
+            "y": 0.4,
+            "entity": {
+              "$oid": "ccc000000000000000000165"
+            }
+          },
+          {
+            "label": "Venere e Amore",
+            "icon_type": "entity",
+            "x": 0.42,
+            "y": 0.8,
+            "entity": {
+              "$oid": "ccc000000000000000000163"
+            }
           }
         ]
       }

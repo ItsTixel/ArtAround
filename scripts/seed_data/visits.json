@@ -921,6 +921,34 @@
       },
       {
         "_id": {
+          "$oid": "fff000000000000000000348"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000157"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000654"
+          },
+          {
+            "$oid": "ddd000000000000000000655"
+          },
+          {
+            "$oid": "ddd000000000000000000656"
+          },
+          {
+            "$oid": "ddd000000000000000000657"
+          }
+        ],
+        "logistic_note": "Torna verso l'inizio del secondo piano, nelle sale del Gotico: la grande pala dorata di Gentile da Fabriano.",
+        "intro_note": "Prima del Rinascimento vero e proprio, il vertice del Gotico internazionale: il corteo sfarzoso dei Magi di Gentile da Fabriano.",
+        "order": 2
+      },
+      {
+        "_id": {
           "$oid": "fff000000000000000000101"
         },
         "entity": {
@@ -938,11 +966,42 @@
           },
           {
             "$oid": "ddd000000000000000000105"
+          },
+          {
+            "$oid": "ddd000000000000000000301"
           }
         ],
         "logistic_note": "Sala 8, ala est del secondo piano: comincia dall'Annunciazione di Leonardo.",
         "intro_note": "Parti da qui: un'opera giovanile che mostra già l'occhio scientifico del futuro genio universale.",
-        "order": 2
+        "order": 3
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000349"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000158"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000658"
+          },
+          {
+            "$oid": "ddd000000000000000000659"
+          },
+          {
+            "$oid": "ddd000000000000000000660"
+          },
+          {
+            "$oid": "ddd000000000000000000661"
+          }
+        ],
+        "logistic_note": "Sempre nella sala di Leonardo, accanto all'Annunciazione: la grande tavola incompiuta dell'Adorazione dei Magi.",
+        "intro_note": "Ancora Leonardo, ma un'opera lasciata a metà: l'Adorazione dei Magi, solo disegno e ombra, senza colore.",
+        "order": 4
       },
       {
         "_id": {
@@ -963,11 +1022,14 @@
           },
           {
             "$oid": "ddd000000000000000000114"
+          },
+          {
+            "$oid": "ddd000000000000000000304"
           }
         ],
         "logistic_note": "Prosegui nella Sala 7, dedicata a Piero della Francesca.",
         "intro_note": "Due profili che si guardano da secoli: cerca il segno della ferita sul volto del duca.",
-        "order": 3
+        "order": 5
       },
       {
         "_id": {
@@ -988,11 +1050,14 @@
           },
           {
             "$oid": "ddd000000000000000000102"
+          },
+          {
+            "$oid": "ddd000000000000000000300"
           }
         ],
         "logistic_note": "Raggiungi la Sala 10-14, dedicata a Botticelli.",
         "intro_note": "Una delle immagini più celebri al mondo: osserva come Venere sembri fluttuare invece che stare in piedi.",
-        "order": 4
+        "order": 6
       },
       {
         "_id": {
@@ -1013,11 +1078,14 @@
           },
           {
             "$oid": "ddd000000000000000000108"
+          },
+          {
+            "$oid": "ddd000000000000000000302"
           }
         ],
         "logistic_note": "Resta nella stessa sala, accanto alla Nascita di Venere.",
         "intro_note": "Prova a contare i fiori dipinti sul prato: sono più di cinquecento specie diverse.",
-        "order": 5
+        "order": 7
       },
       {
         "_id": {
@@ -1038,11 +1106,42 @@
           },
           {
             "$oid": "ddd000000000000000000111"
+          },
+          {
+            "$oid": "ddd000000000000000000303"
           }
         ],
         "logistic_note": "Sali alla Sala 41, dedicata a Michelangelo e ai fiorentini.",
         "intro_note": "L'unico dipinto su tavola di Michelangelo che possediamo con certezza: guarda la posa a spirale della Madonna.",
-        "order": 6
+        "order": 8
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000350"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000159"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000662"
+          },
+          {
+            "$oid": "ddd000000000000000000663"
+          },
+          {
+            "$oid": "ddd000000000000000000664"
+          },
+          {
+            "$oid": "ddd000000000000000000665"
+          }
+        ],
+        "logistic_note": "Al primo piano, nelle sale del Cinquecento: cerca la pala altissima della Madonna dal collo lungo.",
+        "intro_note": "Il Manierismo portato all'estremo: la Madonna dal collo lungo di Parmigianino, elegante e straniante.",
+        "order": 9
       },
       {
         "_id": {
@@ -1063,11 +1162,14 @@
           },
           {
             "$oid": "ddd000000000000000000129"
+          },
+          {
+            "$oid": "ddd000000000000000000309"
           }
         ],
         "logistic_note": "Resta nella sala di Raffaello, poco distante.",
         "intro_note": "Cerca il piccolo cardellino tra le mani di Giovannino: nasconde un presagio.",
-        "order": 7
+        "order": 10
       },
       {
         "_id": {
@@ -1088,11 +1190,14 @@
           },
           {
             "$oid": "ddd000000000000000000120"
+          },
+          {
+            "$oid": "ddd000000000000000000306"
           }
         ],
         "logistic_note": "Scendi alla Sala 83, la sala dedicata a Tiziano.",
         "intro_note": "Uno sguardo diretto che ha attraversato i secoli: molti pittori dopo Tiziano hanno reinterpretato questa posa.",
-        "order": 8
+        "order": 11
       },
       {
         "_id": {
@@ -1113,11 +1218,14 @@
           },
           {
             "$oid": "ddd000000000000000000126"
+          },
+          {
+            "$oid": "ddd000000000000000000308"
           }
         ],
         "logistic_note": "Raggiungi le Sale 8-9, dedicate al primo Rinascimento fiorentino.",
         "intro_note": "Conta le lance spezzate a terra: sono disposte apposta per guidare il tuo sguardo verso l'orizzonte.",
-        "order": 9
+        "order": 12
       },
       {
         "_id": {
@@ -1138,11 +1246,14 @@
           },
           {
             "$oid": "ddd000000000000000000117"
+          },
+          {
+            "$oid": "ddd000000000000000000305"
           }
         ],
         "logistic_note": "Scendi al primo piano, Sala 90, la sala del Caravaggio.",
         "intro_note": "Uno scudo, non un quadro: nota come la superficie curva renda la scena ancora più inquietante.",
-        "order": 10
+        "order": 13
       },
       {
         "_id": {
@@ -1163,11 +1274,42 @@
           },
           {
             "$oid": "ddd000000000000000000123"
+          },
+          {
+            "$oid": "ddd000000000000000000307"
           }
         ],
         "logistic_note": "Resta nella stessa sala per l'ultima tappa del percorso.",
         "intro_note": "Chiudi la visita con un brindisi silenzioso: un dipinto dimenticato per secoli e poi riscoperto per caso.",
-        "order": 11
+        "order": 14
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000351"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000160"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000666"
+          },
+          {
+            "$oid": "ddd000000000000000000667"
+          },
+          {
+            "$oid": "ddd000000000000000000668"
+          },
+          {
+            "$oid": "ddd000000000000000000669"
+          }
+        ],
+        "logistic_note": "Resta nella sala di Caravaggio, al primo piano: accanto alla Medusa e al Bacco, la Giuditta di Artemisia Gentileschi.",
+        "intro_note": "L'eredità di Caravaggio in mani ferme: la Giuditta che decapita Oloferne di Artemisia Gentileschi.",
+        "order": 15
       }
     ],
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/El_nacimiento_de_Venus%2C_por_Sandro_Botticelli.jpg/1280px-El_nacimiento_de_Venus%2C_por_Sandro_Botticelli.jpg",
@@ -1208,7 +1350,7 @@
       "font_serif": "Cormorant Garamond"
     },
     "is_public": true,
-    "estimated_duration_sec": 683.42,
+    "estimated_duration_sec": 1884.33,
     "createdAt": {
       "$date": "2026-08-14T00:00:00Z"
     },
@@ -1254,11 +1396,42 @@
           },
           {
             "$oid": "ddd000000000000000000105"
+          },
+          {
+            "$oid": "ddd000000000000000000301"
           }
         ],
         "logistic_note": "Comincia agli Uffizi di Firenze, Sala 8, piano 2.",
         "intro_note": "Un viaggio tra due città inizia da qui, dal giovane Leonardo apprendista nella bottega del Verrocchio.",
         "order": 1
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000352"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000158"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000658"
+          },
+          {
+            "$oid": "ddd000000000000000000659"
+          },
+          {
+            "$oid": "ddd000000000000000000660"
+          },
+          {
+            "$oid": "ddd000000000000000000661"
+          }
+        ],
+        "logistic_note": "Sempre nella sala di Leonardo, accanto all'Annunciazione: la grande tavola incompiuta dell'Adorazione dei Magi.",
+        "intro_note": "Ancora Leonardo, ma un'opera lasciata a metà: l'Adorazione dei Magi, solo disegno e ombra, senza colore.",
+        "order": 2
       },
       {
         "_id": {
@@ -1279,11 +1452,14 @@
           },
           {
             "$oid": "ddd000000000000000000102"
+          },
+          {
+            "$oid": "ddd000000000000000000300"
           }
         ],
         "logistic_note": "Prosegui nella Sala 10-14, dedicata a Botticelli.",
         "intro_note": "La bellezza ideale del primo Rinascimento fiorentino, prima di spostarci verso il Rinascimento bolognese.",
-        "order": 2
+        "order": 3
       },
       {
         "_id": {
@@ -1304,11 +1480,14 @@
           },
           {
             "$oid": "ddd000000000000000000108"
+          },
+          {
+            "$oid": "ddd000000000000000000302"
           }
         ],
         "logistic_note": "Resta nella stessa sala per la Primavera.",
         "intro_note": "Un'allegoria complessa che useremo come punto di paragone con le pale sacre bolognesi.",
-        "order": 3
+        "order": 4
       },
       {
         "_id": {
@@ -1329,11 +1508,42 @@
           },
           {
             "$oid": "ddd000000000000000000111"
+          },
+          {
+            "$oid": "ddd000000000000000000303"
           }
         ],
         "logistic_note": "Sali alla Sala 41, dedicata a Michelangelo.",
         "intro_note": "L'unico dipinto certo di Michelangelo: un ponte perfetto tra pittura e scultura rinascimentale.",
-        "order": 4
+        "order": 5
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000353"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000159"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000662"
+          },
+          {
+            "$oid": "ddd000000000000000000663"
+          },
+          {
+            "$oid": "ddd000000000000000000664"
+          },
+          {
+            "$oid": "ddd000000000000000000665"
+          }
+        ],
+        "logistic_note": "Al primo piano, nelle sale del Cinquecento: cerca la pala altissima della Madonna dal collo lungo.",
+        "intro_note": "Il Manierismo portato all'estremo: la Madonna dal collo lungo di Parmigianino, elegante e straniante.",
+        "order": 6
       },
       {
         "_id": {
@@ -1354,11 +1564,14 @@
           },
           {
             "$oid": "ddd000000000000000000129"
+          },
+          {
+            "$oid": "ddd000000000000000000309"
           }
         ],
         "logistic_note": "Chiudi la tappa fiorentina nella sala di Raffaello, poi prendi un treno ad alta velocità per Bologna: circa 35 minuti di viaggio.",
         "intro_note": "L'ultima Madonna fiorentina prima di attraversare l'Appennino verso Bologna.",
-        "order": 5
+        "order": 7
       },
       {
         "_id": {
@@ -1386,7 +1599,35 @@
         ],
         "logistic_note": "Arrivato alla Pinacoteca Nazionale di Bologna, sali al primo piano fino alla Saletta di Giotto.",
         "intro_note": "Da Firenze a Bologna, ma quasi due secoli indietro nel tempo: un polittico gotico dorato apre la tappa bolognese.",
-        "order": 6
+        "order": 8
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000362"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000021"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000021"
+          },
+          {
+            "$oid": "ddd000000000000000000044"
+          },
+          {
+            "$oid": "ddd000000000000000000045"
+          },
+          {
+            "$oid": "ddd000000000000000000626"
+          }
+        ],
+        "logistic_note": "Sempre in Pinacoteca a Bologna, nelle sale 10-12 del primo Rinascimento: la Pala dei Mercanti di Francesco del Cossa.",
+        "intro_note": "Il Rinascimento arriva a Bologna da Ferrara: la Pala dei Mercanti di Francesco del Cossa, con la prima veduta dipinta della città.",
+        "order": 9
       },
       {
         "_id": {
@@ -1414,7 +1655,7 @@
         ],
         "logistic_note": "Raggiungi la Sala 13, dedicata a Francesco Francia.",
         "intro_note": "Una Sacra Famiglia commissionata da una famiglia di Bologna con lo stesso spirito devozionale dei fiorentini.",
-        "order": 7
+        "order": 10
       },
       {
         "_id": {
@@ -1442,7 +1683,7 @@
         ],
         "logistic_note": "Nella Sala 15, accanto a Raffaello, cerca la grande pala del Perugino.",
         "intro_note": "Uno sguardo al maestro prima dell'allievo: la Madonna in gloria del Perugino, dipinta per la stessa chiesa che ospitò la Santa Cecilia di Raffaello.",
-        "order": 8
+        "order": 11
       },
       {
         "_id": {
@@ -1470,7 +1711,7 @@
         ],
         "logistic_note": "Prosegui nella Sala 15, il cuore rinascimentale della Pinacoteca.",
         "intro_note": "Raffaello lasciò Firenze per Roma, ma questa pala mostra quanto il suo linguaggio fosse ormai maturo.",
-        "order": 9
+        "order": 12
       },
       {
         "_id": {
@@ -1498,7 +1739,7 @@
         ],
         "logistic_note": "Raggiungi la Sala 18, dedicata al Manierismo.",
         "intro_note": "Un allievo indiretto della lezione fiorentina, riletta attraverso il filtro manierista di Parmigianino.",
-        "order": 10
+        "order": 13
       },
       {
         "_id": {
@@ -1526,7 +1767,7 @@
         ],
         "logistic_note": "Concludi il percorso nella Sala 24, dedicata a Guido Reni.",
         "intro_note": "Chiudiamo il viaggio con il Barocco bolognese, l'ultima tappa di un percorso che ha attraversato tre secoli d'arte italiana.",
-        "order": 11
+        "order": 14
       }
     ],
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Annunciation_%28Leonardo_c._1472%E2%80%931476%29.jpg/1280px-Annunciation_%28Leonardo_c._1472%E2%80%931476%29.jpg",
@@ -1538,7 +1779,7 @@
       "Barocco"
     ],
     "is_public": true,
-    "estimated_duration_sec": 1117.52,
+    "estimated_duration_sec": 1811.08,
     "createdAt": {
       "$date": "2026-08-14T00:00:00Z"
     },
@@ -1788,6 +2029,34 @@
       },
       {
         "_id": {
+          "$oid": "fff000000000000000000356"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000163"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000678"
+          },
+          {
+            "$oid": "ddd000000000000000000679"
+          },
+          {
+            "$oid": "ddd000000000000000000680"
+          },
+          {
+            "$oid": "ddd000000000000000000681"
+          }
+        ],
+        "logistic_note": "Nella Sala del Colosso: la Venere e Amore dipinta dal Pontormo su disegno di Michelangelo.",
+        "intro_note": "Michelangelo pittore per interposta persona: la Venere e Amore, sua invenzione tradotta in pittura dal Pontormo.",
+        "order": 9
+      },
+      {
+        "_id": {
           "$oid": "fff000000000000000000209"
         },
         "entity": {
@@ -1812,7 +2081,35 @@
         ],
         "logistic_note": "Dalla Tribuna, dirigiti verso il grande salone con la volta a botte.",
         "intro_note": "Un gigante di gesso: il modello preparatorio del Ratto delle Sabine.",
-        "order": 9
+        "order": 10
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000357"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000162"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000674"
+          },
+          {
+            "$oid": "ddd000000000000000000675"
+          },
+          {
+            "$oid": "ddd000000000000000000676"
+          },
+          {
+            "$oid": "ddd000000000000000000677"
+          }
+        ],
+        "logistic_note": "Nel Salone dell'Ottocento, accanto al modello del Ratto delle Sabine: la piccola Fiducia in Dio di Bartolini.",
+        "intro_note": "Un salto di tre secoli: la delicata Fiducia in Dio di Lorenzo Bartolini, manifesto del purismo dell'Ottocento.",
+        "order": 11
       },
       {
         "_id": {
@@ -1840,7 +2137,91 @@
         ],
         "logistic_note": "Raggiungi le sale con le tavole dorate del Trecento.",
         "intro_note": "Un albero dipinto pieno di storie bibliche, tutto in oro e tempera.",
-        "order": 10
+        "order": 12
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000363"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000164"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000682"
+          },
+          {
+            "$oid": "ddd000000000000000000683"
+          },
+          {
+            "$oid": "ddd000000000000000000684"
+          },
+          {
+            "$oid": "ddd000000000000000000685"
+          }
+        ],
+        "logistic_note": "Nelle sale del Trecento della Pinacoteca dell'Accademia: la Pietà firmata da Giovanni da Milano.",
+        "intro_note": "Un altro volto del Trecento fiorentino: la Pietà di Giovanni da Milano, lombardo di nascita, dal naturalismo delicato.",
+        "order": 13
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000358"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000161"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000670"
+          },
+          {
+            "$oid": "ddd000000000000000000671"
+          },
+          {
+            "$oid": "ddd000000000000000000672"
+          },
+          {
+            "$oid": "ddd000000000000000000673"
+          }
+        ],
+        "logistic_note": "Nelle sale della Pinacoteca dell'Accademia: la grande Deposizione dalla croce iniziata da Filippino Lippi.",
+        "intro_note": "Un capolavoro a quattro mani: la Deposizione cominciata da Filippino Lippi e finita da Perugino.",
+        "order": 14
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000364"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000165"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000686"
+          },
+          {
+            "$oid": "ddd000000000000000000687"
+          },
+          {
+            "$oid": "ddd000000000000000000688"
+          },
+          {
+            "$oid": "ddd000000000000000000689"
+          }
+        ],
+        "logistic_note": "Sempre in Pinacoteca, fra i dipinti del primo Rinascimento: la Madonna del Mare, vicina a Botticelli.",
+        "intro_note": "Dopo il marmo, la linea: la Madonna del Mare, tavola raffinata attribuita a Botticelli o al giovane Filippino Lippi.",
+        "order": 15
       },
       {
         "_id": {
@@ -1868,10 +2249,10 @@
         ],
         "logistic_note": "Sali al primo piano tramite le scale o l'ascensore, per raggiungere la Pinacoteca.",
         "intro_note": "Un corteo di nozze fiorentino dipinto quasi 600 anni fa.",
-        "order": 11
+        "order": 16
       }
     ],
-    "estimated_duration_sec": 613.75
+    "estimated_duration_sec": 1778.8
   },
   {
     "_id": {
@@ -1922,6 +2303,34 @@
       },
       {
         "_id": {
+          "$oid": "fff000000000000000000354"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000157"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000654"
+          },
+          {
+            "$oid": "ddd000000000000000000655"
+          },
+          {
+            "$oid": "ddd000000000000000000656"
+          },
+          {
+            "$oid": "ddd000000000000000000657"
+          }
+        ],
+        "logistic_note": "Torna verso l'inizio del secondo piano, nelle sale del Gotico: la grande pala dorata di Gentile da Fabriano.",
+        "intro_note": "Prima del Rinascimento vero e proprio, il vertice del Gotico internazionale: il corteo sfarzoso dei Magi di Gentile da Fabriano.",
+        "order": 2
+      },
+      {
+        "_id": {
           "$oid": "fff000000000000000000302"
         },
         "entity": {
@@ -1939,11 +2348,42 @@
           },
           {
             "$oid": "ddd000000000000000000105"
+          },
+          {
+            "$oid": "ddd000000000000000000301"
           }
         ],
         "logistic_note": "Sala 8, ala est del secondo piano: comincia dall'Annunciazione di Leonardo.",
         "intro_note": "Parti da qui: un'opera giovanile che mostra già l'occhio scientifico del futuro genio universale.",
-        "order": 2
+        "order": 3
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000355"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000158"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000658"
+          },
+          {
+            "$oid": "ddd000000000000000000659"
+          },
+          {
+            "$oid": "ddd000000000000000000660"
+          },
+          {
+            "$oid": "ddd000000000000000000661"
+          }
+        ],
+        "logistic_note": "Sempre nella sala di Leonardo, accanto all'Annunciazione: la grande tavola incompiuta dell'Adorazione dei Magi.",
+        "intro_note": "Ancora Leonardo, ma un'opera lasciata a metà: l'Adorazione dei Magi, solo disegno e ombra, senza colore.",
+        "order": 4
       },
       {
         "_id": {
@@ -1964,11 +2404,14 @@
           },
           {
             "$oid": "ddd000000000000000000114"
+          },
+          {
+            "$oid": "ddd000000000000000000304"
           }
         ],
         "logistic_note": "Prosegui nella Sala 7, dedicata a Piero della Francesca.",
         "intro_note": "Due profili che si guardano da secoli: cerca il segno della ferita sul volto del duca.",
-        "order": 3
+        "order": 5
       },
       {
         "_id": {
@@ -1989,11 +2432,14 @@
           },
           {
             "$oid": "ddd000000000000000000102"
+          },
+          {
+            "$oid": "ddd000000000000000000300"
           }
         ],
         "logistic_note": "Raggiungi la Sala 10-14, dedicata a Botticelli.",
         "intro_note": "Una delle immagini più celebri al mondo: osserva come Venere sembri fluttuare invece che stare in piedi.",
-        "order": 4
+        "order": 6
       },
       {
         "_id": {
@@ -2014,11 +2460,14 @@
           },
           {
             "$oid": "ddd000000000000000000108"
+          },
+          {
+            "$oid": "ddd000000000000000000302"
           }
         ],
         "logistic_note": "Resta nella stessa sala, accanto alla Nascita di Venere.",
         "intro_note": "Prova a contare i fiori dipinti sul prato: sono più di cinquecento specie diverse.",
-        "order": 5
+        "order": 7
       },
       {
         "_id": {
@@ -2039,11 +2488,42 @@
           },
           {
             "$oid": "ddd000000000000000000111"
+          },
+          {
+            "$oid": "ddd000000000000000000303"
           }
         ],
         "logistic_note": "Sali alla Sala 41, dedicata a Michelangelo e ai fiorentini.",
         "intro_note": "L'unico dipinto su tavola di Michelangelo che possediamo con certezza: guarda la posa a spirale della Madonna.",
-        "order": 6
+        "order": 8
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000365"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000159"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000662"
+          },
+          {
+            "$oid": "ddd000000000000000000663"
+          },
+          {
+            "$oid": "ddd000000000000000000664"
+          },
+          {
+            "$oid": "ddd000000000000000000665"
+          }
+        ],
+        "logistic_note": "Al primo piano, nelle sale del Cinquecento: cerca la pala altissima della Madonna dal collo lungo.",
+        "intro_note": "Il Manierismo portato all'estremo: la Madonna dal collo lungo di Parmigianino, elegante e straniante.",
+        "order": 9
       },
       {
         "_id": {
@@ -2064,11 +2544,14 @@
           },
           {
             "$oid": "ddd000000000000000000129"
+          },
+          {
+            "$oid": "ddd000000000000000000309"
           }
         ],
         "logistic_note": "Resta nella sala di Raffaello, poco distante.",
         "intro_note": "Cerca il piccolo cardellino tra le mani di Giovannino: nasconde un presagio.",
-        "order": 7
+        "order": 10
       },
       {
         "_id": {
@@ -2089,11 +2572,14 @@
           },
           {
             "$oid": "ddd000000000000000000120"
+          },
+          {
+            "$oid": "ddd000000000000000000306"
           }
         ],
         "logistic_note": "Scendi alla Sala 83, la sala dedicata a Tiziano.",
         "intro_note": "Uno sguardo diretto che ha attraversato i secoli: molti pittori dopo Tiziano hanno reinterpretato questa posa.",
-        "order": 8
+        "order": 11
       },
       {
         "_id": {
@@ -2114,11 +2600,14 @@
           },
           {
             "$oid": "ddd000000000000000000126"
+          },
+          {
+            "$oid": "ddd000000000000000000308"
           }
         ],
         "logistic_note": "Raggiungi le Sale 8-9, dedicate al primo Rinascimento fiorentino.",
         "intro_note": "Conta le lance spezzate a terra: sono disposte apposta per guidare il tuo sguardo verso l'orizzonte.",
-        "order": 9
+        "order": 12
       },
       {
         "_id": {
@@ -2139,11 +2628,14 @@
           },
           {
             "$oid": "ddd000000000000000000117"
+          },
+          {
+            "$oid": "ddd000000000000000000305"
           }
         ],
         "logistic_note": "Scendi al primo piano, Sala 90, la sala del Caravaggio.",
         "intro_note": "Uno scudo, non un quadro: nota come la superficie curva renda la scena ancora più inquietante.",
-        "order": 10
+        "order": 13
       },
       {
         "_id": {
@@ -2164,11 +2656,42 @@
           },
           {
             "$oid": "ddd000000000000000000123"
+          },
+          {
+            "$oid": "ddd000000000000000000307"
           }
         ],
         "logistic_note": "Resta nella stessa sala per l'ultima tappa fiorentina agli Uffizi, poi esci e incamminati verso la Galleria dell'Accademia: circa 20 minuti a piedi attraversando il centro di Firenze.",
         "intro_note": "Chiudi la visita con un brindisi silenzioso: un dipinto dimenticato per secoli e poi riscoperto per caso.",
-        "order": 11
+        "order": 14
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000366"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000160"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000666"
+          },
+          {
+            "$oid": "ddd000000000000000000667"
+          },
+          {
+            "$oid": "ddd000000000000000000668"
+          },
+          {
+            "$oid": "ddd000000000000000000669"
+          }
+        ],
+        "logistic_note": "Resta nella sala di Caravaggio, al primo piano: accanto alla Medusa e al Bacco, la Giuditta di Artemisia Gentileschi.",
+        "intro_note": "L'eredità di Caravaggio in mani ferme: la Giuditta che decapita Oloferne di Artemisia Gentileschi.",
+        "order": 15
       },
       {
         "_id": {
@@ -2196,7 +2719,7 @@
         ],
         "logistic_note": "Arrivato alla Galleria dell'Accademia, fermati un attimo prima di entrare per un breve benvenuto.",
         "intro_note": "Un museo nato come scuola per artisti, oggi casa del David.",
-        "order": 12
+        "order": 16
       },
       {
         "_id": {
@@ -2224,7 +2747,7 @@
         ],
         "logistic_note": "Entra e imbocca subito il corridoio che porta verso la Tribuna del David.",
         "intro_note": "La prima statua non finita di Michelangelo che incontri: un apostolo mai completato.",
-        "order": 13
+        "order": 17
       },
       {
         "_id": {
@@ -2252,63 +2775,7 @@
         ],
         "logistic_note": "Prosegui lungo il corridoio: è il primo dei quattro Prigioni.",
         "intro_note": "Un corpo che sembra ancora lottare per uscire dalla pietra.",
-        "order": 14
-      },
-      {
-        "_id": {
-          "$oid": "fff000000000000000000315"
-        },
-        "entity": {
-          "$oid": "ccc000000000000000000063"
-        },
-        "museum": {
-          "$oid": "bbb000000000000000000010"
-        },
-        "items": [
-          {
-            "$oid": "ddd000000000000000000212"
-          },
-          {
-            "$oid": "ddd000000000000000000213"
-          },
-          {
-            "$oid": "ddd000000000000000000214"
-          },
-          {
-            "$oid": "ddd000000000000000000215"
-          }
-        ],
-        "logistic_note": "Continua lungo il corridoio.",
-        "intro_note": "Il più 'imprigionato' dei quattro: la testa è ancora dentro il blocco.",
-        "order": 15
-      },
-      {
-        "_id": {
-          "$oid": "fff000000000000000000316"
-        },
-        "entity": {
-          "$oid": "ccc000000000000000000064"
-        },
-        "museum": {
-          "$oid": "bbb000000000000000000010"
-        },
-        "items": [
-          {
-            "$oid": "ddd000000000000000000216"
-          },
-          {
-            "$oid": "ddd000000000000000000217"
-          },
-          {
-            "$oid": "ddd000000000000000000218"
-          },
-          {
-            "$oid": "ddd000000000000000000219"
-          }
-        ],
-        "logistic_note": "Prosegui ancora lungo il corridoio.",
-        "intro_note": "Il più completo dei Prigioni: guarda le mani, ancora non finite.",
-        "order": 16
+        "order": 18
       },
       {
         "_id": {
@@ -2336,7 +2803,7 @@
         ],
         "logistic_note": "Sei quasi alla fine del corridoio.",
         "intro_note": "L'ultimo Prigione, come se si stesse svegliando da un lungo sonno.",
-        "order": 17
+        "order": 19
       },
       {
         "_id": {
@@ -2364,7 +2831,7 @@
         ],
         "logistic_note": "Prima di entrare nella Tribuna, ferma un attimo qui.",
         "intro_note": "Un Cristo sorretto in piedi, non disteso: un'iconografia insolita.",
-        "order": 18
+        "order": 20
       },
       {
         "_id": {
@@ -2392,7 +2859,35 @@
         ],
         "logistic_note": "Entra nella Tribuna: il David ti aspetta al centro.",
         "intro_note": "Il capolavoro assoluto della galleria, alto oltre cinque metri.",
-        "order": 19
+        "order": 21
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000359"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000163"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000678"
+          },
+          {
+            "$oid": "ddd000000000000000000679"
+          },
+          {
+            "$oid": "ddd000000000000000000680"
+          },
+          {
+            "$oid": "ddd000000000000000000681"
+          }
+        ],
+        "logistic_note": "Nella Sala del Colosso: la Venere e Amore dipinta dal Pontormo su disegno di Michelangelo.",
+        "intro_note": "Michelangelo pittore per interposta persona: la Venere e Amore, sua invenzione tradotta in pittura dal Pontormo.",
+        "order": 22
       },
       {
         "_id": {
@@ -2420,7 +2915,35 @@
         ],
         "logistic_note": "Dalla Tribuna, dirigiti verso il grande salone con la volta a botte.",
         "intro_note": "Un gigante di gesso: il modello preparatorio del Ratto delle Sabine.",
-        "order": 20
+        "order": 23
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000360"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000162"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000674"
+          },
+          {
+            "$oid": "ddd000000000000000000675"
+          },
+          {
+            "$oid": "ddd000000000000000000676"
+          },
+          {
+            "$oid": "ddd000000000000000000677"
+          }
+        ],
+        "logistic_note": "Nel Salone dell'Ottocento, accanto al modello del Ratto delle Sabine: la piccola Fiducia in Dio di Bartolini.",
+        "intro_note": "Un salto di tre secoli: la delicata Fiducia in Dio di Lorenzo Bartolini, manifesto del purismo dell'Ottocento.",
+        "order": 24
       },
       {
         "_id": {
@@ -2448,7 +2971,35 @@
         ],
         "logistic_note": "Raggiungi le sale con le tavole dorate del Trecento.",
         "intro_note": "Un albero dipinto pieno di storie bibliche, tutto in oro e tempera.",
-        "order": 21
+        "order": 25
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000361"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000161"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000670"
+          },
+          {
+            "$oid": "ddd000000000000000000671"
+          },
+          {
+            "$oid": "ddd000000000000000000672"
+          },
+          {
+            "$oid": "ddd000000000000000000673"
+          }
+        ],
+        "logistic_note": "Nelle sale della Pinacoteca dell'Accademia: la grande Deposizione dalla croce iniziata da Filippino Lippi.",
+        "intro_note": "Un capolavoro a quattro mani: la Deposizione cominciata da Filippino Lippi e finita da Perugino.",
+        "order": 26
       },
       {
         "_id": {
@@ -2476,7 +3027,7 @@
         ],
         "logistic_note": "Sali al primo piano tramite le scale o l'ascensore, per raggiungere la Pinacoteca.",
         "intro_note": "Un corteo di nozze fiorentino dipinto quasi 600 anni fa.",
-        "order": 22
+        "order": 27
       }
     ],
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Oswald_Achenbach_-_View_of_Florence.jpg/960px-Oswald_Achenbach_-_View_of_Florence.jpg",
@@ -2490,7 +3041,7 @@
       "infra-museale"
     ],
     "is_public": true,
-    "estimated_duration_sec": 1297.17,
+    "estimated_duration_sec": 3244.38,
     "createdAt": {
       "$date": "2026-08-24T00:00:00Z"
     },
@@ -2622,7 +3173,7 @@
             "$oid": "ddd000000000000000000615"
           }
         ],
-        "logistic_note": "Il secondo primo: si attende che il risotto arrivi appena mantecato, ancora 'all'onda'.",
+        "logistic_note": "Il secondo primo: si attende che il risotto arrivi appena mantecato, ancora 'all'ondà.",
         "intro_note": "Dal dolce della zucca al terroso del bosco.",
         "order": 4
       },

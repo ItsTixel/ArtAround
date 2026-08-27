@@ -3262,5 +3262,370 @@
     "updatedAt": {
       "$date": "2026-08-27T00:00:00Z"
     }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000157"
+    },
+    "name": "Adorazione dei Magi (Gentile da Fabriano)",
+    "is_physical": true,
+    "artwork_author": "Gentile da Fabriano",
+    "description": "Pala d'altare firmata e datata 1423, dipinta da Gentile da Fabriano per Palla Strozzi, allora l'uomo più ricco di Firenze, e destinata alla sacrestia di Santa Trinita. Capolavoro del Gotico internazionale, è oggi alla Galleria degli Uffizi.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Gentile_da_fabriano%2C_adorazione_dei_magi.jpg/1280px-Gentile_da_fabriano%2C_adorazione_dei_magi.jpg",
+    "alt_text": "Sontuoso corteo dei Re Magi con cavalli, cavalieri e animali esotici che raggiunge la Sacra Famiglia, su fondo oro, in una pala gotica",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "location": {
+          "room": "Sala 5-6",
+          "floor": "2",
+          "note": ""
+        }
+      }
+    ],
+    "tags": [
+      "Gentile da Fabriano",
+      "Gotico",
+      "Quattrocento",
+      "Sacro",
+      "Oro"
+    ],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000158"
+    },
+    "name": "Adorazione dei Magi (Leonardo)",
+    "is_physical": true,
+    "artwork_author": "Leonardo da Vinci",
+    "description": "Grande tavola lasciata incompiuta da Leonardo nel 1481-82, quando partì per Milano. Commissionata dai monaci di San Donato a Scopeto, resta allo stato di disegno preparatorio e prima campitura bruna. Alla Galleria degli Uffizi; restaurata nel 2017.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Leonardo_da_Vinci_-_Adorazione_dei_Magi_-_Google_Art_Project.jpg/1280px-Leonardo_da_Vinci_-_Adorazione_dei_Magi_-_Google_Art_Project.jpg",
+    "alt_text": "Folla concitata di figure attorno alla Madonna col Bambino, solo abbozzata in terre brune, con architetture in rovina e cavalli sullo sfondo",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "location": {
+          "room": "Sala 15",
+          "floor": "2",
+          "note": ""
+        }
+      }
+    ],
+    "tags": [
+      "Leonardo",
+      "Rinascimento",
+      "Quattrocento",
+      "Non Finito",
+      "Sacro",
+      "Prospettiva"
+    ],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000159"
+    },
+    "name": "Madonna dal collo lungo",
+    "is_physical": true,
+    "artwork_author": "Parmigianino",
+    "description": "Pala d'altare dipinta da Parmigianino fra il 1534 e il 1540 circa per una cappella in San Salvatore in Lauro a Parma, e rimasta incompiuta alla morte dell'artista. Icona del Manierismo per le proporzioni allungate della Vergine. Alla Galleria degli Uffizi.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Parmigianino_-_Madonna_dal_collo_lungo_-_Google_Art_Project.jpg/1280px-Parmigianino_-_Madonna_dal_collo_lungo_-_Google_Art_Project.jpg",
+    "alt_text": "Madonna dal corpo e dal collo innaturalmente allungati con in grembo un Bambino addormentato di grandi dimensioni, tra angeli e una colonna isolata",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "location": {
+          "room": "Sala 74",
+          "floor": "1",
+          "note": ""
+        }
+      }
+    ],
+    "tags": [
+      "Parmigianino",
+      "Manierismo",
+      "Cinquecento",
+      "Madonna",
+      "Sacro"
+    ],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000160"
+    },
+    "name": "Giuditta che decapita Oloferne",
+    "is_physical": true,
+    "artwork_author": "Artemisia Gentileschi",
+    "description": "Tela dipinta da Artemisia Gentileschi intorno al 1620-21 per la corte medicea, seconda e più matura versione del soggetto. Giuditta e la serva Abra decapitano il generale assiro Oloferne in una scena di violenza frontale e luce caravaggesca. Alla Galleria degli Uffizi.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Judith_beheading_Holofernes_%28Florence%29_by_Artemisia_Gentileschi-Uffizi.jpg/1280px-Judith_beheading_Holofernes_%28Florence%29_by_Artemisia_Gentileschi-Uffizi.jpg",
+    "alt_text": "Due donne tengono fermo e decapitano con una spada un uomo disteso sul letto, in una scena buia attraversata da un forte fascio di luce",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000001"
+        },
+        "location": {
+          "room": "Sala 90",
+          "floor": "1",
+          "note": ""
+        }
+      }
+    ],
+    "tags": [
+      "Artemisia Gentileschi",
+      "Barocco",
+      "Caravaggio",
+      "Seicento",
+      "Sacro"
+    ],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000161"
+    },
+    "name": "Deposizione dalla croce (Filippino Lippi e Perugino)",
+    "is_physical": true,
+    "artwork_author": "Filippino Lippi e Pietro Perugino",
+    "description": "Grande pala d'altare iniziata da Filippino Lippi per la Santissima Annunziata di Firenze e rimasta interrotta alla sua morte nel 1504; fu completata da Pietro Perugino entro il 1507. Un raro caso di opera a quattro mani di due generazioni diverse. Alla Galleria dell'Accademia di Firenze.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Filippino_lippi_e_perugino%2C_deposizione_dalla_croce%2C_1503-1507%2C_01_dall%27annunziata_di_firenze.jpg/1280px-Filippino_lippi_e_perugino%2C_deposizione_dalla_croce%2C_1503-1507%2C_01_dall%27annunziata_di_firenze.jpg",
+    "alt_text": "Grande pala con il corpo di Cristo calato dalla croce mediante scale, circondato da dolenti, sotto un cielo aperto",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "location": {
+          "room": "Sala 11",
+          "floor": "1",
+          "note": ""
+        }
+      }
+    ],
+    "tags": [
+      "Filippino Lippi",
+      "Perugino",
+      "Rinascimento",
+      "Cinquecento",
+      "Non Finito",
+      "Sacro"
+    ],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000162"
+    },
+    "name": "La Fiducia in Dio",
+    "is_physical": true,
+    "artwork_author": "Lorenzo Bartolini",
+    "description": "Statua in marmo scolpita da Lorenzo Bartolini nel 1833-1835 per la contessa Rosina Trivulzio Poldi Pezzoli, in memoria del marito. Una giovane donna nuda, inginocchiata e raccolta, incarna l'abbandono fiducioso alla volontà divina. Simbolo del purismo ottocentesco, è oggi alla Galleria dell'Accademia di Firenze.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Lorenzo_Bartolini_%281877-1850%29_Fiducia_in_Dio_%281833%29_vista_frontale.jpg/1280px-Lorenzo_Bartolini_%281877-1850%29_Fiducia_in_Dio_%281833%29_vista_frontale.jpg",
+    "alt_text": "Giovane donna nuda inginocchiata, con le mani raccolte in grembo e il capo lievemente chino, scolpita in marmo bianco levigato",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "location": {
+          "room": "Salone dell'Ottocento",
+          "floor": "0",
+          "note": ""
+        }
+      }
+    ],
+    "tags": [
+      "Lorenzo Bartolini",
+      "Ottocento",
+      "Marmo",
+      "Nudo",
+      "Salone Ottocento"
+    ],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000163"
+    },
+    "name": "Venere e Amore",
+    "is_physical": true,
+    "artwork_author": "Pontormo (da un cartone di Michelangelo)",
+    "description": "Tavola dipinta dal Pontormo intorno al 1533 traducendo in pittura un cartone, oggi perduto, disegnato da Michelangelo per l'amico Bartolomeo Bettini. Venere, distesa, è baciata dal figlio Cupido in una composizione fredda e levigata. Alla Galleria dell'Accademia di Firenze.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Pontormo%2C_venere_e_amore_da_michelangelo%2C_1533_ca._01.jpg/1280px-Pontormo%2C_venere_e_amore_da_michelangelo%2C_1533_ca._01.jpg",
+    "alt_text": "Venere nuda distesa che tiene una freccia mentre Cupido si china a baciarla, tra maschere teatrali e vasi, in un dipinto manierista",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "location": {
+          "room": "Sala 10",
+          "floor": "1",
+          "note": ""
+        }
+      }
+    ],
+    "tags": [
+      "Pontormo",
+      "Michelangelo",
+      "Manierismo",
+      "Cinquecento",
+      "Mitologia",
+      "Nudo"
+    ],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000164"
+    },
+    "name": "Pietà (Giovanni da Milano)",
+    "is_physical": true,
+    "artwork_author": "Giovanni da Milano",
+    "description": "Tavola firmata e datata 1365 da Giovanni da Milano, pittore lombardo attivo a Firenze. Il Cristo morto è sorretto nel sepolcro dalla Madonna, da san Giovanni e dalla Maddalena, in una scena di dolore trattenuto e di grande verità fisica. Alla Galleria dell'Accademia di Firenze.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/35/Giovanni_da_milano%2C_piet%C3%A0.jpg",
+    "alt_text": "Il corpo livido del Cristo morto sorretto nel sepolcro dalla Vergine, da san Giovanni e dalla Maddalena su fondo oro, in una tavola trecentesca",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "location": {
+          "room": "Sala 11-12",
+          "floor": "1",
+          "note": ""
+        }
+      }
+    ],
+    "tags": [
+      "Giovanni da Milano",
+      "Trecento",
+      "Tempera",
+      "Oro",
+      "Pietà",
+      "Sacro"
+    ],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000165"
+    },
+    "name": "Madonna del Mare",
+    "is_physical": true,
+    "artwork_author": "Sandro Botticelli (attribuzione discussa)",
+    "description": "Tavola databile al 1475-1480 circa, proveniente dalla chiesa fiorentina di Santa Felicita, raffigurante la Madonna col Bambino e san Giovannino davanti a un tratto di mare. L'attribuzione oscilla fra Botticelli e il giovane Filippino Lippi. Alla Galleria dell'Accademia di Firenze.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Sandro_botticelli%2C_madonna_del_mare%2C_1475-80_ca.%2C_da_s._felicita.jpg/1280px-Sandro_botticelli%2C_madonna_del_mare%2C_1475-80_ca.%2C_da_s._felicita.jpg",
+    "alt_text": "Madonna col Bambino e il piccolo san Giovanni a mezza figura, davanti a una finestra aperta su un tratto di mare calmo",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000010"
+        },
+        "location": {
+          "room": "Sala 12",
+          "floor": "1",
+          "note": ""
+        }
+      }
+    ],
+    "tags": [
+      "Botticelli",
+      "Filippino Lippi",
+      "Rinascimento",
+      "Quattrocento",
+      "Madonna",
+      "Sacro"
+    ],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
   }
 ]
