@@ -252,6 +252,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.querySelector('visit-modal')?.open(e.detail.id);
   });
 
+  /* Deep-link da altre pagine (es. landing): ?openVisit=<id> apre subito
+     il modal della visita, senza attendere il caricamento della griglia. */
+  const openVisitId = new URLSearchParams(location.search).get('openVisit');
+  if (openVisitId) {
+    customElements.whenDefined('visit-modal').then(() => {
+      document.querySelector('visit-modal')?.open(openVisitId);
+    });
+  }
+
   /* Tasto cuore sulle visit-card: aggiorna/rimuove il preferito lato server */
   document.addEventListener('toggle-favorite', async (e) => {
     const { id, favorited, revert } = e.detail;

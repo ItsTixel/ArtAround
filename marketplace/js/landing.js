@@ -95,7 +95,9 @@ function renderFeaturedVisits(featuredVisits) {
 	featuredVisits.forEach(v => {
 		const card = document.createElement('visit-card');
 		card.data = toVisitCardData(v);
-		card.addEventListener('open-visit', () => { window.location.href = '/marketplace/pages/visits.html'; });
+		card.addEventListener('open-visit', (e) => {
+			window.location.href = `/marketplace/pages/visits.html?openVisit=${encodeURIComponent(e.detail.id)}`;
+		});
 		grid.appendChild(card);
 	});
 }
