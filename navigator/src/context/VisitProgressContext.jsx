@@ -444,10 +444,11 @@ export function VisitProgressProvider({ children }) {
     speakFromChar(Math.round(clampedFraction * textRef.current.length))
   }
 
+  // Direct tone pick (the Opera tone pills). Like the "più/meno complesso"
+  // commands, it stays on the current paragraph instead of resetting to the
+  // first one — see changeTonePreservingParagraph below.
   function handleToneSelect(tone) {
-    stopSpeech()
-    setSelectedTone(tone)
-    setSelectedDescIndex(0)
+    changeTonePreservingParagraph(tone)
   }
 
   function handleDescSelect(index) {
