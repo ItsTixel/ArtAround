@@ -5,6 +5,7 @@
 
 import { getCurrentUser } from '/marketplace/js/auth-session.js';
 import { normalizeEntity } from '/marketplace/js/entity-utils.js';
+import { attachFilterSheet } from '/marketplace/js/filter-sheet.js';
 
 const API_ENTITIES = '/api/entities';
 const API_MUSEUMS  = '/api/museums';
@@ -154,6 +155,10 @@ async function loadFacets() {
 document.addEventListener('DOMContentLoaded', async () => {
   const grid = document.getElementById('opere-grid');
   if (grid) grid.innerHTML = '<p class="loading"></p>';
+
+  /* Su mobile la sidebar filtri diventa un "bottom sheet" con barra
+     flottante (vedi js/filter-sheet.js). Su desktop non ha effetto. */
+  attachFilterSheet(document.querySelector('entity-filter-sidebar'));
 
   /* Le opera-card aprono il popup con i dettagli */
   document.addEventListener('open-opera', (e) => {

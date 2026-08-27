@@ -288,3 +288,187 @@ filter-sidebar { display: block; }
   .visit-search { flex: 1 1 100%; max-width: none; min-width: 0; }
   #sort { flex: 1 1 auto; min-width: 0; }
 }
+
+/* ============================================================
+ *  Filtri "bottom sheet" su mobile (≤900px)
+ *  Condiviso da visits.html e opere.html (entrambe caricano questo
+ *  foglio). Su desktop <filter-sidebar> / <entity-filter-sidebar>
+ *  restano la colonna sticky di sinistra: qui non c'è nulla che li
+ *  tocchi sopra i 900px.
+ *  Comportamento (vedi js/filter-sheet.js):
+ *   • barra "Filtri" flottante in basso, che si ritrae mentre si
+ *     scorre in giù e riappare quando ci si ferma o si risale;
+ *   • al tap, il pannello filtri sale dal basso come un foglio, con
+ *     scrim dietro e scroll interno.
+ * ============================================================ */
+
+/* Elementi del foglio — nel DOM sempre, ma inerti fuori da mobile */
+.filter-sheet-trigger { display: none; }
+.filter-sheet-scrim { display: none; }
+.sheet-head { display: none; }
+
+/* Tutte le regole del foglio sono subordinate a .filter-sheet-ready, che
+   js/filter-sheet.js mette su <body> solo dopo aver montato barra e scrim:
+   se quello script non gira, il pannello resta l'accordion inline di prima
+   invece di sparire fuori schermo. */
+@media (max-width: 900px) {
+  /* Il componente non deve occupare una cella nella griglia a 1 colonna:
+     con display:contents il suo <aside> (position:fixed) resta renderizzato
+     ma il wrapper non genera box né gap. */
+  body.filter-sheet-ready .visits-layout > filter-sidebar,
+  body.filter-sheet-ready .visits-layout > entity-filter-sidebar { display: contents; }
+
+  /* Pannello filtri = foglio ancorato in basso */
+  body.filter-sheet-ready filter-sidebar > aside,
+  body.filter-sheet-ready entity-filter-sidebar > aside {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1001;
+    width: auto;
+    max-width: none;
+    max-height: 86vh;
+    border-radius: 1.25rem 1.25rem 0 0;
+    border: 1px solid var(--universal-glass-border);
+    border-bottom: 0;
+    background: var(--color-surface) !important;
+    box-shadow: 0 -14px 44px -14px rgba(0, 0, 0, 0.55) !important;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+    transform: translateY(115%);
+    transition: transform 0.34s cubic-bezier(0.32, 0.72, 0, 1);
+  }
+  body.filter-sheet-open filter-sidebar > aside,
+  body.filter-sheet-open entity-filter-sidebar > aside { transform: translateY(0); }
+
+  /* L'accordion "Filtri ⌄" non serve nel foglio: lo sostituisce l'header
+     con maniglia + titolo + chiusura (.sheet-head, nel markup dei componenti). */
+  body.filter-sheet-ready filter-sidebar > aside > #filters-toggle,
+  body.filter-sheet-ready entity-filter-sidebar > aside > #filters-toggle { display: none !important; }
+
+  body.filter-sheet-ready filter-sidebar #filters-body,
+  body.filter-sheet-ready entity-filter-sidebar #filters-body {
+    display: block !important;
+    margin-top: 0 !important;
+  }
+
+  body.filter-sheet-ready .sheet-head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: -0.5rem -0.5rem 0.5rem;
+    padding-bottom: 0.75rem;
+    position: relative;
+  }
+  .sheet-grab {
+    position: absolute;
+    top: -0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2.25rem;
+    height: 0.25rem;
+    border-radius: 9999px;
+    background: var(--color-text-muted);
+    opacity: 0.4;
+  }
+  .sheet-title {
+    flex: 1;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-text);
+  }
+  .sheet-x {
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--universal-glass-border);
+    border-radius: 9999px;
+    background: var(--universal-glass-bg);
+    color: var(--color-text);
+    font-size: 1.15rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+  .sheet-x:hover { background: var(--universal-glass-bg-strong); border-color: var(--universal-glass-border-strong); }
+  .sheet-x:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+
+  /* Scrim dietro il foglio */
+  .filter-sheet-scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .filter-sheet-scrim.is-visible { opacity: 1; }
+
+  /* Barra "Filtri" flottante */
+  .filter-sheet-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: fixed;
+    left: 50%;
+    bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+    transform: translateX(-50%);
+    z-index: 999;
+    padding: 0.7rem 1.3rem;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text);
+    background: var(--universal-glass-bg-strong);
+    backdrop-filter: var(--universal-glass-blur) saturate(140%);
+    -webkit-backdrop-filter: var(--universal-glass-blur) saturate(140%);
+    border: 1px solid var(--universal-glass-border-strong);
+    border-radius: 9999px;
+    box-shadow: var(--universal-glass-shadow), 0 10px 28px -10px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.25s ease;
+  }
+  .filter-sheet-trigger:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+
+  /* Ritratta: mentre si scorre in giù, o quando il foglio è aperto */
+  .filter-sheet-trigger.is-tucked,
+  .filter-sheet-trigger[aria-expanded="true"] {
+    transform: translateX(-50%) translateY(calc(100% + 1.75rem));
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .filter-sheet-count {
+    display: inline-grid;
+    place-items: center;
+    min-width: 1.2rem;
+    height: 1.2rem;
+    padding: 0 0.35rem;
+    border-radius: 9999px;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+}
+
+@media (max-width: 900px) and (prefers-reduced-motion: reduce) {
+  body.filter-sheet-ready filter-sidebar > aside,
+  body.filter-sheet-ready entity-filter-sidebar > aside,
+  body.filter-sheet-ready .filter-sheet-trigger,
+  body.filter-sheet-ready .filter-sheet-scrim { transition: none; }
+}

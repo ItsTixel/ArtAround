@@ -6,6 +6,7 @@
 import { getCurrentUser } from '/marketplace/js/auth-session.js';
 import { TONE_ORDER, TONE_LABELS } from '/marketplace/js/tone-labels.js';
 import { slugify } from '/marketplace/js/slug.js';
+import { attachFilterSheet } from '/marketplace/js/filter-sheet.js';
 
 const API_VISITS  = '/api/visits';
 const API_MUSEUMS = '/api/museums';
@@ -246,6 +247,10 @@ async function refreshToneCounts() {
 document.addEventListener('DOMContentLoaded', async () => {
   const grid = document.getElementById('visits-grid');
   if (grid) grid.innerHTML = '<p class="loading"></p>';
+
+  /* Su mobile la sidebar filtri diventa un "bottom sheet" con barra
+     flottante (vedi js/filter-sheet.js). Su desktop non ha effetto. */
+  attachFilterSheet(document.querySelector('filter-sidebar'));
 
   /* Le visit-card aprono il menù in sovraimpressione con i dettagli */
   document.addEventListener('open-visit', (e) => {
