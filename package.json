@@ -1,6 +1,13 @@
 {
+  "scripts": {
+    "build:css": "tailwindcss -i ./tailwind-input.css -o ./marketplace/css/tailwind.css --minify",
+    "watch:css": "tailwindcss -i ./tailwind-input.css -o ./marketplace/css/tailwind.css --watch"
+  },
   "dependencies": {
     "cookie": "^2.0.1",
     "socket.io": "^4.8.3"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.19"
   }
 }

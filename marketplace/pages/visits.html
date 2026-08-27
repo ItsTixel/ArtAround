@@ -17,8 +17,10 @@
   <link rel="stylesheet" href="/marketplace/css/base.css">
   <link rel="stylesheet" href="/marketplace/css/visits.css">
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>tailwind.config = { darkMode: ['selector', '[data-theme="dark"]'], theme: { extend: { fontFamily: { sans: ['var(--font-sans)'], serif: ['var(--font-serif)'], mono: ['var(--font-mono)'] } } } };</script>
+  <!-- Tailwind: CSS precompilato dalla CLI (`npm run build:css`), al posto
+       di cdn.tailwindcss.com. Ultimo foglio, come la CDN che iniettava
+       i suoi stili a fine <head>. Config: /tailwind.config.js -->
+  <link rel="stylesheet" href="/marketplace/css/tailwind.css">
 
   <script type="module" src="/marketplace/components/app-navbar.js"></script>
   <script type="module" src="/marketplace/components/app-footer.js"></script>

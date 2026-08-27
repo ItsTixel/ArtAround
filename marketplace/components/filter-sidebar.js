@@ -130,14 +130,14 @@ class FilterSidebar extends HTMLElement {
         ${selectedMuseums.map(m => `
           <span class="pill liquid-glass-pill inline-flex items-center gap-1.5 text-[0.72rem] font-medium tracking-[0.02em] border border-slate-400/20 rounded-full text-slate-800 dark:text-slate-100 pl-2.5 pr-1 py-1">
             ${this._esc(m.short || m.name)}
-            <button type="button" class="x w-4 h-4 inline-flex items-center justify-center border-0 bg-transparent p-0 font-inherit text-sm leading-none text-slate-500 dark:text-slate-400 cursor-pointer rounded-full hover:text-slate-800 dark:hover:text-white hover:bg-white/20 transition-colors ${RING_FOCUS}" data-remove="${this._esc(m.id)}" aria-label="Rimuovi ${this._esc(m.short || m.name)}">×</button>
+            <button type="button" class="x w-4 h-4 inline-flex items-center justify-center border-0 bg-transparent p-0 text-sm leading-none text-slate-500 dark:text-slate-400 cursor-pointer rounded-full hover:text-slate-800 dark:hover:text-white hover:bg-white/20 transition-colors ${RING_FOCUS}" data-remove="${this._esc(m.id)}" aria-label="Rimuovi ${this._esc(m.short || m.name)}">×</button>
           </span>
         `).join('')}
       </div>` : ''}
       ${availableMuseums.length ? `
         <div class="options mt-3.5 flex flex-col border-t border-slate-400/20 max-h-64 overflow-y-auto pr-1">
           ${availableMuseums.map(m => `
-            <button type="button" class="option group appearance-none bg-transparent border-0 border-b border-slate-400/20 py-2.5 pr-0 text-left font-inherit text-inherit cursor-pointer flex items-baseline justify-between gap-2.5 hover:text-slate-600 dark:hover:text-slate-300 hover:pl-1.5 transition-all ${RING_FOCUS}" data-add="${this._esc(m.id)}">
+            <button type="button" class="option group appearance-none bg-transparent border-0 border-b border-slate-400/20 py-2.5 pr-0 text-left text-inherit cursor-pointer flex items-baseline justify-between gap-2.5 hover:text-slate-600 dark:hover:text-slate-300 hover:pl-1.5 transition-all ${RING_FOCUS}" data-add="${this._esc(m.id)}">
               <span>
                 <span class="opt-main text-[0.86rem] font-medium">${this._esc(m.name)}</span>
                 <span class="opt-sub text-[0.7rem] tracking-[0.04em] text-slate-500 dark:text-slate-400"> · ${this._esc(m.city)}</span>
@@ -175,7 +175,7 @@ class FilterSidebar extends HTMLElement {
     this.className = 'block';
     this.innerHTML = `
       <aside class="${GLASS} p-6 sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto overflow-x-hidden max-[900px]:static max-[900px]:max-h-none text-slate-800 dark:text-slate-100 font-sans">
-        <button type="button" class="toggle hidden max-[900px]:flex w-full items-center justify-between bg-transparent border-0 p-0 font-inherit text-[0.78rem] font-semibold tracking-[0.1em] uppercase text-slate-800 dark:text-slate-100 cursor-pointer ${RING_FOCUS}" id="filters-toggle" aria-expanded="${this._mobileOpen ? 'true' : 'false'}" aria-controls="filters-body">
+        <button type="button" class="toggle hidden max-[900px]:flex w-full items-center justify-between bg-transparent border-0 p-0 text-[0.78rem] font-semibold tracking-[0.1em] uppercase text-slate-800 dark:text-slate-100 cursor-pointer ${RING_FOCUS}" id="filters-toggle" aria-expanded="${this._mobileOpen ? 'true' : 'false'}" aria-controls="filters-body">
           <span>Filtri</span>
           <span class="chev text-[0.7rem] text-slate-500 dark:text-slate-400 transition-transform duration-300 ease-in-out ${this._mobileOpen ? 'rotate-180' : ''}" aria-hidden="true">⌄</span>
         </button>
@@ -188,7 +188,7 @@ class FilterSidebar extends HTMLElement {
             <svg class="absolute left-0 top-1/2 -translate-y-1/2 w-3.5 h-3.5 fill-none stroke-slate-500 dark:stroke-slate-400 stroke-2 pointer-events-none" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M21 19l-4.35-4.35A7.5 7.5 0 1 0 15 16.65L19.35 21 21 19zM10.5 16a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z"/>
             </svg>
-            <input id="museum-q" type="search" placeholder="Cerca un museo…" autocomplete="off" value="${this._esc(s.museumQuery)}" class="w-full pl-6 pr-2 py-2.5 border-0 border-b border-slate-400/20 bg-transparent font-inherit text-sm text-slate-800 dark:text-slate-100 placeholder:italic placeholder:text-slate-500 dark:placeholder:text-slate-400 outline-none focus:border-slate-800 dark:focus:border-white transition-colors">
+            <input id="museum-q" type="search" placeholder="Cerca un museo…" autocomplete="off" value="${this._esc(s.museumQuery)}" class="w-full pl-6 pr-2 py-2.5 border-0 border-b border-slate-400/20 bg-transparent text-sm text-slate-800 dark:text-slate-100 placeholder:italic placeholder:text-slate-500 dark:placeholder:text-slate-400 outline-none focus:border-slate-800 dark:focus:border-white transition-colors">
           </label>
 
           <div id="museum-lists">
@@ -244,7 +244,7 @@ class FilterSidebar extends HTMLElement {
           </div>
         </div>
 
-        <button class="reset mt-7 bg-transparent border-0 border-b border-slate-500 dark:border-slate-400 p-0 pb-0.5 font-inherit text-[0.7rem] font-medium tracking-[0.1em] uppercase text-slate-500 dark:text-slate-400 cursor-pointer self-start hover:text-slate-800 dark:hover:text-white hover:border-slate-800 dark:hover:border-white transition-colors ${RING_FOCUS}" id="reset" type="button">Azzera filtri</button>
+        <button class="reset mt-7 bg-transparent border-0 border-b border-slate-500 dark:border-slate-400 p-0 pb-0.5 text-[0.7rem] font-medium tracking-[0.1em] uppercase text-slate-500 dark:text-slate-400 cursor-pointer self-start hover:text-slate-800 dark:hover:text-white hover:border-slate-800 dark:hover:border-white transition-colors ${RING_FOCUS}" id="reset" type="button">Azzera filtri</button>
         </div>
       </aside>
     `;

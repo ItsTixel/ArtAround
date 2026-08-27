@@ -1,0 +1,6 @@
+/* Sorgente per la CLI di Tailwind: `npm run build:css` (root) compila
+   questo file in marketplace/css/tailwind.css, che le pagine linkano al
+   posto della Play CDN (cdn.tailwindcss.com). Config: ../tailwind.config.js. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
