@@ -138,7 +138,22 @@ server-side (`backend/`), oltre agli asset e agli script condivisi.
 
 
 ## Contributo individuale
-#### persona1: xxxxxx
-#### persona2: xxxxxx
-#### persona3: xxxxxx
-#### LLM: Tutto
+Il lavoro è stato principalmente svolto in maniera collettiva, in particolare però i singoli membri si sono concentrati individualmente su:
+#### Zeno Maccari:
+Ideazione degli oggetti del database e relazioni, route/controller di museums/entities/items/orders, pagine e componenti del marketplace persfogliare e creare contenuti (opere, create-*), mappe dei musei.
+#### Dusan Arandelovic:
+Login + registrazione + JWT (cookie httpOnly, bcrypt, Google Sign-In), middlewares ruoli/proprietà, rate limiting, pagine login.html/register.html, AuthContext del navigator, area profilo utente e upload avatar (multer).
+#### Luca Argentino:
+Ideazione del design system e applicazione a tutte le pagine (marketplace + navigator, tema, token, Tailwind di entrambe), landing page, schermate di visita del navigator (player audio, Web Speech, scanner QR), visite di gruppo "live" con Socket.IO (server + client + quiz) e design delle card e dei modal degli oggetti.
+#### LLM:
+I modelli di LLM sono stati usati in modalità agentica per:
+* Discutere e progettare scelte implementative;
+* Code review;
+* Ottimizzazione del codice;
+* Testing;
+* Bug fixing.
+Tutte le interazioni seguivano questo workflow:
+* Discussione e progettazione tra i membri sull'archittetura e sul design delle modifiche da fare;
+* Spiegazione all'agente nel dettaglio delle modifiche richieste, con vincoli e contesto dell'archittetura. Chiedendo di sviluppare un piano operativo prima di ogni modifica;
+* Controllo e conferma del piano, con possibili proposte di cambiamento;
+* Controllo delle modifiche effettuate, testing sia umano che di un secondo agente.
