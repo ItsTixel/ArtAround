@@ -15,6 +15,7 @@ import { GLASS_MODAL as GLASS, TRANSITION } from '/marketplace/js/ui-tokens.js';
 import { TONE_ORDER, TONE_LABELS } from '/marketplace/js/tone-labels.js';
 import { trapTabKey, focusDialog } from '/marketplace/js/focus-trap.js';
 import { qrThumbHtml } from '/marketplace/js/qr-code.js';
+import { slugify } from '/marketplace/js/slug.js';
 
 const API_VISITS   = '/api/visits';
 const API_USERS    = '/api/users';
@@ -324,11 +325,9 @@ class VisitModal extends HTMLElement {
     footer.querySelector('#start-btn')?.addEventListener('click', () => {
       const museum = (this._visit.museum || [])[0];
       const params = new URLSearchParams({ openVisit: this._visit._id });
-      if (museum?._id) {
-        params.set('museum', museum._id);
-        params.set('museumName', museum.name || '');
-      }
-      window.location.href = `${NAVIGATOR_URL}visite?${params}`;
+      const slug = museum?.name ? slugify(museum.name) : '';
+      const visitePath = slug ? `visite/${slug}` : 'visite';
+      window.location.href = `${NAVIGATOR_URL}${visitePath}?${params}`;
     });
     footer.querySelector('#copy-btn')?.addEventListener('click', () => this._copyVisit());
     footer.querySelector('#edit-btn')?.addEventListener('click', () => {
