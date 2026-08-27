@@ -10,7 +10,7 @@ function verifyToken(req, res, next) {
     }
 
     try {
-        const secretKey = process.env.JWT_SECRET || "password";
+        const secretKey = process.env.JWT_SECRET;
         // Verifica e decodifica il token
         const decoded = jwt.verify(token, secretKey); // Nel caso sia falso, fa throw new error
         

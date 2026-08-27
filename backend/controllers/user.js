@@ -107,7 +107,7 @@ async function upgradeToAuthor(req, res) {
     await user.save();
 
     const payload = { id: user._id, role: user.role };
-    const secretKey = process.env.JWT_SECRET || "password";
+    const secretKey = process.env.JWT_SECRET;
     const maxAgeMs = 60 * 60 * 1000; // stesso valore di login()/register()
     const token = jwt.sign(payload, secretKey, { expiresIn: '1h' });
     res.cookie('token', token, {

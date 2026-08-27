@@ -5,9 +5,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { OAuth2Client } = require('google-auth-library');
 
-// Non è un segreto: è l'identificativo pubblico dell'app registrata su
-// Google Cloud Console, finisce anche nel codice frontend.
-const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || '144640383709-vr6nf4q1kp0n93aih9dc2tgcu25886ua.apps.googleusercontent.com';
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const googleClient = new OAuth2Client(GOOGLE_CLIENT_ID);
 
 async function login(req, res) {
@@ -42,7 +40,7 @@ async function login(req, res) {
 
         // Generiamo il JWT:
         // creiamo una password segreta e facciamo il sign del token
-        const secretKey = process.env.JWT_SECRET || "password";
+        const secretKey = process.env.JWT_SECRET;
         const maxAgeMs = 60 * 60 * 1000; // 1 ora, stesso valore di expiresIn
         const token = jwt.sign(payload, secretKey, { expiresIn: '1h' });
 
@@ -103,7 +101,7 @@ async function register(req, res) {
         // login()/googleAuth(), per evitare di far reinserire subito le
         // credenziali appena scelte (l'utente arriva già autenticato sull'home).
         const tokenPayload = { id: user._id, role: user.role };
-        const secretKey = process.env.JWT_SECRET || "password";
+        const secretKey = process.env.JWT_SECRET;
         const maxAgeMs = 60 * 60 * 1000;
         const token = jwt.sign(tokenPayload, secretKey, { expiresIn: '1h' });
         res.cookie('token', token, {
@@ -181,7 +179,7 @@ async function googleAuth(req, res) {
         }
 
         const tokenPayload = { id: user._id, role: user.role };
-        const secretKey = process.env.JWT_SECRET || "password";
+        const secretKey = process.env.JWT_SECRET;
         const maxAgeMs = 60 * 60 * 1000;
         const token = jwt.sign(tokenPayload, secretKey, { expiresIn: '1h' });
 

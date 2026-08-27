@@ -2,6 +2,12 @@
 global.startDate = null;
 
 const path = require('path');
+// Carica le variabili da .env (alla radice del repo, non in backend/) in
+// process.env. Non sovrascrive variabili già impostate: quando si gira
+// sotto docker-compose, che le inietta direttamente nell'environment del
+// container, questa chiamata non ha alcun effetto su di esse.
+require('dotenv').config({ path: path.join(__dirname, '../.env') });
+
 const http = require('http');
 const express = require('express');
 const cors = require('cors')
@@ -9,9 +15,9 @@ const cookieParser = require('cookie-parser');
 const mongoose = require("mongoose");
 
 const credentials = {
-	user: process.env.DB_USER || "site242555",
-	pwd: process.env.DB_PASS || "Kahti2ho",
-	site: process.env.DB_HOST || "mongo_site242555"
+	user: process.env.DB_USER,
+	pwd: process.env.DB_PASS,
+	site: process.env.DB_HOST
 }
 
 let app = express();
@@ -113,7 +119,7 @@ app.get(/^\/navigator\/.*/, (req, res) => {
 });
 
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT;
 
 server.listen(PORT, function () {
 	global.startDate = new Date();

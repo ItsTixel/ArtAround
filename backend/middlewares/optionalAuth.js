@@ -6,7 +6,7 @@ function optionalAuth(req, res, next) {
     // Se c'è un token, proviamo a decodificarlo
     if (token) {
         try {
-            const secretKey = process.env.JWT_SECRET || "password";
+            const secretKey = process.env.JWT_SECRET;
             const decoded = jwt.verify(token, secretKey);
             
             // Se il token è valido, salviamo i dati

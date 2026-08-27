@@ -16,7 +16,7 @@ function initSocketServer(server) {
       const token = raw && cookie.parseCookie(raw).token;
       if (!token) return next(new Error('unauthorized'));
 
-      const secretKey = process.env.JWT_SECRET || 'password';
+      const secretKey = process.env.JWT_SECRET;
       socket.user = jwt.verify(token, secretKey); // { id, role }
       next();
     } catch (e) {
