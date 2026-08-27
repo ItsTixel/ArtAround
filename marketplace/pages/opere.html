@@ -12,17 +12,16 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400;1,700&family=Nunito+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Nunito+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/marketplace/css/base.css">
   <link rel="stylesheet" href="/marketplace/css/visits.css">
-  <link rel="stylesheet" href="/marketplace/css/auth.css">
   <link rel="stylesheet" href="/marketplace/css/create-content.css">
   <link rel="stylesheet" href="/marketplace/css/create-item.css">
   <link rel="stylesheet" href="/marketplace/css/opere.css">
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>tailwind.config = { darkMode: ['selector', '[data-theme="dark"]'] };</script>
+  <script>tailwind.config = { darkMode: ['selector', '[data-theme="dark"]'], theme: { extend: { fontFamily: { sans: ['var(--font-sans)'], serif: ['var(--font-serif)'], mono: ['var(--font-mono)'] } } } };</script>
 
   <script type="module" src="/marketplace/components/app-navbar.js"></script>
   <script type="module" src="/marketplace/components/app-footer.js"></script>

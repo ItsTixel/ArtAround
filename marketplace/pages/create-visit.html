@@ -16,14 +16,13 @@
 
   <link rel="stylesheet" href="/marketplace/css/base.css">
   <link rel="stylesheet" href="/marketplace/css/museums.css">
-  <link rel="stylesheet" href="/marketplace/css/auth.css">
   <link rel="stylesheet" href="/marketplace/css/create-content.css">
   <link rel="stylesheet" href="/marketplace/css/create-item.css">
   <link rel="stylesheet" href="/marketplace/css/create-entity.css">
   <link rel="stylesheet" href="/marketplace/css/create-visit.css">
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>tailwind.config = { darkMode: ['selector', '[data-theme="dark"]'] };</script>
+  <script>tailwind.config = { darkMode: ['selector', '[data-theme="dark"]'], theme: { extend: { fontFamily: { sans: ['var(--font-sans)'], serif: ['var(--font-serif)'], mono: ['var(--font-mono)'] } } } };</script>
 
   <script type="module" src="/marketplace/components/app-navbar.js"></script>
   <script type="module" src="/marketplace/components/app-footer.js"></script>

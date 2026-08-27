@@ -283,3 +283,91 @@ a {
   color: var(--color-on-accent);
   background: var(--color-accent);
 }
+
+/* ── Primitive form / bottoni condivise ─────────────────────────
+   Prima vivevano in auth.css (.field, .btn-primary, .feedback) e in
+   create-content.css (.btn-secondary): le usano però anche i form di
+   modifica dei web component (museum/opera/item-modal), la pagina
+   profilo e i wizard di creazione — non solo login/registrazione.
+   Stanno qui perché base.css è l'unico foglio caricato da ogni pagina.
+   Gli override contestuali (.create-form .feedback, .profile-form
+   .feedback, .field input più specifici in create-visit.css) restano
+   nei rispettivi fogli e vincono per specificità, non per ordine. */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.field label {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.field input {
+  width: 100%;
+  padding: 0.5rem 0.1rem;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--color-text);
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+.field input::placeholder { color: var(--color-text-muted); }
+.field input:focus { border-bottom-color: var(--color-accent); }
+
+.btn-primary {
+  margin-top: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 9999px;
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.btn-primary:hover { background: var(--color-accent-hover); }
+
+.btn-secondary {
+  align-self: flex-start;
+  padding: 0.55rem 1.1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text-muted);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition);
+}
+.btn-secondary:hover { color: var(--color-text); border-color: var(--color-text-muted); }
+
+.feedback {
+  min-height: 1.1em;
+  margin-top: 1.25rem;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: var(--color-text-muted);
+}
+.feedback.is-pending { color: var(--link-color); }
+.feedback.is-success { color: var(--color-success); }
+.feedback.is-error { color: var(--color-danger); }

@@ -102,7 +102,7 @@ class LicensesModal extends HTMLElement {
           <button class="liquid-glass-pill close-btn absolute top-3 right-3 z-10 w-9 h-9 rounded-full border border-slate-400/20 backdrop-blur-lg flex items-center justify-center text-lg leading-none hover:bg-white/20 hover:border-white/30 ${TRANSITION}" aria-label="Chiudi">×</button>
           <div class="body-scroll overflow-y-auto flex-1 min-h-0">
             <div class="pt-7 px-5 sm:px-8">
-              <h2 class="text-2xl font-semibold leading-tight text-slate-800 dark:text-slate-100 mb-1" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">Licenze${currentCategory() ? ` — ${CATEGORY_LABELS[currentCategory()]}` : ''}</h2>
+              <h2 class="text-2xl font-semibold leading-tight text-slate-800 dark:text-slate-100 mb-1 font-serif">Licenze${currentCategory() ? ` — ${CATEGORY_LABELS[currentCategory()]}` : ''}</h2>
               <p class="text-sm text-slate-500 dark:text-slate-400 mb-2">Attribuzioni delle immagini da Wikimedia Commons usate ${currentCategory() ? 'in questa pagina' : 'nel sito'}.</p>
             </div>
             ${this._bodyHtml()}

@@ -64,7 +64,7 @@ class OperaCard extends HTMLElement {
         </div>
         <div class="min-w-0 p-3.5 sm:p-6 flex-1 flex flex-col gap-1.5 sm:gap-2.5">
           <div class="text-[0.6rem] sm:text-[0.66rem] font-semibold tracking-[0.14em] uppercase text-slate-500 dark:text-slate-400">${this._esc(o.artworkAuthor || 'Autore sconosciuto')}</div>
-          <h2 class="text-base sm:text-lg font-semibold leading-snug" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">${this._esc(o.name)}</h2>
+          <h2 class="text-base sm:text-lg font-semibold leading-snug font-serif">${this._esc(o.name)}</h2>
           ${o.description
             ? `<p class="hidden sm:block text-sm leading-relaxed text-slate-500 dark:text-slate-400 line-clamp-2">${this._esc(o.description)}</p>`
             : `<p class="hidden sm:block text-sm italic leading-relaxed text-slate-500 dark:text-slate-400">Nessuna descrizione disponibile.</p>`}

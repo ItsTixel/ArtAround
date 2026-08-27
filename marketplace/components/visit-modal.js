@@ -293,7 +293,7 @@ class VisitModal extends HTMLElement {
 
     return `
       <div class="footer-info flex flex-col gap-0.5">
-        <span class="footer-price text-lg font-semibold text-slate-800 dark:text-slate-100" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">${this._fmtPrice(price)}</span>
+        <span class="footer-price text-lg font-semibold text-slate-800 dark:text-slate-100 font-serif">${this._fmtPrice(price)}</span>
         ${(this._purchaseError || this._copyError) ? `<span class="footer-error text-[0.72rem]" style="color: var(--color-danger);">${this._esc(this._purchaseError || this._copyError)}</span>` : ''}
       </div>
       <div class="footer-action">${action}</div>
@@ -355,13 +355,13 @@ class VisitModal extends HTMLElement {
       const desc = s.intro_note || entity.description || '';
       return `
         <li class="flex gap-3.5 items-start">
-          <span class="text-[0.72rem] pt-[0.15rem] shrink-0" style="font-family: var(--font-mono); color: var(--color-accent);">${String(i + 1).padStart(2, '0')}</span>
+          <span class="text-[0.72rem] pt-[0.15rem] shrink-0 font-mono" style="color: var(--color-accent);">${String(i + 1).padStart(2, '0')}</span>
           <div class="w-14 h-14 shrink-0 bg-slate-300/20 dark:bg-slate-800/40 border border-slate-400/20 rounded-md overflow-hidden">${entity.image_url
             ? `<img class="w-full h-full object-cover" src="${this._esc(entity.image_url)}" alt="${this._esc(entity.alt_text || entity.name || '')}" loading="lazy">`
             : `<span class="block w-full h-full img-placeholder-fine"></span>`}
           </div>
           <div class="min-w-0 flex-1">
-            <h3 class="text-[0.95rem] font-semibold text-slate-800 dark:text-slate-100 mb-0.5" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">${this._esc(entity.name)}</h3>
+            <h3 class="text-[0.95rem] font-semibold text-slate-800 dark:text-slate-100 mb-0.5 font-serif">${this._esc(entity.name)}</h3>
             <div class="flex flex-wrap gap-2 mb-1">
               ${entity.artwork_author ? `<span class="text-[0.68rem] tracking-[0.04em] text-slate-500 dark:text-slate-400">${this._esc(entity.artwork_author)}</span>` : ''}
               ${isInfra && museum ? `<span class="text-[0.62rem] uppercase tracking-[0.1em]" style="color: var(--color-accent);">${this._esc(museum.name)}</span>` : ''}
@@ -378,14 +378,14 @@ class VisitModal extends HTMLElement {
         ${bannerEntity
           ? `<img class="absolute inset-0 w-full h-full object-cover" src="${this._esc(bannerEntity.image_url)}" alt="${this._esc(bannerEntity.alt_text || bannerEntity.name || '')}" loading="lazy">`
           : `<div class="absolute inset-0 img-placeholder"></div>`}
-        ${isInfra ? `<span class="absolute top-3 left-3 z-[2] text-[0.62rem] tracking-[0.16em] uppercase rounded-full px-2.5 py-1.5 ${GLASS} text-slate-800 dark:text-slate-100" style="font-family: var(--font-mono);">Inframuseale</span>` : ''}
-        <span class="relative z-[1] text-[0.68rem] tracking-[0.14em] uppercase px-3 py-1.5 rounded-full ${GLASS} text-slate-800 dark:text-slate-100 text-center max-w-[80%]" style="font-family: var(--font-mono);">${this._esc(v.title)}</span>
+        ${isInfra ? `<span class="absolute top-3 left-3 z-[2] text-[0.62rem] tracking-[0.16em] uppercase rounded-full px-2.5 py-1.5 ${GLASS} text-slate-800 dark:text-slate-100 font-mono">Inframuseale</span>` : ''}
+        <span class="relative z-[1] text-[0.68rem] tracking-[0.14em] uppercase px-3 py-1.5 rounded-full ${GLASS} text-slate-800 dark:text-slate-100 text-center max-w-[80%] font-mono">${this._esc(v.title)}</span>
         ${qrThumbHtml('visit', v._id, 'visita')}
       </div>
 
       <div class="pt-7 px-5 sm:px-8 pb-7 sm:pb-8">
         ${museumLine ? `<div class="text-[0.66rem] font-semibold tracking-[0.16em] uppercase text-slate-500 dark:text-slate-400 mb-2">${museumLine}</div>` : ''}
-        <h2 class="text-2xl font-semibold leading-tight text-slate-800 dark:text-slate-100 mb-3.5" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">${this._esc(v.title)}</h2>
+        <h2 class="text-2xl font-semibold leading-tight text-slate-800 dark:text-slate-100 mb-3.5 font-serif">${this._esc(v.title)}</h2>
         ${(v.author?.display_name || v.author?.username) ? `<p class="text-[0.78rem] text-slate-500 dark:text-slate-400 mb-4">A cura di ${this._esc(v.author.display_name || v.author.username)}</p>` : ''}
 
         <div class="flex items-center gap-3 text-[0.78rem] text-slate-500 dark:text-slate-400 pb-4 mb-4 border-b border-slate-400/20">
@@ -409,7 +409,7 @@ class VisitModal extends HTMLElement {
           ${tones.map(t => `<span class="liquid-glass-pill inline-block text-[0.62rem] tracking-[0.1em] uppercase text-slate-500 dark:text-slate-400 border border-slate-400/20 rounded-full px-2.5 py-1 mr-1.5 mb-1.5">${this._esc(TONE_LABELS[t] || t)}</span>`).join('')}
         </div>` : ''}
 
-        <h3 class="text-base font-semibold mb-3.5 text-slate-800 dark:text-slate-100" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">Opere incluse</h3>
+        <h3 class="text-base font-semibold mb-3.5 text-slate-800 dark:text-slate-100 font-serif">Opere incluse</h3>
         <ul class="flex flex-col gap-4">${operaRows || '<li class="text-[0.82rem] text-slate-500 dark:text-slate-400">Nessuna opera disponibile.</li>'}</ul>
       </div>
     `;

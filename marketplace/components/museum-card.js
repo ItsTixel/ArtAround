@@ -84,7 +84,7 @@ class MuseumCard extends HTMLElement {
             <svg class="w-3 h-3 shrink-0 fill-slate-600 dark:fill-slate-300" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm-1 5h6v2h-4.15l3.32 6.15-1.76.95-2.16-4-2.4 3.9H7l3.05-4.95L9 9.5V15H7V9c0-1.1.9-2 2-2h2zM6.5 13a3.5 3.5 0 1 0 3.46 4h1.53a5 5 0 1 1-5-6l.01 2z"/></svg>
             <span>Accessibile</span>
           </span>` : ''}
-          <h2 class="flex-1 text-base sm:text-lg font-semibold leading-snug" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">${this._escape(name)}</h2>
+          <h2 class="flex-1 text-base sm:text-lg font-semibold leading-snug font-serif">${this._escape(name)}</h2>
           <div class="flex items-center justify-between gap-2 sm:gap-3 mt-auto pt-3 sm:pt-4 border-t border-slate-400/20">
             <button class="info-btn relative z-[4] flex items-center justify-center w-6 h-6 sm:w-auto sm:h-auto sm:inline-flex text-[0.6rem] sm:text-[0.66rem] font-medium tracking-[0.08em] uppercase text-slate-600 dark:text-slate-300 border border-slate-400/20 rounded-full px-0 sm:px-3.5 py-0 sm:py-2 shrink-0 whitespace-nowrap hover:text-slate-900 dark:hover:text-white hover:bg-white/20 hover:border-white/30 ${TRANSITION}" id="info-btn" aria-label="Info museo: ${this._escape(name)}">
               <svg class="w-3 h-3 sm:hidden fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 7h2v2h-2V7zm0 4h2v6h-2v-6zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>

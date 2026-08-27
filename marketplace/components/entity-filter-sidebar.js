@@ -174,7 +174,7 @@ class EntityFilterSidebar extends HTMLElement {
 
     this.className = 'block';
     this.innerHTML = `
-      <aside class="${GLASS} p-6 sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto overflow-x-hidden max-[900px]:static max-[900px]:max-h-none text-slate-800 dark:text-slate-100" style="font-family: var(--font-sans, 'Inter', system-ui, sans-serif);">
+      <aside class="${GLASS} p-6 sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto overflow-x-hidden max-[900px]:static max-[900px]:max-h-none text-slate-800 dark:text-slate-100 font-sans">
         <button type="button" class="toggle hidden max-[900px]:flex w-full items-center justify-between bg-transparent border-0 p-0 font-inherit text-[0.78rem] font-semibold tracking-[0.1em] uppercase text-slate-800 dark:text-slate-100 cursor-pointer ${RING_FOCUS}" id="filters-toggle" aria-expanded="${this._mobileOpen ? 'true' : 'false'}" aria-controls="filters-body">
           <span>Filtri</span>
           <span class="chev text-[0.7rem] text-slate-500 dark:text-slate-400 transition-transform duration-300 ease-in-out ${this._mobileOpen ? 'rotate-180' : ''}" aria-hidden="true">⌄</span>

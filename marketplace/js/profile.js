@@ -341,7 +341,7 @@ function renderDescriptions(items, emptyMessage) {
       </div>
       <div class="min-w-0 p-3.5 sm:p-6 flex-1 flex flex-col gap-1.5 sm:gap-2.5">
         <div class="text-[0.6rem] sm:text-[0.66rem] font-semibold tracking-[0.14em] uppercase text-slate-500 dark:text-slate-400">${esc(artwork.name || 'Opera')}</div>
-        <p class="text-sm sm:text-base italic leading-snug" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">${esc(item.marketplace_summary)}</p>
+        <p class="text-sm sm:text-base italic leading-snug font-serif">${esc(item.marketplace_summary)}</p>
         <div class="flex flex-wrap gap-1.5 mt-auto pt-1">
           <span class="${tagCls} ${licenseStyle}">${esc(LICENSE_LABELS[item.license] || item.license)}</span>
           <span class="${tagCls} hidden sm:inline-block">${esc(TONE_LABELS[item.tone] || item.tone)}</span>

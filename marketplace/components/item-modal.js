@@ -126,12 +126,12 @@ class ItemModal extends HTMLElement {
         ${artwork.image_url
           ? `<img class="absolute inset-0 w-full h-full object-cover" src="${this._esc(artwork.image_url)}" alt="${this._esc(artwork.alt_text || artwork.name || '')}" loading="lazy">`
           : `<div class="absolute inset-0 img-placeholder"></div>`}
-        <span class="relative z-[1] text-[0.68rem] tracking-[0.14em] uppercase px-3 py-1.5 rounded-full ${GLASS} text-slate-800 dark:text-slate-100 text-center max-w-[80%] overflow-hidden text-ellipsis whitespace-nowrap" style="font-family: var(--font-mono);">${this._esc(artwork.name || 'Opera')}</span>
+        <span class="relative z-[1] text-[0.68rem] tracking-[0.14em] uppercase px-3 py-1.5 rounded-full ${GLASS} text-slate-800 dark:text-slate-100 text-center max-w-[80%] overflow-hidden text-ellipsis whitespace-nowrap font-mono">${this._esc(artwork.name || 'Opera')}</span>
       </div>
 
       <div class="pt-7 px-5 sm:px-8 pb-7 sm:pb-8">
         ${artwork.artwork_author ? `<div class="text-[0.66rem] font-semibold tracking-[0.16em] uppercase text-slate-500 dark:text-slate-400 mb-2">${this._esc(artwork.artwork_author)}</div>` : ''}
-        <p class="text-lg italic leading-snug mb-4" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">${this._esc(it.marketplace_summary)}</p>
+        <p class="text-lg italic leading-snug mb-4 font-serif">${this._esc(it.marketplace_summary)}</p>
 
         <div class="flex flex-wrap gap-1.5 mb-6">
           <span class="${TAG_CLS} ${LICENSE_CLS[licenseKey] || LICENSE_CLS.public}">${this._esc(LICENSE_LABELS[it.license] || it.license)}</span>
@@ -139,11 +139,11 @@ class ItemModal extends HTMLElement {
           ${(it.tags || []).map(t => `<span class="${TAG_CLS}">${this._esc(t)}</span>`).join('')}
         </div>
 
-        <h3 class="text-base font-semibold mb-3.5 text-slate-800 dark:text-slate-100" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">Paragrafi</h3>
+        <h3 class="text-base font-semibold mb-3.5 text-slate-800 dark:text-slate-100 font-serif">Paragrafi</h3>
         <ol class="flex flex-col gap-4">
           ${paragraphs.map((p, i) => `
           <li class="flex gap-3.5 items-start">
-            <span class="text-[0.72rem] pt-[0.15rem] shrink-0" style="font-family: var(--font-mono); color: var(--color-accent);">${String(i + 1).padStart(2, '0')}</span>
+            <span class="text-[0.72rem] pt-[0.15rem] shrink-0 font-mono" style="color: var(--color-accent);">${String(i + 1).padStart(2, '0')}</span>
             <div class="min-w-0 flex-1">
               <p class="text-[0.85rem] leading-relaxed text-slate-700 dark:text-slate-200">${this._esc(p.text)}</p>
               <span class="text-[0.68rem] text-slate-500 dark:text-slate-400">${formatDuration(p.duration_sec)}</span>

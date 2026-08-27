@@ -1,7 +1,8 @@
 /* ============================================================
  *  profile.css — Pagina "Il tuo profilo"
  *  Sidebar di sezioni + pannello contenuto. Si appoggia ai token
- *  di base.css e riusa .field/.auth-form/.btn-primary di auth.css.
+ *  di base.css, riusa .field/.btn-primary (primitive condivise in
+ *  base.css) e .auth-form di auth.css.
  * ============================================================ */
 
 /* Lo sfondo dinamico della pagina è gestito dai blob assoluti in

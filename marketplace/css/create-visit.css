@@ -504,7 +504,7 @@
   transition: border-color var(--transition);
 }
 .step-item-row-select:has(input:checked) { border-color: var(--color-accent); background: color-mix(in srgb, var(--color-accent) 8%, transparent); }
-/* Selettore più specifico di ".field input" (auth.css, width:100%): questa
+/* Selettore più specifico di ".field input" (base.css, width:100%): questa
  * checkbox vive dentro un ".field" (per riusarne lo stile di label), ma non
  * deve ereditarne larghezza/padding pensati per i campi di testo. */
 .step-item-row-select input[type="checkbox"] {
@@ -638,7 +638,7 @@
   gap: 0.75rem;
   margin-top: 0.25rem;
 }
-/* .btn-primary (auth.css) porta un margin-top pensato per i form: qui, in
+/* .btn-primary (base.css) porta un margin-top pensato per i form: qui, in
    riga accanto a .btn-secondary che non ce l'ha, lo spingeva più in basso. */
 .quiz-prompt-actions .btn-primary {
   margin-top: 0;

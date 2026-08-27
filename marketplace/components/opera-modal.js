@@ -149,7 +149,7 @@ class OperaModal extends HTMLElement {
 
       <div class="pt-7 px-5 sm:px-8 pb-7 sm:pb-8">
         <div class="text-[0.66rem] font-semibold tracking-[0.16em] uppercase text-slate-500 dark:text-slate-400 mb-2">${this._esc(it.artwork_author || 'Autore sconosciuto')}</div>
-        <p class="text-lg italic leading-snug mb-4" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">${this._esc(it.name)}</p>
+        <p class="text-lg italic leading-snug mb-4 font-serif">${this._esc(it.name)}</p>
 
         <div class="flex flex-wrap gap-1.5 mb-6">
           <span class="${TAG_CLS} ${typeCls}">${typeLabel}</span>
@@ -159,7 +159,7 @@ class OperaModal extends HTMLElement {
         <p class="text-[0.85rem] leading-relaxed text-slate-700 dark:text-slate-200 mb-6">${it.description ? this._esc(it.description) : '<span class="italic text-slate-500 dark:text-slate-400">Nessuna descrizione disponibile.</span>'}</p>
 
         ${it.is_physical ? `
-        <h3 class="text-base font-semibold mb-3.5 text-slate-800 dark:text-slate-100" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">Collocazioni</h3>
+        <h3 class="text-base font-semibold mb-3.5 text-slate-800 dark:text-slate-100 font-serif">Collocazioni</h3>
         <ul class="flex flex-col gap-3 mb-6">
           ${placements.map(p => {
             const museum = p.museum || {};
@@ -174,7 +174,7 @@ class OperaModal extends HTMLElement {
         </ul>` : ''}
 
         ${links.length ? `
-        <h3 class="text-base font-semibold mb-3.5 text-slate-800 dark:text-slate-100" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">Link esterni</h3>
+        <h3 class="text-base font-semibold mb-3.5 text-slate-800 dark:text-slate-100 font-serif">Link esterni</h3>
         <ul class="flex flex-col gap-1.5">
           ${links.map(l => `<li><a class="text-[0.85rem] underline text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white" href="${this._esc(l.url)}" target="_blank" rel="noopener noreferrer">${this._esc(l.label || l.url)}</a></li>`).join('')}
         </ul>` : ''}

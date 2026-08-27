@@ -123,7 +123,7 @@ class VisitCard extends HTMLElement {
             ${v.steps ? `<span>${v.steps} tappe</span>` : ''}
             <span class="sm:hidden font-semibold ${owned || isFree ? 'text-slate-800 dark:text-slate-100' : ''}">${owned ? '✓ Posseduta' : this._fmtPrice(v.basePrice)}</span>
           </div>
-          <h2 class="text-base sm:text-lg font-semibold leading-snug" style="font-family: var(--font-serif, 'Libre Baskerville', Georgia, serif);">${this._esc(v.title)}</h2>
+          <h2 class="text-base sm:text-lg font-semibold leading-snug font-serif">${this._esc(v.title)}</h2>
           <p class="hidden sm:block text-xs sm:text-sm leading-relaxed text-slate-500 dark:text-slate-400 line-clamp-2">${this._esc(v.description)}</p>
           ${v.tags?.length ? `<div class="hidden sm:flex flex-wrap gap-1.5">${v.tags.slice(0, 3).map(t => `<span class="${TAG_PILL}">${this._esc(t)}</span>`).join('')}</div>` : ''}
           ${v.tones?.length ? `
