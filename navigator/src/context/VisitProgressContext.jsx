@@ -664,15 +664,19 @@ export function VisitProgressProvider({ children }) {
   }
 
   // Looks up a museum's spoken info for a given service label (e.g.
-  // "Toilette", "Uscita"), speaks it, and jumps to the map centered on it.
-  // Returns the phrase on success, null when the museum has none for that
-  // label — shared by the Comandi service buttons and the "dov'è il bagno"
-  // style voice commands so both stay in sync.
+  // "Toilette", "Uscita"), speaks it, and — only when that museum actually has
+  // a map — jumps to it centered on the service point. With no map the spoken
+  // phrase is still delivered, but the redirect is skipped: /mappa would just
+  // show "Nessuna mappa disponibile". Returns the phrase on success, null when
+  // the museum has none for that label — shared by the Comandi service buttons
+  // and the "dov'è il bagno" style voice commands so both stay in sync.
   function goToService(museumForService, label) {
     const phrase = museumForService?.services?.[label]
     if (!phrase) return null
     announceService(phrase)
-    navigate('/mappa', { state: { museumId: museumForService?._id, serviceKey: label } })
+    if (museumForService?.maps?.length) {
+      navigate('/mappa', { state: { museumId: museumForService?._id, serviceKey: label } })
+    }
     return phrase
   }
 
@@ -968,7 +972,14 @@ export function VisitProgressProvider({ children }) {
         break
       }
       case 'goToMap':
-        navigate('/mappa', { state: { museumId: museum?._id, entityId: entity?._id } })
+        // Nessun redirect se il museo non ha una mappa: /mappa mostrerebbe
+        // solo "Nessuna mappa disponibile". Qui, a differenza dei comandi
+        // servizio, non c'è già una frase parlata, quindi si dà un riscontro.
+        if (museum?.maps?.length) {
+          navigate('/mappa', { state: { museumId: museum?._id, entityId: entity?._id } })
+        } else {
+          speakEphemeral('Non c\'è una mappa disponibile per questo museo.')
+        }
         break
       default:
         speakEphemeral('Non ho capito, puoi ripetere?')
