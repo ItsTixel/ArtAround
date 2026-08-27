@@ -203,7 +203,7 @@ function describeMicError(code) {
 
 export function VisitProgressProvider({ children }) {
   const navigate = useNavigate()
-  const { activeVisit } = useActiveVisit()
+  const { activeVisit, pendingMuseumChoice } = useActiveVisit()
   const [selectedTone, setSelectedTone] = useState(null)
   const [selectedDescIndex, setSelectedDescIndex] = useState(0)
   const [stepIndex, setStepIndex] = useState(0)
@@ -278,6 +278,13 @@ export function VisitProgressProvider({ children }) {
   // already standing at the opera, so walking directions would be nonsense.
   // Consumed (and cleared) by the very next directions computation.
   const skipNextDirectionsRef = useRef(false)
+  // Set by goToStep({ autoplayAfterJump: true }) — used only for the
+  // "in quale museo ti trovi?" popup di una visita inframuseale: si salta
+  // alla prima tappa del museo scelto senza indicazioni (skipDirections),
+  // ma a differenza di un salto da QR/gruppo la narrazione della tappa
+  // DEVE partire da sola. Consumato dalla stessa computazione che consuma
+  // skipNextDirectionsRef.
+  const autoplayAfterJumpRef = useRef(false)
   // Duration matching whatever's currently in textRef.current. Kept as a ref
   // (not derived from render state) and updated in lockstep with textRef:
   // effects that set textRef.current and immediately call speakFromChar in
@@ -448,13 +455,14 @@ export function VisitProgressProvider({ children }) {
     setSelectedDescIndex(index)
   }
 
-  function goToStep(index, { skipDirections = false } = {}) {
+  function goToStep(index, { skipDirections = false, autoplayAfterJump = false } = {}) {
     const clamped = Math.max(0, Math.min(index, sortedSteps.length - 1))
     if (clamped === activeStepIndex) return
     stopSpeech()
     setSelectedDescIndex(0)
     setActiveInsightTag(null)
     if (skipDirections) skipNextDirectionsRef.current = true
+    if (autoplayAfterJump) autoplayAfterJumpRef.current = true
     setStepIndex(clamped)
   }
 
@@ -1008,6 +1016,11 @@ export function VisitProgressProvider({ children }) {
         // not actually walking forward" and must not speak on its own either.
         const suppressExtras = skipNextDirectionsRef.current
         skipNextDirectionsRef.current = false
+        // Salto dal popup "in quale museo ti trovi?": niente indicazioni
+        // (suppressExtras), ma la narrazione della tappa d'arrivo deve
+        // comunque partire — vedi autoplayAfterJumpRef.
+        const forceAutoplay = autoplayAfterJumpRef.current
+        autoplayAfterJumpRef.current = false
         let newDirections = null
         if (currentLocation) {
           if (!suppressExtras) {
@@ -1025,7 +1038,7 @@ export function VisitProgressProvider({ children }) {
           return
         }
 
-        if (suppressExtras) return
+        if (suppressExtras && !forceAutoplay) return
       } else {
         setDirections(null)
       }
@@ -1036,6 +1049,12 @@ export function VisitProgressProvider({ children }) {
     textRef.current = currentDescription.text
     activeDurationRef.current = currentDescription.duration_sec || 0
     resumeCharRef.current = 0
+    // Visita inframuseale: finché il popup "in quale museo ti trovi?" è
+    // aperto (pendingMuseumChoice) la narrazione non parte da sola. Riparte
+    // questo effetto alla scelta, con pendingMuseumChoice ormai false (è tra
+    // le dipendenze sotto), ed è lì che l'audio si avvia. Per le visite a
+    // museo singolo pendingMuseumChoice è sempre false: nulla cambia.
+    if (pendingMuseumChoice) return
     // The very first step of a freshly (re)loaded visit must never speak on
     // its own — only a user action (Play, or navigating away and back)
     // should start it. Every other autoplay trigger (step change, tone/
@@ -1043,7 +1062,7 @@ export function VisitProgressProvider({ children }) {
     if (isInitialMount) return
     speakFromChar(0)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeStepIndex, currentDescription?.text])
+  }, [activeStepIndex, currentDescription?.text, pendingMuseumChoice])
 
   const value = {
     steps: sortedSteps,

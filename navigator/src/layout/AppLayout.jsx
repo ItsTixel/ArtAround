@@ -4,6 +4,7 @@ import ProfileMenu from '../components/ProfileMenu'
 import PlayerBar from '../components/PlayerBar'
 import InsightModal from '../components/InsightModal'
 import VisitEndModal from '../components/VisitEndModal'
+import VisitStartMuseumModal from '../components/VisitStartMuseumModal'
 import { useActiveVisit } from '../context/ActiveVisitContext'
 import { useVisitProgress } from '../context/VisitProgressContext'
 import useVisitTheme from '../hooks/useVisitTheme'
@@ -29,6 +30,9 @@ function AppLayout() {
           chiedere un approfondimento da qualunque pagina, non solo da Comandi. */}
       {activeInsightTag && <InsightModal tag={activeInsightTag} onClose={closeInsight} />}
       {showEndPrompt && <VisitEndModal />}
+      {/* Scelta del museo di partenza per le visite inframuseali, mostrata
+          una volta subito dopo l'attivazione (vedi pendingMuseumChoice). */}
+      <VisitStartMuseumModal />
     </div>
   )
 }

@@ -14,6 +14,7 @@ export function GroupSessionProvider({ children }) {
   const { activeVisit, activateVisit, clearActiveVisit } = useActiveVisit()
   const {
     goToStep,
+    handlePlayPause,
     activeTone,
     activeDescIndex,
     playbackState: localPlaybackState,
@@ -112,6 +113,12 @@ export function GroupSessionProvider({ children }) {
   // già resettato stepIndex a 0 per il nuovo activeVisit (vedi l'effect più
   // sotto, che corre dopo grazie all'ordine di annidamento dei provider).
   const pendingStepIndexRef = useRef(null)
+  // Segna il solo evento "il professore ha premuto Avvia visita"
+  // (visit:session_started), distinto da un ingresso su sessione già
+  // 'active': lì lo studente va solo piazzato sull'opera corrente, qui
+  // invece la lettura della descrizione deve partire da sola su tutti i
+  // dispositivi. Consumato dall'effect più sotto.
+  const sessionJustStartedRef = useRef(false)
 
   function applyAck(ack) {
     if (!ack || ack.error) return
@@ -168,6 +175,7 @@ export function GroupSessionProvider({ children }) {
     socket.on('disconnect', () => setConnected(false))
     socket.on('visit:session_opened', () => setStatus('waiting'))
     socket.on('visit:session_started', (payload) => {
+      sessionJustStartedRef.current = true
       setStatus('active')
       setCurrentStepIndex(payload?.stepIndex ?? 0)
     })
@@ -268,7 +276,9 @@ export function GroupSessionProvider({ children }) {
     // tono/paragrafo locali) mentre gestisce il gruppo dalla tab Gruppo — sia
     // host che student attivano quindi la visita nel player.
     pendingStepIndexRef.current = pendingStepIndex ?? visit.live_session?.current_step_index ?? 0
-    activateVisit(visit)
+    // Niente popup "in quale museo ti trovi?" né autoplay: in una sessione
+    // di gruppo gli step (e quindi anche la partenza) li guida il professore.
+    activateVisit(visit, { promptMuseumChoice: false })
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ visitId: newVisitId, role: newRole }))
 
@@ -530,6 +540,19 @@ export function GroupSessionProvider({ children }) {
     goToStep(currentStepIndex, { skipDirections })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [role, activeVisit?._id, currentStepIndex])
+
+  // All'avvio della visita da parte del professore (visit:session_started, non
+  // un ingresso su sessione già in corso) la lettura della descrizione della
+  // prima opera parte da sola su tutti i dispositivi — host e studenti — allo
+  // stesso modo in cui, ai passaggi successivi, il cambio opera fa già
+  // ripartire la narrazione. I cambi di step normali non passano di qui:
+  // sessionJustStartedRef è true solo subito dopo quell'unico evento.
+  useEffect(() => {
+    if (status !== 'active' || !sessionJustStartedRef.current) return
+    sessionJustStartedRef.current = false
+    if (localPlaybackState === 'idle') handlePlayPause()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status, localPlaybackState])
 
   // Telemetria live dello studente: ogni cambio di tono/paragrafo/playback
   // locale viene inoltrato al professore. Salta l'invio quando playbackState

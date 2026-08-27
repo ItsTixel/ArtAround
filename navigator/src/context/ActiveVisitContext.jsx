@@ -15,6 +15,12 @@ function readStoredVisit() {
 
 export function ActiveVisitProvider({ children }) {
   const [activeVisit, setActiveVisitState] = useState(readStoredVisit)
+  // True subito dopo aver attivato una visita inframuseale (più musei): fa
+  // comparire una volta il popup "in quale museo ti trovi?" (vedi
+  // VisitStartMuseumModal) così non si parte per forza dal primo museo.
+  // Volutamente non persistito: un refresh a metà visita non lo deve
+  // rimostrare, e viene valorizzato solo qui in activateVisit.
+  const [pendingMuseumChoice, setPendingMuseumChoice] = useState(false)
 
   useEffect(() => {
     if (activeVisit) {
@@ -24,16 +30,28 @@ export function ActiveVisitProvider({ children }) {
     }
   }, [activeVisit])
 
-  function activateVisit(visit) {
+  // `promptMuseumChoice` di default è true per le visite inframuseali (più
+  // musei). Le sessioni di gruppo passano esplicitamente false: lì è il
+  // professore a guidare gli step e non deve esserci né il popup né
+  // l'autoplay che ne consegue (vedi VisitProgressContext).
+  function activateVisit(visit, { promptMuseumChoice } = {}) {
     setActiveVisitState(visit)
+    setPendingMuseumChoice(promptMuseumChoice ?? (visit?.museum || []).length > 1)
   }
 
   function clearActiveVisit() {
     setActiveVisitState(null)
+    setPendingMuseumChoice(false)
+  }
+
+  function clearPendingMuseumChoice() {
+    setPendingMuseumChoice(false)
   }
 
   return (
-    <ActiveVisitContext.Provider value={{ activeVisit, activateVisit, clearActiveVisit }}>
+    <ActiveVisitContext.Provider
+      value={{ activeVisit, activateVisit, clearActiveVisit, pendingMuseumChoice, clearPendingMuseumChoice }}
+    >
       {children}
     </ActiveVisitContext.Provider>
   )
