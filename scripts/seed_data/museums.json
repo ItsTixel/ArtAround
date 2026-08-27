@@ -390,6 +390,42 @@
             "x": 0.89,
             "y": 0.12,
             "service_key": "Auditorium"
+          },
+          {
+            "label": "Madonna in gloria e santi",
+            "icon_type": "entity",
+            "x": 0.108,
+            "y": 0.15,
+            "entity": {
+              "$oid": "ccc000000000000000000147"
+            }
+          },
+          {
+            "label": "Ultima comunione di san Girolamo",
+            "icon_type": "entity",
+            "x": 0.685,
+            "y": 0.605,
+            "entity": {
+              "$oid": "ccc000000000000000000148"
+            }
+          },
+          {
+            "label": "Sansone vittorioso",
+            "icon_type": "entity",
+            "x": 0.845,
+            "y": 0.585,
+            "entity": {
+              "$oid": "ccc000000000000000000149"
+            }
+          },
+          {
+            "label": "Ritratto di gentildonna (la Madre)",
+            "icon_type": "entity",
+            "x": 0.895,
+            "y": 0.625,
+            "entity": {
+              "$oid": "ccc000000000000000000156"
+            }
           }
         ]
       }

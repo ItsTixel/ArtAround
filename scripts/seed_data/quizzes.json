@@ -9,27 +9,59 @@
     },
     "questions": [
       {
-        "text": "Il polittico d'oro della Saletta di Giotto è stato per secoli:",
+        "text": "Per secoli, dopo le soppressioni napoleoniche del 1808, il Polittico di Bologna di Giotto è stato:",
         "item": {
           "$oid": "ddd000000000000000000019"
         },
-        "options": ["Smembrato e disperso", "Nascosto in un caveau", "Esposto solo di notte"],
+        "options": [
+          "Smembrato e disperso in più collezioni, poi ricomposto",
+          "Sempre esposto intatto in questa stessa sala",
+          "Custodito nei depositi dei Musei Vaticani"
+        ],
         "correct_option_index": 0
       },
       {
-        "text": "Cosa trafigge San Giorgio nel dipinto di Vitale da Bologna?",
+        "text": "Cosa trafigge San Giorgio nel dipinto di Vitale da Bologna esposto in Pinacoteca?",
         "item": {
           "$oid": "ddd000000000000000000020"
         },
-        "options": ["Un leone", "Un drago", "Un cavallo"],
+        "options": ["Un leone", "Un drago", "Un serpente marino"],
         "correct_option_index": 1
       },
       {
-        "text": "Cosa regge in mano San Petronio nel dipinto?",
+        "text": "Cosa regge in mano San Petronio nella Pala dei Mercanti di Francesco del Cossa?",
         "item": {
           "$oid": "ddd000000000000000000021"
         },
-        "options": ["Un modellino della città", "Un libro sacro", "Una spada"],
+        "options": [
+          "Un modellino della città di Bologna",
+          "Un libro sacro aperto",
+          "Una spada sguainata"
+        ],
+        "correct_option_index": 0
+      },
+      {
+        "text": "Nell'Estasi di Santa Cecilia di Raffaello, cosa giace a terra ai piedi della santa?",
+        "item": {
+          "$oid": "ddd000000000000000000024"
+        },
+        "options": [
+          "Strumenti musicali abbandonati e rotti",
+          "Un mazzo di gigli bianchi",
+          "Una corona d'alloro spezzata"
+        ],
+        "correct_option_index": 0
+      },
+      {
+        "text": "A quale stagione della pittura appartiene la Strage degli Innocenti di Guido Reni?",
+        "item": {
+          "$oid": "ddd000000000000000000029"
+        },
+        "options": [
+          "Il Barocco bolognese del Seicento",
+          "Il primo Rinascimento fiorentino",
+          "Il Gotico internazionale"
+        ],
         "correct_option_index": 0
       }
     ]

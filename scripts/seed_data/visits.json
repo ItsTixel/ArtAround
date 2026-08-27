@@ -58,6 +58,9 @@
           },
           {
             "$oid": "ddd000000000000000000041"
+          },
+          {
+            "$oid": "ddd000000000000000000624"
           }
         ],
         "logistic_note": "Entra dall'ingresso principale e sali al primo piano: la Saletta di Giotto è la prima sala del percorso.",
@@ -83,6 +86,9 @@
           },
           {
             "$oid": "ddd000000000000000000043"
+          },
+          {
+            "$oid": "ddd000000000000000000625"
           }
         ],
         "logistic_note": "Prosegui nella Sala 1, dedicata al Duecento e al Gotico bolognese.",
@@ -108,6 +114,9 @@
           },
           {
             "$oid": "ddd000000000000000000045"
+          },
+          {
+            "$oid": "ddd000000000000000000626"
           }
         ],
         "logistic_note": "Raggiungi le sale 10-12, dedicate al primo Rinascimento bolognese.",
@@ -133,11 +142,42 @@
           },
           {
             "$oid": "ddd000000000000000000047"
+          },
+          {
+            "$oid": "ddd000000000000000000627"
           }
         ],
         "logistic_note": "Resta nella stessa area, alla Sala 13.",
         "intro_note": "I due fratelli Bentivoglio, inginocchiati ai lati, volevano essere ricordati per sempre accanto alla Sacra Famiglia.",
         "order": 5
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000337"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000147"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000638"
+          },
+          {
+            "$oid": "ddd000000000000000000639"
+          },
+          {
+            "$oid": "ddd000000000000000000640"
+          },
+          {
+            "$oid": "ddd000000000000000000641"
+          }
+        ],
+        "logistic_note": "Nella Sala 15, accanto a Raffaello, cerca la grande pala del Perugino.",
+        "intro_note": "Uno sguardo al maestro prima dell'allievo: la Madonna in gloria del Perugino, dipinta per la stessa chiesa che ospitò la Santa Cecilia di Raffaello.",
+        "order": 6
       },
       {
         "_id": {
@@ -158,11 +198,14 @@
           },
           {
             "$oid": "ddd000000000000000000049"
+          },
+          {
+            "$oid": "ddd000000000000000000628"
           }
         ],
         "logistic_note": "Raggiungi la Sala 15, il cuore rinascimentale della Pinacoteca.",
         "intro_note": "Fermati qualche istante prima di leggere la guida: osserva gli strumenti musicali abbandonati ai piedi di santa Cecilia.",
-        "order": 6
+        "order": 7
       },
       {
         "_id": {
@@ -183,11 +226,14 @@
           },
           {
             "$oid": "ddd000000000000000000051"
+          },
+          {
+            "$oid": "ddd000000000000000000629"
           }
         ],
         "logistic_note": "Prosegui verso la Sala 18.",
         "intro_note": "Si racconta che questo dipinto fosse tra i preferiti di Guido Reni, che lo studierà a lungo.",
-        "order": 7
+        "order": 8
       },
       {
         "_id": {
@@ -208,11 +254,42 @@
           },
           {
             "$oid": "ddd000000000000000000053"
+          },
+          {
+            "$oid": "ddd000000000000000000630"
           }
         ],
         "logistic_note": "Entra nella Sala 23, dedicata ai Carracci.",
         "intro_note": "Guarda in basso a sinistra: la donna inginocchiata in abito da monaca è la committente del dipinto.",
-        "order": 8
+        "order": 9
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000338"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000148"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000642"
+          },
+          {
+            "$oid": "ddd000000000000000000643"
+          },
+          {
+            "$oid": "ddd000000000000000000644"
+          },
+          {
+            "$oid": "ddd000000000000000000645"
+          }
+        ],
+        "logistic_note": "Sempre in Sala 23, dedicata ai Carracci, sulla parete di fondo.",
+        "intro_note": "Accanto al debutto di Ludovico, il capolavoro del cugino Agostino: la commovente Ultima comunione di san Girolamo.",
+        "order": 10
       },
       {
         "_id": {
@@ -233,11 +310,70 @@
           },
           {
             "$oid": "ddd000000000000000000055"
+          },
+          {
+            "$oid": "ddd000000000000000000631"
           }
         ],
         "logistic_note": "Prosegui nella Sala 24, dedicata a Guido Reni.",
         "intro_note": "È una scena drammatica: prenditi un momento prima di osservarla da vicino.",
-        "order": 9
+        "order": 11
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000339"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000149"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000646"
+          },
+          {
+            "$oid": "ddd000000000000000000647"
+          },
+          {
+            "$oid": "ddd000000000000000000648"
+          },
+          {
+            "$oid": "ddd000000000000000000649"
+          }
+        ],
+        "logistic_note": "Resta nella Sala 24: il Sansone è sulla parete adiacente alla Strage degli Innocenti.",
+        "intro_note": "Ancora Guido Reni, ma dall'Antico Testamento: Sansone solo sul campo, dopo la vittoria sui Filistei.",
+        "order": 12
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000346"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000156"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000650"
+          },
+          {
+            "$oid": "ddd000000000000000000651"
+          },
+          {
+            "$oid": "ddd000000000000000000652"
+          },
+          {
+            "$oid": "ddd000000000000000000653"
+          }
+        ],
+        "logistic_note": "Resta nella Sala 24: il piccolo ritratto è appeso tra le grandi pale di Guido Reni.",
+        "intro_note": "Un cambio di scala e di tono: dopo le enormi pale sacre, un ritratto intimo e severo, forse la madre del pittore.",
+        "order": 13
       },
       {
         "_id": {
@@ -258,11 +394,14 @@
           },
           {
             "$oid": "ddd000000000000000000057"
+          },
+          {
+            "$oid": "ddd000000000000000000632"
           }
         ],
         "logistic_note": "Resta nella Sala 24: la grande pala si trova sulla parete opposta.",
         "intro_note": "Conta i santi allineati in basso: sono i patroni della città di Bologna.",
-        "order": 10
+        "order": 14
       },
       {
         "_id": {
@@ -283,11 +422,14 @@
           },
           {
             "$oid": "ddd000000000000000000059"
+          },
+          {
+            "$oid": "ddd000000000000000000633"
           }
         ],
         "logistic_note": "Concludi il percorso nelle sale dedicate al Seicento bolognese.",
         "intro_note": "Un finale luminoso: la luce calda di Guercino chiude la nostra prima visita alla Pinacoteca.",
-        "order": 11
+        "order": 15
       }
     ],
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d4/CUTriTeam.jpg",
@@ -299,7 +441,7 @@
       "panoramica"
     ],
     "is_public": true,
-    "estimated_duration_sec": 510,
+    "estimated_duration_sec": 1865.55,
     "createdAt": {
       "$date": "2025-03-10T00:00:00Z"
     },
@@ -342,6 +484,9 @@
           },
           {
             "$oid": "ddd000000000000000000041"
+          },
+          {
+            "$oid": "ddd000000000000000000624"
           }
         ],
         "logistic_note": "Entra dall'ingresso principale e sali al primo piano: la Saletta di Giotto è la prima sala del percorso.",
@@ -367,6 +512,9 @@
           },
           {
             "$oid": "ddd000000000000000000043"
+          },
+          {
+            "$oid": "ddd000000000000000000625"
           }
         ],
         "logistic_note": "Prosegui nella Sala 1, dedicata al Duecento e al Gotico bolognese.",
@@ -392,6 +540,9 @@
           },
           {
             "$oid": "ddd000000000000000000045"
+          },
+          {
+            "$oid": "ddd000000000000000000626"
           }
         ],
         "logistic_note": "Raggiungi le sale 10-12, dedicate al primo Rinascimento bolognese.",
@@ -417,11 +568,42 @@
           },
           {
             "$oid": "ddd000000000000000000047"
+          },
+          {
+            "$oid": "ddd000000000000000000627"
           }
         ],
         "logistic_note": "Resta nella stessa area, alla Sala 13.",
         "intro_note": "I due fratelli Bentivoglio, inginocchiati ai lati, volevano essere ricordati per sempre accanto alla Sacra Famiglia.",
         "order": 4
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000341"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000147"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000638"
+          },
+          {
+            "$oid": "ddd000000000000000000639"
+          },
+          {
+            "$oid": "ddd000000000000000000640"
+          },
+          {
+            "$oid": "ddd000000000000000000641"
+          }
+        ],
+        "logistic_note": "Nella Sala 15, accanto a Raffaello, cerca la grande pala del Perugino.",
+        "intro_note": "Uno sguardo al maestro prima dell'allievo: la Madonna in gloria del Perugino, dipinta per la stessa chiesa che ospitò la Santa Cecilia di Raffaello.",
+        "order": 5
       },
       {
         "_id": {
@@ -442,11 +624,14 @@
           },
           {
             "$oid": "ddd000000000000000000049"
+          },
+          {
+            "$oid": "ddd000000000000000000628"
           }
         ],
         "logistic_note": "Raggiungi la Sala 15, il cuore rinascimentale della Pinacoteca.",
         "intro_note": "Fermati qualche istante prima di leggere la guida: osserva gli strumenti musicali abbandonati ai piedi di santa Cecilia.",
-        "order": 5
+        "order": 6
       },
       {
         "_id": {
@@ -467,11 +652,14 @@
           },
           {
             "$oid": "ddd000000000000000000051"
+          },
+          {
+            "$oid": "ddd000000000000000000629"
           }
         ],
         "logistic_note": "Prosegui verso la Sala 18.",
         "intro_note": "Si racconta che questo dipinto fosse tra i preferiti di Guido Reni, che lo studierà a lungo.",
-        "order": 6
+        "order": 7
       },
       {
         "_id": {
@@ -492,11 +680,42 @@
           },
           {
             "$oid": "ddd000000000000000000053"
+          },
+          {
+            "$oid": "ddd000000000000000000630"
           }
         ],
         "logistic_note": "Entra nella Sala 23, dedicata ai Carracci.",
         "intro_note": "Guarda in basso a sinistra: la donna inginocchiata in abito da monaca è la committente del dipinto.",
-        "order": 7
+        "order": 8
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000342"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000148"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000642"
+          },
+          {
+            "$oid": "ddd000000000000000000643"
+          },
+          {
+            "$oid": "ddd000000000000000000644"
+          },
+          {
+            "$oid": "ddd000000000000000000645"
+          }
+        ],
+        "logistic_note": "Sempre in Sala 23, dedicata ai Carracci, sulla parete di fondo.",
+        "intro_note": "Accanto al debutto di Ludovico, il capolavoro del cugino Agostino: la commovente Ultima comunione di san Girolamo.",
+        "order": 9
       },
       {
         "_id": {
@@ -517,11 +736,70 @@
           },
           {
             "$oid": "ddd000000000000000000055"
+          },
+          {
+            "$oid": "ddd000000000000000000631"
           }
         ],
         "logistic_note": "Prosegui nella Sala 24, dedicata a Guido Reni.",
         "intro_note": "È una scena drammatica: prenditi un momento prima di osservarla da vicino.",
-        "order": 8
+        "order": 10
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000343"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000149"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000646"
+          },
+          {
+            "$oid": "ddd000000000000000000647"
+          },
+          {
+            "$oid": "ddd000000000000000000648"
+          },
+          {
+            "$oid": "ddd000000000000000000649"
+          }
+        ],
+        "logistic_note": "Resta nella Sala 24: il Sansone è sulla parete adiacente alla Strage degli Innocenti.",
+        "intro_note": "Ancora Guido Reni, ma dall'Antico Testamento: Sansone solo sul campo, dopo la vittoria sui Filistei.",
+        "order": 11
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000347"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000156"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000650"
+          },
+          {
+            "$oid": "ddd000000000000000000651"
+          },
+          {
+            "$oid": "ddd000000000000000000652"
+          },
+          {
+            "$oid": "ddd000000000000000000653"
+          }
+        ],
+        "logistic_note": "Resta nella Sala 24: il piccolo ritratto è appeso tra le grandi pale di Guido Reni.",
+        "intro_note": "Un cambio di scala e di tono: dopo le enormi pale sacre, un ritratto intimo e severo, forse la madre del pittore.",
+        "order": 12
       },
       {
         "_id": {
@@ -542,11 +820,14 @@
           },
           {
             "$oid": "ddd000000000000000000057"
+          },
+          {
+            "$oid": "ddd000000000000000000632"
           }
         ],
         "logistic_note": "Resta nella Sala 24: la grande pala si trova sulla parete opposta.",
         "intro_note": "Conta i santi allineati in basso: sono i patroni della città di Bologna.",
-        "order": 9
+        "order": 13
       },
       {
         "_id": {
@@ -567,11 +848,14 @@
           },
           {
             "$oid": "ddd000000000000000000059"
+          },
+          {
+            "$oid": "ddd000000000000000000633"
           }
         ],
         "logistic_note": "Concludi il percorso nelle sale dedicate al Seicento bolognese.",
         "intro_note": "Un finale luminoso: la luce calda di Guercino chiude la nostra prima visita alla Pinacoteca.",
-        "order": 10
+        "order": 14
       }
     ],
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Vitale_da_bologna%2C_san_giorgio_libera_la_principessa%2C_1330-35_ca.%2C_01.jpg/1280px-Vitale_da_bologna%2C_san_giorgio_libera_la_principessa%2C_1330-35_ca.%2C_01.jpg",
@@ -583,7 +867,7 @@
       "panoramica"
     ],
     "is_public": true,
-    "estimated_duration_sec": 481,
+    "estimated_duration_sec": 1838.55,
     "createdAt": {
       "$date": "2025-03-10T00:00:00Z"
     },
@@ -924,7 +1208,7 @@
       "font_serif": "Cormorant Garamond"
     },
     "is_public": true,
-    "estimated_duration_sec": 706,
+    "estimated_duration_sec": 683.42,
     "createdAt": {
       "$date": "2026-08-14T00:00:00Z"
     },
@@ -1095,6 +1379,9 @@
           },
           {
             "$oid": "ddd000000000000000000041"
+          },
+          {
+            "$oid": "ddd000000000000000000624"
           }
         ],
         "logistic_note": "Arrivato alla Pinacoteca Nazionale di Bologna, sali al primo piano fino alla Saletta di Giotto.",
@@ -1120,11 +1407,42 @@
           },
           {
             "$oid": "ddd000000000000000000047"
+          },
+          {
+            "$oid": "ddd000000000000000000627"
           }
         ],
         "logistic_note": "Raggiungi la Sala 13, dedicata a Francesco Francia.",
         "intro_note": "Una Sacra Famiglia commissionata da una famiglia di Bologna con lo stesso spirito devozionale dei fiorentini.",
         "order": 7
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000345"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000147"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000638"
+          },
+          {
+            "$oid": "ddd000000000000000000639"
+          },
+          {
+            "$oid": "ddd000000000000000000640"
+          },
+          {
+            "$oid": "ddd000000000000000000641"
+          }
+        ],
+        "logistic_note": "Nella Sala 15, accanto a Raffaello, cerca la grande pala del Perugino.",
+        "intro_note": "Uno sguardo al maestro prima dell'allievo: la Madonna in gloria del Perugino, dipinta per la stessa chiesa che ospitò la Santa Cecilia di Raffaello.",
+        "order": 8
       },
       {
         "_id": {
@@ -1145,11 +1463,14 @@
           },
           {
             "$oid": "ddd000000000000000000049"
+          },
+          {
+            "$oid": "ddd000000000000000000628"
           }
         ],
         "logistic_note": "Prosegui nella Sala 15, il cuore rinascimentale della Pinacoteca.",
         "intro_note": "Raffaello lasciò Firenze per Roma, ma questa pala mostra quanto il suo linguaggio fosse ormai maturo.",
-        "order": 8
+        "order": 9
       },
       {
         "_id": {
@@ -1170,11 +1491,14 @@
           },
           {
             "$oid": "ddd000000000000000000051"
+          },
+          {
+            "$oid": "ddd000000000000000000629"
           }
         ],
         "logistic_note": "Raggiungi la Sala 18, dedicata al Manierismo.",
         "intro_note": "Un allievo indiretto della lezione fiorentina, riletta attraverso il filtro manierista di Parmigianino.",
-        "order": 9
+        "order": 10
       },
       {
         "_id": {
@@ -1195,11 +1519,14 @@
           },
           {
             "$oid": "ddd000000000000000000055"
+          },
+          {
+            "$oid": "ddd000000000000000000631"
           }
         ],
         "logistic_note": "Concludi il percorso nella Sala 24, dedicata a Guido Reni.",
         "intro_note": "Chiudiamo il viaggio con il Barocco bolognese, l'ultima tappa di un percorso che ha attraversato tre secoli d'arte italiana.",
-        "order": 10
+        "order": 11
       }
     ],
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Annunciation_%28Leonardo_c._1472%E2%80%931476%29.jpg/1280px-Annunciation_%28Leonardo_c._1472%E2%80%931476%29.jpg",
@@ -1211,7 +1538,7 @@
       "Barocco"
     ],
     "is_public": true,
-    "estimated_duration_sec": 589,
+    "estimated_duration_sec": 1117.52,
     "createdAt": {
       "$date": "2026-08-14T00:00:00Z"
     },
@@ -2163,7 +2490,7 @@
       "infra-museale"
     ],
     "is_public": true,
-    "estimated_duration_sec": 2520,
+    "estimated_duration_sec": 1297.17,
     "createdAt": {
       "$date": "2026-08-24T00:00:00Z"
     },
@@ -2364,7 +2691,7 @@
       "Cucina toscana"
     ],
     "is_public": true,
-    "estimated_duration_sec": 329.92,
+    "estimated_duration_sec": 332.75,
     "createdAt": {
       "$date": "2026-08-27T00:00:00Z"
     },

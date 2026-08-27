@@ -3104,5 +3104,163 @@
     "updatedAt": {
       "$date": "2026-08-27T00:00:00Z"
     }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000147"
+    },
+    "name": "Madonna in gloria e santi",
+    "is_physical": true,
+    "artwork_author": "Pietro Perugino",
+    "description": "Pala d'altare dipinta dal Perugino intorno al 1500 per la chiesa bolognese di San Giovanni in Monte. La Madonna col Bambino appare in gloria fra angeli, sopra un gruppo di santi in terra. Trasferita alla Pinacoteca Nazionale di Bologna in età napoleonica.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Perugino%2C_madonna_in_gloria_e_santi%2C_da_s._giovanni_in_monte%2C_1500_ca._01.jpg/1280px-Perugino%2C_madonna_in_gloria_e_santi%2C_da_s._giovanni_in_monte%2C_1500_ca._01.jpg",
+    "alt_text": "Madonna col Bambino in gloria fra angeli, con santi in preghiera nella parte inferiore, pala d'altare del Perugino",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "location": {
+          "room": "Sala 15",
+          "floor": "1",
+          "note": ""
+        }
+      }
+    ],
+    "tags": [
+      "Rinascimento",
+      "Cinquecento",
+      "Sacro",
+      "Madonna",
+      "Raffaello",
+      "Bologna"
+    ],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000148"
+    },
+    "name": "Ultima comunione di san Girolamo",
+    "is_physical": true,
+    "artwork_author": "Agostino Carracci",
+    "description": "Capolavoro di Agostino Carracci, dipinto fra il 1591 e il 1597 per la chiesa della Certosa di Bologna. San Girolamo morente riceve l'eucaristia sorretto dai monaci. Requisita da Napoleone e restituita nel 1815, è oggi alla Pinacoteca Nazionale di Bologna.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Agostino_Carracci%2C_Ultima_comunione_di_san_Girolamo%2C_1591-1597.jpg/1280px-Agostino_Carracci%2C_Ultima_comunione_di_san_Girolamo%2C_1591-1597.jpg",
+    "alt_text": "San Girolamo anziano e seminudo, sorretto dai monaci, riceve l'ultima comunione da un sacerdote in una chiesa in penombra",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "location": {
+          "room": "Sala 23",
+          "floor": "1",
+          "note": ""
+        }
+      }
+    ],
+    "tags": [
+      "Barocco",
+      "Cinquecento",
+      "Sacro",
+      "Bologna"
+    ],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000149"
+    },
+    "name": "Sansone vittorioso",
+    "is_physical": true,
+    "artwork_author": "Guido Reni",
+    "description": "Dipinto da Guido Reni intorno al 1614-1616 per il conte bolognese Luigi Zambeccari, come sovrapporta di un camino. Sansone, nudo e solo sul campo di battaglia, beve dalla mascella d'asino con cui ha sconfitto i Filistei, i cui corpi giacciono a terra. Passato al cardinale Boncompagni e donato al Senato cittadino nel 1684, è oggi alla Pinacoteca Nazionale di Bologna.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Guido_Reni%2C_Sansone_vittorioso%2C_1617-1619_circa_01.jpg/1280px-Guido_Reni%2C_Sansone_vittorioso%2C_1617-1619_circa_01.jpg",
+    "alt_text": "Sansone nudo, in piedi su un campo cosparso di corpi, beve dall'osso della mascella d'asino con cui ha combattuto",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "location": {
+          "room": "Sala 24",
+          "floor": "1",
+          "note": ""
+        }
+      }
+    ],
+    "tags": [
+      "Guido Reni",
+      "Barocco",
+      "Sacro",
+      "Bologna"
+    ],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000156"
+    },
+    "name": "Ritratto di gentildonna (la Madre)",
+    "is_physical": true,
+    "artwork_author": "Guido Reni",
+    "description": "Ritratto dipinto da Guido Reni intorno al 1615, tradizionalmente identificato come la madre dell'artista, Ginevra de' Pozzi, sulla scorta di una notizia del biografo Malvasia (1678) non confermata da documenti. La gentildonna anziana è a mezzo busto, in abito nero alla spagnola, con velo di organza e ampio collo di pizzo. Olio su tela, 64x55 cm, Pinacoteca Nazionale di Bologna.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Guido_Reni%2C_Ritratto_della_madre_Ginevra_Pucci%2C_1610_circa.jpg/1280px-Guido_Reni%2C_Ritratto_della_madre_Ginevra_Pucci%2C_1610_circa.jpg",
+    "alt_text": "Ritratto a mezzo busto di una gentildonna anziana in abito nero, con velo di organza bianco e ampio collo di pizzo, su fondo scuro",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000004"
+        },
+        "location": {
+          "room": "Sala 24",
+          "floor": "1",
+          "note": ""
+        }
+      }
+    ],
+    "tags": [
+      "Guido Reni",
+      "Barocco",
+      "Ritratto",
+      "Bologna"
+    ],
+    "external_links": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
   }
 ]

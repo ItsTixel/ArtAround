@@ -156,13 +156,10 @@ class AppNavbar extends HTMLElement {
     const activeEl = wrap.querySelector(itemSelector.split(',').map(s => `${s.trim()}.active`).join(', '));
     if (activeEl) moveTo(activeEl, /* silent */ true);
 
-    // Il CDN di Tailwind genera lo stile delle classi via MutationObserver DOPO
-    // che questo markup viene inserito, quindi una misura fatta troppo presto
-    // (qui sopra, o per un mouseover "fantasma" che il browser spara sulla voce
-    // già sotto al cursore appena la pagina è pronta, es. subito dopo un click
-    // di navigazione) può restare bloccata su una geometria pre-stile — la pillola
-    // risulta storta/non centrata perché nessun hover successivo la ricalcola se
-    // il cursore non si muove più. Una volta che pagina e font sono davvero
+    // Stesso ritardo di Tailwind visto sopra: una misura presa troppo presto (qui,
+    // o su un mouseover "fantasma" che il browser spara subito dopo la navigazione
+    // sulla voce già sotto al cursore) resta bloccata su una geometria pre-stile e
+    // la pillola risulta storta finché un hover non la ricalcola. A pagina e font
     // pronti, ri-misuriamo (senza toccare l'opacità) l'ultima voce agganciata.
     const refresh = () => { if (lastTarget) moveTo(lastTarget, /* silent */ true); };
     window.addEventListener('load', refresh);
@@ -170,15 +167,12 @@ class AppNavbar extends HTMLElement {
     setTimeout(refresh, 400);
   }
 
-  // Tailwind (CDN) applica "border" (colore di default grigio) e "border-transparent"
-  // in due passaggi asincroni separati: per una finestra di qualche centinaio di ms
-  // il bordo di default resta visibile prima che "border-transparent" lo azzeri, e
-  // con `transition-all` (TRANSITION) già attivo quella correzione si vede come una
-  // sfumatura vistosa sul bordo di ogni voce coinvolta (Musei, Tutte le visite,
-  // "Crea", nome utente...). Fissiamo il bordo a trasparente via stile inline (vince
-  // sempre sulle classi, indipendentemente dall'ordine con cui Tailwind le applica)
-  // finché Tailwind non si è stabilizzato, poi restituiamo il controllo alle classi
-  // — serve per l'hover mobile "border-white/30" sulle voci del menu collassato.
+  // Stesso ritardo di Tailwind (vedi _wireFluidIndicator): "border" (grigio di
+  // default) e "border-transparent" arrivano in due passaggi separati, così per
+  // qualche centinaio di ms il bordo grigio resta visibile e con `transition-all`
+  // (TRANSITION) attivo si vede sfumare via su ogni voce. Lo forziamo a trasparente
+  // via stile inline finché Tailwind non si stabilizza, poi ridiamo il controllo
+  // alle classi (serve per l'hover mobile "border-white/30" del menu collassato).
   _pinTransparentBorders(root) {
     const els = root.querySelectorAll('.border-transparent');
     els.forEach((el) => { el.style.borderColor = 'transparent'; });
