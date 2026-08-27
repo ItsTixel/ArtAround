@@ -27,7 +27,7 @@ async function submitMuseum() {
 
   const mapsError = mapsField.validate();
   if (mapsError) {
-    mapsFeedback.style.color = 'red';
+    mapsFeedback.style.color = 'var(--color-danger)';
     mapsFeedback.textContent = mapsError;
     wizard.setSubmitEnabled(true);
     return;

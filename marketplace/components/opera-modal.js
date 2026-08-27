@@ -143,7 +143,7 @@ class OperaModal extends HTMLElement {
       <div class="relative h-[190px] bg-slate-300/20 dark:bg-slate-800/40 border-b border-slate-400/20 flex items-center justify-center overflow-hidden shrink-0">
         ${it.image_url
           ? `<img class="absolute inset-0 w-full h-full object-cover" src="${this._esc(it.image_url)}" alt="${this._esc(it.alt_text || it.name || '')}" loading="lazy">`
-          : `<div class="absolute inset-0" style="background-image: repeating-linear-gradient(135deg, transparent 0 11px, rgba(100,116,139,0.12) 11px 12px);"></div>`}
+          : `<div class="absolute inset-0 img-placeholder"></div>`}
         ${qrThumbHtml('entity', it._id, 'opera')}
       </div>
 
@@ -389,7 +389,7 @@ class OperaModal extends HTMLElement {
 
     const name = this.querySelector('#edit-name').value.trim();
     if (!name) {
-      feedback.style.color = 'red';
+      feedback.style.color = 'var(--color-danger)';
       feedback.textContent = 'Il nome è obbligatorio.';
       return;
     }
@@ -427,7 +427,7 @@ class OperaModal extends HTMLElement {
       this.dispatchEvent(new CustomEvent('entity-updated', { detail: { entity: data }, bubbles: true }));
       this._render();
     } catch (err) {
-      feedback.style.color = 'red';
+      feedback.style.color = 'var(--color-danger)';
       feedback.textContent = err.message;
       saveBtn.disabled = false;
       saveBtn.textContent = 'Salva modifiche';

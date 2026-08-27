@@ -57,7 +57,7 @@ class OperaCard extends HTMLElement {
         <div class="relative w-32 shrink-0 self-stretch sm:self-auto sm:w-full sm:h-44 bg-slate-300/20 dark:bg-slate-800/40 flex items-center justify-center overflow-hidden">
           ${o.imageUrl
             ? `<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="${this._esc(o.imageUrl)}" alt="${this._esc(o.altText || o.name)}" loading="lazy">`
-            : `<div class="absolute inset-0" style="background-image: repeating-linear-gradient(135deg, transparent 0 11px, rgba(100,116,139,0.12) 11px 12px);"></div>`}
+            : `<div class="absolute inset-0 img-placeholder"></div>`}
           <button type="button" class="fav-btn absolute top-2 right-2 sm:top-3 sm:right-3 z-10 flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full ${GLASS_STRONG} text-slate-800 dark:text-slate-100 ${TRANSITION}" aria-pressed="${favorited}" aria-label="${favorited ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti'}">
             <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 ${favorited ? 'fill-rose-500 stroke-rose-500' : 'fill-none stroke-current'}" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.6s-6.9-4.35-9.5-8.4C.9 9.1 1.7 5.4 5 4c2.2-.9 4.5 0 5.8 2l1.2 1.5L13.2 6c1.3-2 3.6-2.9 5.8-2 3.3 1.4 4.1 5.1 2.5 8.2-2.6 4.05-9.5 8.4-9.5 8.4z"/></svg>
           </button>

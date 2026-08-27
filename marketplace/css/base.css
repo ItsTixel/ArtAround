@@ -206,6 +206,19 @@ a {
   color: inherit;
 }
 
+/* Fallback "senza immagine": tratteggio diagonale tenue usato da card e
+   modali (museo/opera/visita, item, profilo) quando manca la cover. Prima
+   era ripetuto inline in ~8 componenti; qui vive come classe unica —
+   .img-placeholder-fine è la variante a passo più fitto per le miniature
+   piccole (es. lista tappe della visita). Stesso valore anche in
+   navigator/src/index.css. */
+.img-placeholder {
+  background-image: repeating-linear-gradient(135deg, transparent 0 11px, rgba(100, 116, 139, 0.12) 11px 12px);
+}
+.img-placeholder-fine {
+  background-image: repeating-linear-gradient(135deg, transparent 0 6px, rgba(100, 116, 139, 0.12) 6px 7px);
+}
+
 /* ── Pillole di selezione riusabili (sotto-filtri) ───────────────
    .sub-pills/.pill: gruppo di sotto-filtri (es. Create/Adottate/Preferiti
    nel profilo). .type-toggle: variante a segmenti "attaccati" per una

@@ -125,7 +125,7 @@ class ItemModal extends HTMLElement {
       <div class="relative h-[190px] bg-slate-300/20 dark:bg-slate-800/40 border-b border-slate-400/20 flex items-center justify-center overflow-hidden shrink-0">
         ${artwork.image_url
           ? `<img class="absolute inset-0 w-full h-full object-cover" src="${this._esc(artwork.image_url)}" alt="${this._esc(artwork.alt_text || artwork.name || '')}" loading="lazy">`
-          : `<div class="absolute inset-0" style="background-image: repeating-linear-gradient(135deg, transparent 0 11px, rgba(100,116,139,0.12) 11px 12px);"></div>`}
+          : `<div class="absolute inset-0 img-placeholder"></div>`}
         <span class="relative z-[1] text-[0.68rem] tracking-[0.14em] uppercase px-3 py-1.5 rounded-full ${GLASS} text-slate-800 dark:text-slate-100 text-center max-w-[80%] overflow-hidden text-ellipsis whitespace-nowrap" style="font-family: var(--font-mono);">${this._esc(artwork.name || 'Opera')}</span>
       </div>
 
@@ -143,7 +143,7 @@ class ItemModal extends HTMLElement {
         <ol class="flex flex-col gap-4">
           ${paragraphs.map((p, i) => `
           <li class="flex gap-3.5 items-start">
-            <span class="text-[0.72rem] pt-[0.15rem] shrink-0" style="font-family: var(--font-mono); color: var(--color-accent, #9e7a46);">${String(i + 1).padStart(2, '0')}</span>
+            <span class="text-[0.72rem] pt-[0.15rem] shrink-0" style="font-family: var(--font-mono); color: var(--color-accent);">${String(i + 1).padStart(2, '0')}</span>
             <div class="min-w-0 flex-1">
               <p class="text-[0.85rem] leading-relaxed text-slate-700 dark:text-slate-200">${this._esc(p.text)}</p>
               <span class="text-[0.68rem] text-slate-500 dark:text-slate-400">${formatDuration(p.duration_sec)}</span>
@@ -278,7 +278,7 @@ class ItemModal extends HTMLElement {
     const descriptions = this._paragraphList.collect();
 
     if (!descriptions.length) {
-      feedback.style.color = 'red';
+      feedback.style.color = 'var(--color-danger)';
       feedback.textContent = 'Aggiungi almeno un paragrafo alla descrizione.';
       this._paragraphList.focusFirst();
       return;
@@ -316,7 +316,7 @@ class ItemModal extends HTMLElement {
       this.dispatchEvent(new CustomEvent('item-updated', { detail: { item: data }, bubbles: true }));
       this._render();
     } catch (err) {
-      feedback.style.color = 'red';
+      feedback.style.color = 'var(--color-danger)';
       feedback.textContent = err.message;
       saveBtn.disabled = false;
       saveBtn.textContent = 'Salva modifiche';

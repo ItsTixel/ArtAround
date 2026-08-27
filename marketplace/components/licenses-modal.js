@@ -69,7 +69,7 @@ class LicensesModal extends HTMLElement {
 
   _linkHtml(label, href) {
     if (!href) return this._esc(label);
-    return `<a class="hover:underline break-all" style="color: var(--link-color, #93c5fd);" href="${this._esc(href)}" target="_blank" rel="noopener noreferrer">${this._esc(label)}</a>`;
+    return `<a class="hover:underline break-all" style="color: var(--link-color);" href="${this._esc(href)}" target="_blank" rel="noopener noreferrer">${this._esc(label)}</a>`;
   }
 
   _bodyHtml() {

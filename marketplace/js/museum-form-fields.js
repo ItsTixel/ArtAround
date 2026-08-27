@@ -239,7 +239,7 @@ export function setupMapsList(container, addBtn, initialMaps = []) {
     jsonStatus.id = jsonStatusId;
     jsonStatus.style.cssText = 'display:block;font-size:0.78rem;margin-top:0.3rem;';
     if (slot.mapDataError) {
-      jsonStatus.style.color = 'red';
+      jsonStatus.style.color = 'var(--color-danger)';
       jsonStatus.setAttribute('role', 'alert');
       jsonStatus.textContent = slot.mapDataError;
       row.appendChild(jsonStatus);

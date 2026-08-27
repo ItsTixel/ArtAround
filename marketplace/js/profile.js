@@ -337,7 +337,7 @@ function renderDescriptions(items, emptyMessage) {
       <div class="relative w-32 shrink-0 self-stretch sm:self-auto sm:w-full sm:h-44 bg-slate-300/20 dark:bg-slate-800/40 flex items-center justify-center overflow-hidden">
         ${artwork.image_url
           ? `<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="${esc(artwork.image_url)}" alt="${esc(artwork.alt_text || artwork.name || '')}" loading="lazy">`
-          : `<div class="absolute inset-0" style="background-image: repeating-linear-gradient(135deg, transparent 0 11px, rgba(100,116,139,0.12) 11px 12px);"></div>`}
+          : `<div class="absolute inset-0 img-placeholder"></div>`}
       </div>
       <div class="min-w-0 p-3.5 sm:p-6 flex-1 flex flex-col gap-1.5 sm:gap-2.5">
         <div class="text-[0.6rem] sm:text-[0.66rem] font-semibold tracking-[0.14em] uppercase text-slate-500 dark:text-slate-400">${esc(artwork.name || 'Opera')}</div>
@@ -533,7 +533,7 @@ function setupSettingsForm() {
     const password = document.getElementById('password').value;
     const passwordConfirm = document.getElementById('password_confirm').value;
     if (password && password !== passwordConfirm) {
-      feedback.style.color = 'red';
+      feedback.style.color = 'var(--color-danger)';
       feedback.textContent = 'Le due password non coincidono.';
       return;
     }
@@ -574,7 +574,7 @@ function setupSettingsForm() {
       document.getElementById('avatar-field').appendChild(avatarField.el);
       updateHeroAvatar(data);
 
-      feedback.style.color = 'green';
+      feedback.style.color = 'var(--color-success)';
       feedback.textContent = 'Profilo aggiornato con successo.';
       document.getElementById('password').value = '';
       document.getElementById('password_confirm').value = '';
@@ -582,7 +582,7 @@ function setupSettingsForm() {
       // Se cambia lo username la navbar (già renderizzata) va aggiornata.
       if (usernameChanged) setTimeout(() => window.location.reload(), 600);
     } catch (err) {
-      feedback.style.color = 'red';
+      feedback.style.color = 'var(--color-danger)';
       feedback.textContent = err.message;
     }
   });
@@ -611,12 +611,12 @@ function setupUpgradeToAuthor(user) {
       if (!res.ok) throw new Error(data.error || 'Errore durante l\'aggiornamento.');
 
       resetCurrentUser(); // il ruolo cambia anche nel cookie JWT: la navbar deve rileggerlo
-      feedback.style.color = 'green';
+      feedback.style.color = 'var(--color-success)';
       feedback.textContent = 'Ora sei un autore! Ricaricamento…';
       setTimeout(() => window.location.reload(), 600);
     } catch (err) {
       btn.disabled = false;
-      feedback.style.color = 'red';
+      feedback.style.color = 'var(--color-danger)';
       feedback.textContent = err.message;
     }
   });

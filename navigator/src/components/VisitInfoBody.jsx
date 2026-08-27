@@ -38,13 +38,7 @@ function VisitInfoBody({ visit }) {
         {bannerImage ? (
           <img src={bannerImage} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
         ) : (
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage:
-                'repeating-linear-gradient(135deg, transparent 0 11px, rgba(100,116,139,0.12) 11px 12px)',
-            }}
-          />
+          <div className="img-placeholder absolute inset-0" />
         )}
         {isInfra && (
           <span className="absolute left-3 top-3 z-[2] rounded-full px-2.5 py-1.5 font-mono text-[0.62rem] uppercase tracking-[0.16em] bg-white/85 dark:bg-slate-900/85 backdrop-blur-2xl border border-slate-400/20 shadow-2xl text-slate-800 dark:text-slate-100">

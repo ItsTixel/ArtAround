@@ -272,6 +272,14 @@
   cursor: default;
 }
 
+/* Fallback "senza immagine": stesso tratteggio diagonale tenue di
+   marketplace/css/base.css (.img-placeholder), usato dalle card/righe visita
+   quando manca la cover. Valore duplicato perché navigator è un bundle Vite
+   a parte e non condivide il CSS del marketplace. */
+.img-placeholder {
+  background-image: repeating-linear-gradient(135deg, transparent 0 11px, rgba(100, 116, 139, 0.12) 11px 12px);
+}
+
 html,
 body,
 #root {

@@ -96,7 +96,7 @@ class VisitCard extends HTMLElement {
             ? `<div class="hero-scroll absolute inset-0 flex overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden" style="touch-action: pan-x;">
                  ${images.map(img => `<img class="w-full h-full shrink-0 snap-center object-cover transition-transform duration-500 group-hover:scale-105" src="${this._esc(img.url)}" alt="${this._esc(img.alt || '')}" loading="lazy">`).join('')}
                </div>`
-            : `<div class="absolute inset-0" style="background-image: repeating-linear-gradient(135deg, transparent 0 11px, rgba(100,116,139,0.12) 11px 12px);"></div>`
+            : `<div class="absolute inset-0 img-placeholder"></div>`
           }
           ${isInfra ? `<span class="hidden sm:inline-block absolute top-3 left-3 z-10 text-[0.62rem] font-medium tracking-[0.16em] uppercase px-2.5 py-1 rounded-full ${GLASS_STRONG} text-slate-800 dark:text-slate-100">Inframuseale</span>` : ''}
           <div class="absolute top-2 right-2 sm:top-3 sm:right-3 z-10 flex items-center gap-1.5 sm:gap-2">
