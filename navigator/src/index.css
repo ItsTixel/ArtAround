@@ -150,6 +150,76 @@
     0 4px 18px rgba(15, 23, 42, 0.18);
 }
 
+/* Comandi: ogni tasto azione tiene il proprio colore (dato dalle classi
+   Tailwind bg-*), ma sopra ci va lo stesso vetro convesso del resto
+   dell'app — un velo di luce che dall'alto sfuma verso un fondo più
+   scuro, highlight netto sul bordo alto, ombra interna in basso (lo
+   spessore del vetro) e un'ombra proiettata che stacca il tasto dallo
+   sfondo. Il colore resta quello sottostante: il gradiente lo rende
+   lucido e "in rilievo" invece che piatto. La pressione (:active)
+   ribalta l'ombra interna verso l'alto, come un tasto che affonda. */
+.command-btn {
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.34) 0%,
+    rgba(255, 255, 255, 0.08) 42%,
+    rgba(0, 0, 0, 0.16) 100%
+  );
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.55), inset 0 -14px 20px -8px rgba(0, 0, 0, 0.38),
+    0 10px 20px -6px rgba(0, 0, 0, 0.45);
+}
+
+/* Stessa meccanica ma più tenue, per le pillole piccole (Posizioni e
+   Servizi, Approfondimenti): l'ombra interna "piena" su superfici basse
+   satura e la pillola sembra bucata invece che di vetro. */
+.command-pill {
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.06) 45%,
+    rgba(0, 0, 0, 0.14) 100%
+  );
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5), inset 0 -6px 10px -4px rgba(0, 0, 0, 0.3),
+    0 4px 12px -4px rgba(0, 0, 0, 0.38);
+}
+
+.command-btn:active:not(:disabled) {
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.35), inset 0 10px 16px -6px rgba(0, 0, 0, 0.4),
+    0 3px 8px -4px rgba(0, 0, 0, 0.4);
+}
+
+.command-pill:active:not(:disabled) {
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3), inset 0 6px 10px -4px rgba(0, 0, 0, 0.35),
+    0 2px 6px -3px rgba(0, 0, 0, 0.35);
+}
+
+/* In light theme i tasti restano su colori pieni e saturi (sky-600,
+   emerald-600...), quindi il vetro convesso funziona uguale: si smorza
+   solo un filo il fondo scuro del gradiente perché non incupisca troppo
+   la tinta. */
+:root[data-theme="light"] .command-btn {
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.1) 42%,
+    rgba(0, 0, 0, 0.12) 100%
+  );
+}
+
+:root[data-theme="light"] .command-pill {
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.36) 0%,
+    rgba(255, 255, 255, 0.08) 45%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+}
+
+.command-btn:disabled {
+  background-image: none;
+  box-shadow: none;
+}
+
 /* Slider di riproduzione della PlayerBar: pallino pieno + traccia
    bicolore (percorsa/rimanente) via --seek-percent, stessa idea di un
    player audio nativo ma disegnata a mano perché lo stile di default

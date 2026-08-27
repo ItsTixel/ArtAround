@@ -37,7 +37,7 @@ function CommandButton({ label, Icon, onClick, disabled, colorClasses }) {
       type="button"
       onClick={onClick}
       disabled={disabled}
-      className={`flex min-h-28 flex-col items-center justify-center gap-2 rounded-2xl px-3 py-6 text-center text-base font-semibold shadow-md transition active:scale-[0.97] focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-white disabled:cursor-not-allowed disabled:opacity-35 disabled:shadow-none disabled:active:scale-100 ${colorClasses}`}
+      className={`command-btn flex min-h-28 flex-col items-center justify-center gap-2 rounded-2xl px-3 py-6 text-center text-base font-semibold transition active:scale-[0.97] focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-white disabled:cursor-not-allowed disabled:opacity-35 disabled:active:scale-100 ${colorClasses}`}
     >
       <Icon className="h-9 w-9" aria-hidden="true" />
       <span>{label}</span>
@@ -135,7 +135,7 @@ function ServiceButtonGrid({ labels, onSelect }) {
                   key={label}
                   type="button"
                   onClick={() => onSelect(label)}
-                  className={`min-h-14 flex-1 whitespace-nowrap rounded-xl px-4 py-3 text-base font-semibold shadow-md transition active:scale-[0.98] focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-white ${colorClasses}`}
+                  className={`command-pill min-h-14 flex-1 whitespace-nowrap rounded-xl px-4 py-3 text-base font-semibold transition active:scale-[0.98] focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-white ${colorClasses}`}
                 >
                   {label}
                 </button>
