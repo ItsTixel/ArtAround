@@ -1,10 +1,12 @@
 /* ============================================================
- *  create-entity.css — Pagina "Crea Opera"
- *  Parti specifiche del form opera; il resto (stepper, carosello,
- *  form-block, righe dinamiche...) è in create-content.css.
+ *  create-entity.css — Choice card "sì/no" (a 2 opzioni)
+ *  Usata dalla pagina "Crea Opera" ("È un'opera fisica?") e da
+ *  "Crea Visita" ("Visita singola / di gruppo"). Il resto del form
+ *  (stepper, carosello, form-block, righe dinamiche...) è in
+ *  create-content.css.
  * ============================================================ */
 
-/* ── "È un'opera fisica?" ─────────────────────────────────── */
+/* ── Gruppo di due choice card esclusive ──────────────────── */
 .choice-group {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -51,11 +53,6 @@
   font-size: 0.74rem;
   color: var(--color-text-muted);
   line-height: 1.45;
-}
-
-/* ── Posizione nel museo ──────────────────────────────────── */
-.dynamic-row.stack .field label {
-  font-size: 0.68rem;
 }
 
 @media (max-width: 640px) {

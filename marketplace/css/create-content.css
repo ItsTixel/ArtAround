@@ -347,6 +347,9 @@
   top: 0.6rem;
   right: 0.6rem;
 }
+.dynamic-row.stack .field label {
+  font-size: 0.68rem;
+}
 
 .remove-row {
   flex-shrink: 0;
