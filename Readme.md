@@ -3,21 +3,18 @@
 # (A.A. 2025-26)
 
 # Progetto ArtAround 18-24 18-27 18-33
-_cancellare le dizioni non rilevanti_
 
 # READ ME DEL PROGETTO ARTAROUND
-_una copia IDENTICA di questo file deve trovarsi nella directory del progetto_
 
 ## Nome del gruppo:
-_(può essere umoristico)_
+Boia dé che gruppo
 
 
 ## Membri del gruppo
-_(ripetere le righe seguenti secondo necessità)_
 
-* Nome e cognome: ` `, matricola: ` `, mail: ` `
-* Nome e cognome: ` `, matricola: ` `, mail: ` `
-* Nome e cognome: ` `, matricola: ` `, mail: ` `
+* Nome e cognome: Zeno Maccari, matricola: 1175138, mail: zeno.maccari@studio.unibo.it
+* Nome e cognome: Dusan Arandelovic, matricola: 1163531, mail: dusan.arandelovic@studio.unibo.it
+* Nome e cognome: Luca Argentino, matricola: 1161779, mail: luca.argentino@studio.unibo.it
 * LLM: Claude Code Pro - Sonnet 5
 
 _Il primo membro della lista verrà considerato come punto di contatto primario. Sarà la persona
@@ -32,7 +29,7 @@ incaricata di spedire mail (sempre e solo dall'indirizzo studio.unibo.it) e tene
 18-27
 
 ## Data di disponibilità delle applicazioni
-_ Al massimo 15 giorni dopo la data di sottomissione del file README_
+TBA
 
 ## Locazione del progetto:
 
@@ -94,8 +91,6 @@ server-side (`backend/`), oltre agli asset e agli script condivisi.
 ```
 
 ## Tecnologie utilizzate
-_Inserire qui il linguaggio utilizzato, il o i framework utilizzati e ogni pacchetto NPM installato a parte quelli preinstallati_
-
 #### Server-side
 
 * Linguaggio: JavaScript (Node.js 22)
