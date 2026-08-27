@@ -2846,5 +2846,263 @@
     "updatedAt": {
       "$date": "2026-08-26T00:00:00Z"
     }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000150"
+    },
+    "name": "Il menù degustazione dell'Osteria delle Belle Arti",
+    "is_physical": false,
+    "description": "Un percorso di cinque portate pensato dalla cucina come un'unica narrazione: ogni piatto riprende un ingrediente o una tecnica del precedente, dall'antipasto crudo al dolce freddo. Le fotografie ritraggono le stesse preparazioni servite in trattorie e ristoranti diversi, scelte per mostrare l'aspetto tipico di ogni piatto.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Florence_Fine_Dining_%285986656121%29.jpg/1280px-Florence_Fine_Dining_%285986656121%29.jpg",
+    "alt_text": "Sala di un ristorante fiorentino con tavoli apparecchiati con tovaglia bianca",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000011"
+        }
+      }
+    ],
+    "tags": [
+      "Menù degustazione",
+      "Cucina toscana",
+      "Firenze",
+      "Introduzione"
+    ],
+    "external_links": [
+      {
+        "label": "Menù (Wikipedia)",
+        "url": "https://it.wikipedia.org/wiki/Men%C3%B9"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000151"
+    },
+    "name": "Battuta di Chianina, nocciole e Parmigiano",
+    "is_physical": true,
+    "artwork_author": "Brigata dell'Osteria delle Belle Arti",
+    "description": "Carne di razza Chianina tagliata al coltello, condita con olio extravergine, sale e pepe, servita con nocciole tostate tritate e scaglie di Parmigiano stagionato. È l'apertura del menù: un piatto a crudo, fresco, che risveglia il palato senza appesantirlo.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Beef_tartar_at_restaurant_Fame.jpg/1280px-Beef_tartar_at_restaurant_Fame.jpg",
+    "alt_text": "Piatto di battuta di manzo cruda condita, servita in un ristorante",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000011"
+        },
+        "location": {
+          "room": "Sala principale",
+          "floor": "0",
+          "note": "Prima portata — antipasto"
+        }
+      }
+    ],
+    "tags": [
+      "Antipasto",
+      "Chianina",
+      "Carne cruda",
+      "Cucina toscana"
+    ],
+    "external_links": [
+      {
+        "label": "Chianina (Wikipedia)",
+        "url": "https://it.wikipedia.org/wiki/Chianina"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000152"
+    },
+    "name": "Tortelli di zucca al burro e salvia",
+    "is_physical": true,
+    "artwork_author": "Brigata dell'Osteria delle Belle Arti",
+    "description": "Pasta all'uovo ripiena di zucca cotta al forno, amaretti sbriciolati, mostarda e Parmigiano, condita con burro fatto imbrunire e foglie di salvia. Un primo della tradizione mantovana, qui inserito come primo dei due piatti di pasta.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Tortelli.jpg",
+    "alt_text": "Piatto di tortelli di zucca conditi con burro e salvia",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000011"
+        },
+        "location": {
+          "room": "Sala principale",
+          "floor": "0",
+          "note": "Seconda portata — primo"
+        }
+      }
+    ],
+    "tags": [
+      "Primo",
+      "Pasta ripiena",
+      "Zucca",
+      "Tradizione mantovana"
+    ],
+    "external_links": [
+      {
+        "label": "Tortelli di zucca (Wikipedia)",
+        "url": "https://it.wikipedia.org/wiki/Tortelli_di_zucca"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000153"
+    },
+    "name": "Risotto ai funghi porcini",
+    "is_physical": true,
+    "artwork_author": "Brigata dell'Osteria delle Belle Arti",
+    "description": "Riso Carnaroli tostato e cotto con brodo leggero, con funghi porcini in parte trifolati a pezzi e in parte ridotti in un fondo scuro, mantecato fuori dal fuoco con burro e Parmigiano. Secondo dei due primi, porta il menù dal dolce della zucca al terroso del bosco.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Risotto_ai_funghi_porcini.JPG/1280px-Risotto_ai_funghi_porcini.JPG",
+    "alt_text": "Piatto di risotto ai funghi porcini",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000011"
+        },
+        "location": {
+          "room": "Sala principale",
+          "floor": "0",
+          "note": "Terza portata — primo"
+        }
+      }
+    ],
+    "tags": [
+      "Primo",
+      "Risotto",
+      "Funghi porcini",
+      "Autunno"
+    ],
+    "external_links": [
+      {
+        "label": "Risotto (Wikipedia)",
+        "url": "https://it.wikipedia.org/wiki/Risotto"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000154"
+    },
+    "name": "Bistecca alla fiorentina",
+    "is_physical": true,
+    "artwork_author": "Brigata dell'Osteria delle Belle Arti",
+    "description": "Taglio di lombata con osso a T da bovino di razza Chianina frollato a lungo, cotto sulla brace di legna pochi minuti per lato e in piedi sull'osso, servito al sangue e affettato al tavolo. È il secondo del menù e il suo punto più alto di intensità.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Bistecca_alla_fiorentina-01.jpg",
+    "alt_text": "Bistecca alla fiorentina cotta alla brace, servita su un tagliere",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000011"
+        },
+        "location": {
+          "room": "Sala principale",
+          "floor": "0",
+          "note": "Quarta portata — secondo"
+        }
+      }
+    ],
+    "tags": [
+      "Secondo",
+      "Bistecca alla fiorentina",
+      "Brace",
+      "Chianina"
+    ],
+    "external_links": [
+      {
+        "label": "Bistecca alla fiorentina (Wikipedia)",
+        "url": "https://it.wikipedia.org/wiki/Bistecca_alla_fiorentina"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ccc000000000000000000155"
+    },
+    "name": "Zuccotto fiorentino",
+    "is_physical": true,
+    "artwork_author": "Brigata dell'Osteria delle Belle Arti",
+    "description": "Semifreddo a cupola: uno stampo semisferico foderato di pan di Spagna imbevuto di alchermes e riempito con una crema fredda di ricotta setacciata e panna, con gocce di cioccolato fondente e canditi. Dolce fiorentino di antica origine, chiude il menù riabbassando l'intensità.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Zuccotto_on_a_dish_with_chocolate_chips_and_cream.jpg/1280px-Zuccotto_on_a_dish_with_chocolate_chips_and_cream.jpg",
+    "alt_text": "Fetta di zuccotto con gocce di cioccolato e panna su un piatto",
+    "placements": [
+      {
+        "museum": {
+          "$oid": "bbb000000000000000000011"
+        },
+        "location": {
+          "room": "Sala principale",
+          "floor": "0",
+          "note": "Quinta portata — dolce"
+        }
+      }
+    ],
+    "tags": [
+      "Dolce",
+      "Zuccotto",
+      "Semifreddo",
+      "Firenze"
+    ],
+    "external_links": [
+      {
+        "label": "Zuccotto (Wikipedia)",
+        "url": "https://it.wikipedia.org/wiki/Zuccotto"
+      }
+    ],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
   }
 ]

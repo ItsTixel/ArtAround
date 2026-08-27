@@ -2170,5 +2170,206 @@
     "updatedAt": {
       "$date": "2026-08-24T00:00:00Z"
     }
+  },
+  {
+    "_id": {
+      "$oid": "eee000000000000000000102"
+    },
+    "title": "Menù degustazione all'Osteria delle Belle Arti",
+    "description": "Un menù degustazione di cinque portate all'Osteria delle Belle Arti di Firenze, raccontato piatto per piatto: dalla battuta di Chianina cruda alla bistecca alla brace, fino allo zuccotto. Ogni portata riprende un ingrediente o una tecnica della precedente. Le fotografie ritraggono le stesse preparazioni servite in ristoranti diversi.",
+    "museum": [
+      {
+        "$oid": "bbb000000000000000000011"
+      }
+    ],
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "base_price": 0,
+    "steps": [
+      {
+        "_id": {
+          "$oid": "fff000000000000000000330"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000150"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000011"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000600"
+          },
+          {
+            "$oid": "ddd000000000000000000601"
+          },
+          {
+            "$oid": "ddd000000000000000000602"
+          },
+          {
+            "$oid": "ddd000000000000000000603"
+          }
+        ],
+        "logistic_note": "Prima di ordinare: come funziona il menù degustazione e come leggere le schede dei piatti.",
+        "intro_note": "Cinque portate, un'unica storia: dal crudo al dolce.",
+        "order": 1
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000331"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000151"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000011"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000604"
+          },
+          {
+            "$oid": "ddd000000000000000000605"
+          },
+          {
+            "$oid": "ddd000000000000000000606"
+          },
+          {
+            "$oid": "ddd000000000000000000607"
+          }
+        ],
+        "logistic_note": "La prima portata arriva subito, quasi fredda: si mangia in pochi bocconi.",
+        "intro_note": "Carne cruda di Chianina, tagliata al coltello: l'apertura più leggera.",
+        "order": 2
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000332"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000152"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000011"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000608"
+          },
+          {
+            "$oid": "ddd000000000000000000609"
+          },
+          {
+            "$oid": "ddd000000000000000000610"
+          },
+          {
+            "$oid": "ddd000000000000000000611"
+          }
+        ],
+        "logistic_note": "Segue il primo dei due piatti di pasta, servito ben caldo.",
+        "intro_note": "Zucca, amaretti e mostarda: dolce, amaro e speziato in un raviolo.",
+        "order": 3
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000333"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000153"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000011"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000612"
+          },
+          {
+            "$oid": "ddd000000000000000000613"
+          },
+          {
+            "$oid": "ddd000000000000000000614"
+          },
+          {
+            "$oid": "ddd000000000000000000615"
+          }
+        ],
+        "logistic_note": "Il secondo primo: si attende che il risotto arrivi appena mantecato, ancora 'all'onda'.",
+        "intro_note": "Dal dolce della zucca al terroso del bosco.",
+        "order": 4
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000334"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000154"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000011"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000616"
+          },
+          {
+            "$oid": "ddd000000000000000000617"
+          },
+          {
+            "$oid": "ddd000000000000000000618"
+          },
+          {
+            "$oid": "ddd000000000000000000619"
+          }
+        ],
+        "logistic_note": "Il secondo di carne, da condividere: arriva al sangue e viene affettato al tavolo.",
+        "intro_note": "Il centro della cena: la stessa Chianina dell'antipasto, ora frollata e alla brace.",
+        "order": 5
+      },
+      {
+        "_id": {
+          "$oid": "fff000000000000000000335"
+        },
+        "entity": {
+          "$oid": "ccc000000000000000000155"
+        },
+        "museum": {
+          "$oid": "bbb000000000000000000011"
+        },
+        "items": [
+          {
+            "$oid": "ddd000000000000000000620"
+          },
+          {
+            "$oid": "ddd000000000000000000621"
+          },
+          {
+            "$oid": "ddd000000000000000000622"
+          },
+          {
+            "$oid": "ddd000000000000000000623"
+          }
+        ],
+        "logistic_note": "Il dolce chiude la sequenza: freddo di frigorifero, tagliato a spicchi.",
+        "intro_note": "Una cupola fiorentina di ricotta, cioccolato e alchermes.",
+        "order": 6
+      }
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Florence_Fine_Dining_%285986656121%29.jpg/1280px-Florence_Fine_Dining_%285986656121%29.jpg",
+    "tags": [
+      "Gastronomia",
+      "Menù degustazione",
+      "Firenze",
+      "Cucina toscana"
+    ],
+    "is_public": true,
+    "estimated_duration_sec": 329.92,
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
   }
 ]

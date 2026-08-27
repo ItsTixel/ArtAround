@@ -13980,5 +13980,941 @@
     "updatedAt": {
       "$date": "2026-08-26T00:00:00Z"
     }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000600"
+    },
+    "marketplace_summary": "Come funziona il menù: cinque piatti piccoli, uno dopo l'altro, come i capitoli di una storia.",
+    "artwork": {
+      "$oid": "ccc000000000000000000150"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "Benvenuto! Stasera non scegli un piatto: la cucina ne ha preparati cinque, uno dopo l'altro."
+      },
+      {
+        "duration_sec": 13,
+        "text": "Si comincia con qualcosa di fresco, poi arriva la pasta, poi il riso, poi la carne, e alla fine il dolce. Ogni porzione è piccola, così puoi assaggiare tutto senza riempirti subito."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Prima di ogni portata guarda bene la sua foto: ti fa vedere com'è fatto il piatto, di che colore è e quanto è grande. Le foto arrivano da ristoranti diversi, ma servono proprio a farti capire che cosa aspettarti. Poi prenditi tutto il tempo che vuoi, e buon appetito."
+      }
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Florence_Fine_Dining_%285986656121%29.jpg/1280px-Florence_Fine_Dining_%285986656121%29.jpg",
+    "alt_text": "Sala di un ristorante fiorentino con tavoli apparecchiati con tovaglia bianca",
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000601"
+    },
+    "marketplace_summary": "Che cos'è un menù degustazione e in che ordine arrivano le cinque portate.",
+    "artwork": {
+      "$oid": "ccc000000000000000000150"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 7,
+        "text": "Benvenuti all'Osteria delle Belle Arti. Quello che proverete è un menù degustazione: cinque portate servite in sequenza."
+      },
+      {
+        "duration_sec": 13,
+        "text": "Le porzioni sono ridotte apposta, per farvi assaggiare più piatti in un solo pasto. L'ordine è quello classico della tavola italiana: un antipasto, due primi, un secondo di carne e un dolce."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Ogni portata è pensata per legarsi alla successiva, per ingrediente o per sapore: un elemento di un piatto ritorna in quello dopo. Per ognuna trovate una fotografia e una descrizione. Le immagini vengono da ristoranti diversi e mostrano solo l'aspetto tipico della preparazione, non il piatto esatto che avete davanti stasera."
+      }
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Florence_Fine_Dining_%285986656121%29.jpg/1280px-Florence_Fine_Dining_%285986656121%29.jpg",
+    "alt_text": "Sala di un ristorante fiorentino con tavoli apparecchiati con tovaglia bianca",
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000602"
+    },
+    "marketplace_summary": "La logica del menù degustazione: sequenza, porzioni e richiami di ingredienti fra le portate.",
+    "artwork": {
+      "$oid": "ccc000000000000000000150"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 9,
+        "text": "Benvenuti all'Osteria delle Belle Arti. Il menù degustazione è la formula con cui la cucina si racconta per intero, in cinque portate."
+      },
+      {
+        "duration_sec": 13,
+        "text": "Le portate arrivano in sequenza e in porzioni contenute, così da disegnare un arco di sapori che va dal crudo al dolce senza mai saturare il palato. L'ordine ricalca il pasto tradizionale toscano."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Si apre con una battuta di carne cruda, si prosegue con due primi — un piatto di pasta ripiena e un risotto — si arriva alla bistecca alla fiorentina e si chiude con lo zuccotto, un dolce freddo di frigorifero."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Ogni portata dialoga con quella accanto: la nocciola tostata dell'antipasto ritorna nel burro dei tortelli, la Chianina cruda della battuta riappare frollata e alla brace nella bistecca, la ricotta del ripieno torna montata nello zuccotto. Le fotografie delle schede, scattate in locali diversi, servono solo a riconoscere il piatto."
+      }
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Florence_Fine_Dining_%285986656121%29.jpg/1280px-Florence_Fine_Dining_%285986656121%29.jpg",
+    "alt_text": "Sala di un ristorante fiorentino con tavoli apparecchiati con tovaglia bianca",
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000603"
+    },
+    "marketplace_summary": "Struttura di un percorso degustazione: curva di intensità, richiami di ingrediente e ruolo delle immagini.",
+    "artwork": {
+      "$oid": "ccc000000000000000000150"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 9,
+        "text": "Il menù degustazione nasce come strumento di sintesi della cucina: porzioni ridotte, sequenza guidata, tempi di servizio calibrati sulla percezione del commensale."
+      },
+      {
+        "duration_sec": 13,
+        "text": "La sequenza segue una curva di intensità crescente: si parte da una preparazione a crudo, a bassa complessità aromatica, per poi salire di temperatura, di grassezza e di persistenza fino al secondo."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Dopo il picco del secondo, la chiusura dolce riabbassa la tensione gustativa. Il filo conduttore è il richiamo di ingredienti fra una portata e l'altra: frutta secca tostata, latticini freschi, la stessa razza bovina servita prima cruda e poi lungamente frollata."
+      },
+      {
+        "duration_sec": 21,
+        "text": "È una scelta di coerenza interna, non di semplice ripetizione degli elementi. Le immagini a corredo hanno valore di documentazione iconografica: provengono da servizi fotografici diversi e fissano i caratteri riconoscibili di ogni piatto — taglio, impiattamento, grado di cottura, colore della salsa — a prescindere dall'esecuzione della singola brigata di cucina."
+      }
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Florence_Fine_Dining_%285986656121%29.jpg/1280px-Florence_Fine_Dining_%285986656121%29.jpg",
+    "alt_text": "Sala di un ristorante fiorentino con tavoli apparecchiati con tovaglia bianca",
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000604"
+    },
+    "marketplace_summary": "La prima portata: carne cruda tagliata a pezzettini, con nocciole croccanti e formaggio.",
+    "artwork": {
+      "$oid": "ccc000000000000000000151"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "Questo è il primo piatto della sera. La carne non è cotta."
+      },
+      {
+        "duration_sec": 13,
+        "text": "È tagliata a pezzettini piccolissimi con il coltello, poi condita con un filo d'olio, sale e pepe. Sopra ci sono nocciole passate in padella per renderle croccanti e scaglie di formaggio saporito."
+      },
+      {
+        "duration_sec": 14,
+        "text": "È un piatto leggero e quasi freddo, fatto apposta per cominciare: si mangia in pochi bocconi e ti fa venire fame per tutti i piatti che arrivano dopo, soprattutto per la carne alla brace."
+      }
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Beef_tartar_at_restaurant_Fame.jpg/1280px-Beef_tartar_at_restaurant_Fame.jpg",
+    "alt_text": "Piatto di battuta di manzo cruda condita, servita in un ristorante",
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000605"
+    },
+    "marketplace_summary": "Che cos'è la battuta al coltello, perché si usa la Chianina e a che cosa serve come antipasto.",
+    "artwork": {
+      "$oid": "ccc000000000000000000151"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "La battuta è carne di manzo cruda, tagliata a mano al coltello e non macinata."
+      },
+      {
+        "duration_sec": 13,
+        "text": "Qui si usa la Chianina, una razza bianca allevata da secoli in Toscana, soprattutto in Val di Chiana. Il condimento è ridotto al minimo: olio extravergine, sale e pepe, aggiunti all'ultimo momento."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Sopra si mettono nocciole tostate tritate, che danno croccantezza, e scaglie di Parmigiano per la parte sapida. Come antipasto ha un compito preciso: risvegliare il palato con qualcosa di fresco e non grasso, lasciando spazio ai due primi che seguono."
+      }
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Beef_tartar_at_restaurant_Fame.jpg/1280px-Beef_tartar_at_restaurant_Fame.jpg",
+    "alt_text": "Piatto di battuta di manzo cruda condita, servita in un ristorante",
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000606"
+    },
+    "marketplace_summary": "La battuta al coltello di Chianina: taglio, condimento minimo e ruolo di apertura nella sequenza.",
+    "artwork": {
+      "$oid": "ccc000000000000000000151"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 8,
+        "text": "La battuta al coltello è la forma più semplice di carne cruda: nessuna macinatura, solo un taglio fine fatto a mano."
+      },
+      {
+        "duration_sec": 12,
+        "text": "La fibra resta riconoscibile sotto i denti, invece di ridursi a una pasta. La Chianina è una delle razze bovine italiane più antiche, di grande taglia e carne magra."
+      },
+      {
+        "duration_sec": 19,
+        "text": "È la stessa carne che, frollata a lungo e cotta alla brace, diventa la bistecca servita più avanti nel menù. Il condimento resta essenziale, per non coprire il sapore dolce della carne; le nocciole tostate aggiungono una nota amarognola e una croccantezza che tornerà nel burro dei tortelli."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Servita per prima e a temperatura di cantina, la battuta apre la sequenza nel punto più basso della curva di intensità: sapore netto ma delicato, pochissima grassezza e una porzione volutamente breve, di tre o quattro bocconi, così da non impegnare il palato prima dei piatti caldi che arrivano subito dopo."
+      }
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Beef_tartar_at_restaurant_Fame.jpg/1280px-Beef_tartar_at_restaurant_Fame.jpg",
+    "alt_text": "Piatto di battuta di manzo cruda condita, servita in un ristorante",
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000607"
+    },
+    "marketplace_summary": "Preparazione della battuta a crudo: rifilatura, taglio, scelta della razza, condimento a freddo e tostatura della nocciola.",
+    "artwork": {
+      "$oid": "ccc000000000000000000151"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 5,
+        "text": "La battuta al coltello richiede carne freschissima e una lama molto affilata."
+      },
+      {
+        "duration_sec": 13,
+        "text": "Si rifila il muscolo dal tessuto connettivo, si riduce prima a fette sottili, poi a listarelle e infine a cubetti minuti, lavorando in fretta per non scaldare la massa con le mani."
+      },
+      {
+        "duration_sec": 21,
+        "text": "La scelta della Chianina non è casuale: massa magra, grana fine e sapore poco ferroso, che regge il consumo a crudo meglio di razze più grasse. Il condimento va a freddo e all'ultimo momento: l'olio emulsiona i succhi, il sale si aggiunge in servizio per non innescare rilascio d'acqua e ossidazione della mioglobina."
+      },
+      {
+        "duration_sec": 22,
+        "text": "La nocciola viene tostata a parte a bassa temperatura, per sviluppare le pirazine senza note bruciate, poi tritata grossolana; il Parmigiano lungamente stagionato porta glutammati e cristalli di tirosina che allungano la persistenza salata su una base di gusto altrimenti dolce e breve, aiutando la battuta a legarsi al primo di pasta che arriva subito dopo."
+      }
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Beef_tartar_at_restaurant_Fame.jpg/1280px-Beef_tartar_at_restaurant_Fame.jpg",
+    "alt_text": "Piatto di battuta di manzo cruda condita, servita in un ristorante",
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000608"
+    },
+    "marketplace_summary": "Arriva la pasta: quadrotti di sfoglia gialla ripieni di zucca dolce, con burro e salvia.",
+    "artwork": {
+      "$oid": "ccc000000000000000000152"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 3,
+        "text": "Adesso arriva la pasta. Si chiamano tortelli."
+      },
+      {
+        "duration_sec": 10,
+        "text": "Sono quadrati di sfoglia gialla all'uovo, con dentro un ripieno di zucca dolce, biscotti amaretti sbriciolati e mostarda, che è frutta sciroppata un po' piccante."
+      },
+      {
+        "duration_sec": 15,
+        "text": "Sopra c'è soltanto burro sciolto e qualche foglia di salvia passata in padella finché diventa croccante. Pochi ingredienti nel piatto, ma un profumo fortissimo quando te lo portano al tavolo: il burro scaldato sa quasi di nocciola."
+      }
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Tortelli.jpg",
+    "alt_text": "Piatto di tortelli di zucca conditi con burro e salvia",
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000609"
+    },
+    "marketplace_summary": "Origine mantovana dei tortelli di zucca, che cosa c'è nel ripieno e perché il condimento è solo burro e salvia.",
+    "artwork": {
+      "$oid": "ccc000000000000000000152"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "I tortelli di zucca sono un primo della tradizione mantovana, di origine molto antica."
+      },
+      {
+        "duration_sec": 11,
+        "text": "Sono pasta all'uovo tirata sottile e ripiena, chiusa a quadrotto. Il ripieno mette insieme zucca cotta al forno e schiacciata, amaretti sbriciolati, mostarda di frutta e Parmigiano."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Ne esce un contrasto fra dolce, amaro e speziato. Il condimento è il più semplice possibile: burro fuso e salvia; il burro, scaldato finché prende un profumo di nocciola, richiama la frutta secca tostata servita nell'antipasto e collega le prime due portate del menù."
+      }
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Tortelli.jpg",
+    "alt_text": "Piatto di tortelli di zucca conditi con burro e salvia",
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000610"
+    },
+    "marketplace_summary": "Il tortello di zucca: piatto di magro della vigilia, equilibrio dolce-amaro-speziato e il ponte del burro nocciola.",
+    "artwork": {
+      "$oid": "ccc000000000000000000152"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "Il tortello di zucca mantovano nasce come piatto di magro per la vigilia di Natale."
+      },
+      {
+        "duration_sec": 12,
+        "text": "Nel ripieno non c'è carne, ma un impasto di zucca, amaretti, mostarda di mele o di cedro, Parmigiano e noce moscata, chiuso in una sfoglia all'uovo. L'equilibrio è delicato."
+      },
+      {
+        "duration_sec": 16,
+        "text": "La zucca va asciugata bene in forno, altrimenti rilascia acqua e ammorbidisce la sfoglia; gli amaretti danno struttura e una nota di mandorla amara; la mostarda porta lo scatto speziato. Il condimento di burro e salvia è volutamente neutro."
+      },
+      {
+        "duration_sec": 24,
+        "text": "Portando il burro fino alla comparsa dei solidi del latte imbruniti — il cosiddetto burro nocciola — si crea un ponte aromatico diretto con le nocciole tostate del piatto precedente. Nell'ordine del menù è il primo dei due primi: più dolce e profumato, precede il risotto ai porcini, che sposta subito il registro verso il terroso e il sottobosco."
+      }
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Tortelli.jpg",
+    "alt_text": "Piatto di tortelli di zucca conditi con burro e salvia",
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000611"
+    },
+    "marketplace_summary": "Sfoglia, gestione dell'umidità della zucca, bilanciamento del ripieno e chimica del burro nocciola.",
+    "artwork": {
+      "$oid": "ccc000000000000000000152"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 8,
+        "text": "La sfoglia all'uovo per i tortelli si tira sottile ma non velata, per reggere un ripieno umido senza lacerarsi."
+      },
+      {
+        "duration_sec": 18,
+        "text": "Un rapporto indicativo è un tuorlo in più ogni tre uova intere, per aumentare la tenacità del glutine e il colore. La zucca — varietà a pasta asciutta tipo Delica — va cotta al forno, mai lessata, poi passata e lasciata sgocciolare a lungo."
+      },
+      {
+        "duration_sec": 19,
+        "text": "L'obiettivo è un ripieno modellabile e coeso, non una purea liquida. Il bilanciamento aromatico gioca su tre poli: dolcezza della zucca, amaro degli amaretti e piccante della senape nella mostarda; Parmigiano e noce moscata fanno da collante sapido, mentre l'eccesso di acidità si corregge dosando la mostarda liquida."
+      },
+      {
+        "duration_sec": 22,
+        "text": "Il burro nocciola si ottiene fondendo il burro a fuoco medio fino a circa centocinquanta gradi, quando le proteine del siero precipitano e imbruniscono per reazione di Maillard, sviluppando composti che richiamano la nocciola tostata dell'antipasto. La salvia fritta nel grasso caldo cede i suoi oli essenziali e diventa croccante, aggiungendo l'unica nota erbacea del piatto."
+      }
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Tortelli.jpg",
+    "alt_text": "Piatto di tortelli di zucca conditi con burro e salvia",
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000612"
+    },
+    "marketplace_summary": "Non è pasta, è riso: si cuoce piano aggiungendo il brodo, con funghi di bosco profumati.",
+    "artwork": {
+      "$oid": "ccc000000000000000000153"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 3,
+        "text": "Il terzo piatto non è pasta: è riso."
+      },
+      {
+        "duration_sec": 12,
+        "text": "Si chiama risotto e si cuoce piano piano, aggiungendo il brodo caldo un po' alla volta e mescolando. Dentro ci sono i funghi porcini, che crescono nei boschi in autunno."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Hanno un profumo forte di terra bagnata e di legna, molto diverso dalla zucca dolce di prima. Alla fine si spegne il fuoco e si aggiungono burro e formaggio, mescolando forte: così il riso diventa cremoso senza bisogno di panna."
+      }
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Garrison_newcomers_enjoy_taste_of_Italy_during_the_Benvenuti_Program_%288267405%29.jpg/1280px-Garrison_newcomers_enjoy_taste_of_Italy_during_the_Benvenuti_Program_%288267405%29.jpg",
+    "alt_text": "Piatto di risotto ai funghi porcini",
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000613"
+    },
+    "marketplace_summary": "Come si fa un risotto, l'uso doppio dei porcini e il suo posto fra i due primi.",
+    "artwork": {
+      "$oid": "ccc000000000000000000153"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 6,
+        "text": "Il risotto è un modo di cucinare il riso tipico del Nord e del Centro Italia."
+      },
+      {
+        "duration_sec": 12,
+        "text": "I chicchi vengono prima tostati, poi bagnati poco alla volta con il brodo caldo e mescolati finché rilasciano l'amido e diventano cremosi. I porcini sono funghi di bosco molto profumati."
+      },
+      {
+        "duration_sec": 24,
+        "text": "Una parte viene tagliata a fette e saltata in padella per restare soda; un'altra parte, con i gambi, viene cotta a lungo per fare un sugo scuro che colora e insaporisce tutto il riso. Nel menù è il secondo dei due primi: dopo i tortelli dolci porta un sapore più scuro, di terra e sottobosco, e prepara il palato alla bistecca."
+      }
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Garrison_newcomers_enjoy_taste_of_Italy_during_the_Benvenuti_Program_%288267405%29.jpg/1280px-Garrison_newcomers_enjoy_taste_of_Italy_during_the_Benvenuti_Program_%288267405%29.jpg",
+    "alt_text": "Piatto di risotto ai funghi porcini",
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000614"
+    },
+    "marketplace_summary": "Risotto ai porcini: scelta del riso, porcini in doppia lavorazione, mantecatura senza panna.",
+    "artwork": {
+      "$oid": "ccc000000000000000000153"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 3,
+        "text": "Il risotto ai porcini è un piatto d'autunno."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Si basa su un riso a chicco grosso e ricco di amido — Carnaroli o Vialone Nano — capace di restare al dente al centro mentre la superficie si scioglie in crema. I porcini si usano in due modi complementari."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Freschi o reidratati e poi trifolati con aglio e prezzemolo per la parte in pezzi; i ritagli, i gambi e l'acqua di ammollo filtrata entrano invece nel brodo, per costruire un fondo di sapore più profondo. La mantecatura finale, fuori dal fuoco, con burro freddo e Parmigiano, dà cremosità senza panna."
+      },
+      {
+        "duration_sec": 22,
+        "text": "È la stessa logica dei tortelli: pochi grassi giusti, lavorati bene, al posto di salse elaborate. Nel menù il risotto chiude la sezione dei primi: il suo registro terroso e sapido alza l'intensità rispetto ai tortelli e fa da ponte verso la bistecca alla fiorentina, il momento più deciso e più caldo dell'intera sequenza."
+      }
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Garrison_newcomers_enjoy_taste_of_Italy_during_the_Benvenuti_Program_%288267405%29.jpg/1280px-Garrison_newcomers_enjoy_taste_of_Italy_during_the_Benvenuti_Program_%288267405%29.jpg",
+    "alt_text": "Piatto di risotto ai funghi porcini",
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000615"
+    },
+    "marketplace_summary": "Rilascio dell'amido, doppia estrazione dei porcini, gestione del brodo e mantecatura all'onda.",
+    "artwork": {
+      "$oid": "ccc000000000000000000153"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "La riuscita del risotto dipende dal rilascio controllato dell'amido."
+      },
+      {
+        "duration_sec": 13,
+        "text": "Si tosta il riso a secco o con pochissimo grasso fino a chicco translucido, poi si bagna con brodo a filo, mantenendo un'ebollizione costante e un'agitazione moderata che libera amilopectina in superficie."
+      },
+      {
+        "duration_sec": 25,
+        "text": "Sui porcini si lavora in doppia estrazione: una quota saltata ad alta temperatura per reazione di Maillard e tenuta della consistenza; una quota, con gambi e acqua di reidratazione filtrata, ridotta in un fondo che apporta guanilato, un esaltatore naturale di sapidità in sinergia con il glutammato del Parmigiano. Il brodo va tenuto leggero e poco salato, perché si concentra durante la cottura."
+      },
+      {
+        "duration_sec": 28,
+        "text": "La correzione finale di sale si fa solo dopo la mantecatura, e poche gocce di vino bianco a fine tostatura bilanciano la tendenza dolce dell'amido. La mantecatura all'onda si esegue a fuoco spento, sotto i sessantacinque gradi, incorporando burro freddo a cubetti e formaggio con movimenti energici e una punta di brodo: l'emulsione dei grassi lega l'amido e stabilizza una cremosità che deve restare fluida, non collosa, fino al servizio."
+      }
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Garrison_newcomers_enjoy_taste_of_Italy_during_the_Benvenuti_Program_%288267405%29.jpg/1280px-Garrison_newcomers_enjoy_taste_of_Italy_during_the_Benvenuti_Program_%288267405%29.jpg",
+    "alt_text": "Piatto di risotto ai funghi porcini",
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000616"
+    },
+    "marketplace_summary": "La carne vera: un pezzo grande con l'osso a T, cotto sulla brace e rosso dentro.",
+    "artwork": {
+      "$oid": "ccc000000000000000000154"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 2,
+        "text": "Adesso arriva la carne vera."
+      },
+      {
+        "duration_sec": 13,
+        "text": "È un pezzo grande e alto, con l'osso in mezzo a forma di T, cotto sul fuoco della brace di legna. Si cuoce pochissimo: fuori diventa scuro, dentro resta rosso e morbido."
+      },
+      {
+        "duration_sec": 18,
+        "text": "In Toscana la bistecca si mangia così, al sangue, non ben cotta. È troppo grande per una persona sola, quindi si divide in due o in tre e si taglia a fette al tavolo: è il piatto più importante della sera, quello che tutti aspettano dall'inizio."
+      }
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Bistecca_alla_fiorentina-01.jpg",
+    "alt_text": "Bistecca alla fiorentina cotta alla brace, servita su un tagliere",
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000617"
+    },
+    "marketplace_summary": "Da dove si ricava la bistecca, come si cuoce sulla brace e perché si serve al sangue.",
+    "artwork": {
+      "$oid": "ccc000000000000000000154"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "La bistecca alla fiorentina è il piatto simbolo della cucina toscana."
+      },
+      {
+        "duration_sec": 14,
+        "text": "È una fetta molto spessa di lombata con l'osso, ricavata dalla parte alta della schiena del bue, che comprende sia il filetto sia il controfiletto. Si cuoce solo sulla brace, senza olio, e si sala dopo."
+      },
+      {
+        "duration_sec": 20,
+        "text": "Poco tempo per lato, poi qualche minuto in piedi appoggiata sull'osso: l'interno resta al sangue, come vuole la tradizione. È la carne della stessa razza, la Chianina, assaggiata cruda nella battuta a inizio cena; qui però è stata fatta riposare per settimane e cotta sul fuoco vivo, con un risultato opposto."
+      }
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Bistecca_alla_fiorentina-01.jpg",
+    "alt_text": "Bistecca alla fiorentina cotta alla brace, servita su un tagliere",
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000618"
+    },
+    "marketplace_summary": "La fiorentina: il taglio con osso a T, la frollatura della Chianina e la cottura rapida sulla brace.",
+    "artwork": {
+      "$oid": "ccc000000000000000000154"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "La bistecca alla fiorentina è definita anzitutto dal taglio."
+      },
+      {
+        "duration_sec": 17,
+        "text": "È una costata con osso a T che separa il filetto dal controfiletto, alta almeno tre dita e di peso raramente inferiore agli ottocento grammi: per questo è un piatto da condividere. La materia prima della tradizione è il vitellone di razza Chianina."
+      },
+      {
+        "duration_sec": 20,
+        "text": "La carne è magra e saporita, e la frollatura — diverse settimane in cella a temperatura e umidità controllate — intenerisce le fibre e concentra il gusto. La cottura è rapida e su brace viva: cinque o sei minuti per lato per la crosta, poi qualche minuto in verticale sull'osso."
+      },
+      {
+        "duration_sec": 23,
+        "text": "Il cuore resta rosso e appena tiepido, e il sale grosso si aggiunge solo alla fine. Nel menù la fiorentina è il culmine della sequenza: la portata più grassa, più calda e più persistente al palato, servita subito dopo il risotto e prima che lo zuccotto, freddo e poco dolce, riporti la cena verso note leggere di chiusura."
+      }
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Bistecca_alla_fiorentina-01.jpg",
+    "alt_text": "Bistecca alla fiorentina cotta alla brace, servita su un tagliere",
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000619"
+    },
+    "marketplace_summary": "Anatomia del taglio, frollatura a secco, profilo termico sulla brace e gestione di sale e riposo.",
+    "artwork": {
+      "$oid": "ccc000000000000000000154"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Il taglio corrisponde alla lombata, la sezione lombare posteriore dell'animale."
+      },
+      {
+        "duration_sec": 14,
+        "text": "Il profilo a T dell'osso include il muscolo psoas major, cioè il filetto, e il longissimus dorsi, il controfiletto; lo spessore minimo di cinque o sei centimetri è funzionale al profilo di cottura desiderato."
+      },
+      {
+        "duration_sec": 24,
+        "text": "La frollatura a secco per trenta o quaranta giorni, a uno-tre gradi e con umidità intorno all'ottanta per cento, attiva enzimi endogeni — calpaine e catepsine — che frammentano le proteine miofibrillari; la disidratazione concentra i sapori e la flora superficiale sviluppa note di frutta secca e formaggio. La carne va portata a temperatura ambiente prima di andare sul fuoco."
+      },
+      {
+        "duration_sec": 28,
+        "text": "La cottura sfrutta l'irraggiamento della brace di legna, che in superficie supera i quattrocento gradi: si cerca una crosta ben sviluppata per reazione di Maillard e un gradiente termico interno minimo, con il cuore intorno ai quarantotto-cinquanta gradi. Il sale si applica dopo la crosta, per non richiamare umidità durante la reazione, e un riposo di alcuni minuti ridistribuisce i succhi verso il centro, riducendo la perdita al taglio."
+      }
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Bistecca_alla_fiorentina-01.jpg",
+    "alt_text": "Bistecca alla fiorentina cotta alla brace, servita su un tagliere",
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000620"
+    },
+    "marketplace_summary": "Il dolce a forma di mezza palla: torta morbida fuori, crema fredda con cioccolato dentro.",
+    "artwork": {
+      "$oid": "ccc000000000000000000155"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "childish",
+    "descriptions": [
+      {
+        "duration_sec": 2,
+        "text": "L'ultimo piatto è il dolce."
+      },
+      {
+        "duration_sec": 14,
+        "text": "Ha la forma di una mezza palla, come la cupola di una chiesa. Fuori c'è la torta morbida bagnata con un goccio di liquore rosso; dentro una crema fredda con pezzetti di cioccolato e frutta candita."
+      },
+      {
+        "duration_sec": 17,
+        "text": "Non si cuoce in forno: si tiene in frigorifero per tante ore, così resta sodo e freddo. È dolce ma leggero, perfetto per finire dopo la carne alla brace; la crema di ricotta è la stessa che c'era nel ripieno dei tortelli."
+      }
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Zuccotto_on_a_dish_with_chocolate_chips_and_cream.jpg/1280px-Zuccotto_on_a_dish_with_chocolate_chips_and_cream.jpg",
+    "alt_text": "Fetta di zuccotto con gocce di cioccolato e panna su un piatto",
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000621"
+    },
+    "marketplace_summary": "Perché si chiama zuccotto, come è fatto a strati e il richiamo alla ricotta dei tortelli.",
+    "artwork": {
+      "$oid": "ccc000000000000000000155"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "simple",
+    "descriptions": [
+      {
+        "duration_sec": 3,
+        "text": "Lo zuccotto è un dolce fiorentino molto antico."
+      },
+      {
+        "duration_sec": 16,
+        "text": "Il nome viene dalla sua forma a cupola, che ricorda quella del Duomo di Firenze o un vecchio elmo da soldato. Si prepara foderando uno stampo tondo con fette di pan di Spagna bagnate nell'alchermes, un liquore rosso e speziato."
+      },
+      {
+        "duration_sec": 20,
+        "text": "All'interno si mette una crema fredda di ricotta o di panna, con cioccolato e canditi. Va tenuto in frigorifero diverse ore perché prenda consistenza e si possa tagliare a fette nette. La ricotta della crema richiama quella del ripieno dei tortelli, così il menù si chiude con un ingrediente già incontrato."
+      }
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Zuccotto_on_a_dish_with_chocolate_chips_and_cream.jpg/1280px-Zuccotto_on_a_dish_with_chocolate_chips_and_cream.jpg",
+    "alt_text": "Fetta di zuccotto con gocce di cioccolato e panna su un piatto",
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000622"
+    },
+    "marketplace_summary": "Lo zuccotto come primo semifreddo italiano: origine medicea, struttura a cupola e chiusura del menù.",
+    "artwork": {
+      "$oid": "ccc000000000000000000155"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "medium",
+    "descriptions": [
+      {
+        "duration_sec": 4,
+        "text": "Lo zuccotto è considerato uno dei primi semifreddi della cucina italiana."
+      },
+      {
+        "duration_sec": 13,
+        "text": "Le fonti fiorentine lo legano al Cinquecento e all'ambiente della corte medicea; la forma a spicchi alternati di colore diverso richiama una cupola o un copricapo militare. La struttura è semplice ma precisa."
+      },
+      {
+        "duration_sec": 19,
+        "text": "Uno stampo semisferico viene foderato di pan di Spagna o savoiardi imbevuti di alchermes, e talvolta di un distillato, poi riempito con un composto freddo a base di ricotta setacciata o di panna montata. Nel ripieno entrano gocce di cioccolato fondente, canditi e a volte granella di nocciola."
+      },
+      {
+        "duration_sec": 22,
+        "text": "Il dolce non passa in forno: si rassoda in frigorifero per almeno tre o quattro ore, meglio un'intera notte. Come chiusura del menù riabbassa l'intensità dopo la bistecca — è freddo e poco zuccherato — e riporta in tavola la ricotta già usata nei tortelli e la frutta secca dell'antipasto, chiudendo idealmente il cerchio della degustazione."
+      }
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Zuccotto_on_a_dish_with_chocolate_chips_and_cream.jpg/1280px-Zuccotto_on_a_dish_with_chocolate_chips_and_cream.jpg",
+    "alt_text": "Fetta di zuccotto con gocce di cioccolato e panna su un piatto",
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddd000000000000000000623"
+    },
+    "marketplace_summary": "Rassodatura a freddo dei grassi, montaggio della camicia, lavorazione del ripieno e taglio netto.",
+    "artwork": {
+      "$oid": "ccc000000000000000000155"
+    },
+    "author": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "license": "Public",
+    "tone": "technical",
+    "descriptions": [
+      {
+        "duration_sec": 3,
+        "text": "Lo zuccotto è un semifreddo non gelato."
+      },
+      {
+        "duration_sec": 13,
+        "text": "La sua consistenza dipende dalla rassodatura a freddo dei grassi — la materia grassa della ricotta o della panna — non dall'incorporazione di aria congelata come nel gelato mantecato o nel parfait."
+      },
+      {
+        "duration_sec": 24,
+        "text": "La camicia di pan di Spagna va tagliata in triangoli disposti a raggiera nello stampo semisferico, con le giunzioni sfalsate per evitare punti di rottura; l'imbibizione con alchermes diluito deve inumidire senza saturare, altrimenti la struttura collassa al momento di sformare. Per il ripieno la ricotta va setacciata due volte e lavorata con zucchero a velo, per evitare la granulosità."
+      },
+      {
+        "duration_sec": 28,
+        "text": "Se si usa panna, va montata a struttura morbida e incorporata con movimenti dal basso verso l'alto per non smontarla, mentre cioccolato e canditi a pezzi contrastano la morbidezza con parti solide. Il raffreddamento prolungato sotto i quattro gradi permette la ricristallizzazione dei trigliceridi del latte, che dà la fetta netta al taglio; il servizio va fatto entro pochi minuti dallo sformato, prima che la risalita termica ammorbidisca la cupola."
+      }
+    ],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Zuccotto_on_a_dish_with_chocolate_chips_and_cream.jpg/1280px-Zuccotto_on_a_dish_with_chocolate_chips_and_cream.jpg",
+    "alt_text": "Fetta di zuccotto con gocce di cioccolato e panna su un piatto",
+    "tags": [],
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
   }
 ]

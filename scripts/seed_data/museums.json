@@ -602,5 +602,53 @@
     "updatedAt": {
       "$date": "2026-08-24T00:00:00Z"
     }
+  },
+  {
+    "_id": {
+      "$oid": "bbb000000000000000000011"
+    },
+    "name": "Osteria delle Belle Arti",
+    "wikidata_id": "",
+    "description": "Osteria di cucina toscana nel centro di Firenze, a pochi passi dalla Galleria degli Uffizi. Propone un menù degustazione di cinque portate che segue l'ordine tradizionale della tavola, dall'antipasto di carne cruda al dolce freddo. Locale di fantasia, usato come ambientazione per una visita gastronomica.",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Florence_Fine_Dining_%285986656121%29.jpg/1280px-Florence_Fine_Dining_%285986656121%29.jpg",
+    "website": "https://osteria-belle-arti.example",
+    "is_accessible": true,
+    "address": {
+      "street": "Via dei Neri 15",
+      "city": "Firenze",
+      "zip": "50122",
+      "country": "Italia"
+    },
+    "services": {
+      "Toilette": "In fondo alla sala principale, oltre la porta a vetri sulla sinistra, accanto all'ingresso della cucina.",
+      "Guardaroba": "All'ingresso, subito a destra della porta su Via dei Neri, gestito dal personale di sala.",
+      "Uscita": "L'uscita coincide con l'ingresso su Via dei Neri, in fondo alla sala principale.",
+      "Cucina": "La cucina a vista occupa il lato lungo della sala principale, separata dai tavoli dal bancone di servizio."
+    },
+    "accessibility_info": {
+      "Accesso": "Ingresso a livello strada, senza gradini, con porta a battente larga 90 cm.",
+      "Sala": "Sala principale su un unico piano, con corridoi di passaggio tra i tavoli di almeno 90 cm.",
+      "Servizi igienici": "Bagno accessibile con maniglioni e spazio di rotazione, adiacente alla sala principale.",
+      "Tavoli": "Disponibili su richiesta tavoli con altezza libera sotto il piano di almeno 70 cm."
+    },
+    "opening_hours": {
+      "Lunedì": "Chiuso",
+      "Martedì": "19:00–23:00",
+      "Mercoledì": "19:00–23:00",
+      "Giovedì": "19:00–23:00",
+      "Venerdì": "19:00–23:30",
+      "Sabato": "12:30–14:30, 19:00–23:30",
+      "Domenica": "12:30–14:30"
+    },
+    "maps": [],
+    "added_by": {
+      "$oid": "aaa000000000000000000004"
+    },
+    "createdAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-27T00:00:00Z"
+    }
   }
 ]
