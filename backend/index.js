@@ -40,7 +40,20 @@ app.use('/api/items',    require('./routes/items'));
 app.use('/api/visits',   require('./routes/visits'));
 app.use('/api/users',    require('./routes/users'));
 app.use('/api/orders',   require('./routes/orders'));
-app.use('/api/dev',      require('./routes/dev'));
+
+// Rotte di sviluppo — la pagina /dev e POST /api/dev/reset, che svuota e
+// reimporta l'intero database dai seed data. Montate solo se abilitate: se
+// ENABLE_DEV_ROUTES è impostata decide lei ('true'/'false'), altrimenti il
+// default è "attive ovunque tranne che con NODE_ENV=production". Evita che in
+// produzione una richiesta anche accidentale a /api/dev/reset cancelli tutto.
+const devRoutesEnabled = process.env.ENABLE_DEV_ROUTES
+	? process.env.ENABLE_DEV_ROUTES === 'true'
+	: process.env.NODE_ENV !== 'production';
+
+if (devRoutesEnabled) {
+	app.use('/api/dev', require('./routes/dev'));
+	console.log('Dev routes abilitate (/dev, POST /api/dev/reset)');
+}
 
 const { initSocketServer } = require('./sockets');
 const io = initSocketServer(server);
@@ -65,7 +78,7 @@ app.enable('trust proxy');
 
 })();
 
-app.get('/dev', async function (req, res) {
+if (devRoutesEnabled) app.get('/dev', async function (req, res) {
 	res.send(
 		`<!doctype html>
 <html lang="it">
