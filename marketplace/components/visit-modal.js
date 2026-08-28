@@ -193,6 +193,7 @@ class VisitModal extends HTMLElement {
         description: v.description || '',
         image_url: v.image_url || '',
         tags: v.tags || [],
+        ...(v.theme ? { theme: v.theme } : {}),
         is_group: false,
         base_price: 0,
         is_public: false,
@@ -214,7 +215,17 @@ class VisitModal extends HTMLElement {
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
       this.close();
-      window.location.href = '/marketplace/pages/profile.html#visite:create';
+      // Vai alla sezione "Visite create" del profilo. Se ci si è già (il modale
+      // è montato anche su profile.html), un cambio di hash non ricaricherebbe
+      // la pagina e la nuova copia non comparirebbe (griglia + visitsCache
+      // restano quelli di prima): forziamo un reload completo.
+      const PROFILE_CREATE = '/marketplace/pages/profile.html#visite:create';
+      if (window.location.pathname === '/marketplace/pages/profile.html') {
+        window.location.hash = 'visite:create';
+        window.location.reload();
+      } else {
+        window.location.href = PROFILE_CREATE;
+      }
     } catch (e) {
       console.error('Errore durante la copia della visita:', e);
       this._copyError = 'Errore durante la copia della visita. Riprova.';
