@@ -65,9 +65,6 @@ class OperaCard extends HTMLElement {
         <div class="min-w-0 p-3.5 sm:p-6 flex-1 flex flex-col gap-1.5 sm:gap-2.5">
           <div class="text-[0.6rem] sm:text-[0.66rem] font-semibold tracking-[0.14em] uppercase text-slate-500 dark:text-slate-400">${this._esc(o.artworkAuthor || 'Autore sconosciuto')}</div>
           <h2 class="text-base sm:text-lg font-semibold leading-snug font-serif">${this._esc(o.name)}</h2>
-          ${o.description
-            ? `<p class="hidden sm:block text-sm leading-relaxed text-slate-500 dark:text-slate-400 line-clamp-2">${this._esc(o.description)}</p>`
-            : `<p class="hidden sm:block text-sm italic leading-relaxed text-slate-500 dark:text-slate-400">Nessuna descrizione disponibile.</p>`}
           ${museumLine ? `
           <p class="flex items-center gap-1.5 text-[0.6rem] sm:text-[0.66rem] font-medium tracking-[0.1em] uppercase text-slate-500 dark:text-slate-400">
             <svg class="w-[10px] h-[10px] sm:w-[11px] sm:h-[11px] fill-slate-500 dark:fill-slate-400 shrink-0" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>

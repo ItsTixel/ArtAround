@@ -9,7 +9,6 @@
  */
 
 import { GLASS, GLASS_STRONG, TRANSITION, TAG_PILL } from '/marketplace/js/ui-tokens.js';
-import { TONE_LABELS } from '/marketplace/js/tone-labels.js';
 
 /* Timer globale condiviso: fa avanzare in un unico battito i caroselli
  * di tutte le <visit-card> attualmente montate, cosí si muovono assieme.
@@ -124,13 +123,7 @@ class VisitCard extends HTMLElement {
             <span class="sm:hidden font-semibold ${owned || isFree ? 'text-slate-800 dark:text-slate-100' : ''}">${owned ? '✓ Posseduta' : this._fmtPrice(v.basePrice)}</span>
           </div>
           <h2 class="text-base sm:text-lg font-semibold leading-snug font-serif">${this._esc(v.title)}</h2>
-          <p class="hidden sm:block text-xs sm:text-sm leading-relaxed text-slate-500 dark:text-slate-400 line-clamp-2">${this._esc(v.description)}</p>
           ${v.tags?.length ? `<div class="hidden sm:flex flex-wrap gap-1.5">${v.tags.slice(0, 3).map(t => `<span class="${TAG_PILL}">${this._esc(t)}</span>`).join('')}</div>` : ''}
-          ${v.tones?.length ? `
-          <div class="tones hidden sm:block">
-            <small class="block text-[0.58rem] sm:text-[0.62rem] tracking-[0.12em] uppercase text-slate-500 dark:text-slate-400 mb-1">Linguaggio</small>
-            <div class="flex flex-wrap gap-1.5">${v.tones.map(t => `<span class="${TAG_PILL}">${this._esc(TONE_LABELS[t] || t)}</span>`).join('')}</div>
-          </div>` : ''}
           <div class="flex items-end justify-between gap-4 mt-auto pt-3 sm:pt-4 border-t border-slate-400/20">
             <span class="text-xs sm:text-sm">
               <small class="block text-[0.58rem] sm:text-[0.62rem] tracking-[0.12em] uppercase text-slate-500 dark:text-slate-400 mb-0.5">Durata</small>
