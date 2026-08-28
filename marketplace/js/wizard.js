@@ -31,8 +31,24 @@ export function createWizard({
   nextLabel = 'Sezione successiva',
 }) {
   const slides = Array.from(track.querySelectorAll('.carousel-slide'));
+  const viewport = track.parentElement; // .carousel-viewport
   const defaultPath = () => slides.map((_, i) => i);
   let currentStep = 0;
+
+  // La track tiene tutte le slide affiancate per lo scorrimento orizzontale,
+  // quindi da sola sarebbe sempre alta quanto la sezione più lunga. Qui
+  // fissiamo l'altezza del viewport sulla sola slide attiva, così la pagina
+  // si adatta alla sezione corrente. Un ResizeObserver la tiene aggiornata
+  // quando il contenuto della slide attiva cambia (es. lista tappe / domande).
+  function syncHeight() {
+    const active = slides[currentStep];
+    if (active) viewport.style.height = `${active.scrollHeight}px`;
+  }
+  if (typeof ResizeObserver === 'function') {
+    const ro = new ResizeObserver(syncHeight);
+    slides.forEach(s => ro.observe(s));
+  }
+  window.addEventListener('resize', syncHeight);
 
   function path() {
     const p = getPath ? getPath() : defaultPath();
@@ -50,6 +66,7 @@ export function createWizard({
 
   function render() {
     track.style.transform = `translateX(-${currentStep * 100}%)`;
+    syncHeight();
     const activePath = path();
     const posInPath = activePath.indexOf(currentStep);
 

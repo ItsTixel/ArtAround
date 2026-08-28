@@ -110,6 +110,10 @@
   flex: 1;
   min-width: 0;
   overflow: hidden;
+  /* Altezza fissata via JS sulla sola sezione attiva (createWizard): la
+     pagina si adatta alla slide corrente invece di restare alta quanto
+     la sezione più lunga. L'animazione accompagna lo scorrimento. */
+  transition: height 0.5s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 /* Frecce ai lati della scheda.
@@ -198,6 +202,9 @@
 
 .carousel-track {
   display: flex;
+  /* Senza questo le slide vengono stirate tutte all'altezza della più alta,
+     e il viewport non potrebbe adattarsi alla sezione attiva. */
+  align-items: flex-start;
   transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
   will-change: transform;
 }
