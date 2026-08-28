@@ -1,8 +1,5 @@
 const Museum = require('../models/museum');
-
-function escapeRegex(str) {
-  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
+const { escapeRegex, buildSearchRegex } = require('../utils/regex');
 
 // Verifica che nessun altro museo abbia già lo stesso nome (case-insensitive:
 // serve anche a evitare collisioni negli slug dell'URL del navigator, che
@@ -22,7 +19,7 @@ async function getAll(req, res) {
     const filter = {};
     if (req.query.city)    filter['address.city']    = req.query.city;
     if (req.query.country) filter['address.country'] = req.query.country;
-    if (req.query.name)    filter.name = new RegExp(req.query.name, 'i');
+    if (req.query.name)    filter.name = buildSearchRegex(req.query.name);
     if (req.query.is_accessible !== undefined) filter.is_accessible = req.query.is_accessible === 'true';
     if (req.query.added_by) filter.added_by = req.query.added_by;
 

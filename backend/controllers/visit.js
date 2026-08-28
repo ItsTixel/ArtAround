@@ -5,6 +5,7 @@ const User = require('../models/user');
 const Order = require('../models/order');
 const Quiz = require('../models/quiz');
 const { generateUniqueCode } = require('../utils/code');
+const { buildSearchRegex } = require('../utils/regex');
 
 // I punti-opera sulle mappe dei musei mostrano una miniatura: serve popolare
 // l'entity referenziata da ogni punto (sia sul museum "riassuntivo" della
@@ -131,7 +132,7 @@ async function getAll(req, res) {
 
     /* ── Ricerca testuale sul titolo ─────────────────────────── */
     if (req.query.title) {
-      conditions.push({ title: new RegExp(req.query.title, 'i') });
+      conditions.push({ title: buildSearchRegex(req.query.title) });
     }
 
     /* ── Prezzo ─────────────────────────────────────────────── */
