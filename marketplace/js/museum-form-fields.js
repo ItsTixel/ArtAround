@@ -5,6 +5,8 @@
  *  dettagli di accessibilità e mappe (piante con punti di interesse).
  * ============================================================ */
 
+import { downloadJson, slugForFilename } from '/marketplace/js/download-json.js';
+
 const DAYS = ['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 'Domenica'];
 let uid = 0;
 
@@ -131,6 +133,22 @@ function validateMapIndications(data, filename) {
   return { name: data.name.trim(), points };
 }
 
+/* Riduce un punto alla sola forma che il caricamento accetta (le mappe
+ * già salvate arrivano dal DB con un `_id` per punto, ed `entity` come
+ * ObjectId): usato dallo scarico del JSON attuale, così il file esce
+ * pulito e pronto per essere modificato e ricaricato. */
+function cleanMapPoint(p) {
+  return {
+    label: p.label,
+    icon_type: ALLOWED_ICON_TYPES.includes(p.icon_type) ? p.icon_type : 'generic',
+    x: p.x,
+    y: p.y,
+    ...(p.service_key ? { service_key: p.service_key } : {}),
+    ...(p.entity ? { entity: String(p.entity) } : {}),
+    ...(p.description ? { description: p.description } : {}),
+  };
+}
+
 function fieldLabel(text) {
   const label = document.createElement('span');
   label.textContent = text;
@@ -247,6 +265,25 @@ export function setupMapsList(container, addBtn, initialMaps = []) {
       jsonStatus.style.color = 'var(--color-text-muted)';
       jsonStatus.textContent = slot.mapDataLabel;
       row.appendChild(jsonStatus);
+    }
+
+    // Scarico del JSON attuale (nome pianta + punti): stessa forma che il
+    // campo qui sopra accetta in caricamento, così si può modificare e
+    // ricaricare. Disponibile appena lo slot ha indicazioni valide, sia
+    // quelle già salvate (modifica) sia un file appena caricato.
+    if (slot.mapData) {
+      const downloadBtn = document.createElement('button');
+      downloadBtn.type = 'button';
+      downloadBtn.className = 'btn-secondary';
+      downloadBtn.style.cssText = 'display:block;margin-top:0.4rem;';
+      downloadBtn.textContent = 'Scarica JSON attuale';
+      downloadBtn.addEventListener('click', () => {
+        downloadJson(
+          { name: slot.mapData.name, points: (slot.mapData.points || []).map(cleanMapPoint) },
+          `mappa-${slugForFilename(slot.mapData.name, 'museo')}`,
+        );
+      });
+      row.appendChild(downloadBtn);
     }
 
     const removeBtn = document.createElement('button');

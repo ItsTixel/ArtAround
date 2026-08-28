@@ -13,6 +13,7 @@
 import { getCurrentUser } from '/marketplace/js/auth-session.js';
 import { createWizard } from '/marketplace/js/wizard.js';
 import { TONE_ORDER, TONE_LABELS } from '/marketplace/js/tone-labels.js';
+import { downloadJson } from '/marketplace/js/download-json.js';
 
 const API_VISITS   = '/api/visits';
 const API_ENTITIES = '/api/entities';
@@ -65,6 +66,12 @@ const state = { steps: [], editingIndex: null };
  * nel body). Quando invece un file valido viene caricato, sostituisce per
  * intero l'eventuale tema precedente. */
 let uploadedTheme = null;
+
+/* Modalità modifica: lo stile già salvato sulla visita, se presente.
+ * Serve solo al pulsante "Scarica JSON attuale" del campo Stile
+ * personalizzato, che lo esporta nella stessa forma accettata in
+ * caricamento; non viene rimandato al server (vedi uploadedTheme). */
+let existingTheme = null;
 
 /* Il quiz è facoltativo per le visite di gruppo: si decide con il prompt
  * mostrato dopo la Sequenza (vedi #quiz-prompt-overlay), non è più uno step
@@ -318,7 +325,30 @@ function validateThemeJson(raw) {
   return theme;
 }
 
+/* Estrae dal `theme` di una visita esistente solo le chiavi note e
+ * valorizzate, nella forma { light?, dark?, font_serif?, font_sans? }
+ * che il campo qui sopra accetta in caricamento. Restituisce null se
+ * non resta nulla (subdocumento assente o vuoto). */
+function pickThemeKeys(theme) {
+  if (!theme || typeof theme !== 'object') return null;
+  const out = {};
+  for (const paletteKey of ['light', 'dark']) {
+    const palette = theme[paletteKey];
+    if (!palette || typeof palette !== 'object') continue;
+    const colors = {};
+    for (const key of THEME_PALETTE_KEYS) {
+      if (typeof palette[key] === 'string' && palette[key]) colors[key] = palette[key];
+    }
+    if (Object.keys(colors).length) out[paletteKey] = colors;
+  }
+  for (const fontKey of ['font_serif', 'font_sans']) {
+    if (typeof theme[fontKey] === 'string' && theme[fontKey]) out[fontKey] = theme[fontKey];
+  }
+  return Object.keys(out).length ? out : null;
+}
+
 const THEME_DEFAULT_HINT = 'Facoltativo: carica un JSON con palette e font della visita. In modifica, il file sostituisce interamente lo stile già impostato.';
+const THEME_EXISTING_HINT = 'Stile attuale salvato: scaricalo per modificarlo, oppure carica un nuovo file per sostituirlo.';
 
 function setThemeStatus(hintText, hintState) {
   const hint = document.getElementById('theme-json-hint');
@@ -326,11 +356,17 @@ function setThemeStatus(hintText, hintState) {
   hint.textContent = hintText;
 }
 
+function syncThemeDownloadBtn() {
+  const btn = document.getElementById('theme-download');
+  btn.style.display = (uploadedTheme || existingTheme) ? 'block' : 'none';
+}
+
 async function onThemeFileInput(e) {
   const file = e.target.files[0];
   if (!file) {
     uploadedTheme = null;
-    setThemeStatus(THEME_DEFAULT_HINT);
+    setThemeStatus(existingTheme ? THEME_EXISTING_HINT : THEME_DEFAULT_HINT);
+    syncThemeDownloadBtn();
     return;
   }
   try {
@@ -342,6 +378,7 @@ async function onThemeFileInput(e) {
     e.target.value = '';
     setThemeStatus(err instanceof SyntaxError ? 'Il file non è un JSON valido.' : err.message, 'error');
   }
+  syncThemeDownloadBtn();
 }
 
 /* ============================================================
@@ -907,6 +944,16 @@ function applyEditingVisitToForm(visit) {
   document.getElementById('tags').value = (visit.tags || []).join(', ');
   applyStepsToForm(visit);
 
+  // Stile personalizzato già salvato: se c'è, si può scaricare per
+  // modificarlo e ricaricarlo. Si considerano solo le chiavi note e non
+  // vuote, perché il subdocumento può arrivare come oggetto vuoto.
+  const savedTheme = pickThemeKeys(visit.theme);
+  if (savedTheme) {
+    existingTheme = savedTheme;
+    document.getElementById('theme-download').style.display = 'block';
+    setThemeStatus(THEME_EXISTING_HINT);
+  }
+
   if (visit.is_group) {
     const codeInput = document.getElementById('visit-code');
     originalCode = visit.code || null;
@@ -1100,6 +1147,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
   document.getElementById('visit-code').addEventListener('input', onCodeInput);
   document.getElementById('theme-json').addEventListener('change', onThemeFileInput);
+  document.getElementById('theme-download').addEventListener('click', () => {
+    const theme = uploadedTheme || existingTheme;
+    if (theme) downloadJson(theme, 'stile-visita.json');
+  });
 
   renderStepsList();
 
