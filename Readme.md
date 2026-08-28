@@ -61,7 +61,7 @@ server-side (`backend/`), oltre agli asset e agli script condivisi.
 │   ├── models/         schemi Mongoose: User, Museum, Entity, Item, Visit, Quiz, Order
 │   ├── middlewares/    autenticazione JWT (verifyToken/optionalAuth), controlli di ruolo e proprietà, upload immagini (multer), rate limiting
 │   ├── sockets/        server Socket.IO e handler della sessione "live" delle visite di gruppo (join, stato partecipanti, quiz)
-│   └── utils/          helper generici (generazione dei codici visita)
+│   └── utils/          helper generici (generazione dei codici visita, escape delle regex per la ricerca)
 │
 ├── marketplace/        applicazione "marketplace" — HTML + CSS + JavaScript vanilla, nessun bundler JS (unico step di build: il CSS di Tailwind)
 │   ├── pages/          una pagina HTML per vista (index, opere, visits, my-visits, profile, create-museum/entity/item/visit, landing)
@@ -156,4 +156,4 @@ Tutte le interazioni seguivano questo workflow:
 * Discussione e progettazione tra i membri sull'archittetura e sul design delle modifiche da fare;
 * Spiegazione all'agente nel dettaglio delle modifiche richieste, con vincoli e contesto dell'archittetura. Chiedendo di sviluppare un piano operativo prima di ogni modifica;
 * Controllo e conferma del piano, con possibili proposte di cambiamento;
-* Controllo delle modifiche effettuate, testing sia umano che di un secondo agente.
+* Controllo delle modifiche effettuate, testing umano, di un secondo agente e tramite unit test.
