@@ -1,5 +1,47 @@
 var log = document.getElementById('loginForm')
 
+// Validazione lato client: stessa forma della regex del modello utente
+// (backend/models/user.js), così i messaggi combaciano con quelli del server.
+const EMAIL_RE = /^\S+@\S+\.\S+$/;
+
+// Mostra/pulisce l'errore inline sotto un singolo campo. `errorId` è lo
+// <small class="field-error"> aggiunto in login.html accanto all'input.
+function setFieldError(field, errorId, message) {
+    const el = document.getElementById(errorId);
+    if (el) el.textContent = message || '';
+    if (message) field.setAttribute('aria-invalid', 'true');
+    else field.removeAttribute('aria-invalid');
+}
+
+function clearFieldErrors(fields) {
+    fields.forEach(({ field, errorId }) => setFieldError(field, errorId, ''));
+}
+
+// Prima validazione utile: email malformata o campi vuoti vengono
+// intercettati qui, senza chiamare il server. Ritorna true se è tutto ok.
+function validateLogin({ email, password, emailField, passwordField }) {
+    let firstInvalid = null;
+
+    if (!email) {
+        setFieldError(emailField, 'emailError', 'Inserisci la tua email');
+        firstInvalid = firstInvalid || emailField;
+    } else if (!EMAIL_RE.test(email)) {
+        setFieldError(emailField, 'emailError', 'Mail non valida');
+        firstInvalid = firstInvalid || emailField;
+    }
+
+    if (!password) {
+        setFieldError(passwordField, 'passwordError', 'Inserisci la password');
+        firstInvalid = firstInvalid || passwordField;
+    }
+
+    if (firstInvalid) {
+        firstInvalid.focus();
+        return false;
+    }
+    return true;
+}
+
 // Se si arriva qui da un redirect (es. tentativo di aggiungere una visita
 // da non loggati), torniamo lì dopo il login invece che al marketplace.
 // Si accettano solo path relativi interni, per evitare open-redirect.
@@ -27,13 +69,21 @@ log.addEventListener('submit', async (e) => {
 
     const emailField = document.getElementById('email');
     const passwordField = document.getElementById('password');
-    const email = emailField.value;
+    const email = emailField.value.trim();
     const password = passwordField.value;
     const feedbackMessage = document.getElementById('feedbackMessage'); // Il "Password o email errati" sotto il submit
 
-    emailField.removeAttribute('aria-invalid');
-    passwordField.removeAttribute('aria-invalid');
-    feedbackMessage.classList.remove('is-success', 'is-error');
+    clearFieldErrors([
+        { field: emailField, errorId: 'emailError' },
+        { field: passwordField, errorId: 'passwordError' },
+    ]);
+    feedbackMessage.classList.remove('is-success', 'is-error', 'is-pending');
+    feedbackMessage.textContent = "";
+
+    // Errori di forma (email malformata, campi vuoti): li mostriamo subito
+    // sotto il campo, senza disturbare il server.
+    if (!validateLogin({ email, password, emailField, passwordField })) return;
+
     feedbackMessage.classList.add('is-pending');
     feedbackMessage.textContent = "Connessione in corso…";
 
@@ -63,9 +113,21 @@ log.addEventListener('submit', async (e) => {
         } else {
             feedbackMessage.classList.remove('is-pending');
             feedbackMessage.classList.add('is-error');
-            feedbackMessage.textContent = data.message || "Credenziali non valide.";
-            emailField.setAttribute('aria-invalid', 'true');
-            passwordField.setAttribute('aria-invalid', 'true');
+            const msg = data.message || "Credenziali non valide.";
+
+            if (/google/i.test(msg)) {
+                // Account creato con Google: la password locale non esiste,
+                // l'errore riguarda il modo di accesso, non la coppia email/password.
+                setFieldError(emailField, 'emailError', msg);
+                feedbackMessage.textContent = "";
+                feedbackMessage.classList.remove('is-error');
+            } else {
+                // Credenziali errate: per sicurezza non diciamo se a sbagliare
+                // è l'email o la password, evidenziamo entrambi i campi.
+                feedbackMessage.textContent = msg;
+                emailField.setAttribute('aria-invalid', 'true');
+                passwordField.setAttribute('aria-invalid', 'true');
+            }
         }
     } catch (error) {
         console.error("Errore di rete:", error);
@@ -73,6 +135,13 @@ log.addEventListener('submit', async (e) => {
         feedbackMessage.classList.add('is-error');
         feedbackMessage.textContent = "Impossibile contattare il server.";
     }
+});
+
+// Appena l'utente ricomincia a scrivere, togliamo l'errore dal campo:
+// resta finché non lo si corregge, non un lampo che sparisce da solo.
+['email', 'password'].forEach((id) => {
+    const field = document.getElementById(id);
+    if (field) field.addEventListener('input', () => setFieldError(field, `${id}Error`, ''));
 });
 
 // ---- Login con Google ----

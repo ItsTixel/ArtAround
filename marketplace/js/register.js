@@ -1,5 +1,50 @@
 var form = document.getElementById('registerForm');
 
+// Regole allineate a backend/models/user.js: email con la stessa regex,
+// username 3–30 caratteri. La lunghezza minima password è una scelta
+// solo lato prodotto (il modello non la impone).
+const EMAIL_RE = /^\S+@\S+\.\S+$/;
+const USERNAME_MIN = 3;
+const USERNAME_MAX = 30;
+const PASSWORD_MIN = 8;
+
+function setFieldError(field, errorId, message) {
+    const el = document.getElementById(errorId);
+    if (el) el.textContent = message || '';
+    if (message) field.setAttribute('aria-invalid', 'true');
+    else field.removeAttribute('aria-invalid');
+}
+
+function clearFieldErrors(fields) {
+    fields.forEach(({ field, errorId }) => setFieldError(field, errorId, ''));
+}
+
+// Intercetta i casi più comuni (username corto, "Mail non valida",
+// password troppo corta, campi vuoti) prima di chiamare il server.
+function validateRegister({ username, email, password, usernameField, emailField, passwordField }) {
+    let firstInvalid = null;
+    const fail = (field, errorId, msg) => {
+        setFieldError(field, errorId, msg);
+        firstInvalid = firstInvalid || field;
+    };
+
+    if (!username) fail(usernameField, 'usernameError', 'Scegli un username');
+    else if (username.length < USERNAME_MIN) fail(usernameField, 'usernameError', `L'username deve avere almeno ${USERNAME_MIN} caratteri`);
+    else if (username.length > USERNAME_MAX) fail(usernameField, 'usernameError', `L'username non può superare i ${USERNAME_MAX} caratteri`);
+
+    if (!email) fail(emailField, 'emailError', 'Inserisci la tua email');
+    else if (!EMAIL_RE.test(email)) fail(emailField, 'emailError', 'Mail non valida');
+
+    if (!password) fail(passwordField, 'passwordError', 'Scegli una password');
+    else if (password.length < PASSWORD_MIN) fail(passwordField, 'passwordError', `La password deve avere almeno ${PASSWORD_MIN} caratteri`);
+
+    if (firstInvalid) {
+        firstInvalid.focus();
+        return false;
+    }
+    return true;
+}
+
 // Se si arriva qui da un redirect (es. il popup del Navigator che chiede di
 // registrarsi), lo si porta avanti sul link "Accedi" e dopo la registrazione,
 // così il login successivo può ancora riportare l'utente da dove era partito.
@@ -39,15 +84,21 @@ form.addEventListener('submit', async (e) => {
     const usernameField = document.getElementById('username');
     const emailField = document.getElementById('email');
     const passwordField = document.getElementById('password');
-    const username = usernameField.value;
-    const email = emailField.value;
+    const username = usernameField.value.trim();
+    const email = emailField.value.trim();
     const password = passwordField.value;
     const feedbackMessage = document.getElementById('feedbackMessage');
 
-    usernameField.removeAttribute('aria-invalid');
-    emailField.removeAttribute('aria-invalid');
-    passwordField.removeAttribute('aria-invalid');
-    feedbackMessage.classList.remove('is-success', 'is-error');
+    clearFieldErrors([
+        { field: usernameField, errorId: 'usernameError' },
+        { field: emailField, errorId: 'emailError' },
+        { field: passwordField, errorId: 'passwordError' },
+    ]);
+    feedbackMessage.classList.remove('is-success', 'is-error', 'is-pending');
+    feedbackMessage.textContent = "";
+
+    if (!validateRegister({ username, email, password, usernameField, emailField, passwordField })) return;
+
     feedbackMessage.classList.add('is-pending');
     feedbackMessage.textContent = "Registrazione in corso…";
 
@@ -75,11 +126,35 @@ form.addEventListener('submit', async (e) => {
             }, 600);
         } else {
             feedbackMessage.classList.remove('is-pending');
-            feedbackMessage.classList.add('is-error');
-            feedbackMessage.textContent = data.message || "Errore durante la registrazione.";
-            usernameField.setAttribute('aria-invalid', 'true');
-            emailField.setAttribute('aria-invalid', 'true');
-            passwordField.setAttribute('aria-invalid', 'true');
+
+            // Il server può indicare il campo colpevole: `field` per un
+            // duplicato (email/username già in uso), `fields` per gli errori
+            // di validazione dello schema. In quel caso l'errore va sotto
+            // al campo giusto, non un messaggio generico su tutto il form.
+            const byField = {
+                username: usernameField,
+                email: emailField,
+                password: passwordField,
+            };
+            let mapped = false;
+
+            if (data.fields && typeof data.fields === 'object') {
+                Object.entries(data.fields).forEach(([name, msg]) => {
+                    if (byField[name]) { setFieldError(byField[name], `${name}Error`, msg); mapped = true; }
+                });
+            } else if (data.field && byField[data.field]) {
+                setFieldError(byField[data.field], `${data.field}Error`, data.message || 'Valore già in uso');
+                mapped = true;
+            }
+
+            if (mapped) {
+                feedbackMessage.textContent = "";
+                const first = Object.values(byField).find((f) => f.getAttribute('aria-invalid') === 'true');
+                if (first) first.focus();
+            } else {
+                feedbackMessage.classList.add('is-error');
+                feedbackMessage.textContent = data.message || "Errore durante la registrazione.";
+            }
         }
     } catch (error) {
         console.error("Errore di rete:", error);
@@ -87,6 +162,13 @@ form.addEventListener('submit', async (e) => {
         feedbackMessage.classList.add('is-error');
         feedbackMessage.textContent = "Impossibile contattare il server.";
     }
+});
+
+// L'errore su un campo resta finché non lo si corregge: lo togliamo
+// appena l'utente ci rimette mano.
+['username', 'email', 'password'].forEach((id) => {
+    const field = document.getElementById(id);
+    if (field) field.addEventListener('input', () => setFieldError(field, `${id}Error`, ''));
 });
 
 // ---- Registrazione/accesso con Google ----

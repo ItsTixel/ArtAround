@@ -46,15 +46,18 @@
                 <form id="registerForm" class="auth-form">
                     <div class="field">
                         <label for="username">Username</label>
-                        <input type="text" id="username" name="username" required autocomplete="username" aria-describedby="feedbackMessage">
+                        <input type="text" id="username" name="username" required autocomplete="username" aria-describedby="usernameError feedbackMessage">
+                        <small class="field-error" id="usernameError" aria-live="polite"></small>
                     </div>
                     <div class="field">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required autocomplete="email" aria-describedby="feedbackMessage">
+                        <input type="email" id="email" name="email" required autocomplete="email" aria-describedby="emailError feedbackMessage">
+                        <small class="field-error" id="emailError" aria-live="polite"></small>
                     </div>
                     <div class="field">
                         <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required autocomplete="new-password" aria-describedby="feedbackMessage">
+                        <input type="password" id="password" name="password" required autocomplete="new-password" aria-describedby="passwordError feedbackMessage">
+                        <small class="field-error" id="passwordError" aria-live="polite"></small>
                     </div>
                     <button type="submit" class="btn-primary">Registrati</button>
                 </form>
