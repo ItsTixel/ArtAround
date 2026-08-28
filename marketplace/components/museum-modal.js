@@ -28,6 +28,7 @@ import { trapTabKey, focusDialog } from '/marketplace/js/focus-trap.js';
 import { createImageField } from '/marketplace/js/image-field.js';
 import { setupHoursGrid, setupKvList, setupMapsList } from '/marketplace/js/museum-form-fields.js';
 import { slugify } from '/marketplace/js/slug.js';
+import { safeExternalUrl } from '/marketplace/js/url.js';
 
 const API_MUSEUMS = '/api/museums';
 const VISITS_URL  = '/marketplace/pages/visits.html';
@@ -173,6 +174,7 @@ class MuseumModal extends HTMLElement {
     const m = this._museum;
     const address = this._addressLine(m.address);
     const cityLine = [m.address?.city, m.address?.country].filter(Boolean).join(' · ');
+    const websiteHref = safeExternalUrl(m.website);
 
     return `
       <div class="relative h-[190px] bg-slate-300/20 dark:bg-slate-800/40 border-b border-slate-400/20 flex items-center justify-center overflow-hidden shrink-0">
@@ -202,12 +204,12 @@ class MuseumModal extends HTMLElement {
             </svg>
             <span>${this._esc(address)}</span>
           </li>` : ''}
-          ${m.website ? `
+          ${websiteHref ? `
           <li class="flex items-center gap-2.5 text-sm text-slate-800 dark:text-slate-100">
             <svg class="w-4 h-4 shrink-0 fill-slate-500 dark:fill-slate-400" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm6.93 6h-2.95a15.7 15.7 0 0 0-1.38-3.56A8.03 8.03 0 0 1 18.93 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14a7.95 7.95 0 0 1 0-4h3.38a16.6 16.6 0 0 0 0 4H4.26zm.81 2h2.95c.32 1.25.78 2.45 1.38 3.56A8.03 8.03 0 0 1 5.07 16zm2.95-8H5.07a8.03 8.03 0 0 1 4.33-3.56A15.7 15.7 0 0 0 8.02 8zM12 19.96a15.7 15.7 0 0 1-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66a14.6 14.6 0 0 1 0-4h4.68a14.6 14.6 0 0 1 0 4zm.27 2h2.95a8.03 8.03 0 0 1-4.33 3.56c.6-1.11 1.06-2.31 1.38-3.56zm-.27-8a14.6 14.6 0 0 0 0-4h2.95a7.95 7.95 0 0 1 0 4h-2.95zM7.4 4.44A15.7 15.7 0 0 0 6.02 8H3.07a8.03 8.03 0 0 1 4.33-3.56z"/>
             </svg>
-            <a class="hover:underline break-all" style="color: var(--link-color);" href="${this._esc(m.website)}" target="_blank" rel="noopener noreferrer">${this._esc(m.website.replace(/^https?:\/\//, ''))}</a>
+            <a class="hover:underline break-all" style="color: var(--link-color);" href="${this._esc(websiteHref)}" target="_blank" rel="noopener noreferrer">${this._esc(websiteHref.replace(/^https?:\/\//, ''))}</a>
           </li>` : ''}
         </ul>
       </div>

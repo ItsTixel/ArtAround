@@ -14,6 +14,7 @@
 import { GLASS_MODAL as GLASS, TRANSITION } from '/marketplace/js/ui-tokens.js';
 import { trapTabKey, focusDialog } from '/marketplace/js/focus-trap.js';
 import { LICENSES } from '/marketplace/js/license-data.js';
+import { safeExternalUrl } from '/marketplace/js/url.js';
 
 const CATEGORY_LABELS = {
   museums: 'Musei',
@@ -68,8 +69,9 @@ class LicensesModal extends HTMLElement {
   }
 
   _linkHtml(label, href) {
-    if (!href) return this._esc(label);
-    return `<a class="hover:underline break-all" style="color: var(--link-color);" href="${this._esc(href)}" target="_blank" rel="noopener noreferrer">${this._esc(label)}</a>`;
+    const safeHref = safeExternalUrl(href);
+    if (!safeHref) return this._esc(label);
+    return `<a class="hover:underline break-all" style="color: var(--link-color);" href="${this._esc(safeHref)}" target="_blank" rel="noopener noreferrer">${this._esc(label)}</a>`;
   }
 
   _bodyHtml() {

@@ -24,6 +24,7 @@ import { GLASS_MODAL as GLASS, TRANSITION, TAG_PILL as TAG_CLS } from '/marketpl
 import { getCurrentUser } from '/marketplace/js/auth-session.js';
 import { trapTabKey, focusDialog } from '/marketplace/js/focus-trap.js';
 import { qrThumbHtml } from '/marketplace/js/qr-code.js';
+import { safeExternalUrl } from '/marketplace/js/url.js';
 
 const API_ENTITIES = '/api/entities';
 const API_MUSEUMS  = '/api/museums';
@@ -176,7 +177,13 @@ class OperaModal extends HTMLElement {
         ${links.length ? `
         <h3 class="text-base font-semibold mb-3.5 text-slate-800 dark:text-slate-100 font-serif">Link esterni</h3>
         <ul class="flex flex-col gap-1.5">
-          ${links.map(l => `<li><a class="text-[0.85rem] underline text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white" href="${this._esc(l.url)}" target="_blank" rel="noopener noreferrer">${this._esc(l.label || l.url)}</a></li>`).join('')}
+          ${links.map(l => {
+            const href = safeExternalUrl(l.url);
+            const label = this._esc(l.label || l.url);
+            return `<li>${href
+              ? `<a class="text-[0.85rem] underline text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white" href="${this._esc(href)}" target="_blank" rel="noopener noreferrer">${label}</a>`
+              : `<span class="text-[0.85rem] text-slate-500 dark:text-slate-400">${label}</span>`}</li>`;
+          }).join('')}
         </ul>` : ''}
       </div>
     `;
