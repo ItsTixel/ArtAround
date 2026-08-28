@@ -1793,6 +1793,7 @@
     },
     "title": "Alla scoperta della Galleria dell'Accademia",
     "description": "Un percorso completo alla Galleria dell'Accademia di Firenze, dal David di Michelangelo ai quattro Prigioni non finiti, fino al Salone dell'Ottocento e alla Pinacoteca al primo piano.",
+    "is_public": true,
     "museum": [
       {
         "$oid": "bbb000000000000000000010"
