@@ -7,6 +7,15 @@ const Order = require('../models/order');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+// L'email è un dato personale: la togliamo dalle voci che non appartengono
+// a chi sta chiamando, anche se ormai queste rotte richiedono comunque il
+// login (vedi routes/users.js).
+function hideEmailUnlessSelf(userDoc, viewerId) {
+  const obj = userDoc.toObject();
+  if (viewerId !== obj._id.toString()) delete obj.email;
+  return obj;
+}
+
 async function getAll(req, res) {
   try {
     const pageSize = Math.min(parseInt(req.query.pageSize) || 10, 100);
@@ -19,7 +28,8 @@ async function getAll(req, res) {
 
     const totalItems = await User.countDocuments();
     const users = await User.find().select('-password').sort(sort).skip(pageSize * page).limit(pageSize);
-    res.json({ totalItems, pageSize, page, data: users });
+    const data = users.map(u => hideEmailUnlessSelf(u, req.user.id));
+    res.json({ totalItems, pageSize, page, data });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -29,27 +39,9 @@ async function getById(req, res) {
   try {
     const user = await User.findById(req.params.id).select('-password');
     if (!user) return res.status(404).json({ error: 'User not found' });
-    res.json(user);
+    res.json(hideEmailUnlessSelf(user, req.user.id));
   } catch (e) {
     res.status(500).json({ error: e.message });
-  }
-}
-
-async function create(req, res) {
-  try {
-    const { email, username } = req.body;
-    const existing = await User.findOne({ $or: [{ email }, { username }] });
-    if (existing) {
-      const field = existing.email === email ? 'email' : 'username';
-      return res.status(409).json({ error: `A user with this ${field} already exists` });
-    }
-
-    const user = new User(req.body);
-    await user.save();
-    const { password: _, ...safe } = user.toObject();
-    res.status(201).json(safe);
-  } catch (e) {
-    res.status(400).json({ error: e.message });
   }
 }
 
@@ -259,4 +251,4 @@ async function removeEntityBookmark(req, res) {
   }
 }
 
-module.exports = { getAll, getById, create, update, remove, upgradeToAuthor, adoptVisit, removeAdoption, bookmarkVisit, removeBookmark, bookmarkEntity, removeEntityBookmark };
+module.exports = { getAll, getById, update, remove, upgradeToAuthor, adoptVisit, removeAdoption, bookmarkVisit, removeBookmark, bookmarkEntity, removeEntityBookmark };

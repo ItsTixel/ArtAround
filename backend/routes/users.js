@@ -13,9 +13,12 @@ const adoptLimiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 40 });
 // servito poi staticamente da /assets.
 const uploadAvatar = handleUploadErrors(createImageUpload('avatars').single('avatar'));
 
-router.get('/',    controller.getAll);
-router.get('/:id', controller.getById);
-router.post('/',   controller.create);
+// Richiede login: prima erano pubbliche, esponendo l'email di ogni utente
+// (unico campo sensibile rimasto dopo -password) a chiunque conoscesse
+// l'endpoint. getAll/getById nascondono comunque l'email sulle voci che non
+// sono quella di chi chiama (vedi controllers/user.js).
+router.get('/',    verifyToken, controller.getAll);
+router.get('/:id', verifyToken, controller.getById);
 router.put('/:id', verifyToken, isSelf, uploadAvatar, controller.update);
 router.delete('/:id', verifyToken, isSelf, controller.remove);
 router.put('/:id/upgrade', verifyToken, isSelf, controller.upgradeToAuthor);
