@@ -71,11 +71,22 @@ async function register(req, res) {
     try {
         const { username, email, password, role } = req.body;
 
+        // Campi mancanti: rispondiamo subito indicando quali, così il form
+        // può segnalarli sotto all'input giusto invece di un errore generico.
+        const missing = {};
+        if (!username || !String(username).trim()) missing.username = 'Scegli un username';
+        if (!email || !String(email).trim()) missing.email = 'Inserisci la tua email';
+        if (!password) missing.password = 'Scegli una password';
+        if (Object.keys(missing).length) {
+            return res.status(400).json({ message: 'Compila tutti i campi', fields: missing });
+        }
+
         // Controlla se l'utente esiste già (per email o username)
         const existing = await User.findOne({ $or: [{ email }, { username }] });
         if (existing) {
             const field = existing.email === email ? 'email' : 'username';
-            return res.status(409).json({ message: `Un utente con questo ${field} esiste già` });
+            const label = field === 'email' ? 'questa email' : 'questo username';
+            return res.status(409).json({ message: `Esiste già un account con ${label}`, field });
         }
 
         // Cripta la password con bcrypt prima di salvarla
@@ -119,6 +130,24 @@ async function register(req, res) {
         });
 
     } catch (e) {
+        // Errori di validazione dello schema (es. "Email non valida",
+        // username troppo corto): li rimandiamo campo per campo.
+        if (e.name === 'ValidationError' && e.errors) {
+            const fields = {};
+            for (const [name, err] of Object.entries(e.errors)) {
+                fields[name] = err.message;
+            }
+            return res.status(400).json({ message: "Controlla i campi evidenziati", fields });
+        }
+
+        // Corsa critica sull'indice unique: il findOne sopra non ha visto il
+        // duplicato ma il save sì. Stesso messaggio del controllo esplicito.
+        if (e.code === 11000) {
+            const field = Object.keys(e.keyPattern || { email: 1 })[0];
+            const label = field === 'email' ? 'questa email' : 'questo username';
+            return res.status(409).json({ message: `Esiste già un account con ${label}`, field });
+        }
+
         res.status(400).json({ message: "Errore durante la registrazione", error: e.message });
     }
 }

@@ -8,8 +8,8 @@ const userSchema = new Schema({
         required: true,
         unique: true,
         trim: true,
-        minLength: [3, 'Username too short (min 3 characters)'],
-        maxLength: [30, 'Username too long (max 30 characters)']
+        minLength: [3, "L'username deve avere almeno 3 caratteri"],
+        maxLength: [30, "L'username non può superare i 30 caratteri"]
     },
 
 
@@ -19,7 +19,7 @@ const userSchema = new Schema({
         unique: true,
         trim: true,
         lowercase: true,
-        match: [/^\S+@\S+\.\S+$/, 'Email non valida']
+        match: [/^\S+@\S+\.\S+$/, 'Mail non valida']
     },
 
     password: {
