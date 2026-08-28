@@ -312,7 +312,17 @@ class AppNavbar extends HTMLElement {
     `;
     authActions.querySelector('.btn-logout').addEventListener('click', async () => {
       await logout();
-      window.location.href = '/marketplace';
+      // Dalla landing page ("/" o landing.html) si resta dov'è: è pubblica e
+      // non ha senso sbalzare l'utente sull'home del marketplace. Dalle altre
+      // pagine (profilo, create, ...) si torna all'home del marketplace, che
+      // gestisce anche i casi in cui la pagina corrente richiede l'accesso.
+      const p = window.location.pathname;
+      const onLanding = p === '/' || p.endsWith('/landing.html');
+      if (onLanding) {
+        window.location.reload();
+      } else {
+        window.location.href = '/marketplace';
+      }
     });
     this._pinTransparentBorders(authActions);
     this._wireFluidIndicator(authActions, '.auth-actions > a, .auth-actions > button');
