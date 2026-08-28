@@ -102,7 +102,7 @@
 /* ── Carosello ────────────────────────────────────────────── */
 .carousel-wrap {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.85rem;
 }
 
@@ -112,9 +112,17 @@
   overflow: hidden;
 }
 
-/* Frecce ai lati della scheda */
+/* Frecce ai lati della scheda.
+   Restano a un'altezza costante invece di centrarsi sull'intera altezza
+   della slide: su sezioni molto lunghe (es. la lista delle tappe) finivano
+   in fondo alla pagina. Si allineano al titolo del blocco e, scorrendo una
+   slide lunga, restano al centro dello schermo (sticky). */
 .carousel-arrow {
   flex: 0 0 auto;
+  align-self: flex-start;
+  position: sticky;
+  top: calc(50vh - 22px);
+  margin-top: 2.4rem;
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -382,5 +390,10 @@
   .form-block { padding: 1.75rem 1.5rem 1.5rem; }
   .wizard-step-label { display: none; }
   .carousel-wrap { gap: 0.4rem; }
-  .carousel-arrow { width: 34px; height: 34px; }
+  .carousel-arrow {
+    width: 34px;
+    height: 34px;
+    top: calc(50vh - 17px);
+    margin-top: 1.9rem;
+  }
 }
