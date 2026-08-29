@@ -54,6 +54,7 @@ server-side (`backend/`), oltre agli asset e agli script condivisi.
 
 ```
 /                       radice del repository
+├── docs/               documentazione aggiuntiva (spiegazione delle scelte architetturali e consigli dei contenuti)
 ├── backend/            applicazione server-side (Node.js + Express + MongoDB)
 │   ├── index.js        entry point: monta le route, avvia il server HTTP + Socket.IO, si connette a MongoDB e serve marketplace/navigator/assets come statici
 │   ├── routes/         definizione degli endpoint REST, una per risorsa (auth, museums, entities, items, visits, users, orders, dev, landing)
@@ -150,10 +151,11 @@ I modelli di LLM sono stati usati in modalità agentica per:
 * Discutere e progettare scelte implementative;
 * Code review;
 * Ottimizzazione del codice;
-* Testing;
+* Testing tramite skill e creazione di unit test;
 * Bug fixing.
+
 Tutte le interazioni seguivano questo workflow:
 * Discussione e progettazione tra i membri sull'archittetura e sul design delle modifiche da fare;
 * Spiegazione all'agente nel dettaglio delle modifiche richieste, con vincoli e contesto dell'archittetura. Chiedendo di sviluppare un piano operativo prima di ogni modifica;
 * Controllo e conferma del piano, con possibili proposte di cambiamento;
-* Controllo delle modifiche effettuate, testing umano, di un secondo agente e tramite unit test.
+* Controllo delle modifiche effettuate, code review di un secondo agente, testing manuale e tramite unit test.
