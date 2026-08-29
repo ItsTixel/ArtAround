@@ -61,11 +61,15 @@ function applyPaywall(visit, unlocked) {
   // "{}", silently dropping them from the API response.
   const obj = visit.toObject({ flattenMaps: true });
   obj.purchased = unlocked;
-  for (const step of obj.steps) {
+  for (const step of obj.steps || []) {
+    // Un item cancellato ma ancora referenziato in step.items arriva qui come
+    // null dopo il populate: va scartato, sia per non far crashare il ciclo
+    // sotto (item.locked su null) sia per non restituirlo al client.
+    step.items = (step.items || []).filter(Boolean);
     for (const item of step.items) {
       item.locked = !unlocked;
       if (!unlocked) {
-        item.descriptions = item.descriptions.map(d => ({ duration_sec: d.duration_sec, text: null }));
+        item.descriptions = (item.descriptions || []).map(d => ({ duration_sec: d.duration_sec, text: null }));
       }
     }
   }
