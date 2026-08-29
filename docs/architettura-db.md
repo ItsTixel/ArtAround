@@ -52,6 +52,7 @@ Per ognuna: scopo, campi principali, cosa è embeddato, a cosa fa riferimento, p
   - Le descrizioni possono essere selezionate manualmente dall'autore, ma se non si è interessati si può semplicemente cliccare "Compila automaticamente" e vengono selezionate tutte le descrizioni necessarie istantaneamente.
   - Gli approfondimenti sono generati tramite ricerca nel database dei tag dell'opera attuale e delle descrizioni.
   - La durata totale è semplicemente la somma degli step della visita, cioè delle descrizioni.
+- Per permettere agli autori di creare versioni specifiche dell'app ogni visita può includere una serie di informazioni sullo stile. Questi valori vengono applicati al Navigator una volta che la visita è attiva.
 - Ogni visita a pagamento è da paywall paywall lato backend, un utente non può visualizzare le descrizioni di una visita non comprate, ma soltanto quali step la compongono
 
 

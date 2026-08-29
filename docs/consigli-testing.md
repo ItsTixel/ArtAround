@@ -7,43 +7,43 @@
 
 ---
 
-## 1. Come usare questo documento
 
-- [ ] Ogni sezione = uno scenario: **profilo** + **visita/contenuto** + **passi** + **cosa verificare**
-- [ ] Prerequisiti: backend + mongod attivi, seed importati (vedi `docs/architettura-db.md` §7)
-- [ ] Le due app: marketplace (`/marketplace`) per creare/sfogliare/adottare, navigator (`/navigator`) per fare la visita
-- [ ] Reset: come tornare a uno stato pulito tra uno scenario e l'altro
+## 1. Profili utente di prova
 
-## 2. Profili utente di prova
+Il profilo consigliato ha queste credenziali:
+- Mail: autore1@example.com
+- Password: 12345678
 
-Tabella dei profili da usare negli scenari (username, ruolo, cosa possiede).
+Questo è uno dei profili più completi, ha creato e possiede diverse visite (tra cui una di gruppo)
 
-| Profilo | Ruolo | Stato / cosa ha | Usato per |
-|---|---|---|---|
-| [ ] `autore-demo` | author | ha creato musei, opere, visite pubbliche e a pagamento | creazione contenuti, storico vendite |
-| [ ] `visitatore-nuovo` | visitor | nessuna visita adottata, nessun bookmark | primo accesso, paywall, adozione |
-| [ ] `visitatore-pro` | visitor | ha adottato visite a pagamento + bookmark | visita completa, ripresa progresso |
-| [ ] `professore-gruppo` | author | proprietario di una visita di gruppo con `code` e quiz | avvio sessione live, pannello docente |
-| [ ] `studente-1` / `studente-2` | visitor | partecipano a una visita di gruppo | join, telemetria, quiz |
-| [ ] `google-user` | visitor | account creato via Google Sign-In (senza password) | login alternativo |
+Altri utenti nel database sono (tutti con pwd=12345678):
+- alice@example.com
+- autore2@example.com
+- visitatore1@example.com
+- visitatore2@example.com
 
-- [ ] Per ciascun profilo: credenziali o come crearlo/seedarlo
+## 2. Contenuti di prova consigliati
 
-## 3. Contenuti di prova consigliati
+Quali visite usare e perché ognuna è interessante.
 
-Quali visite/opere usare e perché ognuna è interessante.
+- Capolavori degli Uffizi: un percorso essenziale:
+    - Visita completa con 15 step;
+    - Mappa multipiano;
+    - Stile dell'app personalizzato;
+    - Ogni step ha tutti i toni e diversi tag di approfondimenti.
+- Da Michelangelo a Botticelli: dagli Uffizi all'Accademia:
+    -  Visita che comprende più musei.
+- Menù degustazione all'Osteria delle Belle Arti:
+    - Visita non di un museo, mostra flessibilità dell'app ad altre esperienze.
+- Visita di Gruppo (codice GRUPPO):
+    - Visita di gruppo della Pinacoteca Nazionale di Bologna;
+    - Quiz integrato alla fine del percorso;
+    - Visita creata da autore1, deve essere quest'utente ad inserire il codice GRUPPO nel navigator per cominciare la sessione.
 
-- [ ] **Visita "singolo museo, breve"** — 2–3 step, un solo museo: smoke test rapido
-- [ ] **Visita "multi-museo"** — step in musei diversi: verifica `museum[]` inferito, note logistiche
-- [ ] **Visita a pagamento** (`base_price > 0`) — paywall
-- [ ] **Visita gratuita pubblica** (`base_price = 0`, `is_public = true`)
-- [ ] **Visita privata** (`is_public = false`) — visibile solo all'autore
-- [ ] **Visita con tutti i toni** — opere con Item `childish`/`simple`/`medium`/`technical`: selettore del tono
-- [ ] **Visita con approfondimenti** — step su Entity senza `placements`: InsightModal, tag verificati
-- [ ] **Visita con tema personalizzato** (`theme`): palette chiara/scura + font applicati dal navigator
-- [ ] **Visita di gruppo** con `code` + `quiz`: sessione live
-- [ ] **Opera con licenza `Private`/`Reserved`**: usabile in visita solo dall'autore
 
+
+
+------------ Si può eliminare da qui sotto
 ## 4. Scenari di test
 
 Per ogni scenario: **Profilo**, **Contenuto**, **Passi**, **Risultato atteso**.
@@ -117,29 +117,3 @@ Per ogni scenario: **Profilo**, **Contenuto**, **Passi**, **Risultato atteso**.
 - [ ] Profilo: `autore-demo` (venditore) + `visitatore-pro` (acquirente)
 - [ ] Passi: acquirente adotta una visita a pagamento → poi la rimuove
 - [ ] Attese: Order creato e poi cancellato; una sola adozione per coppia `{buyer, visit}`
-
-## 5. Casi limite da provare
-
-- [ ] Visita con un solo step
-- [ ] Opera presente in più musei (placement multipli)
-- [ ] Step di approfondimento (Entity senza placement) con museo scelto a mano
-- [ ] Visita di gruppo senza quiz
-- [ ] Item eliminato citato da una visita (regressione paywall già corretta)
-- [ ] Descrizioni con `duration_sec` molto diversi → durata stimata
-- [ ] Tema con solo alcune chiavi di palette valorizzate (le altre ai default)
-- [ ] Riapertura di una sessione di gruppo già `finished`
-
-## 6. Cosa NON serve testare qui
-
-- [ ] Unit test automatici (`backend/test/`, `navigator/src/**/*.test.js`): coperti a parte
-- [ ] Dettagli di stile/design system
-
-## 7. Checklist rapida "tutto funziona"
-
-- [ ] Login (locale + Google)
-- [ ] Sfoglia + adotta visita gratuita
-- [ ] Paywall su visita a pagamento
-- [ ] Visita completa con cambio tono + approfondimento
-- [ ] Mappa + indicazioni
-- [ ] Sessione di gruppo con 2 studenti + quiz
-- [ ] Creazione museo/opera/visita da autore
