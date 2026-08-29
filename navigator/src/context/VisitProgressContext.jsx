@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useMemo, useRef, useState } from 
 import { useNavigate } from 'react-router-dom'
 import { useActiveVisit } from './ActiveVisitContext'
 import { applyItalianVoice } from '../utils/speechVoice'
+import { setMeter, getMic, setMic } from './playerMeterStore'
 
 export const TONE_ORDER = ['childish', 'simple', 'medium', 'technical']
 export const TONE_LABELS = {
@@ -233,13 +234,12 @@ export function VisitProgressProvider({ children }) {
   const [selectedDescIndex, setSelectedDescIndex] = useState(0)
   const [stepIndex, setStepIndex] = useState(0)
   const [playbackState, setPlaybackState] = useState('idle') // 'idle' | 'playing' | 'paused'
-  const [progress, setProgress] = useState(0) // 0..1, position within currentDescription.text
-  const [seekPreview, setSeekPreview] = useState(null) // 0..1 while dragging, else null
+  // progress (0..1) e seekPreview vivono in playerMeterStore: si aggiornano
+  // troppo spesso per stare nel value di questo context (vedi quel file).
   const [autoplayEnabled, setAutoplayEnabled] = useState(true)
   const [directions, setDirections] = useState(null) // { text, parts } | null — null when not showing the directions view
-  const [micListening, setMicListening] = useState(false)
-  const [micTranscript, setMicTranscript] = useState('') // live/final speech heard during the current listen, for the "listening" popup
-  const [micError, setMicError] = useState(null) // friendly message flashed in the listening popup when recognition fails (denied permission, insecure origin, no mic, ...)
+  // micListening / micTranscript / micError vivono anch'essi in
+  // playerMeterStore: il transcript intermedio cambia molte volte al secondo.
   const micErrorTimeoutRef = useRef(null)
   const [activeInsightTag, setActiveInsightTag] = useState(null) // tag string | null — apre InsightModal (AppLayout) quando valorizzato, da bottone Comandi.jsx o comando vocale
   // Tono/paragrafo/playback dell'opera-approfondimento mostrata in
@@ -390,7 +390,7 @@ export function VisitProgressProvider({ children }) {
     timerRef.current = setInterval(() => {
       const elapsed = (Date.now() - playStartRef.current.time) / 1000
       const fraction = Math.min(1, playStartRef.current.baseFraction + elapsed / duration)
-      setProgress(fraction)
+      setMeter({ progress: fraction })
       resumeCharRef.current = Math.round(fraction * textRef.current.length)
     }, 200)
   }
@@ -400,8 +400,7 @@ export function VisitProgressProvider({ children }) {
     window.speechSynthesis.cancel()
     stopProgressTimer()
     setPlaybackState('idle')
-    setProgress(0)
-    setSeekPreview(null)
+    setMeter({ progress: 0, seekPreview: null })
     resumeCharRef.current = 0
     textRef.current = ''
   }
@@ -420,7 +419,7 @@ export function VisitProgressProvider({ children }) {
     stopProgressTimer()
     resumeCharRef.current = clamped
     const baseFraction = text.length ? clamped / text.length : 0
-    setProgress(baseFraction)
+    setMeter({ progress: baseFraction })
 
     const remaining = text.slice(clamped)
     if (!remaining) {
@@ -445,7 +444,7 @@ export function VisitProgressProvider({ children }) {
       // bar always reaches 100% once the text has actually been read,
       // regardless of how the browser's TTS speed compared to the estimate.
       resumeCharRef.current = text.length
-      setProgress(1)
+      setMeter({ progress: 1 })
       setPlaybackState('idle')
       latestScheduleAutoListenRef.current?.()
     }
@@ -568,8 +567,7 @@ export function VisitProgressProvider({ children }) {
     window.speechSynthesis.cancel()
     stopProgressTimer()
     setPlaybackState('idle')
-    setProgress(0)
-    setSeekPreview(null)
+    setMeter({ progress: 0, seekPreview: null })
     resumeCharRef.current = 0
     textRef.current = ''
     setDirections(null)
@@ -761,13 +759,13 @@ export function VisitProgressProvider({ children }) {
 
   function stopListening() {
     recognitionRef.current?.abort()
-    setMicListening(false)
+    setMic({ listening: false })
   }
 
   function flashMicError(message) {
     clearTimeout(micErrorTimeoutRef.current)
-    setMicError(message)
-    micErrorTimeoutRef.current = setTimeout(() => setMicError(null), 3500)
+    setMic({ error: message })
+    micErrorTimeoutRef.current = setTimeout(() => setMic({ error: null }), 3500)
   }
 
   // Also exposed on the context (below): EntityListenPanel's own utterances
@@ -792,9 +790,8 @@ export function VisitProgressProvider({ children }) {
     }
     promptUtteranceRef.current = null
     window.speechSynthesis.cancel()
-    setMicTranscript('')
     clearTimeout(micErrorTimeoutRef.current)
-    setMicError(null)
+    setMic({ transcript: '', error: null })
 
     recognition.onresult = (event) => {
       // interimResults=true fires this repeatedly as the phrase is heard, so
@@ -808,19 +805,19 @@ export function VisitProgressProvider({ children }) {
         if (result.isFinal) finalText += text
         else interimText += text
       }
-      setMicTranscript((finalText || interimText).trim())
+      setMic({ transcript: (finalText || interimText).trim() })
       if (finalText) handleVoiceCommand(finalText)
     }
     recognition.onerror = (event) => {
-      setMicListening(false)
+      setMic({ listening: false })
       const message = describeMicError(event.error)
       if (message) flashMicError(message)
     }
-    recognition.onend = () => setMicListening(false)
+    recognition.onend = () => setMic({ listening: false })
 
     try {
       recognition.start()
-      setMicListening(true)
+      setMic({ listening: true })
     } catch {
       // Each call gets its own fresh instance now, so a throw here is a
       // genuine failure to start (not the old "already active" double-press
@@ -832,7 +829,7 @@ export function VisitProgressProvider({ children }) {
   // Manual mic button: interrupts whatever's speaking and starts listening,
   // or — pressed again while already listening — cancels the listen.
   function handleMicToggle() {
-    if (micListening) {
+    if (getMic().listening) {
       stopListening()
       return
     }
@@ -993,14 +990,13 @@ export function VisitProgressProvider({ children }) {
     window.speechSynthesis.cancel()
     stopProgressTimer()
     recognitionRef.current?.abort()
-    setMicListening(false)
+    setMic({ listening: false, transcript: '', error: null })
     promptUtteranceRef.current = null
     utteranceRef.current = null
     textRef.current = ''
     resumeCharRef.current = 0
     setPlaybackState('idle')
-    setProgress(0)
-    setSeekPreview(null)
+    setMeter({ progress: 0, seekPreview: null })
     setStepIndex(0)
     setSelectedTone(null)
     setSelectedDescIndex(0)
@@ -1131,9 +1127,6 @@ export function VisitProgressProvider({ children }) {
     showEndPrompt,
     openEndPrompt,
     closeEndPrompt,
-    micListening,
-    micTranscript,
-    micError,
     micAutoEnabled,
     micSupported,
     handleMicToggle,
@@ -1169,9 +1162,6 @@ export function VisitProgressProvider({ children }) {
     requestPreviousParagraph,
     requestNextParagraph,
     playbackState,
-    progress,
-    seekPreview,
-    setSeekPreview,
     handleSeek,
     handlePlayPause,
     autoplayEnabled,

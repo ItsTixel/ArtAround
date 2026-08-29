@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom'
 import { useActiveVisit } from '../context/ActiveVisitContext'
 import { useVisitProgress } from '../context/VisitProgressContext'
 import { useGroupSession } from '../context/GroupSessionContext'
+import { usePlayerMeter, useMicListening, setMeter } from '../context/playerMeterStore'
 import { PreviousIcon, NextIcon, PlayIcon, PauseIcon, MicrophoneIcon, InfoIcon } from './icons'
 import MicListeningIndicator from './MicListeningIndicator'
 import CommandsHelpModal from './CommandsHelpModal'
@@ -38,21 +39,19 @@ function PlayerBar() {
   const { activeVisit } = useActiveVisit()
   const {
     playbackState,
-    progress,
-    seekPreview,
-    setSeekPreview,
     handleSeek,
     handlePlayPause,
     autoplayEnabled,
     toggleAutoplay,
     activeText,
     activeDurationSec,
-    micListening,
     micAutoEnabled,
     micSupported,
     handleMicToggle,
     toggleMicAuto,
   } = useVisitProgress()
+  const { progress, seekPreview } = usePlayerMeter()
+  const micListening = useMicListening()
   // Precedente/Prossimo come funzione: la stessa che usa Comandi.jsx e la
   // stessa che risolvono i comandi vocali — un solo posto decide cosa fanno
   // e quando sono permessi, non una copia per canale di input.
@@ -74,10 +73,10 @@ function PlayerBar() {
           step={0.001}
           value={seekValue}
           disabled={!activeText}
-          onInput={(e) => setSeekPreview(Number(e.target.value))}
+          onInput={(e) => setMeter({ seekPreview: Number(e.target.value) })}
           onChange={(e) => {
             handleSeek(Number(e.target.value))
-            setSeekPreview(null)
+            setMeter({ seekPreview: null })
           }}
           aria-label="Posizione lettura"
           style={{ '--seek-percent': `${seekValue * 100}%` }}

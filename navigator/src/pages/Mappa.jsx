@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useActiveVisit } from '../context/ActiveVisitContext'
 import { useVisitProgress } from '../context/VisitProgressContext'
@@ -83,7 +83,7 @@ function boundsFor(rect, base, scale) {
 // l'immagine — quindi le dimensioni "naturali" del contenuto (base) si
 // leggono da contentRef via offsetWidth/Height (non influenzate dal
 // transform) invece di assumere che coincidano col rect del contenitore.
-function useMapZoomPan(viewportRef, contentRef) {
+function useMapZoomPan(viewportRef, contentRef, viewportNode) {
   const [scale, setScale] = useState(1)
   const [tx, setTx] = useState(0)
   const [ty, setTy] = useState(0)
@@ -148,17 +148,67 @@ function useMapZoomPan(viewportRef, contentRef) {
   // bordi dell'elemento durante il gesto (da cui il drag che "si blocca"
   // panando una mappa ingrandita). window li riceve comunque, ovunque sia
   // il dito.
-  function attachWindowListeners() {
+  // Identità stabile (useCallback) per pointermove/up: così add e remove
+  // combaciano sempre e la rete di sicurezza allo smontaggio rimuove davvero
+  // i listener anche se la mappa viene smontata a metà gesto.
+  const handlePointerMove = useCallback((e) => {
+    if (!pointers.current.has(e.pointerId)) return
+    updatePointer(e)
+    const pts = [...pointers.current.values()]
+    const rect = viewportRef.current.getBoundingClientRect()
+    const base = getBase()
+
+    if (pts.length === 1 && dragStart.current) {
+      const dx = pts[0].x - dragStart.current.x
+      const dy = pts[0].y - dragStart.current.y
+      if (Math.hypot(dx, dy) > DRAG_THRESHOLD_PX) draggedRef.current = true
+      const { minX, maxX, minY, maxY } = boundsFor(rect, base, stateRef.current.scale)
+      setTx(clamp(dragStart.current.tx + dx, minX, maxX))
+      setTy(clamp(dragStart.current.ty + dy, minY, maxY))
+    } else if (pts.length === 2 && pinchStart.current) {
+      draggedRef.current = true
+      const dist = distanceBetween(pts[0], pts[1])
+      const ratio = dist / pinchStart.current.dist
+      const newScale = clamp(pinchStart.current.scale * ratio, MIN_SCALE, MAX_SCALE)
+      const midX = (pts[0].x + pts[1].x) / 2 - rect.left
+      const midY = (pts[0].y + pts[1].y) / 2 - rect.top
+      const contentX = (pinchStart.current.midX - pinchStart.current.tx) / pinchStart.current.scale
+      const contentY = (pinchStart.current.midY - pinchStart.current.ty) / pinchStart.current.scale
+      const { minX, maxX, minY, maxY } = boundsFor(rect, base, newScale)
+      setScale(newScale)
+      setTx(clamp(midX - contentX * newScale, minX, maxX))
+      setTy(clamp(midY - contentY * newScale, minY, maxY))
+    }
+    // Legge solo ref e setter stabili: nessuna dipendenza reattiva.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const handlePointerUp = useCallback((e) => {
+    pointers.current.delete(e.pointerId)
+    const pts = [...pointers.current.values()]
+    if (pts.length === 1) {
+      dragStart.current = { x: pts[0].x, y: pts[0].y, tx: stateRef.current.tx, ty: stateRef.current.ty }
+      pinchStart.current = null
+    } else {
+      dragStart.current = null
+      pinchStart.current = null
+    }
+    if (pointers.current.size === 0) detachWindowListeners()
+    // detachWindowListeners è a sua volta un useCallback stabile.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const attachWindowListeners = useCallback(() => {
     window.addEventListener('pointermove', handlePointerMove)
     window.addEventListener('pointerup', handlePointerUp)
     window.addEventListener('pointercancel', handlePointerUp)
-  }
+  }, [handlePointerMove, handlePointerUp])
 
-  function detachWindowListeners() {
+  const detachWindowListeners = useCallback(() => {
     window.removeEventListener('pointermove', handlePointerMove)
     window.removeEventListener('pointerup', handlePointerUp)
     window.removeEventListener('pointercancel', handlePointerUp)
-  }
+  }, [handlePointerMove, handlePointerUp])
 
   function handlePointerDown(e) {
     // Ogni nuovo gesto riparte "pulito": senza questo, un tocco che atterra
@@ -191,49 +241,6 @@ function useMapZoomPan(viewportRef, contentRef) {
     }
   }
 
-  function handlePointerMove(e) {
-    if (!pointers.current.has(e.pointerId)) return
-    updatePointer(e)
-    const pts = [...pointers.current.values()]
-    const rect = viewportRef.current.getBoundingClientRect()
-    const base = getBase()
-
-    if (pts.length === 1 && dragStart.current) {
-      const dx = pts[0].x - dragStart.current.x
-      const dy = pts[0].y - dragStart.current.y
-      if (Math.hypot(dx, dy) > DRAG_THRESHOLD_PX) draggedRef.current = true
-      const { minX, maxX, minY, maxY } = boundsFor(rect, base, stateRef.current.scale)
-      setTx(clamp(dragStart.current.tx + dx, minX, maxX))
-      setTy(clamp(dragStart.current.ty + dy, minY, maxY))
-    } else if (pts.length === 2 && pinchStart.current) {
-      draggedRef.current = true
-      const dist = distanceBetween(pts[0], pts[1])
-      const ratio = dist / pinchStart.current.dist
-      const newScale = clamp(pinchStart.current.scale * ratio, MIN_SCALE, MAX_SCALE)
-      const midX = (pts[0].x + pts[1].x) / 2 - rect.left
-      const midY = (pts[0].y + pts[1].y) / 2 - rect.top
-      const contentX = (pinchStart.current.midX - pinchStart.current.tx) / pinchStart.current.scale
-      const contentY = (pinchStart.current.midY - pinchStart.current.ty) / pinchStart.current.scale
-      const { minX, maxX, minY, maxY } = boundsFor(rect, base, newScale)
-      setScale(newScale)
-      setTx(clamp(midX - contentX * newScale, minX, maxX))
-      setTy(clamp(midY - contentY * newScale, minY, maxY))
-    }
-  }
-
-  function handlePointerUp(e) {
-    pointers.current.delete(e.pointerId)
-    const pts = [...pointers.current.values()]
-    if (pts.length === 1) {
-      dragStart.current = { x: pts[0].x, y: pts[0].y, tx: stateRef.current.tx, ty: stateRef.current.ty }
-      pinchStart.current = null
-    } else {
-      dragStart.current = null
-      pinchStart.current = null
-    }
-    if (pointers.current.size === 0) detachWindowListeners()
-  }
-
   function handleDoubleClick(e) {
     const rect = viewportRef.current.getBoundingClientRect()
     const cx = e.clientX - rect.left
@@ -257,14 +264,13 @@ function useMapZoomPan(viewportRef, contentRef) {
   // React registra i listener onWheel come passive: preventDefault() lì
   // dentro verrebbe ignorato (e loggherebbe un warning), quindi lo scroll
   // della pagina non si fermerebbe mentre si zooma con trackpad/rotellina.
-  // Serve un listener nativo non-passive. Nessun array di dipendenze: il nodo
-  // (selectedMap monta un render dopo quello iniziale) va riletto da
-  // viewportRef.current ad ogni render — usarlo come dipendenza non
-  // funzionerebbe, perché il valore controllato da React è quello letto
-  // *durante* il render, cioè prima che il ref di questo stesso render venga
-  // collegato al commit, quindi resterebbe sempre a null.
+  // Serve un listener nativo non-passive. Dipende da `viewportNode` (il nodo
+  // arriva via callback ref, un render dopo quello iniziale) così l'effetto
+  // si riaggancia solo al montaggio/smontaggio della mappa, non a ogni
+  // render — durante un gesto di pan/zoom sarebbero decine di
+  // add/removeEventListener al secondo.
   useEffect(() => {
-    const el = viewportRef.current
+    const el = viewportNode
     if (!el) return
     function handleWheel(e) {
       e.preventDefault()
@@ -276,7 +282,9 @@ function useMapZoomPan(viewportRef, contentRef) {
     }
     el.addEventListener('wheel', handleWheel, { passive: false })
     return () => el.removeEventListener('wheel', handleWheel)
-  })
+    // applyZoomAt legge tutto da ref: la sua identità per-render non conta.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [viewportNode])
 
   // Safari non rispetta touch-action:none quando l'elemento è annidato in
   // un antenato scrollabile (il <main overflow-y-auto> di AppLayout): lo
@@ -284,14 +292,14 @@ function useMapZoomPan(viewportRef, contentRef) {
   // Come per il wheel sopra, onTouchMove di React è passive: serve un
   // listener nativo non-passive per il preventDefault().
   useEffect(() => {
-    const el = viewportRef.current
+    const el = viewportNode
     if (!el) return
     function handleTouchMove(e) {
       e.preventDefault()
     }
     el.addEventListener('touchmove', handleTouchMove, { passive: false })
     return () => el.removeEventListener('touchmove', handleTouchMove)
-  })
+  }, [viewportNode])
 
   return {
     scale,
@@ -398,22 +406,31 @@ function Mappa() {
 
   const viewportRef = useRef(null)
   const contentRef = useRef(null)
-  const zoomPan = useMapZoomPan(viewportRef, contentRef)
+  // Il div della mappa monta un render dopo quello iniziale (è dietro il
+  // guard `selectedMap && …`): un callback ref ne pubblica il nodo come stato,
+  // così gli effetti che ci agganciano listener nativi (wheel, touchmove,
+  // ResizeObserver) si riattivano solo al montaggio/smontaggio invece di
+  // rieseguirsi a ogni render durante un gesto di pan/zoom.
+  const [viewportNode, setViewportNode] = useState(null)
+  const setViewportRef = useCallback((node) => {
+    viewportRef.current = node
+    setViewportNode(node)
+  }, [])
+  const zoomPan = useMapZoomPan(viewportRef, contentRef, viewportNode)
   const fullscreen = useFullscreen(viewportRef)
 
-  // Nessun array di dipendenze: come per il listener wheel più sotto,
-  // viewportRef.current va riletto ad ogni render (monta un render dopo
-  // quello iniziale). Copre sia il cambio piano/museo sia l'ingresso/uscita
-  // da schermo intero, l'orientamento del device, ecc.
+  // Dipende da `viewportNode` (callback ref): si riaggancia al montaggio/
+  // smontaggio del div mappa. Copre cambio piano/museo, ingresso/uscita da
+  // schermo intero, rotazione del device, ecc.
   useEffect(() => {
-    const el = viewportRef.current
+    const el = viewportNode
     if (!el) return
     const observer = new ResizeObserver(([entry]) => {
       setContainerSize({ width: entry.contentRect.width, height: entry.contentRect.height })
     })
     observer.observe(el)
     return () => observer.disconnect()
-  })
+  }, [viewportNode])
 
   const fit =
     fullscreen.isFullscreen && containerSize && naturalSize
@@ -610,7 +627,7 @@ function Mappa() {
 
       {selectedMap && (
         <div
-          ref={viewportRef}
+          ref={setViewportRef}
           className={`glass-panel w-full touch-none select-none overflow-hidden ${
             // "relative" e "fixed" vanno mutuamente esclusive: nel CSS
             // compilato da Tailwind .relative viene dopo .fixed, quindi a

@@ -1,4 +1,4 @@
-import { useVisitProgress } from '../context/VisitProgressContext'
+import { useMicStatus } from '../context/playerMeterStore'
 import { MicrophoneIcon } from './icons'
 
 // Piccolo popup "in ascolto" ancorato sopra la PlayerBar mentre il
@@ -11,7 +11,7 @@ import { MicrophoneIcon } from './icons'
 // Sempre montato (non condizionato da micListening/micError) per poter
 // animare entrata/uscita via transizione CSS invece di un mount/unmount secco.
 function MicListeningIndicator() {
-  const { micListening, micTranscript, micError } = useVisitProgress()
+  const { listening: micListening, transcript: micTranscript, error: micError } = useMicStatus()
   const visible = micListening || Boolean(micError)
 
   return (
