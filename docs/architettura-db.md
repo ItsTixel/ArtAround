@@ -7,56 +7,55 @@
 
 ---
 
-## 1. Quadro generale
+## Quadro generale
 
-- [ ] DBMS scelto (MongoDB) e ODM (Mongoose 7): motivazioni
-- [ ] Documento vs relazionale: perché un modello a documenti si adatta ai contenuti di ArtAround (musei → opere → descrizioni → visite)
-- [ ] Diagramma delle collezioni e delle relazioni (embed vs ref)
-- [ ] Convenzioni comuni: `timestamps`, ObjectId come chiavi, naming
+L'obiettivo dell'architettura dell'intero sito, a partire dal databse, è fornire un sistema flessibile. Sia i visitatori che gli autori hanno la possibilità di andare molto nel dettaglio nella creazione e fruizione di contenuti, ma non sono obbligati.
 
-## 2. Le collezioni
+In questo documento son spiegate le scelte più esemplificative per raggiungere questo scopo, mettendo in secondo piano il lato tecnico e concentrandosi su quello di design.
+
+## Le collezioni
 
 Per ognuna: scopo, campi principali, cosa è embeddato, a cosa fa riferimento, perché.
 
-### 2.1 User
-- [ ] Ruoli (`author` / `visitor`) e come guidano i permessi
-- [ ] Account locali vs Google Sign-In (`password` condizionale, `googleId` sparse)
-- [ ] Array di relazioni denormalizzate: `adopted_visits`, `bookmarked_visits`, `bookmarked_entities` — perché array sull'utente e non collezioni a parte (eccezione: Order, vedi §2.7)
-- [ ] Campi di profilo (`display_name`, `bio`, `avatar_url`)
+### User
+- Gli utenti si dividono in due ruoli: visitatori e autori. Solo gli autori possono creare contenuti, tuttavia qualora un visitatore fosse interessato a cominciare a creare contenuti può istantaneamente fare l'upgrade ad "Autore" nel profilo con un click. 
+-  Account locali vs Google Sign-In, ogni utente può scegliere la formula di accesso che preferisce.
 
-### 2.2 Museum
-- [ ] Dati anagrafici + `address` come sotto-documento
-- [ ] Uso di `Map` per `services`, `accessibility_info`, `opening_hours`: perché una Map e non un array di coppie o campi fissi
-- [ ] `maps[]` → `museumMapSchema` → `mapPointSchema`: punti di interesse con coordinate normalizzate 0–1, perché normalizzate
-- [ ] `mapPointSchema.entity` / `service_key`: collegamento punto mappa ↔ opera / servizio
-- [ ] Virtual `entities` (reverse populate su `placements.museum`): perché virtual invece di un array `entities` sul museo
+### Museum
+- Ogni museo ha tanti campi possibili, ma solo lo stretto indispensabile è obbligatorio, tutto il resto del sito è adatto ad usare musei con infomazioni minimali
+- Ogni autore può modificare i musei (così come le opere), in questo modo un utente può creare soltanto l'entry nel database e lasciare che il resto della community inserisca il resto delle informazioni.
+- La mappa è semplicemente un immagine con una serie di punti di interesse (ognuno con coordinate normalizzate sull'immagine), rendendo l'aggiunta di una mappa molto veloce.
 
-### 2.3 Entity ("opera" / "approfondimento")
-- [ ] Cos'è una Entity: l'oggetto reale/concettuale, indipendente dalle sue descrizioni
-- [ ] `is_physical` e la distinzione opera fisica vs approfondimento
-- [ ] `placements[]`: dove l'opera si trova (museo + stanza/piano). Perché un'opera può stare in più musei
-- [ ] Entity **senza** placements = "approfondimento": conseguenze sul modello e sulle visite (vedi §3.2)
-- [ ] Identificatori esterni/interni: `wikidata_id`, `local_id` + `generateLocalId()` (formato `AA-00000`)
-- [ ] `external_links[]`, `tags[]`
+### Entity ("opera" / "approfondimento")
+- Le entity sono una dell unità fondamentali del database, rappresentano gli oggetti della visita. Ogni entity può essere o fisica (un quadro, una scultura) o astratta (un concetto, una persona)
+- Le entity contengono solo informazioni intrinseche all'opera, il nome, una foto o il posizionamento, le informazioni estrinseche (le descrizioni) sono disaccoppiate e inserite in "Item".
+- Disaccopiare descrizioni ed opere aggiunge un step di complessità all'architettura, ma porta diversi benefici:
+  - Un autore può semplicemente "riempire" un museo con tutte le opere, non è obbligato a scrivere anche tutte le descrizioni in una volta
+  - Nel database ci possono essere più descrizioni per la singola opera anche con lo stesso tono, per esempio si possono differenziare per il modo in cui viene descritta l'opera.
+- Per semplificare l'uso per i visitatori è sempre possibile chiedere al sito opere già fornite di descrizioni (es: nella richiesta di approfondimenti o dopo lo scan di un codice QR), in questo caso il backend si occuperà di fornire l'entity richiesta insieme a delle descrizioni pubbliche. In questo modo durante la visita è impossibile che l'utente non abbia accesso a delle informazioni esistenti nel database solo perché in precedenza un autore non ha selezionato tutte le descrizioni.
 
-### 2.4 Item ("descrizione")
-- [ ] Perché Item è separato da Entity: più descrizioni della stessa opera, con tono e lunghezza diversi
-- [ ] `tone` (`childish` / `simple` / `medium` / `technical`): il tono **è** il concetto di difficoltà, non esiste un campo "difficoltà" a parte
-- [ ] `descriptions[]` (`text` + `duration_sec`): paragrafi sequenziali, non versioni alternative dello stesso testo
-- [ ] `license` (`Public` / `Private` / `Reserved`): significato e dove viene fatto rispettare (vedi §4)
-- [ ] `marketplace_summary`, `image_url` / `alt_text`, `tags[]`
-- [ ] Relazione `artwork` → Entity, `author` → User
+### Item ("descrizione")
+- Gli item sono il secondo componente fondamentale del database, insieme alle entity caratterizzano interamente una visita.
+- Ogni descrizione è una lista di paragrafi di durata incrementale con un singolo tono; la lunghezza e il numero dei paragrafi all'interno della descrizione è a completa discrezione dell'autore e delle sue esigenze.
+- I quattro toni (infantile, elementare, medio, avanzato) caratterizzano ogni descrizione e indicano la difficoltà del testo, permettendo visite flessibili ad ogni esigenza.
+- La licenza di ogni descrizione indica la sua visibilità e si dividono in:
+  - Pubblica: ogni utente può vedere quella descrizione e usarla per le proprie visite
+  - Privata: solo il creatore può vedere quella descrizione e inserirle nelle proprie visite, anch'esse private.
+  - Riservate: le descrizioni riservate fanno da ponte tra le due visibilità. Una descrizione riservata può essere messa in descrizioni pubbliche, ma solo dall'autore. In questo modo un autore ha la possibilità di creare contenuti con cura sapendo di poterci guadagnare, inserendo queste descrizioni in visite pubbliche a pagamento. Nessun altro a parte l'autore può monetizzare su quelle descrizioni.
 
-### 2.5 Visit
-- [ ] Cos'è una visita: percorso ordinato di step su una o più opere
-- [ ] `steps[]` → `visitStepSchema` **embeddato**: perché gli step vivono e muoiono con la visita
-  - [ ] `entity` (ref), `items[]` (ref), `museum` (ref), `order`, `intro_note`, `logistic_note`
-- [ ] `museum[]` **inferito** dall'unione dei musei degli step (hook `pre('save')`): perché derivato e non inserito a mano
-- [ ] `estimated_duration_sec` **inferito** dalla media delle durate delle descrizioni: formula e limiti
-- [ ] `theme` → `visitThemeSchema` (palette chiara/scura + font): perché embeddato, validazione hex/font, applicato solo dal Navigator a visita attiva
-- [ ] `is_public`, `base_price` e il paywall (vedi §4)
-- [ ] `tags[]`, `image_url`, `description`
+### Visit
+- Una visita è un percorso ordinato di step su una o più opere. Ogni visita contiene una lista di step, ogni step contiene l'opera di riferimento e una serie di descrizioni (max. una per tono).
+- Quest'architettura consente senza problemi di creare visite che comprendono più musei e su qualsiasi argomento.
+- La creazione di una visita si compone soltanto dell'unica parte importante: la selezione delle opere e il loro ordine, tutte le complessità aggiuntive son gestite dal sito:
+  - Le indicazioni tra un'opera e l'altra son calcolate dinamicamente confrontando la posizione dell'opera attuale e dell'opera successiva, indicando all'utente le differenze (es: "Procedi alla stanza 2" oppure "Procedi al museo Galleria degli Uffizi, Piano 1, stanza 1")
+  - Le indicazioni su punti di interesse nel museo (es: il bagno, l'uscita o le scale) vengono importate dal museo.
+  - Le descrizioni possono essere selezionate manualmente dall'autore, ma se non si è interessati si può semplicemente cliccare "Compila automaticamente" e vengono selezionate tutte le descrizioni necessarie istantaneamente.
+  - Gli approfondimenti sono generati tramite ricerca nel database dei tag dell'opera attuale e delle descrizioni.
+  - La durata totale è semplicemente la somma degli step della visita, cioè delle descrizioni.
+- Ogni visita a pagamento è chiusa dietro un paywall lato backend, un utente non può visualizzare le descrizioni di una visita non comprate, ma soltanto quali step la compongono
 
+
+------- Da rimuovere tutto il sottostante
 ### 2.6 Visite di gruppo (dentro Visit)
 - [ ] `is_group`: invarianti forzate nell'hook (`is_public = false`, `base_price = 0`) e perché
 - [ ] `code` (unique + **sparse**): perché sparse — le visite singole non hanno codice e non devono violare l'unique
