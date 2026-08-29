@@ -32,7 +32,7 @@ export function closestToneAtMost(tones, targetTone) {
 
 const TTS_WORDS_PER_MINUTE = 150
 
-function estimateDurationSec(text) {
+export function estimateDurationSec(text) {
   const words = (text || '').trim().split(/\s+/).filter(Boolean).length
   if (!words) return 0
   return Math.max(1, Math.round((words / TTS_WORDS_PER_MINUTE) * 60))
@@ -42,7 +42,7 @@ function estimateDurationSec(text) {
 // actually takes place in (an entity can have placements in several
 // museums). Returns null for non-physical entities, which have no
 // meaningful location to give directions to.
-function getStepLocation(step) {
+export function getStepLocation(step) {
   if (!step?.entity?.is_physical) return null
   const museumId = step.museum?._id != null ? String(step.museum._id) : null
   const placement = (step.entity.placements || []).find((p) => {
@@ -64,7 +64,7 @@ function getStepLocation(step) {
 // no differences at all yields no directions. Returns both a spoken
 // sentence (for the TTS/player) and a structured parts list (for the UI, so
 // it can render one row per level instead of a flat sentence).
-function buildDirections(prev, curr) {
+export function buildDirections(prev, curr) {
   if (!prev || !curr) return null
 
   const museumDiffers = prev.museumId !== curr.museumId
@@ -116,7 +116,7 @@ export const VOICE_COMMANDS = [
 // comando, quindi il raggruppamento per sezione non cambia gli esiti.
 const VOICE_COMMAND_PATTERNS = VOICE_COMMANDS.map(({ key, phrases }) => ({ key, patterns: phrases }))
 
-function normalizeVoiceText(text) {
+export function normalizeVoiceText(text) {
   return (text || '')
     .toLowerCase()
     .normalize('NFD')
@@ -126,7 +126,7 @@ function normalizeVoiceText(text) {
     .trim()
 }
 
-function matchVoiceCommand(transcript) {
+export function matchVoiceCommand(transcript) {
   const normalized = normalizeVoiceText(transcript)
   if (!normalized) return null
   const match = VOICE_COMMAND_PATTERNS.find(({ patterns }) => patterns.some((p) => normalized.includes(p)))

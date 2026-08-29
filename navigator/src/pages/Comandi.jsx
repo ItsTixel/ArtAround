@@ -8,6 +8,7 @@ import {
 } from '../context/VisitProgressContext'
 import { useGroupSession } from '../context/GroupSessionContext'
 import NoActiveVisit from '../components/NoActiveVisit'
+import { chunkBalanced } from '../utils/chunkBalanced'
 import {
   PreviousIcon,
   NextIcon,
@@ -49,23 +50,6 @@ function CommandButton({ label, Icon, onClick, disabled, colorClasses }) {
 }
 
 const SERVICE_GAP_PX = 8 // must match the gap-2 used on the row wrappers below
-
-// Splits `items` into as-even-as-possible groups of at most `maxCols`,
-// distributing any remainder across the earlier rows first — e.g. 5 items
-// with maxCols 3 becomes rows of [3, 2], never [3, 1, 1] or [1,1,1,1,1].
-function chunkBalanced(items, maxCols) {
-  if (items.length === 0) return []
-  if (!maxCols || maxCols >= items.length) return [items]
-  const rows = Math.ceil(items.length / maxCols)
-  const result = []
-  let i = 0
-  for (let r = 0; r < rows; r++) {
-    const count = Math.ceil((items.length - i) / (rows - r))
-    result.push(items.slice(i, i + count))
-    i += count
-  }
-  return result
-}
 
 // Renders `labels` as full-width rows of equally-sized buttons. The number
 // of columns is chosen (from an always-present, invisible measuring copy of
