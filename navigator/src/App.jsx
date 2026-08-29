@@ -6,6 +6,7 @@ import { VisitProgressProvider } from './context/VisitProgressContext'
 import { GroupSessionProvider } from './context/GroupSessionContext'
 import AppLayout from './layout/AppLayout'
 import GroupQuizModal from './components/GroupQuizModal'
+import ErrorBoundary from './components/ErrorBoundary'
 
 const Home = lazy(() => import('./pages/Home'))
 const SelectVisit = lazy(() => import('./pages/SelectVisit'))
@@ -30,30 +31,35 @@ function App() {
       <ActiveVisitProvider>
         <VisitProgressProvider>
           <GroupSessionProvider>
-            {/* Overlay globale: deve interrompere lo studente qualunque tab
-                stia guardando quando il professore avvia il quiz, non solo
-                su /opera — per questo sta qui e non dentro una singola route. */}
-            <GroupQuizModal />
-            <Suspense fallback={<PageFallback />}>
-              <Routes>
-                {/* Al di fuori di AppLayout: niente BottomNav/PlayerBar/ProfileMenu,
-                    è una sala d'attesa, non contenuto da navigare. La console del
-                    professore (ex /sessione/gestisci) è invece dentro AppLayout,
-                    sulla tab "Gruppo" — il professore segue la visita come
-                    chiunque altro mentre la gestisce. */}
-                <Route path="sessione" element={<SessionLobby />} />
-                <Route element={<AppLayout />}>
-                  <Route index element={<Home />} />
-                  <Route path="visite" element={<SelectVisit />} />
-                  <Route path="visite/:museumSlug" element={<SelectVisit />} />
-                  <Route path="mappa" element={<Mappa />} />
-                  <Route path="opera" element={<Opera />} />
-                  <Route path="comandi" element={<Comandi />} />
-                  <Route path="qr" element={<Qr />} />
-                  <Route path="gruppo" element={<Gruppo />} />
-                </Route>
-              </Routes>
-            </Suspense>
+            {/* Rete di sicurezza: un errore di render in una pagina non deve
+                lasciare l'app come schermata bianca. Dentro i provider così il
+                fallback eredita comunque tema e classi. */}
+            <ErrorBoundary>
+              {/* Overlay globale: deve interrompere lo studente qualunque tab
+                  stia guardando quando il professore avvia il quiz, non solo
+                  su /opera — per questo sta qui e non dentro una singola route. */}
+              <GroupQuizModal />
+              <Suspense fallback={<PageFallback />}>
+                <Routes>
+                  {/* Al di fuori di AppLayout: niente BottomNav/PlayerBar/ProfileMenu,
+                      è una sala d'attesa, non contenuto da navigare. La console del
+                      professore (ex /sessione/gestisci) è invece dentro AppLayout,
+                      sulla tab "Gruppo" — il professore segue la visita come
+                      chiunque altro mentre la gestisce. */}
+                  <Route path="sessione" element={<SessionLobby />} />
+                  <Route element={<AppLayout />}>
+                    <Route index element={<Home />} />
+                    <Route path="visite" element={<SelectVisit />} />
+                    <Route path="visite/:museumSlug" element={<SelectVisit />} />
+                    <Route path="mappa" element={<Mappa />} />
+                    <Route path="opera" element={<Opera />} />
+                    <Route path="comandi" element={<Comandi />} />
+                    <Route path="qr" element={<Qr />} />
+                    <Route path="gruppo" element={<Gruppo />} />
+                  </Route>
+                </Routes>
+              </Suspense>
+            </ErrorBoundary>
           </GroupSessionProvider>
         </VisitProgressProvider>
       </ActiveVisitProvider>
