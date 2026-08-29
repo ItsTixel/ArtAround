@@ -95,12 +95,6 @@ class AppNavbar extends HTMLElement {
       </header>
     `;
 
-    // Come nel commento dentro _wireFluidIndicator: forza subito l'invisibilità di
-    // ogni pillola presente nel markup iniziale, prima ancora che Tailwind possa
-    // applicare "opacity-0" o che _loadUser() (asincrono) arrivi ad agganciarle.
-    this.querySelectorAll('.nav-indicator').forEach((el) => { el.style.opacity = '0'; });
-    this._pinTransparentBorders(this);
-
     this._loadUser();
     this._setupMenuToggle();
     this._setupThemeToggle();
@@ -115,12 +109,8 @@ class AppNavbar extends HTMLElement {
     if (!wrap) return;
     const indicator = wrap.querySelector(':scope > .nav-indicator');
     if (!indicator) return;
-    // Tailwind (CDN) applica la classe "opacity-0" in modo asincrono: nel primissimo
-    // frame dopo un reload/navigazione l'indicatore può quindi risultare visibile di
-    // default finché quella classe non viene iniettata, per poi sfumare a 0 — un
-    // lampo indesiderato sulla voce attiva. Lo stile inline ha priorità sulla classe
-    // e garantisce l'invisibilità fin da subito, indipendentemente dai tempi di Tailwind.
-    indicator.style.opacity = '0';
+    // L'indicatore parte invisibile grazie alla classe `opacity-0` di
+    // NAV_INDICATOR e viene rivelato da moveTo() al primo hover/focus reale.
 
     // `silent`: riposiziona senza toccare l'opacità (preset iniziale sulla voce
     // attiva, o correzione geometria — vedi refresh() sotto). `lastTarget` tiene
@@ -156,30 +146,12 @@ class AppNavbar extends HTMLElement {
     const activeEl = wrap.querySelector(itemSelector.split(',').map(s => `${s.trim()}.active`).join(', '));
     if (activeEl) moveTo(activeEl, /* silent */ true);
 
-    // Stesso ritardo di Tailwind visto sopra: una misura presa troppo presto (qui,
-    // o su un mouseover "fantasma" che il browser spara subito dopo la navigazione
-    // sulla voce già sotto al cursore) resta bloccata su una geometria pre-stile e
-    // la pillola risulta storta finché un hover non la ricalcola. A pagina e font
-    // pronti, ri-misuriamo (senza toccare l'opacità) l'ultima voce agganciata.
+    // La voce attiva è pre-posizionata (sopra) misurandola con il font di
+    // fallback: quando il webfont serif (Google Fonts, caricato in modo
+    // asincrono) subentra, la sua larghezza cambia. Ri-misuriamo la voce
+    // ancora agganciata appena i font sono pronti, senza toccare l'opacità.
     const refresh = () => { if (lastTarget) moveTo(lastTarget, /* silent */ true); };
-    window.addEventListener('load', refresh);
     document.fonts?.ready?.then(refresh);
-    setTimeout(refresh, 400);
-  }
-
-  // Stesso ritardo di Tailwind (vedi _wireFluidIndicator): "border" (grigio di
-  // default) e "border-transparent" arrivano in due passaggi separati, così per
-  // qualche centinaio di ms il bordo grigio resta visibile e con `transition-all`
-  // (TRANSITION) attivo si vede sfumare via su ogni voce. Lo forziamo a trasparente
-  // via stile inline finché Tailwind non si stabilizza, poi ridiamo il controllo
-  // alle classi (serve per l'hover mobile "border-white/30" del menu collassato).
-  _pinTransparentBorders(root) {
-    const els = root.querySelectorAll('.border-transparent');
-    els.forEach((el) => { el.style.borderColor = 'transparent'; });
-    const release = () => { els.forEach((el) => { el.style.borderColor = ''; }); };
-    window.addEventListener('load', release, { once: true });
-    document.fonts?.ready?.then(release);
-    setTimeout(release, 600);
   }
 
   _setupThemeToggle() {
@@ -299,7 +271,6 @@ class AppNavbar extends HTMLElement {
       a.textContent = 'Le tue visite';
       li.appendChild(a);
       navLinks.appendChild(li);
-      this._pinTransparentBorders(navLinks);
     }
 
     const authActions = this.querySelector('.auth-actions');
@@ -324,7 +295,6 @@ class AppNavbar extends HTMLElement {
         window.location.href = '/marketplace';
       }
     });
-    this._pinTransparentBorders(authActions);
     this._wireFluidIndicator(authActions, '.auth-actions > a, .auth-actions > button');
   }
 }
