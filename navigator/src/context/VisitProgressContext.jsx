@@ -197,14 +197,16 @@ export function insightCandidateTags(entity, items) {
 // "urbino" would then fuzzy-match an unrelated opera's name (e.g. "Doppio
 // ritratto dei duchi di Urbino", "Venere di Urbino") and reopen it as its
 // own "approfondimento", duplicating that opera's own content instead of
-// adding new content. Anchoring the tag into ^...$ turns it into an exact
+// adding new content. GET /api/entities?name_exact= turns it into an exact
 // (still case-insensitive) match, so a tag only ever resolves to a
 // deliberately-curated topic entity named after it — never to an opera
-// that merely happens to contain the same word. Shared by Comandi.jsx's
-// existence check and InsightModal's fetch, so both look up the same way.
-export function exactNameQuery(name) {
-  return `^${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`
-}
+// that merely happens to contain the same word. The matching itself (escape
+// + anchoring) happens server-side (backend/utils/regex.js buildExactRegex):
+// this endpoint is public and unauthenticated, so it must never trust a
+// ready-made regex from the client, even an already-escaped one — only a
+// plain tag string. Shared by useVerifiedInsightTags' existence check and
+// InsightModal's fetch, so both look up the same way — see `name_exact` in
+// their fetch calls.
 
 // Maps SpeechRecognition's onerror event.error codes to a friendly Italian
 // message for the listening popup. 'no-speech' (silence timeout) and

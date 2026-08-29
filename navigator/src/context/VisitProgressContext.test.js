@@ -2,7 +2,6 @@ import { describe, it, expect } from 'vitest'
 import {
   closestToneAtMost,
   insightCandidateTags,
-  exactNameQuery,
   estimateDurationSec,
   getStepLocation,
   buildDirections,
@@ -65,29 +64,14 @@ describe('insightCandidateTags', () => {
   })
 })
 
-describe('exactNameQuery', () => {
-  it('ancora il nome tra ^ e $', () => {
-    expect(exactNameQuery('Rinascimento')).toBe('^Rinascimento$')
-  })
-
-  it('fa lo escape dei metacaratteri delle regex', () => {
-    expect(exactNameQuery('Doppio ritratto (1465)')).toBe('^Doppio ritratto \\(1465\\)$')
-    expect(exactNameQuery('a.b*c+d?')).toBe('^a\\.b\\*c\\+d\\?$')
-  })
-
-  it('produce una regex che combacia solo col nome esatto (non come sottostringa)', () => {
-    const re = new RegExp(exactNameQuery('Venere di Urbino'), 'i')
-    expect(re.test('venere di urbino')).toBe(true)
-    expect(re.test('La Venere di Urbino')).toBe(false)
-    expect(re.test('Venere di Urbino (copia)')).toBe(false)
-  })
-
-  it('un nome con parentesi non diventa un gruppo di cattura', () => {
-    const re = new RegExp(exactNameQuery('Ritratto (Uomo)'))
-    expect(re.test('Ritratto (Uomo)')).toBe(true)
-    expect(re.test('Ritratto Uomo')).toBe(false)
-  })
-})
+// Il match esatto per nome (usato da useVerifiedInsightTags/InsightModal per
+// risolvere un tag all'entità omonima) è ora costruito interamente lato
+// server a partire da testo semplice — vedi backend/utils/regex.js
+// buildExactRegex e il suo test in backend/test/regex.test.js. Il navigator
+// manda solo il tag grezzo come `name_exact`, senza costruire regex lato
+// client: l'endpoint è pubblico e non deve mai fidarsi di una regex
+// pronta arrivata dal chiamante (vedi il commit "Backend: Block RegEx
+// injection").
 
 describe('estimateDurationSec', () => {
   it('senza testo restituisce 0', () => {

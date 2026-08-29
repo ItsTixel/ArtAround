@@ -2,7 +2,7 @@
 // Runner: quello integrato di Node (`node --test`), nessuna dipendenza.
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { escapeRegex, buildSearchRegex } = require('../utils/regex');
+const { escapeRegex, buildSearchRegex, buildExactRegex } = require('../utils/regex');
 
 test('escapeRegex fa l\'escape di tutti i metacaratteri regex', () => {
   assert.equal(escapeRegex('a.b*c'), 'a\\.b\\*c');
@@ -49,4 +49,23 @@ test('buildSearchRegex fa trim dell\'input', () => {
 test('buildSearchRegex tronca l\'input a maxLen', () => {
   const long = 'a'.repeat(500);
   assert.equal(buildSearchRegex(long, 10).source, 'a'.repeat(10));
+});
+
+test('buildExactRegex combacia solo col nome esatto, non come sottostringa', () => {
+  const re = buildExactRegex('Venere di Urbino');
+  assert.ok(re.test('venere di urbino')); // case-insensitive
+  assert.ok(!re.test('La Venere di Urbino'));
+  assert.ok(!re.test('Venere di Urbino (copia)'));
+});
+
+test('buildExactRegex tratta i metacaratteri del nome come testo letterale', () => {
+  // Senza escape "(a+)+$" combacerebbe come pattern (o farebbe backtracking
+  // catastrofico); qui deve cercare solo il nome letterale, ancorato.
+  const re = buildExactRegex('Ritratto (Uomo)');
+  assert.ok(re.test('Ritratto (Uomo)'));
+  assert.ok(!re.test('Ritratto Uomo'));
+});
+
+test('buildExactRegex non lancia su un nome che sarebbe una regex non valida', () => {
+  assert.doesNotThrow(() => buildExactRegex('('));
 });

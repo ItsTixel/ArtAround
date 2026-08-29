@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import useEscapeKey from '../hooks/useEscapeKey'
 import useFocusTrap from '../hooks/useFocusTrap'
 import EntityListenPanel from './EntityListenPanel'
-import { exactNameQuery } from '../context/VisitProgressContext'
 
 // Popup aperto chiedendo un approfondimento su un tag dell'opera attuale (da
 // Comandi.jsx o da un comando vocale — vedi requestInsight in
@@ -20,7 +19,7 @@ function InsightModal({ tag, onClose }) {
   useEffect(() => {
     let cancelled = false
     setLookup({ loading: true, error: null, entity: null })
-    fetch(`/api/entities?name=${encodeURIComponent(exactNameQuery(tag))}&pageSize=1`)
+    fetch(`/api/entities?name_exact=${encodeURIComponent(tag)}&pageSize=1`)
       .then((res) => {
         if (!res.ok) throw new Error()
         return res.json()

@@ -24,4 +24,16 @@ function buildSearchRegex(input, maxLen = 100) {
   return new RegExp(escapeRegex(String(input).trim().slice(0, maxLen)), 'i');
 }
 
-module.exports = { escapeRegex, buildSearchRegex };
+// Come buildSearchRegex, ma per un match ESATTO (non "contiene") su un campo
+// stringa — usata dove serve trovare l'entità il cui nome coincide
+// esattamente con un valore noto (es. il navigator che risolve il tag di un
+// approfondimento all'opera omonima, invece di fare fuzzy-match su qualunque
+// nome che contenga quella parola). Gli ancoraggi ^...$ sono aggiunti QUI,
+// dopo l'escape di `input` — mai passati dal chiamante come parte della
+// stringa: un chiamante che li includesse li vedrebbe semplicemente escapati
+// come testo letterale, stessa garanzia di buildSearchRegex.
+function buildExactRegex(input, maxLen = 100) {
+  return new RegExp(`^${escapeRegex(String(input).trim().slice(0, maxLen))}$`, 'i');
+}
+
+module.exports = { escapeRegex, buildSearchRegex, buildExactRegex };

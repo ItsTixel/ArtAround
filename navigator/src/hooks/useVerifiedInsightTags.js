@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { exactNameQuery } from '../context/VisitProgressContext'
 
 // Verifica quali tag hanno un'opera-approfondimento associata (un'opera,
 // anche non fisica, il cui nome coincide esattamente col tag — vedi
@@ -22,7 +21,7 @@ export default function useVerifiedInsightTags(tags) {
     let cancelled = false
     Promise.all(
       tagsKey.split('|').map((tag) =>
-        fetch(`/api/entities?name=${encodeURIComponent(exactNameQuery(tag))}&pageSize=1`, { method: 'HEAD' })
+        fetch(`/api/entities?name_exact=${encodeURIComponent(tag)}&pageSize=1`, { method: 'HEAD' })
           .then((res) => (parseInt(res.headers.get('X-Total-Count') || '0', 10) > 0 ? tag : null))
           .catch(() => null)
       )

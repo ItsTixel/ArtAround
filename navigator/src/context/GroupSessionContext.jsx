@@ -7,6 +7,12 @@ import { museumVisitPath } from '../utils/museumVisit'
 
 const STORAGE_KEY = 'navigator_group_session'
 
+// Limite di frequenza per updateOwnState (vedi sotto): ciclare rapidamente
+// toni/paragrafi (tap ripetuti o comandi vocali in sequenza) altrimenti
+// emetterebbe un evento socket per ciascun cambiamento, anche quando solo
+// l'ultimo valore conta davvero per il monitor del professore.
+const UPDATE_STATE_THROTTLE_MS = 300
+
 const GroupSessionContext = createContext(null)
 
 export function GroupSessionProvider({ children }) {
@@ -119,6 +125,11 @@ export function GroupSessionProvider({ children }) {
   // invece la lettura della descrizione deve partire da sola su tutti i
   // dispositivi. Consumato dall'effect più sotto.
   const sessionJustStartedRef = useRef(false)
+  // Stato dello studente non ancora inviato al professore (vedi
+  // updateOwnState) e il timer che ne programma l'invio accorpato.
+  const pendingOwnStateRef = useRef({})
+  const stateThrottleTimerRef = useRef(null)
+  const lastStateSentAtRef = useRef(0)
 
   function applyAck(ack) {
     if (!ack || ack.error) return
@@ -399,12 +410,43 @@ export function GroupSessionProvider({ children }) {
     return body
   }
 
-  // Solo lo studente: emette il proprio stato locale al professore (mai
-  // richiesto in risposta, il monitor si aggiorna via visit:participant_state_changed).
-  function updateOwnState(partial) {
+  // Invia davvero al professore i campi accumulati in pendingOwnStateRef (se
+  // non già vuoto) e azzera l'accumulo. Il backend applica solo i campi
+  // effettivamente presenti nel payload (vedi backend/sockets/visitSession.js),
+  // quindi accorpare più chiamate di updateOwnState in un solo emit con
+  // l'unione dei loro campi è equivalente a inviarle una per una — cambia
+  // solo la cadenza, non lo stato finale che il professore vede.
+  function flushOwnState() {
+    clearTimeout(stateThrottleTimerRef.current)
+    stateThrottleTimerRef.current = null
+    const partial = pendingOwnStateRef.current
+    pendingOwnStateRef.current = {}
+    if (Object.keys(partial).length === 0) return
     const socket = socketRef.current
     if (!socket || !visitIdRef.current || roleRef.current !== 'student') return
+    lastStateSentAtRef.current = Date.now()
     socket.emit('visit:update_state', { visitId: visitIdRef.current, ...partial })
+  }
+
+  // Solo lo studente: segnala il proprio stato locale al professore (mai
+  // richiesto in risposta, il monitor si aggiorna via visit:participant_state_changed).
+  // Chiamata da più effect indipendenti (tono/paragrafo/playback, stato
+  // dell'approfondimento, "pronto"), anche più volte nello stesso istante:
+  // invece di un emit per chiamata, accumula i campi e li invia al più una
+  // volta ogni UPDATE_STATE_THROTTLE_MS — il primo cambiamento dopo un
+  // periodo di quiete parte subito (leading edge, il professore vede la
+  // reazione immediata), i successivi entro la finestra vengono fusi in un
+  // solo invio finale (trailing edge) invece di uno ciascuno.
+  function updateOwnState(partial) {
+    pendingOwnStateRef.current = { ...pendingOwnStateRef.current, ...partial }
+    const elapsed = Date.now() - lastStateSentAtRef.current
+    if (elapsed >= UPDATE_STATE_THROTTLE_MS) {
+      flushOwnState()
+      return
+    }
+    if (!stateThrottleTimerRef.current) {
+      stateThrottleTimerRef.current = setTimeout(flushOwnState, UPDATE_STATE_THROTTLE_MS - elapsed)
+    }
   }
 
   function setReady(value) {
@@ -439,6 +481,13 @@ export function GroupSessionProvider({ children }) {
       socketRef.current.disconnect()
       socketRef.current = null
     }
+    // Scarta un eventuale invio accorpato non ancora partito: dopo l'uscita
+    // roleRef è comunque azzerato più sotto (flushOwnState non emetterebbe
+    // nulla), ma senza questo il timer resterebbe comunque agganciato fino
+    // alla scadenza invece di essere ripulito subito.
+    clearTimeout(stateThrottleTimerRef.current)
+    stateThrottleTimerRef.current = null
+    pendingOwnStateRef.current = {}
     // Sia host che student attivano la visita in establishSession ora, quindi
     // entrambi la puliscono qui allo stesso modo.
     clearActiveVisit()
@@ -614,6 +663,7 @@ export function GroupSessionProvider({ children }) {
   useEffect(() => {
     return () => {
       if (socketRef.current) socketRef.current.disconnect()
+      clearTimeout(stateThrottleTimerRef.current)
     }
   }, [])
 

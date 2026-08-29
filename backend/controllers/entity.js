@@ -1,5 +1,5 @@
 const Entity = require('../models/entity');
-const { buildSearchRegex } = require('../utils/regex');
+const { buildSearchRegex, buildExactRegex } = require('../utils/regex');
 
 async function getAll(req, res) {
   try {
@@ -14,7 +14,14 @@ async function getAll(req, res) {
     if (req.query.wikidata_id) filter.wikidata_id = req.query.wikidata_id;
     if (req.query.is_physical !== undefined) filter.is_physical = req.query.is_physical === 'true';
     if (req.query.has_image === 'true') filter.image_url = { $exists: true, $ne: '' };
-    if (req.query.name)  filter.name = buildSearchRegex(req.query.name);
+    // name_exact: match esatto (case-insensitive) sul nome, non "contiene" —
+    // usato dal navigator per risolvere il tag di un approfondimento
+    // all'opera/entità omonima, senza fuzzy-match su nomi che la
+    // contengono soltanto (es. tag "urbino" che matcherebbe anche "Venere
+    // di Urbino"). Ha precedenza su `name` se, per qualunque motivo,
+    // arrivassero entrambi.
+    if (req.query.name_exact) filter.name = buildExactRegex(req.query.name_exact);
+    else if (req.query.name)  filter.name = buildSearchRegex(req.query.name);
     if (req.query.tags)  filter.tags = { $in: req.query.tags.split(',').map(t => t.trim()) };
     if (req.query.artwork_author) {
       const authors = req.query.artwork_author.split(',').map(a => a.trim()).filter(Boolean);
