@@ -50,38 +50,48 @@ dello stesso host.
 Permessi: file `644`, directory `755`.
 Il repository contiene una directory per ciascuna delle due applicazioni
 client (`marketplace/`, `navigator/`) più una directory per l'applicazione
-server-side (`backend/`), oltre agli asset e agli script condivisi.
+server-side (`backend/`), oltre agli asset condivisi e alla documentazione.
 
 ```
 /                       radice del repository
-├── docs/               documentazione aggiuntiva (spiegazione delle scelte architetturali e consigli dei contenuti)
+├── docs/               documentazione aggiuntiva
+│   ├── architettura-db.md    scelte di modellazione del database
+│   └── consigli-testing.md   guida alla prova manuale del sito: utenti, visite e percorsi consigliati
+│
 ├── backend/            applicazione server-side (Node.js + Express + MongoDB)
 │   ├── index.js        entry point: monta le route, avvia il server HTTP + Socket.IO, si connette a MongoDB e serve marketplace/navigator/assets come statici
-│   ├── routes/         definizione degli endpoint REST, una per risorsa (auth, museums, entities, items, visits, users, orders, dev, landing)
+│   ├── routes/         definizione degli endpoint REST, una per risorsa (auth, museums, entities, items, visits, users, orders, landing)
 │   ├── controllers/    logica applicativa di ogni risorsa (incl. visit.js: visite singole e ciclo di vita delle sessioni di gruppo)
 │   ├── models/         schemi Mongoose: User, Museum, Entity, Item, Visit, Quiz, Order
-│   ├── middlewares/    autenticazione JWT (verifyToken/optionalAuth), controlli di ruolo e proprietà, upload immagini (multer), rate limiting
+│   ├── middlewares/    autenticazione JWT (verifyToken/optionalAuth), controlli di ruolo e proprietà, caricamento delle visite di gruppo, upload immagini (multer), rate limiting
 │   ├── sockets/        server Socket.IO e handler della sessione "live" delle visite di gruppo (join, stato partecipanti, quiz)
-│   └── utils/          helper generici (generazione dei codici visita, escape delle regex per la ricerca)
+│   ├── utils/          helper generici (generazione dei codici visita, escape delle regex per la ricerca)
+│   └── test/           unit test degli helper, eseguiti con il test runner nativo di Node
 │
 ├── marketplace/        applicazione "marketplace" — HTML + CSS + JavaScript vanilla, nessun bundler JS (unico step di build: il CSS di Tailwind)
 │   ├── pages/          una pagina HTML per vista (index, opere, visits, my-visits, profile, create-museum/entity/item/visit, landing)
 │   ├── login.html, register.html   pagine di autenticazione
-│   ├── components/     Web Components nativi (customElements) riutilizzabili: navbar, footer, card e modali di musei/opere/visite, sidebar dei filtri, modale licenze
-│   ├── js/             moduli ES: logica di pagina, sessione/auth lato client, wizard dei form, gestione tema, generazione QR; js/vendor/ contiene librerie incluse a mano (qrcode.mjs)
-│   └── css/            fogli di stile scritti a mano, uno per pagina + base.css condiviso + tailwind.css (generato dalla CLI di Tailwind, da non modificare a mano)
+│   ├── components/     Web Components nativi (customElements) riutilizzabili: navbar, footer, card e modali di musei/opere/visite, modale dello step di visita, sidebar dei filtri (opere ed entità), modale licenze
+│   ├── js/             moduli ES: logica di pagina, sessione/auth lato client, wizard dei form, gestione tema, token di stile condivisi, sanificazione degli URL inseriti dagli autori, download/upload dei JSON di configurazione, generazione QR; js/vendor/ contiene librerie incluse a mano (qrcode.mjs)
+│   ├── css/            fogli di stile scritti a mano, uno per pagina + base.css condiviso + tailwind.css (generato dalla CLI di Tailwind, da non modificare a mano)
+│   ├── assets/         immagini di corredo delle pagine catalogo (slideshow di musei, opere e visite)
+│   ├── test/           unit test dei moduli puri (slug, sanificazione URL, utility entità, export JSON)
+│   └── package.json    solo lo script `test` (nessuna dipendenza a runtime)
 │
 ├── navigator/          applicazione "navigator" — Single Page Application React, build con Vite
 │   ├── index.html      entry HTML della SPA
 │   ├── vite.config.js  configurazione Vite (base /navigator/, proxy verso il backend in sviluppo)
+│   ├── .oxlintrc.json  configurazione del linter (oxlint)
 │   ├── src/
-│   │   ├── main.jsx, App.jsx    bootstrap React e definizione delle route (react-router)
+│   │   ├── main.jsx, App.jsx    bootstrap React e definizione delle route (react-router), con error boundary globale
 │   │   ├── pages/      una vista per schermata: Home, SelectVisit, Mappa, Opera, Comandi, Qr, Gruppo, SessionLobby
-│   │   ├── components/ componenti UI (player audio, bottom nav, modali, pannello di ascolto, indicatore microfono, quiz di gruppo…)
-│   │   ├── context/    React Context per lo stato globale: AuthContext, ActiveVisitContext, VisitProgressContext, GroupSessionContext
+│   │   ├── components/ componenti UI (player audio, bottom nav, modali, pannello di ascolto, indicatore microfono, preferiti, quiz di gruppo…)
+│   │   ├── context/    React Context per lo stato globale (AuthContext, ActiveVisitContext, VisitProgressContext, GroupSessionContext) più playerMeterStore, store esterno per lo stato ad alta frequenza di player e microfono
 │   │   ├── hooks/      custom hook (focus trap, tasto Esc, titolo pagina, tema della visita, tag degli approfondimenti verificati)
 │   │   ├── layout/     AppLayout — shell con navigazione e player
-│   │   └── utils/      helper (slug, sintesi vocale, gestione visita museo)
+│   │   ├── utils/      helper (slug, sintesi vocale, gestione visita museo, suddivisione bilanciata delle griglie)
+│   │   ├── theme.js    tema chiaro/scuro condiviso col marketplace via localStorage
+│   │   └── *.test.js   unit test dei moduli puri e del reducer di avanzamento visita (Vitest)
 │   ├── public/         asset statici copiati as-is nella build (icons.svg)
 │   └── dist/           build di produzione generata da `npm run build`, servita dal backend su /navigator
 │
@@ -113,6 +123,7 @@ server-side (`backend/`), oltre agli asset e agli script condivisi.
   * `mongodb` — driver MongoDB (dichiarato esplicitamente; usato di fatto da Mongoose)
   * `dotenv` - lettura delle variabili d'ambiente
   * `nodemon` (devDependency) — riavvio automatico del server in sviluppo
+* Test: test runner nativo di Node (`node --test`), nessuna dipendenza aggiuntiva
 
 #### Applicazione marketplace
 
@@ -120,7 +131,8 @@ server-side (`backend/`), oltre agli asset e agli script condivisi.
 * Architettura: multi-page (una pagina HTML per vista); parti riutilizzabili implementate come Web Components nativi (`customElements`), senza alcun framework
 * CSS: fogli di stile scritti a mano + Tailwind CSS compilato in un file statico. La CLI di Tailwind (`npm run build:css` nella radice) compila `tailwind-input.css` in `marketplace/css/tailwind.css` — con la config in `tailwind.config.js` (radice) — che le pagine linkano al posto della vecchia Play CDN
 * Un solo pacchetto NPM, di build: `tailwindcss` (v3, devDependency nel `package.json` della radice), usato solo dalla CLI per generare il CSS; a runtime le pagine non caricano alcuna libreria (JavaScript vanilla, ES module serviti così come sono). I Google Fonts sono inclusi via `<link>`; `marketplace/js/vendor/qrcode.mjs` è una libreria di generazione QR code inclusa manualmente nel repository (non da npm)
-* API del browser utilizzate: Fetch, Web Components / Custom Elements, `localStorage` (preferenza tema), Canvas (anteprime immagini)
+* API del browser utilizzate: Fetch, Web Components / Custom Elements, `localStorage` (preferenza tema), Canvas (anteprime immagini), Blob / Object URL (download dei JSON di configurazione)
+* Test: test runner nativo di Node (`node --test`), sui moduli ES puri
 
 #### Applicazione navigator
 
@@ -134,7 +146,7 @@ server-side (`backend/`), oltre agli asset e agli script condivisi.
   * `react-router-dom` — routing lato client
   * `socket.io-client` — connessione realtime alle sessioni di gruppo
   * `jsqr` — decodifica dei QR code dal flusso video della fotocamera
-  * devDependencies: `vite`, `@vitejs/plugin-react`, `tailwindcss`, `@tailwindcss/vite`, `oxlint` (linter), `@types/react`, `@types/react-dom`
+  * devDependencies: `vite`, `@vitejs/plugin-react`, `tailwindcss`, `@tailwindcss/vite`, `oxlint` (linter), `vitest` (unit test), `@types/react`, `@types/react-dom`
 * API del browser utilizzate: `getUserMedia` (fotocamera per la scansione QR), Web Speech API — `SpeechSynthesis` (lettura ad alta voce delle descrizioni) e `SpeechRecognition` (comandi vocali), Canvas, `localStorage` (preferenza tema, condivisa con il marketplace)
 
 
