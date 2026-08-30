@@ -79,6 +79,9 @@
     "avatar_url": "https://i.pravatar.cc/150?u=autore1",
     "adopted_visits": [
       {
+        "$oid": "eee000000000000000000014"
+      },
+      {
         "$oid": "eee000000000000000000090"
       },
       {
