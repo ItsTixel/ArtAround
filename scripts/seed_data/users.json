@@ -79,9 +79,6 @@
     "avatar_url": "https://i.pravatar.cc/150?u=autore1",
     "adopted_visits": [
       {
-        "$oid": "eee000000000000000000009"
-      },
-      {
         "$oid": "eee000000000000000000090"
       },
       {
@@ -89,9 +86,6 @@
       },
       {
         "$oid": "eee000000000000000000101"
-      },
-      {
-        "$oid": "eee000000000000000000102"
       }
     ],
     "bookmarked_visits": [],
@@ -113,7 +107,14 @@
     "display_name": "Autore Due",
     "bio": "Storico dell'arte, si occupa di percorsi tematici sul Barocco bolognese.",
     "avatar_url": "https://i.pravatar.cc/150?u=autore2",
-    "adopted_visits": [],
+    "adopted_visits": [
+      {
+        "$oid": "eee000000000000000000009"
+      },
+      {
+        "$oid": "eee000000000000000000102"
+      }
+    ],
     "bookmarked_visits": [],
     "createdAt": {
       "$date": "2025-03-01T00:00:00Z"
