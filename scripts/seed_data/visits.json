@@ -2270,7 +2270,7 @@
       }
     ],
     "author": {
-      "$oid": "aaa000000000000000000001"
+      "$oid": "aaa000000000000000000004"
     },
     "base_price": 0,
     "steps": [
@@ -3041,7 +3041,7 @@
       "Botticelli",
       "infra-museale"
     ],
-    "is_public": true,
+    "is_public": false,
     "estimated_duration_sec": 3244.38,
     "createdAt": {
       "$date": "2026-08-24T00:00:00Z"
