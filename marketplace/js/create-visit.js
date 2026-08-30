@@ -531,7 +531,7 @@ function renderStepItemRow(container, it) {
   const authorName = it.author?.display_name || it.author?.username || 'Autore sconosciuto';
   row.innerHTML = `
     <label class="step-item-row-select">
-      <input type="checkbox" value="${it._id}" data-tone="${it.tone}">
+      <input type="checkbox" value="${it._id}" data-tone="${it.tone}" data-license="${it.license}">
       <span class="step-item-row-body">
         <span class="step-item-row-title">
           <span class="step-item-row-summary">${esc(it.marketplace_summary)}</span>
@@ -656,13 +656,21 @@ function backToBrowse() {
   document.getElementById('picker-browse').hidden = false;
 }
 
+/* Una descrizione Privata è visibile solo al suo autore: una visita
+ * pubblica non può includerla, nemmeno se l'autore è lo stesso (le
+ * Riservate invece sì). Stessa regola applicata da Visit.pre('save')
+ * sul backend: qui serve solo a non far arrivare l'utente all'errore. */
+function hasPrivateItems() {
+  return state.steps.some(s => (s.items || []).some(it => it.license === 'Private'));
+}
+
 function confirmStep() {
   const museumId = document.getElementById('step-museum').value;
   if (!museumId) return; // nessun museo disponibile (non dovrebbe succedere: c'è sempre almeno un museo tra allMuseums)
   const museumOpt = document.getElementById('step-museum').selectedOptions[0];
 
   const items = Array.from(document.querySelectorAll('#step-items-list input[type="checkbox"]:checked'))
-    .map(cb => ({ id: cb.value }));
+    .map(cb => ({ id: cb.value, license: cb.dataset.license }));
 
   const stepData = {
     entity: { id: pickerSelectedEntity._id, name: pickerSelectedEntity.name, imageUrl: pickerSelectedEntity.image_url, altText: pickerSelectedEntity.alt_text },
@@ -915,7 +923,7 @@ function applyStepsToForm(visit) {
     .map(s => ({
       entity: { id: s.entity._id, name: s.entity.name, imageUrl: s.entity.image_url, altText: s.entity.alt_text },
       museum: { id: s.museum._id, name: s.museum.name },
-      items: (s.items || []).map(it => ({ id: it._id })),
+      items: (s.items || []).map(it => ({ id: it._id, license: it.license })),
       introNote: s.intro_note || '',
       logisticNote: s.logistic_note || '',
     }));
@@ -1039,6 +1047,15 @@ async function submitVisit() {
     payload.is_public = currentUser.role === 'author'
       ? document.getElementById('visibility-group').dataset.value === 'public'
       : false; // i visitatori possono avere solo visite private
+
+    if (payload.is_public && hasPrivateItems()) {
+      feedback.classList.remove('is-pending', 'is-success');
+      feedback.classList.add('is-error');
+      feedback.textContent = 'La sequenza include descrizioni private: rimuovile oppure rendi privata la visita.';
+      wizard.setSubmitEnabled(true);
+      wizard.goToStep(STEP_SEQUENCE);
+      return;
+    }
   }
 
   if (editing) delete payload.is_group; // immutabile dopo la creazione: non reinviarlo
@@ -1133,7 +1150,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   setupBtnGroup(
     'visibility-group',
     editingVisit && !editingVisit.is_public ? 'private' : 'public',
-    value => (value === 'private' && originalIsPublic) ? 'Una visita pubblica non può tornare privata.' : null,
+    value => {
+      if (value === 'private' && originalIsPublic) return 'Una visita pubblica non può tornare privata.';
+      if (value === 'public' && hasPrivateItems()) return 'La sequenza include descrizioni private: una visita pubblica può usare solo descrizioni pubbliche o riservate.';
+      return null;
+    },
   );
   syncGroupFields();
   if (editingVisit) applyEditingVisitToForm(editingVisit);

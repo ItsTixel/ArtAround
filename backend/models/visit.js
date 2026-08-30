@@ -200,6 +200,14 @@ visitSchema.pre('save', async function () {
       if (item.license !== 'Public' && item.author.toString() !== this.author.toString()) {
         throw new Error(`Item ${itemId} is ${item.license} and can only be used in a visit by its author`);
       }
+      // 1c. Una descrizione Privata è visibile solo al suo autore: una visita
+      // pubblica non può includerla nemmeno se l'autore è lo stesso. Le
+      // Reserved invece sì ("solo tu puoi usarla, anche in visite pubbliche").
+      // Le visite di gruppo non passano di qui come pubbliche: is_public è
+      // già stato forzato a false in cima all'hook.
+      if (this.is_public && item.license === 'Private') {
+        throw new Error(`Item ${itemId} is Private and cannot be used in a public visit`);
+      }
     }
   }
 
