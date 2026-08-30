@@ -157,7 +157,7 @@ Ideazione degli oggetti del database e relazioni, route/controller di museums/en
 #### Dusan Arandelovic:
 Login + registrazione + JWT (cookie httpOnly, bcrypt, Google Sign-In), middlewares ruoli/proprietà, rate limiting, pagine login.html/register.html, AuthContext del navigator, area profilo utente e upload avatar (multer).
 #### Luca Argentino:
-Ideazione del design system e applicazione a tutte le pagine (marketplace + navigator,Tailwind di entrambe), landing page, schermate di visita del navigator (home,opera,comandi), visite di gruppo "live" (server + client + quiz), componenti del marketplace.
+Ideazione del design system e applicazione a tutte le pagine (marketplace + navigator,Tailwind di entrambe). Progettazione landing page, schermate di visita del navigator (home,opera,comandi), visite di gruppo "live" (server + client + quiz), componenti del marketplace.
 #### LLM:
 I modelli di LLM sono stati usati in modalità agentica per:
 * Discutere e progettare scelte implementative;
