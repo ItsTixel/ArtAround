@@ -5,10 +5,16 @@
  * Property `data` (preferita agli attributi, supporta l'intero oggetto):
  *   { id, title, description, durationSec, steps, basePrice,
  *     tags[], tones[], museumDetails[{id, short, name, city}],
- *     images[{url, alt}] }
+ *     images[{url, alt}], isPublic }
+ *
+ * `isPublic` è opzionale e la pillola di visibilità compare solo quando vale
+ * `false`: in griglia le visite altrui sono pubbliche per definizione, quindi
+ * una pillola "Pubblica" su ogni card sarebbe solo rumore — segnaliamo
+ * l'eccezione, cioè le visite private (visibili solo al loro autore).
  */
 
 import { GLASS, GLASS_STRONG, TRANSITION, TAG_PILL } from '/marketplace/js/ui-tokens.js';
+import { licenseLabel, licensePillClass, visitLicense } from '/marketplace/js/visibility.js';
 
 /* Timer globale condiviso: fa avanzare in un unico battito i caroselli
  * di tutte le <visit-card> attualmente montate, cosí si muovono assieme.
@@ -81,6 +87,7 @@ class VisitCard extends HTMLElement {
     const museums = v.museumDetails || [];
     const isInfra = museums.length > 1;
     const museumLine = this._museumLine(museums);
+    const license = v.isPublic === false ? visitLicense(false) : null;
     const images = (Array.isArray(v.images) && v.images.length)
       ? v.images
       : (v.image ? [{ url: v.image, alt: v.title || '' }] : []);
@@ -123,7 +130,10 @@ class VisitCard extends HTMLElement {
             <span class="sm:hidden font-semibold ${owned || isFree ? 'text-slate-800 dark:text-slate-100' : ''}">${owned ? '✓ Posseduta' : this._fmtPrice(v.basePrice)}</span>
           </div>
           <h2 class="text-base sm:text-lg font-semibold leading-snug font-serif">${this._esc(v.title)}</h2>
-          ${v.tags?.length ? `<div class="hidden sm:flex flex-wrap gap-1.5">${v.tags.slice(0, 3).map(t => `<span class="${TAG_PILL}">${this._esc(t)}</span>`).join('')}</div>` : ''}
+          ${(license || v.tags?.length) ? `<div class="${license ? 'flex' : 'hidden sm:flex'} flex-wrap gap-1.5">
+            ${license ? `<span class="${licensePillClass(license)}">${this._esc(licenseLabel(license))}</span>` : ''}
+            ${(v.tags || []).slice(0, 3).map(t => `<span class="${TAG_PILL} hidden sm:inline-block">${this._esc(t)}</span>`).join('')}
+          </div>` : ''}
           <div class="flex items-end justify-between gap-4 mt-auto pt-3 sm:pt-4 border-t border-slate-400/20">
             <span class="text-xs sm:text-sm">
               <small class="block text-[0.58rem] sm:text-[0.62rem] tracking-[0.12em] uppercase text-slate-500 dark:text-slate-400 mb-0.5">Durata</small>

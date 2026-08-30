@@ -9,8 +9,7 @@ import { createImageField } from '/marketplace/js/image-field.js';
 import { GLASS, TRANSITION, TAG_PILL } from '/marketplace/js/ui-tokens.js';
 import { normalizeEntity } from '/marketplace/js/entity-utils.js';
 import { TONE_LABELS } from '/marketplace/js/tone-labels.js';
-
-const LICENSE_LABELS = { Public: 'Pubblica', Reserved: 'Riservata', Private: 'Privata' };
+import { licenseLabel, licensePillClass } from '/marketplace/js/visibility.js';
 
 const API_VISITS   = '/api/visits';
 const API_ITEMS    = '/api/items';
@@ -93,6 +92,7 @@ function normalizeVisit(v) {
     durationSec:   v.estimated_duration_sec || 0,
     steps:         v.steps?.length          || 0,
     basePrice:     v.base_price             || 0,
+    isPublic:      v.is_public !== false,
     tags:          v.tags                   || [],
     museumDetails,
     images:        operaImages(v.steps),
@@ -318,11 +318,6 @@ function renderDescriptions(items, emptyMessage) {
     grid.innerHTML = `<p class="empty">${emptyMessage}</p>`;
     return;
   }
-  const LICENSE_STYLE = {
-    private:  'text-rose-500 dark:text-rose-400 border-rose-400/40',
-    reserved: 'text-sky-600 dark:text-sky-400 border-sky-400/40',
-    public:   'text-slate-600 dark:text-slate-300 border-slate-400/30',
-  };
   items.forEach(item => {
     const artwork = item.artwork || {};
     const card = document.createElement('div');
@@ -330,8 +325,6 @@ function renderDescriptions(items, emptyMessage) {
     card.setAttribute('role', 'button');
     card.setAttribute('tabindex', '0');
     card.dataset.itemId = item._id;
-    const licenseKey = String(item.license || 'public').toLowerCase();
-    const licenseStyle = LICENSE_STYLE[licenseKey] || LICENSE_STYLE.public;
     const tagCls = TAG_PILL;
     card.innerHTML = `
       <div class="relative w-32 shrink-0 self-stretch sm:self-auto sm:w-full sm:h-44 bg-slate-300/20 dark:bg-slate-800/40 flex items-center justify-center overflow-hidden">
@@ -343,7 +336,7 @@ function renderDescriptions(items, emptyMessage) {
         <div class="text-[0.6rem] sm:text-[0.66rem] font-semibold tracking-[0.14em] uppercase text-slate-500 dark:text-slate-400">${esc(artwork.name || 'Opera')}</div>
         <p class="text-sm sm:text-base italic leading-snug font-serif">${esc(item.marketplace_summary)}</p>
         <div class="flex flex-wrap gap-1.5 mt-auto pt-1">
-          <span class="${tagCls} ${licenseStyle}">${esc(LICENSE_LABELS[item.license] || item.license)}</span>
+          <span class="${licensePillClass(item.license)}">${esc(licenseLabel(item.license))}</span>
           <span class="${tagCls} hidden sm:inline-block">${esc(TONE_LABELS[item.tone] || item.tone)}</span>
           ${(item.tags || []).slice(0, 3).map(t => `<span class="${tagCls} hidden sm:inline-block">${esc(t)}</span>`).join('')}
         </div>

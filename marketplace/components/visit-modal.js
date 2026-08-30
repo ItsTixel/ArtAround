@@ -16,12 +16,19 @@ import { TONE_ORDER, TONE_LABELS } from '/marketplace/js/tone-labels.js';
 import { trapTabKey, focusDialog } from '/marketplace/js/focus-trap.js';
 import { qrThumbHtml } from '/marketplace/js/qr-code.js';
 import { slugify } from '/marketplace/js/slug.js';
+import { licenseLabel, licenseColor, visitLicense } from '/marketplace/js/visibility.js';
 
 const API_VISITS   = '/api/visits';
 const API_USERS    = '/api/users';
 const LOGIN_URL    = '/marketplace/login.html';
 const NAVIGATOR_URL = '/navigator/';
 const EDIT_VISIT_URL = '/marketplace/pages/create-visit.html';
+
+// Forma della pillola usata dalle sezioni Visibilità/Temi/Linguaggio: il
+// colore (testo + bordo) lo aggiunge chi la usa, così la visibilità può
+// riprendere gli stessi colori della pillola licenza delle descrizioni.
+const PILL = 'liquid-glass-pill inline-block text-[0.62rem] tracking-[0.1em] uppercase border rounded-full px-2.5 py-1 mr-1.5 mb-1.5';
+const PILL_NEUTRAL = `${PILL} text-slate-500 dark:text-slate-400 border-slate-400/20`;
 
 class VisitModal extends HTMLElement {
   constructor() {
@@ -384,6 +391,16 @@ class VisitModal extends HTMLElement {
 
     const bannerEntity = steps.find(s => s.entity?.image_url)?.entity;
 
+    // Visibilità: stesso vocabolario (etichetta + colore) della licenza
+    // delle descrizioni. Le visite di gruppo sono private per costruzione
+    // (vedi models/visit.js), e lì la riga spiega che si raggiungono col codice.
+    const license = visitLicense(v.is_public);
+    const visibilityHint = v.is_group
+      ? 'Visita di gruppo: raggiungibile solo con il codice.'
+      : (v.is_public
+        ? 'Visibile a tutti nel marketplace.'
+        : 'Visibile solo a te nel marketplace.');
+
     return `
       <div class="relative h-[190px] bg-slate-300/20 dark:bg-slate-800/40 border-b border-slate-400/20 flex items-center justify-center overflow-hidden shrink-0">
         ${bannerEntity
@@ -409,15 +426,20 @@ class VisitModal extends HTMLElement {
 
         ${v.description ? `<p class="text-sm leading-relaxed text-slate-500 dark:text-slate-400 mb-4">${this._esc(v.description)}</p>` : ''}
 
+        <div class="mb-5">
+          <h4 class="text-[0.62rem] font-semibold tracking-[0.16em] uppercase text-slate-500 dark:text-slate-400 mb-2">Visibilità</h4>
+          <span class="${PILL} ${licenseColor(license)}">${this._esc(licenseLabel(license))}</span>
+          <span class="block text-[0.72rem] text-slate-500 dark:text-slate-400 mt-1">${visibilityHint}</span>
+        </div>
         ${v.tags?.length ? `
         <div class="mb-5">
           <h4 class="text-[0.62rem] font-semibold tracking-[0.16em] uppercase text-slate-500 dark:text-slate-400 mb-2">Temi</h4>
-          ${v.tags.map(t => `<span class="liquid-glass-pill inline-block text-[0.62rem] tracking-[0.1em] uppercase text-slate-500 dark:text-slate-400 border border-slate-400/20 rounded-full px-2.5 py-1 mr-1.5 mb-1.5">${this._esc(t)}</span>`).join('')}
+          ${v.tags.map(t => `<span class="${PILL_NEUTRAL}">${this._esc(t)}</span>`).join('')}
         </div>` : ''}
         ${tones.length ? `
         <div class="mb-6">
           <h4 class="text-[0.62rem] font-semibold tracking-[0.16em] uppercase text-slate-500 dark:text-slate-400 mb-2">Linguaggio</h4>
-          ${tones.map(t => `<span class="liquid-glass-pill inline-block text-[0.62rem] tracking-[0.1em] uppercase text-slate-500 dark:text-slate-400 border border-slate-400/20 rounded-full px-2.5 py-1 mr-1.5 mb-1.5">${this._esc(TONE_LABELS[t] || t)}</span>`).join('')}
+          ${tones.map(t => `<span class="${PILL_NEUTRAL}">${this._esc(TONE_LABELS[t] || t)}</span>`).join('')}
         </div>` : ''}
 
         <h3 class="text-base font-semibold mb-3.5 text-slate-800 dark:text-slate-100 font-serif">Opere incluse</h3>

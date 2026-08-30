@@ -94,6 +94,7 @@ function normalizeVisit(v) {
     durationSec:   v.estimated_duration_sec || 0,
     steps:         v.steps?.length          || 0,
     basePrice:     v.base_price             || 0,
+    isPublic:      v.is_public !== false,
     tags:          v.tags                   || [],
     museums:       museumDetails.map(m => m.id),
     museumDetails,

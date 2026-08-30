@@ -17,16 +17,10 @@ import { GLASS_MODAL as GLASS, TRANSITION, TAG_PILL as TAG_CLS } from '/marketpl
 import { setupParagraphList, formatDuration } from '/marketplace/js/paragraph-list.js';
 import { TONE_LABELS } from '/marketplace/js/tone-labels.js';
 import { trapTabKey, focusDialog } from '/marketplace/js/focus-trap.js';
+import { licenseLabel, licensePillClass } from '/marketplace/js/visibility.js';
 
 const API_ITEMS    = '/api/items';
 const API_ENTITIES = '/api/entities';
-
-const LICENSE_LABELS = { Public: 'Pubblica', Reserved: 'Riservata', Private: 'Privata' };
-const LICENSE_CLS = {
-  private:  'text-rose-500 dark:text-rose-400 border-rose-400/40',
-  reserved: 'text-sky-600 dark:text-sky-400 border-sky-400/40',
-  public:   'text-slate-600 dark:text-slate-300 border-slate-400/30',
-};
 
 class ItemModal extends HTMLElement {
   constructor() {
@@ -118,7 +112,6 @@ class ItemModal extends HTMLElement {
   _viewBodyHtml() {
     const it = this._item;
     const artwork = it.artwork || {};
-    const licenseKey = String(it.license || 'Public').toLowerCase();
     const paragraphs = it.descriptions || [];
 
     return `
@@ -134,7 +127,7 @@ class ItemModal extends HTMLElement {
         <p class="text-lg italic leading-snug mb-4 font-serif">${this._esc(it.marketplace_summary)}</p>
 
         <div class="flex flex-wrap gap-1.5 mb-6">
-          <span class="${TAG_CLS} ${LICENSE_CLS[licenseKey] || LICENSE_CLS.public}">${this._esc(LICENSE_LABELS[it.license] || it.license)}</span>
+          <span class="${licensePillClass(it.license)}">${this._esc(licenseLabel(it.license))}</span>
           <span class="${TAG_CLS}">${this._esc(TONE_LABELS[it.tone] || it.tone)}</span>
           ${(it.tags || []).map(t => `<span class="${TAG_CLS}">${this._esc(t)}</span>`).join('')}
         </div>
