@@ -3,6 +3,8 @@
  * pagina stessa è markup statico servito da Express (vedi backend/routes/landing.js).
  */
 
+import { getCurrentUser } from '/marketplace/js/auth-session.js';
+
 async function fetchJson(url) {
 	const res = await fetch(url);
 	if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -102,7 +104,18 @@ function renderFeaturedVisits(featuredVisits) {
 	});
 }
 
+// La fascia "Crea il tuo account / Accedi" ha senso solo per chi non ha
+// ancora una sessione: parte nascosta (vedi hidden nel markup) e compare
+// solo quando /api/auth/me conferma che non siamo autenticati.
+async function toggleRegisterBand() {
+	const band = document.getElementById('lp-cta-band');
+	if (!band) return;
+	const user = await getCurrentUser();
+	band.hidden = Boolean(user);
+}
+
 async function init() {
+	toggleRegisterBand();
 	try {
 		const [museums, entities, featuredEntities, visits] = await Promise.all([
 			fetchJson('/api/museums?pageSize=1'),
