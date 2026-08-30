@@ -2,12 +2,12 @@
 # CdS In Informatica
 # (A.A. 2025-26)
 
-# Progetto ArtAround 18-24 18-27 18-33
+# Progetto ArtAround 18-27
 
 # READ ME DEL PROGETTO ARTAROUND
 
 ## Nome del gruppo:
-Boia dé che gruppo
+Gli ZDL
 
 
 ## Membri del gruppo
@@ -16,9 +16,6 @@ Boia dé che gruppo
 * Nome e cognome: Dusan Arandelovic, matricola: 1163531, mail: dusan.arandelovic@studio.unibo.it
 * Nome e cognome: Luca Argentino, matricola: 1161779, mail: luca.argentino@studio.unibo.it
 * LLM: Claude Code Pro - Sonnet 5
-
-_Il primo membro della lista verrà considerato come punto di contatto primario. Sarà la persona
-incaricata di spedire mail (sempre e solo dall'indirizzo studio.unibo.it) e tenere contatti con i docenti. Ogni mail deve sempre includere tutti i componenti del gruppo in cc, e deve essere indirizzata a tutti i docenti del corso:_
 
 * fabio.vitali@unibo.it
 * andrea.schimmenti2@unibo.it
@@ -29,7 +26,7 @@ incaricata di spedire mail (sempre e solo dall'indirizzo studio.unibo.it) e tene
 18-27
 
 ## Data di disponibilità delle applicazioni
-TBA
+10 Settembre 2026
 
 ## Locazione del progetto:
 
@@ -48,12 +45,12 @@ dello stesso host.
 ## Organizzazione dei sorgenti
 
 Permessi: file `644`, directory `755`.
-Il repository contiene una directory per ciascuna delle due applicazioni
+La repository contiene una directory per ciascuna delle due applicazioni
 client (`marketplace/`, `navigator/`) più una directory per l'applicazione
 server-side (`backend/`), oltre agli asset condivisi e alla documentazione.
 
 ```
-/                       radice del repository
+/                       radice della repository
 ├── docs/               documentazione aggiuntiva
 │   ├── architettura-db.md    scelte di modellazione del database
 │   └── consigli-testing.md   guida alla prova manuale del sito: utenti, visite e percorsi consigliati
