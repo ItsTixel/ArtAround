@@ -317,7 +317,7 @@
     "author": {
       "$oid": "aaa000000000000000000004"
     },
-    "license": "Private",
+    "license": "Public",
     "tone": "technical",
     "descriptions": [
       {
@@ -599,7 +599,7 @@
     "author": {
       "$oid": "aaa000000000000000000004"
     },
-    "license": "Reserved",
+    "license": "Public",
     "tone": "childish",
     "descriptions": [
       {
@@ -732,7 +732,7 @@
     "author": {
       "$oid": "aaa000000000000000000004"
     },
-    "license": "Private",
+    "license": "Public",
     "tone": "technical",
     "descriptions": [
       {
@@ -1254,7 +1254,7 @@
     "author": {
       "$oid": "aaa000000000000000000004"
     },
-    "license": "Private",
+    "license": "Public",
     "tone": "technical",
     "descriptions": [
       {
@@ -1296,7 +1296,7 @@
     "author": {
       "$oid": "aaa000000000000000000004"
     },
-    "license": "Reserved",
+    "license": "Public",
     "tone": "childish",
     "descriptions": [
       {
